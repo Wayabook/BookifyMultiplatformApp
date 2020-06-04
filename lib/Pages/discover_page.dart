@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'book_page.dart';
 
 
 class DiscoverPage extends StatelessWidget {
@@ -13,10 +14,32 @@ class DiscoverPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: color,
-      child:  Text(
-        this.text,
-        style: optionStyle,
-      ),
+      child:  new Column(
+        children: <Widget>[
+          Text(
+            this.text,
+            style: optionStyle,
+          ),
+
+          Center(
+            child: FlatButton(
+            color: Colors.blue,
+            textColor: Colors.white,
+            padding: EdgeInsets.all(8.0),
+            splashColor: Colors.blueAccent,
+            onPressed: () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => BookPage("title")));
+            },
+            ),
+          ),
+      ])
     );
   }
+
+  //Use the navigator like you usually do with .of(context) method
+  _openBooksPage(BuildContext context) => Navigator.of(context)
+      .push(MaterialPageRoute(builder: (context) => BookPage("title")));
+
+  // Exemple: https://github.com/ayham95/Custom-navigator/tree/master/custom_scaffold_example
 }
