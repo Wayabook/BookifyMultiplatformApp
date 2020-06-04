@@ -37,19 +37,10 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
   TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Index 0: Home',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 1: Business',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 2: School',
-      style: optionStyle,
-    ),
+  final List<Widget> _widgetOptions = [
+    PlaceholderWidget(Colors.white, "Reading Page"),
+    PlaceholderWidget(Colors.deepOrange, "Discover Page"),
+    PlaceholderWidget(Colors.green, "Profile Page")
   ];
 
   void _onItemTapped(int index) {
@@ -85,6 +76,27 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.blueAccent,
         onTap: _onItemTapped,
+      ),
+    );
+  }
+
+}
+
+class PlaceholderWidget extends StatelessWidget {
+  final Color color;
+  final String text;
+  static const TextStyle optionStyle =
+  TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+
+  PlaceholderWidget(this.color, this.text);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: color,
+      child:  Text(
+        this.text,
+        style: optionStyle,
       ),
     );
   }
