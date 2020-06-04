@@ -10,6 +10,9 @@
 // bar items. The first one is selected.](https://flutter.github.io/assets-for-api-docs/assets/material/bottom_navigation_bar.png)
 
 import 'package:flutter/material.dart';
+import 'Pages/discover_page.dart';
+import 'Pages/profile_page.dart';
+import 'Pages/reading_page.dart';
 
 void main() => runApp(MyApp());
 
@@ -38,9 +41,9 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   static const TextStyle optionStyle =
   TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   final List<Widget> _widgetOptions = [
-    PlaceholderWidget(Colors.white, "Reading Page"),
-    PlaceholderWidget(Colors.deepOrange, "Discover Page"),
-    PlaceholderWidget(Colors.green, "Profile Page")
+    ReadingPage(Colors.white, "Reading Page"),
+    DiscoverPage(Colors.deepOrange, "Discover Page"),
+    ProfilePage(Colors.green, "Profile Page")
   ];
 
   void _onItemTapped(int index) {
