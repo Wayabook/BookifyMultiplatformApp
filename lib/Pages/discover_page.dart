@@ -12,28 +12,35 @@ class DiscoverPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: color,
-      child:  new Column(
-        children: <Widget>[
-          Text(
-            this.text,
-            style: optionStyle,
-          ),
+    return Scaffold(
+      body: Container(
+        color: color,
+        child:  new Column(
+            children: <Widget>[
+              Text(
+                this.text,
+                style: optionStyle,
+              ),
 
-          Center(
-            child: FlatButton(
-            color: Colors.blue,
-            textColor: Colors.white,
-            padding: EdgeInsets.all(8.0),
-            splashColor: Colors.blueAccent,
-            onPressed: () {
-              Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) => BookPage("title")));
-            },
-            ),
-          ),
-      ])
+              Center(
+                child: FlatButton(
+                  color: Colors.blue,
+                  textColor: Colors.white,
+                  padding: EdgeInsets.all(8.0),
+                  splashColor: Colors.blueAccent,
+                  onPressed: () {
+                    //Navigator.push(context, BookPage("title"));
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (context) => BookPage("title")));
+                  },
+                ),
+              ),
+            ]),
+
+      ),
+      appBar: AppBar(
+        title: Text(this.text),
+      ),
     );
   }
 
