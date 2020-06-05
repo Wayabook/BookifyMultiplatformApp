@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'book_page.dart';
 
-
 class DiscoverPage extends StatelessWidget {
   final Color color;
   final String text;
@@ -34,7 +33,12 @@ class DiscoverPage extends StatelessWidget {
                         .push(MaterialPageRoute(builder: (context) => BookPage("title")));
                   },
                 ),
+
+
+
               ),
+
+
             ]),
 
       ),
@@ -44,6 +48,27 @@ class DiscoverPage extends StatelessWidget {
     );
   }
 
+  /*_getSwiper(){
+    return Swiper(
+      itemBuilder: (BuildContext context, int index) {
+        /*return new Image.asset(
+          images[index],
+          fit: BoxFit.fill,
+        );*7
+
+         */
+        return  new Container(
+          color: Colors.white12,
+        );
+      },
+
+      indicatorLayout: PageIndicatorLayout.COLOR,
+      autoplay: true,
+      itemCount: 4,
+      pagination: new SwiperPagination(),
+      control: new SwiperControl(),
+    );
+  }*/
   //Use the navigator like you usually do with .of(context) method
   _openBooksPage(BuildContext context) => Navigator.of(context)
       .push(MaterialPageRoute(builder: (context) => BookPage("title")));

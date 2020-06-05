@@ -3,7 +3,7 @@ class Book {
 
   String _title;
   String _author;
-  String _picture;
+  String _coverImage;
   String _summary;
   bool _read;
   int _year;
@@ -32,10 +32,10 @@ class Book {
     _author = author;
   }
 
-  String get picture => _picture;
+  String get picture => _coverImage;
 
   set picture(String picture) {
-    _picture = picture;
+    _coverImage = picture;
   }
 
   String get summary => _summary;
@@ -85,6 +85,8 @@ class Book {
   set isNew(bool isNew) {
     _isNew = isNew;
   }
+
+  Book(this._title, this._author, this._coverImage);
 
 
 
