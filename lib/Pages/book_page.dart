@@ -23,13 +23,21 @@ class ExampleHorizontal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-        appBar: AppBar(
-          title: Text("ExampleHorizontal"),
-        ),
+        backgroundColor: Colors.blueGrey,
         body: new Swiper(
+          containerHeight: 25.0,
           itemBuilder: (BuildContext context, int index) {
+            var color = Colors.white12;
+
+            if(index == 0)
+              color = Colors.brown;
+
+            if(index == 1)
+              color = Colors.red;
+
+
             return  new Container(
-              color: Colors.white12,
+              color: color,
               width: 20,
               height: 20,
             );
@@ -38,8 +46,10 @@ class ExampleHorizontal extends StatelessWidget {
           indicatorLayout: PageIndicatorLayout.COLOR,
           autoplay: true,
           itemCount: 3,
-          pagination: new SwiperPagination(),
-          control: new SwiperControl(),
+          pagination: null,
+          control: null,
+          viewportFraction: 0.8,
+          scale: 0.9,
         ));
   }
 }
