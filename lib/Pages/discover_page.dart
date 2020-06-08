@@ -56,9 +56,11 @@ class DiscoverPage extends StatelessWidget {
 
               Flexible(
                 child: CarouselCard(),
-                flex: 1,),
+                flex: 4,),
 
-
+              /*Flexible(
+                child: CarouselCard(),
+                flex: 4,),*/
 
               //CarouselCard(),
 

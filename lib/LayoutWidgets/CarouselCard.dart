@@ -21,12 +21,19 @@ class CarouselCard extends StatelessWidget {
 
    return Center(
      child: Card(
+       color: Colors.blueGrey,
        child: InkWell(
          splashColor: Colors.blue.withAlpha(30),
          onTap: () {
            print('Card tapped.');
          },
-         child: ExampleHorizontal(books)
+         child: Padding(
+           padding: const EdgeInsets.all(20.0),
+           child: Card(
+             color: Colors.white,
+             child:  ExampleHorizontal(books),
+           ),
+         )
        ),
      ),
    );
@@ -41,7 +48,7 @@ class ExampleHorizontal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-        backgroundColor: Colors.blueGrey,
+        //backgroundColor: Colors.blueGrey,
         body: new Swiper(
           containerHeight: 25.0,
           itemBuilder: (BuildContext context, int index) {
@@ -53,55 +60,7 @@ class ExampleHorizontal extends StatelessWidget {
             if(index == 1)
               color = Colors.red;
 
-
-            return  new ListView(
-              //CrossAxisAlignment.center,
-              children: <Widget>[
-                /*Scaffold(
-                  /*margin: new EdgeInsets.all(2.0),*/
-                  body: Image.network(
-                      'https://imagessl3.casadellibro.com/a/l/t0/73/9788490628973.jpg',
-                    ),
-                )*/
-                Align(
-                    alignment: Alignment.center,
-                    child: Image.network(
-                      this.books[index].picture,
-                    )
-                ),
-
-                Align(
-                  alignment: Alignment.center,
-                  child: Container(
-                    padding: const EdgeInsets.only(bottom: 8),
-                    child: Text(
-                      this.books[index].title,
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ),
-
-                Align(
-                  alignment: Alignment.center,
-                  child: Text(
-                    this.books[index].author,
-                    style: TextStyle(
-                      color: Colors.grey[500],
-                    ),
-                  ),
-                ),
-
-
-                /*Container(
-                color: color,
-                width: 20,
-                height: 20,
-              ),*/
-
-              ],
-            );
+            return _getSwiperCardContent(index);
           },
 
           indicatorLayout: PageIndicatorLayout.COLOR,
@@ -112,5 +71,50 @@ class ExampleHorizontal extends StatelessWidget {
           viewportFraction: 0.8,
           scale: 0.9,
         ));
+  }
+
+  _getSwiperCardContent(int index){
+    return new Column(
+      children: <Widget>[
+        Flexible(
+          child: Align(
+              alignment: Alignment.center,
+              child: Image.network(
+                this.books[index].picture,
+              )
+          ),
+          flex: 6,
+        ),
+
+        Flexible(
+          child: Align(
+            alignment: Alignment.center,
+            child: Container(
+              child: Text(
+                this.books[index].title,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
+          flex: 1,
+        ),
+
+
+        Flexible(
+          child: Align(
+            alignment: Alignment.center,
+            child: Text(
+              this.books[index].author,
+              style: TextStyle(
+                color: Colors.grey[500],
+              ),
+            ),
+          ),
+          flex: 1,
+        )
+      ],
+    );
   }
 }
