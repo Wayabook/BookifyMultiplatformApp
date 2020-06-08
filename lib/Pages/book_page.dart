@@ -14,36 +14,77 @@ class BookPage extends StatelessWidget {
     final text = Text('Details of $title');
     return Scaffold(
       body: Container(
-        child: _getListElement(),
+        child:  _createListView(),
       ),
       appBar: AppBar(title: text),
     );
   }
 
-  _getListElement(){
+  _createListView(){
+    return Container(
+      height: 300,
+      width: 500,
+      child: ListView.builder(
+          scrollDirection: Axis.horizontal,
+          itemCount: books.length,
+          itemBuilder: (BuildContext context, int index) {
+            return Card(
+              child: _getListElement(index),
+              /*child: ListTile(
+                leading: FlutterLogo(size: 40.0),
+                title: Text(this.books[index]),
+                subtitle: Text('subtitle'),
+                trailing: Icon(Icons.favorite),
+                isThreeLine: true,
+              ),*/
+            );
+          },
+      ),
+    );
+  }
+
+  _getListElement(index){
     return Stack(
-        alignment: Alignment.topRight,
+        //alignment: Alignment.topRight,
         children: <Widget>[
-
-          Image.network("https://imagessl3.casadellibro.com/a/l/t0/73/9788490628973.jpg"),
-
           Padding(
-              padding: EdgeInsets.all(8.0),
-              child: RaisedButton(
-
-                  onPressed: () {
-                    null;
-                  },
-                  child: new Text("Call me")
-              )
+            padding: EdgeInsets.fromLTRB(0, 15, 0, 0),
+            child: Align(
+              alignment: Alignment.center,
+              child: Image.network(books[index].picture),
+            ),
           ),
+
+          Align(
+            alignment: Alignment.topRight,
+            child: Padding(
+              padding: EdgeInsets.fromLTRB(0, 6, 12, 0),
+              child: _getButton(),
+            ),
+          )
+
+          /*Padding(
+            //padding: EdgeInsets.fromLTRB(left, top, right, bottom)
+            padding: EdgeInsets.fromLTRB(0, 6, 12, 0),
+            //padding: EdgeInsets.all(8.0),
+            child: Align(
+              alignment: Alignment.topRight,
+              child: _getButton(),
+            ),
+          ),*/
         ]
     );
   }
 
   _getButton(){
+    return FloatingActionButton(
+      onPressed: () => {},
+      tooltip: 'Increment',
+      backgroundColor: Colors.white,
+      child: Icon(Icons.add, color: Colors.black),
+    );
     //return FlatButton.icon(onPressed: null, icon: null, label: null);
-    return RaisedButton.icon(onPressed: null, icon: Icon(Icons.add), label: null);
+    //return RaisedButton.icon(onPressed: null, icon: Icon(Icons.add), label: null);
   }
 }
 
