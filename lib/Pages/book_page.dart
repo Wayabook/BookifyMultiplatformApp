@@ -14,91 +14,36 @@ class BookPage extends StatelessWidget {
     final text = Text('Details of $title');
     return Scaffold(
       body: Container(
-        child: ExampleHorizontal(books),
+        child: _getListElement(),
       ),
       appBar: AppBar(title: text),
     );
   }
-}
 
-class ExampleHorizontal extends StatelessWidget {
-  final List<Book> books;
+  _getListElement(){
+    return Stack(
+        alignment: Alignment.topRight,
+        children: <Widget>[
 
-  const ExampleHorizontal(this.books);
+          Image.network("https://imagessl3.casadellibro.com/a/l/t0/73/9788490628973.jpg"),
 
-  @override
-  Widget build(BuildContext context) {
-    return new Scaffold(
-        backgroundColor: Colors.blueGrey,
-        body: new Swiper(
-          containerHeight: 25.0,
-          itemBuilder: (BuildContext context, int index) {
-            var color = Colors.white12;
+          Padding(
+              padding: EdgeInsets.all(8.0),
+              child: RaisedButton(
 
-            if(index == 0)
-              color = Colors.brown;
+                  onPressed: () {
+                    null;
+                  },
+                  child: new Text("Call me")
+              )
+          ),
+        ]
+    );
+  }
 
-            if(index == 1)
-              color = Colors.red;
-
-
-            return  new ListView(
-              //CrossAxisAlignment.center,
-              children: <Widget>[
-                /*Scaffold(
-                  /*margin: new EdgeInsets.all(2.0),*/
-                  body: Image.network(
-                      'https://imagessl3.casadellibro.com/a/l/t0/73/9788490628973.jpg',
-                    ),
-                )*/
-                Align(
-                  alignment: Alignment.center,
-                  child: Image.network(
-                    this.books[index].picture,
-                  )
-                ),
-
-                Align(
-                    alignment: Alignment.center,
-                    child: Container(
-                      padding: const EdgeInsets.only(bottom: 8),
-                      child: Text(
-                        this.books[index].title,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                ),
-
-                Align(
-                    alignment: Alignment.center,
-                    child: Text(
-                      this.books[index].author,
-                      style: TextStyle(
-                        color: Colors.grey[500],
-                      ),
-                    ),
-                ),
-
-
-              /*Container(
-                color: color,
-                width: 20,
-                height: 20,
-              ),*/
-
-              ],
-            );
-          },
-
-          indicatorLayout: PageIndicatorLayout.COLOR,
-          autoplay: true,
-          itemCount: books.length,
-          pagination: null,
-          control: null,
-          viewportFraction: 0.8,
-          scale: 0.9,
-        ));
+  _getButton(){
+    //return FlatButton.icon(onPressed: null, icon: null, label: null);
+    return RaisedButton.icon(onPressed: null, icon: Icon(Icons.add), label: null);
   }
 }
+
