@@ -28,7 +28,7 @@ class CarouselCard extends StatelessWidget {
            print('Card tapped.');
          },
          child: Padding(
-           padding: const EdgeInsets.all(20.0),
+           padding: const EdgeInsets.fromLTRB(20, 40, 20, 40),
            child: Card(
              color: Colors.white,
              child:  ExampleHorizontal(books),
@@ -50,7 +50,7 @@ class ExampleHorizontal extends StatelessWidget {
     return new Scaffold(
         //backgroundColor: Colors.blueGrey,
         body: new Swiper(
-          containerHeight: 25.0,
+          //containerHeight: 25.0,
           itemBuilder: (BuildContext context, int index) {
             var color = Colors.white12;
 
@@ -61,20 +61,22 @@ class ExampleHorizontal extends StatelessWidget {
               color = Colors.red;
 
             return _getSwiperCardContent(index);
+
           },
 
           indicatorLayout: PageIndicatorLayout.COLOR,
-          autoplay: true,
+          autoplay: false,
           itemCount: books.length,
           pagination: null,
           control: null,
-          viewportFraction: 0.8,
+          viewportFraction: 0.6,
           scale: 0.9,
         ));
   }
 
   _getSwiperCardContent(int index){
     return new Column(
+
       children: <Widget>[
         Flexible(
           child: Align(
