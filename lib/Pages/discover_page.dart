@@ -1,4 +1,4 @@
-import 'package:bookifyapp/LayoutWidgets/CarouselCard.dart';
+import 'package:bookifyapp/LayoutWidgets/carousel_card.dart';
 import 'package:flutter/material.dart';
 import 'book_page.dart';
 import 'package:bookifyapp/Models/Book.dart';
