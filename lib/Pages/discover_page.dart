@@ -1,3 +1,4 @@
+import 'package:bookifyapp/LayoutWidgets/CarouselCard.dart';
 import 'package:flutter/material.dart';
 import 'book_page.dart';
 import 'package:bookifyapp/Models/Book.dart';
@@ -27,27 +28,41 @@ class DiscoverPage extends StatelessWidget {
         color: color,
         child:  new Column(
             children: <Widget>[
-              Text(
+              Flexible(
+                child: Text(
                 this.text,
                 style: optionStyle,
-              ),
-
-              Center(
-                child: FlatButton(
-                  color: Colors.blue,
-                  textColor: Colors.white,
-                  padding: EdgeInsets.all(8.0),
-                  splashColor: Colors.blueAccent,
-                  onPressed: () {
-                    //Navigator.push(context, BookPage("title"));
-                    Navigator.of(context)
-                        .push(MaterialPageRoute(builder: (context) => BookPage("title", books)));
-                  },
                 ),
+              flex: 1,),
 
 
-
+              Flexible(
+                child: Center(
+                    child: FlatButton(
+                      color: Colors.blue,
+                      textColor: Colors.white,
+                      padding: EdgeInsets.all(8.0),
+                      splashColor: Colors.blueAccent,
+                      onPressed: () {
+                        //Navigator.push(context, BookPage("title"));
+                        Navigator.of(context)
+                            .push(MaterialPageRoute(builder: (context) => BookPage("title", books)));
+                      },
+                    )
+                ),
+                flex: 1,
               ),
+
+
+              Flexible(
+                child: CarouselCard(),
+                flex: 1,),
+
+
+
+              //CarouselCard(),
+
+
 
 
             ]),
