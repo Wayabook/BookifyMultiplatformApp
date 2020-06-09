@@ -33,22 +33,88 @@ class DiscoverPage extends StatelessWidget {
         color: color,
         child:  new Column(
             children: <Widget>[
-              Flexible(
-                child: Text(
-                "Latest Additions",
-                style: optionStyle,
+              /*Container(
+                margin: EdgeInsets.fromLTRB(5, 2, 2, 2),
+                child:  Align(
+                  alignment: Alignment.topLeft,
+                  child: Text(
+                    "Latest Additions",
+                    style: optionStyle,
+                  ),
                 ),
-              flex: 1,),
+              ),
+
+              CarouselCard(),
+
+              Container(
+                  margin: EdgeInsets.fromLTRB(5, 2, 2, 2),
+                  child:  Align(
+                    alignment: Alignment.topLeft,
+                    child: Text(
+                      "Top Rated",
+                      style: optionStyle,
+                    ),
+                  ),
+              ),
+
+              HorizontalBookList(books),
+
+              Container(
+                margin: EdgeInsets.fromLTRB(5, 2, 2, 2),
+                child:  Align(
+                  alignment: Alignment.topLeft,
+                  child: Text(
+                    "Top Rated2",
+                    style: optionStyle,
+                  ),
+                ),
+              ),
+
+              HorizontalBookList(books),
+
+              Container(
+                margin: EdgeInsets.fromLTRB(5, 2, 2, 2),
+                child:  Align(
+                  alignment: Alignment.topLeft,
+                  child: Text(
+                    "Top Rated3",
+                    style: optionStyle,
+                  ),
+                ),
+              ),
+
+              HorizontalBookList(books),*/
+
+
+              Flexible(
+                child: Container(
+                  margin: EdgeInsets.fromLTRB(5, 2, 2, 2),
+                  child:  Align(
+                    alignment: Alignment.topLeft,
+                    child: Text(
+                      "Latest Additions",
+                      style: optionStyle,
+                    ),
+                  ),
+                ),
+                flex: 1,),
 
               Flexible(
                 child: CarouselCard(),
-                flex: 6,
+                flex: 4,
               ),
 
+
               Flexible(
-                child: Text(
-                  "Top Rated",
-                  style: optionStyle,
+                child: Container(
+                  margin: EdgeInsets.fromLTRB(5, 2, 2, 2),
+                  child:  Align(
+                    alignment: Alignment.topLeft,
+                    child: Text(
+                      "Top Rated",
+                      style: optionStyle,
+                    ),
+                  ),
                 ),
                 flex: 1,),
 
@@ -56,6 +122,26 @@ class DiscoverPage extends StatelessWidget {
                 child: HorizontalBookList(books),
                 flex: 4,
               ),
+
+              /*Flexible(
+                child: Container(
+                  margin: EdgeInsets.fromLTRB(5, 2, 2, 2),
+                  child:  Align(
+                    alignment: Alignment.topLeft,
+                    child: Text(
+                      "Top Rated",
+                      style: optionStyle,
+                    ),
+                  ),
+                ),
+                flex: 1,),
+
+              Flexible(
+                child: HorizontalBookList(books),
+                flex: 4,
+              ),*/
+
+
 
 
               /*Flexible(

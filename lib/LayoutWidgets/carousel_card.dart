@@ -5,7 +5,8 @@ import 'package:bookifyapp/LayoutWidgets/card_swiper.dart';
 
 class CarouselCard extends StatelessWidget {
 
-  CarouselCard({Key key}) : super(key: key);
+  //CarouselCard({Key key}) : super(key: key);
+  CarouselCard();
 
  @override
  Widget build(BuildContext context) {
@@ -27,7 +28,7 @@ class CarouselCard extends StatelessWidget {
            print('Card tapped.');
          },
          child: Padding(
-           padding: const EdgeInsets.fromLTRB(20, 40, 20, 40),
+           padding: const EdgeInsets.fromLTRB(10, 20, 10, 20),
            child: Card(
              shape: RoundedRectangleBorder(
                borderRadius: BorderRadius.circular(7.0),
