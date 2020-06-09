@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/Models/Book.dart';
+import 'package:bookifyapp/Pages/book_page.dart';
 
 class HorizontalBookList extends StatelessWidget {
 
   List<Book> books;
+  BuildContext context;
 
   HorizontalBookList(this.books);
 
   @override
   Widget build(BuildContext context) {
+    this.context = context;
     return Container(
       child: Card(
         color: Colors.blueGrey,
@@ -46,7 +49,10 @@ class HorizontalBookList extends StatelessWidget {
             padding: EdgeInsets.fromLTRB(0, 15, 0, 0),
             child: Align(
               alignment: Alignment.center,
-              child: Image.network(books[index].picture),
+              child: InkWell(
+                onTap: _goToBookPage,
+                child: Image.network(books[index].picture),
+              ),
             ),
           ),
 
@@ -59,9 +65,16 @@ class HorizontalBookList extends StatelessWidget {
     );
   }
 
+  _goToBookPage(){
+    Navigator.of(context)
+      .push(MaterialPageRoute(builder: (context) => BookPage("title", books)));
+  }
+
   _getTopFloatingActionButton(){
     return FloatingActionButton(
-      onPressed: () => {},
+      onPressed: () => {
+
+      },
       tooltip: 'Increment',
       backgroundColor: Colors.white,
       child: Icon(Icons.add, color: Colors.black),
