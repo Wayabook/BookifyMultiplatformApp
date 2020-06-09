@@ -1,7 +1,5 @@
 import 'package:bookifyapp/Models/Book.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_page_indicator/flutter_page_indicator.dart';
-import 'package:flutter_swiper/flutter_swiper.dart';
 
 class BookPage extends StatelessWidget {
   final String title;
@@ -29,6 +27,11 @@ class BookPage extends StatelessWidget {
           itemCount: books.length,
           itemBuilder: (BuildContext context, int index) {
             return Card(
+              margin: EdgeInsets.all(10),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(7.0),
+              ),
+              elevation: 10,
               child: _getListElement(index),
               /*child: ListTile(
                 leading: FlutterLogo(size: 40.0),
@@ -45,7 +48,6 @@ class BookPage extends StatelessWidget {
 
   _getListElement(index){
     return Stack(
-        //alignment: Alignment.topRight,
         children: <Widget>[
           Padding(
             padding: EdgeInsets.fromLTRB(0, 15, 0, 0),
@@ -55,23 +57,11 @@ class BookPage extends StatelessWidget {
             ),
           ),
 
-          Align(
-            alignment: Alignment.topRight,
-            child: Padding(
-              padding: EdgeInsets.fromLTRB(0, 6, 12, 0),
-              child: _getButton(),
-            ),
+          Positioned(
+            top: 6,
+            right: 0,
+            child: _getButton(),
           )
-
-          /*Padding(
-            //padding: EdgeInsets.fromLTRB(left, top, right, bottom)
-            padding: EdgeInsets.fromLTRB(0, 6, 12, 0),
-            //padding: EdgeInsets.all(8.0),
-            child: Align(
-              alignment: Alignment.topRight,
-              child: _getButton(),
-            ),
-          ),*/
         ]
     );
   }

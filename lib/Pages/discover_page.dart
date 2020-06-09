@@ -2,6 +2,7 @@ import 'package:bookifyapp/LayoutWidgets/carousel_card.dart';
 import 'package:flutter/material.dart';
 import 'book_page.dart';
 import 'package:bookifyapp/Models/Book.dart';
+import 'package:bookifyapp/LayoutWidgets/horizontal_book_list.dart';
 
 class DiscoverPage extends StatelessWidget {
   final Color color;
@@ -23,6 +24,10 @@ class DiscoverPage extends StatelessWidget {
     books.add(book2);
     books.add(book3);
 
+    books.add(book1);
+    books.add(book2);
+    books.add(book3);
+
     return Scaffold(
       body: Container(
         color: color,
@@ -30,13 +35,30 @@ class DiscoverPage extends StatelessWidget {
             children: <Widget>[
               Flexible(
                 child: Text(
-                this.text,
+                "Latest Additions",
                 style: optionStyle,
                 ),
               flex: 1,),
 
+              Flexible(
+                child: CarouselCard(),
+                flex: 6,
+              ),
 
               Flexible(
+                child: Text(
+                  "Top Rated",
+                  style: optionStyle,
+                ),
+                flex: 1,),
+
+              Flexible(
+                child: HorizontalBookList(books),
+                flex: 4,
+              ),
+
+
+              /*Flexible(
                 child: Center(
                     child: FlatButton(
                       color: Colors.blue,
@@ -51,12 +73,7 @@ class DiscoverPage extends StatelessWidget {
                     )
                 ),
                 flex: 1,
-              ),
-
-
-              Flexible(
-                child: CarouselCard(),
-                flex: 4,),
+              ),*/
 
               /*Flexible(
                 child: CarouselCard(),

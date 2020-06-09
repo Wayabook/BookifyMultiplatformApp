@@ -29,6 +29,10 @@ class CarouselCard extends StatelessWidget {
          child: Padding(
            padding: const EdgeInsets.fromLTRB(20, 40, 20, 40),
            child: Card(
+             shape: RoundedRectangleBorder(
+               borderRadius: BorderRadius.circular(7.0),
+             ),
+             elevation: 10,
              color: Colors.white,
              child:  CardSwiper(books),
            ),
