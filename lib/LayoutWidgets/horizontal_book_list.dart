@@ -10,7 +10,10 @@ class HorizontalBookList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child:  _createListView(),
+      child: Card(
+        color: Colors.blueGrey,
+        child: _createListView(),
+      ),
     );
   }
 

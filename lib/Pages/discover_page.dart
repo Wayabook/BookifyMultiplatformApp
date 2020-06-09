@@ -9,13 +9,15 @@ class DiscoverPage extends StatelessWidget {
   final String text;
   static const TextStyle optionStyle =
   TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+  List<String> sectionsTitles = ["Latest Additions","Top Rated","Top in  Novel Genre","Top in Romance Genre"];
+  List<Book> books =  List();
 
   DiscoverPage(this.color, this.text);
 
   @override
   Widget build(BuildContext context) {
 
-    List<Book> books =  List();
+
     Book book1 = new Book("En los Zapatos de Valeria", "Elisabeth Benavent", "https://imagessl3.casadellibro.com/a/l/t0/73/9788490628973.jpg");
     Book book2 = new Book("En busca del chico irrompible", "Coque Mesa", "https://imagessl9.casadellibro.com/a/l/t5/59/9788408228059.jpg");
     Book book3 = new Book("Con el amor bastaba", "Maxim Huerta", "https://imagessl2.casadellibro.com/a/l/t5/92/9788408221692.jpg");
@@ -31,7 +33,15 @@ class DiscoverPage extends StatelessWidget {
     return Scaffold(
       body: Container(
         color: color,
-        child:  new Column(
+        child: ListView.builder(
+          itemBuilder: (context, index) => _buildSection(context, index),
+          itemCount: sectionsTitles.length,
+          scrollDirection: Axis.vertical,
+          shrinkWrap: true
+        ),
+      ),
+
+        /*child:  new Column(
             children: <Widget>[
               /*Container(
                 margin: EdgeInsets.fromLTRB(5, 2, 2, 2),
@@ -172,34 +182,55 @@ class DiscoverPage extends StatelessWidget {
 
             ]),
 
-      ),
+      ),*/
+
       appBar: AppBar(
         title: Text(this.text),
       ),
     );
   }
 
-  /*_getSwiper(){
-    return Swiper(
-      itemBuilder: (BuildContext context, int index) {
-        /*return new Image.asset(
-          images[index],
-          fit: BoxFit.fill,
-        );*7
+  Widget _buildSection(BuildContext context, int index) {
+    String sectionTitle = sectionsTitles[index];
+    if (index == 0) {
+      return Column(
+        children: <Widget>[
+          Container(
+            margin: EdgeInsets.fromLTRB(5, 2, 2, 2),
+            child:  Align(
+              alignment: Alignment.topLeft,
+              child: Text(
+                sectionTitle,
+                style: optionStyle,
+              ),
+            ),
+          ),
 
-         */
-        return  new Container(
-          color: Colors.white12,
-        );
-      },
+          CarouselCard(this.books),
+        ],
+      );
 
-      indicatorLayout: PageIndicatorLayout.COLOR,
-      autoplay: true,
-      itemCount: 4,
-      pagination: new SwiperPagination(),
-      control: new SwiperControl(),
-    );
-  }*/
+    } else {
+      return Column(
+        children: <Widget>[
+          Container(
+            margin: EdgeInsets.fromLTRB(5, 2, 2, 2),
+            child:  Align(
+              alignment: Alignment.topLeft,
+              child: Text(
+                sectionTitle,
+                style: optionStyle,
+              ),
+            ),
+          ),
+
+          HorizontalBookList(books),
+        ],
+      );
+    }
+  }
+
+
 
   //Use the navigator like you usually do with .of(context) method
   /*_openBooksPage(BuildContext context) => Navigator.of(context)

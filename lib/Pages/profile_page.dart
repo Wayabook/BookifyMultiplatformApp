@@ -38,7 +38,8 @@ class ProfilePage extends StatelessWidget {
               itemBuilder: (context, index) => _makeCard(context, index),
               itemCount: 3,
               scrollDirection: Axis.vertical,
-              shrinkWrap: true),
+              shrinkWrap: true
+          ),
         ),
       ),
       appBar: AppBar(
