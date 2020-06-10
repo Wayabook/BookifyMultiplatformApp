@@ -7,11 +7,11 @@ import 'package:bookifyapp/Pages/book_page.dart';
 class CardSwiper extends StatelessWidget {
   final List<Book> books;
 
-  const CardSwiper(this.books);
+
+  CardSwiper(this.books);
 
   @override
   Widget build(BuildContext context) {
-    //this.context = context;
     return new Scaffold(
         backgroundColor: Colors.blueGrey,
         body: new Swiper(
@@ -37,57 +37,60 @@ class CardSwiper extends StatelessWidget {
         ),
         elevation: 10,
         color: Colors.white,
-        child: Column(
-          children: <Widget>[
-            Flexible(
-              child: Align(
+        child: GestureDetector(
+          onTap: () {
+            Navigator.of(context)
+                .push(MaterialPageRoute(builder: (context) => BookPage("title", this.books)));
+          },
+          child:  Column(
+            children: <Widget>[
+              Flexible(
+                child: Align(
                   alignment: Alignment.center,
-                  child: InkWell(
-                    onTap: _goToBookPage(context),
-                    child: Image.network(
-                      this.books[index].picture,
-                    ),
-                  )
+                  child: Image.network(
+                    this.books[index].picture,
+                  ),
+                ),
+                flex: 6,
               ),
-              flex: 6,
-            ),
 
-            Flexible(
-              child: Align(
-                alignment: Alignment.center,
-                child: Container(
+              Flexible(
+                child: Align(
+                  alignment: Alignment.center,
+                  child: Container(
+                    child: Text(
+                      this.books[index].title,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ),
+                flex: 1,
+              ),
+
+
+              Flexible(
+                child: Align(
+                  alignment: Alignment.center,
                   child: Text(
-                    this.books[index].title,
+                    this.books[index].author,
                     style: TextStyle(
-                      fontWeight: FontWeight.bold,
+                      color: Colors.grey[500],
                     ),
                   ),
                 ),
-              ),
-              flex: 1,
-            ),
-
-
-            Flexible(
-              child: Align(
-                alignment: Alignment.center,
-                child: Text(
-                  this.books[index].author,
-                  style: TextStyle(
-                    color: Colors.grey[500],
-                  ),
-                ),
-              ),
-              flex: 1,
-            )
-          ],
+                flex: 1,
+              )
+            ],
+          ),
         ),
 
     );
   }
 
-  _goToBookPage(BuildContext context){
+  /*_goToBookPage(BuildContext context){
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (context) => BookPage("title", this.books)));
-  }
+  }*/
 }
