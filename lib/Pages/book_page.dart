@@ -1,80 +1,54 @@
 import 'package:bookifyapp/Models/Book.dart';
 import 'package:flutter/material.dart';
+import 'package:bookifyapp/LayoutWidgets/arc_banner_image.dart';
+import 'package:bookifyapp/LayoutWidgets/book_cover.dart';
 
 class BookPage extends StatelessWidget {
   final String title;
-  final List<Book> books;
+  final Book book;
 
-  const BookPage(this.title, this.books) : assert(title != null);
+  const BookPage(this.title, this.book) : assert(title != null);
 
   @override
   Widget build(BuildContext context) {
     final text = Text('Details of $title');
     return Scaffold(
       body: Container(
-        child:  _createListView(),
+        //child:  _createListView(),
+        child: _buildBookPage(),
       ),
       appBar: AppBar(title: text),
     );
   }
 
-  _createListView(){
-    return Container(
-      height: 300,
-      width: 500,
-      child: ListView.builder(
-          scrollDirection: Axis.horizontal,
-          itemCount: books.length,
-          itemBuilder: (BuildContext context, int index) {
-            return Card(
-              margin: EdgeInsets.all(10),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(7.0),
-              ),
-              elevation: 10,
-              child: _getListElement(index),
-              /*child: ListTile(
-                leading: FlutterLogo(size: 40.0),
-                title: Text(this.books[index]),
-                subtitle: Text('subtitle'),
-                trailing: Icon(Icons.favorite),
-                isThreeLine: true,
-              ),*/
-            );
-          },
-      ),
-    );
-  }
-
-  _getListElement(index){
+  _buildBookPage(){
     return Stack(
-        children: <Widget>[
-          Padding(
-            padding: EdgeInsets.fromLTRB(0, 15, 0, 0),
-            child: Align(
-              alignment: Alignment.center,
-              child: Image.network(books[index].picture),
-            ),
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(bottom: 140.0),
+          child: ArcBannerImage(this.book.picture),
+        ),
+        Positioned(
+          bottom: 30.0,
+          left: 16.0,
+          right: 16.0,
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              BookCover(
+                book.picture,
+                height: 180.0,
+              ),
+              //SizedBox(width: 16.0),
+              //Expanded(child: movieInformation),
+            ],
           ),
-
-          Positioned(
-            top: 6,
-            right: 0,
-            child: _getButton(),
-          )
-        ]
+        ),
+      ],
     );
   }
 
-  _getButton(){
-    return FloatingActionButton(
-      onPressed: () => {},
-      tooltip: 'Increment',
-      backgroundColor: Colors.white,
-      child: Icon(Icons.add, color: Colors.black),
-    );
-    //return FlatButton.icon(onPressed: null, icon: null, label: null);
-    //return RaisedButton.icon(onPressed: null, icon: Icon(Icons.add), label: null);
-  }
+
 }
 

@@ -50,7 +50,10 @@ class HorizontalBookList extends StatelessWidget {
             child: Align(
               alignment: Alignment.center,
               child: InkWell(
-                onTap: _goToBookPage,
+                onTap: () {
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (context) => BookPage("title", books[index])));
+                },
                 child: Image.network(books[index].picture),
               ),
             ),
@@ -63,11 +66,6 @@ class HorizontalBookList extends StatelessWidget {
           )
         ]
     );
-  }
-
-  _goToBookPage(){
-    Navigator.of(context)
-      .push(MaterialPageRoute(builder: (context) => BookPage("title", books)));
   }
 
   _getTopFloatingActionButton(){
