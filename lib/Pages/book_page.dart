@@ -22,26 +22,54 @@ class BookPage extends StatelessWidget {
   }
 
   _buildBookPage(){
-    return Stack(
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(bottom: 140.0),
-          child: ArcBannerImage(this.book.picture),
-        ),
-        Positioned(
-          bottom: 30.0,
-          left: 16.0,
-          right: 16.0,
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              BookCover(
-                book,
-                height: 180.0,
+    return ListView(
+      children: <Widget>[
+        Stack(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(bottom: 140.0),
+              child: ArcBannerImage(this.book.picture),
+            ),
+            Positioned(
+              bottom: 30.0,
+              left: 16.0,
+              right: 16.0,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  BookCover(
+                    book,
+                    height: 180.0,
+                  ),
+                  //SizedBox(width: 16.0),
+                  //Expanded(child: movieInformation),
+                ],
               ),
-              //SizedBox(width: 16.0),
-              //Expanded(child: movieInformation),
+            ),
+          ],
+        ),
+
+        Center(
+          child:  Row(
+            mainAxisAlignment: MainAxisAlignment.center, //Center Row contents horizontally,
+            crossAxisAlignment: CrossAxisAlignment.center, //Center Row contents vertically,
+            children: <Widget>[
+
+              FloatingActionButton(
+                child: Icon(Icons.add_circle_outline),
+                backgroundColor: Colors.blueGrey,
+              ),
+
+              FloatingActionButton(
+                child: Icon(Icons.shop_two),
+                backgroundColor: Colors.blueGrey,
+              ),
+
+              FloatingActionButton(
+                child: Icon(Icons.comment),
+                backgroundColor: Colors.blueGrey,
+              )
             ],
           ),
         ),
