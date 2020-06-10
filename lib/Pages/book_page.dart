@@ -37,7 +37,7 @@ class BookPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               BookCover(
-                book.picture,
+                book,
                 height: 180.0,
               ),
               //SizedBox(width: 16.0),
