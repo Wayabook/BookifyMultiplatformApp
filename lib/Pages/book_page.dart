@@ -123,22 +123,6 @@ class BookPage extends StatelessWidget {
     );
   }
 
-  _getRaisedRoudedButton(){
-    RaisedButton(
-      onPressed: () {},
-      shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(15.0),
-              topRight: Radius.circular(15.0))),
-      color: Colors.blueAccent,
-      textColor: Colors.white,
-      child: IconButton(
-        icon: Icon(Icons.add_circle_outline),
-      ),
-      //Icon(Icons.add_circle_outline),
-    );
-  }
-
 
 }
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:bookifyapp/LayoutWidgets/horizontal_book_list.dart';
+import 'package:bookifyapp/LayoutWidgets/Lists/horizontal_book_list.dart';
 import 'package:bookifyapp/Models/Book.dart';
 
 

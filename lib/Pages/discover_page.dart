@@ -2,7 +2,7 @@ import 'package:bookifyapp/LayoutWidgets/carousel_card.dart';
 import 'package:flutter/material.dart';
 import 'book_page.dart';
 import 'package:bookifyapp/Models/Book.dart';
-import 'package:bookifyapp/LayoutWidgets/horizontal_book_list.dart';
+import 'package:bookifyapp/LayoutWidgets/Lists/horizontal_book_list.dart';
 
 class DiscoverPage extends StatelessWidget {
   final Color color;

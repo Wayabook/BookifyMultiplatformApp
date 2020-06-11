@@ -12,12 +12,35 @@ class ReadingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Container(
-          color: color,
-          child:  Text(
-            this.text,
-            style: optionStyle,
-          ),
+        body: Column(
+          children: <Widget>[
+            Container(
+              color: color,
+              child:  Text(
+                this.text,
+                style: optionStyle,
+              ),
+            ),
+
+            InkWell(
+              onTap: (){
+                print("la verga");
+              },
+              child: Container(
+
+                height: 25,
+                width: 25,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(2)),
+                  border: Border.all(color: Colors.black),
+                  color: Colors.white,
+                ),
+                child: Icon(
+                    Icons.add,
+                    color: Colors.black),
+              ),
+            )
+          ],
         ),
         appBar: AppBar(
           title: Text(this.text),
