@@ -56,24 +56,86 @@ class BookPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center, //Center Row contents vertically,
             children: <Widget>[
 
-              FloatingActionButton(
-                child: Icon(Icons.add_circle_outline),
-                backgroundColor: Colors.blueGrey,
+              Padding(
+                padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
+                child: RaisedButton(
+                  onPressed: () {},
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(25.0),
+                      )
+                  ),
+                  color: Colors.blueGrey,
+                  child: IconButton(
+                    icon: Icon(
+                      Icons.add_circle_outline,
+                      color: Colors.white
+                    ),
+                  ),
+                  //Icon(Icons.add_circle_outline),
+                ),
               ),
 
-              FloatingActionButton(
-                child: Icon(Icons.shop_two),
-                backgroundColor: Colors.blueGrey,
+              Padding(
+                padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
+                child: RaisedButton(
+                  onPressed: () {},
+                  color: Colors.blueGrey,
+                  child: IconButton(
+                    icon: Icon(
+                      Icons.shop_two,
+                      color: Colors.white
+                    ),
+
+                  ),
+                  //Icon(Icons.add_circle_outline),
+                ),
               ),
 
-              FloatingActionButton(
-                child: Icon(Icons.comment),
-                backgroundColor: Colors.blueGrey,
-              )
+              Padding(
+                padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
+                child: RaisedButton(
+                  onPressed: () {},
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.only(
+                        topRight: Radius.circular(25.0),
+                        )
+                  ),
+                  color: Colors.blueGrey,
+                  child: IconButton(
+                    icon:Icon(
+                        Icons.comment,
+                        color: Colors.white
+                    ),
+
+                  ),
+                  //Icon(Icons.add_circle_outline),
+                ),
+              ),
+
+
             ],
           ),
         ),
+
+        //_getRaisedRoudedButton()
       ],
+    );
+  }
+
+  _getRaisedRoudedButton(){
+    RaisedButton(
+      onPressed: () {},
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(15.0),
+              topRight: Radius.circular(15.0))),
+      color: Colors.blueAccent,
+      textColor: Colors.white,
+      child: IconButton(
+        icon: Icon(Icons.add_circle_outline),
+      ),
+      //Icon(Icons.add_circle_outline),
     );
   }
 
