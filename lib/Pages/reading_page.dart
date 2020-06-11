@@ -22,24 +22,15 @@ class ReadingPage extends StatelessWidget {
               ),
             ),
 
-            InkWell(
-              onTap: (){
-                print("la verga");
-              },
-              child: Container(
+            Column(
+              children: <Widget>[
+                Text("GENDER"),
+                Image.asset('images/genre1.png'),
+                Text("Poetry"),
+              ],
+            ),
 
-                height: 25,
-                width: 25,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(2)),
-                  border: Border.all(color: Colors.black),
-                  color: Colors.white,
-                ),
-                child: Icon(
-                    Icons.add,
-                    color: Colors.black),
-              ),
-            )
+
           ],
         ),
         appBar: AppBar(
