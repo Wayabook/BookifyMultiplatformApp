@@ -1,53 +1,15 @@
 import 'package:flutter/material.dart';
 
-
-class ReadingPage extends StatelessWidget {
-  final Color color;
-  final String text;
-  static const TextStyle optionStyle =
-  TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-
-  final String description =
-      "Flutter is Google’s mobile UI framework for crafting high-quality native interfaces on iOS and Android in record time. Flutter works with existing code, is used by developers and organizations around the world, and is free and open source.";
-
-
-  ReadingPage(this.color, this.text);
-
-  @override
-  Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
-    return Scaffold(
-        body: Column(
-          children: <Widget>[
-            Container(
-              color: color,
-              child:  Text(
-                this.text,
-                style: optionStyle,
-              ),
-            ),
-
-            DescriptionTextWidget(text: description),
-          ],
-        ),
-        appBar: AppBar(
-          title: Text(this.text),
-        ),
-    );
-  }
-}
-
-class DescriptionTextWidget extends StatefulWidget {
+class SummaryTextWidget extends StatefulWidget {
   final String text;
 
-  DescriptionTextWidget({@required this.text});
+  SummaryTextWidget({@required this.text});
 
   @override
-  _DescriptionTextWidgetState createState() => new _DescriptionTextWidgetState();
+  _SummaryTextWidgetState createState() => new _SummaryTextWidgetState();
 }
 
-class _DescriptionTextWidgetState extends State<DescriptionTextWidget> {
+class _SummaryTextWidgetState extends State<SummaryTextWidget> {
   String firstHalf;
   String secondHalf;
 

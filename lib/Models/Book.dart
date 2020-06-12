@@ -88,6 +88,8 @@ class Book {
 
   Book(this._title, this._author, this._coverImage);
 
+  Book.withSummary(this._title, this._author, this._coverImage, this._summary);
+
 
 
 
