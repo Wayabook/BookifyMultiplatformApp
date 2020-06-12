@@ -14,6 +14,7 @@ class BookPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final text = Text('Details of $title');
+
     return Scaffold(
       body: Container(
         //child:  _createListView(),
@@ -28,6 +29,8 @@ class BookPage extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
     //double horizontal_margin = (width - (3 * 105)) / 2;
     double width_per_child = (width - 30 - (10 * 2)) / 3;
+    var textTheme = Theme.of(context).textTheme;
+    var theme = Theme.of(context);
 
 
     return ListView(
@@ -131,7 +134,6 @@ class BookPage extends StatelessWidget {
           child: Container(color: Colors.blueGrey, height: 2, width: width),
         ),
 
-
         Center(
           child:  Row(
             mainAxisAlignment: MainAxisAlignment.center, //Center Row contents horizontally,
@@ -156,6 +158,47 @@ class BookPage extends StatelessWidget {
         Padding(
           padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
           child: Container(color: Colors.blueGrey, height: 2, width: width),
+        ),
+
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+             Text(
+                'Story line',
+                 style: textTheme.subhead.copyWith(fontSize: 18.0),
+             ),
+
+            SizedBox(height: 8.0),
+
+            Text(
+              "Una isla desconocida. Un enigmático mensaje. Ningún recuerdo. Amnésico, magullado y con la sensación de que todo el mundo sabe lo que sucede menos él, el protagonista de esta historia se embarcará en una aventura sin igual que le llevará a adentrarse en los confines de su existencia. Durante su confuso viaje se topará con una serie de extravagantes personajes que intentarán ayudarle en su empeño por ver una realidad que, en muchas ocasiones, superará la ficción. Así da comienzo un libro enmarcado en un universo mágico en el que seremos testigos de cómo los anhelos más profundos y los miedos más oscuros cobran vida, atreviéndose incluso a mirarnos directamente a los ojos.El esperado debut literario de Coque Macho.",
+              style: textTheme.body1.copyWith(
+              color: Colors.black45,
+              fontSize: 16.0,
+              ),
+            ),
+
+
+        // No expand-collapse in this tutorial, we just slap the "more"
+        // button below the text like in the mockup.
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Text(
+                  'more',
+                  style: textTheme.body1
+                  .copyWith(fontSize: 16.0, color: theme.accentColor),
+                ),
+
+                Icon(
+                  Icons.keyboard_arrow_down,
+                  size: 18.0,
+                  color: theme.accentColor,
+                ),
+             ],
+            ),
+          ],
         ),
 
       ],
