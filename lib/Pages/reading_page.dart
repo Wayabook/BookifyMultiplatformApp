@@ -11,6 +11,8 @@ class ReadingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
     return Scaffold(
         body: Column(
           children: <Widget>[
@@ -22,13 +24,51 @@ class ReadingPage extends StatelessWidget {
               ),
             ),
 
-            Column(
+            Container(color: Colors.blueGrey, height: 2, width: width,),
+
+            Row(
               children: <Widget>[
-                Text("GENDER"),
-                Image.asset('images/genre1.png'),
-                Text("Poetry"),
+                Column(
+                  children: <Widget>[
+                    Text("GENDER"),
+                    Image.asset(
+                      'images/genre1.png',
+                      height: 50,
+                      width: 50,
+                    ),
+                    Text("Poetry"),
+                  ],
+                ),
+                Container(color: Colors.blueGrey, height: 50, width: 2,),
+
+                Column(
+                  children: <Widget>[
+                    Text("GENDER"),
+                    Image.asset(
+                      'images/genre1.png',
+                      height: 50,
+                      width: 50,
+                    ),
+                    Text("Poetry"),
+                  ],
+                ),
+                Container(color: Colors.blueGrey, height: 50, width: 2,),
+
+                Column(
+                  children: <Widget>[
+                    Text("GENDER"),
+                    Image.asset(
+                      'images/genre1.png',
+                      height: 50,
+                      width: 50,
+                    ),
+                    Text("Poetry"),
+                  ],
+                ),
               ],
             ),
+
+            Container(color: Colors.blueGrey, height: 2, width: width,),
 
 
           ],

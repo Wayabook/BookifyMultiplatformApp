@@ -15,13 +15,19 @@ class BookPage extends StatelessWidget {
     return Scaffold(
       body: Container(
         //child:  _createListView(),
-        child: _buildBookPage(),
+        child: _buildBookPage(context),
       ),
       appBar: AppBar(title: text),
     );
   }
 
-  _buildBookPage(){
+  _buildBookPage(BuildContext context){
+
+    double width = MediaQuery.of(context).size.width;
+    //double horizontal_margin = (width - (3 * 105)) / 2;
+    double width_per_child = (width - 30 - (10 * 2)) / 3;
+
+
     return ListView(
       children: <Widget>[
         Stack(
@@ -118,7 +124,191 @@ class BookPage extends StatelessWidget {
           ),
         ),
 
-        //_getRaisedRoudedButton()
+        Padding(
+          padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
+          child: Container(color: Colors.blueGrey, height: 2, width: width),
+        ),
+
+
+        Center(
+          child:  Row(
+            mainAxisAlignment: MainAxisAlignment.center, //Center Row contents horizontally,
+            crossAxisAlignment: CrossAxisAlignment.center, //Center Row contents vertically,
+            children: <Widget>[
+
+              Padding(
+                padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
+                child: Center(
+                  child: Container(
+                    height: 105,
+                    width: width_per_child,
+                    child: Column(
+                      children: <Widget>[
+
+                        Align(
+                          alignment: Alignment.center,
+                          child: Padding(
+                            padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
+                            child: Container(
+                              child: Text(
+                                "GENDER",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+
+                        Align(
+                          alignment: Alignment.center,
+                          child: Image.asset(
+                            'images/genre1.png',
+                            height: 50,
+                            width: 50,
+                          ),
+                        ),
+
+                        Align(
+                          alignment: Alignment.center,
+                          child: Padding(
+                            padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
+                            child: Container(
+                              child: Text(
+                                "Poetry",
+                                style: TextStyle(
+                                  color: Colors.grey[500],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+
+              Container(color: Colors.blueGrey, height: 105, width: 2,),
+
+              Padding(
+                padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
+                child: Center(
+                  child: Container(
+                    height: 105,
+                    width: width_per_child,
+                    child: Column(
+                      children: <Widget>[
+
+                        Align(
+                          alignment: Alignment.center,
+                          child: Padding(
+                            padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
+                            child: Container(
+                              child: Text(
+                                "GENDER",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+
+                        Align(
+                          alignment: Alignment.center,
+                          child: Image.asset(
+                            'images/genre1.png',
+                            height: 50,
+                            width: 50,
+                          ),
+                        ),
+
+                        Align(
+                          alignment: Alignment.center,
+                          child: Padding(
+                            padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
+                            child: Container(
+                              child: Text(
+                                "Poetry",
+                                style: TextStyle(
+                                  color: Colors.grey[500],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+
+              Container(color: Colors.blueGrey, height: 105, width: 2,),
+
+              Padding(
+                padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
+                child: Center(
+                  child: Container(
+                    height: 105,
+                    width: width_per_child,
+                    child: Column(
+                      children: <Widget>[
+
+                        Align(
+                          alignment: Alignment.center,
+                          child: Padding(
+                            padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
+                            child: Container(
+                              child: Text(
+                                "GENDER",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+
+                        Align(
+                          alignment: Alignment.center,
+                          child: Image.asset(
+                            'images/genre1.png',
+                            height: 50,
+                            width: 50,
+                          ),
+                        ),
+
+                        Align(
+                          alignment: Alignment.center,
+                          child: Padding(
+                            padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
+                            child: Container(
+                              child: Text(
+                                "Poetry",
+                                style: TextStyle(
+                                  color: Colors.grey[500],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+
+
+            ],
+          ),
+        ),
+
+        Padding(
+          padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
+          child: Container(color: Colors.blueGrey, height: 2, width: width),
+        ),
+
       ],
     );
   }
