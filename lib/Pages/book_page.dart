@@ -5,12 +5,14 @@ import 'package:bookifyapp/LayoutWidgets/BookWidgets/book_cover.dart';
 import 'package:bookifyapp/LayoutWidgets/BookWidgets/info_row.dart';
 import 'package:bookifyapp/LayoutWidgets/BookWidgets/row_type.dart';
 import 'package:bookifyapp/LayoutWidgets/BookWidgets/summary_text.dart';
+import 'package:bookifyapp/LayoutWidgets/Lists/horizontal_book_list.dart';
 
 class BookPage extends StatelessWidget {
   final String title;
   final Book book;
+  final List<Book> auxBooksForPrototype;
 
-  const BookPage(this.title, this.book) : assert(title != null);
+  const BookPage(this.title, this.book, this.auxBooksForPrototype) : assert(title != null);
 
   @override
   Widget build(BuildContext context) {
@@ -164,10 +166,21 @@ class BookPage extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-             Text(
+             /*Text(
                 'Summary:',
                  style: textTheme.subhead.copyWith(fontSize: 18.0),
-             ),
+             ),*/
+
+            Container(
+              margin: EdgeInsets.fromLTRB(5, 2, 2, 0),
+              child:  Align(
+                alignment: Alignment.topLeft,
+                child: Text(
+                  'Summary:',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+              ),
+            ),
 
             SizedBox(height: 8.0),
 
@@ -201,6 +214,40 @@ class BookPage extends StatelessWidget {
                 ),
              ],
             ),*/
+          ],
+        ),
+
+        Column(
+          children: <Widget>[
+          Container(
+            margin: EdgeInsets.fromLTRB(5, 2, 2, 2),
+            child:  Align(
+              alignment: Alignment.topLeft,
+              child: Text(
+                "More books of" + "Author X:",
+                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                ),
+            ),
+          ),
+
+          HorizontalBookList(auxBooksForPrototype),
+          ],
+        ),
+
+        Column(
+          children: <Widget>[
+            Container(
+              margin: EdgeInsets.fromLTRB(5, 2, 2, 2),
+              child:  Align(
+                alignment: Alignment.topLeft,
+                child: Text(
+                  "More of X Genre:",
+                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                ),
+              ),
+            ),
+
+            HorizontalBookList(auxBooksForPrototype),
           ],
         ),
 

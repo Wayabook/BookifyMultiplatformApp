@@ -34,12 +34,7 @@ class ProfilePage extends StatelessWidget {
       body: Container(
         color: color,
         child: Container(
-          child: ListView.builder(
-              itemBuilder: (context, index) => _makeCard(context, index),
-              itemCount: 3,
-              scrollDirection: Axis.vertical,
-              shrinkWrap: true
-          ),
+          child: Text("PRofile page"),
         ),
       ),
       appBar: AppBar(
@@ -48,8 +43,4 @@ class ProfilePage extends StatelessWidget {
     );
   }
 
-  HorizontalBookList _makeCard(BuildContext context, int index) {
-    String item = litems[index];
-    return HorizontalBookList(books);
-  }
 }

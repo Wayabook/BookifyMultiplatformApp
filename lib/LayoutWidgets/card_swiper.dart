@@ -40,7 +40,7 @@ class CardSwiper extends StatelessWidget {
         child: GestureDetector(
           onTap: () {
             Navigator.of(context)
-                .push(MaterialPageRoute(builder: (context) => BookPage("title", this.books[index])));
+                .push(MaterialPageRoute(builder: (context) => BookPage("title", this.books[index], this.books)));
           },
           child:  Column(
             children: <Widget>[

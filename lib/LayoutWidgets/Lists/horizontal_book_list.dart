@@ -15,6 +15,7 @@ class HorizontalBookList extends StatelessWidget {
     this.context = context;
     return Container(
       child: Card(
+        margin: EdgeInsets.fromLTRB(5, 0, 5, 10),
         color: Colors.blueGrey,
         child: _createListView(),
       ),
@@ -53,7 +54,7 @@ class HorizontalBookList extends StatelessWidget {
               child: InkWell(
                 onTap: () {
                   Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (context) => BookPage("title", books[index])));
+                      .push(MaterialPageRoute(builder: (context) => BookPage("title", books[index], this.books)));
                 },
                 child: Image.network(books[index].picture),
               ),
