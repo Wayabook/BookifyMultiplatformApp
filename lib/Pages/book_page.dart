@@ -1,7 +1,9 @@
 import 'package:bookifyapp/Models/Book.dart';
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/LayoutWidgets/arc_banner_image.dart';
-import 'package:bookifyapp/LayoutWidgets/book_cover.dart';
+import 'package:bookifyapp/LayoutWidgets/BookWidgets/book_cover.dart';
+import 'package:bookifyapp/LayoutWidgets/BookWidgets/info_row.dart';
+import 'package:bookifyapp/LayoutWidgets/BookWidgets/row_type.dart';
 
 class BookPage extends StatelessWidget {
   final String title;
@@ -136,168 +138,15 @@ class BookPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center, //Center Row contents vertically,
             children: <Widget>[
 
-              Padding(
-                padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
-                child: Center(
-                  child: Container(
-                    height: 105,
-                    width: width_per_child,
-                    child: Column(
-                      children: <Widget>[
-
-                        Align(
-                          alignment: Alignment.center,
-                          child: Padding(
-                            padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
-                            child: Container(
-                              child: Text(
-                                "GENDER",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-
-                        Align(
-                          alignment: Alignment.center,
-                          child: Image.asset(
-                            'images/genre1.png',
-                            height: 50,
-                            width: 50,
-                          ),
-                        ),
-
-                        Align(
-                          alignment: Alignment.center,
-                          child: Padding(
-                            padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
-                            child: Container(
-                              child: Text(
-                                "Poetry",
-                                style: TextStyle(
-                                  color: Colors.grey[500],
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
+              InfoRow(RowType.image,  "GENDER", "images/genre1.png",  "Romance", width_per_child, 105),
 
               Container(color: Colors.blueGrey, height: 105, width: 2,),
 
-              Padding(
-                padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
-                child: Center(
-                  child: Container(
-                    height: 105,
-                    width: width_per_child,
-                    child: Column(
-                      children: <Widget>[
-
-                        Align(
-                          alignment: Alignment.center,
-                          child: Padding(
-                            padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
-                            child: Container(
-                              child: Text(
-                                "GENDER",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-
-                        Align(
-                          alignment: Alignment.center,
-                          child: Image.asset(
-                            'images/genre1.png',
-                            height: 50,
-                            width: 50,
-                          ),
-                        ),
-
-                        Align(
-                          alignment: Alignment.center,
-                          child: Padding(
-                            padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
-                            child: Container(
-                              child: Text(
-                                "Poetry",
-                                style: TextStyle(
-                                  color: Colors.grey[500],
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
+              InfoRow(RowType.text,  "PUBLICATION", "2017",  "Year", width_per_child, 105),
 
               Container(color: Colors.blueGrey, height: 105, width: 2,),
 
-              Padding(
-                padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
-                child: Center(
-                  child: Container(
-                    height: 105,
-                    width: width_per_child,
-                    child: Column(
-                      children: <Widget>[
-
-                        Align(
-                          alignment: Alignment.center,
-                          child: Padding(
-                            padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
-                            child: Container(
-                              child: Text(
-                                "GENDER",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-
-                        Align(
-                          alignment: Alignment.center,
-                          child: Image.asset(
-                            'images/genre1.png',
-                            height: 50,
-                            width: 50,
-                          ),
-                        ),
-
-                        Align(
-                          alignment: Alignment.center,
-                          child: Padding(
-                            padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
-                            child: Container(
-                              child: Text(
-                                "Poetry",
-                                style: TextStyle(
-                                  color: Colors.grey[500],
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
+              InfoRow(RowType.text,  "EXTENSION", "128",  "Pages", width_per_child, 105),
 
 
             ],

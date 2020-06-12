@@ -1,0 +1,4 @@
+enum RowType {
+  text,
+  image
+}
