@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:bookifyapp/Pages/search_page.dart';
 
 
 class ReadingPage extends StatelessWidget {
@@ -27,6 +28,17 @@ class ReadingPage extends StatelessWidget {
         ),
         appBar: AppBar(
           title: Text(this.text),
+          actions: <Widget>[
+            IconButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => SearchPage()),
+                );
+              },
+              icon: Icon(Icons.search)
+            )
+          ],
         ),
     );
   }
