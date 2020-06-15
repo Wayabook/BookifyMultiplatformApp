@@ -232,4 +232,66 @@ class PersonDataBuilder {
 
     ];
   }
+
+  List getPeople2() {
+    return [
+      Person(
+          personFirstName: "John1",
+          personLastName: "Smith"
+      ),
+      Person(
+          personFirstName: "Alex2",
+          personLastName: "Johnson"
+      ),
+      Person(
+          personFirstName: "Jane3",
+          personLastName: "Doe"
+      ),
+      Person(
+          personFirstName: "Eric4",
+          personLastName: "Johnson"
+      ),
+      Person(
+          personFirstName: "Michael",
+          personLastName: "Eastwood"
+      ),
+      Person(
+          personFirstName: "Benjamin",
+          personLastName: "Woods"
+      ),
+      Person(
+          personFirstName: "Abraham",
+          personLastName: "Atwood"
+      ),
+      Person(
+          personFirstName: "Anna",
+          personLastName: "Clack"
+      ),
+      Person(
+          personFirstName: "Clark",
+          personLastName: "Phonye"
+      ),
+      Person(
+          personFirstName: "Kerry",
+          personLastName: "Mirk"
+      ),
+      Person(
+          personFirstName: "Eliza",
+          personLastName: "Wu"
+      ),
+      Person(
+          personFirstName: "Jackey",
+          personLastName: "Lee"
+      ),
+      Person(
+          personFirstName: "Kristin",
+          personLastName: "Munson"
+      ),
+      Person(
+          personFirstName: "Oliver",
+          personLastName: "Watson"
+      ),
+
+    ];
+  }
 }
