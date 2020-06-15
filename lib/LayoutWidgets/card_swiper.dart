@@ -32,11 +32,11 @@ class CardSwiper extends StatelessWidget {
 
   _getSwiperCardContent(int index, BuildContext context){
     return Card(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(7.0),
-        ),
-        elevation: 10,
-        color: Colors.white,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(7.0),
+      ),
+      elevation: 10,
+      color: Colors.white,
         child: GestureDetector(
           onTap: () {
             Navigator.of(context)

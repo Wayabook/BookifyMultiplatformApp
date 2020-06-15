@@ -69,44 +69,5 @@ class HorizontalBookList extends StatelessWidget {
         ]
     );
   }
-
-
-
-  /*_getTopFloatingActionButton(){
-    return FloatingActionButton(
-      onPressed: () => {
-
-      },
-      tooltip: 'Increment',
-      backgroundColor: Colors.white,
-      child: Icon(Icons.add, color: Colors.black),
-    );
-  }*/
-
-  /*_getAddButton(){
-    return SizedBox(
-      width: 25,
-      height: 25,
-      child: IconButton(
-        icon:Icon(
-        Icons.comment,
-        color: Colors.white
-        ),
-      )
-    );
-  }*/
-
-  /*_getAddButton(){
-    return ClipOval(
-      child: Material(
-        color: Colors.blue, // button color
-        child: InkWell(
-          splashColor: Colors.red, // inkwell color
-          child: SizedBox(width: 56, height: 56, child: Icon(Icons.menu)),
-          onTap: () {},
-        ),
-      ),
-    );
-  }*/
 }
 
