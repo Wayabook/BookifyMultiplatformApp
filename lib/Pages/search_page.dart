@@ -9,6 +9,31 @@ class SearchPage extends StatelessWidget {
   String searchQuery = "Search query";
 
 
+  final _europeanCountries = ['Albania', 'Andorra', 'Armenia', 'Austria',
+        'Azerbaijan', 'Belarus', 'Belgium', 'Bosnia and Herzegovina', 'Bulgaria',
+        'Croatia', 'Cyprus', 'Czech Republic', 'Denmark', 'Estonia', 'Finland',
+        'France', 'Georgia', 'Germany', 'Greece', 'Hungary', 'Iceland', 'Ireland',
+        'Italy', 'Kazakhstan', 'Kosovo', 'Latvia', 'Liechtenstein', 'Lithuania',
+        'Luxembourg', 'Macedonia', 'Malta', 'Moldova', 'Monaco', 'Montenegro',
+        'Netherlands', 'Norway', 'Poland', 'Portugal', 'Romania', 'Russia',
+        'San Marino', 'Serbia', 'Slovakia', 'Slovenia', 'Spain', 'Sweden',
+        'Switzerland', 'Turkey', 'Ukraine', 'United Kingdom', 'Vatican City'];
+
+  var _filteredList = [];
+
+  /*    return ListView.builder(
+        itemCount: europeanCountries.length,
+        itemBuilder: (context, index) {
+          return ListTile(
+            title: Text(europeanCountries[index]),
+          );
+        },
+      );
+
+    }
+  */
+
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -34,7 +59,16 @@ class SearchPage extends StatelessWidget {
         ),
         body: TabBarView(
           children: [
-            Icon(Icons.directions_car),
+            Container(
+              child: ListView.builder(
+                scrollDirection: Axis.vertical,
+                shrinkWrap: true,
+                itemCount: _europeanCountries == null ? 0 : _filteredList.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return personCard(_filteredList[index]);
+                },
+              ),
+            ),
             Icon(Icons.directions_transit),
             //Icon(Icons.directions_bike),
           ],
@@ -66,6 +100,22 @@ class SearchPage extends StatelessWidget {
   /*Widget _buildTitle() {
     return
   }*/
+
+  ListTile personListTile(String city) =>
+      ListTile(
+        title: Text(
+          city,
+          style: TextStyle(
+              color: Colors.black45, fontWeight: FontWeight.bold),
+        ),);
+
+  Card personCard(String city) =>
+      Card(
+        child: Container(
+          decoration: BoxDecoration(color: Colors.grey[300]),
+          child: personListTile(city),
+        ),
+      );
 
   Widget _buildSearchField() {
     return TextField(
@@ -138,6 +188,8 @@ class SearchPage extends StatelessWidget {
   }
 
   void _clearSearchQuery() {
+    _searchQueryController.clear();
+    updateSearchQuery("");
     /*setState(() {
       _searchQueryController.clear();
       updateSearchQuery("");
