@@ -1,7 +1,9 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/Pages/search_page.dart';
 import 'package:flutter/painting.dart';
+import 'package:percent_indicator/linear_percent_indicator.dart';
 
 
 class ReadingPage extends StatelessWidget {
@@ -17,7 +19,7 @@ class ReadingPage extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
-        body: ListPage(title: "Title"), /*Column(
+      body: ListPage(title: "Title"), /*Column(
           children: <Widget>[
             Container(
               color: color,
@@ -28,10 +30,10 @@ class ReadingPage extends StatelessWidget {
             ),
           ],
         ),*/
-        appBar: AppBar(
-          title: Text(this.text),
-          actions: <Widget>[
-            IconButton(
+      appBar: AppBar(
+        title: Text(this.text),
+        actions: <Widget>[
+          IconButton(
               onPressed: () {
                 Navigator.push(
                   context,
@@ -39,9 +41,9 @@ class ReadingPage extends StatelessWidget {
                 );
               },
               icon: Icon(Icons.search)
-            )
-          ],
-        ),
+          )
+        ],
+      ),
     );
   }
 }
@@ -100,83 +102,138 @@ class _ListPageState extends State<ListPage> {
 
     final makeListTile = Container(
       //color: Colors.white,
-      decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius:  BorderRadius.circular(7.0)
-      ),//Color.fromRGBO(64, 75, 96, .9),
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-        child: Row(
-          children: <Widget>[
-            Container(
-              padding: EdgeInsets.only(right: 12.0),
-              decoration: new BoxDecoration(
-                border: new Border(
-                    right: new BorderSide(width: 1.0, color: Colors.blueGrey),
-                    left: new BorderSide(width: .075, color: Colors.blueGrey),
-                    bottom: new BorderSide(width: .075, color: Colors.blueGrey),
-                    top: new BorderSide(width: .075, color: Colors.blueGrey)
-                )
+        decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius:  BorderRadius.circular(7.0)
+        ),//Color.fromRGBO(64, 75, 96, .9),
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+          child: Row(
+            children: <Widget>[
+              Column(
+                children: <Widget>[
+                  Container(
+                      padding: EdgeInsets.only(right: 12.0),
+                      decoration: new BoxDecoration(
+                          border: new Border(
+                              right: new BorderSide(width: 1.0, color: Colors.blueGrey),
+                              left: new BorderSide(width: .075, color: Colors.blueGrey),
+                              bottom: new BorderSide(width: .075, color: Colors.blueGrey),
+                              top: new BorderSide(width: .075, color: Colors.blueGrey)
+                          )
+                      ),
+
+                      child: Container(
+                        height: 150,
+                        width: 100,
+                        child: Image.network("https://imagessl3.casadellibro.com/a/l/t0/73/9788490628973.jpg"),
+                      ) //Icon(Icons.autorenew, color: Colors.white),
+                  ),
+
+                  LinearPercentIndicator(
+                    width: 100.0,
+                    lineHeight: 5.0,
+                    percent: 0.9,
+                    progressColor: Colors.lightGreen,
+                  ),
+                ],
               ),
 
-              child: Container(
-                    height: 150,
-                    width: 100,
-                    child: Image.network("https://imagessl3.casadellibro.com/a/l/t0/73/9788490628973.jpg"),
-                ) //Icon(Icons.autorenew, color: Colors.white),
-            ),
-
-            Padding(
-              padding: EdgeInsets.all(12.0),
-              child: Container(
-                //color: Colors.black,
-                height: 150,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    Center(
-                      child: Container(
-                        child: Text(
-                          "En los Zapatos de Valeria",
-                          style: TextStyle(
-                            //color: Colors.white,
-                            fontWeight: FontWeight.bold,
+              Padding(
+                padding: EdgeInsets.all(12.0),
+                child: Container(
+                  //color: Colors.black,
+                  height: 150,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      Flexible(
+                        flex: 2,
+                        child: Center(
+                          child: Container(
+                            child: Text(
+                              "En los Zapatos de Valeria",
+                              style: TextStyle(
+                                //color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
                           ),
-                          textAlign: TextAlign.center,
                         ),
                       ),
-                    ),
 
-                    Center(
-                      child: Text(
-                        "Elisabeth Benavent",
-                        style: TextStyle(
-                          color: Colors.grey[500],
+                      Flexible(
+                        flex: 2,
+                        child: Center(
+                          child: Text(
+                            "Elisabeth Benavent",
+                            style: TextStyle(
+                              color: Colors.grey[500],
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
                         ),
-                        textAlign: TextAlign.center,
                       ),
-                    ),
 
-                    Text(
-                      "Capitulo 1 +27",
-                      style: TextStyle(
-                        //color: Colors.grey[500],
-                        fontWeight: FontWeight.bold,
-                      ),
-                      textAlign: TextAlign.left,
-                    ),
+                      Flexible(
+                        flex: 4,
+                        child:  Align(
+                          alignment: Alignment.bottomCenter,
+                          child: Row(
+                            children: <Widget>[
 
-                  ],
+                              AutoSizeText(
+                                'Leyendo: Nombre Capitulo',
+                                style: TextStyle( fontWeight: FontWeight.bold,),
+                                maxLines: 1,
+                              ),
+
+                              AutoSizeText(
+                                "+ 28",
+                                style: TextStyle(
+                                  color: Colors.grey[500],
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                maxLines: 1,
+                                textAlign: TextAlign.left,
+                              ),
+                            ],
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               ),
-            ),
 
 
-            Icon(Icons.keyboard_arrow_right, color: Colors.white, size: 30.0),
-          ],
-        ),
-      )
+              //Icon(Icons.keyboard_arrow_right, color: Colors.white, size: 30.0),
+            ],
+          ),
+          /*child: Column(
+            children: <Widget>[
+              Flexible(
+                flex: 9,
+                child:
+              ),
+
+              Flexible(
+                flex: 1,
+                child: Padding(
+                  padding: EdgeInsets.fromLTRB(0, 3.0, 0, 0),
+                  child: LinearPercentIndicator(
+                    width: 10.0,
+                    lineHeight: 8.0,
+                    percent: 0.9,
+                    progressColor: Colors.lightGreen,
+                  ),
+                )
+              )
+            ],
+          )*/
+        )
     );
 
     /*ListTile(
@@ -197,7 +254,6 @@ class _ListPageState extends State<ListPage> {
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
         // subtitle: Text("Intermediate", style: TextStyle(color: Colors.white)),
-
         subtitle: Row(
           children: <Widget>[
             Icon(Icons.linear_scale, color: Colors.yellowAccent),
