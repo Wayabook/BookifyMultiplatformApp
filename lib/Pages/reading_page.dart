@@ -107,35 +107,41 @@ class _ListPageState extends State<ListPage> {
             borderRadius:  BorderRadius.circular(7.0)
         ),//Color.fromRGBO(64, 75, 96, .9),
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+          padding: EdgeInsets.symmetric(horizontal: 5.0, vertical: 10.0),
           child: Row(
             children: <Widget>[
               Column(
                 children: <Widget>[
-                  Container(
-                      padding: EdgeInsets.only(right: 12.0),
-                      decoration: new BoxDecoration(
-                          border: new Border(
-                              right: new BorderSide(width: 1.0, color: Colors.blueGrey),
-                              left: new BorderSide(width: .075, color: Colors.blueGrey),
-                              bottom: new BorderSide(width: .075, color: Colors.blueGrey),
-                              top: new BorderSide(width: .075, color: Colors.blueGrey)
-                          )
-                      ),
+                  Flexible(
+                    flex: 9,
+                    child: Container(
+                        padding: EdgeInsets.only(right: 12.0),
+                        decoration: new BoxDecoration(
+                            border: new Border(
+                                right: new BorderSide(width: 1.0, color: Colors.blueGrey),
+                                left: new BorderSide(width: .075, color: Colors.blueGrey),
+                                bottom: new BorderSide(width: .075, color: Colors.blueGrey),
+                                top: new BorderSide(width: .075, color: Colors.blueGrey)
+                            )
+                        ),
 
-                      child: Container(
-                        height: 150,
-                        width: 100,
-                        child: Image.network("https://imagessl3.casadellibro.com/a/l/t0/73/9788490628973.jpg"),
-                      ) //Icon(Icons.autorenew, color: Colors.white),
+                        child: Container(
+                          height: 150,
+                          width: 100,
+                          child: Image.network("https://imagessl3.casadellibro.com/a/l/t0/73/9788490628973.jpg"),
+                        ) //Icon(Icons.autorenew, color: Colors.white),
+                    ),
                   ),
 
-                  LinearPercentIndicator(
-                    width: 100.0,
-                    lineHeight: 5.0,
-                    percent: 0.9,
-                    progressColor: Colors.lightGreen,
-                  ),
+                  Flexible(
+                    flex: 1,
+                    child: LinearPercentIndicator(
+                      width: 100.0,
+                      lineHeight: 5.0,
+                      percent: 0.9,
+                      progressColor: Colors.lightGreen,
+                    ),
+                  )
                 ],
               ),
 
@@ -207,6 +213,18 @@ class _ListPageState extends State<ListPage> {
                   ),
                 ),
               ),
+
+              Align(
+                alignment: Alignment.center,
+                child: SizedBox(
+                  height: 25,
+                  width: 25,
+                  child: FloatingActionButton(
+                    backgroundColor: Colors.blueGrey,
+                    child: Icon(Icons.add),
+                  ),
+                )
+              )
 
 
               //Icon(Icons.keyboard_arrow_right, color: Colors.white, size: 30.0),
