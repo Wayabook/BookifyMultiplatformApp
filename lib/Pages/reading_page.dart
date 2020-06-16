@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/Pages/search_page.dart';
+import 'package:flutter/painting.dart';
 
 
 class ReadingPage extends StatelessWidget {
@@ -98,7 +99,11 @@ class _ListPageState extends State<ListPage> {
     );*/
 
     final makeListTile = Container(
-      color: Colors.white,  //Color.fromRGBO(64, 75, 96, .9),
+      //color: Colors.white,
+      decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius:  BorderRadius.circular(7.0)
+      ),//Color.fromRGBO(64, 75, 96, .9),
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
         child: Row(
@@ -114,37 +119,28 @@ class _ListPageState extends State<ListPage> {
                 )
               ),
 
-            child: Container(
-                  height: 150,
-                  width: 100,
-                  child: Image.network("https://imagessl3.casadellibro.com/a/l/t0/73/9788490628973.jpg"),
+              child: Container(
+                    height: 150,
+                    width: 100,
+                    child: Image.network("https://imagessl3.casadellibro.com/a/l/t0/73/9788490628973.jpg"),
                 ) //Icon(Icons.autorenew, color: Colors.white),
             ),
 
             Padding(
               padding: EdgeInsets.all(12.0),
               child: Container(
+                //color: Colors.black,
                 height: 150,
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    /*Text(
-                        "Introduction to Driving",
-                        style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
-
-                    Text("Intermediate", style: TextStyle(color: Colors.white)),
-
-                    Row(
-                      children: <Widget>[
-                        Icon(Icons.linear_scale, color: Colors.yellowAccent),
-                        Text(" Intermediate", style: TextStyle(color: Colors.white))
-                      ],
-                    ),*/
-
                     Center(
                       child: Container(
                         child: Text(
                           "En los Zapatos de Valeria",
                           style: TextStyle(
+                            //color: Colors.white,
                             fontWeight: FontWeight.bold,
                           ),
                           textAlign: TextAlign.center,
@@ -162,10 +158,20 @@ class _ListPageState extends State<ListPage> {
                       ),
                     ),
 
+                    Text(
+                      "Capitulo 1 +27",
+                      style: TextStyle(
+                        //color: Colors.grey[500],
+                        fontWeight: FontWeight.bold,
+                      ),
+                      textAlign: TextAlign.left,
+                    ),
+
                   ],
                 ),
               ),
             ),
+
 
             Icon(Icons.keyboard_arrow_right, color: Colors.white, size: 30.0),
           ],
@@ -203,14 +209,16 @@ class _ListPageState extends State<ListPage> {
 
 
     final makeCard = Card(
-      shape: RoundedRectangleBorder(
+      /*shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(7.0),
-      ),
+      ),*/
       elevation: 10,
       margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
-      child: Container(
+      child:  Container(
         height: 160,
-        decoration: BoxDecoration(color: Colors.blueGrey /*Color.fromRGBO(64, 75, 96, .9)*/),
+        decoration: BoxDecoration(
+          color: Colors.blueGrey,
+        ),
         child: makeListTile,
       ),
     );
