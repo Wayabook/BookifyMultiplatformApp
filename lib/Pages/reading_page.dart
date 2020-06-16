@@ -110,111 +110,137 @@ class _ListPageState extends State<ListPage> {
           padding: EdgeInsets.symmetric(horizontal: 5.0, vertical: 10.0),
           child: Row(
             children: <Widget>[
-              Column(
-                children: <Widget>[
-                  Flexible(
-                    flex: 9,
-                    child: Container(
-                        padding: EdgeInsets.only(right: 12.0),
-                        decoration: new BoxDecoration(
-                            border: new Border(
-                                right: new BorderSide(width: 1.0, color: Colors.blueGrey),
-                                left: new BorderSide(width: .075, color: Colors.blueGrey),
-                                bottom: new BorderSide(width: .075, color: Colors.blueGrey),
-                                top: new BorderSide(width: .075, color: Colors.blueGrey)
-                            )
+              Flexible(
+                flex: 3,
+                child: Column(
+                  children: <Widget>[
+                    Flexible(
+                      flex: 9,
+                      child: Container(
+                          padding: EdgeInsets.only(right: 12.0),
+                          decoration: new BoxDecoration(
+                              border: new Border(
+                                  right: new BorderSide(width: 1.0, color: Colors.blueGrey),
+                                  left: new BorderSide(width: .075, color: Colors.blueGrey),
+                                  bottom: new BorderSide(width: .075, color: Colors.blueGrey),
+                                  top: new BorderSide(width: .075, color: Colors.blueGrey)
+                              )
+                          ),
+
+                          child: Container(
+                            height: 150,
+                            width: 100,
+                            child: Image.network("https://imagessl3.casadellibro.com/a/l/t0/73/9788490628973.jpg"),
+                          ) //Icon(Icons.autorenew, color: Colors.white),
+                      ),
+                    ),
+
+                    Flexible(
+                      flex: 1,
+                      child: Center(
+                        child: LinearPercentIndicator(
+                          //width: //150.0,
+                          lineHeight: 5.0,
+                          percent: 0.5,
+                          progressColor: Colors.lightGreen,
                         ),
-
-                        child: Container(
-                          height: 150,
-                          width: 100,
-                          child: Image.network("https://imagessl3.casadellibro.com/a/l/t0/73/9788490628973.jpg"),
-                        ) //Icon(Icons.autorenew, color: Colors.white),
-                    ),
-                  ),
-
-                  Flexible(
-                    flex: 1,
-                    child: LinearPercentIndicator(
-                      width: 100.0,
-                      lineHeight: 5.0,
-                      percent: 0.9,
-                      progressColor: Colors.lightGreen,
-                    ),
-                  )
-                ],
+                      )
+                    )
+                  ],
+                ),
               ),
 
-              Padding(
-                padding: EdgeInsets.all(12.0),
-                child: Container(
-                  //color: Colors.black,
-                  height: 150,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      Flexible(
-                        flex: 2,
-                        child: Center(
-                          child: Container(
+              Flexible(
+                flex: 5,
+                child: Padding(
+                  padding: EdgeInsets.all(12.0),
+                  child: Container(
+                    //color: Colors.black,
+                    height: 150,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        Flexible(
+                          flex: 2,
+                          child: Center(
+                            child: Container(
+                              child: Text(
+                                "En los Zapatos de Valeria",
+                                style: TextStyle(
+                                  //color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          ),
+                        ),
+
+                        Flexible(
+                          flex: 2,
+                          child: Center(
                             child: Text(
-                              "En los Zapatos de Valeria",
+                              "Elisabeth Benavent",
                               style: TextStyle(
-                                //color: Colors.white,
-                                fontWeight: FontWeight.bold,
+                                color: Colors.grey[500],
                               ),
                               textAlign: TextAlign.center,
                             ),
                           ),
                         ),
-                      ),
 
-                      Flexible(
-                        flex: 2,
-                        child: Center(
-                          child: Text(
-                            "Elisabeth Benavent",
-                            style: TextStyle(
-                              color: Colors.grey[500],
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                      ),
+                        Flexible(
+                          flex: 4,
+                          child:  Align(
+                            alignment: Alignment.bottomCenter,
+                            child: Row(
+                              children: <Widget>[
 
-                      Flexible(
-                        flex: 4,
-                        child:  Align(
-                          alignment: Alignment.bottomCenter,
-                          child: Row(
-                            children: <Widget>[
-
-                              AutoSizeText(
-                                'Leyendo: Nombre Capitulo',
-                                style: TextStyle( fontWeight: FontWeight.bold,),
-                                maxLines: 1,
-                              ),
-
-                              AutoSizeText(
-                                "+ 28",
-                                style: TextStyle(
-                                  color: Colors.grey[500],
-                                  fontWeight: FontWeight.bold,
+                                AutoSizeText(
+                                  'Nombre Capitulo',
+                                  style: TextStyle( fontWeight: FontWeight.bold,),
+                                  maxLines: 1,
                                 ),
-                                maxLines: 1,
-                                textAlign: TextAlign.left,
-                              ),
-                            ],
+
+                                AutoSizeText(
+                                  "+ 28",
+                                  style: TextStyle(
+                                    color: Colors.grey[500],
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                  maxLines: 1,
+                                  textAlign: TextAlign.left,
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
-                      )
-                    ],
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ),
 
-              Align(
+              Flexible(
+                flex: 2,
+                child: Align(
+                    alignment: Alignment.center,
+                    child: SizedBox(
+                      height: 75,
+                      width: 75,
+                      child: FloatingActionButton(
+                        backgroundColor: Colors.blueGrey,
+                        child: Icon(
+                            Icons.add,
+                        ),
+                      ),
+                    )
+                )
+              ),
+
+
+              /*Align(
                 alignment: Alignment.center,
                 child: SizedBox(
                   height: 25,
@@ -224,7 +250,7 @@ class _ListPageState extends State<ListPage> {
                     child: Icon(Icons.add),
                   ),
                 )
-              )
+              )*/
 
 
               //Icon(Icons.keyboard_arrow_right, color: Colors.white, size: 30.0),
