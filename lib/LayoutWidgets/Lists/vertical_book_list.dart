@@ -6,9 +6,10 @@ import 'package:bookifyapp/Models/Book.dart';
 
 class VerticalBookList extends StatefulWidget {
 
-  VerticalBookList(this.books); // : super(key: key);
+  VerticalBookList(this.readingBooks, this.pendingBooks); // : super(key: key);
 
-  final List<Book> books;
+  final List<Book> readingBooks;
+  final List<Book> pendingBooks;
 
   @override
   _VerticalBookList createState() => _VerticalBookList();
@@ -41,7 +42,7 @@ class _VerticalBookList extends State<VerticalBookList> {
     );
   }
 
-  _makeListTile(index) {
+  _makeListTile(index, List<Book> books) {
     return Container(
         decoration: BoxDecoration(
             color: Colors.white,
@@ -77,7 +78,7 @@ class _VerticalBookList extends State<VerticalBookList> {
                               child: FittedBox(
                                 fit: BoxFit.fill,
                                 child: Image.network(
-                                    widget.books[index].picture
+                                    books[index].picture
                                 ),
                             )
                           ) //Icon(Icons.autorenew, color: Colors.white),
@@ -207,7 +208,7 @@ class _VerticalBookList extends State<VerticalBookList> {
     );
   }
 
-  _makeCard(index) {
+  _makeCard(int index, List<Book> books) {
     return  Card(
       /*shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(7.0),
@@ -219,7 +220,7 @@ class _VerticalBookList extends State<VerticalBookList> {
         decoration: BoxDecoration(
           color: Colors.blueGrey,
         ),
-        child: _makeListTile(index),
+        child: _makeListTile(index, books),
       ),
     );
   }
@@ -229,10 +230,43 @@ class _VerticalBookList extends State<VerticalBookList> {
       child: ListView.builder(
         scrollDirection: Axis.vertical,
         shrinkWrap: true,
-        itemCount: 10,
+        itemCount: widget.readingBooks.length + widget.pendingBooks.length + 2,
         itemBuilder: (BuildContext context, int index) {
-          return _makeCard(index);
+          if (index == 0) {
+            return _makeHeader('Reading:');
+          } else if (index <= widget.readingBooks.length) {
+            return _makeCard(index - 1, widget.readingBooks);
+          } else if (index == widget.readingBooks.length + 1) {
+            return _makeHeader('Pending:');
+          } else {
+            return _makeCard(index - 2 - widget.readingBooks.length, widget.pendingBooks);
+          }
         },
+      ),
+    );
+  }
+
+  _makeHeader(String title){
+    double width = MediaQuery.of(context).size.width;
+    return Container(
+      child: Column(
+        children: <Widget>[
+          Container(
+            margin: EdgeInsets.fromLTRB(10, 10, 2, 0),
+            child:  Align(
+              alignment: Alignment.topLeft,
+              child: Text(
+                title,
+                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: Colors.white),
+              ),
+            ),
+          ),
+
+          Padding(
+            padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
+            child: Container(color: Colors.white, height: 2, width: width),
+          ),
+        ],
       ),
     );
   }

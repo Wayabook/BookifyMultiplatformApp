@@ -89,7 +89,7 @@ class ReadingPage extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
-      body: VerticalBookList(this.books),
+      body: VerticalBookList(this.books.sublist(0, 2), this.books),
       appBar: AppBar(
         title: Text(this.text),
         actions: <Widget>[
@@ -106,4 +106,15 @@ class ReadingPage extends StatelessWidget {
       ),
     );
   }
+
+  /*_getBody(){
+    return Column(
+      children: <Widget>[
+        VerticalBookList("Reading", this.books),
+
+        //VerticalBookList("Pending", this.books),
+
+      ],
+    );
+  }*/
 }
