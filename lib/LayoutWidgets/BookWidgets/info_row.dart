@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:bookifyapp/LayoutWidgets/BookWidgets/row_type.dart';
+import 'package:bookifyapp/Enums/row_type.dart';
 
 class InfoRow extends StatelessWidget {
   final RowType rowType;

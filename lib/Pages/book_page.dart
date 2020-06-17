@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:bookifyapp/LayoutWidgets/arc_banner_image.dart';
 import 'package:bookifyapp/LayoutWidgets/BookWidgets/book_cover.dart';
 import 'package:bookifyapp/LayoutWidgets/BookWidgets/info_row.dart';
-import 'package:bookifyapp/LayoutWidgets/BookWidgets/row_type.dart';
+import 'package:bookifyapp/Enums/row_type.dart';
 import 'package:bookifyapp/LayoutWidgets/BookWidgets/summary_text.dart';
 import 'package:bookifyapp/LayoutWidgets/Lists/horizontal_book_list.dart';
 

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bookifyapp/Models/Book.dart';
+import 'package:bookifyapp/Enums/button_type.dart';
 
 
 class VerticalBookList extends StatefulWidget {
@@ -42,7 +43,7 @@ class _VerticalBookList extends State<VerticalBookList> {
     );
   }
 
-  _makeListTile(index, List<Book> books) {
+  _makeListTile(index, List<Book> books, ButtonType buttonType) {
     return Container(
         decoration: BoxDecoration(
             color: Colors.white,
@@ -116,7 +117,7 @@ class _VerticalBookList extends State<VerticalBookList> {
                           child: Center(
                             child: Container(
                               child: Text(
-                                "En los Zapatos de Valeria",
+                                books[index].title,
                                 style: TextStyle(
                                   //color: Colors.white,
                                   fontWeight: FontWeight.bold,
@@ -131,7 +132,7 @@ class _VerticalBookList extends State<VerticalBookList> {
                           flex: 2,
                           child: Center(
                             child: Text(
-                              "Elisabeth Benavent",
+                              books[index].author,
                               style: TextStyle(
                                 color: Colors.grey[500],
                               ),
@@ -194,7 +195,8 @@ class _VerticalBookList extends State<VerticalBookList> {
                         child: FloatingActionButton(
                           backgroundColor: Colors.white,
                           child: Icon(
-                            Icons.beenhere,
+                            buttonType == ButtonType.read ?
+                            Icons.beenhere : Icons.arrow_drop_up,
                             color: Colors.blueGrey,
                             size: 50,
                           ),
@@ -208,7 +210,7 @@ class _VerticalBookList extends State<VerticalBookList> {
     );
   }
 
-  _makeCard(int index, List<Book> books) {
+  _makeCard(int index, List<Book> books, ButtonType buttonType) {
     return  Card(
       /*shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(7.0),
@@ -220,7 +222,7 @@ class _VerticalBookList extends State<VerticalBookList> {
         decoration: BoxDecoration(
           color: Colors.blueGrey,
         ),
-        child: _makeListTile(index, books),
+        child: _makeListTile(index, books, buttonType),
       ),
     );
   }
@@ -235,11 +237,11 @@ class _VerticalBookList extends State<VerticalBookList> {
           if (index == 0) {
             return _makeHeader('Reading:');
           } else if (index <= widget.readingBooks.length) {
-            return _makeCard(index - 1, widget.readingBooks);
+            return _makeCard(index - 1, widget.readingBooks, ButtonType.read);
           } else if (index == widget.readingBooks.length + 1) {
             return _makeHeader('Pending:');
           } else {
-            return _makeCard(index - 2 - widget.readingBooks.length, widget.pendingBooks);
+            return _makeCard(index - 2 - widget.readingBooks.length, widget.pendingBooks, ButtonType.arrow_up);
           }
         },
       ),
