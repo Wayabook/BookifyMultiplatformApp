@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:bookifyapp/Pages/search_page.dart';
 import 'package:flutter/painting.dart';
 import 'package:bookifyapp/LayoutWidgets/Lists/vertical_book_list.dart';
 import 'package:bookifyapp/Models/Book.dart';
@@ -92,7 +91,7 @@ class ReadingPage extends StatelessWidget {
       body: VerticalBookList(this.books.sublist(0, 2), this.books),
       appBar: AppBar(
         title: Text(this.text),
-        actions: <Widget>[
+        /*actions: <Widget>[
           IconButton(
               onPressed: () {
                 Navigator.push(
@@ -102,7 +101,7 @@ class ReadingPage extends StatelessWidget {
               },
               icon: Icon(Icons.search)
           )
-        ],
+        ],*/
       ),
     );
   }

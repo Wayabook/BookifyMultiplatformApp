@@ -1,203 +1,87 @@
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/LayoutWidgets/search_book_or_person.dart';
+import 'package:bookifyapp/Models/Book.dart';
+
 
 class SearchPage extends StatelessWidget {
 
   SearchPage();
 
-  TextEditingController _searchQueryController = TextEditingController();
-  bool _isSearching = false;
-  String searchQuery = "Search query";
 
-
-  final _europeanCountries = ['Albania', 'Andorra', 'Armenia', 'Austria',
-    'Azerbaijan', 'Belarus', 'Belgium', 'Bosnia and Herzegovina', 'Bulgaria',
-    'Croatia', 'Cyprus', 'Czech Republic', 'Denmark', 'Estonia', 'Finland',
-    'France', 'Georgia', 'Germany', 'Greece', 'Hungary', 'Iceland', 'Ireland',
-    'Italy', 'Kazakhstan', 'Kosovo', 'Latvia', 'Liechtenstein', 'Lithuania',
-    'Luxembourg', 'Macedonia', 'Malta', 'Moldova', 'Monaco', 'Montenegro',
-    'Netherlands', 'Norway', 'Poland', 'Portugal', 'Romania', 'Russia',
-    'San Marino', 'Serbia', 'Slovakia', 'Slovenia', 'Spain', 'Sweden',
-    'Switzerland', 'Turkey', 'Ukraine', 'United Kingdom', 'Vatican City'];
-
-  var _filteredList = [];
-
-
-  /*    return ListView.builder(
-        itemCount: europeanCountries.length,
-        itemBuilder: (context, index) {
-          return ListTile(
-            title: Text(europeanCountries[index]),
-          );
-        },
-      );
-
-    }
-  */
 
 
   @override
   Widget build(BuildContext context) {
-    return SearchBookOrPerson();
+    List<Book> books =  List();
+    String description =
+    """
+    Engánchate al fenómenoValeria de @BetaCoqueta, una saga altamente divertida, emotiva y sensual.
+
+    ¡Te vas a enamorar!
+    
+    Valeria es escritora de historias de amor.
+    Valeria vive el amor de forma sublime.
+    Valeria tiene tres amigas: Nerea, Carmen y Lola.
+    Valeria vive en Madrid.
+    Valeria ama a Adrián hasta que conoce a Víctor.
+    Valeria necesita sincerarse consigo misma.
+    Valeria llora, Valeria ríe, Valeria camina...
+    Pero el sexo, el amor y los hombres no son objetivos fáciles.
+    Valeria es especial.
+    Como tú.
+    
+    En los zapatos de Valeria es el primer libro de la«Saga Valeria», la primera obra deElísabet Benavent, que inició su carrera literaria autopublicándose y que en poco tiempo conquistó a cientos de lectores y se situó en los primeros puestos de la lista de más vendidos de ficción.
+    
+    Posteriormente la autora, también conocida por sus fans como@BetaCoqueta, ha continuado cosechando grandes éxitos con la publicación de su«Saga Silvia», la trilogía«Mi elección», la bilogía«Horizonte Martina» y la novelaMi isla.
+    """;
+    /*"Engánchate al fenómenoValeria de @BetaCoqueta, una saga altamente divertida, emotiva y sensual.\n" &
+    "¡Te vas a enamorar!\n" &
+    "Valeria es escritora de historias de amor.\n"&
+    "Valeria vive el amor de forma sublime.\n"&
+    "Valeria tiene tres amigas: Nerea, Carmen y Lola.\n"&
+    "Valeria vive en Madrid.\n"&
+    "Valeria ama a Adrián hasta que conoce a Víctor.\n"&
+    "Valeria necesita sincerarse consigo misma.\n"&
+    "Valeria llora, Valeria ríe, Valeria camina...\n"&
+    "Pero el sexo, el amor y los hombres no son objetivos fáciles.\n"&
+    "Valeria es especial.\n"&
+    "Como tú.\n\n"&
+    "En los zapatos de Valeria es el primer libro de la«Saga Valeria», la primera obra deElísabet Benavent, que inició su carrera literaria autopublicándose y que en poco tiempo conquistó a cientos de lectores y se situó en los primeros puestos de la lista de más vendidos de ficción.\n"&
+    "Posteriormente la autora, también conocida por sus fans como@BetaCoqueta, ha continuado cosechando grandes éxitos con la publicación de su«Saga Silvia», la trilogía«Mi elección», la bilogía«Horizonte Martina» y la novelaMi isla.";*/
+
+    Book book1 = new Book.withSummary(
+        "En los Zapatos de Valeria",
+        "Elisabeth Benavent",
+        "https://imagessl3.casadellibro.com/a/l/t0/73/9788490628973.jpg",
+        description);
+    Book book2 = new Book.withSummary(
+        "En busca del chico irrompible",
+        "Coque Mesa",
+        "https://imagessl9.casadellibro.com/a/l/t5/59/9788408228059.jpg",
+        description);
+
+    Book book3 = new Book.withSummary(
+        "Con el amor bastaba",
+        "Maxim Huerta",
+        "https://imagessl2.casadellibro.com/a/l/t5/92/9788408221692.jpg",
+        description);
+
+    Book book4 = new Book.withSummary(
+        "A próposito de nada",
+        "Woody Allen",
+        "https://imagessl0.casadellibro.com/a/l/t5/50/9788491819950.jpg",
+        description);
+
+    books.add(book1);
+    books.add(book2);
+    books.add(book3);
+    books.add(book4);
+
+    books.add(book1);
+    books.add(book2);
+    books.add(book3);
+    books.add(book4);
+
+    return SearchBookOrPerson(books);
   }
 }
-    /*DefaultTabController(
-      length: 2,
-      child: Scaffold(
-        appBar: AppBar(
-          bottom: TabBar(
-            tabs: [Text("Books"), Text("Users")],
-          ),
-          title: /*_isSearching ?*/ _buildSearchField() /*: _buildTitle(context)*/,
-          actions: _buildActions(context),
-          /*<Widget>[
-            IconButton(
-                /*onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => SearchPage()),
-                  );
-                },*/
-                icon: Icon(Icons.search)
-            )
-          ],*/
-        ),
-        body: TabBarView(
-          children: [
-            Container(
-              child: ListView.builder(
-                scrollDirection: Axis.vertical,
-                shrinkWrap: true,
-                itemCount: _europeanCountries == null ? 0 : _filteredList.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return personCard(_filteredList[index]);
-                },
-              ),
-            ),
-            Icon(Icons.directions_transit),
-            //Icon(Icons.directions_bike),
-          ],
-        ),
-      ),
-    );
-
-    /*Scaffold(
-      body: Column(
-        children: <Widget>[
-          // Page Content
-        ],
-      ),
-      appBar: AppBar(
-        title: Text("Search Book"),
-        bottom: TabBar(
-          tabs: [Text("Books"), Text("Users")],
-        ),
-        actions: <Widget>[
-          IconButton(
-              onPressed: () {},
-              icon: Icon(Icons.search)
-          )
-        ],
-      ),
-    );*/
-  }
-
-  /*Widget _buildTitle() {
-    return
-  }*/
-
-  ListTile personListTile(String city) =>
-      ListTile(
-        title: Text(
-          city,
-          style: TextStyle(
-              color: Colors.black45, fontWeight: FontWeight.bold),
-        ),);
-
-  Card personCard(String city) =>
-      Card(
-        child: Container(
-          decoration: BoxDecoration(color: Colors.grey[300]),
-          child: personListTile(city),
-        ),
-      );
-
-  Widget _buildSearchField() {
-    return TextField(
-      controller: _searchQueryController,
-      autofocus: true,
-      decoration: InputDecoration(
-        hintText: "Search Data...",
-        border: InputBorder.none,
-        hintStyle: TextStyle(color: Colors.white30),
-      ),
-      style: TextStyle(color: Colors.white, fontSize: 16.0),
-      onChanged: (query) => updateSearchQuery,
-    );
-  }
-
-  List<Widget> _buildActions(BuildContext context) {
-    if (_isSearching) {
-      return <Widget>[
-        IconButton(
-          icon: const Icon(Icons.clear),
-          onPressed: () {
-            if (_searchQueryController == null ||
-                _searchQueryController.text.isEmpty) {
-              Navigator.pop(context);
-              return;
-            }
-            _clearSearchQuery();
-          },
-        ),
-      ];
-    }
-
-    return <Widget>[
-      IconButton(
-        icon: const Icon(Icons.search),
-        onPressed: () {
-          ModalRoute.of(context)
-              .addLocalHistoryEntry(LocalHistoryEntry(onRemove: _stopSearching));
-
-          _isSearching = true;
-        },
-      ),
-    ];
-  }
-
-  void _startSearch(BuildContext context) {
-    ModalRoute.of(context)
-        .addLocalHistoryEntry(LocalHistoryEntry(onRemove: _stopSearching));
-
-    _isSearching = true;
-    /*setState(() {
-      _isSearching = true;
-    });*/
-  }
-
-  void updateSearchQuery(String newQuery) {
-    searchQuery = newQuery;
-
-    /*setState(() {
-      searchQuery = newQuery;
-    });*/
-  }
-
-  void _stopSearching() {
-    _clearSearchQuery();
-    _isSearching = false;
-    /*setState(() {
-      _isSearching = false;
-    });*/
-  }
-
-  void _clearSearchQuery() {
-    _searchQueryController.clear();
-    updateSearchQuery("");
-    /*setState(() {
-      _searchQueryController.clear();
-      updateSearchQuery("");
-    });*/
-  }
-}*/
