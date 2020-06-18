@@ -7,6 +7,7 @@ import 'package:bookifyapp/Enums/row_type.dart';
 import 'package:bookifyapp/LayoutWidgets/BookWidgets/summary_text.dart';
 import 'package:bookifyapp/LayoutWidgets/Lists/horizontal_book_list.dart';
 import 'package:flutter/painting.dart';
+import 'package:bookifyapp/Enums/list_type.dart';
 
 class BookPage extends StatelessWidget {
   final String title;
@@ -259,7 +260,7 @@ class BookPage extends StatelessWidget {
             ),
           ),
 
-          HorizontalBookList(auxBooksForPrototype),
+          HorizontalBookList(auxBooksForPrototype, ListType.normal),
           ],
         ),
 
@@ -276,7 +277,7 @@ class BookPage extends StatelessWidget {
               ),
             ),
 
-            HorizontalBookList(auxBooksForPrototype),
+            HorizontalBookList(auxBooksForPrototype, ListType.normal),
           ],
         ),
 

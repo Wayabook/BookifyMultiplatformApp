@@ -4,6 +4,8 @@ import 'book_page.dart';
 import 'package:bookifyapp/Pages/search_page.dart';
 import 'package:bookifyapp/Models/Book.dart';
 import 'package:bookifyapp/LayoutWidgets/Lists/horizontal_book_list.dart';
+import 'package:bookifyapp/Enums/list_type.dart';
+
 
 class DiscoverPage extends StatelessWidget {
   final Color color;
@@ -149,7 +151,7 @@ class DiscoverPage extends StatelessWidget {
             ),
           ),
 
-          HorizontalBookList(books),
+          HorizontalBookList(books, ListType.discover_option),
         ],
       );
     }
