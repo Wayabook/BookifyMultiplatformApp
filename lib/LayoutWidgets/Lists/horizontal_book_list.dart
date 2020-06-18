@@ -29,20 +29,103 @@ class HorizontalBookList extends StatelessWidget {
       width: 500,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: books.length,
+        itemCount: books.length + 1,
         itemBuilder: (BuildContext context, int index) {
-          return Card(
-            margin: EdgeInsets.all(10),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(7.0),
-            ),
-            elevation: 10,
-            child: _getListElement(index),
-          );
+          if(index < books.length){
+            return Card(
+              margin: EdgeInsets.all(10),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(7.0),
+              ),
+              elevation: 10,
+              child: _getListElement(index),
+            );
+          } else {
+            return Card(
+              margin: EdgeInsets.all(10),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(7.0),
+              ),
+              elevation: 10,
+              child: Container(
+                width: 120,
+                //height: double.infinity,
+                color: Colors.white,
+                child: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      Icon(
+                        //buttonType == ButtonType.read ?
+                        //Icons.beenhere : Icons.arrow_drop_up,
+                        Icons.add,
+                        color: Colors.blueGrey,
+                        size: 50,
+                      ),
+
+                      Text("Discover Books",
+                        style: TextStyle(
+                          color: Colors.blueGrey,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      )
+                    ],
+                  )
+                )
+
+                /*
+                * SizedBox(
+                    width: double.infinity,
+                    height: double.infinity,
+                    child: Center(
+                      child: Column(
+                        children: <Widget>[
+                          Align(
+                            alignment: Alignment.center,
+                            child:  Icon(
+                              //buttonType == ButtonType.read ?
+                              //Icons.beenhere : Icons.arrow_drop_up,
+                              Icons.add,
+                              color: Colors.blueGrey,
+                              size: 50,
+                            ),
+                          ),
+
+                          Align(
+                            alignment: Alignment.center,
+                            child:  Text("Discover Books",
+                              style: TextStyle(
+                                color: Colors.blueGrey,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          )
+
+
+
+                        ],
+                      ),
+                    ),
+                  )*/
+
+
+                /*Text("Discover Books",
+                  style: TextStyle(
+                    color: Colors.grey[500],
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),*/
+              ),
+            );
+          }
+
         },
       ),
     );
   }
+
+
 
   _getListElement(index){
     return Stack(

@@ -6,6 +6,7 @@ import 'package:bookifyapp/LayoutWidgets/BookWidgets/info_row.dart';
 import 'package:bookifyapp/Enums/row_type.dart';
 import 'package:bookifyapp/LayoutWidgets/BookWidgets/summary_text.dart';
 import 'package:bookifyapp/LayoutWidgets/Lists/horizontal_book_list.dart';
+import 'package:flutter/painting.dart';
 
 class BookPage extends StatelessWidget {
   final String title;
@@ -172,14 +173,42 @@ class BookPage extends StatelessWidget {
              ),*/
 
             Container(
-              margin: EdgeInsets.fromLTRB(5, 2, 2, 0),
-              child:  Align(
-                alignment: Alignment.topLeft,
-                child: Text(
-                  'Summary:',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                ),
-              ),
+              //color: Colors.black,
+              width: double.infinity,
+              margin: EdgeInsets.fromLTRB(5, 2, 5, 0),
+              child:  Row(
+                children: <Widget>[
+                  /*Align(
+                    alignment: Alignment.topLeft,
+                    child: Text(
+                      'Summary:',
+                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
+                  ),*/
+                  Text(
+                    'Summary:',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    textAlign: TextAlign.left,
+                  ),
+
+                  Expanded(
+                    child: Text(
+                      '4/5',
+                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                      textAlign: TextAlign.right,
+                    ),
+                  )
+
+                  /*Align(
+                    alignment: Alignment.topRight,
+                    child: Text(
+                      '4/5',
+                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                      textAlign: TextAlign.end,
+                    ),
+                  ),*/
+                ],
+              )
             ),
 
             SizedBox(height: 8.0),
