@@ -1,4 +1,5 @@
 enum RowType {
   text,
-  image
+  image,
+  icon_image
 }

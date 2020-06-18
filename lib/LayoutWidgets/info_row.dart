@@ -4,10 +4,11 @@ import 'package:bookifyapp/Enums/row_type.dart';
 class InfoRow extends StatelessWidget {
   final RowType rowType;
   final String title;
-  final String content;
+   String content;
   final String subTitle;
   final double width;
   final double height;
+  IconData icon;
 
   InfoRow(
       this.rowType,
@@ -18,9 +19,18 @@ class InfoRow extends StatelessWidget {
       this.height
   );
 
+  InfoRow.withIcon(
+      this.rowType,
+      this.title,
+      this.icon,
+      this.subTitle,
+      this.width,
+      this.height
+  );
+
   @override
   Widget build(BuildContext context) {
-    if (this.rowType == RowType.image){
+    if (this.rowType == RowType.image) {
       return Padding(
         padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
         child: Center(
@@ -73,6 +83,61 @@ class InfoRow extends StatelessWidget {
           ),
         ),
       );
+    } else if (this.rowType == RowType.icon_image){
+      IconData ic = Icons.book;
+      return Padding(
+        padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+        child: Center(
+          child: Container(
+            height: this.height,
+            width: this.width,
+            child: Column(
+              children: <Widget>[
+
+                Align(
+                  alignment: Alignment.center,
+                  child: Padding(
+                    padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
+                    child: Container(
+                      child: Text(
+                        this.title,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+
+                Align(
+                  alignment: Alignment.center,
+                  child: Icon(
+                    this.icon,
+                    color: Colors.black,
+                    size: 50,
+                  ),
+                ),
+
+                Align(
+                  alignment: Alignment.center,
+                  child: Padding(
+                    padding: EdgeInsets.fromLTRB(5, 2, 5, 0),
+                    child: Container(
+                      child: Text(
+                        this.subTitle,
+                        style: TextStyle(
+                          color: Colors.grey[500],
+                          fontSize: 20
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      );
     } else {
       return Padding(
         padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
@@ -102,16 +167,6 @@ class InfoRow extends StatelessWidget {
                   alignment: Alignment.center,
                   child: Padding(
                     padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
-                    /*child: Container(
-                      height: 50,
-                      width: 50,
-                      child: Text(
-                        this.title,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),*/
                     child: Text(
                       this.content,
                       style: TextStyle(

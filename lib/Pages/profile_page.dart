@@ -4,6 +4,8 @@ import 'package:bookifyapp/Models/Book.dart';
 import 'package:bookifyapp/LayoutWidgets/arc_banner_image.dart';
 import 'package:bookifyapp/LayoutWidgets/profile_info.dart';
 import 'package:bookifyapp/LayoutWidgets/BookWidgets/book_cover.dart';
+import 'package:bookifyapp/LayoutWidgets/info_row.dart';
+import 'package:bookifyapp/Enums/row_type.dart';
 import 'dart:math';
 
 
@@ -15,9 +17,15 @@ class ProfilePage extends StatelessWidget {
   List<Book> books =  List();
 
   ProfilePage(this.color, this.text);
+  double width_per_child;
+  double width;
 
   @override
   Widget build(BuildContext context) {
+    width = MediaQuery.of(context).size.width;
+    //double horizontal_margin = (width - (3 * 105)) / 2;
+    width_per_child = (width - 30 - (10 * 2)) / 3;
+
     String description =
     """
     Engánchate al fenómenoValeria de @BetaCoqueta, una saga altamente divertida, emotiva y sensual.
@@ -93,38 +101,120 @@ class ProfilePage extends StatelessWidget {
   _getBody(){
     var rnd = new Random();
     int r = 0 + rnd.nextInt(this.books.length - 1 - 0);
+
+
     return ListView(
       children: <Widget>[
         Stack(
           children: [
             Padding(
-              padding: const EdgeInsets.only(bottom: 140.0),
+              padding: const EdgeInsets.only(bottom: 120.0),
               child: ArcBannerImage(this.books[r].picture),
             ),
             Positioned(
-              bottom: 45.0,
+              bottom: 0.0,
               left: 16.0,
               right: 16.0,
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  /*BookCover(
-                    this.books[r],
-                    height: 180.0,
-                  ),*/
                   ProfileInfo(),
-
-                  //SizedBox(width: 16.0),
-                  //Expanded(child: movieInformation),
                 ],
               ),
             ),
           ],
+        ),
+
+        Padding(
+          padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
+          child: Container(color: Colors.blueGrey, height: 2, width: width),
+        ),
+
+        Center(
+          child:  Row(
+            mainAxisAlignment: MainAxisAlignment.center, //Center Row contents horizontally,
+            crossAxisAlignment: CrossAxisAlignment.center, //Center Row contents vertically,
+            children: <Widget>[
+
+              InfoRow.withIcon(RowType.icon_image,  "BOOKS READ", Icons.book,  "18", width_per_child, 105),
+
+              Container(color: Colors.blueGrey, height: 105, width: 2,),
+
+              InfoRow.withIcon(RowType.icon_image,  "CHAPTERS READ", Icons.collections_bookmark,  "51", width_per_child, 105),
+
+              Container(color: Colors.blueGrey, height: 105, width: 2,),
+
+              InfoRow.withIcon(RowType.icon_image,  "PAGES READ", Icons.description,  "1001", width_per_child, 105),
+
+
+            ],
+          ),
+        ),
+
+        Padding(
+          padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
+          child: Container(color: Colors.blueGrey, height: 2, width: width),
         ),
       ],
     );
   }
 
 }
+
+// See multiple profiles
+/*class CustomAvatars extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 80,
+      height: 40,
+      color: Colors.white,
+      child: Stack(
+        children: <Widget>[
+          Align(
+            alignment: Alignment.centerRight,
+            child: CircleAvatar(
+              backgroundColor: Colors.white,
+              child: CircleAvatar(
+                radius: 18,
+                backgroundColor: Colors.red,
+                backgroundImage: NetworkImage(
+                  'https://upload.wikimedia.org/wikipedia/commons/a/a0/Bill_Gates_2018.jpg',
+                ),
+              ),
+            ),
+          ),
+          Align(
+            alignment: Alignment.center,
+            child: CircleAvatar(
+              backgroundColor: Colors.white,
+              child: CircleAvatar(
+                radius: 18,
+                backgroundColor: Colors.red,
+                backgroundImage: NetworkImage(
+                  'https://upload.wikimedia.org/wikipedia/commons/a/a0/Bill_Gates_2018.jpg',
+                ), // P// Provide your custom image
+              ),
+            ),
+          ),
+          Align(
+            alignment: Alignment.centerLeft,
+            child: CircleAvatar(
+              backgroundColor: Colors.white,
+              child: CircleAvatar(
+                radius: 18,
+                backgroundColor: Colors.red,
+                backgroundImage: NetworkImage(
+                'https://upload.wikimedia.org/wikipedia/commons/a/a0/Bill_Gates_2018.jpg',
+                ), // Provide your custom image
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}*/
 
