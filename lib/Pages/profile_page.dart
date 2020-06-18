@@ -1,3 +1,4 @@
+import 'package:bookifyapp/Enums/list_type.dart';
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/LayoutWidgets/Lists/vertical_book_list_search.dart';
 import 'package:bookifyapp/Models/Book.dart';
@@ -6,6 +7,8 @@ import 'package:bookifyapp/LayoutWidgets/profile_info.dart';
 import 'package:bookifyapp/LayoutWidgets/BookWidgets/book_cover.dart';
 import 'package:bookifyapp/LayoutWidgets/info_row.dart';
 import 'package:bookifyapp/Enums/row_type.dart';
+import 'package:bookifyapp/Models/Genre.dart';
+import 'package:bookifyapp/LayoutWidgets/Lists/horizontal_genres_list.dart';
 import 'dart:math';
 
 
@@ -15,6 +18,7 @@ class ProfilePage extends StatelessWidget {
   static const TextStyle optionStyle =
   TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   List<Book> books =  List();
+  List<Genre> genres = List();
 
   ProfilePage(this.color, this.text);
   double width_per_child;
@@ -25,6 +29,28 @@ class ProfilePage extends StatelessWidget {
     width = MediaQuery.of(context).size.width;
     //double horizontal_margin = (width - (3 * 105)) / 2;
     width_per_child = (width - 30 - (10 * 2)) / 3;
+
+    Genre genre1 = Genre("1", "Genre1", "genre1.png");
+    Genre genre2 = Genre("2", "Genre2", "genre2.png");
+    Genre genre3 = Genre("3", "Genre3", "genre3.png");
+    Genre genre4 = Genre("4", "Genre4", "genre4.png");
+    Genre genre5 = Genre("5", "Genre5", "genre5.png");
+    Genre genre6 = Genre("6", "Genre6", "genre6.png");
+    Genre genre7 = Genre("7", "Genre7", "genre7.png");
+    Genre genre8 = Genre("8", "Genre8", "genre8.png");
+    Genre genre9 = Genre("9", "Genre9", "genre9.png");
+
+    genres.add(genre1);
+    genres.add(genre2);
+    genres.add(genre3);
+    genres.add(genre4);
+    genres.add(genre5);
+    genres.add(genre6);
+    genres.add(genre7);
+    genres.add(genre8);
+    genres.add(genre9);
+
+
 
     String description =
     """
@@ -156,6 +182,24 @@ class ProfilePage extends StatelessWidget {
           padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
           child: Container(color: Colors.blueGrey, height: 2, width: width),
         ),
+
+        Container(
+          margin: EdgeInsets.fromLTRB(10, 10, 2, 0),
+          child:  Align(
+            alignment: Alignment.topLeft,
+            child: Text(
+              "Genres of Interest:",
+              style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: Colors.blueGrey),
+            ),
+          ),
+        ),
+
+        Padding(
+          padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
+          child: Container(color: Colors.blueGrey, height: 2, width: width),
+        ),
+
+        HorizontalGenresList(this.genres, ListType.add_genre),
       ],
     );
   }
