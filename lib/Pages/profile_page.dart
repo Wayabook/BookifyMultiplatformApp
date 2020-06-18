@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/LayoutWidgets/Lists/vertical_book_list_search.dart';
 import 'package:bookifyapp/Models/Book.dart';
+import 'package:bookifyapp/LayoutWidgets/arc_banner_image.dart';
+import 'package:bookifyapp/LayoutWidgets/profile_info.dart';
+import 'package:bookifyapp/LayoutWidgets/BookWidgets/book_cover.dart';
+import 'dart:math';
 
 
 class ProfilePage extends StatelessWidget {
@@ -8,13 +12,12 @@ class ProfilePage extends StatelessWidget {
   final String text;
   static const TextStyle optionStyle =
   TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-
+  List<Book> books =  List();
 
   ProfilePage(this.color, this.text);
 
   @override
   Widget build(BuildContext context) {
-    /*List<Book> books =  List();
     String description =
     """
     Engánchate al fenómenoValeria de @BetaCoqueta, una saga altamente divertida, emotiva y sensual.
@@ -79,30 +82,48 @@ class ProfilePage extends StatelessWidget {
     books.add(book3);
     books.add(book4);
 
-    books.add(book1);
-    books.add(book2);
-    books.add(book3);
-    books.add(book4);*/
-
     return Scaffold(
-      body: Container(
-        child: Text("Profileee lokoo"),
-      ),
+      body: _getBody(),
       appBar: AppBar(
         title: Text(this.text),
-        /*actions: <Widget>[
-          IconButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => SearchPage()),
-                );
-              },
-              icon: Icon(Icons.search)
-          )
-        ],*/
       ),
-    );;
+    );
+  }
+
+  _getBody(){
+    var rnd = new Random();
+    int r = 0 + rnd.nextInt(this.books.length - 1 - 0);
+    return ListView(
+      children: <Widget>[
+        Stack(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(bottom: 140.0),
+              child: ArcBannerImage(this.books[r].picture),
+            ),
+            Positioned(
+              bottom: 45.0,
+              left: 16.0,
+              right: 16.0,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  /*BookCover(
+                    this.books[r],
+                    height: 180.0,
+                  ),*/
+                  ProfileInfo(),
+
+                  //SizedBox(width: 16.0),
+                  //Expanded(child: movieInformation),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
   }
 
 }

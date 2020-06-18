@@ -52,7 +52,7 @@ class BookCover extends StatelessWidget {
           child: Text(
             this.book.author,
             style: TextStyle(
-              color: Colors.grey[500],
+              color: Colors.blueGrey,
             ),
           ),
         ),

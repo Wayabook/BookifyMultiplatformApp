@@ -2,7 +2,7 @@ import 'package:bookifyapp/Models/Book.dart';
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/LayoutWidgets/arc_banner_image.dart';
 import 'package:bookifyapp/LayoutWidgets/BookWidgets/book_cover.dart';
-import 'package:bookifyapp/LayoutWidgets/BookWidgets/info_row.dart';
+import 'package:bookifyapp/LayoutWidgets/info_row.dart';
 import 'package:bookifyapp/Enums/row_type.dart';
 import 'package:bookifyapp/LayoutWidgets/BookWidgets/summary_text.dart';
 import 'package:bookifyapp/LayoutWidgets/Lists/horizontal_book_list.dart';
@@ -199,51 +199,15 @@ class BookPage extends StatelessWidget {
                       textAlign: TextAlign.right,
                     ),
                   )
-
-                  /*Align(
-                    alignment: Alignment.topRight,
-                    child: Text(
-                      '4/5',
-                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                      textAlign: TextAlign.end,
-                    ),
-                  ),*/
                 ],
               )
             ),
 
             SizedBox(height: 8.0),
 
-            SummaryTextWidget(text: this.book.summary,
+            SummaryTextWidget(
+              text: this.book.summary,
             ),
-            /*Text(
-              "Una isla desconocida. Un enigmático mensaje. Ningún recuerdo. Amnésico, magullado y con la sensación de que todo el mundo sabe lo que sucede menos él, el protagonista de esta historia se embarcará en una aventura sin igual que le llevará a adentrarse en los confines de su existencia. Durante su confuso viaje se topará con una serie de extravagantes personajes que intentarán ayudarle en su empeño por ver una realidad que, en muchas ocasiones, superará la ficción. Así da comienzo un libro enmarcado en un universo mágico en el que seremos testigos de cómo los anhelos más profundos y los miedos más oscuros cobran vida, atreviéndose incluso a mirarnos directamente a los ojos.El esperado debut literario de Coque Macho.",
-              style: textTheme.body1.copyWith(
-              color: Colors.black45,
-              fontSize: 16.0,
-              ),
-            ),
-
-
-        // No expand-collapse in this tutorial, we just slap the "more"
-        // button below the text like in the mockup.
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Text(
-                  'more',
-                  style: textTheme.body1
-                  .copyWith(fontSize: 16.0, color: theme.accentColor),
-                ),
-
-                Icon(
-                  Icons.keyboard_arrow_down,
-                  size: 18.0,
-                  color: theme.accentColor,
-                ),
-             ],
-            ),*/
           ],
         ),
 

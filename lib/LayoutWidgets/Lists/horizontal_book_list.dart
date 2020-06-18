@@ -87,7 +87,7 @@ class HorizontalBookList extends StatelessWidget {
                       )
                   ),
                 ),
-              );                
+              );
             }
           } else {
             return Card(

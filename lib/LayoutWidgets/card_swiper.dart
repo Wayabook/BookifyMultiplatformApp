@@ -76,7 +76,7 @@ class CardSwiper extends StatelessWidget {
                   child: Text(
                     this.books[index].author,
                     style: TextStyle(
-                      color: Colors.grey[500],
+                      color: Colors.blueGrey,
                     ),
                   ),
                 ),
