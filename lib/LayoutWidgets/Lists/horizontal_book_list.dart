@@ -27,14 +27,19 @@ class HorizontalBookList extends StatelessWidget {
 
 
   _createListView(){
+    var length = books.length;
+    if(this.type == ListType.discover_option || this.type == ListType.view_all){
+      length++;
+    }
+
     return Container(
       height: 200,
       width: 500,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: this.type == ListType.discover_option ?  books.length + 1: books.length,
+        itemCount: length,
         itemBuilder: (BuildContext context, int index) {
-          if(this.type == ListType.discover_option)
+          if(this.type == ListType.discover_option || this.type == ListType.view_all)
           {
             if(index < books.length){
               return Card(
@@ -69,14 +74,15 @@ class HorizontalBookList extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
                               Icon(
-                                //buttonType == ButtonType.read ?
-                                //Icons.beenhere : Icons.arrow_drop_up,
-                                Icons.add,
+                                this.type == ListType.discover_option ?
+                                Icons.add : Icons.remove_red_eye,
                                 color: Colors.blueGrey,
                                 size: 50,
                               ),
 
-                              Text("Discover Books",
+                              Text(
+                                this.type == ListType.discover_option ?
+                                "Discover Books" : "View All",
                                 style: TextStyle(
                                   color: Colors.blueGrey,
                                   fontWeight: FontWeight.bold,
@@ -107,29 +113,55 @@ class HorizontalBookList extends StatelessWidget {
 
 
   _getListElement(index){
-    return Stack(
-        children: <Widget>[
-          Padding(
-            padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-            child: Align(
-              alignment: Alignment.center,
-              child: InkWell(
-                onTap: () {
-                  Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (context) => BookPage("title", books[index], this.books)));
-                },
-                child: Image.network(books[index].picture),
+    if(this.type != ListType.view_all){
+      return Stack(
+          children: <Widget>[
+            Padding(
+              padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+              child: Align(
+                alignment: Alignment.center,
+                child: InkWell(
+                  onTap: () {
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (context) => BookPage("title", books[index], this.books)));
+                  },
+                  child: Image.network(books[index].picture),
+                ),
               ),
             ),
-          ),
 
-          Positioned(
-            top: 0,
-            right: 0,
-            child: AddButtonSmall(),
-          )
-        ]
-    );
+            Positioned(
+              top: 0,
+              right: 0,
+              child: AddButtonSmall(),
+            )
+          ]
+      );
+    } else {
+      return Stack(
+          children: <Widget>[
+            Padding(
+              padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+              child: Align(
+                alignment: Alignment.center,
+                child: InkWell(
+                  onTap: () {
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (context) => BookPage("title", books[index], this.books)));
+                  },
+                  child: Image.network(books[index].picture),
+                ),
+              ),
+            ),
+
+            /*Positioned(
+              top: 0,
+              right: 0,
+              child: AddButtonSmall(),
+            )*/
+          ]
+      );
+    }
   }
 }
 

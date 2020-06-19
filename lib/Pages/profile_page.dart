@@ -4,7 +4,7 @@ import 'package:bookifyapp/LayoutWidgets/Lists/vertical_book_list_search.dart';
 import 'package:bookifyapp/Models/Book.dart';
 import 'package:bookifyapp/LayoutWidgets/arc_banner_image.dart';
 import 'package:bookifyapp/LayoutWidgets/profile_info.dart';
-import 'package:bookifyapp/LayoutWidgets/BookWidgets/book_cover.dart';
+import 'package:bookifyapp/LayoutWidgets/Lists/horizontal_book_list.dart';
 import 'package:bookifyapp/LayoutWidgets/info_row.dart';
 import 'package:bookifyapp/Enums/row_type.dart';
 import 'package:bookifyapp/Models/Genre.dart';
@@ -189,7 +189,7 @@ class ProfilePage extends StatelessWidget {
             alignment: Alignment.topLeft,
             child: Text(
               "Genres of Interest:",
-              style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: Colors.blueGrey),
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.blueGrey),
             ),
           ),
         ),
@@ -200,6 +200,24 @@ class ProfilePage extends StatelessWidget {
         ),
 
         HorizontalGenresList(this.genres, ListType.add_genre),
+
+        Container(
+          margin: EdgeInsets.fromLTRB(10, 10, 2, 0),
+          child:  Align(
+            alignment: Alignment.topLeft,
+            child: Text(
+              "Bookshelf:",
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.blueGrey),
+            ),
+          ),
+        ),
+
+        Padding(
+          padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
+          child: Container(color: Colors.blueGrey, height: 2, width: width),
+        ),
+
+        HorizontalBookList(books, ListType.view_all)
       ],
     );
   }
