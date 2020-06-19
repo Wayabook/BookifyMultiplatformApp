@@ -168,11 +168,6 @@ class BookPage extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-             /*Text(
-                'Summary:',
-                 style: textTheme.subhead.copyWith(fontSize: 18.0),
-             ),*/
-
             Container(
               //color: Colors.black,
               width: double.infinity,

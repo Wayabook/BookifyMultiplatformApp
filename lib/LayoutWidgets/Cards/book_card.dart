@@ -4,7 +4,8 @@ import 'package:bookifyapp/Pages/book_page.dart';
 import 'package:bookifyapp/LayoutWidgets/Buttons/add_button_small.dart';
 import 'package:bookifyapp/Enums/book_card_type.dart';
 import 'package:bookifyapp/Pages/search_page.dart';
-//import 'package:bookifyapp/Pages/search_page.dart';
+import 'package:percent_indicator/linear_percent_indicator.dart';
+import 'package:bookifyapp/Pages/bookshelf_page.dart';
 
 
 class BookCard extends StatelessWidget {
@@ -71,7 +72,9 @@ class BookCard extends StatelessWidget {
                   child: InkWell(
                     onTap: () {
                       Navigator.of(context)
-                          .push(MaterialPageRoute(builder: (context) => BookPage("title", this.book, _getBooks())));
+                          .push(MaterialPageRoute(
+                          builder: (context) => BookPage("title", this.book,
+                              _getBooks())));
                     },
                     child: Image.network(this.book.picture),
                   ),
@@ -86,6 +89,93 @@ class BookCard extends StatelessWidget {
             ]
         ),
       );
+    } else if (this.type == BookCardType.without_add_option_and_progress_bar) {
+      return Card(
+        margin: EdgeInsets.all(10),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(7.0),
+        ),
+        elevation: 10,
+        child: Stack(
+            children: <Widget>[
+              Padding(
+                padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                child: Align(
+                  alignment: Alignment.center,
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.of(context)
+                          .push(MaterialPageRoute(builder: (context) => BookPage("title", this.book, _getBooks())));
+                    },
+                    child: Image.network(this.book.picture),
+                  ),
+                ),
+              ),
+
+              Positioned(
+                bottom: 1,
+                right: 1,
+                left: 1,
+                child:  Center(
+                  child: LinearPercentIndicator(
+                    //width: 150,
+                    lineHeight: 5.0,
+                    percent: 0.5,
+                    progressColor: Colors.lightGreen,
+                  ),
+                ),
+              )
+            ]
+        ),
+      );
+        /*child:  Column(
+          children: <Widget>[
+            Flexible(
+              flex: 9,
+              child: Container(
+                  width: 90,
+                  //padding: EdgeInsets.only(right: 12.0),
+                  padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                  decoration: new BoxDecoration(
+                      border: new Border(
+                          right: new BorderSide(width: 1.0, color: Colors.blueGrey),
+                          left: new BorderSide(width: .075, color: Colors.blueGrey),
+                          bottom: new BorderSide(width: .075, color: Colors.blueGrey),
+                          top: new BorderSide(width: .075, color: Colors.blueGrey)
+                      )
+                  ),
+
+                  child: Container(
+                      color: Colors.black,
+                      height: 150,
+                      width: double.infinity,
+                      child: FittedBox(
+                        fit: BoxFit.fill,
+                        child: Image.network(
+                            book.picture
+                        ),
+                      )
+                  ) //Icon(Icons.autorenew, color: Colors.white),
+              ),
+            ),
+
+            Flexible(
+                flex: 1,
+                child: Center(
+                  child: LinearPercentIndicator(
+                    //width: //150.0,
+                    lineHeight: 5.0,
+                    percent: 0.5,
+                    progressColor: Colors.lightGreen,
+                  ),
+                )
+            )
+          ],
+        )
+      );
+
+
+      * */
     } else {
       String text = "";
       IconData icon;
@@ -102,10 +192,18 @@ class BookCard extends StatelessWidget {
 
       return GestureDetector(
         onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => SearchPage()),
-          );
+          if(this.type == BookCardType.disover){
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => SearchPage()),
+            );
+          } else if (this.type == BookCardType.view_all){
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => BookshelfPage()),
+            );
+          }
+
         },
         child: Card(
           margin: EdgeInsets.all(10),

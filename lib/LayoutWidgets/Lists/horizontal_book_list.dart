@@ -47,7 +47,7 @@ class HorizontalBookList extends StatelessWidget {
               if (this.type == ListType.discover_option) {
                 return BookCard(this.books[index], BookCardType.add_option);
               } else {
-                return BookCard(this.books[index], BookCardType.without_add_option);
+                return BookCard(this.books[index], BookCardType.without_add_option_and_progress_bar);
               }
             } else {
               if (this.type == ListType.discover_option) {

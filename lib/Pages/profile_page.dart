@@ -9,6 +9,8 @@ import 'package:bookifyapp/LayoutWidgets/info_row.dart';
 import 'package:bookifyapp/Enums/row_type.dart';
 import 'package:bookifyapp/Models/Genre.dart';
 import 'package:bookifyapp/LayoutWidgets/Lists/horizontal_genres_list.dart';
+import 'package:bookifyapp/Enums/book_card_type.dart';
+import 'package:bookifyapp/LayoutWidgets/Cards/book_card.dart';
 import 'dart:math';
 
 
@@ -194,10 +196,10 @@ class ProfilePage extends StatelessWidget {
           ),
         ),
 
-        Padding(
+        /*Padding(
           padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
           child: Container(color: Colors.blueGrey, height: 2, width: width),
-        ),
+        ),*/
 
         HorizontalGenresList(this.genres, ListType.add_genre),
 
@@ -212,12 +214,14 @@ class ProfilePage extends StatelessWidget {
           ),
         ),
 
-        Padding(
+        /*Padding(
           padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
           child: Container(color: Colors.blueGrey, height: 2, width: width),
-        ),
+        ),*/
 
-        HorizontalBookList(books, ListType.view_all)
+        HorizontalBookList(books, ListType.view_all),
+
+        BookCard.option(BookCardType.add_custom_list),
       ],
     );
   }
