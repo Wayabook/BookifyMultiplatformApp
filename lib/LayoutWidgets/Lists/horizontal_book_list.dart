@@ -4,6 +4,8 @@ import 'package:bookifyapp/Pages/book_page.dart';
 import 'package:bookifyapp/LayoutWidgets/Buttons/add_button_small.dart';
 import 'package:bookifyapp/Enums/list_type.dart';
 import 'package:bookifyapp/Pages/search_page.dart';
+import 'package:bookifyapp/LayoutWidgets/Cards/book_card.dart';
+import 'package:bookifyapp/Enums/book_card_type.dart';
 
 class HorizontalBookList extends StatelessWidget {
 
@@ -42,16 +44,19 @@ class HorizontalBookList extends StatelessWidget {
           if(this.type == ListType.discover_option || this.type == ListType.view_all)
           {
             if(index < books.length){
-              return Card(
-                margin: EdgeInsets.all(10),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(7.0),
-                ),
-                elevation: 10,
-                child: _getListElement(index),
-              );
+              if (this.type == ListType.discover_option) {
+                return BookCard(this.books[index], BookCardType.add_option);
+              } else {
+                return BookCard(this.books[index], BookCardType.without_add_option);
+              }
             } else {
-              return GestureDetector(
+              if (this.type == ListType.discover_option) {
+                return BookCard.option(BookCardType.disover);
+              } else {
+                return BookCard.option(BookCardType.view_all);
+                //return BookCard(this.books[index], BookCardType.without_add_option);
+              }
+              /*return GestureDetector(
                 onTap: () {
                   Navigator.push(
                     context,
@@ -93,17 +98,10 @@ class HorizontalBookList extends StatelessWidget {
                       )
                   ),
                 ),
-              );
+              );*/
             }
           } else {
-            return Card(
-              margin: EdgeInsets.all(10),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(7.0),
-              ),
-              elevation: 10,
-              child: _getListElement(index),
-            );
+            return BookCard(this.books[index], BookCardType.add_option);
           }
         },
       ),
