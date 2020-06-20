@@ -25,6 +25,9 @@ class BookCard extends StatelessWidget {
   }
 
   _getCard(){
+
+    /*double width = MediaQuery.of(context).size.width;
+    double height =  MediaQuery.of(context).size.height;*/
     if(this.type == BookCardType.add_option){
       return Card(
         margin: EdgeInsets.all(10),
@@ -91,6 +94,7 @@ class BookCard extends StatelessWidget {
       );
     } else if (this.type == BookCardType.without_add_option_and_progress_bar) {
       return Card(
+        color: Colors.black,
         margin: EdgeInsets.all(10),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(7.0),
@@ -118,7 +122,7 @@ class BookCard extends StatelessWidget {
                 left: 1,
                 child:  Center(
                   child: LinearPercentIndicator(
-                    //width: 150,
+                    //width: double.infinity,
                     lineHeight: 5.0,
                     percent: 0.5,
                     progressColor: Colors.lightGreen,

@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:bookifyapp/LayoutWidgets/Lists/vertical_book_list.dart';
 import 'package:bookifyapp/Models/Book.dart';
+import 'package:bookifyapp/LayoutWidgets/Cards/book_card.dart';
+import 'package:bookifyapp/Enums/book_card_type.dart';
 
 
 class BookshelfPage extends StatelessWidget {
@@ -11,11 +13,13 @@ class BookshelfPage extends StatelessWidget {
   static const TextStyle optionStyle =
   TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   List<Book> books =  List();
+  BuildContext context;
 
   BookshelfPage(/*this.color, this.text*/);
 
   @override
   Widget build(BuildContext context) {
+    this.context = context;
     String description =
     """
     Engánchate al fenómenoValeria de @BetaCoqueta, una saga altamente divertida, emotiva y sensual.
@@ -87,8 +91,54 @@ class BookshelfPage extends StatelessWidget {
 
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
+
     return Scaffold(
-      body: VerticalBookList(this.books.sublist(0, 2), this.books),
+      backgroundColor: Colors.blueGrey,
+      body: CustomScrollView(
+        slivers: <Widget>[
+          SliverList(
+            delegate: SliverChildListDelegate(
+              [
+                _makeHeader("Reading", width)
+              ],
+            ),
+          ),
+
+
+          /*GridView.count(
+            crossAxisCount: 3,
+            children: List.generate(books.length, (index) {
+              return Container(
+                color: Colors.black,
+                height: 100,
+                width: 100,
+                //child: BookCard(this.books[index], BookCardType.without_add_option_and_progress_bar),
+              );
+            }),
+          )*/
+
+          SliverGrid(
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 3
+            ),/*SliverGridDelegateWithMaxCrossAxisExtent(
+              maxCrossAxisExtent: 200.0,
+              mainAxisSpacing: 2.0,
+              crossAxisSpacing: 2.0,
+              childAspectRatio: 2.0,
+
+            ),*/
+            delegate: SliverChildBuilderDelegate(
+                  (BuildContext context, int index) {
+                    return BookCard(this.books[index], BookCardType.without_add_option_and_progress_bar);
+                    //return Container(color: Colors.black, padding: EdgeInsets.all(5), margin: EdgeInsets.all(10),);
+              },
+              childCount: this.books.length,
+            ),
+
+          )
+
+        ],
+      ),
       appBar: AppBar(
         title: Text("Bookshelf"),
         /*actions: <Widget>[
@@ -102,6 +152,78 @@ class BookshelfPage extends StatelessWidget {
               icon: Icon(Icons.search)
           )
         ],*/
+      ),
+    );
+
+
+      /*SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            _makeHeader("Reading", width),
+            GridView.count(
+              crossAxisCount: 2 ,
+              children: List.generate(50,(index){
+                return Container(
+                  child: Card(
+                    color: Colors.blue,
+                  ),
+                );
+              }),
+            )
+            /*GridView.count(
+            crossAxisCount: 3,
+            children: List.generate(books.length, (index) {
+              return Container(
+                color: Colors.black,
+                height: 100,
+                width: 100,
+                //child: BookCard(this.books[index], BookCardType.without_add_option_and_progress_bar),
+              );
+            }),
+          ),*/
+          ],
+        ),
+      ),
+      appBar: AppBar(
+        title: Text("Bookshelf"),
+        /*actions: <Widget>[
+          IconButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => SearchPage()),
+                );
+              },
+              icon: Icon(Icons.search)
+          )
+        ],*/
+      ),
+    );*/
+  }
+
+  _makeHeader(String title, width) {
+
+    return Container(
+      child: Column(
+        children: <Widget>[
+          Container(
+            margin: EdgeInsets.fromLTRB(10, 10, 2, 0),
+            child: Align(
+              alignment: Alignment.topLeft,
+              child: Text(
+                title,
+                style: TextStyle(fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white),
+              ),
+            ),
+          ),
+
+          Padding(
+            padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
+            child: Container(color: Colors.white, height: 2, width: width),
+          ),
+        ],
       ),
     );
   }
