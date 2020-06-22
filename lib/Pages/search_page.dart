@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/LayoutWidgets/search_book_or_person.dart';
 import 'package:bookifyapp/Models/Book.dart';
-
+import 'package:bookifyapp/Models/User.dart';
 
 class SearchPage extends StatelessWidget {
 
@@ -82,6 +82,19 @@ class SearchPage extends StatelessWidget {
     books.add(book3);
     books.add(book4);
 
-    return SearchBookOrPerson(books);
+    List<User> users = new List<User>();
+    User user = new User.withNameAndProfilePicture("User", "https://upload.wikimedia.org/wikipedia/commons/a/a0/Bill_Gates_2018.jpg");
+    User user1 = new User.withNameAndProfilePicture("User 1", "https://upload.wikimedia.org/wikipedia/commons/a/a0/Bill_Gates_2018.jpg");
+    User user2 = new User.withNameAndProfilePicture("User 2", "https://upload.wikimedia.org/wikipedia/commons/a/a0/Bill_Gates_2018.jpg");
+    User user3 = new User.withNameAndProfilePicture("User 3", "https://upload.wikimedia.org/wikipedia/commons/a/a0/Bill_Gates_2018.jpg");
+    User user4 = new User.withNameAndProfilePicture("User 4", "https://upload.wikimedia.org/wikipedia/commons/a/a0/Bill_Gates_2018.jpg");
+    users.add(user);
+    users.add(user1);
+    users.add(user2);
+    users.add(user3);
+    users.add(user4);
+
+
+    return SearchBookOrPerson(books, users);
   }
 }

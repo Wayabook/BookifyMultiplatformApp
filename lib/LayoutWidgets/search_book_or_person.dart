@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/LayoutWidgets/Lists/vertical_book_list_search.dart';
+import 'package:bookifyapp/LayoutWidgets/Lists/vertical_user_list.dart';
 import 'package:bookifyapp/Models/Book.dart';
+import 'package:bookifyapp/Models/User.dart';
 
 
 class SearchBookOrPerson extends StatefulWidget {
 
 
-  SearchBookOrPerson(this.books, {Key key, this.title}) : super(key: key);
+  SearchBookOrPerson(this.books, this.users, {Key key, this.title}) : super(key: key);
 
   List<Book> books;
+  List<User> users;
   final String title;
 
   @override
@@ -31,7 +34,7 @@ class _SearchBookOrPerson extends State<SearchBookOrPerson> with SingleTickerPro
 
   List<Book> _filteredList = [];
 
-  List<String> _personsList = [];
+  List<User> _personsList = [];
 
   TextEditingController controller = new TextEditingController();
 
@@ -61,7 +64,7 @@ class _SearchBookOrPerson extends State<SearchBookOrPerson> with SingleTickerPro
     _tabController.addListener(_handleTabIndex);
     setState(() {
       _filteredList = widget.books;
-      _personsList = _persons;
+      _personsList = widget.users;
     });
     controller.addListener(() {
       if (controller.text.isEmpty) {
@@ -69,7 +72,7 @@ class _SearchBookOrPerson extends State<SearchBookOrPerson> with SingleTickerPro
           filter = "";
           persons = "";
           _filteredList = widget.books;
-          _personsList = _persons;
+          _personsList = widget.users;
         });
       } else {
         setState(() {
@@ -92,6 +95,7 @@ class _SearchBookOrPerson extends State<SearchBookOrPerson> with SingleTickerPro
             style: TextStyle(
                 color: Colors.black45, fontWeight: FontWeight.bold),
           ),);
+
     Card personCard(bookOrPerson) => Card(
       child: Container(
         decoration: BoxDecoration(color: Colors.grey[300]),
@@ -111,9 +115,9 @@ class _SearchBookOrPerson extends State<SearchBookOrPerson> with SingleTickerPro
     }
 
     if ((persons.isNotEmpty)) {
-      List<String> _tmpList2 = new List<String>();
+      List<User> _tmpList2 = new List<User>();
       for (int i = 0; i < _personsList.length; i++) {
-        if (_personsList[i].toLowerCase().contains(
+        if (_personsList[i].name.toLowerCase().contains(
             persons.toLowerCase())) {
           _tmpList2.add(_personsList[i]);
         }
@@ -137,14 +141,15 @@ class _SearchBookOrPerson extends State<SearchBookOrPerson> with SingleTickerPro
           ),
 
           Container(
-            child: ListView.builder(
+            child: VerticalUserList(_personsList)
+            /*ListView.builder(
               scrollDirection: Axis.vertical,
               shrinkWrap: true,
               itemCount: _persons == null ? 0 : _personsList.length,
               itemBuilder: (BuildContext context, int index) {
                 return personCard(_personsList[index]);
               },
-            ),
+            ),*/
           ),
         ]);
 
@@ -184,7 +189,7 @@ class _SearchBookOrPerson extends State<SearchBookOrPerson> with SingleTickerPro
                 this.actionIcon = new Icon(Icons.search);
                 this.appBarTitle = new Text(_tabController.index == 0 ? "Cities" : "Persons");
                 _filteredList = widget.books;
-                _personsList = _persons;
+                _personsList = widget.users;
                 controller.clear();
               }
             });

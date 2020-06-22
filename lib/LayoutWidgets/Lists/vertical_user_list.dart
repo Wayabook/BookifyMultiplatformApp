@@ -1,25 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:bookifyapp/Models/Book.dart';
+import 'package:bookifyapp/Models/User.dart';
 import 'package:bookifyapp/Enums/button_type.dart';
 
 
-class VerticalBookListSearch extends StatefulWidget {
+class VerticalUserList extends StatefulWidget {
 
-  VerticalBookListSearch(this.books); // : super(key: key);
+  VerticalUserList(this.users); // : super(key: key);
 
-  final List<Book> books;
+  final List<User> users;
   /*final List<Book> readingBooks;
   final List<Book> pendingBooks;*/
 
   @override
-  _VerticalBookListSearch createState() => _VerticalBookListSearch();
+  _VerticalUserList createState() => _VerticalUserList();
 }
 
-class _VerticalBookListSearch extends State<VerticalBookListSearch> {
+class _VerticalUserList extends State<VerticalUserList> {
 
-  String _chapter_title = "2048 personas han guardado este libro";
+  //String _chapter_title = "2048 personas han guardado este libro";
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +68,7 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
                               child: FittedBox(
                                 fit: BoxFit.fill,
                                 child: Image.network(
-                                    widget.books[index].picture
+                                    widget.users[index].profilePictureUrl
                                 ),
                               )
                           ) //Icon(Icons.autorenew, color: Colors.white),
@@ -91,90 +91,34 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
               ),
 
               Flexible(
-                flex: 5,
+                flex: 7,
                 child: Padding(
                   padding: EdgeInsets.all(12.0),
                   child: Container(
                     //color: Colors.black,
                     height: 150,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        Flexible(
-                          flex: 2,
-                          child: Center(
-                            child: Container(
-                              child: Text(
-                                widget.books[index].title,
-                                style: TextStyle(
-                                  //color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                                textAlign: TextAlign.center,
-                              ),
-                            ),
-                          ),
-                        ),
+                    child: Center(
+                      child: Column(
+                       children: <Widget>[
+                         AutoSizeText(
+                           widget.users[index].name,
+                           style: TextStyle( fontWeight: FontWeight.bold,),
+                           maxLines: 1,
+                         ),
+                       ],
 
-                        Flexible(
-                          flex: 2,
-                          child: Center(
-                            child: Text(
-                              widget.books[index].author,
-                              style: TextStyle(
-                                color: Colors.grey[500],
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                        ),
-
-                        Flexible(
-                          flex: 4,
-                          child:  Align(
-                              alignment: Alignment.bottomCenter,
-                              child: Wrap(
-                                direction: Axis.horizontal,
-                                alignment: WrapAlignment.center,
-                                children: <Widget>[
-                                  Row(
-                                    children: <Widget>[
-
-                                      Icon(
-                                        Icons.bookmark,
-                                        color: Colors.blueGrey,
-                                        size: 20,
-                                      ),
-
-                                      AutoSizeText(
-                                        _chapter_title.substring(0, 18) + "...",
-                                        style: TextStyle( fontWeight: FontWeight.bold,),
-                                        maxLines: 1,
-                                      ),
-
-                                      /*AutoSizeText(
-                                        "+ 28",
-                                        style: TextStyle(
-                                          color: Colors.grey[500],
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                        maxLines: 1,
-                                        textAlign: TextAlign.left,
-                                      ),*/
-                                    ],
-                                  ),
-                                ],
-                              )
-                          ),
-                        )
-                      ],
-                    ),
+                        /*AutoSizeText(
+                          _chapter_title.substring(0, 18) + "...",
+                          style: TextStyle( fontWeight: FontWeight.bold,),
+                          maxLines: 1,
+                        ),*/
+                      ),
+                    )
                   ),
                 ),
               ),
 
-              Flexible(
+              /*Flexible(
                   flex: 2,
                   child: Align(
                       alignment: Alignment.center,
@@ -193,7 +137,7 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
                         ),
                       )
                   )
-              ),
+              ),*/
             ],
           ),
         )
@@ -222,7 +166,7 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
       child: ListView.builder(
         scrollDirection: Axis.vertical,
         shrinkWrap: true,
-        itemCount: widget.books.length,
+        itemCount: widget.users.length,
         itemBuilder: (BuildContext context, int index) {
           return _makeCard(index);
         },
@@ -230,7 +174,7 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
     );
   }
 
-  /*_makeHeader(String title){
+/*_makeHeader(String title){
     double width = MediaQuery.of(context).size.width;
     return Container(
       child: Column(

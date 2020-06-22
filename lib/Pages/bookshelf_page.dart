@@ -10,8 +10,8 @@ import 'package:bookifyapp/Pages/book_page.dart';
 import 'package:bookifyapp/Models/User.dart';
 
 
-
 class BookshelfPage extends StatelessWidget {
+
   /*final Color color;
   final String text;*/
   static const TextStyle optionStyle =
