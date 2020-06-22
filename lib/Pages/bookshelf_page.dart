@@ -7,6 +7,7 @@ import 'package:bookifyapp/LayoutWidgets/Cards/book_card.dart';
 import 'package:bookifyapp/Enums/book_card_type.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:bookifyapp/Pages/book_page.dart';
+import 'package:bookifyapp/Models/User.dart';
 
 
 
@@ -92,13 +93,18 @@ class BookshelfPage extends StatelessWidget {
     books.add(book3);
     books.add(book4);
 
+    Map<String, List<Book>> userLists =
+      {'Reading': books, 'Pending': books, 'Read': books, 'Recommended': books, 'Custom List 1': books};
+
+    User user = new User.withBookLists(userLists);
+
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
 
     return Scaffold(
       backgroundColor: Colors.blueGrey,
       body: CustomScrollView(
-        slivers: <Widget>[
+        slivers: _createBookshelf(user.bookLists),/*<Widget>[
           SliverList(
             delegate: SliverChildListDelegate(
               [
@@ -106,19 +112,6 @@ class BookshelfPage extends StatelessWidget {
               ],
             ),
           ),
-
-
-          /*GridView.count(
-            crossAxisCount: 3,
-            children: List.generate(books.length, (index) {
-              return Container(
-                color: Colors.black,
-                height: 100,
-                width: 100,
-                //child: BookCard(this.books[index], BookCardType.without_add_option_and_progress_bar),
-              );
-            }),
-          )*/
 
           SliverGrid(
             //padding:EdgeInsets.all(10),
@@ -145,7 +138,7 @@ class BookshelfPage extends StatelessWidget {
 
           )
 
-        ],
+        ],*/
       ),
       appBar: AppBar(
         title: Text("Bookshelf"),
@@ -162,51 +155,89 @@ class BookshelfPage extends StatelessWidget {
         ],*/
       ),
     );
+  }
 
+  _createBookshelf(Map<String, List<Book>> userLists){
 
-      /*SingleChildScrollView(
-        child: Column(
-          children: <Widget>[
-            _makeHeader("Reading", width),
-            GridView.count(
-              crossAxisCount: 2 ,
-              children: List.generate(50,(index){
-                return Container(
-                  child: Card(
-                    color: Colors.blue,
-                  ),
-                );
-              }),
-            )
-            /*GridView.count(
-            crossAxisCount: 3,
-            children: List.generate(books.length, (index) {
-              return Container(
-                color: Colors.black,
-                height: 100,
-                width: 100,
-                //child: BookCard(this.books[index], BookCardType.without_add_option_and_progress_bar),
-              );
-            }),
-          ),*/
-          ],
-        ),
-      ),
-      appBar: AppBar(
-        title: Text("Bookshelf"),
-        /*actions: <Widget>[
-          IconButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => SearchPage()),
-                );
-              },
-              icon: Icon(Icons.search)
+    double width = MediaQuery.of(context).size.width;
+    List<Widget> bookshelf = new List<Widget>();
+
+    for(String key in userLists.keys){
+      List<Book> bookList = userLists[key];
+      bookshelf.add(
+          new SliverList(
+            delegate: SliverChildListDelegate(
+              [
+                _makeHeader(key, width)
+              ],
+            ),
           )
-        ],*/
-      ),
-    );*/
+      );
+
+      bookshelf.add(
+          new SliverGrid(
+            //padding:EdgeInsets.all(10),
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 3,
+                mainAxisSpacing: 10.0,
+                crossAxisSpacing: 10.0,
+                childAspectRatio:  (MediaQuery.of(context).size.width / 4) / (MediaQuery.of(context).size.height / 4)
+            ),
+
+            delegate: SliverChildBuilderDelegate(
+                  (BuildContext context, int index) {
+                return BookCard(bookList[index], BookCardType.book_card_in_grid);
+                //return Container(color: Colors.black, padding: EdgeInsets.all(5), margin: EdgeInsets.all(10),);
+              },
+              childCount: bookList.length,
+
+            ),
+
+          )
+      );
+    }
+    /*for(int i=0; i < userLists.length; i++){
+      var title = userLists.keys[i];
+    }*/
+
+    /*userLists.forEach((listName, listBooks) => {
+      bookshelf.add(
+          new SliverList(
+            delegate: SliverChildListDelegate(
+              [
+                _makeHeader(listName, width)
+              ],
+            ),
+          )
+      );
+
+    });*/
+
+        /*SliverGrid(
+          //padding:EdgeInsets.all(10),
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 3,
+              mainAxisSpacing: 10.0,
+              crossAxisSpacing: 10.0,
+              childAspectRatio:  (MediaQuery.of(context).size.width / 4) / (MediaQuery.of(context).size.height / 4)
+          ),/*SliverGridDelegateWithMaxCrossAxisExtent(
+              maxCrossAxisExtent: 200.0,
+              mainAxisSpacing: 2.0,
+              crossAxisSpacing: 2.0,
+              childAspectRatio: 2.0,
+
+            ),*/
+          delegate: SliverChildBuilderDelegate(
+                (BuildContext context, int index) {
+              return BookCard(this.books[index], BookCardType.book_card_in_grid);
+              //return Container(color: Colors.black, padding: EdgeInsets.all(5), margin: EdgeInsets.all(10),);
+            },
+            childCount: this.books.length,
+
+          ),
+
+        )*/
+    return bookshelf;
   }
 
   _makeHeader(String title, width) {
