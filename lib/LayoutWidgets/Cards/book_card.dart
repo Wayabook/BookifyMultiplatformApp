@@ -111,7 +111,8 @@ class BookCard extends StatelessWidget {
                       Navigator.of(context)
                           .push(MaterialPageRoute(builder: (context) => BookPage("title", this.book, _getBooks())));
                     },
-                    child: Image.network(this.book.picture),
+                    child: Image.network(
+                        this.book.picture),
                   ),
                 ),
               ),
