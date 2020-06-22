@@ -126,7 +126,7 @@ class BookshelfPage extends StatelessWidget {
               crossAxisCount: 3,
               mainAxisSpacing: 10.0,
               crossAxisSpacing: 10.0,
-              childAspectRatio:  (MediaQuery.of(context).size.width - 30 / 3) / (MediaQuery.of(context).size.height - 30 / 3)
+              childAspectRatio:  (MediaQuery.of(context).size.width / 4) / (MediaQuery.of(context).size.height / 4)
             ),/*SliverGridDelegateWithMaxCrossAxisExtent(
               maxCrossAxisExtent: 200.0,
               mainAxisSpacing: 2.0,
@@ -136,43 +136,11 @@ class BookshelfPage extends StatelessWidget {
             ),*/
             delegate: SliverChildBuilderDelegate(
                   (BuildContext context, int index) {
-                    //return BookCard(this.books[index], BookCardType.without_add_option_and_progress_bar);
+                    return BookCard(this.books[index], BookCardType.book_card_in_grid);
                     //return Container(color: Colors.black, padding: EdgeInsets.all(5), margin: EdgeInsets.all(10),);
-                    return Stack(
-                        children: <Widget>[
-                          Padding(
-                            padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                            child: Align(
-                              alignment: Alignment.center,
-                              child: InkWell(
-                                onTap: () {
-                                  Navigator.of(context)
-                                      .push(MaterialPageRoute(builder: (context) => BookPage("title", this.books[index], this.books)));
-                                },
-                                child: Image.network(
-                                    this.books[index].picture, height: double.infinity,
-                                    ),
-                              ),
-                            ),
-                          ),
-
-                          Positioned(
-                            bottom: 1,
-                            right: 1,
-                            left: 1,
-                            child:  Center(
-                              child: LinearPercentIndicator(
-                                //width: double.infinity,
-                                lineHeight: 5.0,
-                                percent: 0.5,
-                                progressColor: Colors.lightGreen,
-                              ),
-                            ),
-                          )
-                        ]
-                    );
               },
               childCount: this.books.length,
+
             ),
 
           )

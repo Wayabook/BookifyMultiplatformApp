@@ -109,7 +109,9 @@ class BookCard extends StatelessWidget {
                   child: InkWell(
                     onTap: () {
                       Navigator.of(context)
-                          .push(MaterialPageRoute(builder: (context) => BookPage("title", this.book, _getBooks())));
+                          .push(
+                          MaterialPageRoute(builder: (context) => BookPage(
+                              "title", this.book, _getBooks())));
                     },
                     child: Image.network(
                         this.book.picture),
@@ -121,7 +123,7 @@ class BookCard extends StatelessWidget {
                 bottom: 1,
                 right: 1,
                 left: 1,
-                child:  Center(
+                child: Center(
                   child: LinearPercentIndicator(
                     //width: double.infinity,
                     lineHeight: 5.0,
@@ -133,7 +135,7 @@ class BookCard extends StatelessWidget {
             ]
         ),
       );
-        /*child:  Column(
+      /*child:  Column(
           children: <Widget>[
             Flexible(
               flex: 9,
@@ -181,6 +183,48 @@ class BookCard extends StatelessWidget {
 
 
       * */
+    } else if (this.type == BookCardType.book_card_in_grid){
+      return Card(
+        color: Colors.black,
+        margin: EdgeInsets.all(10),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(7.0),
+        ),
+        elevation: 10,
+        child: Stack(
+            children: <Widget>[
+              Padding(
+                padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                child: Align(
+                  alignment: Alignment.center,
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.of(context)
+                          .push(MaterialPageRoute(builder: (context) => BookPage("title", this.book, _getBooks())));
+                    },
+                    child: Image.network(
+                      this.book.picture, fit: BoxFit.fill, height: 200,
+                    ),
+                  ),
+                ),
+              ),
+
+              Positioned(
+                bottom: 1,
+                right: 1,
+                left: 1,
+                child:  Center(
+                  child: LinearPercentIndicator(
+                    //width: double.infinity,
+                    lineHeight: 5.0,
+                    percent: 0.5,
+                    progressColor: Colors.lightGreen,
+                  ),
+                ),
+              )
+            ]
+        ),
+      );
     } else {
       String text = "";
       IconData icon;

@@ -4,5 +4,6 @@ enum BookCardType {
   without_add_option_and_progress_bar,
   view_all,
   disover,
-  add_custom_list
+  add_custom_list,
+  book_card_in_grid,
 }
