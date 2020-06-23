@@ -11,28 +11,30 @@ import 'package:bookifyapp/Models/Genre.dart';
 import 'package:bookifyapp/LayoutWidgets/Lists/horizontal_genres_list.dart';
 import 'package:bookifyapp/Enums/book_card_type.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/book_card.dart';
+import 'package:bookifyapp/Models/User.dart';
 import 'dart:math';
 
 
 class ProfilePage extends StatelessWidget {
-  final Color color;
-  final String text;
+  /*final Color color;
+  final String text;*/
   static const TextStyle optionStyle =
   TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  List<Book> books =  List();
-  List<Genre> genres = List();
 
-  ProfilePage(this.color, this.text);
+  /*List<Book> books =  List();
+  List<Genre> genres = List();*/
+  User user;
+
+  ProfilePage(this.user);
   double width_per_child;
   double width;
 
   @override
   Widget build(BuildContext context) {
     width = MediaQuery.of(context).size.width;
-    //double horizontal_margin = (width - (3 * 105)) / 2;
     width_per_child = (width - 30 - (10 * 2)) / 3;
 
-    Genre genre1 = Genre("1", "Genre1", "genre1.png");
+    /*Genre genre1 = Genre("1", "Genre1", "genre1.png");
     Genre genre2 = Genre("2", "Genre2", "genre2.png");
     Genre genre3 = Genre("3", "Genre3", "genre3.png");
     Genre genre4 = Genre("4", "Genre4", "genre4.png");
@@ -116,19 +118,19 @@ class ProfilePage extends StatelessWidget {
     books.add(book1);
     books.add(book2);
     books.add(book3);
-    books.add(book4);
+    books.add(book4);*/
 
     return Scaffold(
       body: _getBody(),
       appBar: AppBar(
-        title: Text(this.text),
+        title: Text("Profile Page"),
       ),
     );
   }
 
   _getBody(){
     var rnd = new Random();
-    int r = 0 + rnd.nextInt(this.books.length - 1 - 0);
+    int r = 0 + rnd.nextInt(this.user.bookLists["Reading"].length - 1 - 0);
 
 
     return ListView(
@@ -137,7 +139,7 @@ class ProfilePage extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.only(bottom: 120.0),
-              child: ArcBannerImage(this.books[r].picture),
+              child: ArcBannerImage(this.user.bookLists["Reading"][r].picture),
             ),
             Positioned(
               bottom: 0.0,
@@ -198,7 +200,7 @@ class ProfilePage extends StatelessWidget {
                     )*/
                   ),
                   Flexible(
-                    child: ProfileInfo(),
+                    child: ProfileInfo(this.user),
                     flex: 6,
                   ),
                   Flexible(
@@ -268,15 +270,15 @@ class ProfilePage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center, //Center Row contents vertically,
             children: <Widget>[
 
-              InfoRow.withIcon(RowType.icon_image,  "BOOKS READ", Icons.book,  "18", width_per_child, 105),
+              InfoRow.withIcon(RowType.icon_image,  "BOOKS READ", Icons.book,  this.user.booksRead.toString(), width_per_child, 105),
 
               Container(color: Colors.blueGrey, height: 105, width: 2,),
 
-              InfoRow.withIcon(RowType.icon_image,  "CHAPTERS READ", Icons.collections_bookmark,  "51", width_per_child, 105),
+              InfoRow.withIcon(RowType.icon_image,  "CHAPTERS READ", Icons.collections_bookmark,  this.user.chaptersRead.toString(), width_per_child, 105),
 
               Container(color: Colors.blueGrey, height: 105, width: 2,),
 
-              InfoRow.withIcon(RowType.icon_image,  "PAGES READ", Icons.description,  "1001", width_per_child, 105),
+              InfoRow.withIcon(RowType.icon_image,  "PAGES READ", Icons.description,  this.user.pagesRead.toString(), width_per_child, 105),
 
 
             ],
@@ -304,7 +306,7 @@ class ProfilePage extends StatelessWidget {
           child: Container(color: Colors.blueGrey, height: 2, width: width),
         ),*/
 
-        HorizontalGenresList(this.genres, ListType.add_genre),
+        HorizontalGenresList(this.user.interestedGenres, ListType.add_genre),
 
         Container(
           margin: EdgeInsets.fromLTRB(10, 10, 2, 0),
@@ -322,7 +324,7 @@ class ProfilePage extends StatelessWidget {
           child: Container(color: Colors.blueGrey, height: 2, width: width),
         ),*/
 
-        HorizontalBookList(books, ListType.view_all),
+        HorizontalBookList(this.user.bookLists["Reading"], ListType.view_all),
 
         BookCard.option(BookCardType.add_custom_list),
       ],

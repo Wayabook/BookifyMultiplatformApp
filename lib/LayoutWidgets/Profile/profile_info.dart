@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/LayoutWidgets/Profile/profile_picture.dart';
+import 'package:bookifyapp/Models/User.dart';
 
 class ProfileInfo extends StatelessWidget {
   static const POSTER_RATIO = 0.7;
@@ -8,8 +9,10 @@ class ProfileInfo extends StatelessWidget {
   final double circleRadius = 120.0;
   final double circleBorderWidth = 8.0;
 
+  User user;
+
   ProfileInfo(
-      /*this.book,*/ {
+      this.user, {
         this.height = 100.0,
       });
 
@@ -19,13 +22,13 @@ class ProfileInfo extends StatelessWidget {
 
     return Column(
       children: <Widget>[
-        ProfilePicture('https://upload.wikimedia.org/wikipedia/commons/a/a0/Bill_Gates_2018.jpg'),
+        ProfilePicture(user.profilePictureUrl),
 
         Align(
           alignment: Alignment.center,
           child: Container(
             child: Text(
-              "Bill Gates",
+              user.name,
               style: TextStyle(
                 fontWeight: FontWeight.bold,
               ),
@@ -36,7 +39,7 @@ class ProfileInfo extends StatelessWidget {
         Align(
           alignment: Alignment.center,
           child: Text(
-            "\"Not as good as Steve Jobs\"",
+            user.descriptionSentence,
             style: TextStyle(
               color: Colors.blueGrey,
             ),
