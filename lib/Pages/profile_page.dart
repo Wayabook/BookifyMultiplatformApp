@@ -147,7 +147,110 @@ class ProfilePage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  ProfileInfo(),
+                  Flexible(
+                    flex: 2,
+                    child:
+                    Center(
+                        child: Column(
+                          children: <Widget>[
+                            Align(
+                              alignment: Alignment.center,
+                              child: Icon(
+                                Icons.security,
+                                color: Colors.black,
+                                size: 30,
+                              ),
+                            ),
+                            Align(
+                              alignment: Alignment.center,
+                              child:Text(
+                                "BADGETS",
+                                style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Colors.black),
+                              ),
+                            ),
+                          ],
+                        )
+                    ),
+                    /*Container(
+                      height: 100,
+                      width: 100,
+                      child: Center(
+                          child: Column(
+                            children: <Widget>[
+                              Align(
+                                alignment: Alignment.center,
+                                child: Icon(
+                                  Icons.security,
+                                  color: Colors.black,
+                                  size: 30,
+                                ),
+                              ),
+                              Align(
+                                alignment: Alignment.center,
+                                child:Text(
+                                  "BADGETS",
+                                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Colors.black),
+                                ),
+                              ),
+                            ],
+                          )
+                      ),
+                    )*/
+                  ),
+                  Flexible(
+                    child: ProfileInfo(),
+                    flex: 6,
+                  ),
+                  Flexible(
+                    flex: 2,
+                    child:
+                    Center(
+                        child: Column(
+                          children: <Widget>[
+                            Align(
+                              alignment: Alignment.center,
+                              child: Icon(
+                                Icons.people,
+                                color: Colors.black,
+                                size: 30,
+                              ),
+                            ),
+                            Align(
+                              alignment: Alignment.center,
+                              child:Text(
+                                "FRIENDS",
+                                style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Colors.black),
+                              ),
+                            ),
+                          ],
+                        )
+                    ),
+                    /*Container(
+                      height: 100,
+                      width: 100,
+                      child: Center(
+                        child: Column(
+                          children: <Widget>[
+                            Align(
+                              alignment: Alignment.center,
+                              child: Icon(
+                                Icons.people,
+                                color: Colors.black,
+                                size: 30,
+                              ),
+                            ),
+                            Align(
+                              alignment: Alignment.center,
+                              child:Text(
+                                "FRIENDS",
+                                style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Colors.black),
+                              ),
+                            ),
+                          ],
+                        )
+                      ),
+                    ),*/
+                  )
                 ],
               ),
             ),

@@ -111,7 +111,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
 
   final _items = [
     BottomNavigationBarItem(
-      icon: Icon(Icons.collections_bookmark),
+      icon: Icon(Icons.local_library),
       title: Text('Reading'),
     ),
     BottomNavigationBarItem(
