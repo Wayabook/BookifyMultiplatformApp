@@ -3,6 +3,8 @@ import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bookifyapp/Models/User.dart';
 import 'package:bookifyapp/Enums/button_type.dart';
+import 'package:bookifyapp/LayoutWidgets/Profile/profile_picture.dart';
+
 
 
 class VerticalUserList extends StatefulWidget {
@@ -33,6 +35,8 @@ class _VerticalUserList extends State<VerticalUserList> {
   }
 
   _makeListTile(index) {
+    final double circleRadius = 120.0;
+    final double circleBorderWidth = 8.0;
     return Container(
         decoration: BoxDecoration(
             color: Colors.white,
@@ -44,50 +48,7 @@ class _VerticalUserList extends State<VerticalUserList> {
             children: <Widget>[
               Flexible(
                 flex: 3,
-                child: Column(
-                  children: <Widget>[
-                    Flexible(
-                      flex: 9,
-                      child: Container(
-                          width: 90,
-                          //padding: EdgeInsets.only(right: 12.0),
-                          padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                          decoration: new BoxDecoration(
-                              border: new Border(
-                                  right: new BorderSide(width: 1.0, color: Colors.blueGrey),
-                                  left: new BorderSide(width: .075, color: Colors.blueGrey),
-                                  bottom: new BorderSide(width: .075, color: Colors.blueGrey),
-                                  top: new BorderSide(width: .075, color: Colors.blueGrey)
-                              )
-                          ),
-
-                          child: Container(
-                              color: Colors.black,
-                              height: 150,
-                              width: double.infinity,
-                              child: FittedBox(
-                                fit: BoxFit.fill,
-                                child: Image.network(
-                                    widget.users[index].profilePictureUrl
-                                ),
-                              )
-                          ) //Icon(Icons.autorenew, color: Colors.white),
-                      ),
-                    ),
-
-                    Flexible(
-                        flex: 1,
-                        child: Center(
-                          child: LinearPercentIndicator(
-                            //width: //150.0,
-                            lineHeight: 5.0,
-                            percent: 0.5,
-                            progressColor: Colors.lightGreen,
-                          ),
-                        )
-                    )
-                  ],
-                ),
+                child: ProfilePicture("https://upload.wikimedia.org/wikipedia/commons/a/a0/Bill_Gates_2018.jpg"),
               ),
 
               Flexible(
@@ -96,48 +57,28 @@ class _VerticalUserList extends State<VerticalUserList> {
                   padding: EdgeInsets.all(12.0),
                   child: Container(
                     //color: Colors.black,
-                    height: 150,
-                    child: Center(
-                      child: Column(
-                       children: <Widget>[
-                         AutoSizeText(
-                           widget.users[index].name,
-                           style: TextStyle( fontWeight: FontWeight.bold,),
-                           maxLines: 1,
-                         ),
-                       ],
-
-                        /*AutoSizeText(
-                          _chapter_title.substring(0, 18) + "...",
-                          style: TextStyle( fontWeight: FontWeight.bold,),
+                    //height: 150,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        AutoSizeText(
+                          widget.users[index].name,
+                          style: TextStyle( fontWeight: FontWeight.bold, color: Colors.black, fontSize: 30,),
                           maxLines: 1,
-                        ),*/
-                      ),
-                    )
+                       ),
+                     ],
+
+                      /*AutoSizeText(
+                        _chapter_title.substring(0, 18) + "...",
+                        style: TextStyle( fontWeight: FontWeight.bold,),
+                        maxLines: 1,
+                      ),*/
+                    ),
+
                   ),
                 ),
               ),
-
-              /*Flexible(
-                  flex: 2,
-                  child: Align(
-                      alignment: Alignment.center,
-                      child: SizedBox(
-                        height: 75,
-                        width: 75,
-                        child: FloatingActionButton(
-                          backgroundColor: Colors.white,
-                          child: Icon(
-                            //buttonType == ButtonType.read ?
-                            //Icons.beenhere : Icons.arrow_drop_up,
-                            Icons.add,
-                            color: Colors.blueGrey,
-                            size: 50,
-                          ),
-                        ),
-                      )
-                  )
-              ),*/
             ],
           ),
         )
@@ -152,7 +93,8 @@ class _VerticalUserList extends State<VerticalUserList> {
       elevation: 10,
       margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
       child:  Container(
-        height: 160,
+        height: 120,
+        /*height: 160,*/
         decoration: BoxDecoration(
           color: Colors.blueGrey,
         ),
