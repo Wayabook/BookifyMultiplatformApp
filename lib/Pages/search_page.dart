@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:bookifyapp/LayoutWidgets/search_book_or_person.dart';
 import 'package:bookifyapp/Models/Book.dart';
 import 'package:bookifyapp/Models/User.dart';
+import 'package:bookifyapp/Models/Genre.dart';
+
 
 class SearchPage extends StatelessWidget {
 
@@ -82,12 +84,92 @@ class SearchPage extends StatelessWidget {
     books.add(book3);
     books.add(book4);
 
+    List<Genre> genres = new List();
+    Genre genre1 = Genre("1", "Genre1", "genre1.png");
+    Genre genre2 = Genre("2", "Genre2", "genre2.png");
+    Genre genre3 = Genre("3", "Genre3", "genre3.png");
+    Genre genre4 = Genre("4", "Genre4", "genre4.png");
+    Genre genre5 = Genre("5", "Genre5", "genre5.png");
+    Genre genre6 = Genre("6", "Genre6", "genre6.png");
+    Genre genre7 = Genre("7", "Genre7", "genre7.png");
+    Genre genre8 = Genre("8", "Genre8", "genre8.png");
+    Genre genre9 = Genre("9", "Genre9", "genre9.png");
+
+    genres.add(genre1);
+    genres.add(genre2);
+    genres.add(genre3);
+    genres.add(genre4);
+    genres.add(genre5);
+    genres.add(genre6);
+    genres.add(genre7);
+    genres.add(genre8);
+    genres.add(genre9);
+
+    Map<String, List<Book>> userLists =
+    {'Reading': books, 'Pending': books, 'Read': books, 'Recommended': books/*, 'Custom List 1': books*/};
+
     List<User> users = new List<User>();
-    User user = new User.withNameAndProfilePicture("Steve Jobs", "https://upload.wikimedia.org/wikipedia/commons/a/a0/Bill_Gates_2018.jpg");
-    User user1 = new User.withNameAndProfilePicture("Steve Jobs 1", "https://upload.wikimedia.org/wikipedia/commons/a/a0/Bill_Gates_2018.jpg");
-    User user2 = new User.withNameAndProfilePicture("Steve Jobs 2", "https://upload.wikimedia.org/wikipedia/commons/a/a0/Bill_Gates_2018.jpg");
-    User user3 = new User.withNameAndProfilePicture("Steve Jobs 3", "https://upload.wikimedia.org/wikipedia/commons/a/a0/Bill_Gates_2018.jpg");
-    User user4 = new User.withNameAndProfilePicture("Steve Jobs 4", "https://upload.wikimedia.org/wikipedia/commons/a/a0/Bill_Gates_2018.jpg");
+
+    User user = new User(
+        "1",
+        "Steve Jobs",
+        "\"Not as good as Steve Jobs\"",
+        genres,
+        userLists,
+        21,
+        198,
+        345,
+        "https://upload.wikimedia.org/wikipedia/commons/a/a0/Bill_Gates_2018.jpg"
+    );
+
+    User user1 = new User(
+        "1",
+        "Steve Jobs 1",
+        "\"Not as good as Steve Jobs\"",
+        genres,
+        userLists,
+        21,
+        198,
+        345,
+        "https://upload.wikimedia.org/wikipedia/commons/a/a0/Bill_Gates_2018.jpg"
+    );
+
+    User user2 = new User(
+        "1",
+        "Steve Jobs 2",
+        "\"Not as good as Steve Jobs\"",
+        genres,
+        userLists,
+        21,
+        198,
+        345,
+        "https://upload.wikimedia.org/wikipedia/commons/a/a0/Bill_Gates_2018.jpg"
+    );
+
+    User user3 = new User(
+        "1",
+        "Steve Jobs 3",
+        "\"Not as good as Steve Jobs\"",
+        genres,
+        userLists,
+        21,
+        198,
+        345,
+        "https://upload.wikimedia.org/wikipedia/commons/a/a0/Bill_Gates_2018.jpg"
+    );
+
+    User user4 = new User(
+        "1",
+        "Steve Jobs 33",
+        "\"Not as good as Steve Jobs\"",
+        genres,
+        userLists,
+        21,
+        198,
+        345,
+        "https://upload.wikimedia.org/wikipedia/commons/a/a0/Bill_Gates_2018.jpg"
+    );
+
     users.add(user);
     users.add(user1);
     users.add(user2);

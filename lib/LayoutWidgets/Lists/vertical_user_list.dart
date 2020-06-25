@@ -4,6 +4,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bookifyapp/Models/User.dart';
 import 'package:bookifyapp/Enums/button_type.dart';
 import 'package:bookifyapp/LayoutWidgets/Profile/profile_picture.dart';
+import 'package:bookifyapp/Pages/profile_page.dart';
 
 
 
@@ -86,19 +87,25 @@ class _VerticalUserList extends State<VerticalUserList> {
   }
 
   _makeCard(int index) {
-    return  Card(
-      /*shape: RoundedRectangleBorder(
+    return  GestureDetector(
+      onTap: () {
+        Navigator.of(context)
+            .push(MaterialPageRoute(builder: (context) => ProfilePage(widget.users[index])));
+      },
+      child: Card(
+        /*shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(7.0),
       ),*/
-      elevation: 10,
-      margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
-      child:  Container(
-        height: 120,
-        /*height: 160,*/
-        decoration: BoxDecoration(
-          color: Colors.blueGrey,
+        elevation: 10,
+        margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
+        child:  Container(
+          height: 120,
+          /*height: 160,*/
+          decoration: BoxDecoration(
+            color: Colors.blueGrey,
+          ),
+          child: _makeListTile(index),
         ),
-        child: _makeListTile(index),
       ),
     );
   }

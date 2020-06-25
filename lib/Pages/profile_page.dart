@@ -26,6 +26,7 @@ class ProfilePage extends StatelessWidget {
   User user;
 
   ProfilePage(this.user);
+
   double width_per_child;
   double width;
 
@@ -33,92 +34,6 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     width = MediaQuery.of(context).size.width;
     width_per_child = (width - 30 - (10 * 2)) / 3;
-
-    /*Genre genre1 = Genre("1", "Genre1", "genre1.png");
-    Genre genre2 = Genre("2", "Genre2", "genre2.png");
-    Genre genre3 = Genre("3", "Genre3", "genre3.png");
-    Genre genre4 = Genre("4", "Genre4", "genre4.png");
-    Genre genre5 = Genre("5", "Genre5", "genre5.png");
-    Genre genre6 = Genre("6", "Genre6", "genre6.png");
-    Genre genre7 = Genre("7", "Genre7", "genre7.png");
-    Genre genre8 = Genre("8", "Genre8", "genre8.png");
-    Genre genre9 = Genre("9", "Genre9", "genre9.png");
-
-    genres.add(genre1);
-    genres.add(genre2);
-    genres.add(genre3);
-    genres.add(genre4);
-    genres.add(genre5);
-    genres.add(genre6);
-    genres.add(genre7);
-    genres.add(genre8);
-    genres.add(genre9);
-
-
-
-    String description =
-    """
-    Engánchate al fenómenoValeria de @BetaCoqueta, una saga altamente divertida, emotiva y sensual.
-
-    ¡Te vas a enamorar!
-    
-    Valeria es escritora de historias de amor.
-    Valeria vive el amor de forma sublime.
-    Valeria tiene tres amigas: Nerea, Carmen y Lola.
-    Valeria vive en Madrid.
-    Valeria ama a Adrián hasta que conoce a Víctor.
-    Valeria necesita sincerarse consigo misma.
-    Valeria llora, Valeria ríe, Valeria camina...
-    Pero el sexo, el amor y los hombres no son objetivos fáciles.
-    Valeria es especial.
-    Como tú.
-    
-    En los zapatos de Valeria es el primer libro de la«Saga Valeria», la primera obra deElísabet Benavent, que inició su carrera literaria autopublicándose y que en poco tiempo conquistó a cientos de lectores y se situó en los primeros puestos de la lista de más vendidos de ficción.
-    
-    Posteriormente la autora, también conocida por sus fans como@BetaCoqueta, ha continuado cosechando grandes éxitos con la publicación de su«Saga Silvia», la trilogía«Mi elección», la bilogía«Horizonte Martina» y la novelaMi isla.
-    """;
-    /*"Engánchate al fenómenoValeria de @BetaCoqueta, una saga altamente divertida, emotiva y sensual.\n" &
-    "¡Te vas a enamorar!\n" &
-    "Valeria es escritora de historias de amor.\n"&
-    "Valeria vive el amor de forma sublime.\n"&
-    "Valeria tiene tres amigas: Nerea, Carmen y Lola.\n"&
-    "Valeria vive en Madrid.\n"&
-    "Valeria ama a Adrián hasta que conoce a Víctor.\n"&
-    "Valeria necesita sincerarse consigo misma.\n"&
-    "Valeria llora, Valeria ríe, Valeria camina...\n"&
-    "Pero el sexo, el amor y los hombres no son objetivos fáciles.\n"&
-    "Valeria es especial.\n"&
-    "Como tú.\n\n"&
-    "En los zapatos de Valeria es el primer libro de la«Saga Valeria», la primera obra deElísabet Benavent, que inició su carrera literaria autopublicándose y que en poco tiempo conquistó a cientos de lectores y se situó en los primeros puestos de la lista de más vendidos de ficción.\n"&
-    "Posteriormente la autora, también conocida por sus fans como@BetaCoqueta, ha continuado cosechando grandes éxitos con la publicación de su«Saga Silvia», la trilogía«Mi elección», la bilogía«Horizonte Martina» y la novelaMi isla.";*/
-
-    Book book1 = new Book.withSummary(
-        "En los Zapatos de Valeria",
-        "Elisabeth Benavent",
-        "https://imagessl3.casadellibro.com/a/l/t0/73/9788490628973.jpg",
-        description);
-    Book book2 = new Book.withSummary(
-        "En busca del chico irrompible",
-        "Coque Mesa",
-        "https://imagessl9.casadellibro.com/a/l/t5/59/9788408228059.jpg",
-        description);
-
-    Book book3 = new Book.withSummary(
-        "Con el amor bastaba",
-        "Maxim Huerta",
-        "https://imagessl2.casadellibro.com/a/l/t5/92/9788408221692.jpg",
-        description);
-
-    Book book4 = new Book.withSummary(
-        "A próposito de nada",
-        "Woody Allen",
-        "https://imagessl0.casadellibro.com/a/l/t5/50/9788491819950.jpg",
-        description);
-
-    books.add(book1);
-    books.add(book2);
-    books.add(book3);
-    books.add(book4);*/
 
     return Scaffold(
       body: _getBody(),

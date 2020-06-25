@@ -23,7 +23,7 @@ class ProfilePicture extends StatelessWidget {
               image: DecorationImage(
                   fit: BoxFit.cover,
                   image: NetworkImage(
-                    'https://upload.wikimedia.org/wikipedia/commons/a/a0/Bill_Gates_2018.jpg',
+                    this.image_url,
                   ))),
         ),
       ),

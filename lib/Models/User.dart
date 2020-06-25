@@ -72,7 +72,8 @@ class User {
       this._book_lists,
       this._books_read,
       this._chapters_read,
-      this._pages_read
+      this._pages_read,
+      this._profile_picture_url
       );
   User.withBookLists(this._book_lists);
   User.withNameAndProfilePicture(this._name, this._profile_picture_url);
