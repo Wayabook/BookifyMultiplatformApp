@@ -192,6 +192,76 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           345,
           "https://avatars0.githubusercontent.com/u/35029261?s=460&u=c54ea4c26c7f0659c014f362e538d2927f567a4f&v=4"
       );
+
+      List<User> users = new List();
+      User user222 = new User(
+          "1",
+          "Steve Jobs",
+          "\"Not as good as Steve Jobs\"",
+          genres,
+          userLists,
+          21,
+          198,
+          345,
+          "https://upload.wikimedia.org/wikipedia/commons/a/a0/Bill_Gates_2018.jpg"
+      );
+
+      User user1 = new User(
+          "1",
+          "Steve Jobs 1",
+          "\"Not as good as Steve Jobs\"",
+          genres,
+          userLists,
+          21,
+          198,
+          345,
+          "https://upload.wikimedia.org/wikipedia/commons/a/a0/Bill_Gates_2018.jpg"
+      );
+
+      User user2 = new User(
+          "1",
+          "Steve Jobs 2",
+          "\"Not as good as Steve Jobs\"",
+          genres,
+          userLists,
+          21,
+          198,
+          345,
+          "https://upload.wikimedia.org/wikipedia/commons/a/a0/Bill_Gates_2018.jpg"
+      );
+
+      User user3 = new User(
+          "1",
+          "Steve Jobs 3",
+          "\"Not as good as Steve Jobs\"",
+          genres,
+          userLists,
+          21,
+          198,
+          345,
+          "https://upload.wikimedia.org/wikipedia/commons/a/a0/Bill_Gates_2018.jpg"
+      );
+
+      User user4 = new User(
+          "1",
+          "Steve Jobs 33",
+          "\"Not as good as Steve Jobs\"",
+          genres,
+          userLists,
+          21,
+          198,
+          345,
+          "https://upload.wikimedia.org/wikipedia/commons/a/a0/Bill_Gates_2018.jpg"
+      );
+
+      users.add(user222);
+      users.add(user1);
+      users.add(user2);
+      users.add(user3);
+      users.add(user4);
+
+      this.user.followers = users;
+      this.user.following = users;
     }
   }
 

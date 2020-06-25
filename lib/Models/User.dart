@@ -16,6 +16,16 @@ class User {
   List<User> _followers;
   List<User> _following;
 
+  List<User> get followers => this._followers;
+  set followers(List<User> followers) {
+    _followers = followers;
+  }
+
+  List<User> get following => this._following;
+  set following(List<User> followers) {
+    _following = followers;
+  }
+
   int get pagesRead => _pages_read;
 
   set pagesRead(int pagesRead) {

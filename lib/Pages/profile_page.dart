@@ -1,4 +1,5 @@
 import 'package:bookifyapp/Enums/list_type.dart';
+import 'package:bookifyapp/Pages/friends_page.dart';
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/LayoutWidgets/Lists/vertical_book_list_search.dart';
 import 'package:bookifyapp/Models/Book.dart';
@@ -13,6 +14,8 @@ import 'package:bookifyapp/Enums/book_card_type.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/book_card.dart';
 import 'package:bookifyapp/Models/User.dart';
 import 'package:bookifyapp/Enums/profile_type.dart';
+import 'package:bookifyapp/Pages/badgets_page.dart';
+import 'package:bookifyapp/Pages/profile_page.dart';
 import 'dart:math';
 
 
@@ -27,11 +30,13 @@ class ProfilePage extends StatelessWidget {
   ProfileType profileType;
   double width_per_child;
   double width;
+  BuildContext context;
 
   ProfilePage(this.user, this.profileType);
 
   @override
   Widget build(BuildContext context) {
+    this.context = context;
     width = MediaQuery.of(context).size.width;
     width_per_child = (width - 30 - (10 * 2)) / 3;
 
@@ -68,24 +73,32 @@ class ProfilePage extends StatelessWidget {
                     flex: 2,
                     child:
                     Center(
-                        child: Column(
-                          children: <Widget>[
-                            Align(
-                              alignment: Alignment.center,
-                              child: Icon(
-                                Icons.security,
-                                color: Colors.black,
-                                size: 30,
+                        child: GestureDetector(
+                          child: Column(
+                            children: <Widget>[
+                              Align(
+                                alignment: Alignment.center,
+                                child: Icon(
+                                  Icons.security,
+                                  color: Colors.black,
+                                  size: 30,
+                                ),
                               ),
-                            ),
-                            Align(
-                              alignment: Alignment.center,
-                              child:Text(
-                                "BADGETS",
-                                style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Colors.black),
+                              Align(
+                                alignment: Alignment.center,
+                                child:Text(
+                                  "BADGETS",
+                                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Colors.black),
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => BadgetsPage()),
+                            );
+                          },
                         )
                     ),
                     /*Container(
@@ -122,24 +135,32 @@ class ProfilePage extends StatelessWidget {
                     flex: 2,
                     child:
                     Center(
-                        child: Column(
-                          children: <Widget>[
-                            Align(
-                              alignment: Alignment.center,
-                              child: Icon(
-                                Icons.people,
-                                color: Colors.black,
-                                size: 30,
+                        child:GestureDetector(
+                          child:  Column(
+                            children: <Widget>[
+                              Align(
+                                alignment: Alignment.center,
+                                child: Icon(
+                                  Icons.people,
+                                  color: Colors.black,
+                                  size: 30,
+                                ),
                               ),
-                            ),
-                            Align(
-                              alignment: Alignment.center,
-                              child:Text(
-                                "FRIENDS",
-                                style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Colors.black),
+                              Align(
+                                alignment: Alignment.center,
+                                child:Text(
+                                  "FRIENDS",
+                                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Colors.black),
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => FriendsPage(this.user.followers, this.user.following)),
+                            );
+                          },
                         )
                     ),
                     /*Container(
@@ -260,7 +281,7 @@ class ProfilePage extends StatelessWidget {
 
   _addSettingsWidget() {
     if (this.profileType == ProfileType.user_profile){
-      return BookCard.option(BookCardType.settings).;
+      return BookCard.option(BookCardType.settings);
     }
   }
 
