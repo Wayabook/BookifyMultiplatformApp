@@ -5,5 +5,7 @@ enum BookCardType {
   view_all,
   disover,
   add_custom_list,
+  recommend_book,
   book_card_in_grid,
+  settings,
 }

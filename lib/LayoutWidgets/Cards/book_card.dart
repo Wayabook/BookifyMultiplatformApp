@@ -234,9 +234,15 @@ class BookCard extends StatelessWidget {
       } else if (this.type == BookCardType.view_all) {
         icon = Icons.remove_red_eye;
         text = "View All";
-      } else {
+      } else if (this.type == BookCardType.add_custom_list) {
         icon =  Icons.add;
         text = "Add Custom List";
+      } else if (this.type == BookCardType.recommend_book) {
+        icon = Icons.card_giftcard;
+        text = "Recommend Book";
+      } else if (this.type == BookCardType.settings) {
+        icon = Icons.settings;
+        text = "Settings";
       }
 
       return GestureDetector(

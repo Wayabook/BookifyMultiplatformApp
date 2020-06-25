@@ -1,3 +1,4 @@
+import 'package:bookifyapp/Enums/profile_type.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:auto_size_text/auto_size_text.dart';
@@ -90,7 +91,7 @@ class _VerticalUserList extends State<VerticalUserList> {
     return  GestureDetector(
       onTap: () {
         Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => ProfilePage(widget.users[index])));
+            .push(MaterialPageRoute(builder: (context) => ProfilePage(widget.users[index], ProfileType.friend_profile)));
       },
       child: Card(
         /*shape: RoundedRectangleBorder(

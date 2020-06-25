@@ -9,6 +9,7 @@
 // ![A scaffold with a bottom navigation bar containing three bottom navigation
 // bar items. The first one is selected.](https://flutter.github.io/assets-for-api-docs/assets/material/bottom_navigation_bar.png)
 
+import 'package:bookifyapp/Enums/profile_type.dart';
 import 'package:custom_navigator/custom_navigation.dart';
 import 'package:flutter/material.dart';
 import 'Pages/discover_page.dart';
@@ -76,7 +77,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       children: <Widget>[
         ReadingPage(Colors.white, "Reading Page"),
         DiscoverPage(Colors.white, "Discover Page"),
-        ProfilePage(this.user),
+        ProfilePage(this.user, ProfileType.user_profile),
       ],
 
       // Called when one of the [items] is tapped.

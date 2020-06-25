@@ -12,14 +12,13 @@ import 'package:bookifyapp/Models/User.dart';
 
 class BookshelfPage extends StatelessWidget {
 
-  /*final Color color;
-  final String text;*/
+  /*User user;*/
   static const TextStyle optionStyle =
   TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   List<Book> books =  List();
   BuildContext context;
 
-  BookshelfPage(/*this.color, this.text*/);
+  BookshelfPage();
 
   @override
   Widget build(BuildContext context) {

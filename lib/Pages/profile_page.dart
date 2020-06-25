@@ -12,6 +12,7 @@ import 'package:bookifyapp/LayoutWidgets/Lists/horizontal_genres_list.dart';
 import 'package:bookifyapp/Enums/book_card_type.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/book_card.dart';
 import 'package:bookifyapp/Models/User.dart';
+import 'package:bookifyapp/Enums/profile_type.dart';
 import 'dart:math';
 
 
@@ -21,14 +22,13 @@ class ProfilePage extends StatelessWidget {
   static const TextStyle optionStyle =
   TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
 
-  /*List<Book> books =  List();
-  List<Genre> genres = List();*/
+
   User user;
-
-  ProfilePage(this.user);
-
+  ProfileType profileType;
   double width_per_child;
   double width;
+
+  ProfilePage(this.user, this.profileType);
 
   @override
   Widget build(BuildContext context) {
@@ -221,7 +221,11 @@ class ProfilePage extends StatelessWidget {
           child: Container(color: Colors.blueGrey, height: 2, width: width),
         ),*/
 
-        HorizontalGenresList(this.user.interestedGenres, ListType.add_genre),
+
+        HorizontalGenresList(
+            this.user.interestedGenres,
+            this.profileType == ProfileType.user_profile ? ListType.add_genre : ListType.normal
+        ),
 
         Container(
           margin: EdgeInsets.fromLTRB(10, 10, 2, 0),
@@ -241,9 +245,23 @@ class ProfilePage extends StatelessWidget {
 
         HorizontalBookList(this.user.bookLists["Reading"], ListType.view_all),
 
-        BookCard.option(BookCardType.add_custom_list),
+        BookCard.option(
+            this.profileType == ProfileType.user_profile ?  BookCardType.add_custom_list : BookCardType.recommend_book
+        ),
+
+        //BookCard.option(BookCardType.settings),
+
+
+        //_addSettingsWidget()
+
       ],
     );
+  }
+
+  _addSettingsWidget() {
+    if (this.profileType == ProfileType.user_profile){
+      return BookCard.option(BookCardType.settings).;
+    }
   }
 
 }
