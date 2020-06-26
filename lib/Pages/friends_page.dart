@@ -8,10 +8,11 @@ import 'package:bookifyapp/Models/User.dart';
 class FriendsPage extends StatefulWidget {
 
 
-  FriendsPage(this.followers, this.following);
+  FriendsPage(this.friends);
 
-  List<User> followers;
-  List<User> following;
+  List<User> friends;
+  /*List<User> followers;
+  List<User> following;*/
   //final String title;
 
   @override
@@ -20,9 +21,7 @@ class FriendsPage extends StatefulWidget {
 
 class _FriendsPage extends State<FriendsPage> with SingleTickerProviderStateMixin {
 
-  List<User> _followersfilteredList = [];
-
-  List<User> _followingFilteredList = [];
+  List<User> _friends = [];
 
   TextEditingController controller = new TextEditingController();
 
@@ -51,16 +50,14 @@ class _FriendsPage extends State<FriendsPage> with SingleTickerProviderStateMixi
     _tabController = TabController(length: 2, vsync: this, initialIndex: 0);
     _tabController.addListener(_handleTabIndex);
     setState(() {
-      _followersfilteredList = widget.followers;
-      _followingFilteredList = widget.following;
+      _friends = widget.friends;
     });
     controller.addListener(() {
       if (controller.text.isEmpty) {
         setState(() {
           filter = "";
           persons = "";
-          _followersfilteredList = widget.followers;
-          _followingFilteredList = widget.following;
+          _friends = widget.friends;
         });
       } else {
         setState(() {
@@ -93,16 +90,16 @@ class _FriendsPage extends State<FriendsPage> with SingleTickerProviderStateMixi
 
     if ((filter.isNotEmpty)) {
       List<User> tmpList = new List<User>();
-      for (int i = 0; i < _followersfilteredList.length; i++) {
-        if (_followersfilteredList[i].name.toLowerCase().contains(
+      for (int i = 0; i < _friends.length; i++) {
+        if (_friends[i].name.toLowerCase().contains(
             filter.toLowerCase())) {
-          tmpList.add(_followersfilteredList[i]);
+          tmpList.add(_friends[i]);
         }
       }
-      _followersfilteredList = tmpList;
+      _friends = tmpList;
     }
 
-    if ((persons.isNotEmpty)) {
+    /*if ((persons.isNotEmpty)) {
       List<User> _tmpList2 = new List<User>();
       for (int i = 0; i < _followingFilteredList.length; i++) {
         if (_followingFilteredList[i].name.toLowerCase().contains(
@@ -111,9 +108,9 @@ class _FriendsPage extends State<FriendsPage> with SingleTickerProviderStateMixi
         }
       }
       _followingFilteredList = _tmpList2;
-    }
+    }*/
 
-    final appBody = TabBarView(
+    /*final appBody = TabBarView(
         controller: _tabController,
         children: [
           Container(
@@ -123,19 +120,14 @@ class _FriendsPage extends State<FriendsPage> with SingleTickerProviderStateMixi
           Container(
               child: VerticalUserList(_followingFilteredList)
           ),
-        ]);
+        ]);*/
+
+    final appBody = Container(
+        child: VerticalUserList(_friends)
+    );
 
     final appTopAppBar = AppBar(
       elevation: 0.1,
-      bottom: TabBar(
-          controller: _tabController,
-          tabs: [
-            Tab( text: "Book"),
-            Tab(text: "Person")
-
-
-          ]
-      ),
       title: appBarTitle,
       actions: <Widget>[
         new IconButton(
@@ -160,8 +152,7 @@ class _FriendsPage extends State<FriendsPage> with SingleTickerProviderStateMixi
               } else {
                 this.actionIcon = new Icon(Icons.search);
                 this.appBarTitle = new Text(_tabController.index == 0 ? "Cities" : "Persons");
-                _followersfilteredList = widget.followers;
-                _followingFilteredList = widget.following;
+                _friends = widget.friends;
                 controller.clear();
               }
             });

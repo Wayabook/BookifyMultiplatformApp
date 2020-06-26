@@ -241,7 +241,7 @@ class _VerticalBookList extends State<VerticalBookList> {
           } else if (index == widget.readingBooks.length + 1) {
             return _makeHeader('Pending:');
           } else {
-            return _makeCard(index - 2 - widget.readingBooks.length, widget.pendingBooks, ButtonType.arrow_up);
+            return _makeCard(index - 2 - widget.readingBooks.length, widget.pendingBooks, ButtonType.read);
           }
         },
       ),

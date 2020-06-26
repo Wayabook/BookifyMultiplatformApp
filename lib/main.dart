@@ -260,8 +260,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       users.add(user3);
       users.add(user4);
 
-      this.user.followers = users;
-      this.user.following = users;
+      this.user.friends = users;
     }
   }
 

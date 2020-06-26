@@ -13,18 +13,19 @@ class User {
   int _books_read;
   int _chapters_read;
   int _pages_read;
-  List<User> _followers;
-  List<User> _following;
+  List<User> _friends;
+  /*List<User> _followers;
+  List<User> _following;*/
 
-  List<User> get followers => this._followers;
-  set followers(List<User> followers) {
-    _followers = followers;
+  List<User> get friends => this._friends;
+  set friends(List<User> friends) {
+    _friends = friends;
   }
 
-  List<User> get following => this._following;
+  /*List<User> get following => this._following;
   set following(List<User> followers) {
     _following = followers;
-  }
+  }*/
 
   int get pagesRead => _pages_read;
 

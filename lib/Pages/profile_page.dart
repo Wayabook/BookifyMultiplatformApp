@@ -158,7 +158,7 @@ class ProfilePage extends StatelessWidget {
                           onTap: () {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => FriendsPage(this.user.followers, this.user.following)),
+                              MaterialPageRoute(builder: (context) => FriendsPage(this.user.friends)),
                             );
                           },
                         )
