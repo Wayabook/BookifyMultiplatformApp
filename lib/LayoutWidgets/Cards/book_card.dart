@@ -6,6 +6,7 @@ import 'package:bookifyapp/Enums/book_card_type.dart';
 import 'package:bookifyapp/Pages/search_page.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:bookifyapp/Pages/bookshelf_page.dart';
+import 'package:bookifyapp/LayoutWidgets/Dialogs/dialog_with_input_text.dart';
 
 
 class BookCard extends StatelessWidget {
@@ -256,6 +257,11 @@ class BookCard extends StatelessWidget {
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => BookshelfPage()),
+            );
+          } else if (this.type == BookCardType.add_custom_list){
+            showDialog(
+              context: context,
+              builder: (BuildContext context) => DialogWithInputText(),
             );
           }
 
