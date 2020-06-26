@@ -59,7 +59,7 @@ class ProfilePage extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.only(bottom: 120.0),
-              child: ArcBannerImage(this.user.bookLists["Reading"][r].picture),
+              child: ArcBannerImage(user.bookLists["Reading"][r].picture),
             ),
             Positioned(
               bottom: 0.0,
@@ -128,7 +128,7 @@ class ProfilePage extends StatelessWidget {
                     )*/
                   ),
                   Flexible(
-                    child: ProfileInfo(this.user),
+                    child: ProfileInfo(user),
                     flex: 6,
                   ),
                   Flexible(
@@ -158,7 +158,7 @@ class ProfilePage extends StatelessWidget {
                           onTap: () {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => FriendsPage(this.user.friends)),
+                              MaterialPageRoute(builder: (context) => FriendsPage(user.friends)),
                             );
                           },
                         )
@@ -206,15 +206,15 @@ class ProfilePage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center, //Center Row contents vertically,
             children: <Widget>[
 
-              InfoRow.withIcon(RowType.icon_image,  "BOOKS READ", Icons.book,  this.user.booksRead.toString(), width_per_child, 105),
+              InfoRow.withIcon(RowType.icon_image,  "BOOKS READ", Icons.book,  user.booksRead.toString(), width_per_child, 105),
 
               Container(color: Colors.blueGrey, height: 105, width: 2,),
 
-              InfoRow.withIcon(RowType.icon_image,  "CHAPTERS READ", Icons.collections_bookmark,  this.user.chaptersRead.toString(), width_per_child, 105),
+              InfoRow.withIcon(RowType.icon_image,  "CHAPTERS READ", Icons.collections_bookmark,  user.chaptersRead.toString(), width_per_child, 105),
 
               Container(color: Colors.blueGrey, height: 105, width: 2,),
 
-              InfoRow.withIcon(RowType.icon_image,  "PAGES READ", Icons.description,  this.user.pagesRead.toString(), width_per_child, 105),
+              InfoRow.withIcon(RowType.icon_image,  "PAGES READ", Icons.description,  user.pagesRead.toString(), width_per_child, 105),
 
 
             ],
@@ -244,8 +244,8 @@ class ProfilePage extends StatelessWidget {
 
 
         HorizontalGenresList(
-            this.user.interestedGenres,
-            this.profileType == ProfileType.user_profile ? ListType.add_genre : ListType.normal
+            user.interestedGenres,
+            profileType == ProfileType.user_profile ? ListType.add_genre : ListType.normal
         ),
 
         Container(
@@ -264,10 +264,10 @@ class ProfilePage extends StatelessWidget {
           child: Container(color: Colors.blueGrey, height: 2, width: width),
         ),*/
 
-        HorizontalBookList(this.user.bookLists["Reading"], ListType.view_all),
+        HorizontalBookList(user.bookLists["Reading"], ListType.view_all),
 
         BookCard.option(
-            this.profileType == ProfileType.user_profile ?  BookCardType.add_custom_list : BookCardType.recommend_book
+            profileType == ProfileType.user_profile ?  BookCardType.add_custom_list : BookCardType.recommend_book
         ),
 
         //BookCard.option(BookCardType.settings),
@@ -280,11 +280,10 @@ class ProfilePage extends StatelessWidget {
   }
 
   _addSettingsWidget() {
-    if (this.profileType == ProfileType.user_profile){
+    if (profileType == ProfileType.user_profile){
       return BookCard.option(BookCardType.settings);
     }
   }
-
 }
 
 // See multiple profiles

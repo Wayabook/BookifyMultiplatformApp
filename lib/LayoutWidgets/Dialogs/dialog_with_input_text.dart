@@ -8,20 +8,9 @@ class DialogWithInputText extends StatelessWidget{
   DialogWithInputText();
 
   AlertDialog alertDialog;
-  bool error = false;
+  bool _firstTime = true;
 
-  /*static InputDecoration inputDecoration = InputDecoration(
-      filled: true,
-      enabledBorder: const OutlineInputBorder(
-      borderSide: error != false ?  BorderSide(color: Colors.greenAccent, width: 2.0) : BorderSide(color: Colors.red, width: 2.0),
-      ),
-      errorBorder: const OutlineInputBorder(
-      borderSide: const BorderSide(color: Colors.red, width: 2.0),
-      ),
-      hintText:  "List Title"
-  );*/
-
-  static TextEditingController inputController = TextEditingController();
+  final TextEditingController inputController = TextEditingController();
 
   /*TextField listTitle = TextField(
         decoration: InputDecoration(
@@ -37,6 +26,12 @@ class DialogWithInputText extends StatelessWidget{
         controller: inputController,
   );*/
 
+  /*@override
+  void dispose() {
+    inputController.dispose();
+    super.dispose();
+  }*/
+
 
   @override
   Widget build(BuildContext context) {
@@ -47,25 +42,19 @@ class DialogWithInputText extends StatelessWidget{
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           _buildAboutText(),
-          TextFormField(
+          TextField(
             decoration: InputDecoration(
                 filled: true,
                 enabledBorder:  OutlineInputBorder(
-                  borderSide: error == false ?  BorderSide(color: Colors.greenAccent, width: 2.0) : BorderSide(color: Colors.red, width: 2.0),
+                  borderSide:  BorderSide(color: Colors.greenAccent, width: 2.0),
                 ),
                 errorBorder: const OutlineInputBorder(
                   borderSide: const BorderSide(color: Colors.red, width: 2.0),
                 ),
-                hintText:  error == false ? "List Title" : "List Title must be introduced",
+                labelText:  "List Title",
+                errorText: validateListTitle(inputController.text),
             ),
             controller: inputController,
-            validator: (String value){
-              if(value.isEmpty){
-                return "List Name is required";
-              // ignore: missing_return
-              }
-              return "";
-            },
           ),
           //_buildLogoAttribution(),
         ],
@@ -77,8 +66,9 @@ class DialogWithInputText extends StatelessWidget{
               style: TextStyle(color: Colors.blue,)
           ),
           onPressed: () {
-              if (inputController.value.text.isEmpty || inputController.value.text.toString() == "List Title") {
-                error = true;
+              if (inputController.text.isEmpty || inputController.text.toString() == "List Title") {
+
+
               } else {
                 Navigator.pop(context);
               }
@@ -96,6 +86,14 @@ class DialogWithInputText extends StatelessWidget{
       ],
     );
     return alertDialog;
+  }
+
+  String validateListTitle(String value) {
+    if ((value.length == 0) &&  !_firstTime && value != "List Title") {
+      return "List Title must be introduced";
+    }
+    _firstTime = false;
+    return null;
   }
 
 
