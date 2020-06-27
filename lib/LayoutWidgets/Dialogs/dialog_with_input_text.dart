@@ -1,11 +1,13 @@
 
+import 'package:bookifyapp/Pages/add_custom_list_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart' as prefix0;
+import 'package:bookifyapp/Models/User.dart';
 
 class DialogWithInputText extends StatelessWidget{
 
-  DialogWithInputText();
+  User user;
+  DialogWithInputText(this.user);
 
   AlertDialog alertDialog;
   bool _firstTime = true;
@@ -70,7 +72,9 @@ class DialogWithInputText extends StatelessWidget{
 
 
               } else {
-                Navigator.pop(context);
+                //Navigator.pop(context);
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) => AddCustomListPage(this.user.bookLists["Reading"])));
               }
           },
         ),

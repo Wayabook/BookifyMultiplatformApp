@@ -4,26 +4,24 @@ import 'package:bookifyapp/LayoutWidgets/Lists/vertical_user_list.dart';
 import 'package:bookifyapp/Models/Book.dart';
 import 'package:bookifyapp/Models/User.dart';
 
+class AddCustomListPage extends StatefulWidget {
 
-class FriendsPage extends StatefulWidget {
-
-
-  FriendsPage(this.friends);
-
-  List<User> friends;
+  List<Book> bookshelf;
+  AddCustomListPage(this.bookshelf);
 
   @override
-  _FriendsPage createState() => _FriendsPage();
+  _AddCustomListPage createState() => _AddCustomListPage();
 }
 
-class _FriendsPage extends State<FriendsPage> {
+class _AddCustomListPage extends State<AddCustomListPage> {
 
-  List<User> _friends = [];
+  List<Book> _bookshelf = [];
 
   TextEditingController controller = new TextEditingController();
 
+  TabController _tabController;
+
   String filter = "";
-  String persons = "";
   Icon actionIcon = new Icon(Icons.search);
   Widget appBarTitle = new Text("Search...");
 
@@ -36,19 +34,17 @@ class _FriendsPage extends State<FriendsPage> {
   @override
   void initState() {
     setState(() {
-      _friends = widget.friends;
+      _bookshelf = widget.bookshelf;
     });
     controller.addListener(() {
       if (controller.text.isEmpty) {
         setState(() {
           filter = "";
-          persons = "";
-          _friends = widget.friends;
+          _bookshelf = widget.bookshelf;
         });
       } else {
         setState(() {
           filter = controller.text;
-          persons = controller.text;
         });
       }
     });
@@ -75,18 +71,18 @@ class _FriendsPage extends State<FriendsPage> {
     );
 
     if ((filter.isNotEmpty)) {
-      List<User> tmpList = new List<User>();
-      for (int i = 0; i < _friends.length; i++) {
-        if (_friends[i].name.toLowerCase().contains(
+      List<Book> tmpList = new List<Book>();
+      for (int i = 0; i < _bookshelf.length; i++) {
+        if (_bookshelf[i].title.toLowerCase().contains(
             filter.toLowerCase())) {
-          tmpList.add(_friends[i]);
+          tmpList.add(_bookshelf[i]);
         }
       }
-      _friends = tmpList;
+      _bookshelf = tmpList;
     }
 
     final appBody = Container(
-        child: VerticalUserList(_friends)
+        child: VerticalBookListSearch(_bookshelf)
     );
 
     final appTopAppBar = AppBar(
@@ -102,7 +98,6 @@ class _FriendsPage extends State<FriendsPage> {
                 this.appBarTitle = new TextField(
                   controller: controller,
                   decoration: new InputDecoration(
-                    /*prefixIcon: new Icon(Icons.search, color: Colors.white),*/
                     hintText: "Search...",
                     hintStyle: new TextStyle(color: Colors.white),
                   ),
@@ -114,8 +109,8 @@ class _FriendsPage extends State<FriendsPage> {
                 );
               } else {
                 this.actionIcon = new Icon(Icons.search);
-                this.appBarTitle = new Text("Search friends by name");
-                _friends = widget.friends;
+                this.appBarTitle = new Text(_tabController.index == 0 ? "Cities" : "Persons");
+                _bookshelf = widget.bookshelf;
                 controller.clear();
               }
             });

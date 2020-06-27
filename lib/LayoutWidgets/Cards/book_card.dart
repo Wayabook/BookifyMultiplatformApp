@@ -7,6 +7,7 @@ import 'package:bookifyapp/Pages/search_page.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:bookifyapp/Pages/bookshelf_page.dart';
 import 'package:bookifyapp/LayoutWidgets/Dialogs/dialog_with_input_text.dart';
+import 'package:bookifyapp/Models/User.dart';
 
 
 class BookCard extends StatelessWidget {
@@ -261,7 +262,7 @@ class BookCard extends StatelessWidget {
           } else if (this.type == BookCardType.add_custom_list){
             showDialog(
               context: context,
-              builder: (BuildContext context) => DialogWithInputText(),
+              builder: (BuildContext context) => DialogWithInputText(_getUser()),
             );
           }
 
@@ -370,6 +371,23 @@ class BookCard extends StatelessWidget {
     books.add(book3);
     books.add(book4);
     return books;
+  }
+
+  _getUser() {
+    Map<String, List<Book>> userLists =
+    {'Reading': _getBooks(), 'Pending': _getBooks(), 'Read': _getBooks(), 'Recommended': _getBooks(), 'Custom List 1': _getBooks()};
+
+    return new User(
+        "1",
+        "Bill Gates",
+        "\"Not as good as Steve Jobs\"",
+        null,
+        userLists,
+        21,
+        198,
+        345,
+        "https://avatars0.githubusercontent.com/u/35029261?s=460&u=c54ea4c26c7f0659c014f362e538d2927f567a4f&v=4"
+    );
   }
 }
 
