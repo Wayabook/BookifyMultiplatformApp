@@ -236,18 +236,72 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
   }
 
   _makeBody() {
-    return Container(
-      child: ListView.builder(
-        scrollDirection: Axis.vertical,
-        shrinkWrap: true,
-        itemCount: widget.type == ListType.add_custom_list ? widget.books.length + 1: widget.books.length,
-        itemBuilder: (BuildContext context, int index) {
-          if(widget.type == ListType.add_custom_list && index == 0)
-            return ListTitle(widget.title);
-          return _makeCard(widget.type == ListType.add_custom_list  ? index - 1 :  index);
-        },
-      ),
-    );
+    if (widget.type == ListType.add_custom_list){
+      return Stack(
+        children: <Widget>[
+          Container(
+            child: ListView.builder(
+              scrollDirection: Axis.vertical,
+              shrinkWrap: true,
+              itemCount: widget.books.length + 1,
+              itemBuilder: (BuildContext context, int index) {
+                  if(index == 0)
+                    return ListTitle(widget.title);
+                  return _makeCard(index - 1);
+              },
+            ),
+          ),
+
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Container(
+              color: Colors.white,
+              height: 50,
+              width:  MediaQuery.of(context).size.width,
+              child: Row(
+                children: <Widget>[
+                  Expanded(
+                    flex: 5,
+                    child: FlatButton(
+                      child: Text(
+                          "Accept",
+                          style: TextStyle(color: Colors.blue,)
+                      ),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                    ),
+                  ),
+                  Expanded(
+                    flex: 5,
+                    child: FlatButton(
+                      child: Text(
+                          "Cancel",
+                          style: TextStyle(color: Colors.red,)
+                      ),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                    ),
+                  )
+                ],
+              ),
+            ),
+          )
+        ],
+      );
+    } else {
+      return Container(
+        child: ListView.builder(
+          scrollDirection: Axis.vertical,
+          shrinkWrap: true,
+          itemCount: widget.books.length,
+          itemBuilder: (BuildContext context, int index) {
+            return _makeCard(index);
+          },
+        ),
+      );
+    }
   }
 
   /*_makeHeader(String title){

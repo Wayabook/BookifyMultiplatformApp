@@ -17,6 +17,14 @@ class User {
   /*List<User> _followers;
   List<User> _following;*/
 
+  List<Book> get bookshelf {
+    List<Book> books = new List();
+    for(String key in _book_lists.keys){
+      books.addAll(_book_lists[key]);
+    }
+    return books;
+  }
+
   List<User> get friends => this._friends;
   set friends(List<User> friends) {
     _friends = friends;

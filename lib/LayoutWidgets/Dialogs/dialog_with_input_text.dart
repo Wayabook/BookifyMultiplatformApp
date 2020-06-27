@@ -76,7 +76,7 @@ class DialogWithInputText extends StatelessWidget{
               }
               //Navigator.pop(context);
               Navigator.of(context)
-                .push(MaterialPageRoute(builder: (context) => AddCustomListPage(this.user.bookLists["Reading"], listTitle)));
+                .push(MaterialPageRoute(builder: (context) => AddCustomListPage(this.user.bookshelf, listTitle)));
           },
         ),
         FlatButton(
