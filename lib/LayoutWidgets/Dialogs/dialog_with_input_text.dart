@@ -68,14 +68,15 @@ class DialogWithInputText extends StatelessWidget{
               style: TextStyle(color: Colors.blue,)
           ),
           onPressed: () {
-              if (inputController.text.isEmpty || inputController.text.toString() == "List Title") {
-
-
+              String listTitle = "";
+              if (inputController.text.isNotEmpty && inputController.text.toString() != "List Title") {
+                listTitle = inputController.text.toString();
               } else {
-                //Navigator.pop(context);
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) => AddCustomListPage(this.user.bookLists["Reading"])));
+                listTitle = "Custom list";
               }
+              //Navigator.pop(context);
+              Navigator.of(context)
+                .push(MaterialPageRoute(builder: (context) => AddCustomListPage(this.user.bookLists["Reading"], listTitle)));
           },
         ),
         FlatButton(

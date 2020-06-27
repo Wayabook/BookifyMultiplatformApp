@@ -1,3 +1,4 @@
+import 'package:bookifyapp/Enums/list_type.dart';
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/LayoutWidgets/Lists/vertical_book_list_search.dart';
 import 'package:bookifyapp/LayoutWidgets/Lists/vertical_user_list.dart';
@@ -7,7 +8,8 @@ import 'package:bookifyapp/Models/User.dart';
 class AddCustomListPage extends StatefulWidget {
 
   List<Book> bookshelf;
-  AddCustomListPage(this.bookshelf);
+  String listTitle;
+  AddCustomListPage(this.bookshelf, this.listTitle);
 
   @override
   _AddCustomListPage createState() => _AddCustomListPage();
@@ -82,8 +84,35 @@ class _AddCustomListPage extends State<AddCustomListPage> {
     }
 
     final appBody = Container(
-        child: VerticalBookListSearch(_bookshelf)
+      child: VerticalBookListSearch(_bookshelf, ListType.add_custom_list, title: widget.listTitle,),
     );
+    /*final appBody = Scaffold(
+        backgroundColor: Colors.grey,
+        body: ListView(
+          children: <Widget>[
+            Container(
+              margin: EdgeInsets.fromLTRB(10, 10, 2, 0),
+              child: Align(
+                alignment: Alignment.topLeft,
+                child: Text(
+                  widget.listTitle.isEmpty ? "Custom List 1" : widget.listTitle,
+                  style: TextStyle(fontSize: 30,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white),
+                ),
+              ),
+            ),
+
+            Padding(
+              padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
+              child: Container(color: Colors.white, height: 2, width: MediaQuery.of(context).size.width),
+            ),
+
+            VerticalBookListSearch(_bookshelf),
+          ],
+        ),
+        //child: VerticalBookListSearch(_bookshelf)
+    );*/
 
     final appTopAppBar = AppBar(
       elevation: 0.1,

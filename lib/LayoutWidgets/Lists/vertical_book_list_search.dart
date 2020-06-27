@@ -1,15 +1,19 @@
+import 'package:bookifyapp/Enums/list_type.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bookifyapp/Models/Book.dart';
+import 'package:bookifyapp/LayoutWidgets/Lists/list_title.dart';
 import 'package:bookifyapp/Enums/button_type.dart';
 
 
 class VerticalBookListSearch extends StatefulWidget {
 
-  VerticalBookListSearch(this.books); // : super(key: key);
+  VerticalBookListSearch(this.books, this.type, {this.title}); // : super(key: key);
 
   final List<Book> books;
+  final ListType type;
+  final String title;
   /*final List<Book> readingBooks;
   final List<Book> pendingBooks;*/
 
@@ -25,11 +29,25 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.blueGrey, //Color.fromRGBO(58, 66, 86, 1.0),
-      //appBar: topAppBar,
       body: _makeBody(),
-      //bottomNavigationBar: makeBottom,
-
     );
+    /*if(widget.type == ListType.add_custom_list){
+      return Scaffold(
+        backgroundColor: Colors.blueGrey,
+        body: ListView(
+          children: <Widget>[
+            ListTitle("List Title"),
+            _makeBody(),
+          ],
+        ),
+      );
+      //ListTitle(title)
+    } else {
+      return Scaffold(
+        backgroundColor: Colors.blueGrey, //Color.fromRGBO(58, 66, 86, 1.0),
+        body: _makeBody(),
+      );
+    }*/
   }
 
   _makeListTile(index) {
@@ -222,9 +240,11 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
       child: ListView.builder(
         scrollDirection: Axis.vertical,
         shrinkWrap: true,
-        itemCount: widget.books.length,
+        itemCount: widget.type == ListType.add_custom_list ? widget.books.length + 1: widget.books.length,
         itemBuilder: (BuildContext context, int index) {
-          return _makeCard(index);
+          if(widget.type == ListType.add_custom_list && index == 0)
+            return ListTitle(widget.title);
+          return _makeCard(widget.type == ListType.add_custom_list  ? index - 1 :  index);
         },
       ),
     );

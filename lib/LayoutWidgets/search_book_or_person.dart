@@ -1,3 +1,4 @@
+import 'package:bookifyapp/Enums/list_type.dart';
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/LayoutWidgets/Lists/vertical_book_list_search.dart';
 import 'package:bookifyapp/LayoutWidgets/Lists/vertical_user_list.dart';
@@ -129,7 +130,7 @@ class _SearchBookOrPerson extends State<SearchBookOrPerson> with SingleTickerPro
         controller: _tabController,
         children: [
           Container(
-              child: VerticalBookListSearch(_filteredList)
+              child: VerticalBookListSearch(_filteredList, ListType.normal)
             /*ListView.builder(
               scrollDirection: Axis.vertical,
               shrinkWrap: true,

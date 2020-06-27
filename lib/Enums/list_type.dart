@@ -3,5 +3,6 @@ enum ListType {
   discover_option,
   view_all,
   add_genre,
-  recommend_genre
+  recommend_genre,
+  add_custom_list,
 }

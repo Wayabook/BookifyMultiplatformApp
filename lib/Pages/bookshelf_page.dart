@@ -1,3 +1,4 @@
+import 'package:bookifyapp/LayoutWidgets/Lists/list_title.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
@@ -240,8 +241,8 @@ class BookshelfPage extends StatelessWidget {
   }
 
   _makeHeader(String title, width) {
-
-    return Container(
+    return ListTitle(title);
+    /*return Container(
       child: Column(
         children: <Widget>[
           Container(
@@ -263,7 +264,7 @@ class BookshelfPage extends StatelessWidget {
           ),
         ],
       ),
-    );
+    );*/
   }
 
 /*_getBody(){
