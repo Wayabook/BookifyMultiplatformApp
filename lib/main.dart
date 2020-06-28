@@ -129,24 +129,29 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           "En los Zapatos de Valeria",
           "Elisabeth Benavent",
           "https://imagessl3.casadellibro.com/a/l/t0/73/9788490628973.jpg",
-          description);
+          description,
+          "1");
+
       Book book2 = new Book.withSummary(
           "En busca del chico irrompible",
           "Coque Mesa",
           "https://imagessl9.casadellibro.com/a/l/t5/59/9788408228059.jpg",
-          description);
+          description,
+          "2");
 
       Book book3 = new Book.withSummary(
           "Con el amor bastaba",
           "Maxim Huerta",
           "https://imagessl2.casadellibro.com/a/l/t5/92/9788408221692.jpg",
-          description);
+          description,
+          "3");
 
       Book book4 = new Book.withSummary(
           "A próposito de nada",
           "Woody Allen",
           "https://imagessl0.casadellibro.com/a/l/t5/50/9788491819950.jpg",
-          description);
+          description,
+          "4");
 
       books.add(book1);
       books.add(book2);

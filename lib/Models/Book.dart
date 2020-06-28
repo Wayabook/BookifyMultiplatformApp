@@ -20,6 +20,10 @@ class Book {
   //ArrayList<Review> comments;
   //private ArrayList<Review>
 
+  Book(this._title, this._author, this._coverImage);
+
+  Book.withSummary(this._title, this._author, this._coverImage, this._summary, this._isbn);
+
   String get title => _title;
 
   set title(String title) {
@@ -86,9 +90,14 @@ class Book {
     _isNew = isNew;
   }
 
-  Book(this._title, this._author, this._coverImage);
-
-  Book.withSummary(this._title, this._author, this._coverImage, this._summary);
+  @override
+  bool operator ==( other) {
+    if(this._isbn ==  other.isbn)
+      return true;
+    return false;
+    // TODO: implement ==
+    //return super this==(other);
+  }
 
 
 

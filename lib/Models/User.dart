@@ -20,7 +20,11 @@ class User {
   List<Book> get bookshelf {
     List<Book> books = new List();
     for(String key in _book_lists.keys){
-      books.addAll(_book_lists[key]);
+      for(Book book in _book_lists[key]){
+        if(!books.contains(book)){
+          books.add(book);
+        }
+      }
     }
     return books;
   }
