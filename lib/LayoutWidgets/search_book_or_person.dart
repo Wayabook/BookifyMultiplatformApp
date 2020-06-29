@@ -130,7 +130,7 @@ class _SearchBookOrPerson extends State<SearchBookOrPerson> with SingleTickerPro
         controller: _tabController,
         children: [
           Container(
-              child: VerticalBookListSearch(_filteredList, ListType.normal)
+              child: VerticalBookListSearch(_filteredList, ListType.preview_friends)
             /*ListView.builder(
               scrollDirection: Axis.vertical,
               shrinkWrap: true,

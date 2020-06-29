@@ -51,127 +51,128 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
   }
 
   _makeListTile(index) {
-    return Container(
-        decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius:  BorderRadius.circular(7.0)
-        ),//Color.fromRGBO(64, 75, 96, .9),
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 5.0, vertical: 10.0),
-          child: Row(
-            children: <Widget>[
-              Flexible(
-                flex: 3,
-                child: Column(
-                  children: <Widget>[
-                    Flexible(
-                      flex: 9,
-                      child: Container(
-                          width: 90,
-                          //padding: EdgeInsets.only(right: 12.0),
-                          padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                          decoration: new BoxDecoration(
-                              border: new Border(
-                                  right: new BorderSide(width: 1.0, color: Colors.blueGrey),
-                                  left: new BorderSide(width: .075, color: Colors.blueGrey),
-                                  bottom: new BorderSide(width: .075, color: Colors.blueGrey),
-                                  top: new BorderSide(width: .075, color: Colors.blueGrey)
-                              )
-                          ),
+    if (widget.type == ListType.normal){
+      return Container(
+          decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius:  BorderRadius.circular(7.0)
+          ),//Color.fromRGBO(64, 75, 96, .9),
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 5.0, vertical: 10.0),
+            child: Row(
+              children: <Widget>[
+                Flexible(
+                  flex: 3,
+                  child: Column(
+                    children: <Widget>[
+                      Flexible(
+                        flex: 9,
+                        child: Container(
+                            width: 90,
+                            //padding: EdgeInsets.only(right: 12.0),
+                            padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                            decoration: new BoxDecoration(
+                                border: new Border(
+                                    right: new BorderSide(width: 1.0, color: Colors.blueGrey),
+                                    left: new BorderSide(width: .075, color: Colors.blueGrey),
+                                    bottom: new BorderSide(width: .075, color: Colors.blueGrey),
+                                    top: new BorderSide(width: .075, color: Colors.blueGrey)
+                                )
+                            ),
 
-                          child: Container(
-                              color: Colors.black,
-                              height: 150,
-                              width: double.infinity,
-                              child: FittedBox(
-                                fit: BoxFit.fill,
-                                child: Image.network(
-                                    widget.books[index].picture
-                                ),
-                              )
-                          ) //Icon(Icons.autorenew, color: Colors.white),
-                      ),
-                    ),
-
-                    Flexible(
-                        flex: 1,
-                        child: Center(
-                          child: LinearPercentIndicator(
-                            //width: //150.0,
-                            lineHeight: 5.0,
-                            percent: 0.5,
-                            progressColor: Colors.lightGreen,
-                          ),
-                        )
-                    )
-                  ],
-                ),
-              ),
-
-              Flexible(
-                flex: 5,
-                child: Padding(
-                  padding: EdgeInsets.all(12.0),
-                  child: Container(
-                    //color: Colors.black,
-                    height: 150,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        Flexible(
-                          flex: 2,
-                          child: Center(
                             child: Container(
+                                color: Colors.black,
+                                height: 150,
+                                width: double.infinity,
+                                child: FittedBox(
+                                  fit: BoxFit.fill,
+                                  child: Image.network(
+                                      widget.books[index].picture
+                                  ),
+                                )
+                            ) //Icon(Icons.autorenew, color: Colors.white),
+                        ),
+                      ),
+
+                      Flexible(
+                          flex: 1,
+                          child: Center(
+                            child: LinearPercentIndicator(
+                              //width: //150.0,
+                              lineHeight: 5.0,
+                              percent: 0.5,
+                              progressColor: Colors.lightGreen,
+                            ),
+                          )
+                      )
+                    ],
+                  ),
+                ),
+
+                Flexible(
+                  flex: 5,
+                  child: Padding(
+                    padding: EdgeInsets.all(12.0),
+                    child: Container(
+                      //color: Colors.black,
+                      height: 150,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          Flexible(
+                            flex: 2,
+                            child: Center(
+                              child: Container(
+                                child: Text(
+                                  widget.books[index].title,
+                                  style: TextStyle(
+                                    //color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
+                            ),
+                          ),
+
+                          Flexible(
+                            flex: 2,
+                            child: Center(
                               child: Text(
-                                widget.books[index].title,
+                                widget.books[index].author,
                                 style: TextStyle(
-                                  //color: Colors.white,
-                                  fontWeight: FontWeight.bold,
+                                  color: Colors.grey[500],
                                 ),
                                 textAlign: TextAlign.center,
                               ),
                             ),
                           ),
-                        ),
 
-                        Flexible(
-                          flex: 2,
-                          child: Center(
-                            child: Text(
-                              widget.books[index].author,
-                              style: TextStyle(
-                                color: Colors.grey[500],
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                        ),
+                          Flexible(
+                            flex: 4,
+                            child:  Align(
+                                alignment: Alignment.bottomCenter,
+                                child: Wrap(
+                                  direction: Axis.horizontal,
+                                  alignment: WrapAlignment.center,
+                                  children: <Widget>[
+                                    Row(
+                                      children: <Widget>[
 
-                        Flexible(
-                          flex: 4,
-                          child:  Align(
-                              alignment: Alignment.bottomCenter,
-                              child: Wrap(
-                                direction: Axis.horizontal,
-                                alignment: WrapAlignment.center,
-                                children: <Widget>[
-                                  Row(
-                                    children: <Widget>[
+                                        Icon(
+                                          Icons.bookmark,
+                                          color: Colors.blueGrey,
+                                          size: 20,
+                                        ),
 
-                                      Icon(
-                                        Icons.bookmark,
-                                        color: Colors.blueGrey,
-                                        size: 20,
-                                      ),
+                                        AutoSizeText(
+                                          _chapter_title.substring(0, 18) + "...",
+                                          style: TextStyle( fontWeight: FontWeight.bold,),
+                                          maxLines: 1,
+                                        ),
 
-                                      AutoSizeText(
-                                        _chapter_title.substring(0, 18) + "...",
-                                        style: TextStyle( fontWeight: FontWeight.bold,),
-                                        maxLines: 1,
-                                      ),
-
-                                      /*AutoSizeText(
+                                        /*AutoSizeText(
                                         "+ 28",
                                         style: TextStyle(
                                           color: Colors.grey[500],
@@ -180,42 +181,258 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
                                         maxLines: 1,
                                         textAlign: TextAlign.left,
                                       ),*/
-                                    ],
-                                  ),
-                                ],
-                              )
-                          ),
-                        )
-                      ],
+                                      ],
+                                    ),
+                                  ],
+                                )
+                            ),
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 ),
-              ),
 
-              Flexible(
-                  flex: 2,
-                  child: Align(
-                      alignment: Alignment.center,
-                      child: SizedBox(
-                        height: 75,
-                        width: 75,
-                        child: FloatingActionButton(
-                          backgroundColor: Colors.white,
-                          child: Icon(
-                            //buttonType == ButtonType.read ?
-                            //Icons.beenhere : Icons.arrow_drop_up,
-                            Icons.add,
-                            color: Colors.blueGrey,
-                            size: 50,
+                Flexible(
+                    flex: 2,
+                    child: Align(
+                        alignment: Alignment.center,
+                        child: SizedBox(
+                          height: 75,
+                          width: 75,
+                          child: FloatingActionButton(
+                            backgroundColor: Colors.white,
+                            child: Icon(
+                              //buttonType == ButtonType.read ?
+                              //Icons.beenhere : Icons.arrow_drop_up,
+                              Icons.add,
+                              color: Colors.blueGrey,
+                              size: 50,
+                            ),
                           ),
+                        )
+                    )
+                ),
+              ],
+            ),
+          )
+      );
+
+    } else if (widget.type == ListType.preview_friends){
+      return Container(
+          decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius:  BorderRadius.circular(7.0)
+          ),//Color.fromRGBO(64, 75, 96, .9),
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 5.0, vertical: 10.0),
+            child: Row(
+              children: <Widget>[
+                Flexible(
+                  flex: 3,
+                  child: Column(
+                    children: <Widget>[
+                      Flexible(
+                        flex: 9,
+                        child: Container(
+                            width: 90,
+                            //padding: EdgeInsets.only(right: 12.0),
+                            padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                            decoration: new BoxDecoration(
+                                border: new Border(
+                                    right: new BorderSide(width: 1.0, color: Colors.blueGrey),
+                                    left: new BorderSide(width: .075, color: Colors.blueGrey),
+                                    bottom: new BorderSide(width: .075, color: Colors.blueGrey),
+                                    top: new BorderSide(width: .075, color: Colors.blueGrey)
+                                )
+                            ),
+
+                            child: Container(
+                                color: Colors.black,
+                                height: 150,
+                                width: double.infinity,
+                                child: FittedBox(
+                                  fit: BoxFit.fill,
+                                  child: Image.network(
+                                      widget.books[index].picture
+                                  ),
+                                )
+                            ) //Icon(Icons.autorenew, color: Colors.white),
                         ),
+                      ),
+
+                      Flexible(
+                          flex: 3,
+                          child: Container(
+                            width: 80,
+                            height: 40,
+                            color: Colors.white,
+                            child: Stack(
+                                children: <Widget>[
+                                  Align(
+                                    alignment: Alignment.centerRight,
+                                    child: CircleAvatar(
+                                      backgroundColor: Colors.white,
+                                      child: CircleAvatar(
+                                        radius: 18,
+                                        backgroundColor: Colors.red,
+                                        backgroundImage: NetworkImage('https://avatars0.githubusercontent.com/u/35029261?s=460&u=c54ea4c26c7f0659c014f362e538d2927f567a4f&v=4'), // Provide your custom image
+                                      ),
+                                    ),
+                                  ),
+                                  Align(
+                                    alignment: Alignment.center,
+                                    child: CircleAvatar(
+                                      backgroundColor: Colors.white,
+                                      child: CircleAvatar(
+                                        radius: 18,
+                                        backgroundColor: Colors.red,
+                                        backgroundImage: NetworkImage('https://avatars0.githubusercontent.com/u/13257788?s=460&u=aaeef51a634fb1db0d1dc7337ec9e4515e9a314f&v=4'), // Provide your custom image
+                                      ),
+                                    ),
+                                  ),
+                                  Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: CircleAvatar(
+                                      backgroundColor: Colors.white,
+                                      child: CircleAvatar(
+                                        radius: 18,
+                                        backgroundColor: Colors.red,
+                                        backgroundImage: NetworkImage('https://avatars3.githubusercontent.com/u/16152037?s=460&u=39193767252f6f4b1d95dd075081a151dca70131&v=4'), // Provide your custom image
+                                      ),
+                                    ),
+                                  ),
+                                ]
+
+                            ),
+                          ),
+                          /*child: Center(
+                            child:
+
+
+
+                            LinearPercentIndicator(
+                              //width: //150.0,
+                              lineHeight: 5.0,
+                              percent: 0.5,
+                              progressColor: Colors.red,
+                            ),
+                          )*/
                       )
-                  )
-              ),
-            ],
-          ),
-        )
-    );
+                    ],
+                  ),
+                ),
+
+                Flexible(
+                  flex: 5,
+                  child: Padding(
+                    padding: EdgeInsets.all(12.0),
+                    child: Container(
+                      //color: Colors.black,
+                      height: 150,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          Flexible(
+                            flex: 2,
+                            child: Center(
+                              child: Container(
+                                child: Text(
+                                  widget.books[index].title,
+                                  style: TextStyle(
+                                    //color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
+                            ),
+                          ),
+
+                          Flexible(
+                            flex: 2,
+                            child: Center(
+                              child: Text(
+                                widget.books[index].author,
+                                style: TextStyle(
+                                  color: Colors.grey[500],
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          ),
+
+                          Flexible(
+                            flex: 4,
+                            child:  Align(
+                                alignment: Alignment.bottomCenter,
+                                child: Wrap(
+                                  direction: Axis.horizontal,
+                                  alignment: WrapAlignment.center,
+                                  children: <Widget>[
+                                    Row(
+                                      children: <Widget>[
+
+                                        Icon(
+                                          Icons.bookmark,
+                                          color: Colors.blueGrey,
+                                          size: 20,
+                                        ),
+
+                                        AutoSizeText(
+                                          _chapter_title.substring(0, 18) + "...",
+                                          style: TextStyle( fontWeight: FontWeight.bold,),
+                                          maxLines: 1,
+                                        ),
+
+                                        /*AutoSizeText(
+                                        "+ 28",
+                                        style: TextStyle(
+                                          color: Colors.grey[500],
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                        maxLines: 1,
+                                        textAlign: TextAlign.left,
+                                      ),*/
+                                      ],
+                                    ),
+                                  ],
+                                )
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+
+                Flexible(
+                    flex: 2,
+                    child: Align(
+                        alignment: Alignment.center,
+                        child: SizedBox(
+                          height: 75,
+                          width: 75,
+                          child: FloatingActionButton(
+                            backgroundColor: Colors.white,
+                            child: Icon(
+                              //buttonType == ButtonType.read ?
+                              //Icons.beenhere : Icons.arrow_drop_up,
+                              Icons.add,
+                              color: Colors.blueGrey,
+                              size: 50,
+                            ),
+                          ),
+                        )
+                    )
+                ),
+              ],
+            ),
+          )
+      );
+    }
+
   }
 
   _makeCard(int index) {
