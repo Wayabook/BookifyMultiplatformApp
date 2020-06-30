@@ -230,7 +230,85 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
               children: <Widget>[
                 Flexible(
                   flex: 3,
-                  child: Column(
+                  child: Stack(
+                    children: <Widget>[
+                      Container(
+                          width: 90,
+                          //padding: EdgeInsets.only(right: 12.0),
+                          padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                          decoration: new BoxDecoration(
+                              border: new Border(
+                                  right: new BorderSide(width: 1.0, color: Colors.blueGrey),
+                                  left: new BorderSide(width: .075, color: Colors.blueGrey),
+                                  bottom: new BorderSide(width: .075, color: Colors.blueGrey),
+                                  top: new BorderSide(width: .075, color: Colors.blueGrey)
+                              )
+                          ),
+
+                          child: Container(
+                              color: Colors.black,
+                              height: 150,
+                              width: double.infinity,
+                              child: FittedBox(
+                                fit: BoxFit.fill,
+                                child: Image.network(
+                                    widget.books[index].picture
+                                ),
+                              )
+                          ) //Icon(Icons.autorenew, color: Colors.white),
+                      ),
+
+                      Positioned(
+                        child: Align(
+                            alignment: FractionalOffset.bottomLeft,
+                            child:  Container(
+                              width: 80,
+                              height: 40,
+                              color: Colors.white,
+                              child: Stack(
+                                  children: <Widget>[
+                                    Align(
+                                      alignment: Alignment.centerRight,
+                                      child: CircleAvatar(
+                                        backgroundColor: Colors.white,
+                                        child: CircleAvatar(
+                                          radius: 18,
+                                          backgroundColor: Colors.red,
+                                          backgroundImage: NetworkImage('https://avatars0.githubusercontent.com/u/35029261?s=460&u=c54ea4c26c7f0659c014f362e538d2927f567a4f&v=4'), // Provide your custom image
+                                        ),
+                                      ),
+                                    ),
+                                    Align(
+                                      alignment: Alignment.center,
+                                      child: CircleAvatar(
+                                        backgroundColor: Colors.white,
+                                        child: CircleAvatar(
+                                          radius: 18,
+                                          backgroundColor: Colors.red,
+                                          backgroundImage: NetworkImage('https://avatars0.githubusercontent.com/u/13257788?s=460&u=aaeef51a634fb1db0d1dc7337ec9e4515e9a314f&v=4'), // Provide your custom image
+                                        ),
+                                      ),
+                                    ),
+                                    Align(
+                                      alignment: Alignment.centerLeft,
+                                      child: CircleAvatar(
+                                        backgroundColor: Colors.white,
+                                        child: CircleAvatar(
+                                          radius: 18,
+                                          backgroundColor: Colors.red,
+                                          backgroundImage: NetworkImage('https://avatars3.githubusercontent.com/u/16152037?s=460&u=39193767252f6f4b1d95dd075081a151dca70131&v=4'), // Provide your custom image
+                                        ),
+                                      ),
+                                    ),
+                                  ]
+
+                              ),
+                            ),
+                        ),
+                      )
+                    ],
+                  )
+                  /*child: Column(
                     children: <Widget>[
                       Flexible(
                         flex: 9,
@@ -320,7 +398,7 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
                           )*/
                       )
                     ],
-                  ),
+                  ),*/
                 ),
 
                 Flexible(
