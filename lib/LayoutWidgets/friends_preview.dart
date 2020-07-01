@@ -33,7 +33,7 @@ class FriendsPreview extends StatelessWidget {
                 child: CircleAvatar(
                   radius: 18,
                   backgroundColor: Colors.white,
-                  backgroundImage: NetworkImage(this.defaultUserUrl), // Provide your custom image
+                  backgroundImage: NetworkImage(this.friendsReading[1].profilePictureUrl), // Provide your custom image
                 ),
               ),
             ),

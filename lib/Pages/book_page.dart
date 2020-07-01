@@ -8,6 +8,8 @@ import 'package:bookifyapp/LayoutWidgets/BookWidgets/summary_text.dart';
 import 'package:bookifyapp/LayoutWidgets/Lists/horizontal_book_list.dart';
 import 'package:flutter/painting.dart';
 import 'package:bookifyapp/Enums/list_type.dart';
+import 'package:bookifyapp/LayoutWidgets/friends_preview.dart';
+
 
 class BookPage extends StatelessWidget {
   final String title;
@@ -165,6 +167,8 @@ class BookPage extends StatelessWidget {
           child: Container(color: Colors.blueGrey, height: 2, width: width),
         ),
 
+        _getFriendsPreview(),
+
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -244,6 +248,30 @@ class BookPage extends StatelessWidget {
     );
   }
 
+  _getFriendsPreview(){
+    //FriendsPreview(book.friends_reading),
+    if(book.friends_reading != null && book.friends_reading.length > 0){
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            //color: Colors.black,
+              width: double.infinity,
+              margin: EdgeInsets.fromLTRB(5, 2, 5, 0),
+              child:  Text(
+                'Added by:',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                textAlign: TextAlign.left,
+              ),
+          ),
+
+          SizedBox(height: 8.0),
+
+          FriendsPreview(book.friends_reading)
+        ],
+      );
+    }
+  }
 
 }
 
