@@ -98,7 +98,9 @@ class User {
       this._pages_read,
       this._profile_picture_url
       );
+
   User.withBookLists(this._book_lists);
+  User.withProfilePicture(this._profile_picture_url);
   User.withNameAndProfilePicture(this._name, this._profile_picture_url);
 
 

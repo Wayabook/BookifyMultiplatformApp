@@ -1,4 +1,4 @@
-
+import 'package:bookifyapp/Models/User.dart';
 class Book {
 
   String _title;
@@ -12,6 +12,7 @@ class Book {
   int _sumRatings;
   int _numRatings;
   bool _isNew;
+  List<User> _friends_reading;
 
   //ArrayList<Emoji> emojis;
   //Calendar calendar;
@@ -23,6 +24,12 @@ class Book {
   Book(this._title, this._author, this._coverImage);
 
   Book.withSummary(this._title, this._author, this._coverImage, this._summary, this._isbn);
+
+  List<User> get friends_reading => _friends_reading;
+
+  set friends_reading(List<User> fr) {
+    _friends_reading = fr;
+  }
 
   String get title => _title;
 

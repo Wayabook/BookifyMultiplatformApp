@@ -79,15 +79,7 @@ class SearchPage extends StatelessWidget {
         description,
         "4");
 
-    books.add(book1);
-    books.add(book2);
-    books.add(book3);
-    books.add(book4);
 
-    books.add(book1);
-    books.add(book2);
-    books.add(book3);
-    books.add(book4);
 
     List<Genre> genres = new List();
     Genre genre1 = Genre("1", "Genre1", "genre1.png");
@@ -180,6 +172,20 @@ class SearchPage extends StatelessWidget {
     users.add(user2);
     users.add(user3);
     users.add(user4);
+
+    book1.friends_reading = users;
+    book2.friends_reading = users.sublist(0, 2);
+    book3.friends_reading = users.sublist(0, 1);
+
+    books.add(book1);
+    books.add(book2);
+    books.add(book3);
+    books.add(book4);
+
+    books.add(book1);
+    books.add(book2);
+    books.add(book3);
+    books.add(book4);
 
 
     return SearchBookOrPerson(books, users);

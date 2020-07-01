@@ -5,6 +5,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bookifyapp/Models/Book.dart';
 import 'package:bookifyapp/LayoutWidgets/Lists/list_title.dart';
 import 'package:bookifyapp/Enums/button_type.dart';
+import 'package:bookifyapp/LayoutWidgets/friends_preview.dart';
 
 
 class VerticalBookListSearch extends StatefulWidget {
@@ -230,175 +231,7 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
               children: <Widget>[
                 Flexible(
                   flex: 3,
-                  child: Stack(
-                    children: <Widget>[
-                      Container(
-                          width: 90,
-                          //padding: EdgeInsets.only(right: 12.0),
-                          padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                          decoration: new BoxDecoration(
-                              border: new Border(
-                                  right: new BorderSide(width: 1.0, color: Colors.blueGrey),
-                                  left: new BorderSide(width: .075, color: Colors.blueGrey),
-                                  bottom: new BorderSide(width: .075, color: Colors.blueGrey),
-                                  top: new BorderSide(width: .075, color: Colors.blueGrey)
-                              )
-                          ),
-
-                          child: Container(
-                              color: Colors.black,
-                              height: 150,
-                              width: double.infinity,
-                              child: FittedBox(
-                                fit: BoxFit.fill,
-                                child: Image.network(
-                                    widget.books[index].picture
-                                ),
-                              )
-                          ) //Icon(Icons.autorenew, color: Colors.white),
-                      ),
-
-                      Positioned(
-                        child: Align(
-                            alignment: FractionalOffset.bottomLeft,
-                            child:  Container(
-                              width: 80,
-                              height: 40,
-                              color: Colors.white,
-                              child: Stack(
-                                  children: <Widget>[
-                                    Align(
-                                      alignment: Alignment.centerRight,
-                                      child: CircleAvatar(
-                                        backgroundColor: Colors.white,
-                                        child: CircleAvatar(
-                                          radius: 18,
-                                          backgroundColor: Colors.red,
-                                          backgroundImage: NetworkImage('https://avatars0.githubusercontent.com/u/35029261?s=460&u=c54ea4c26c7f0659c014f362e538d2927f567a4f&v=4'), // Provide your custom image
-                                        ),
-                                      ),
-                                    ),
-                                    Align(
-                                      alignment: Alignment.center,
-                                      child: CircleAvatar(
-                                        backgroundColor: Colors.white,
-                                        child: CircleAvatar(
-                                          radius: 18,
-                                          backgroundColor: Colors.red,
-                                          backgroundImage: NetworkImage('https://avatars0.githubusercontent.com/u/13257788?s=460&u=aaeef51a634fb1db0d1dc7337ec9e4515e9a314f&v=4'), // Provide your custom image
-                                        ),
-                                      ),
-                                    ),
-                                    Align(
-                                      alignment: Alignment.centerLeft,
-                                      child: CircleAvatar(
-                                        backgroundColor: Colors.white,
-                                        child: CircleAvatar(
-                                          radius: 18,
-                                          backgroundColor: Colors.red,
-                                          backgroundImage: NetworkImage('https://avatars3.githubusercontent.com/u/16152037?s=460&u=39193767252f6f4b1d95dd075081a151dca70131&v=4'), // Provide your custom image
-                                        ),
-                                      ),
-                                    ),
-                                  ]
-
-                              ),
-                            ),
-                        ),
-                      )
-                    ],
-                  )
-                  /*child: Column(
-                    children: <Widget>[
-                      Flexible(
-                        flex: 9,
-                        child: Container(
-                            width: 90,
-                            //padding: EdgeInsets.only(right: 12.0),
-                            padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                            decoration: new BoxDecoration(
-                                border: new Border(
-                                    right: new BorderSide(width: 1.0, color: Colors.blueGrey),
-                                    left: new BorderSide(width: .075, color: Colors.blueGrey),
-                                    bottom: new BorderSide(width: .075, color: Colors.blueGrey),
-                                    top: new BorderSide(width: .075, color: Colors.blueGrey)
-                                )
-                            ),
-
-                            child: Container(
-                                color: Colors.black,
-                                height: 150,
-                                width: double.infinity,
-                                child: FittedBox(
-                                  fit: BoxFit.fill,
-                                  child: Image.network(
-                                      widget.books[index].picture
-                                  ),
-                                )
-                            ) //Icon(Icons.autorenew, color: Colors.white),
-                        ),
-                      ),
-
-                      Flexible(
-                          flex: 3,
-                          child: Container(
-                            width: 80,
-                            height: 40,
-                            color: Colors.white,
-                            child: Stack(
-                                children: <Widget>[
-                                  Align(
-                                    alignment: Alignment.centerRight,
-                                    child: CircleAvatar(
-                                      backgroundColor: Colors.white,
-                                      child: CircleAvatar(
-                                        radius: 18,
-                                        backgroundColor: Colors.red,
-                                        backgroundImage: NetworkImage('https://avatars0.githubusercontent.com/u/35029261?s=460&u=c54ea4c26c7f0659c014f362e538d2927f567a4f&v=4'), // Provide your custom image
-                                      ),
-                                    ),
-                                  ),
-                                  Align(
-                                    alignment: Alignment.center,
-                                    child: CircleAvatar(
-                                      backgroundColor: Colors.white,
-                                      child: CircleAvatar(
-                                        radius: 18,
-                                        backgroundColor: Colors.red,
-                                        backgroundImage: NetworkImage('https://avatars0.githubusercontent.com/u/13257788?s=460&u=aaeef51a634fb1db0d1dc7337ec9e4515e9a314f&v=4'), // Provide your custom image
-                                      ),
-                                    ),
-                                  ),
-                                  Align(
-                                    alignment: Alignment.centerLeft,
-                                    child: CircleAvatar(
-                                      backgroundColor: Colors.white,
-                                      child: CircleAvatar(
-                                        radius: 18,
-                                        backgroundColor: Colors.red,
-                                        backgroundImage: NetworkImage('https://avatars3.githubusercontent.com/u/16152037?s=460&u=39193767252f6f4b1d95dd075081a151dca70131&v=4'), // Provide your custom image
-                                      ),
-                                    ),
-                                  ),
-                                ]
-
-                            ),
-                          ),
-                          /*child: Center(
-                            child:
-
-
-
-                            LinearPercentIndicator(
-                              //width: //150.0,
-                              lineHeight: 5.0,
-                              percent: 0.5,
-                              progressColor: Colors.red,
-                            ),
-                          )*/
-                      )
-                    ],
-                  ),*/
+                  child: _getFriendsPreview(index)
                 ),
 
                 Flexible(
@@ -511,6 +344,88 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
       );
     }
 
+  }
+
+  _getFriendsPreview(int index){
+    if(widget.books[index].friends_reading != null  &&
+        widget.books[index].friends_reading.length > 0){
+      /*return Positioned(
+        child: Align(
+          alignment: FractionalOffset.bottomLeft,
+          child: FriendsPreview(widget.books[index].friends_reading),
+
+        ),
+      );*/
+      return Stack(
+        children: <Widget>[
+          Padding(
+            padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+            child: Container(
+                width: 90,
+                //padding: EdgeInsets.only(right: 12.0),
+                padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                decoration: new BoxDecoration(
+                    border: new Border(
+                        right: new BorderSide(width: 1.0, color: Colors.blueGrey),
+                        left: new BorderSide(width: .075, color: Colors.blueGrey),
+                        bottom: new BorderSide(width: .075, color: Colors.blueGrey),
+                        top: new BorderSide(width: .075, color: Colors.blueGrey)
+                    )
+                ),
+
+                child: Container(
+                    color: Colors.black,
+                    height: 150,
+                    width: double.infinity,
+                    child: FittedBox(
+                      fit: BoxFit.fill,
+                      child: Image.network(
+                          widget.books[index].picture
+                      ),
+                    )
+                ) //Icon(Icons.autorenew, color: Colors.white),
+            ),
+          ),
+
+          Positioned(
+              child: Align(
+                alignment: FractionalOffset.bottomLeft,
+                child: FriendsPreview(widget.books[index].friends_reading),
+              )
+          ),
+        ],
+      );
+
+    } else {
+      return Padding(
+        padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+        child: Container(
+            width: 90,
+            //padding: EdgeInsets.only(right: 12.0),
+            padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+            decoration: new BoxDecoration(
+                border: new Border(
+                    right: new BorderSide(width: 1.0, color: Colors.blueGrey),
+                    left: new BorderSide(width: .075, color: Colors.blueGrey),
+                    bottom: new BorderSide(width: .075, color: Colors.blueGrey),
+                    top: new BorderSide(width: .075, color: Colors.blueGrey)
+                )
+            ),
+
+            child: Container(
+                color: Colors.black,
+                height: 150,
+                width: double.infinity,
+                child: FittedBox(
+                  fit: BoxFit.fill,
+                  child: Image.network(
+                      widget.books[index].picture
+                  ),
+                )
+            ) //Icon(Icons.autorenew, color: Colors.white),
+        ),
+      );
+    }
   }
 
   _makeCard(int index) {
