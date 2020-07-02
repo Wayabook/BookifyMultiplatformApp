@@ -41,22 +41,18 @@ class BookShopsDialog extends StatelessWidget{
                     width: width,
                     height: height-140,
                     color: Colors.white,
-                    child:  Column(
-                      children: <Widget>[
-                        Align(
-                          alignment: Alignment.topLeft,
-                          child: IconButton(
-                            onPressed: (){
-                              Navigator.pop(context);
-                            },
-                            icon: Icon(
-                                Icons.keyboard_arrow_down,
-                                color: Colors.black
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
+                    child:  Align(
+                      alignment: Alignment.topLeft,
+                      child: IconButton(
+                        onPressed: (){
+                          Navigator.pop(context);
+                        },
+                        icon: Icon(
+                            Icons.keyboard_arrow_down,
+                            color: Colors.black
+                        ),
+                      ),
+                    )
                   )
               ),
 
@@ -67,6 +63,89 @@ class BookShopsDialog extends StatelessWidget{
                   height: 180,
                 ),
               ),
+
+              Positioned(
+                top: 185,
+                child: ListView(
+                  children: <Widget>[
+                    Column(
+                      children: <Widget>[
+                        Container(
+                          height: 20,
+                          width: width,
+                          color: Colors.black,
+                          /*child: Text(
+                            'Ficha Tecnica:',
+
+                            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                            textAlign: TextAlign.left,
+                          ),*/
+                        )
+
+                        /*Row(
+                          children: <Widget>[
+                            Text(
+                              'Editorial:',
+                              style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                              textAlign: TextAlign.left,
+                            ),
+                            Text(
+                              'SUMA',
+                              style: TextStyle(fontSize: 14),
+                              textAlign: TextAlign.left,
+                            ),
+                          ],
+                        ),
+
+                        Row(
+                          children: <Widget>[
+                            Text(
+                              'EAN:',
+                              style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                              textAlign: TextAlign.left,
+                            ),
+                            Text(
+                              '978-8483655368',
+                              style: TextStyle(fontSize: 14),
+                              textAlign: TextAlign.left,
+                            ),
+                          ],
+                        ),
+
+                        Row(
+                          children: <Widget>[
+                            Text(
+                              'IBAN:',
+                              style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                              textAlign: TextAlign.left,
+                            ),
+                            Text(
+                              '9788483655368',
+                              style: TextStyle(fontSize: 14),
+                              textAlign: TextAlign.left,
+                            ),
+                          ],
+                        ),
+
+                        Row(
+                          children: <Widget>[
+                            Text(
+                              'IDIOMA:',
+                              style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                              textAlign: TextAlign.left,
+                            ),
+                            Text(
+                              'CASTELLANO',
+                              style: TextStyle(fontSize: 14),
+                              textAlign: TextAlign.left,
+                            ),
+                          ],
+                        )*/
+                      ],
+                    )
+                  ],
+                ),
+              )
 
               /*Positioned(
                 //left: 5,
