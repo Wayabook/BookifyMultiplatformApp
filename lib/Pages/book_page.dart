@@ -9,6 +9,7 @@ import 'package:bookifyapp/LayoutWidgets/Lists/horizontal_book_list.dart';
 import 'package:flutter/painting.dart';
 import 'package:bookifyapp/Enums/list_type.dart';
 import 'package:bookifyapp/LayoutWidgets/friends_preview.dart';
+import 'package:bookifyapp/LayoutWidgets/Dialogs/book_shops_dialog.dart';
 
 
 class BookPage extends StatelessWidget {
@@ -77,7 +78,8 @@ class BookPage extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
                 child: RaisedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                  },
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(25.0),
@@ -97,7 +99,12 @@ class BookPage extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
                 child: RaisedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) => BookShopsDialog(this.book),
+                    );
+                  },
                   color: Colors.blueGrey,
                   child: IconButton(
                     icon: Icon(
