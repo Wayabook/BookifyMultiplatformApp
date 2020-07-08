@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/Models/Book.dart';
 import 'package:bookifyapp/LayoutWidgets/BookWidgets/book_cover.dart';
+import 'package:flutter/painting.dart';
 
 
 class BookShopsDialog extends StatelessWidget{
@@ -64,7 +65,132 @@ class BookShopsDialog extends StatelessWidget{
                 ),
               ),
 
-              Positioned(
+              Padding(
+                padding: EdgeInsets.fromLTRB(15, 210, 15, 10),
+                child: Container(color: Colors.blueGrey, height: 2, width: width),
+              ),
+
+              Padding(
+                padding: EdgeInsets.fromLTRB(15, 220, 0, 0),
+                child: ListView(
+                  children: <Widget>[
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
+                      child: Column(
+                        children: <Widget>[
+                          Container(
+                            height: 20,
+                            width: width,
+                            //color: Colors.black,
+                            child: Text(
+                              'Ficha Tecnica:',
+                              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                              textAlign: TextAlign.left,
+                            ),
+                          ),
+
+                          Padding(
+                              padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
+                              child: Row(
+                                children: <Widget>[
+                                  Text(
+                                    'Enucadernación:',
+                                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                                    textAlign: TextAlign.left,
+                                  ),
+                                  Text(
+                                    'TAPA DURA',
+                                    style: TextStyle(fontSize: 14),
+                                    textAlign: TextAlign.left,
+                                  ),
+                                ],
+                              )
+                          ),
+
+                          Padding(
+                            padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
+                            child: Row(
+                              children: <Widget>[
+                                Text(
+                                  'Editorial:',
+                                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                                  textAlign: TextAlign.left,
+                                ),
+                                Text(
+                                  'SUMA',
+                                  style: TextStyle(fontSize: 14),
+                                  textAlign: TextAlign.left,
+                                ),
+                              ],
+                            ),
+                          ),
+
+                          Padding(
+                            padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
+                            child: Row(
+                              children: <Widget>[
+                                Text(
+                                  'EAN:',
+                                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                                  textAlign: TextAlign.left,
+                                ),
+                                Text(
+                                  '978-8483655368',
+                                  style: TextStyle(fontSize: 14),
+                                  textAlign: TextAlign.left,
+                                ),
+                              ],
+                            ),
+                          ),
+
+                          Padding(
+                            padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
+                            child: Row(
+                              children: <Widget>[
+                                Text(
+                                  'IBAN:',
+                                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                                  textAlign: TextAlign.left,
+                                ),
+                                Text(
+                                  '9788483655368',
+                                  style: TextStyle(fontSize: 14),
+                                  textAlign: TextAlign.left,
+                                ),
+                              ],
+                            ),
+                          ),
+
+                          Padding(
+                              padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
+                              child: Row(
+                                children: <Widget>[
+                                  Text(
+                                    'Idioma:',
+                                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                                    textAlign: TextAlign.left,
+                                  ),
+                                  Text(
+                                    'CASTELLANO',
+                                    style: TextStyle(fontSize: 14),
+                                    textAlign: TextAlign.left,
+                                  ),
+                                ],
+                              )
+                          ),
+                        ],
+                      )
+                    ),
+
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(0, 10, 15, 10),
+                      child: Container(color: Colors.blueGrey, height: 2, width: width),
+                    ),
+                  ],
+                ),
+              )
+
+              /*Positioned(
                 top: 185,
                 child: ListView(
                   children: <Widget>[
@@ -145,7 +271,7 @@ class BookShopsDialog extends StatelessWidget{
                     )
                   ],
                 ),
-              )
+              )*/
 
               /*Positioned(
                 //left: 5,
