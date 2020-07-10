@@ -1,3 +1,4 @@
+import 'package:bookifyapp/LayoutWidgets/Cards/shop_item_card.dart';
 import 'package:bookifyapp/LayoutWidgets/carousel_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -185,6 +186,25 @@ class BookShopsDialog extends StatelessWidget{
                     Padding(
                       padding: EdgeInsets.fromLTRB(0, 10, 15, 10),
                       child: Container(color: Colors.blueGrey, height: 2, width: width),
+                    ),
+
+                    ShopItemCard(this.book),
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(0, 2, 0, 0),
+                      child: Container(color: Colors.white, height: 2, width: width),
+                    ),
+
+                    ShopItemCard(this.book),
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(0, 2, 0, 0),
+                      child: Container(color: Colors.white, height: 2, width: width),
+                    ),
+
+                    ShopItemCard(this.book),
+
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(0, 2, 0, 0),
+                      child: Container(color: Colors.white, height: 2, width: width),
                     ),
                   ],
                 ),
