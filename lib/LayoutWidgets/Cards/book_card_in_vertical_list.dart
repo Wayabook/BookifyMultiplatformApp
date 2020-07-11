@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bookifyapp/Models/Book.dart';
 import 'package:bookifyapp/Enums/button_type.dart';
+//import  'package:explode_view/explode_view.dart';
 import 'package:bookifyapp/LayoutWidgets/Lists/list_title.dart';
 
 
@@ -19,9 +21,6 @@ class BookCardInVerticalList extends StatelessWidget {
   Widget build(BuildContext context) {
     this.context = context;
     return Card(
-      /*shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(7.0),
-      ),*/
       elevation: 10,
       margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
       child:  Container(
@@ -183,7 +182,22 @@ class BookCardInVerticalList extends StatelessWidget {
                       child: SizedBox(
                         height: 75,
                         width: 75,
-                        child: FloatingActionButton(
+                        child: CircularPercentIndicator(
+                          radius: 60.0,
+                          lineWidth: 3.0,
+                          percent: .5,
+                          center: FloatingActionButton(
+                            backgroundColor: Colors.white,
+                            child: Icon(
+                              buttonType == ButtonType.read ?
+                              Icons.beenhere : Icons.arrow_drop_up,
+                              color: Colors.blueGrey,
+                              size: 50,
+                            ),
+                          ),
+                          progressColor: Colors.green,
+                        ),
+                        /*child: FloatingActionButton(
                           backgroundColor: Colors.white,
                           child: Icon(
                             buttonType == ButtonType.read ?
@@ -191,7 +205,7 @@ class BookCardInVerticalList extends StatelessWidget {
                             color: Colors.blueGrey,
                             size: 50,
                           ),
-                        ),
+                        ),*/
                       )
                   )
               ),

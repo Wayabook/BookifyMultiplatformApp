@@ -17,6 +17,8 @@ class Book {
   int _sumRatings;
   int _numRatings;
   bool _isNew;
+  List<String> chapters_titles;
+  int chapters;
   List<User> _friends_reading;
   Map<String, List<Item>> _shops_items;
 
