@@ -7,15 +7,17 @@ class Book {
   String _author;
   String _coverImage;
   String _summary;
-  bool _read;
+  bool _read; //NO
   int _year;
   int _extension;
   String _isbn;
+  String _ean;
+  String editorial;
+  String language;
   int _sumRatings;
   int _numRatings;
   bool _isNew;
   List<User> _friends_reading;
-  //List<Item> _shops_items;
   Map<String, List<Item>> _shops_items;
 
   //ArrayList<Emoji> emojis;
@@ -27,7 +29,7 @@ class Book {
 
   Book(this._title, this._author, this._coverImage);
 
-  Book.withSummary(this._title, this._author, this._coverImage, this._summary, this._isbn, this._shops_items);
+  Book.withSummary(this._title, this._author, this._coverImage, this._summary, this._isbn, this._ean, this._shops_items, {this.editorial="SUMA", this.language="CASTELLANO"});
 
   List<User> get friends_reading => _friends_reading;
 
@@ -88,6 +90,18 @@ class Book {
   set isbn(String id) {
     _isbn = id;
   }
+
+  String get ean => _ean;
+
+  set ean(String ean) {
+    _ean = ean;
+  }
+
+  /*String get language => language;
+
+  set ean(String ean) {
+    _ean = ean;
+  }*/
 
   int get sumRatings => _sumRatings;
 

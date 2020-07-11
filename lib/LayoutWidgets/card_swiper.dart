@@ -27,7 +27,8 @@ class CardSwiper extends StatelessWidget {
           control: null,
           viewportFraction: 0.6,
           scale: 0.9,
-        ));
+        )
+    );
   }
 
   _getSwiperCardContent(int index, BuildContext context){

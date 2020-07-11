@@ -372,6 +372,7 @@ class BookCard extends StatelessWidget {
         "https://imagessl3.casadellibro.com/a/l/t0/73/9788490628973.jpg",
         description,
         "1",
+        "1",
         shopItems);
 
     Book book2 = new Book.withSummary(
@@ -380,6 +381,7 @@ class BookCard extends StatelessWidget {
         "https://imagessl9.casadellibro.com/a/l/t5/59/9788408228059.jpg",
         description,
         "2",
+        "1",
         shopItems);
 
     Book book3 = new Book.withSummary(
@@ -388,6 +390,7 @@ class BookCard extends StatelessWidget {
         "https://imagessl2.casadellibro.com/a/l/t5/92/9788408221692.jpg",
         description,
         "3",
+        "1",
         shopItems);
 
     Book book4 = new Book.withSummary(
@@ -396,6 +399,7 @@ class BookCard extends StatelessWidget {
         "https://imagessl0.casadellibro.com/a/l/t5/50/9788491819950.jpg",
         description,
         "4",
+        "1",
         shopItems);
 
     books.add(book1);

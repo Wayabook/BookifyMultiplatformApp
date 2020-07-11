@@ -1,4 +1,5 @@
 import 'package:bookifyapp/Enums/profile_type.dart';
+import 'package:bookifyapp/Models/Item.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:auto_size_text/auto_size_text.dart';
@@ -9,8 +10,8 @@ import 'package:bookifyapp/Pages/profile_page.dart';
 
 class ShopItemCard extends StatelessWidget {
 
-  Book book;
-  ShopItemCard(this.book); // : super(key: key);
+  Item item;
+  ShopItemCard(this.item); // : super(key: key);
 
   //final List<User> users;
   /*final List<Book> readingBooks;
