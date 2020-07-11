@@ -127,29 +127,7 @@ class ReadingPage extends StatelessWidget {
       body: VerticalBookList(this.books.sublist(0, 2), this.books),
       appBar: AppBar(
         title: Text(this.text),
-        /*actions: <Widget>[
-          IconButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => SearchPage()),
-                );
-              },
-              icon: Icon(Icons.search)
-          )
-        ],*/
       ),
     );
   }
-
-  /*_getBody(){
-    return Column(
-      children: <Widget>[
-        VerticalBookList("Reading", this.books),
-
-        //VerticalBookList("Pending", this.books),
-
-      ],
-    );
-  }*/
 }

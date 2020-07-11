@@ -1,4 +1,3 @@
-import 'package:bookifyapp/LayoutWidgets/Cards/book_card_in_vertical_list.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:auto_size_text/auto_size_text.dart';
@@ -7,30 +6,35 @@ import 'package:bookifyapp/Enums/button_type.dart';
 import 'package:bookifyapp/LayoutWidgets/Lists/list_title.dart';
 
 
-class VerticalBookList extends StatefulWidget {
+class BookCardInVerticalList extends StatelessWidget {
 
-  VerticalBookList(this.readingBooks, this.pendingBooks); // : super(key: key);
+  String chapter_title = "Nombre capitulo";
+  BuildContext context;
+  ButtonType buttonType;
+  Book book;
 
-  final List<Book> readingBooks;
-  final List<Book> pendingBooks;
-
-  @override
-  _VerticalBookList createState() => _VerticalBookList();
-}
-
-class _VerticalBookList extends State<VerticalBookList> {
-
-  String _chapter_title = "Nombre del capitulo ultra largo";
+  BookCardInVerticalList(this.book, this.buttonType);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.blueGrey, //Color.fromRGBO(58, 66, 86, 1.0),
-      body: _makeBody(),
+    this.context = context;
+    return Card(
+      /*shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(7.0),
+      ),*/
+      elevation: 10,
+      margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
+      child:  Container(
+        height: 160,
+        decoration: BoxDecoration(
+          color: Colors.blueGrey,
+        ),
+        child: _makeListTile(),
+      ),
     );
   }
 
-  /*_makeListTile(index, List<Book> books, ButtonType buttonType) {
+  _makeListTile() {
     return Container(
         decoration: BoxDecoration(
             color: Colors.white,
@@ -66,9 +70,9 @@ class _VerticalBookList extends State<VerticalBookList> {
                               child: FittedBox(
                                 fit: BoxFit.fill,
                                 child: Image.network(
-                                    books[index].picture
+                                    book.picture
                                 ),
-                            )
+                              )
                           ) //Icon(Icons.autorenew, color: Colors.white),
                       ),
                     ),
@@ -104,7 +108,7 @@ class _VerticalBookList extends State<VerticalBookList> {
                           child: Center(
                             child: Container(
                               child: Text(
-                                books[index].title,
+                                book.title,
                                 style: TextStyle(
                                   //color: Colors.white,
                                   fontWeight: FontWeight.bold,
@@ -119,7 +123,7 @@ class _VerticalBookList extends State<VerticalBookList> {
                           flex: 2,
                           child: Center(
                             child: Text(
-                              books[index].author,
+                              book.author,
                               style: TextStyle(
                                 color: Colors.grey[500],
                               ),
@@ -146,7 +150,7 @@ class _VerticalBookList extends State<VerticalBookList> {
                                       ),
 
                                       AutoSizeText(
-                                        _chapter_title.substring(0, 15) + "...",
+                                        chapter_title.substring(0, 15) + "...",
                                         style: TextStyle( fontWeight: FontWeight.bold,),
                                         maxLines: 1,
                                       ),
@@ -195,56 +199,5 @@ class _VerticalBookList extends State<VerticalBookList> {
           ),
         )
     );
-  }*/
-
-  _makeCard(int index, List<Book> books, ButtonType buttonType) {
-    return BookCardInVerticalList(books[index], buttonType);
-  }
-
-  _makeBody() {
-    return Container(
-      child: ListView.builder(
-        scrollDirection: Axis.vertical,
-        shrinkWrap: true,
-        itemCount: widget.readingBooks.length + widget.pendingBooks.length + 2,
-        itemBuilder: (BuildContext context, int index) {
-          if (index == 0) {
-            return _makeHeader('Reading:');
-          } else if (index <= widget.readingBooks.length) {
-            return _makeCard(index - 1, widget.readingBooks, ButtonType.read);
-          } else if (index == widget.readingBooks.length + 1) {
-            return _makeHeader('Pending:');
-          } else {
-            return _makeCard(index - 2 - widget.readingBooks.length, widget.pendingBooks, ButtonType.read);
-          }
-        },
-      ),
-    );
-  }
-
-  _makeHeader(String title){
-    double width = MediaQuery.of(context).size.width;
-    return ListTitle(title);
-    /*return Container(
-      child: Column(
-        children: <Widget>[
-          Container(
-            margin: EdgeInsets.fromLTRB(10, 10, 2, 0),
-            child:  Align(
-              alignment: Alignment.topLeft,
-              child: Text(
-                title,
-                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: Colors.white),
-              ),
-            ),
-          ),
-
-          Padding(
-            padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
-            child: Container(color: Colors.white, height: 2, width: width),
-          ),
-        ],
-      ),
-    );*/
   }
 }
