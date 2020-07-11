@@ -1,4 +1,5 @@
 import 'package:bookifyapp/LayoutWidgets/carousel_card.dart';
+import 'package:bookifyapp/Models/Shop.dart' as prefix0;
 import 'package:flutter/material.dart';
 import 'book_page.dart';
 import 'package:bookifyapp/Pages/search_page.dart';
@@ -7,6 +8,7 @@ import 'package:bookifyapp/LayoutWidgets/Lists/horizontal_book_list.dart';
 import 'package:bookifyapp/Enums/list_type.dart';
 import 'package:bookifyapp/Models/User.dart';
 import 'package:bookifyapp/Models/Genre.dart';
+import 'package:bookifyapp/Models/Shop.dart';
 
 
 class DiscoverPage extends StatelessWidget {
@@ -21,6 +23,14 @@ class DiscoverPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    List<Shop> shops = new List();
+    shops.add(new Shop.withoutIds("Casa del Libro", "https://i.pinimg.com/280x280_RS/77/56/01/77560124a4abb4053f4f95c9153ef565.jpg"));
+    shops.add(new Shop.withoutIds("Fnac", "https://upload.wikimedia.org/wikipedia/commons/2/2e/Fnac_Logo.svg"));
+    shops.add(new Shop.withoutIds("El corte ingles", "https://pbs.twimg.com/profile_images/1214523397239115781/wuA5BVB4_400x400.jpg"));
+    shops.add(new Shop.withoutIds("Taugus Books", "https://imagessl.casadellibro.com/t19/i/logo.png"));
+    shops.add(new Shop.withoutIds("Me gusta leer", "https://tienda.megustaleer.com/img/tienda-megustaleer-logo-1585260247.jpg"));
+    
 
     String description =
     """
