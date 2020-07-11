@@ -50,7 +50,7 @@ class BookShopsDialog extends StatelessWidget{
           itemCount: this.book.shops_items.length,
           pagination: null,
           control: null,
-          viewportFraction: 0.6,
+          viewportFraction: 0.85,
           scale: 0.9,
         )
       )
@@ -235,24 +235,15 @@ class BookShopsDialog extends StatelessWidget{
       ),
     ];
 
-    /*
-    *  ShopItemCard(this.book),
-      Padding(
-        padding: EdgeInsets.fromLTRB(0, 2, 0, 0),
-        child: Container(color: Colors.white, height: 2, width: width),
-      ),
-
-      ShopItemCard(this.book),
-      Padding(
-        padding: EdgeInsets.fromLTRB(0, 2, 0, 0),
-        child: Container(color: Colors.white, height: 2, width: width),
-      ),
-
-      ShopItemCard(this.book),
-      Padding(
-        padding: EdgeInsets.fromLTRB(0, 2, 0, 0),
-        child: Container(color: Colors.white, height: 2, width: width),
-      ),*/
+    for(Item item in items){
+      infoItems.add(ShopItemCard(item));
+      infoItems.add(
+          Padding(
+            padding: EdgeInsets.fromLTRB(0, 2, 0, 0),
+            child: Container(color: Colors.white, height: 2, width: width),
+          )
+      );
+    }
 
     return infoItems;
   }

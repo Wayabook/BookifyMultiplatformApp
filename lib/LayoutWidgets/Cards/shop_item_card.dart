@@ -6,6 +6,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bookifyapp/Models/Book.dart';
 import 'package:bookifyapp/Enums/button_type.dart';
 import 'package:bookifyapp/LayoutWidgets/Profile/profile_picture.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:bookifyapp/Pages/profile_page.dart';
 
 class ShopItemCard extends StatelessWidget {
@@ -43,7 +44,7 @@ class ShopItemCard extends StatelessWidget {
             children: <Widget>[
               Flexible(
                 flex: 3,
-                child: ProfilePicture("https://i.pinimg.com/280x280_RS/77/56/01/77560124a4abb4053f4f95c9153ef565.jpg"),
+                child: ProfilePicture(item.shop.logo_url),
               ),
 
               Flexible(
@@ -60,7 +61,7 @@ class ShopItemCard extends StatelessWidget {
                         Align(
                           alignment: Alignment.center,
                           child:  AutoSizeText(
-                            "14.5",
+                            item.price.toString(),
                             style: TextStyle( fontWeight: FontWeight.bold, color: Colors.black, fontSize: 30,),
                             maxLines: 1,
                           ),
@@ -69,7 +70,7 @@ class ShopItemCard extends StatelessWidget {
                         Align(
                           alignment: Alignment.center,
                           child:  AutoSizeText(
-                            "€",
+                            item.symbol,
                             style: TextStyle( fontWeight: FontWeight.bold, color: Colors.black, fontSize: 30,),
                             maxLines: 1,
                           ),
@@ -78,10 +79,15 @@ class ShopItemCard extends StatelessWidget {
                         Expanded(
                           child: Align(
                             alignment: Alignment.centerRight,
-                            child: Icon(
-                              Icons.arrow_forward_ios,
-                              color: Colors.blueGrey,
-                            ),
+                            child: IconButton(
+                              icon: Icon(
+                                Icons.arrow_forward_ios,
+                                color: Colors.blueGrey,
+                              ),
+                              onPressed: (){
+
+                              },
+                            )
                           ),
                         )
                       ],
