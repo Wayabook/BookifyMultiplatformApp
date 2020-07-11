@@ -85,7 +85,7 @@ class ShopItemCard extends StatelessWidget {
                                 color: Colors.blueGrey,
                               ),
                               onPressed: (){
-
+                                launch(item.shop_link);
                               },
                             )
                           ),
