@@ -15,7 +15,8 @@ class Book {
   int _numRatings;
   bool _isNew;
   List<User> _friends_reading;
-  List<Item> _shops_items;
+  //List<Item> _shops_items;
+  Map<String, List<Item>> _shops_items;
 
   //ArrayList<Emoji> emojis;
   //Calendar calendar;
@@ -26,7 +27,7 @@ class Book {
 
   Book(this._title, this._author, this._coverImage);
 
-  Book.withSummary(this._title, this._author, this._coverImage, this._summary, this._isbn);
+  Book.withSummary(this._title, this._author, this._coverImage, this._summary, this._isbn, this._shops_items);
 
   List<User> get friends_reading => _friends_reading;
 
@@ -34,9 +35,9 @@ class Book {
     _friends_reading = fr;
   }
 
-  List<Item> get shops_items => _shops_items;
+  Map<String, List<Item>> get shops_items => _shops_items;
 
-  set shops_items(List<Item> fr) {
+  set shops_items(Map<String, List<Item>> fr) {
     _shops_items = fr;
   }
 

@@ -1,3 +1,5 @@
+import 'package:bookifyapp/Models/Item.dart';
+import 'package:bookifyapp/Models/Shop.dart';
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/Models/Book.dart';
 import 'package:bookifyapp/Pages/book_page.dart';
@@ -307,6 +309,27 @@ class BookCard extends StatelessWidget {
 
   List<Book> _getBooks(){
     List<Book> books = new List();
+    Shop shop1 = new Shop.withoutIds("Casa del Libro", "https://i.pinimg.com/280x280_RS/77/56/01/77560124a4abb4053f4f95c9153ef565.jpg");
+    Shop shop2 = new Shop.withoutIds("Fnac", "https://upload.wikimedia.org/wikipedia/commons/2/2e/Fnac_Logo.svg");
+    Shop shop3 = new Shop.withoutIds("El corte ingles", "https://pbs.twimg.com/profile_images/1214523397239115781/wuA5BVB4_400x400.jpg");
+    Shop shop4 = new Shop.withoutIds("Taugus Books", "https://imagessl.casadellibro.com/t19/i/logo.png");
+    Shop shop5 = new Shop.withoutIds("Me gusta leer", "https://tienda.megustaleer.com/img/tienda-megustaleer-logo-1585260247.jpg");
+
+    List<Item> items = new List();
+    items.add(new Item.withoutId(shop1, "https://www.casadellibro.com/libro-en-busca-del-chico-irrompible/9788408228059/11405104", 16.05, "€"));
+    items.add(new Item.withoutId(shop2, "https://www.fnac.es/a7456973/En-busca-del-chico-irrompible#st=el+chico+irr&ct=En+todo+Fnac&t=p", 16.05, "€"));
+    items.add(new Item.withoutId(shop3, "https://www.elcorteingles.es/libros/A35120735-en-busca-del-chico-irrompible-tapa-dura-9788408228059/", 16.05, "€"));
+    items.add(new Item.withoutId(shop4, "https://www.tagusbooks.com/ebook-en-busca-del-chico-irrompible-ebook/9788408230663/11537354", 16.05, "€"));
+    items.add(new Item.withoutId(shop5, "https://tienda.megustaleer.com/libros/2519-dulce-chico-indecente-9788490708248.html", 16.05, "€"));
+
+    Map<String, List<Item>> shopItems = {
+      'Tapa Blanda': items,
+      'Tapa Dura' : items,
+      'Tapa Ebook': items,
+    };
+
+
+
     String description =
     """
     Engánchate al fenómenoValeria de @BetaCoqueta, una saga altamente divertida, emotiva y sensual.
@@ -348,28 +371,32 @@ class BookCard extends StatelessWidget {
         "Elisabeth Benavent",
         "https://imagessl3.casadellibro.com/a/l/t0/73/9788490628973.jpg",
         description,
-        "1");
+        "1",
+        shopItems);
 
     Book book2 = new Book.withSummary(
         "En busca del chico irrompible",
         "Coque Mesa",
         "https://imagessl9.casadellibro.com/a/l/t5/59/9788408228059.jpg",
         description,
-        "2");
+        "2",
+        shopItems);
 
     Book book3 = new Book.withSummary(
         "Con el amor bastaba",
         "Maxim Huerta",
         "https://imagessl2.casadellibro.com/a/l/t5/92/9788408221692.jpg",
         description,
-        "3");
+        "3",
+        shopItems);
 
     Book book4 = new Book.withSummary(
         "A próposito de nada",
         "Woody Allen",
         "https://imagessl0.casadellibro.com/a/l/t5/50/9788491819950.jpg",
         description,
-        "4");
+        "4",
+        shopItems);
 
     books.add(book1);
     books.add(book2);
