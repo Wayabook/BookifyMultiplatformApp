@@ -1,23 +1,33 @@
 import 'package:bookifyapp/Models/Book.dart';
 
-class Lecture {
-  Book _book;
-  int current_chapter;
+import 'Item.dart';
+import 'User.dart';
 
-  Lecture() {}
+class Lecture extends Book{
+  //String title;
 
-  //Lecture({this.current_chapter = 0});
+  int currentChapter;
+
+  Lecture(
+      String title, String author, String coverImage, String summary, int year, int extension, String isbn, String ean,
+      Map<String, List<Item>> shops_items, String editorial, String language,
+      {
+        double avgRating, bool isNew = false, List<String> chapters_titles = const [], List<User> friends_reading = const [],
+        currentChapter = 0
+      }) : super(title, author, coverImage, summary, year, extension, isbn, ean, shops_items, editorial, language,
+      avgRating: avgRating, isNew: isNew, chapters_titles: chapters_titles, friends_reading: friends_reading) {}
+
 
   double get progress =>
-    current_chapter + 1 / _book.chapters_titles.length;
+    this.currentChapter + 1 / super.chapters_titles.length;
 
   String get current_chapter_title =>
-      _book.chapters_titles[current_chapter];
+      super.chapters_titles[this.currentChapter];
 
   int get chapters_left =>
-      _book.chapters_titles.length - current_chapter - 1;
+      super.chapters_titles.length - this.currentChapter - 1;
 
   bool get readed =>
-      current_chapter == _book.chapters_titles.length - 1;
+      this.currentChapter == super.chapters_titles.length - 1;
 
 }

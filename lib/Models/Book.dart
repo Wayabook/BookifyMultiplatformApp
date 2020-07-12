@@ -1,3 +1,4 @@
+import 'package:bookifyapp/Models/Lecture.dart';
 import 'package:bookifyapp/Models/User.dart';
 import 'package:bookifyapp/Models/Item.dart';
 
@@ -13,8 +14,9 @@ class Book {
   String _ean;
   String editorial;
   String language;
-  int sumRatings;
-  int numRatings;
+  //int sumRatings;
+  //int numRatings;
+  double avgRating;
   bool isNew;
   List<String> chapters_titles;
   List<User> friends_reading;
@@ -42,8 +44,7 @@ class Book {
       this.editorial,
       this.language,
       {
-        this.sumRatings = 0,
-        this.numRatings = 0,
+        this.avgRating,
         this.isNew = false,
         this.chapters_titles = const [],
         this.friends_reading = const [],
@@ -59,6 +60,27 @@ class Book {
       this._ean,
       this._shops_items,
       {this.editorial="SUMA", this.language="CASTELLANO"});
+
+  Lecture toLecture({int currentChapter = 0}){
+    return new Lecture(
+        this.title,
+        this.author,
+        this._coverImage,
+        this.summary,
+        this.year,
+        this.extension,
+        this.isbn,
+        this.ean,
+        this.shops_items,
+        this.editorial,
+        this.language,
+        avgRating: this.avgRating,
+        isNew: this.isNew,
+        chapters_titles: this.chapters_titles,
+        friends_reading: this.friends_reading,
+        currentChapter: currentChapter
+    );
+  }
 
   /*List<String> get chapters_title => _chapters_title;
 

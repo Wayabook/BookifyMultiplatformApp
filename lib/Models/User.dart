@@ -2,6 +2,8 @@ import 'package:bookifyapp/Models/Book.dart';
 import 'package:bookifyapp/Models/Genre.dart';
 import 'package:flutter/material.dart';
 
+import 'Lecture.dart';
+
 class User {
 
   String _uid;
