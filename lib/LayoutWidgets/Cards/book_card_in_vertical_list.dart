@@ -1,4 +1,6 @@
 import 'package:bookifyapp/LayoutWidgets/Buttons/read_action_button.dart';
+import 'package:bookifyapp/LayoutWidgets/Dialogs/add_feedback_dialog.dart';
+import 'package:bookifyapp/LayoutWidgets/Dialogs/book_shops_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
@@ -24,17 +26,23 @@ class BookCardInVerticalList extends StatelessWidget {
     return Card(
       elevation: 10,
       margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
-      child:  Container(
-        height: 160,
-        decoration: BoxDecoration(
-          color: Colors.blueGrey,
+      child:  GestureDetector(
+        onTap: () {
+          showDialog(
+            context: context,
+            builder: (BuildContext context) => AddFeedbackDialog(this.book),
+          );
+        },
+        child: Container(
+          height: 160,
+          decoration: BoxDecoration(
+            color: Colors.blueGrey,
+          ),
+          child: _makeListTile(),
         ),
-        child: _makeListTile(),
-      ),
+      )
     );
   }
-
-
 
   _makeListTile()   {
     FloatingActionButton floatingActionButton = new FloatingActionButton(
