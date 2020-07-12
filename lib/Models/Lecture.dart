@@ -4,7 +4,9 @@ class Lecture {
   Book _book;
   int current_chapter;
 
-  Lecture(this._book, {this.current_chapter = 0});
+  Lecture() {}
+
+  //Lecture({this.current_chapter = 0});
 
   double get progress =>
     current_chapter + 1 / _book.chapters_titles.length;
