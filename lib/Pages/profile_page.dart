@@ -20,8 +20,6 @@ import 'dart:math';
 
 
 class ProfilePage extends StatelessWidget {
-  /*final Color color;
-  final String text;*/
   static const TextStyle optionStyle =
   TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
 

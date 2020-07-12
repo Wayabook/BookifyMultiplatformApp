@@ -21,6 +21,7 @@ class Book {
   int chapters;
   List<User> _friends_reading;
   Map<String, List<Item>> _shops_items;
+  List<String> _chapters_title;
 
   //ArrayList<Emoji> emojis;
   //Calendar calendar;
@@ -32,6 +33,12 @@ class Book {
   Book(this._title, this._author, this._coverImage);
 
   Book.withSummary(this._title, this._author, this._coverImage, this._summary, this._isbn, this._ean, this._shops_items, {this.editorial="SUMA", this.language="CASTELLANO"});
+
+  List<String> get chapters_title => _chapters_title;
+
+  set chapters_title(List<String> chapters_titles){
+    _chapters_title = chapters_title;
+  }
 
   List<User> get friends_reading => _friends_reading;
 

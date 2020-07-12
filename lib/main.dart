@@ -53,11 +53,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
 
   static const TextStyle optionStyle =
   TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  /*final List<Widget> _widgetOptions = [
-    ReadingPage(Colors.white, "Reading Page"),
-    DiscoverPage(Colors.white, "Discover Page"),
-    ProfilePage(user)
-  ];*/
 
   @override
   Widget build(BuildContext context) {
@@ -73,9 +68,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         ),
       ),
 
-      // Children are the pages that will be shown by every click
-      // They should placed in order such as
-      // `page 0` will be presented when `item 0` in the [BottomNavigationBar] clicked.
       children: <Widget>[
         ReadingPage(Colors.white, "Reading Page"),
         DiscoverPage(Colors.white, "Discover Page"),

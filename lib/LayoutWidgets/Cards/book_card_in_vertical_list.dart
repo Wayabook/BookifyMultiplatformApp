@@ -1,3 +1,4 @@
+import 'package:bookifyapp/LayoutWidgets/Buttons/read_action_button.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
@@ -33,7 +34,18 @@ class BookCardInVerticalList extends StatelessWidget {
     );
   }
 
-  _makeListTile() {
+
+
+  _makeListTile()   {
+    FloatingActionButton floatingActionButton = new FloatingActionButton(
+      backgroundColor: Colors.white,
+      child: Icon(
+        Icons.beenhere,
+        color: Colors.blueGrey,
+        size: 50,
+      ),
+    );
+
     return Container(
         decoration: BoxDecoration(
             color: Colors.white,
@@ -186,15 +198,7 @@ class BookCardInVerticalList extends StatelessWidget {
                           radius: 60.0,
                           lineWidth: 3.0,
                           percent: .5,
-                          center: FloatingActionButton(
-                            backgroundColor: Colors.white,
-                            child: Icon(
-                              buttonType == ButtonType.read ?
-                              Icons.beenhere : Icons.arrow_drop_up,
-                              color: Colors.blueGrey,
-                              size: 50,
-                            ),
-                          ),
+                          center: floatingActionButton,
                           progressColor: Colors.green,
                         ),
                         /*child: FloatingActionButton(
