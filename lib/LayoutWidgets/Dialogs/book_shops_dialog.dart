@@ -15,7 +15,7 @@ class BookShopsDialog extends StatelessWidget{
   Book book;
   BookShopsDialog(this.book);
 
-  AlertDialog alertDialog;
+  Dialog alertDialog;
   bool _firstTime = true;
   BuildContext context;
   double width;
@@ -33,11 +33,11 @@ class BookShopsDialog extends StatelessWidget{
     height = MediaQuery.of(context).size.height;
 
 
-    alertDialog = new AlertDialog(
+    alertDialog = new Dialog(
       //title: const Text('Add List Title:'),
       backgroundColor: Colors.transparent,
-      content: Container(
-        height: 500,
+      child: Container(
+        height: height,
         width: width,
         child: Swiper(
           //containerHeight: 25.0,
