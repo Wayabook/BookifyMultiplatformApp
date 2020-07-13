@@ -1,5 +1,7 @@
 import 'package:bookifyapp/Models/Item.dart';
+import 'package:bookifyapp/Models/Lecture.dart';
 import 'package:bookifyapp/Models/Shop.dart';
+import 'package:bookifyapp/Models/User.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
@@ -8,17 +10,18 @@ import 'package:bookifyapp/Models/Book.dart';
 
 
 class ReadingPage extends StatelessWidget {
-  final Color color;
-  final String text;
   static const TextStyle optionStyle =
   TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  List<Book> books =  List();
 
-  ReadingPage(this.color, this.text);
+  //List<Lecture> books;
+  //List<Book> books =  List();
+  User user;
+
+  ReadingPage(this.user);
 
   @override
   Widget build(BuildContext context) {
-    Shop shop1 = new Shop.withoutIds("Casa del Libro", "https://i.pinimg.com/280x280_RS/77/56/01/77560124a4abb4053f4f95c9153ef565.jpg");
+    /*Shop shop1 = new Shop.withoutIds("Casa del Libro", "https://i.pinimg.com/280x280_RS/77/56/01/77560124a4abb4053f4f95c9153ef565.jpg");
     Shop shop2 = new Shop.withoutIds("Fnac", "https://upload.wikimedia.org/wikipedia/commons/2/2e/Fnac_Logo.svg");
     Shop shop3 = new Shop.withoutIds("El corte ingles", "https://pbs.twimg.com/profile_images/1214523397239115781/wuA5BVB4_400x400.jpg");
     Shop shop4 = new Shop.withoutIds("Taugus Books", "https://imagessl.casadellibro.com/t19/i/logo.png");
@@ -119,14 +122,16 @@ class ReadingPage extends StatelessWidget {
     books.add(book1);
     books.add(book2);
     books.add(book3);
-    books.add(book4);
+    books.add(book4);*/
 
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
+    //List<Lecture> lectures = this.user.lectures["Reading"];
+
     return Scaffold(
-      body: VerticalBookList(this.books.sublist(0, 2), this.books),
+      body: VerticalBookList(this.user.lectures["Reading"], this.user.lectures["Pending"]),
       appBar: AppBar(
-        title: Text(this.text),
+        title: Text("Reading Page"),
       ),
     );
   }

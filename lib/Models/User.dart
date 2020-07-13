@@ -12,12 +12,31 @@ class User {
   List<Genre> _interested_genres;
   String _profile_picture_url;
   Map<String, List<Book>> _book_lists;
+  Map<String, List<Lecture>> _lecture_lists;
   int _books_read;
   int _chapters_read;
   int _pages_read;
   List<User> _friends;
   /*List<User> _followers;
   List<User> _following;*/
+
+  Map<String, List<Lecture>> get lectures => this._lecture_lists;
+
+  set lectures(Map<String, List<Lecture>>  lectures){
+    this._lecture_lists = lectures;
+  }
+
+  /*List<Lecture> get bookshelf {
+    List<Lecture> books = new List();
+    for(String key in _book_lists.keys){
+      for(Lecture book in _book_lists[key]){
+        if(!books.contains(book)){
+          books.add(book);
+        }
+      }
+    }
+    return books;
+  }*/
 
   List<Book> get bookshelf {
     List<Book> books = new List();

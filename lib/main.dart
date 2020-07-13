@@ -59,7 +59,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   @override
   Widget build(BuildContext context) {
 
-    initialize_items();
+    //initialize_items();
     // Here's the custom scaffold widget
     // It takes a normal scaffold with mandatory bottom navigation bar
     // and children who are your pages
@@ -70,15 +70,26 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         ),
       ),
 
-      children: <Widget>[
-        ReadingPage(Colors.white, "Reading Page"),
+      children: _get_pages(), /*<Widget>[
+        ReadingPage(this.user),
         DiscoverPage(Colors.white, "Discover Page"),
-        ProfilePage(this.user, ProfileType.user_profile),
-      ],
+        DiscoverPage(Colors.white, "Discover Page"),
+        //ProfilePage(this.user, ProfileType.user_profile),
+      ],*/
 
       // Called when one of the [items] is tapped.
       onItemTap: (index) {},
     );
+  }
+
+  _get_pages(){
+    initialize_items();
+    return [
+      ReadingPage(this.user),
+      DiscoverPage(Colors.white, "Discover Page"),
+      DiscoverPage(Colors.white, "Discover Page"),
+      //ProfilePage(this.user, ProfileType.user_profile),
+    ];
   }
 
   initialize_items(){
@@ -167,6 +178,12 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       books.add(book2);
       books.add(book3);
       books.add(book4);
+
+      lectures.add(book1.toLecture());
+      lectures.add(book2.toLecture());
+      lectures.add(book3.toLecture());
+      lectures.add(book4.toLecture());
+
     }
 
     if(this.genres == null){
@@ -196,6 +213,9 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       Map<String, List<Book>> userLists =
       {'Reading': books, 'Pending': books, 'Read': books, 'Recommended': books, 'Custom List 1': books};
 
+      Map<String, List<Lecture>> userLectures =
+      {'Reading': lectures, 'Pending': lectures, 'Read': lectures, 'Recommended': lectures, 'Custom List 1': lectures};
+
       this.user = new User(
           "1",
           "Bill Gates",
@@ -207,6 +227,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           345,
           "https://avatars0.githubusercontent.com/u/35029261?s=460&u=c54ea4c26c7f0659c014f362e538d2927f567a4f&v=4"
       );
+      this.user.lectures = userLectures;
 
       List<User> users = new List();
       User user222 = new User(

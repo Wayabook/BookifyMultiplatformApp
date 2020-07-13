@@ -1,4 +1,5 @@
 import 'package:bookifyapp/LayoutWidgets/Cards/book_card_in_vertical_list.dart';
+import 'package:bookifyapp/Models/Lecture.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:auto_size_text/auto_size_text.dart';
@@ -11,8 +12,8 @@ class VerticalBookList extends StatefulWidget {
 
   VerticalBookList(this.readingBooks, this.pendingBooks); // : super(key: key);
 
-  final List<Book> readingBooks;
-  final List<Book> pendingBooks;
+  final List<Lecture> readingBooks;
+  final List<Lecture> pendingBooks;
 
   @override
   _VerticalBookList createState() => _VerticalBookList();
