@@ -11,7 +11,7 @@ class User {
   String _description_sentence;
   List<Genre> _interested_genres;
   String _profile_picture_url;
-  Map<String, List<Book>> _book_lists;
+  //Map<String, List<Book>> _book_lists;
   Map<String, List<Lecture>> _lecture_lists;
   int _books_read;
   int _chapters_read;
@@ -40,8 +40,8 @@ class User {
 
   List<Book> get bookshelf {
     List<Book> books = new List();
-    for(String key in _book_lists.keys){
-      for(Book book in _book_lists[key]){
+    for(String key in _lecture_lists.keys){
+      for(Book book in _lecture_lists[key]){
         if(!books.contains(book)){
           books.add(book);
         }
@@ -102,10 +102,10 @@ class User {
     _profile_picture_url = profile_picture_url;
   }
 
-  Map<String, List<Book>> get bookLists => _book_lists;
+  Map<String, List<Book>> get bookLists => _lecture_lists;
 
   set bookLists(Map<String, List<Book>> book_lists) {
-    _book_lists = book_lists;
+    _lecture_lists = book_lists;
   }
 
   User(
@@ -113,14 +113,14 @@ class User {
       this._name,
       this._description_sentence,
       this._interested_genres,
-      this._book_lists,
+      this._lecture_lists,
       this._books_read,
       this._chapters_read,
       this._pages_read,
       this._profile_picture_url
       );
 
-  User.withBookLists(this._book_lists);
+  User.withBookLists(this._lecture_lists);
   User.withProfilePicture(this._profile_picture_url);
   User.withNameAndProfilePicture(this._name, this._profile_picture_url);
 

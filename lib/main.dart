@@ -87,8 +87,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     return [
       ReadingPage(this.user),
       DiscoverPage(Colors.white, "Discover Page"),
-      DiscoverPage(Colors.white, "Discover Page"),
-      //ProfilePage(this.user, ProfileType.user_profile),
+      //DiscoverPage(Colors.white, "Discover Page"),
+      ProfilePage(this.user, ProfileType.user_profile),
     ];
   }
 
@@ -210,8 +210,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     }
 
     if(user == null) {
-      Map<String, List<Book>> userLists =
-      {'Reading': books, 'Pending': books, 'Read': books, 'Recommended': books, 'Custom List 1': books};
+      /*Map<String, List<Book>> userLists =
+      {'Reading': books, 'Pending': books, 'Read': books, 'Recommended': books, 'Custom List 1': books};*/
 
       Map<String, List<Lecture>> userLectures =
       {'Reading': lectures, 'Pending': lectures, 'Read': lectures, 'Recommended': lectures, 'Custom List 1': lectures};
@@ -221,13 +221,13 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           "Bill Gates",
           "\"Not as good as Steve Jobs\"",
           this.genres,
-          userLists,
+          userLectures,
           21,
           198,
           345,
           "https://avatars0.githubusercontent.com/u/35029261?s=460&u=c54ea4c26c7f0659c014f362e538d2927f567a4f&v=4"
       );
-      this.user.lectures = userLectures;
+      //this.user.lectures = userLectures;
 
       List<User> users = new List();
       User user222 = new User(
@@ -235,7 +235,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           "Steve Jobs",
           "\"Not as good as Steve Jobs\"",
           genres,
-          userLists,
+          userLectures,
           21,
           198,
           345,
@@ -247,7 +247,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           "Steve Jobs 1",
           "\"Not as good as Steve Jobs\"",
           genres,
-          userLists,
+          userLectures,
           21,
           198,
           345,
@@ -259,7 +259,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           "Steve Jobs 2",
           "\"Not as good as Steve Jobs\"",
           genres,
-          userLists,
+          userLectures,
           21,
           198,
           345,
@@ -271,7 +271,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           "Steve Jobs 3",
           "\"Not as good as Steve Jobs\"",
           genres,
-          userLists,
+          userLectures,
           21,
           198,
           345,
@@ -283,7 +283,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           "Steve Jobs 33",
           "\"Not as good as Steve Jobs\"",
           genres,
-          userLists,
+          userLectures,
           21,
           198,
           345,
