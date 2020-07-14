@@ -74,6 +74,23 @@ class AddFeedbackDialog extends StatelessWidget{
                   padding: EdgeInsets.fromLTRB(15, 210, 15, 10),
                   child: Container(color: Colors.blueGrey, height: 2, width: width),
                 ),
+
+                Padding(
+                  padding: EdgeInsets.fromLTRB(15, 220, 0, 0),
+                  child: ListView(
+                      children: <Widget>[
+                        Align(
+                          alignment: Alignment.center,
+                          child: Text(
+                            "¿Como estuvo?",
+                            style: TextStyle(
+                              color: Colors.blueGrey,
+                            ),
+                          ),
+                        ),
+                      ],
+                  ),
+                )
               ],
             ),
         )
@@ -81,4 +98,22 @@ class AddFeedbackDialog extends StatelessWidget{
 
     return alertDialog;
   }
+
+  /*
+  *  Padding(
+                  padding: EdgeInsets.fromLTRB(15, 220, 0, 0),
+                  child: Column(
+                      children: <Widget>[
+                        Align(
+                          alignment: Alignment.center,
+                          child: Text(
+                            "¿Como estuvo?",
+                            style: TextStyle(
+                              color: Colors.blueGrey,
+                            ),
+                          ),
+                        ),
+                      ],
+                  ),
+                )*/
 }
