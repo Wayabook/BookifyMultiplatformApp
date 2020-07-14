@@ -1,4 +1,5 @@
 import 'package:bookifyapp/LayoutWidgets/carousel_card.dart';
+import 'package:bookifyapp/Models/Lecture.dart';
 import 'package:bookifyapp/Models/Shop.dart' as prefix0;
 import 'package:flutter/material.dart';
 import 'book_page.dart';
@@ -20,12 +21,14 @@ class DiscoverPage extends StatelessWidget {
   TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   List<String> sectionsTitles = ["Latest Additions","Top Rated","More of  Novel Genre","More of Romance Genre"];
   List<Book> books =  List();
+  List<Lecture> lectures;
 
   DiscoverPage(this.color, this.text);
 
   @override
   Widget build(BuildContext context) {
 
+    this.lectures = new List();
     Shop shop1 = new Shop.withoutIds("Casa del Libro", "https://i.pinimg.com/280x280_RS/77/56/01/77560124a4abb4053f4f95c9153ef565.jpg");
     Shop shop2 = new Shop.withoutIds("Fnac", "https://www.nevada.shopping/sites/nevada.shopping/files/styles/logo/public/field/operador-logo/fnac.jpg?itok=8QS-HiJn");
     Shop shop3 = new Shop.withoutIds("El corte ingles", "https://pbs.twimg.com/profile_images/1214523397239115781/wuA5BVB4_400x400.jpg");
@@ -119,6 +122,11 @@ class DiscoverPage extends StatelessWidget {
         "2",
         shopItems);
 
+    lectures.add(book1.toLecture());
+    lectures.add(book2.toLecture());
+    lectures.add(book3.toLecture());
+    lectures.add(book4.toLecture());
+
     List<Genre> genres = new List();
     Genre genre1 = Genre("1", "Genre1", "genre1.png");
     Genre genre2 = Genre("2", "Genre2", "genre2.png");
@@ -140,8 +148,8 @@ class DiscoverPage extends StatelessWidget {
     genres.add(genre8);
     genres.add(genre9);
 
-    Map<String, List<Book>> userLists =
-    {'Reading': books, 'Pending': books, 'Read': books, 'Recommended': books/*, 'Custom List 1': books*/};
+    Map<String, List<Lecture>> userLectures =
+    {'Reading': lectures, 'Pending': lectures, 'Read': lectures, 'Recommended': lectures, 'Custom List 1': lectures};
 
     List<User> users = new List<User>();
 
@@ -150,7 +158,7 @@ class DiscoverPage extends StatelessWidget {
         "Steve Jobs",
         "\"Not as good as Steve Jobs\"",
         genres,
-        userLists,
+        userLectures,
         21,
         198,
         345,
@@ -162,7 +170,7 @@ class DiscoverPage extends StatelessWidget {
         "Steve Jobs 1",
         "\"Not as good as Steve Jobs\"",
         genres,
-        userLists,
+        userLectures,
         21,
         198,
         345,
@@ -174,7 +182,7 @@ class DiscoverPage extends StatelessWidget {
         "Steve Jobs 2",
         "\"Not as good as Steve Jobs\"",
         genres,
-        userLists,
+        userLectures,
         21,
         198,
         345,
@@ -186,7 +194,7 @@ class DiscoverPage extends StatelessWidget {
         "Steve Jobs 3",
         "\"Not as good as Steve Jobs\"",
         genres,
-        userLists,
+        userLectures,
         21,
         198,
         345,
@@ -198,7 +206,7 @@ class DiscoverPage extends StatelessWidget {
         "Steve Jobs 33",
         "\"Not as good as Steve Jobs\"",
         genres,
-        userLists,
+        userLectures,
         21,
         198,
         345,

@@ -1,4 +1,5 @@
 import 'package:bookifyapp/Models/Item.dart';
+import 'package:bookifyapp/Models/Lecture.dart';
 import 'package:bookifyapp/Models/Shop.dart';
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/Models/Book.dart';
@@ -12,12 +13,12 @@ import 'package:bookifyapp/LayoutWidgets/Dialogs/dialog_with_input_text.dart';
 import 'package:bookifyapp/Models/User.dart';
 
 
-class BookCard extends StatelessWidget {
+class BookCard<T extends Book> extends StatelessWidget {
 
   //List<Book> books;
   BuildContext context;
   BookCardType type;
-  Book book;
+  T book;
 
   BookCard(this.book, this.type);
   BookCard.option(this.type);
@@ -259,7 +260,7 @@ class BookCard extends StatelessWidget {
           } else if (this.type == BookCardType.view_all){
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => BookshelfPage()),
+              MaterialPageRoute(builder: (context) => BookshelfPage(_getUser())),
             );
           } else if (this.type == BookCardType.add_custom_list){
             showDialog(
@@ -410,15 +411,24 @@ class BookCard extends StatelessWidget {
   }
 
   _getUser() {
-    Map<String, List<Book>> userLists =
-    {'Reading': _getBooks(), 'Pending': _getBooks(), 'Read': _getBooks(), 'Recommended': _getBooks(), 'Custom List 1': _getBooks()};
+    List<Book> books = _getBooks();
+    List<Lecture> lectures = new List();
+    for(Book book in books){
+      lectures.add(book.toLecture());
+    }
+
+    Map<String, List<Lecture>> userLectures =
+    {'Reading': lectures, 'Pending': lectures, 'Read': lectures, 'Recommended': lectures, 'Custom List 1': lectures};
+
+    /*Map<String, List<Book>> userLists =
+    {'Reading': _getBooks(), 'Pending': _getBooks(), 'Read': _getBooks(), 'Recommended': _getBooks(), 'Custom List 1': _getBooks()};*/
 
     return new User(
         "1",
         "Bill Gates",
         "\"Not as good as Steve Jobs\"",
         null,
-        userLists,
+        userLectures,
         21,
         198,
         345,

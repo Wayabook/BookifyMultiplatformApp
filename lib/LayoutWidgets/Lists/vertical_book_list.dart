@@ -8,7 +8,7 @@ import 'package:bookifyapp/Enums/button_type.dart';
 import 'package:bookifyapp/LayoutWidgets/Lists/list_title.dart';
 
 
-class VerticalBookList extends StatefulWidget {
+class VerticalBookList/*<T extends Book>*/ extends StatefulWidget {
 
   VerticalBookList(this.readingBooks, this.pendingBooks); // : super(key: key);
 

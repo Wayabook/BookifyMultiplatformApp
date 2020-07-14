@@ -102,7 +102,7 @@ class User {
     _profile_picture_url = profile_picture_url;
   }
 
-  Map<String, List<Book>> get bookLists => _lecture_lists;
+  Map<String, List<Lecture>> get bookLists => _lecture_lists;
 
   set bookLists(Map<String, List<Book>> book_lists) {
     _lecture_lists = book_lists;
