@@ -7,6 +7,7 @@ import 'package:bookifyapp/Models/Book.dart';
 import 'package:bookifyapp/LayoutWidgets/BookWidgets/book_cover.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter_page_indicator/flutter_page_indicator.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 
 
@@ -76,7 +77,7 @@ class AddFeedbackDialog extends StatelessWidget{
                 ),
 
                 Padding(
-                  padding: EdgeInsets.fromLTRB(15, 220, 0, 0),
+                  padding: EdgeInsets.fromLTRB(15, 220, 15, 0),
                   child: ListView(
                       children: <Widget>[
                         Align(
@@ -88,6 +89,57 @@ class AddFeedbackDialog extends StatelessWidget{
                             ),
                           ),
                         ),
+
+                        Card(
+                          margin: EdgeInsets.fromLTRB(0, 5, 0, 5),
+                          color: Colors.blueGrey,
+                          child: Container(
+                            height: 50,
+                            child: Align(
+                              alignment: Alignment.center,
+                              child: RatingBar(
+                                initialRating: 3,
+                                minRating: 1,
+                                direction: Axis.horizontal,
+                                allowHalfRating: false,
+                                itemCount: 5,
+                                itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
+                                itemBuilder: (context, _) => Icon(
+                                  Icons.star,
+                                  color: Colors.amber,
+                                ),
+                                onRatingUpdate: (rating) {
+                                  print(rating);
+                                },
+                              ),
+                            )
+                            //width: 100,
+                          ),
+                          //child: _createListView(),
+                        ),
+
+                        Align(
+                          alignment: Alignment.center,
+                          child: Text(
+                            "¿Como te sentiste?",
+                            style: TextStyle(
+                              color: Colors.blueGrey,
+                            ),
+                          ),
+                        ),
+
+                        /*Padding(
+                          padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                          child:Card(
+                            //margin: EdgeInsets.fromLTRB(5, 0, 5, 10),
+                            color: Colors.blueGrey,
+                            child: Container(
+                              height: 100,
+                              width: 100,
+                            ),
+                            //child: _createListView(),
+                          ),
+                        )*/
                       ],
                   ),
                 )
