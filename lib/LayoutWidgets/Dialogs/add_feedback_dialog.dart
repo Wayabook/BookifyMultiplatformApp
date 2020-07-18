@@ -1,7 +1,8 @@
-import 'package:bookifyapp/LayoutWidgets/Cards/feeling_card.dart';
+import 'package:bookifyapp/LayoutWidgets/Cards/reaction_card.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/shop_item_card.dart';
 import 'package:bookifyapp/LayoutWidgets/carousel_card.dart';
 import 'package:bookifyapp/Models/Item.dart';
+import 'package:bookifyapp/Models/Lecture.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/Models/Book.dart';
@@ -17,7 +18,7 @@ import 'package:bordered_text/bordered_text.dart';
 
 class AddFeedbackDialog extends StatelessWidget{
 
-  Book book;
+  Lecture book;
   AddFeedbackDialog(this.book);
 
   Dialog alertDialog;
@@ -140,97 +141,13 @@ class AddFeedbackDialog extends StatelessWidget{
                             scrollDirection: Axis.vertical,
                             shrinkWrap: true,
                             crossAxisCount: 4,
-                            //childAspectRatio: 5/4,
-                            children: List.generate(8, (index){
-                              return FeelingCard();
-                              /*return Container(
-                              height: 40,
-                              width: 40,
-                              color: Colors.black,
-                            );*/
-                            }),
+                            childAspectRatio: ((width - 20) / 4) / (110),
+                            children: List.generate(this.book.reactions().length, (index) {
+                              return ReactionCard(this.book.reactions()[index]);
+                            },)
+                          )
 
-                          ),
                         )
-
-
-                        /*GridView.count(
-                            crossAxisCount: 2,
-                            crossAxisSpacing: 10,
-                            mainAxisSpacing: 10,
-                            children: <Widget>[
-                              Expanded(
-                                child: Container(
-                                  height: 10,
-                                  width: 10,
-                                  color: Colors.black,
-                                ),
-                              ),
-                              Expanded(
-                                child: Container(
-                                  height: 10,
-                                  width: 10,
-                                  color: Colors.black,
-                                ),
-                              ),
-                              Expanded(
-                                child: Container(
-                                  height: 10,
-                                  width: 10,
-                                  color: Colors.black,
-                                ),
-                              ),
-                              Expanded(
-                                child: Container(
-                                  height: 10,
-                                  width: 10,
-                                  color: Colors.black,
-                                ),
-                              ),
-
-                              Expanded(
-                                child: Container(
-                                  height: 10,
-                                  width: 10,
-                                  color: Colors.black,
-                                ),
-                              ),
-                              Expanded(
-                                child: Container(
-                                  height: 10,
-                                  width: 10,
-                                  color: Colors.black,
-                                ),
-                              ),
-                              Expanded(
-                                child: Container(
-                                  height: 10,
-                                  width: 10,
-                                  color: Colors.black,
-                                ),
-                              ),
-                              Expanded(
-                                child: Container(
-                                  height: 10,
-                                  width: 10,
-                                  color: Colors.black,
-                                ),
-                              )
-                            ],
-                        )*/
-
-                        /*Padding(
-                          padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                          child:Card(
-                            //margin: EdgeInsets.fromLTRB(5, 0, 5, 10),
-                            color: Colors.blueGrey,
-                            child: Container(
-                              height: 100,
-                              width: 100,
-                            ),
-                            //child: _createListView(),
-                          ),
-                        )*/
                       ],
                   ),
                 )

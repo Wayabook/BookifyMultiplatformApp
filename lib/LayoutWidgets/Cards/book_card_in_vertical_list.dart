@@ -1,6 +1,7 @@
 import 'package:bookifyapp/LayoutWidgets/Buttons/read_action_button.dart';
 import 'package:bookifyapp/LayoutWidgets/Dialogs/add_feedback_dialog.dart';
 import 'package:bookifyapp/LayoutWidgets/Dialogs/book_shops_dialog.dart';
+import 'package:bookifyapp/Models/Lecture.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
@@ -16,7 +17,7 @@ class BookCardInVerticalList extends StatelessWidget {
   String chapter_title = "Nombre capitulo";
   BuildContext context;
   ButtonType buttonType;
-  Book book;
+  Lecture book;
 
   BookCardInVerticalList(this.book, this.buttonType);
 
