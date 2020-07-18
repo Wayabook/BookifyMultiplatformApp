@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:bookifyapp/Models/Book.dart';
 import 'package:bookifyapp/LayoutWidgets/BookWidgets/book_cover.dart';
 import 'package:flutter/painting.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_page_indicator/flutter_page_indicator.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
@@ -127,6 +128,93 @@ class AddFeedbackDialog extends StatelessWidget{
                             ),
                           ),
                         ),
+
+                        /*Container(
+                          height: 200,
+                          width: double.infinity,
+                          child:
+                        )*/
+
+                        GridView.count(
+                          padding:EdgeInsets.fromLTRB(0, 10, 0, 10),
+                          scrollDirection: Axis.vertical,
+                          shrinkWrap: true,
+                          crossAxisCount: 4,
+                          childAspectRatio: 5/4,
+                          children: List.generate(8, (index){
+                            return Container(
+                              height: 40,
+                              width: 40,
+                              color: Colors.black,
+                            );
+                          }),
+
+                        ),
+
+                        /*GridView.count(
+                            crossAxisCount: 2,
+                            crossAxisSpacing: 10,
+                            mainAxisSpacing: 10,
+                            children: <Widget>[
+                              Expanded(
+                                child: Container(
+                                  height: 10,
+                                  width: 10,
+                                  color: Colors.black,
+                                ),
+                              ),
+                              Expanded(
+                                child: Container(
+                                  height: 10,
+                                  width: 10,
+                                  color: Colors.black,
+                                ),
+                              ),
+                              Expanded(
+                                child: Container(
+                                  height: 10,
+                                  width: 10,
+                                  color: Colors.black,
+                                ),
+                              ),
+                              Expanded(
+                                child: Container(
+                                  height: 10,
+                                  width: 10,
+                                  color: Colors.black,
+                                ),
+                              ),
+
+                              Expanded(
+                                child: Container(
+                                  height: 10,
+                                  width: 10,
+                                  color: Colors.black,
+                                ),
+                              ),
+                              Expanded(
+                                child: Container(
+                                  height: 10,
+                                  width: 10,
+                                  color: Colors.black,
+                                ),
+                              ),
+                              Expanded(
+                                child: Container(
+                                  height: 10,
+                                  width: 10,
+                                  color: Colors.black,
+                                ),
+                              ),
+                              Expanded(
+                                child: Container(
+                                  height: 10,
+                                  width: 10,
+                                  color: Colors.black,
+                                ),
+                              )
+                            ],
+                        )*/
 
                         /*Padding(
                           padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
