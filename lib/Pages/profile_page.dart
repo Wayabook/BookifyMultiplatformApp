@@ -15,6 +15,7 @@ import 'package:bookifyapp/LayoutWidgets/Cards/book_card.dart';
 import 'package:bookifyapp/Models/User.dart';
 import 'package:bookifyapp/Enums/profile_type.dart';
 import 'package:bookifyapp/Pages/badgets_page.dart';
+
 import 'package:bookifyapp/Pages/profile_page.dart';
 import 'dart:math';
 

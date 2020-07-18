@@ -1,3 +1,4 @@
+import 'package:bookifyapp/LayoutWidgets/Cards/feeling_card.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/shop_item_card.dart';
 import 'package:bookifyapp/LayoutWidgets/carousel_card.dart';
 import 'package:bookifyapp/Models/Item.dart';
@@ -10,6 +11,8 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_page_indicator/flutter_page_indicator.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:bordered_text/bordered_text.dart';
+
 
 
 class AddFeedbackDialog extends StatelessWidget{
@@ -129,27 +132,27 @@ class AddFeedbackDialog extends StatelessWidget{
                           ),
                         ),
 
-                        /*Container(
-                          height: 200,
+                        Container(
+                          height: 250,
                           width: double.infinity,
-                          child:
-                        )*/
-
-                        GridView.count(
-                          padding:EdgeInsets.fromLTRB(0, 10, 0, 10),
-                          scrollDirection: Axis.vertical,
-                          shrinkWrap: true,
-                          crossAxisCount: 4,
-                          childAspectRatio: 5/4,
-                          children: List.generate(8, (index){
-                            return Container(
+                          child: GridView.count(
+                            padding:EdgeInsets.fromLTRB(0, 10, 0, 10),
+                            scrollDirection: Axis.vertical,
+                            shrinkWrap: true,
+                            crossAxisCount: 4,
+                            //childAspectRatio: 5/4,
+                            children: List.generate(8, (index){
+                              return FeelingCard();
+                              /*return Container(
                               height: 40,
                               width: 40,
                               color: Colors.black,
-                            );
-                          }),
+                            );*/
+                            }),
 
-                        ),
+                          ),
+                        )
+
 
                         /*GridView.count(
                             crossAxisCount: 2,
@@ -237,6 +240,80 @@ class AddFeedbackDialog extends StatelessWidget{
     );
 
     return alertDialog;
+  }
+
+  _getGrid(){
+    return Card(
+        color: Colors.blueGrey,
+        margin: EdgeInsets.all(10),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20.0),
+        ),
+        elevation: 10,
+        child: Row(
+          children: <Widget>[
+            Container(
+              //color: Colors.white,
+                width: 50,
+                height: 100,
+                child: FittedBox(
+                  fit: BoxFit.contain,
+                  child: BorderedText(
+                    strokeWidth: 1.0,
+                    strokeColor: Colors.white,
+                    child: Text(
+                      "2",
+                      style: TextStyle(
+                          color: Colors.blueGrey,
+                          decoration: TextDecoration.none,
+                          //decorationColor: Colors.,
+                          decorationThickness: 1
+                      ),
+                    ),
+                  ),
+                  /*Text(
+                          (index + 1).toString(),
+                          style: TextStyle(
+                            color: Colors.blueGrey,
+                            fontWeight: FontWeight.bold,
+                            //height: double.infinity,
+                          ),
+                        ),*/
+                  //Icon(Icons.filter_1)
+                )
+            ),
+
+            Container(
+                width: 110,
+                height: double.infinity,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: Colors.white
+                ),
+                child: Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        Image.asset(
+                          "images/genre1.png",
+                          height: 50,
+                          width: 50,
+                        ),
+
+                        Text("Misterious",
+                          style: TextStyle(
+                            color: Colors.blueGrey,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        )
+                      ],
+                    )
+                )
+            ),
+          ],
+        )
+    );
   }
 
   /*
