@@ -16,16 +16,35 @@ class _ReactionCard extends State<ReactionCard> {
 
   void changeText() {
     setState(() {
-      if(tapped = false){
+      if(tapped == false){
         tapped = true;
+        text = widget.reaction.percentage.toString() + "%";
       }
-      text = "99";
     });
   }
 
   @override
-  Widget build(BuildContext context) {
+  void initState() {
+    super.initState();
     text = widget.reaction.name;
+    //color = Colors.transparent;
+  }
+  
+  _getBorder(enabled){
+    var width = 0.0;
+    if(enabled)
+      width = 2.0;
+    
+    return Border(
+      top: BorderSide(color: Colors.white, width: width),
+      bottom: BorderSide(color: Colors.white, width: width),
+      left: BorderSide(color: Colors.white, width: width),
+      right: BorderSide(color: Colors.white, width: width),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Container(
         height: double.infinity,
         width: double.infinity,
@@ -34,9 +53,7 @@ class _ReactionCard extends State<ReactionCard> {
           child:  Card(
               color: Colors.blueGrey,
               margin: EdgeInsets.all(10),
-              /*shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20.0),
-        ),*/
+              shape: tapped ? _getBorder(true) : _getBorder(false),
               elevation: 10,
               child: Column(
                 children: <Widget>[
@@ -51,7 +68,7 @@ class _ReactionCard extends State<ReactionCard> {
               ),*/
 
                   Text(
-                    "$text",
+                    text,
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 8,
