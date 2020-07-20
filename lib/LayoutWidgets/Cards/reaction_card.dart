@@ -63,10 +63,6 @@ class _ReactionCard extends State<ReactionCard> {
                     width: 50,
                   ),
 
-                  /*Padding(
-                padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
-              ),*/
-
                   Text(
                     text,
                     style: TextStyle(

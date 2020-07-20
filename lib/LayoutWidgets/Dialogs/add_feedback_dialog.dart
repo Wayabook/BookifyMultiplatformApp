@@ -134,8 +134,9 @@ class AddFeedbackDialog extends StatelessWidget{
                         ),
 
                         Container(
-                          height: 250,
+                          height: 190,
                           width: double.infinity,
+                          //color: Colors.black,
                           child: GridView.count(
                             padding:EdgeInsets.fromLTRB(0, 10, 0, 10),
                             scrollDirection: Axis.vertical,
@@ -146,7 +147,34 @@ class AddFeedbackDialog extends StatelessWidget{
                               return ReactionCard(this.book.reactions()[index]);
                             },)
                           )
+                        ),
 
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: <Widget>[
+                              Align(
+                                alignment: Alignment.center,
+                                child: Icon(
+                                  Icons.comment,
+                                  //color: Colors.black,
+                                  size: 25,
+                                ),
+                              ),
+
+                              Align(
+                                alignment: Alignment.center,
+                                child: Text(
+                                  "12 comentarios",
+                                  style: TextStyle(
+                                    color: Colors.blueGrey,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         )
                       ],
                   ),
