@@ -39,10 +39,102 @@ class CommentCard extends StatelessWidget {
             child: Container(color: Colors.white, height: 0.5, width: double.infinity),
           ),
 
-          SummaryTextWidget(
-            text: "Me encantaron todos los libros de la saga. Una historia muy entretenida y que te hace sentir todo lo que le sucede a los personajes. Me encanta la forma en la que todo es muy real. Las buenas y malas decisiones de los personajes son completamente creibles. Se leen muy rápido y los recomiendo :)",
-            backgroundColor: Colors.blueGrey,
-          ),
+          Container(
+            color: Colors.blueGrey,
+            child:  Padding(
+              padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
+              child: Row(
+                children: <Widget>[
+                  Flexible(
+                    flex: 3,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        Align(
+                          alignment: Alignment.center,
+                          child: Icon(
+                            Icons.supervised_user_circle,
+                            color: Colors.black,
+                            size: 30,
+                          ),
+                        ),
+
+                        Align(
+                          alignment: Alignment.center,
+                          child: Text(
+                            "12 me gusta",
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 10,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  Flexible(
+                    flex: 3,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        Align(
+                          alignment: Alignment.center,
+                          child: Icon(
+                            Icons.supervised_user_circle,
+                            color: Colors.black,
+                            size: 30,
+                          ),
+                        ),
+
+                        Align(
+                          alignment: Alignment.center,
+                          child: Text(
+                            "12 me gusta",
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 10,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  Flexible(
+                    flex: 3,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        Align(
+                          alignment: Alignment.center,
+                          child: Icon(
+                            Icons.supervised_user_circle,
+                            color: Colors.black,
+                            size: 30,
+                          ),
+                        ),
+
+                        Align(
+                          alignment: Alignment.center,
+                          child: Text(
+                            "12 me gusta",
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 10,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            ),
+          )
 
 
         ],
