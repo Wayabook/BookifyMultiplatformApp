@@ -1,4 +1,5 @@
 import 'package:bookifyapp/Enums/profile_type.dart';
+import 'package:bookifyapp/LayoutWidgets/Cards/user_preview_card.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:auto_size_text/auto_size_text.dart';
@@ -93,7 +94,8 @@ class _VerticalUserList extends State<VerticalUserList> {
         Navigator.of(context)
             .push(MaterialPageRoute(builder: (context) => ProfilePage(widget.users[index], ProfileType.friend_profile)));
       },
-      child: Card(
+      child: UserPreviewCard(widget.users[index]),
+      /*child: Card(
         /*shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(7.0),
       ),*/
@@ -107,7 +109,7 @@ class _VerticalUserList extends State<VerticalUserList> {
           ),
           child: _makeListTile(index),
         ),
-      ),
+      ),*/
     );
   }
 

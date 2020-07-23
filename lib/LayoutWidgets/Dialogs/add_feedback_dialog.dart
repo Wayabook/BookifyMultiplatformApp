@@ -1,3 +1,4 @@
+import 'package:bookifyapp/LayoutWidgets/Cards/comment_card.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/reaction_card.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/shop_item_card.dart';
 import 'package:bookifyapp/LayoutWidgets/carousel_card.dart';
@@ -175,7 +176,9 @@ class AddFeedbackDialog extends StatelessWidget{
                               ),
                             ],
                           ),
-                        )
+                        ),
+
+                        CommentCard(),
                       ],
                   ),
                 )
