@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 
 class SummaryTextWidget extends StatefulWidget {
   final String text;
+  Color backgroundColor;
 
-  SummaryTextWidget({@required this.text});
+  SummaryTextWidget({@required this.text, this.backgroundColor = Colors.white});
 
   @override
   _SummaryTextWidgetState createState() => new _SummaryTextWidgetState();
@@ -31,6 +32,7 @@ class _SummaryTextWidgetState extends State<SummaryTextWidget> {
   @override
   Widget build(BuildContext context) {
     return new Container(
+      color: widget.backgroundColor,
       padding: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
       child: secondHalf.isEmpty
           ? new Text(firstHalf, textAlign: TextAlign.justify)

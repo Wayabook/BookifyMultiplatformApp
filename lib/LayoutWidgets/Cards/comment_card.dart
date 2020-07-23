@@ -1,4 +1,5 @@
 
+import 'package:bookifyapp/LayoutWidgets/BookWidgets/summary_text.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/user_preview_card.dart';
 import 'package:bookifyapp/Models/User.dart';
 import 'package:flutter/cupertino.dart';
@@ -25,7 +26,25 @@ class CommentCard extends StatelessWidget {
               198,
               345,
               "https://avatars0.githubusercontent.com/u/35029261?s=460&u=c54ea4c26c7f0659c014f362e538d2927f567a4f&v=4"
-          ), height: 50, fontSize: 15, card: false,),
+            ), height: 50, fontSize: 15, card: false,
+          ),
+
+          SummaryTextWidget(
+            text: "Me encantaron todos los libros de la saga. Una historia muy entretenida y que te hace sentir todo lo que le sucede a los personajes. Me encanta la forma en la que todo es muy real. Las buenas y malas decisiones de los personajes son completamente creibles. Se leen muy rápido y los recomiendo :)",
+            backgroundColor: Colors.blueGrey,
+          ),
+
+          Padding(
+            padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
+            child: Container(color: Colors.white, height: 0.5, width: double.infinity),
+          ),
+
+          SummaryTextWidget(
+            text: "Me encantaron todos los libros de la saga. Una historia muy entretenida y que te hace sentir todo lo que le sucede a los personajes. Me encanta la forma en la que todo es muy real. Las buenas y malas decisiones de los personajes son completamente creibles. Se leen muy rápido y los recomiendo :)",
+            backgroundColor: Colors.blueGrey,
+          ),
+
+
         ],
       )
     );
