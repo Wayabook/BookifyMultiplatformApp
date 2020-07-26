@@ -4,6 +4,7 @@ import 'package:bookifyapp/LayoutWidgets/Cards/user_preview_card.dart';
 import 'package:bookifyapp/Models/User.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:like_button/like_button.dart';
 
 class CommentCard extends StatelessWidget {
 
@@ -51,7 +52,39 @@ class CommentCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
-                        Align(
+                        LikeButton(
+                          size: 30,
+                          /*circleColor:
+                          CircleColor(start: Color(0xff00ddff), end: Color(0xff0099cc)),
+                          bubblesColor: BubblesColor(
+                            dotPrimaryColor: Color(0xff33b5e5),
+                            dotSecondaryColor: Color(0xff0099cc),
+                          ),*/
+                          /*likeBuilder: (bool isLiked) {
+                            return Icon(
+                              Icons.home,
+                              color: isLiked ? Colors.deepPurpleAccent : Colors.grey,
+                              size: 30,
+                            );
+                          },*/
+                          likeCount: 999,
+                          /*countBuilder: (int count, bool isLiked, String text) {
+                            var color = isLiked ? Colors.deepPurpleAccent : Colors.grey;
+                            Widget result;
+                            if (count == 0) {
+                              result = Text(
+                                "love",
+                                style: TextStyle(color: color),
+                              );
+                            } else
+                              result = Text(
+                                text,
+                                style: TextStyle(color: color),
+                              );
+                            return result;
+                          },*/
+                        ),
+                        /*Align(
                           alignment: Alignment.center,
                           child: Icon(
                             Icons.supervised_user_circle,
@@ -66,6 +99,35 @@ class CommentCard extends StatelessWidget {
                             "12 me gusta",
                             style: TextStyle(
                               color: Colors.black,
+                              fontSize: 10,
+                            ),
+                          ),
+                        ),*/
+                      ],
+                    ),
+                  ),
+
+                  Flexible(
+                    flex: 3,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        Align(
+                          alignment: Alignment.center,
+                          child: Icon(
+                            Icons.insert_comment,
+                            color: Colors.grey,
+                            size: 30,
+                          ),
+                        ),
+
+                        Align(
+                          alignment: Alignment.center,
+                          child: Text(
+                            "12 respuestas",
+                            style: TextStyle(
+                              color: Colors.grey,
                               fontSize: 10,
                             ),
                           ),
@@ -80,54 +142,26 @@ class CommentCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
+
                         Align(
                           alignment: Alignment.center,
                           child: Icon(
-                            Icons.supervised_user_circle,
-                            color: Colors.black,
+                            Icons.share,
+                            color: Colors.grey,
                             size: 30,
                           ),
                         ),
 
-                        Align(
+                        /*Align(
                           alignment: Alignment.center,
                           child: Text(
                             "12 me gusta",
                             style: TextStyle(
-                              color: Colors.black,
+                              color: Colors.grey,
                               fontSize: 10,
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ),
-
-                  Flexible(
-                    flex: 3,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        Align(
-                          alignment: Alignment.center,
-                          child: Icon(
-                            Icons.supervised_user_circle,
-                            color: Colors.black,
-                            size: 30,
-                          ),
-                        ),
-
-                        Align(
-                          alignment: Alignment.center,
-                          child: Text(
-                            "12 me gusta",
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 10,
-                            ),
-                          ),
-                        ),
+                        ),*/
                       ],
                     ),
                   )
