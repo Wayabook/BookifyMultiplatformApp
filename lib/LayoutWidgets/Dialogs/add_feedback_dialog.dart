@@ -1,9 +1,11 @@
 import 'package:bookifyapp/LayoutWidgets/Cards/comment_card.dart';
+import 'package:bookifyapp/LayoutWidgets/Cards/main_comment_card.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/reaction_card.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/shop_item_card.dart';
 import 'package:bookifyapp/LayoutWidgets/carousel_card.dart';
 import 'package:bookifyapp/Models/Item.dart';
 import 'package:bookifyapp/Models/Lecture.dart';
+import 'package:bookifyapp/Pages/comment_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/Models/Book.dart';
@@ -178,10 +180,71 @@ class AddFeedbackDialog extends StatelessWidget{
                           ),
                         ),
 
-                        CommentCard(),
+                        //CommentCard(),
+                        GestureDetector(
+                          onTap: (){
+                            Navigator.of(context)
+                                .push(MaterialPageRoute(builder: (context) => CommentPage()));
+                          },
+                          child: MainCommentCard(),
+                        )
                       ],
                   ),
-                )
+                ),
+
+                /* Comment option on bottom
+                Positioned(
+                    bottom: 0,
+                    child: Container(
+                        height: 60,
+                        width: MediaQuery.of(context).size.width,
+                        color: Colors.blueGrey,
+                        child:  Padding(
+                          padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
+                          child: Container(
+                            color: Colors.white,
+                            child: Row(
+                              children: [
+                                Flexible(
+                                  flex: 8,
+                                  child: TextField(
+                                    keyboardType: TextInputType.multiline,
+                                    maxLines: null, //grow automatically
+                                    //focusNode: mrFocus,
+                                    //controller: _textController,
+                                    //onSubmitted: currentIsComposing ? _handleSubmitted : null,
+                                    decoration: new InputDecoration.collapsed(
+                                        hintText: 'Add comment',
+                                    ),
+                                  ),
+                                ),
+
+                                Flexible(
+                                  flex: 2,
+                                  child: Align(
+                                    alignment: Alignment.center,
+                                    child: Icon(
+                                      Icons.send,
+                                      color: Colors.black,
+                                      size: 30,
+                                    ),
+                                  ),
+                                )
+
+                                /*Align(
+                                  alignment: Alignment.center,
+                                  child: Icon(
+                                    Icons.send,
+                                    color: Colors.black,
+                                    size: 30,
+                                  ),
+                                ),*/
+                              ],
+                            ),
+                          ),
+                        )
+                    )
+                ),*/
               ],
             ),
         )

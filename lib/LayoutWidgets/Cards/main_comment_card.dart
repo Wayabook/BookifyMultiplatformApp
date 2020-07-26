@@ -181,18 +181,19 @@ class MainCommentCard extends StatelessWidget {
   }
 
   _getSubCommentsList(){
-    /*return Container(
+    return Container(
       color: Colors.blueGrey,
       child: Padding(
         padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
-        child: ListView.builder(
-          itemCount: 4,
-          itemBuilder: (BuildContext context, int index){
-            return SubCommentCard();
-          },
-        ),
+        child: Column(
+          children: [
+            SubCommentCard(),
+            SubCommentCard(),
+            SubCommentCard(),
+          ],
+        )
       ),
-    );*/
+    );
 
     /*return ListView.builder(
       itemCount: 4,

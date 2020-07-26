@@ -209,7 +209,7 @@ class ProfilePage extends StatelessWidget {
 
               Container(color: Colors.blueGrey, height: 105, width: 2,),
 
-              InfoRow.withIcon(RowType.icon_image,  "CHAPTERS READ", Icons.collections_bookmark,  user.chaptersRead.toString(), width_per_child, 105),
+              InfoRow.withIcon(RowType.icon_image,  "CHAPS READ", Icons.collections_bookmark,  user.chaptersRead.toString(), width_per_child, 105),
 
               Container(color: Colors.blueGrey, height: 105, width: 2,),
 
