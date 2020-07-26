@@ -1,74 +1,13 @@
-
 import 'package:bookifyapp/LayoutWidgets/BookWidgets/summary_text.dart';
-import 'package:bookifyapp/LayoutWidgets/Cards/sub_comment_card.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/user_preview_card.dart';
 import 'package:bookifyapp/Models/User.dart';
-import 'package:expandable/expandable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:like_button/like_button.dart';
 
-import 'main_comment_card.dart';
+class SubCommentCard extends StatelessWidget {
 
-
-
-class CommentCard extends StatefulWidget {
-  @override
-  _MyExpanableCardViewFlutterState createState() =>
-      _MyExpanableCardViewFlutterState();
-}
-
-class _MyExpanableCardViewFlutterState
-    extends State<CommentCard> {
-  //controller for TextField
-  final username_controller = TextEditingController();
-  final password_controller = TextEditingController();
-
-  @override
-  Widget build(BuildContext context) {
-    return ExpandableNotifier(  // <-- Provides ExpandableController to its children
-      child: Column(
-        children: [
-          Expandable(           // <-- Driven by ExpandableController from ExpandableNotifier
-            collapsed: ExpandableButton(  // <-- Expands when tapped on the cover photo
-              child: MainCommentCard()//buildCoverPhoto(),
-            ),
-            expanded: Column(
-                children: [
-                  MainCommentCard(subComments: true,),//buildAllPhotos(),
-                  /*ExpandableButton(       // <-- Collapses when tapped on
-                    child: Text("Back"),
-                  ),*/
-                ]
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-/*class StarDisplay extends StatelessWidget {
-  final int value;
-  const StarDisplay({Key key, this.value = 0})
-      : assert(value != null),
-        super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: List.generate(5, (index) {
-        return Icon(
-          index < value ? Icons.star : Icons.star_border,
-        );
-      }),
-    );
-  }
-}*/
-
-/*class CommentCard extends StatelessWidget {
-
-  CommentCard();
+  SubCommentCard();
 
   @override
   Widget build(BuildContext context) {
@@ -169,34 +108,19 @@ class _MyExpanableCardViewFlutterState
 
                     Flexible(
                       flex: 3,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: <Widget>[
-                          Align(
-                            alignment: Alignment.center,
-                            child: Icon(
-                              Icons.insert_comment,
-                              color: Colors.grey,
-                              size: 30,
-                            ),
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: Text(
+                          "Responder",
+                          style: TextStyle(
+                            color: Colors.grey,
+                            fontSize: 10,
                           ),
-
-                          Align(
-                            alignment: Alignment.center,
-                            child: Text(
-                              "12 respuestas",
-                              style: TextStyle(
-                                color: Colors.grey,
-                                fontSize: 10,
-                              ),
-                            ),
-                          ),
-                        ],
+                        ),
                       ),
                     ),
 
-                    Flexible(
+                    /*Flexible(
                       flex: 3,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -213,15 +137,22 @@ class _MyExpanableCardViewFlutterState
                           ),
                         ],
                       ),
-                    )
+                    )*/
                   ],
                 ),
               ),
-            )
+
+
+            ),
+
+            /*Padding(
+              padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
+              child: Container(color: Colors.white, height: 0.5, width: double.infinity),
+            ),*/
 
 
           ],
         )
     );
-  }*/
-//}
+  }
+}
