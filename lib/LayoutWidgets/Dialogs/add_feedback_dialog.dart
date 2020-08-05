@@ -180,14 +180,18 @@ class AddFeedbackDialog extends StatelessWidget{
                           ),
                         ),
 
-                        //CommentCard(),
-                        GestureDetector(
+                        MainCommentCard(fromDialog: true),
+                        MainCommentCard(fromDialog: true),
+                        MainCommentCard(fromDialog: true),
+                        MainCommentCard(fromDialog: true),
+
+                        /*GestureDetector(
                           onTap: (){
                             Navigator.of(context)
                                 .push(MaterialPageRoute(builder: (context) => CommentPage()));
                           },
                           child: MainCommentCard(),
-                        )
+                        )*/
                       ],
                   ),
                 ),

@@ -16,6 +16,13 @@ class CommentPage extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    return  MainCommentCard(subComments: true,);
+    return Scaffold(
+      body: Container(
+        //child:  _createListView(),
+        child: MainCommentCard(subComments: true,),
+      ),
+      appBar: AppBar(title: Text("01 : Chapter name")),
+    );
+    //return  MainCommentCard(subComments: true,);
   }
 }
