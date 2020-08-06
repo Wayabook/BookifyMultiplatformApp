@@ -9,8 +9,15 @@ import 'package:like_button/like_button.dart';
 
 class MainCommentCard extends StatelessWidget {
 
-  bool subComments, fromDialog;
-  MainCommentCard({this.subComments = false, this.fromDialog = false});
+  bool subComments;
+  bool fromDialog;
+  List<SubCommentCard> subCommentsList;
+  MainCommentCard({
+    this.subComments = false,
+    this.fromDialog = false,
+    this.subCommentsList = const []
+    //this.subCommentsList = new List();
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -199,26 +206,18 @@ class MainCommentCard extends StatelessWidget {
   }
 
   _getSubCommentsList(){
+    List<Widget> subCommentsColumn = new List();
+    if(this.subCommentsList != null){
+      subCommentsColumn.addAll(this.subCommentsList);
+    }
     return Container(
       color: Colors.blueGrey,
       child: Padding(
         padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
         child: Column(
-          children: [
-            SubCommentCard(),
-            SubCommentCard(),
-            SubCommentCard(),
-            SubCommentCard(),
-          ],
+          children: subCommentsColumn,
         ),
       ),
     );
-
-    /*return ListView.builder(
-      itemCount: 4,
-      itemBuilder: (BuildContext context, int index){
-        return SubCommentCard();
-      },
-    );*/
   }
 }

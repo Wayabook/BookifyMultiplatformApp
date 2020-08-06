@@ -1,4 +1,5 @@
 import 'package:bookifyapp/LayoutWidgets/Cards/main_comment_card.dart';
+import 'package:bookifyapp/LayoutWidgets/Cards/sub_comment_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 
@@ -17,6 +18,13 @@ class CommentPage extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
+    List<SubCommentCard> subComments = new List();
+
+    subComments.add(new SubCommentCard());
+    subComments.add(new SubCommentCard());
+    subComments.add(new SubCommentCard());
+
+
     return Scaffold(
       body: Container(
         height: MediaQuery.of(context).size.height,
@@ -26,7 +34,7 @@ class CommentPage extends StatelessWidget{
           children: [
             Flexible(
               flex: 9,
-              child: MainCommentCard(subComments: true,),
+              child: MainCommentCard(subComments: true, subCommentsList: subComments,),
             ),
 
 
