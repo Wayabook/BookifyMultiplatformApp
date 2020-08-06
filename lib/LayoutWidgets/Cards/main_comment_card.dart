@@ -7,11 +7,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:like_button/like_button.dart';
 
-class MainCommentCard extends StatelessWidget {
+class MainCommentCard extends StatefulWidget {
 
   bool subComments;
   bool fromDialog;
   List<SubCommentCard> subCommentsList;
+
   MainCommentCard({
     this.subComments = false,
     this.fromDialog = false,
@@ -19,9 +20,23 @@ class MainCommentCard extends StatelessWidget {
     //this.subCommentsList = new List();
   });
 
+  _MainCommentCard __mainCommentCard = new _MainCommentCard();
+
+  @override
+  _MainCommentCard createState() => __mainCommentCard;
+
+  addSubComment(String comment){
+    __mainCommentCard.addSubComment(comment);
+  }
+}
+
+class _MainCommentCard extends State<MainCommentCard>{
+
+  Container subCommentsContainer;
+
   @override
   Widget build(BuildContext context) {
-    if (fromDialog) {
+    if (widget.fromDialog) {
       return GestureDetector(
         onTap: (){
           Navigator.of(context)
@@ -36,6 +51,11 @@ class MainCommentCard extends StatelessWidget {
   }
 
   _getCard(){
+
+    if(widget.subComments) {
+      subCommentsContainer = _getSubCommentsContainer();
+    }
+
     return Card(
         elevation: 10,
         //margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
@@ -191,7 +211,7 @@ class MainCommentCard extends StatelessWidget {
                 child: Container(color: Colors.white, height: 0.5, width: double.infinity),
               ),
 
-              subComments ? _getSubCommentsList() : Padding(
+              widget.subComments ? subCommentsContainer : Padding(
                 padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
                 child: Container(color: Colors.white, height: 0.5, width: double.infinity),
               ),
@@ -205,10 +225,19 @@ class MainCommentCard extends StatelessWidget {
     );
   }
 
-  _getSubCommentsList(){
+  addSubComment(String comment){
+    SubCommentCard newComment = SubCommentCard(text: comment,);
+    widget.subCommentsList.add(newComment);
+    setState(() {
+      subCommentsContainer = _getSubCommentsContainer();
+    });
+    print(comment);
+  }
+
+  _getSubCommentsContainer(){
     List<Widget> subCommentsColumn = new List();
-    if(this.subCommentsList != null){
-      subCommentsColumn.addAll(this.subCommentsList);
+    if(widget.subCommentsList != null){
+      subCommentsColumn.addAll(widget.subCommentsList);
     }
     return Container(
       color: Colors.blueGrey,
@@ -221,3 +250,5 @@ class MainCommentCard extends StatelessWidget {
     );
   }
 }
+
+

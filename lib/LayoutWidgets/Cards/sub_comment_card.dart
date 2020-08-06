@@ -7,7 +7,10 @@ import 'package:like_button/like_button.dart';
 
 class SubCommentCard extends StatelessWidget {
 
-  SubCommentCard();
+  String text;
+  SubCommentCard({
+    this.text = "Me encantaron todos los libros de la saga. Una historia muy entretenida y que te hace sentir todo lo que le sucede a los personajes. Me encanta la forma en la que todo es muy real. Las buenas y malas decisiones de los personajes son completamente creibles. Se leen muy rápido y los recomiendo :)",
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +33,7 @@ class SubCommentCard extends StatelessWidget {
             ),
 
             SummaryTextWidget(
-              text: "Me encantaron todos los libros de la saga. Una historia muy entretenida y que te hace sentir todo lo que le sucede a los personajes. Me encanta la forma en la que todo es muy real. Las buenas y malas decisiones de los personajes son completamente creibles. Se leen muy rápido y los recomiendo :)",
+              text: this.text,
               backgroundColor: Colors.blueGrey,
             ),
 

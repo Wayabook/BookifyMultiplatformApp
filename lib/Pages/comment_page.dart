@@ -5,6 +5,9 @@ import 'package:flutter/painting.dart';
 
 class CommentPage extends StatelessWidget{
 
+  MainCommentCard mainCommentCard;
+  List<SubCommentCard> subComments;
+  String newComment;
 
   CommentPage();
 
@@ -18,11 +21,12 @@ class CommentPage extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    List<SubCommentCard> subComments = new List();
+    subComments = new List();
+    subComments.add(new SubCommentCard());
+    subComments.add(new SubCommentCard());
+    subComments.add(new SubCommentCard());
 
-    subComments.add(new SubCommentCard());
-    subComments.add(new SubCommentCard());
-    subComments.add(new SubCommentCard());
+    mainCommentCard = MainCommentCard(subComments: true, subCommentsList: subComments,);
 
 
     return Scaffold(
@@ -34,7 +38,7 @@ class CommentPage extends StatelessWidget{
           children: [
             Flexible(
               flex: 9,
-              child: MainCommentCard(subComments: true, subCommentsList: subComments,),
+              child: mainCommentCard,
             ),
 
 
@@ -53,16 +57,22 @@ class CommentPage extends StatelessWidget{
                           //border: InputBorder,
                             hintText: 'Add Comment...'
                         ),
+                        onChanged: (value){
+                          newComment = value;
+                        },
                       ),
                     ),
 
                     Flexible(
                       flex: 1,
-                      child: Icon(
-                        Icons.send,
-                        color: Colors.yellow,
-                        size: 30,
-                      ),
+                      child: GestureDetector(
+                        child: Icon(
+                          Icons.send,
+                          color: Colors.yellow,
+                          size: 30,
+                        ),
+                        onTap: _addComment,
+                      )
                     ),
                   ],
                 ),
@@ -76,32 +86,8 @@ class CommentPage extends StatelessWidget{
     //return  MainCommentCard(subComments: true,);
   }
 
-  _getAddCommentSection(){
-    return Card(
-        margin: EdgeInsets.fromLTRB(0, 5, 0, 5),
-        color: Colors.blueGrey,
-        child: Row(
-          children: [
-            TextField(
-              decoration: InputDecoration(
-                //border: InputBorder,
-                  hintText: 'Add Comment...'
-              ),
-            ),
 
-            Align(
-              alignment: Alignment.centerRight,
-              child: Icon(
-                Icons.send,
-                color: Colors.yellow,
-                size: 30,
-              ),
-            ),
-          ],
-        ),
-    );
-    return Row(
-
-    );
+  _addComment(){
+    mainCommentCard.addSubComment(newComment);
   }
 }
