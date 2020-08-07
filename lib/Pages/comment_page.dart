@@ -3,32 +3,47 @@ import 'package:bookifyapp/LayoutWidgets/Cards/sub_comment_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 
-class CommentPage extends StatelessWidget{
+class CommentPage extends StatefulWidget {
 
-  MainCommentCard mainCommentCard;
-  List<SubCommentCard> subComments;
-  String newComment;
 
   CommentPage();
 
-  /*Dialog alertDialog;
+/*Dialog alertDialog;
   bool _firstTime = true;
   BuildContext context;
   double width;
   double height;*/
 
+  @override
+  _CommentPage createState() => _CommentPage();
+}
 
+class _CommentPage extends State<CommentPage>{
+
+  List<Widget> comments;
+  List<SubCommentCard> subComments;
+  MainCommentCard mainCommentCard;
+  String newComment;
 
   @override
-  Widget build(BuildContext context) {
+  void initState() {
+
+    comments = new List();
+    mainCommentCard = MainCommentCard();
     subComments = new List();
     subComments.add(new SubCommentCard());
     subComments.add(new SubCommentCard());
     subComments.add(new SubCommentCard());
+    subComments.add(new SubCommentCard());
+    subComments.add(new SubCommentCard());
 
-    mainCommentCard = MainCommentCard(subComments: true, subCommentsList: subComments,);
+    comments.add(mainCommentCard);
+    comments.addAll(subComments);
+    super.initState();
+  }
 
-
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
         height: MediaQuery.of(context).size.height,
@@ -38,7 +53,14 @@ class CommentPage extends StatelessWidget{
           children: [
             Flexible(
               flex: 9,
-              child: mainCommentCard,
+              child: ListView.builder(
+                  shrinkWrap: true,
+                  padding: const EdgeInsets.all(8),
+                  itemCount: this.comments.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return this.comments[index];
+                  }
+              ),
             ),
 
 
