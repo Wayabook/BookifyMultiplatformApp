@@ -15,12 +15,7 @@ class MainCommentCard extends StatelessWidget {
   //_MainCommentCard __mainCommentCard;
 
   MainCommentCard({
-    //this.subComments = false,
     this.fromDialog = false,
-    //this.subCommentsList = const [],
-    //__mainCommentCard = new _MainCommentCard(subCommentsList);
-
-    //this.subCommentsList = new List();
   });
 
   @override

@@ -35,7 +35,7 @@ class _SummaryTextWidgetState extends State<SummaryTextWidget> {
       color: widget.backgroundColor,
       padding: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
       child: secondHalf.isEmpty
-          ? new Text(firstHalf, textAlign: TextAlign.justify)
+          ? new SizedBox(width: double.infinity, child: Text(firstHalf, textAlign: TextAlign.left),)
           : new Column(
         children: <Widget>[
           new Text(flag ? (firstHalf + "...") : (firstHalf + secondHalf), textAlign: TextAlign.justify),

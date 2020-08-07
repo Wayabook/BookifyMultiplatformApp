@@ -110,6 +110,9 @@ class _CommentPage extends State<CommentPage>{
 
 
   _addComment(){
-    mainCommentCard.addSubComment(newComment);
+    SubCommentCard subCommentCard = SubCommentCard(text: newComment,);
+    setState(() {
+      this.comments.add(subCommentCard);
+    });
   }
 }
