@@ -15,6 +15,7 @@ import 'package:bookifyapp/Models/Item.dart';
 
 
 class DiscoverPage extends StatelessWidget {
+
   final Color color;
   final String text;
   static const TextStyle optionStyle =

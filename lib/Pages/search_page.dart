@@ -1,4 +1,5 @@
 import 'package:bookifyapp/Models/Item.dart';
+import 'package:bookifyapp/Models/Lecture.dart';
 import 'package:bookifyapp/Models/Shop.dart';
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/LayoutWidgets/search_book_or_person.dart';
@@ -109,16 +110,16 @@ class SearchPage extends StatelessWidget {
         "2",
         shopItems);
 
-    List<Book> books =  List();
-    books.add(book1);
-    books.add(book2);
-    books.add(book3);
-    books.add(book4);
+    List<Lecture> books =  List();
+    books.add(book1.toLecture());
+    books.add(book2.toLecture());
+    books.add(book3.toLecture());
+    books.add(book4.toLecture());
 
-    books.add(book1);
-    books.add(book2);
-    books.add(book3);
-    books.add(book4);
+    books.add(book1.toLecture());
+    books.add(book2.toLecture());
+    books.add(book3.toLecture());
+    books.add(book4.toLecture());
 
 
 
@@ -143,7 +144,7 @@ class SearchPage extends StatelessWidget {
     genres.add(genre8);
     genres.add(genre9);
 
-    Map<String, List<Book>> userLists =
+    Map<String, List<Lecture>> userLists =
     {'Reading': books, 'Pending': books, 'Read': books, 'Recommended': books/*, 'Custom List 1': books*/};
 
     List<User> users = new List<User>();
@@ -218,15 +219,15 @@ class SearchPage extends StatelessWidget {
     book2.friends_reading = users.sublist(0, 2);
     book3.friends_reading = users.sublist(0, 1);
 
-    books.add(book1);
-    books.add(book2);
-    books.add(book3);
-    books.add(book4);
+    books.add(book1.toLecture());
+    books.add(book2.toLecture());
+    books.add(book3.toLecture());
+    books.add(book4.toLecture());
 
-    books.add(book1);
-    books.add(book2);
-    books.add(book3);
-    books.add(book4);
+    books.add(book1.toLecture());
+    books.add(book2.toLecture());
+    books.add(book3.toLecture());
+    books.add(book4.toLecture());
 
 
     return SearchBookOrPerson(books, users);
