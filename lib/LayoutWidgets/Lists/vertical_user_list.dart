@@ -37,7 +37,7 @@ class _VerticalUserList extends State<VerticalUserList> {
     );
   }
 
-  _makeListTile(index) {
+  /*_makeListTile(index) {
     final double circleRadius = 120.0;
     final double circleBorderWidth = 8.0;
     return Container(
@@ -86,7 +86,7 @@ class _VerticalUserList extends State<VerticalUserList> {
           ),
         )
     );
-  }
+  }*/
 
   _makeCard(int index) {
     return  GestureDetector(

@@ -14,7 +14,11 @@ class UserPreviewCard extends StatelessWidget {
 
   UserPreviewCard(
       this.user,
-      {this.height = 120, this.fontSize = 30, this.card = true});
+      {
+        this.height = 100,
+        this.fontSize = 30,
+        this.card = true
+      });
 
   _makeListTile() {
     return Container(
@@ -37,7 +41,10 @@ class UserPreviewCard extends StatelessWidget {
         children: <Widget>[
           Flexible(
             flex: 3,
-            child: ProfilePicture("https://upload.wikimedia.org/wikipedia/commons/a/a0/Bill_Gates_2018.jpg",),
+            child: Padding(
+              padding: EdgeInsets.all(10),
+              child: ProfilePicture("https://upload.wikimedia.org/wikipedia/commons/a/a0/Bill_Gates_2018.jpg",),
+            ),
           ),
 
           Flexible(
@@ -53,7 +60,7 @@ class UserPreviewCard extends StatelessWidget {
                   children: <Widget>[
                     AutoSizeText(
                       user.name,
-                      style: TextStyle( fontWeight: FontWeight.bold, color: Colors.black, fontSize: this.fontSize,),
+                      style: TextStyle( fontWeight: FontWeight.bold, color: Colors.white, fontSize: this.fontSize,),
                       maxLines: 1,
                     ),
                   ],
