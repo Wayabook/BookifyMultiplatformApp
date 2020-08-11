@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:bookifyapp/LayoutWidgets/Cards/main_comment_card.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/sub_comment_card.dart';
 import 'package:flutter/material.dart';
@@ -23,12 +25,16 @@ class _CommentPage extends State<CommentPage>{
   List<Widget> comments;
   List<SubCommentCard> subComments;
   MainCommentCard mainCommentCard;
+  TextField textField;
   String newComment;
+  ScrollController scrollController;
 
   @override
   void initState() {
 
+    scrollController = new ScrollController();
     comments = new List();
+
     mainCommentCard = MainCommentCard();
     subComments = new List();
     subComments.add(new SubCommentCard());
@@ -39,7 +45,23 @@ class _CommentPage extends State<CommentPage>{
 
     comments.add(mainCommentCard);
     comments.addAll(subComments);
+
+    _getTextField();
     super.initState();
+  }
+
+  _getTextField(){
+    textField = TextField(
+      decoration: InputDecoration(
+          contentPadding: EdgeInsets.fromLTRB(5, 0, 0, 0),
+          //border: InputBorder,
+          hintText: 'Add Comment...',
+          floatingLabelBehavior: FloatingLabelBehavior.never,
+      ),
+      onChanged: (value){
+        newComment = value;
+      },
+    );
   }
 
   @override
@@ -54,6 +76,7 @@ class _CommentPage extends State<CommentPage>{
             Flexible(
               flex: 9,
               child: ListView.builder(
+                  controller: scrollController,
                   shrinkWrap: true,
                   padding: const EdgeInsets.all(8),
                   itemCount: this.comments.length,
@@ -73,16 +96,7 @@ class _CommentPage extends State<CommentPage>{
                   children: [
                     Flexible(
                       flex: 9,
-                      child: TextField(
-                        decoration: InputDecoration(
-                          contentPadding: EdgeInsets.fromLTRB(5, 0, 0, 0),
-                          //border: InputBorder,
-                            hintText: 'Add Comment...'
-                        ),
-                        onChanged: (value){
-                          newComment = value;
-                        },
-                      ),
+                      child: textField,
                     ),
 
                     Flexible(
@@ -110,9 +124,19 @@ class _CommentPage extends State<CommentPage>{
 
 
   _addComment(){
+    FocusScope.of(context).requestFocus(FocusNode());
     SubCommentCard subCommentCard = SubCommentCard(text: newComment,);
     setState(() {
       this.comments.add(subCommentCard);
     });
+    _scrollToLastPosition();
+
+  }
+
+  _scrollToLastPosition(){
+    Timer(
+      Duration(seconds: 1),
+          () => scrollController.jumpTo(scrollController.position.maxScrollExtent),
+    );
   }
 }
