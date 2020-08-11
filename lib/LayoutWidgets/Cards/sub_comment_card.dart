@@ -8,9 +8,30 @@ import 'package:like_button/like_button.dart';
 class SubCommentCard extends StatelessWidget {
 
   String text;
-  SubCommentCard({
+  User author;
+  //TextField textField;
+  TextEditingController textEditingController;
+  User user;
+
+  SubCommentCard(this.user, {
+    this.textEditingController = null,
     this.text = "Me encantaron todos los libros de la saga. Una historia muy entretenida y que te hace sentir todo lo que le sucede a los personajes. Me encanta la forma en la que todo es muy real. Las buenas y malas decisiones de los personajes son completamente creibles. Se leen muy rápido y los recomiendo :)",
   });
+
+  /*_getUser(){
+    User user  = const User(
+        "1",
+        "Bill Gates",
+        "\"Not as good as Steve Jobs\"",
+        null,
+        null,
+        21,
+        198,
+        345,
+        "https://avatars0.githubusercontent.com/u/35029261?s=460&u=c54ea4c26c7f0659c014f362e538d2927f567a4f&v=4"
+    );
+    return const user;
+  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -21,17 +42,7 @@ class SubCommentCard extends StatelessWidget {
           //margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
           child: Column(
             children: <Widget>[
-              UserPreviewCard(new User(
-                  "1",
-                  "Bill Gates",
-                  "\"Not as good as Steve Jobs\"",
-                  null,
-                  null,
-                  21,
-                  198,
-                  345,
-                  "https://avatars0.githubusercontent.com/u/35029261?s=460&u=c54ea4c26c7f0659c014f362e538d2927f567a4f&v=4"
-              ), height: 50, fontSize: 15, card: false,
+              UserPreviewCard(this.user,  height: 50, fontSize: 15, card: false,
               ),
 
               SummaryTextWidget(
@@ -115,13 +126,21 @@ class SubCommentCard extends StatelessWidget {
                         flex: 3,
                         child: Align(
                           alignment: Alignment.center,
-                          child: Text(
-                            "Responder",
-                            style: TextStyle(
-                              color: Colors.grey,
-                              fontSize: 10,
+                          child: GestureDetector(
+
+                            onTap: (){
+                              print(this.user.name);
+                              textEditingController.text = '@' + this.user.name;
+                            },
+
+                            child: Text(
+                              "Responder",
+                              style: TextStyle(
+                                color: Colors.grey,
+                                fontSize: 10,
+                              ),
                             ),
-                          ),
+                          )
                         ),
                       ),
 

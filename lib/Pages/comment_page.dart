@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bookifyapp/LayoutWidgets/Cards/main_comment_card.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/sub_comment_card.dart';
+import 'package:bookifyapp/Models/User.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 
@@ -28,20 +29,35 @@ class _CommentPage extends State<CommentPage>{
   TextField textField;
   String newComment;
   ScrollController scrollController;
+  User user;
+  TextEditingController textEditingController;
 
   @override
   void initState() {
 
     scrollController = new ScrollController();
+    textEditingController = new TextEditingController();
     comments = new List();
+
+    user  = User(
+        "1",
+        "Bill Gates",
+        "\"Not as good as Steve Jobs\"",
+        null,
+        null,
+        21,
+        198,
+        345,
+        "https://avatars0.githubusercontent.com/u/35029261?s=460&u=c54ea4c26c7f0659c014f362e538d2927f567a4f&v=4"
+    );
 
     mainCommentCard = MainCommentCard();
     subComments = new List();
-    subComments.add(new SubCommentCard());
-    subComments.add(new SubCommentCard());
-    subComments.add(new SubCommentCard());
-    subComments.add(new SubCommentCard());
-    subComments.add(new SubCommentCard());
+    subComments.add(new SubCommentCard(user, textEditingController: this.textEditingController));
+    subComments.add(new SubCommentCard(user, textEditingController: this.textEditingController));
+    subComments.add(new SubCommentCard(user, textEditingController: this.textEditingController));
+    subComments.add(new SubCommentCard(user, textEditingController: this.textEditingController));
+    subComments.add(new SubCommentCard(user, textEditingController: this.textEditingController));
 
     comments.add(mainCommentCard);
     comments.addAll(subComments);
@@ -52,6 +68,7 @@ class _CommentPage extends State<CommentPage>{
 
   _getTextField(){
     textField = TextField(
+      controller: textEditingController,
       decoration: InputDecoration(
           contentPadding: EdgeInsets.fromLTRB(5, 0, 0, 0),
           //border: InputBorder,
@@ -125,7 +142,7 @@ class _CommentPage extends State<CommentPage>{
 
   _addComment(){
     FocusScope.of(context).requestFocus(FocusNode());
-    SubCommentCard subCommentCard = SubCommentCard(text: newComment,);
+    SubCommentCard subCommentCard = SubCommentCard(this.user, text: newComment,);
     setState(() {
       this.comments.add(subCommentCard);
     });
