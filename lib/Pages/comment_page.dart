@@ -7,7 +7,7 @@ import 'package:bookifyapp/Models/User.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 
-class CommentPage extends StatefulWidget {
+  class CommentPage extends StatefulWidget {
 
   bool subCommentsPage;
   String bookTitleAndChapter;
@@ -89,7 +89,7 @@ class _CommentPage extends State<CommentPage>{
           floatingLabelBehavior: FloatingLabelBehavior.never,
       ),
       maxLines: null,
-      expands: true,
+      expands: widget.subCommentsPage ? false : true,
       keyboardType: TextInputType.multiline,
       onChanged: (value){
         newComment = value;

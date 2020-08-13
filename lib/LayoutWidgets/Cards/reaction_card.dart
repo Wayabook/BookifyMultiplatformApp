@@ -59,8 +59,8 @@ class _ReactionCard extends State<ReactionCard> {
                 children: <Widget>[
                   Image.asset(
                     widget.reaction.image,
-                    height: 50,
-                    width: 50,
+                    height: 45,
+                    width: 45,
                   ),
 
                   Text(
