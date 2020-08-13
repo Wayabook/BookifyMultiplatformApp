@@ -9,7 +9,12 @@ import 'package:flutter/painting.dart';
 class CommentPage extends StatefulWidget {
 
   bool subCommentsPage;
-  CommentPage({this.subCommentsPage = true});
+  String bookTitleAndChapter;
+  CommentPage(
+      {
+        this.subCommentsPage = true,
+        this.bookTitleAndChapter = "",
+      });
 
 /*Dialog alertDialog;
   bool _firstTime = true;
@@ -31,6 +36,7 @@ class _CommentPage extends State<CommentPage>{
   ScrollController scrollController;
   User user;
   TextEditingController textEditingController;
+  Color publishContainerColor;
 
   @override
   void initState() {
@@ -51,16 +57,20 @@ class _CommentPage extends State<CommentPage>{
         "https://avatars0.githubusercontent.com/u/35029261?s=460&u=c54ea4c26c7f0659c014f362e538d2927f567a4f&v=4"
     );
 
-    mainCommentCard = MainCommentCard();
-    subComments = new List();
-    subComments.add(new SubCommentCard(user, textEditingController: this.textEditingController));
-    subComments.add(new SubCommentCard(user, textEditingController: this.textEditingController));
-    subComments.add(new SubCommentCard(user, textEditingController: this.textEditingController));
-    subComments.add(new SubCommentCard(user, textEditingController: this.textEditingController));
-    subComments.add(new SubCommentCard(user, textEditingController: this.textEditingController));
+    if(widget.subCommentsPage){
+      mainCommentCard = MainCommentCard();
+      subComments = new List();
+      subComments.add(new SubCommentCard(user, textEditingController: this.textEditingController));
+      subComments.add(new SubCommentCard(user, textEditingController: this.textEditingController));
+      subComments.add(new SubCommentCard(user, textEditingController: this.textEditingController));
+      subComments.add(new SubCommentCard(user, textEditingController: this.textEditingController));
+      subComments.add(new SubCommentCard(user, textEditingController: this.textEditingController));
 
-    comments.add(mainCommentCard);
-    comments.addAll(subComments);
+      comments.add(mainCommentCard);
+      comments.addAll(subComments);
+    } else {
+      publishContainerColor = Colors.yellow[100];
+    }
 
     _getTextField();
     super.initState();
@@ -72,11 +82,19 @@ class _CommentPage extends State<CommentPage>{
       decoration: InputDecoration(
           contentPadding: EdgeInsets.fromLTRB(5, 0, 0, 0),
           //border: InputBorder,
-          hintText: 'Add Comment...',
+          hintText: widget.subCommentsPage ? 'Add Comment...' : widget.bookTitleAndChapter,
           floatingLabelBehavior: FloatingLabelBehavior.never,
       ),
+      maxLines: null,
+      expands: true,
+      keyboardType: TextInputType.multiline,
       onChanged: (value){
         newComment = value;
+        if(!widget.subCommentsPage){
+          setState(() {
+            publishContainerColor = Colors.yellow;
+          });
+        }
       },
     );
   }
@@ -143,6 +161,32 @@ class _CommentPage extends State<CommentPage>{
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
           color: Colors.blueGrey,
+          child: Column(
+            children: [
+              Flexible(
+                flex: 9,
+                child: Container(
+                  //color: Colors.black,
+                  child: textField,
+                ),
+              ),
+
+              Flexible(
+                  flex: 1,
+                  child: GestureDetector(
+                    /*child: Icon(
+                      Icons.send,
+                      color: Colors.yellow,
+                      size: 30,
+                    ),*/
+                    child: Container(
+                      color: publishContainerColor,
+                    ),
+                    onTap: _addComment,
+                  )
+              ),
+            ],
+          ),
         ),
         appBar: AppBar(title: Text("Add comment")),
       );

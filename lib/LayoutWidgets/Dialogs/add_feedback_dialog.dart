@@ -205,7 +205,10 @@ class AddFeedbackDialog extends StatelessWidget{
                       child: FloatingActionButton(
                         onPressed: (){
                           Navigator.of(context)
-                              .push(MaterialPageRoute(builder: (context) => CommentPage(subCommentsPage: false)));
+                              .push(MaterialPageRoute(builder: (context) => CommentPage(
+                                subCommentsPage: false,
+                                bookTitleAndChapter: "Publicar sobre Titulo Libro | Cap 01",
+                          )));
                         },
                         backgroundColor: Colors.yellow,
                         child: Icon(
