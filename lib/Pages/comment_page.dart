@@ -8,8 +8,8 @@ import 'package:flutter/painting.dart';
 
 class CommentPage extends StatefulWidget {
 
-
-  CommentPage();
+  bool subCommentsPage;
+  CommentPage({this.subCommentsPage = true});
 
 /*Dialog alertDialog;
   bool _firstTime = true;
@@ -83,59 +83,70 @@ class _CommentPage extends State<CommentPage>{
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
-        //child:  _createListView(),
-        child: Column(
-          children: [
-            Flexible(
-              flex: 9,
-              child: ListView.builder(
-                  controller: scrollController,
-                  shrinkWrap: true,
-                  padding: const EdgeInsets.all(8),
-                  itemCount: this.comments.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return this.comments[index];
-                  }
-              ),
-            ),
-
-
-            Flexible(
-              flex: 0,
-              child: Card(
-                color: Colors.blueGrey,
-                //margin: EdgeInsets.fromLTRB(0, 0, 0, 3),
-                child: Row(
-                  children: [
-                    Flexible(
-                      flex: 9,
-                      child: textField,
-                    ),
-
-                    Flexible(
-                      flex: 1,
-                      child: GestureDetector(
-                        child: Icon(
-                          Icons.send,
-                          color: Colors.yellow,
-                          size: 30,
-                        ),
-                        onTap: _addComment,
-                      )
-                    ),
-                  ],
+    if(widget.subCommentsPage){
+      return Scaffold(
+        body: Container(
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          //child:  _createListView(),
+          child: Column(
+            children: [
+              Flexible(
+                flex: 9,
+                child: ListView.builder(
+                    controller: scrollController,
+                    shrinkWrap: true,
+                    padding: const EdgeInsets.all(8),
+                    itemCount: this.comments.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return this.comments[index];
+                    }
                 ),
-              )
-            ),
-          ],
+              ),
+
+
+              Flexible(
+                  flex: 0,
+                  child: Card(
+                    color: Colors.blueGrey,
+                    //margin: EdgeInsets.fromLTRB(0, 0, 0, 3),
+                    child: Row(
+                      children: [
+                        Flexible(
+                          flex: 9,
+                          child: textField,
+                        ),
+
+                        Flexible(
+                            flex: 1,
+                            child: GestureDetector(
+                              child: Icon(
+                                Icons.send,
+                                color: Colors.yellow,
+                                size: 30,
+                              ),
+                              onTap: _addComment,
+                            )
+                        ),
+                      ],
+                    ),
+                  )
+              ),
+            ],
+          ),
         ),
-      ),
-      appBar: AppBar(title: Text("01 : Chapter name")),
-    );
+        appBar: AppBar(title: Text("01 : Chapter name")),
+      );
+    } else {
+      return Scaffold(
+        body: Container(
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          color: Colors.blueGrey,
+        ),
+        appBar: AppBar(title: Text("Add comment")),
+      );
+    }
     //return  MainCommentCard(subComments: true,);
   }
 

@@ -195,6 +195,27 @@ class AddFeedbackDialog extends StatelessWidget{
                   ),
                 ),
 
+                Positioned(
+                  bottom: 5,
+                  right: 10,
+                  child: Container(
+                    height: 40,
+                    width: 40,
+                    child: FittedBox(
+                      child: FloatingActionButton(
+                        onPressed: (){
+                          Navigator.of(context)
+                              .push(MaterialPageRoute(builder: (context) => CommentPage(subCommentsPage: false)));
+                        },
+                        backgroundColor: Colors.yellow,
+                        child: Icon(
+                          Icons.add,
+                          color: Colors.blueGrey,),
+                      ),
+                    ),
+                  )
+                ),
+
                 /* Comment option on bottom
                 Positioned(
                     bottom: 0,
