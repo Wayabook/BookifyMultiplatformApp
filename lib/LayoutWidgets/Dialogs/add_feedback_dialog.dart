@@ -25,7 +25,7 @@ class AddFeedbackDialog extends StatelessWidget{
 
   Dialog alertDialog;
   bool _firstTime = true;
-  BuildContext context;
+  //BuildContext context;
   double width;
   double height;
 
@@ -204,11 +204,7 @@ class AddFeedbackDialog extends StatelessWidget{
                     child: FittedBox(
                       child: FloatingActionButton(
                         onPressed: (){
-                          Navigator.of(context)
-                              .push(MaterialPageRoute(builder: (context) => CommentPage(
-                                subCommentsPage: false,
-                                bookTitleAndChapter: "Publicar sobre Titulo Libro | Cap 01",
-                          )));
+                         _navigateToCommentsPage(context);
                         },
                         backgroundColor: Colors.yellow,
                         child: Icon(
@@ -278,6 +274,16 @@ class AddFeedbackDialog extends StatelessWidget{
     );
 
     return alertDialog;
+  }
+
+  _navigateToCommentsPage(BuildContext context) async {
+    final String result = await Navigator.of(context)
+        .push(MaterialPageRoute(builder: (context) => CommentPage(
+      subCommentsPage: false,
+      bookTitleAndChapter: "Publicar sobre Titulo Libro | Cap 01",
+    )));
+
+    print(result);
   }
 
   _getGrid(){

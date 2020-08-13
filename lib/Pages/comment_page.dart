@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/main_comment_card.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/sub_comment_card.dart';
 import 'package:bookifyapp/Models/User.dart';
@@ -37,6 +38,7 @@ class _CommentPage extends State<CommentPage>{
   User user;
   TextEditingController textEditingController;
   Color publishContainerColor;
+  Color publishTextColor;
 
   @override
   void initState() {
@@ -70,6 +72,7 @@ class _CommentPage extends State<CommentPage>{
       comments.addAll(subComments);
     } else {
       publishContainerColor = Colors.yellow[100];
+      publishTextColor = Colors.grey[300];
     }
 
     _getTextField();
@@ -93,6 +96,7 @@ class _CommentPage extends State<CommentPage>{
         if(!widget.subCommentsPage){
           setState(() {
             publishContainerColor = Colors.yellow;
+            publishTextColor = Colors.black;
           });
         }
       },
@@ -166,7 +170,6 @@ class _CommentPage extends State<CommentPage>{
               Flexible(
                 flex: 9,
                 child: Container(
-                  //color: Colors.black,
                   child: textField,
                 ),
               ),
@@ -174,15 +177,24 @@ class _CommentPage extends State<CommentPage>{
               Flexible(
                   flex: 1,
                   child: GestureDetector(
-                    /*child: Icon(
-                      Icons.send,
-                      color: Colors.yellow,
-                      size: 30,
-                    ),*/
                     child: Container(
+                      height: double.infinity,
+                      width: double.infinity,
                       color: publishContainerColor,
+                      child: Center(
+                        child: AutoSizeText(
+                          "PUBLICAR",
+                          style: TextStyle(
+                            fontSize: 30.0,
+                            fontWeight: FontWeight.bold,
+                            color: publishTextColor,
+                          ),
+                        ),
+                      )
                     ),
-                    onTap: _addComment,
+                    onTap: (){
+                      Navigator.pop(context, newComment);
+                    },
                   )
               ),
             ],
@@ -192,6 +204,10 @@ class _CommentPage extends State<CommentPage>{
       );
     }
     //return  MainCommentCard(subComments: true,);
+  }
+
+  _closePageAndReturnComment(){
+
   }
 
 
