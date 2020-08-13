@@ -323,7 +323,11 @@ class _AddFeedbackDialog extends State<AddFeedbackDialog>{
       bookTitleAndChapter: "Publicar sobre Titulo Libro | Cap 01",
     )));
 
-    print(result);
+    setState(() {
+      mainComments.add(MainCommentCard(fromDialog: true));
+      listSize = mainComments.length + 5;
+    });
+    //print(result);
   }
 
   _getGrid(){

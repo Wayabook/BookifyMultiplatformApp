@@ -11,13 +11,41 @@ class Lecture extends Book{
   List<Reaction> _reactions;
 
   Lecture(
-      String title, String author, String coverImage, String summary, int year, int extension, String isbn, String ean,
-      Map<String, List<Item>> shops_items, String editorial, String language,
+      String title,
+      String author,
+      String coverImage,
+      String summary,
+      int year,
+      int extension,
+      String isbn,
+      String ean,
+      Map<String, List<Item>> shops_items,
+      String editorial,
+      String language,
       {
-        double avgRating, bool isNew = false, List<String> chapters_titles = const [], List<User> friends_reading = const [],
+        double avgRating,
+        bool isNew = false,
+        List<String> chapters_titles = const [],
+        List<User> friends_reading = const [],
         currentChapter = 0
-      }) : super(title, author, coverImage, summary, year, extension, isbn, ean, shops_items, editorial, language,
-      avgRating: avgRating, isNew: isNew, chapters_titles: chapters_titles, friends_reading: friends_reading) {}
+      }) : super(
+      title,
+      author,
+      coverImage,
+      summary,
+      year,
+      extension,
+      isbn,
+      ean,
+      shops_items,
+      editorial,
+      language,
+      avgRating: avgRating,
+      isNew: isNew,
+      chapters_titles:
+      chapters_titles,
+      friends_reading:
+      friends_reading) {}
       
       
   List<Reaction> reactions() {
@@ -38,8 +66,6 @@ class Lecture extends Book{
       
       
   }
-     
-
 
   double get progress =>
     this.currentChapter + 1 / super.chapters_titles.length;
