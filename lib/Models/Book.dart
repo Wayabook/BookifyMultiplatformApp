@@ -19,7 +19,7 @@ class Book {
   double avgRating;
   bool isNew;
   List<String> chapters_titles;
-  List<User> friends_reading;
+  List<User> friends_reading; /*Canviar i ficar al lecture ?*/
   Map<String, List<Item>> _shops_items;
 
   //ArrayList<Emoji> emojis;

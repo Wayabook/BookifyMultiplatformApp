@@ -21,6 +21,10 @@ import 'Pages/reading_page.dart';
 import 'package:bookifyapp/Models/Genre.dart';
 import 'package:bookifyapp/Models/Book.dart';
 import 'package:bookifyapp/Models/User.dart';
+import 'package:provider/provider.dart';
+
+//import 'package:bookifyapp/provider.dart';
+
 
 void main() => runApp(MyApp());
 
@@ -30,10 +34,33 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+
+    return MultiProvider(
+      providers: [
+        // In this sample app, CatalogModel never changes, so a simple Provider
+        // is sufficient.
+        Provider(create: (context) => User.getMockUser()),
+        // CartModel is implemented as a ChangeNotifier, which calls for the use
+        // of ChangeNotifierProvider. Moreover, CartModel depends
+        // on CatalogModel, so a ProxyProvider is needed.
+        /*ChangeNotifierProxyProvider<CatalogModel, CartModel>(
+          create: (context) => CartModel(),
+          update: (context, catalog, cart) {
+            cart.catalog = catalog;
+            return cart;
+          },
+        ),*/
+      ],
+      child: MaterialApp(
+        title: _title,
+        home: MyStatefulWidget(),
+      )
+    );
+
+    /*return MaterialApp(
       title: _title,
       home: MyStatefulWidget(),
-    );
+    );*/
   }
 }
 
@@ -85,7 +112,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   _get_pages(){
     initialize_items();
     return [
-      ReadingPage(this.user),
+      ReadingPage(),
       DiscoverPage(Colors.white, "Discover Page"),
       //DiscoverPage(Colors.white, "Discover Page"),
       ProfilePage(this.user, ProfileType.user_profile),
