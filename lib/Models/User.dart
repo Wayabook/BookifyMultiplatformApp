@@ -242,7 +242,7 @@ class User {
 
 
     Map<String, List<Lecture>> userLectures =
-    {'Reading': lectures, 'Pending': lectures, 'Read': lectures, 'Recommended': lectures, 'Custom List 1': lectures};
+    {'Reading': lectures.sublist(0, 1), 'Pending': lectures.sublist(2, 3), 'Read': lectures, 'Recommended': lectures, 'Custom List 1': lectures};
 
     List<User> users = new List();
     User user222 = new User(

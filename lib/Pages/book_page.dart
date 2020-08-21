@@ -12,12 +12,37 @@ import 'package:bookifyapp/LayoutWidgets/friends_preview.dart';
 import 'package:bookifyapp/LayoutWidgets/Dialogs/book_shops_dialog.dart';
 
 
-class BookPage extends StatelessWidget {
+class BookPage extends StatefulWidget {
   final String title;
   final Book book;
   final List<Book> auxBooksForPrototype;
 
-  const BookPage(this.title, this.book, this.auxBooksForPrototype) : assert(title != null);
+  const BookPage(this.title, this.book, this.auxBooksForPrototype)
+      : assert(title != null);
+
+  @override
+  _BookPage createState() => _BookPage(
+      this.title,
+      this.book,
+      this.auxBooksForPrototype);
+}
+
+class _BookPage extends State<BookPage> {
+
+  final String title;
+  final Book book;
+  final List<Book> auxBooksForPrototype;
+  IconData addIcon;
+  Color addIconColor;
+
+  _BookPage(this.title, this.book, this.auxBooksForPrototype);
+
+  @override
+  void initState(){
+    super.initState();
+    addIcon  = Icons.add_circle_outline;
+    addIconColor = Colors.white;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,6 +74,7 @@ class BookPage extends StatelessWidget {
               padding: const EdgeInsets.only(bottom: 140.0),
               child: ArcBannerImage(this.book.picture),
             ),
+
             Positioned(
               bottom: 30.0,
               left: 16.0,
@@ -79,6 +105,10 @@ class BookPage extends StatelessWidget {
                 padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
                 child: RaisedButton(
                   onPressed: () {
+                    setState(() {
+                      addIcon = Icons.remove_circle;
+                      addIconColor = Colors.redAccent;
+                    });
                   },
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.only(
@@ -88,7 +118,7 @@ class BookPage extends StatelessWidget {
                   color: Colors.blueGrey,
                   child: IconButton(
                     icon: Icon(
-                      Icons.add_circle_outline,
+                      addIcon,
                       color: Colors.white
                     ),
                   ),
