@@ -39,7 +39,10 @@ class MyApp extends StatelessWidget {
       providers: [
         // In this sample app, CatalogModel never changes, so a simple Provider
         // is sufficient.
-        Provider(create: (context) => User.getMockUser()),
+        //Provider(create: (context) => User.getMockUser()),
+
+        ChangeNotifierProvider<User>(create: (context) => User.getMockUser())
+
         // CartModel is implemented as a ChangeNotifier, which calls for the use
         // of ChangeNotifierProvider. Moreover, CartModel depends
         // on CatalogModel, so a ProxyProvider is needed.

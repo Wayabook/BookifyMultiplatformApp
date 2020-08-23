@@ -10,6 +10,9 @@ import 'package:flutter/painting.dart';
 import 'package:bookifyapp/Enums/list_type.dart';
 import 'package:bookifyapp/LayoutWidgets/friends_preview.dart';
 import 'package:bookifyapp/LayoutWidgets/Dialogs/book_shops_dialog.dart';
+import 'package:provider/provider.dart';
+
+import '../Models/User.dart';
 
 
 class BookPage extends StatefulWidget {
@@ -108,6 +111,8 @@ class _BookPage extends State<BookPage> {
                     setState(() {
                       addIcon = Icons.remove_circle;
                       addIconColor = Colors.redAccent;
+                      var user = Provider.of<User>(context, listen: false);
+                      user.addLectureToPendingList(this.book.toLecture());
                     });
                   },
                   shape: RoundedRectangleBorder(
@@ -119,7 +124,7 @@ class _BookPage extends State<BookPage> {
                   child: IconButton(
                     icon: Icon(
                       addIcon,
-                      color: Colors.white
+                      color: addIconColor
                     ),
                   ),
                   //Icon(Icons.add_circle_outline),

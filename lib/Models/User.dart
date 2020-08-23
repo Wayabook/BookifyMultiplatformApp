@@ -6,7 +6,7 @@ import 'Item.dart';
 import 'Lecture.dart';
 import 'Shop.dart';
 
-class User {
+class User extends ChangeNotifier{
 
   String _uid;
   String _name;
@@ -26,6 +26,11 @@ class User {
 
   set lectures(Map<String, List<Lecture>>  lectures){
     this._lecture_lists = lectures;
+  }
+
+  void addLectureToPendingList(Lecture lecture){
+    this._lecture_lists["Pending"].add(lecture);
+    notifyListeners();
   }
 
   /*List<Lecture> get bookshelf {
