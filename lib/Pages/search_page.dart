@@ -111,7 +111,7 @@ class SearchPage extends StatelessWidget {
         shopItems);
 
     List<Lecture> books =  List();
-    books.add(book1.toLecture());
+    /*books.add(book1.toLecture());
     books.add(book2.toLecture());
     books.add(book3.toLecture());
     books.add(book4.toLecture());
@@ -119,7 +119,7 @@ class SearchPage extends StatelessWidget {
     books.add(book1.toLecture());
     books.add(book2.toLecture());
     books.add(book3.toLecture());
-    books.add(book4.toLecture());
+    books.add(book4.toLecture());*/
 
 
 
@@ -215,14 +215,15 @@ class SearchPage extends StatelessWidget {
     users.add(user3);
     users.add(user4);
 
-    book1.friends_reading = users;
+    
+    book1.friends_reading = users.sublist(0, 3);
     book2.friends_reading = users.sublist(0, 2);
     book3.friends_reading = users.sublist(0, 1);
 
-    books.add(book1.toLecture());
+   /* books.add(book1.toLecture());
     books.add(book2.toLecture());
     books.add(book3.toLecture());
-    books.add(book4.toLecture());
+    books.add(book4.toLecture());*/
 
     books.add(book1.toLecture());
     books.add(book2.toLecture());

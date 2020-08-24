@@ -8,12 +8,11 @@ import 'package:bookifyapp/Models/User.dart';
 
 class SearchBookOrPerson extends StatefulWidget {
 
-
-  SearchBookOrPerson(this.books, this.users, {Key key, this.title}) : super(key: key);
-
   List<Book> books;
   List<User> users;
   final String title;
+
+  SearchBookOrPerson(this.books, this.users, {Key key, this.title}) : super(key: key);
 
   @override
   _SearchBookOrPerson createState() => _SearchBookOrPerson();
@@ -97,12 +96,12 @@ class _SearchBookOrPerson extends State<SearchBookOrPerson> with SingleTickerPro
                 color: Colors.black45, fontWeight: FontWeight.bold),
           ),);
 
-    Card personCard(bookOrPerson) => Card(
+    /*Card personCard(bookOrPerson) => Card(
       child: Container(
         decoration: BoxDecoration(color: Colors.grey[300]),
         child: personListTile(bookOrPerson),
       ),
-    );
+    );*/
 
     if ((filter.isNotEmpty)) {
       List<Book> tmpList = new List<Book>();
