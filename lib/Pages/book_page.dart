@@ -10,6 +10,7 @@ import 'package:flutter/painting.dart';
 import 'package:bookifyapp/Enums/list_type.dart';
 import 'package:bookifyapp/LayoutWidgets/friends_preview.dart';
 import 'package:bookifyapp/LayoutWidgets/Dialogs/book_shops_dialog.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 
 import '../Models/User.dart';
@@ -36,15 +37,36 @@ class _BookPage extends State<BookPage> {
   final Book book;
   final List<Book> auxBooksForPrototype;
   IconData addIcon;
-  Color addIconColor;
+  Color addIconColor, addIconBackgroundColor;
+  bool isInPendingList;
+  bool isInReadingList;
 
   _BookPage(this.title, this.book, this.auxBooksForPrototype);
 
   @override
   void initState(){
     super.initState();
-    addIcon  = Icons.add_circle_outline;
-    addIconColor = Colors.white;
+    addIconBackgroundColor = Colors.blueGrey;
+    var user = Provider.of<User>(context, listen: false);
+    isInPendingList = user.isInPendingList(book.toLecture());
+    isInReadingList = user.isInReadingList(book.toLecture());
+    if(isInReadingList) {
+      addIcon = Icons.local_library;
+      addIconBackgroundColor = Colors.blueGrey[500];
+    } else {
+      changeAddButtonColors();
+    }
+
+  }
+
+  void changeAddButtonColors(){
+    if(isInPendingList){
+      addIcon = Icons.remove_circle;
+      addIconColor = Colors.redAccent;
+    } else {
+      addIcon  = Icons.add_circle_outline;
+      addIconColor = Colors.white;
+    }
   }
 
   @override
@@ -109,10 +131,34 @@ class _BookPage extends State<BookPage> {
                 child: RaisedButton(
                   onPressed: () {
                     setState(() {
-                      addIcon = Icons.remove_circle;
-                      addIconColor = Colors.redAccent;
-                      var user = Provider.of<User>(context, listen: false);
-                      user.addLectureToPendingList(this.book.toLecture());
+                      if(!isInReadingList){
+                        isInPendingList = !isInPendingList;
+                        var user = Provider.of<User>(context, listen: false);
+                        if(isInPendingList){
+                          user.addLectureToPendingList(this.book.toLecture());
+                          /*Fluttertoast.showToast(
+                              msg: "This is Center Short Toast",
+                              toastLength: Toast.LENGTH_SHORT,
+                              gravity: ToastGravity.CENTER,
+                              timeInSecForIosWeb: 1,
+                              backgroundColor: Colors.red,
+                              textColor: Colors.white,
+                              fontSize: 16.0
+                          );*/
+                        } else {
+                          user.removeLectureFromPendingList(this.book.toLecture());
+                          /*Fluttertoast.showToast(
+                              msg: "This is Center Short Toast",
+                              toastLength: Toast.LENGTH_SHORT,
+                              gravity: ToastGravity.CENTER,
+                              timeInSecForIosWeb: 1,
+                              backgroundColor: Colors.red,
+                              textColor: Colors.white,
+                              fontSize: 16.0
+                          );*/
+                        }
+                        changeAddButtonColors();
+                      }
                     });
                   },
                   shape: RoundedRectangleBorder(
@@ -120,7 +166,7 @@ class _BookPage extends State<BookPage> {
                         topLeft: Radius.circular(25.0),
                       )
                   ),
-                  color: Colors.blueGrey,
+                  color: addIconBackgroundColor,
                   child: IconButton(
                     icon: Icon(
                       addIcon,

@@ -33,6 +33,19 @@ class User extends ChangeNotifier{
     notifyListeners();
   }
 
+  void removeLectureFromPendingList(Lecture lecture){
+    this._lecture_lists["Pending"].remove(lecture);
+    notifyListeners();
+  }
+
+  bool isInReadingList(Lecture lecture){
+    return this._lecture_lists["Reading"].contains(lecture);
+  }
+
+  bool isInPendingList(Lecture lecture){
+    return this._lecture_lists["Pending"].contains(lecture);
+  }
+
   /*List<Lecture> get bookshelf {
     List<Lecture> books = new List();
     for(String key in _book_lists.keys){
