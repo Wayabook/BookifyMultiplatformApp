@@ -107,59 +107,5 @@ class HorizontalBookList extends StatelessWidget {
       ),
     );
   }
-
-
-
-  _getListElement(index){
-    if(this.type != ListType.view_all){
-      return Stack(
-          children: <Widget>[
-            Padding(
-              padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-              child: Align(
-                alignment: Alignment.center,
-                child: InkWell(
-                  onTap: () {
-                    Navigator.of(context)
-                        .push(MaterialPageRoute(builder: (context) => BookPage("title", books[index], this.books)));
-                  },
-                  child: Image.network(books[index].picture),
-                ),
-              ),
-            ),
-
-            Positioned(
-              top: 0,
-              right: 0,
-              child: AddButtonSmall(),
-            )
-          ]
-      );
-    } else {
-      return Stack(
-          children: <Widget>[
-            Padding(
-              padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-              child: Align(
-                alignment: Alignment.center,
-                child: InkWell(
-                  onTap: () {
-                    Navigator.of(context)
-                        .push(MaterialPageRoute(builder: (context) => BookPage("title", books[index], this.books)));
-                  },
-                  child: Image.network(books[index].picture),
-                ),
-              ),
-            ),
-
-            /*Positioned(
-              top: 0,
-              right: 0,
-              child: AddButtonSmall(),
-            )*/
-          ]
-      );
-    }
-  }
 }
 

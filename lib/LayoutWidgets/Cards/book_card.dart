@@ -30,9 +30,6 @@ class BookCard<T extends Book> extends StatelessWidget {
   }
 
   _getCard(){
-
-    /*double width = MediaQuery.of(context).size.width;
-    double height =  MediaQuery.of(context).size.height;*/
     if(this.type == BookCardType.add_option){
       return Card(
         margin: EdgeInsets.all(10),
@@ -59,7 +56,7 @@ class BookCard<T extends Book> extends StatelessWidget {
               Positioned(
                 top: 0,
                 right: 0,
-                child: AddButtonSmall(),
+                child: AddButtonSmall(this.book),
               )
             ]
         ),
@@ -140,54 +137,7 @@ class BookCard<T extends Book> extends StatelessWidget {
             ]
         ),
       );
-      /*child:  Column(
-          children: <Widget>[
-            Flexible(
-              flex: 9,
-              child: Container(
-                  width: 90,
-                  //padding: EdgeInsets.only(right: 12.0),
-                  padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                  decoration: new BoxDecoration(
-                      border: new Border(
-                          right: new BorderSide(width: 1.0, color: Colors.blueGrey),
-                          left: new BorderSide(width: .075, color: Colors.blueGrey),
-                          bottom: new BorderSide(width: .075, color: Colors.blueGrey),
-                          top: new BorderSide(width: .075, color: Colors.blueGrey)
-                      )
-                  ),
 
-                  child: Container(
-                      color: Colors.black,
-                      height: 150,
-                      width: double.infinity,
-                      child: FittedBox(
-                        fit: BoxFit.fill,
-                        child: Image.network(
-                            book.picture
-                        ),
-                      )
-                  ) //Icon(Icons.autorenew, color: Colors.white),
-              ),
-            ),
-
-            Flexible(
-                flex: 1,
-                child: Center(
-                  child: LinearPercentIndicator(
-                    //width: //150.0,
-                    lineHeight: 5.0,
-                    percent: 0.5,
-                    progressColor: Colors.lightGreen,
-                  ),
-                )
-            )
-          ],
-        )
-      );
-
-
-      * */
     } else if (this.type == BookCardType.book_card_in_grid){
       return Card(
         color: Colors.black,

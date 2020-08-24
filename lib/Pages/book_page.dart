@@ -13,6 +13,7 @@ import 'package:bookifyapp/LayoutWidgets/Dialogs/book_shops_dialog.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 
+import '../InfoToast.dart';
 import '../Models/User.dart';
 
 
@@ -132,31 +133,15 @@ class _BookPage extends State<BookPage> {
                   onPressed: () {
                     setState(() {
                       if(!isInReadingList){
-                        isInPendingList = !isInPendingList;
                         var user = Provider.of<User>(context, listen: false);
                         if(isInPendingList){
                           user.addLectureToPendingList(this.book.toLecture());
-                          /*Fluttertoast.showToast(
-                              msg: "This is Center Short Toast",
-                              toastLength: Toast.LENGTH_SHORT,
-                              gravity: ToastGravity.CENTER,
-                              timeInSecForIosWeb: 1,
-                              backgroundColor: Colors.red,
-                              textColor: Colors.white,
-                              fontSize: 16.0
-                          );*/
+                          InfoToast.showBookAddedCorrectlyToast(widget.book.title);
                         } else {
                           user.removeLectureFromPendingList(this.book.toLecture());
-                          /*Fluttertoast.showToast(
-                              msg: "This is Center Short Toast",
-                              toastLength: Toast.LENGTH_SHORT,
-                              gravity: ToastGravity.CENTER,
-                              timeInSecForIosWeb: 1,
-                              backgroundColor: Colors.red,
-                              textColor: Colors.white,
-                              fontSize: 16.0
-                          );*/
+                          InfoToast.showBookRemovedCorrectlyToast(widget.book.title);
                         }
+                        isInPendingList = !isInPendingList;
                         changeAddButtonColors();
                       }
                     });
