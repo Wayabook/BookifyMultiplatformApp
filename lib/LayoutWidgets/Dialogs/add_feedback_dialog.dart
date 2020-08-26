@@ -208,6 +208,8 @@ class _AddFeedbackDialog extends State<AddFeedbackDialog>{
                     widget.book,
                     showInfo: false,
                     height: 180,
+                    showTitle: false,
+                    chapterTitle: widget.book.current_chapter_title,
                   ),
                 ),
 

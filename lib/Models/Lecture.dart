@@ -43,7 +43,7 @@ class Lecture extends Book{
       language,
       avgRating: avgRating,
       isNew: isNew,
-      chapters_titles:
+      chaptersTitles:
       chapters_titles,
       friends_reading:
       friends_reading) {}
@@ -64,20 +64,22 @@ class Lecture extends Book{
 
     }
     return this._reactions;
-      
-      
+  }
+
+  void increaseChapter() {
+    this.currentChapter++;
   }
 
   double get progress =>
-    this.currentChapter + 1 / super.chapters_titles.length;
+    this.currentChapter + 1 / super.chaptersTitles.length;
 
   String get current_chapter_title =>
-      super.chapters_titles[this.currentChapter];
+      super.chaptersTitles[this.currentChapter];
 
   int get chapters_left =>
-      super.chapters_titles.length - this.currentChapter - 1;
+      super.chaptersTitles.length - this.currentChapter - 1;
 
   bool get readed =>
-      this.currentChapter == super.chapters_titles.length - 1;
+      this.currentChapter == super.chaptersTitles.length - 1;
 
 }

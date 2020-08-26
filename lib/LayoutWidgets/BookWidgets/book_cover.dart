@@ -6,11 +6,15 @@ class BookCover extends StatelessWidget {
   final Book book;
   final double height;
   final bool showInfo;
+  final bool showTitle;
+  final String chapterTitle;
 
   BookCover(
       this.book, {
         this.height = 100.0,
         this.showInfo = true,
+        this.showTitle = true,
+        this.chapterTitle = "",
       });
 
   @override
@@ -76,7 +80,7 @@ class BookCover extends StatelessWidget {
       alignment: Alignment.center,
       child: Container(
         child: Text(
-          this.book.title,
+          this.showTitle ? this.book.title : chapterTitle,
           style: TextStyle(
             fontWeight: FontWeight.bold,
           ),

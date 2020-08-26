@@ -12,29 +12,44 @@ import 'package:flutter/material.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:provider/provider.dart';
 
+import '../../InfoToast.dart';
 import '../friends_preview.dart';
 
-class BookCardInVeticalSearchList extends StatefulWidget{
+class BookCardInVerticalSearchList extends StatefulWidget{
 
   Book book;
   final ListType type;
   String _addedBy = " personas han guardado este libro";
 
-  BookCardInVeticalSearchList(this.book, this.type);
+  BookCardInVerticalSearchList(this.book, this.type);
 
   @override
-  _BookCardInVeticalSearchList createState() => _BookCardInVeticalSearchList();
+  _BookCardInVerticalSearchList createState() => _BookCardInVerticalSearchList();
 }
 
-class _BookCardInVeticalSearchList extends State<BookCardInVeticalSearchList>{
+class _BookCardInVerticalSearchList extends State<BookCardInVerticalSearchList>{
 
   User user;
+  IconData iconData;
+  Color buttonColor;
+  bool isInPendingList;
+  bool isInReadingList;
 
   @override
   void initState() {
     super.initState();
-    user = Provider.of<User>(context, listen: false);
 
+    user = Provider.of<User>(context, listen: false);
+    isInPendingList = user.isInPendingList(widget.book.toLecture());
+    isInReadingList = user.isInReadingList(widget.book.toLecture());
+
+    if (isInPendingList || isInReadingList) {
+      iconData = Icons.check;
+      buttonColor = isInReadingList ? Colors.green : Colors.blueGrey;
+    } else {
+      iconData = Icons.add;
+      buttonColor = Colors.blueGrey;
+    }
   }
 
   @override
@@ -422,20 +437,6 @@ class _BookCardInVeticalSearchList extends State<BookCardInVeticalSearchList>{
   }
 
   _getFloatingActionButton(Book book) {
-    bool isInPendingList = user.isInPendingList(book.toLecture());
-    bool isInReadingList = user.isInReadingList(book.toLecture());
-
-    IconData iconData;
-    Color buttonColor;
-
-    if (isInPendingList || isInReadingList) {
-      iconData = Icons.check;
-      buttonColor = Colors.green;
-    } else {
-      iconData = Icons.add;
-      buttonColor = Colors.blueGrey;
-    }
-
     return FloatingActionButton(
       backgroundColor: Colors.white,
       child: Icon(
@@ -444,7 +445,26 @@ class _BookCardInVeticalSearchList extends State<BookCardInVeticalSearchList>{
         size: 50,
       ),
       onPressed: () {
+        setState(() {
+          if(!isInReadingList){
+            if(!isInPendingList){
+              setState(() {
+                var user = Provider.of<User>(context, listen: false);
+                user.addLectureToPendingList(widget.book.toLecture());
 
+                iconData = Icons.check;
+                InfoToast.showBookAddedCorrectlyToast(widget.book.title);
+              });
+            } else {
+              var user = Provider.of<User>(context, listen: false);
+              user.removeLectureFromPendingList(widget.book.toLecture());
+
+              iconData = Icons.add;
+              InfoToast.showBookRemovedCorrectlyToast(widget.book.title);
+            }
+            isInPendingList = !isInPendingList;
+          }
+        });
       },
     );
   }

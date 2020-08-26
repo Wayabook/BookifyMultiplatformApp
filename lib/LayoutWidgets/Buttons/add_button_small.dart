@@ -44,15 +44,14 @@ class _AddButtonSmall extends State<AddButtonSmall>{
     return GestureDetector(
       onTap: (){
         setState(() {
-          //iconData = Icons.check;
           if(!isInReadingList){
             if(!isInPendingList){
               setState(() {
                 isInPendingList = true;
                 var user = Provider.of<User>(context, listen: false);
                 user.addLectureToPendingList(widget.book.toLecture());
-                iconData = Icons.check;
 
+                iconData = Icons.check;
                 InfoToast.showBookAddedCorrectlyToast(widget.book.title);
               });
             }

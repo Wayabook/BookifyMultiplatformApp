@@ -168,6 +168,14 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     
     Posteriormente la autora, también conocida por sus fans como@BetaCoqueta, ha continuado cosechando grandes éxitos con la publicación de su«Saga Silvia», la trilogía«Mi elección», la bilogía«Horizonte Martina» y la novelaMi isla.
     """;
+
+      List<String> chapter_titles = [
+        "Capitulo 1 :  Inicio" ,
+        "Capitulo 2 :  Post Inicio" ,
+        "Capitulo 3 :  Pre Final" ,
+        "Capitulo 4 :  Final" ,
+      ];
+
       Book book1 = new Book.withSummary(
           "En los Zapatos de Valeria",
           "Elisabeth Benavent",
@@ -175,7 +183,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           description,
           "1",
           "2",
-          shopItems);
+          shopItems,
+          chaptersTitles: chapter_titles);
 
       Book book2 = new Book.withSummary(
           "En busca del chico irrompible",
@@ -184,7 +193,9 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           description,
           "2",
           "2",
-          shopItems);
+          shopItems,
+          chaptersTitles: chapter_titles
+      );
 
       Book book3 = new Book.withSummary(
           "Con el amor bastaba",
@@ -193,7 +204,9 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           description,
           "3",
           "2",
-          shopItems);
+          shopItems,
+          chaptersTitles: chapter_titles
+      );
 
       Book book4 = new Book.withSummary(
           "A próposito de nada",
@@ -202,7 +215,9 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           description,
           "4",
           "2",
-          shopItems);
+          shopItems,
+          chaptersTitles: chapter_titles
+      );
 
       books.add(book1);
       books.add(book2);

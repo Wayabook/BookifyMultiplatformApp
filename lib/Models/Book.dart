@@ -20,7 +20,7 @@ class Book {
 
   double avgRating;
   bool isNew;
-  List<String> chapters_titles;
+  List<String> chaptersTitles;
   List<User> friends_reading; /*Canviar i ficar al lecture ?*/
   Map<String, List<Item>> _shops_items;
 
@@ -49,7 +49,7 @@ class Book {
         this.avgRating,
         this.isNew = false,
         this.addedBy = 2049,
-        this.chapters_titles = const [],
+        this.chaptersTitles = const [],
         this.friends_reading = const [],
       }
     );
@@ -62,7 +62,7 @@ class Book {
       this._isbn,
       this._ean,
       this._shops_items,
-      {this.editorial="SUMA", this.language="CASTELLANO"});
+      {this.editorial="SUMA", this.language="CASTELLANO", this.chaptersTitles = const []});
 
   Lecture toLecture({int currentChapter = 0}){
     return new Lecture(
@@ -80,7 +80,7 @@ class Book {
         this.addedBy,
         avgRating: this.avgRating,
         isNew: this.isNew,
-        chapters_titles: this.chapters_titles,
+        chapters_titles: this.chaptersTitles,
         friends_reading: this.friends_reading,
         currentChapter: currentChapter
     );
@@ -163,6 +163,17 @@ class Book {
   set addedByNumberOfPeople(int addedByNumberOfPeople) {
     addedByNumberOfPeople = addedByNumberOfPeople;
   }
+
+  List<String> get chapterTitlesList => chaptersTitles;
+
+  set chapterTitlesList(List<String> chapterTitlesList) {
+    this.chaptersTitles = chapterTitlesList;
+  }
+
+  /*String getChapterTitleByIndex(int index){
+    return this.chaptersTitles[index];
+  }*/
+
 
   /*String get language => language;
 
