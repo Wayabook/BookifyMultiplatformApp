@@ -1,36 +1,34 @@
+
+
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bookifyapp/Enums/list_type.dart';
+import 'package:bookifyapp/Models/Book.dart';
 import 'package:bookifyapp/Models/Item.dart';
 import 'package:bookifyapp/Models/Shop.dart';
 import 'package:bookifyapp/Models/User.dart';
 import 'package:bookifyapp/Pages/book_page.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
-import 'package:auto_size_text/auto_size_text.dart';
-import 'package:bookifyapp/Models/Book.dart';
-import 'package:bookifyapp/LayoutWidgets/Lists/list_title.dart';
-import 'package:bookifyapp/Enums/button_type.dart';
-import 'package:bookifyapp/LayoutWidgets/friends_preview.dart';
 import 'package:provider/provider.dart';
 
+import '../friends_preview.dart';
 
-class VerticalBookListSearch extends StatefulWidget {
+class BookCardInVeticalSearchList extends StatefulWidget{
 
-  VerticalBookListSearch(this.books, this.type, {this.title}); // : super(key: key);
-
-  final List<Book> books;
+  Book book;
   final ListType type;
-  final String title;
-  /*final List<Book> readingBooks;
-  final List<Book> pendingBooks;*/
+  String _addedBy = " personas han guardado este libro";
+
+  BookCardInVeticalSearchList(this.book, this.type);
 
   @override
-  _VerticalBookListSearch createState() => _VerticalBookListSearch();
+  _BookCardInVeticalSearchList createState() => _BookCardInVeticalSearchList();
 }
 
-class _VerticalBookListSearch extends State<VerticalBookListSearch> {
+class _BookCardInVeticalSearchList extends State<BookCardInVeticalSearchList>{
 
   User user;
-  String _chapter_title = "2048 personas han guardado este libro";
 
   @override
   void initState() {
@@ -41,13 +39,23 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.blueGrey, //Color.fromRGBO(58, 66, 86, 1.0),
-      body: _makeBody(),
+    return Card(
+      /*shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(7.0),
+      ),*/
+      elevation: 10,
+      margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
+      child:  Container(
+        height: 160,
+        decoration: BoxDecoration(
+          color: Colors.blueGrey,
+        ),
+        child: _makeListTile(),
+      ),
     );
   }
 
-  _makeListTile(index) {
+  _makeListTile() {
     if (widget.type == ListType.normal){
       return Container(
           decoration: BoxDecoration(
@@ -65,23 +73,23 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
                       Flexible(
                         flex: 9,
                         child: Container(
-                            width: 90,
-                            //padding: EdgeInsets.only(right: 12.0),
-                            padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                            decoration: new BoxDecoration(
-                                border: new Border(
-                                    right: new BorderSide(width: 1.0, color: Colors.blueGrey),
-                                    left: new BorderSide(width: .075, color: Colors.blueGrey),
-                                    bottom: new BorderSide(width: .075, color: Colors.blueGrey),
-                                    top: new BorderSide(width: .075, color: Colors.blueGrey)
-                                )
-                            ),
+                          width: 90,
+                          //padding: EdgeInsets.only(right: 12.0),
+                          padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                          decoration: new BoxDecoration(
+                              border: new Border(
+                                  right: new BorderSide(width: 1.0, color: Colors.blueGrey),
+                                  left: new BorderSide(width: .075, color: Colors.blueGrey),
+                                  bottom: new BorderSide(width: .075, color: Colors.blueGrey),
+                                  top: new BorderSide(width: .075, color: Colors.blueGrey)
+                              )
+                          ),
 
-                            child: Container(
-                                color: Colors.black,
-                                height: 150,
-                                width: double.infinity,
-                                child: FittedBox(
+                          child: Container(
+                              color: Colors.black,
+                              height: 150,
+                              width: double.infinity,
+                              child: FittedBox(
                                   fit: BoxFit.fill,
                                   child: GestureDetector(
                                     /*onTap: (){
@@ -91,12 +99,12 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
                                               _getBooks())));
                                     },*/
                                     child: Image.network(
-                                      widget.books[index].picture,
+                                      widget.book.picture,
 
                                     ),
                                   )
-                                )
-                            ),
+                              )
+                          ),
                         ),
                       ),
 
@@ -137,7 +145,7 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
                             child: Center(
                               child: Container(
                                 child: Text(
-                                  widget.books[index].title,
+                                  widget.book.title,
                                   style: TextStyle(
                                     //color: Colors.white,
                                     fontWeight: FontWeight.bold,
@@ -152,7 +160,7 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
                             flex: 2,
                             child: Center(
                               child: Text(
-                                widget.books[index].author,
+                                widget.book.author,
                                 style: TextStyle(
                                   color: Colors.grey[500],
                                 ),
@@ -179,20 +187,10 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
                                         ),
 
                                         AutoSizeText(
-                                          _chapter_title.substring(0, 18) + "...",
+                                          widget.book.addedByNumberOfPeople.toString() + widget._addedBy.substring(0, 12) + "...",
                                           style: TextStyle( fontWeight: FontWeight.bold,),
                                           maxLines: 1,
                                         ),
-
-                                        /*AutoSizeText(
-                                        "+ 28",
-                                        style: TextStyle(
-                                          color: Colors.grey[500],
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                        maxLines: 1,
-                                        textAlign: TextAlign.left,
-                                      ),*/
                                       ],
                                     ),
                                   ],
@@ -212,7 +210,7 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
                         child: SizedBox(
                           height: 75,
                           width: 75,
-                          child: _getFloatingActionButton(widget.books[index]),
+                          child: _getFloatingActionButton(widget.book),
                         )
                     )
                 ),
@@ -232,8 +230,8 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
             child: Row(
               children: <Widget>[
                 Flexible(
-                  flex: 3,
-                  child: _getFriendsPreview(index)
+                    flex: 3,
+                    child: _getFriendsPreview()
                 ),
 
                 Flexible(
@@ -252,7 +250,7 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
                             child: Center(
                               child: Container(
                                 child: Text(
-                                  widget.books[index].title,
+                                  widget.book.title,
                                   style: TextStyle(
                                     //color: Colors.white,
                                     fontWeight: FontWeight.bold,
@@ -267,7 +265,7 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
                             flex: 2,
                             child: Center(
                               child: Text(
-                                widget.books[index].author,
+                                widget.book.author,
                                 style: TextStyle(
                                   color: Colors.grey[500],
                                 ),
@@ -294,7 +292,7 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
                                         ),
 
                                         AutoSizeText(
-                                          _chapter_title.substring(0, 18) + "...",
+                                          widget.book.addedByNumberOfPeople.toString() + widget._addedBy.substring(0, 12) + "...",
                                           style: TextStyle( fontWeight: FontWeight.bold,),
                                           maxLines: 1,
                                         ),
@@ -327,7 +325,7 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
                         child: SizedBox(
                           height: 75,
                           width: 75,
-                          child: _getFloatingActionButton(widget.books[index]),
+                          child: _getFloatingActionButton(widget.book),
                         )
                     )
                 ),
@@ -338,15 +336,99 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
     }
   }
 
-  _getFloatingActionButton(Book book){
+  _getFriendsPreview(){
+    if(widget.book.friends_reading != null  &&
+        widget.book.friends_reading.length > 0){
 
+      return Stack(
+        children: <Widget>[
+          Padding(
+            padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+            child: Container(
+                width: 90,
+                //padding: EdgeInsets.only(right: 12.0),
+                padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                decoration: new BoxDecoration(
+                    border: new Border(
+                        right: new BorderSide(width: 1.0, color: Colors.blueGrey),
+                        left: new BorderSide(width: .075, color: Colors.blueGrey),
+                        bottom: new BorderSide(width: .075, color: Colors.blueGrey),
+                        top: new BorderSide(width: .075, color: Colors.blueGrey)
+                    )
+                ),
+
+                child: Container(
+                    color: Colors.black,
+                    height: 150,
+                    width: double.infinity,
+                    child: FittedBox(
+                        fit: BoxFit.fill,
+                        child: GestureDetector(
+                          onTap: (){
+                            Navigator.of(context)
+                                .push(MaterialPageRoute(
+                                builder: (context) => BookPage("title", widget.book,
+                                    _getBooks())));
+                          },
+                          child: Image.network(
+                            widget.book.picture,
+
+                          ),
+                        )
+                    )
+                ) //Icon(Icons.autorenew, color: Colors.white),
+            ),
+          ),
+
+          Positioned(
+              child: Align(
+                alignment: FractionalOffset.bottomLeft,
+                child: FriendsPreview(widget.book.friends_reading),
+              )
+          ),
+        ],
+      );
+
+    } else {
+      return Padding(
+        padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+        child: Container(
+            width: 90,
+            //padding: EdgeInsets.only(right: 12.0),
+            padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+            decoration: new BoxDecoration(
+                border: new Border(
+                    right: new BorderSide(width: 1.0, color: Colors.blueGrey),
+                    left: new BorderSide(width: .075, color: Colors.blueGrey),
+                    bottom: new BorderSide(width: .075, color: Colors.blueGrey),
+                    top: new BorderSide(width: .075, color: Colors.blueGrey)
+                )
+            ),
+
+            child: Container(
+                color: Colors.black,
+                height: 150,
+                width: double.infinity,
+                child: FittedBox(
+                  fit: BoxFit.fill,
+                  child: Image.network(
+                      widget.book.picture
+                  ),
+                )
+            ) //Icon(Icons.autorenew, color: Colors.white),
+        ),
+      );
+    }
+  }
+
+  _getFloatingActionButton(Book book) {
     bool isInPendingList = user.isInPendingList(book.toLecture());
     bool isInReadingList = user.isInReadingList(book.toLecture());
 
     IconData iconData;
     Color buttonColor;
 
-    if( isInPendingList || isInReadingList){
+    if (isInPendingList || isInReadingList) {
       iconData = Icons.check;
       buttonColor = Colors.green;
     } else {
@@ -361,7 +443,7 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
         color: buttonColor,
         size: 50,
       ),
-      onPressed: (){
+      onPressed: () {
 
       },
     );
@@ -467,176 +549,5 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
     books.add(book3);
     books.add(book4);
     return books;
-  }
-
-  _getFriendsPreview(int index){
-    if(widget.books[index].friends_reading != null  &&
-        widget.books[index].friends_reading.length > 0){
-
-      return Stack(
-        children: <Widget>[
-          Padding(
-            padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
-            child: Container(
-                width: 90,
-                //padding: EdgeInsets.only(right: 12.0),
-                padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                decoration: new BoxDecoration(
-                    border: new Border(
-                        right: new BorderSide(width: 1.0, color: Colors.blueGrey),
-                        left: new BorderSide(width: .075, color: Colors.blueGrey),
-                        bottom: new BorderSide(width: .075, color: Colors.blueGrey),
-                        top: new BorderSide(width: .075, color: Colors.blueGrey)
-                    )
-                ),
-
-                child: Container(
-                    color: Colors.black,
-                    height: 150,
-                    width: double.infinity,
-                    child: FittedBox(
-                      fit: BoxFit.fill,
-                      child: GestureDetector(
-                        onTap: (){
-                                      Navigator.of(context)
-                                          .push(MaterialPageRoute(
-                                          builder: (context) => BookPage("title", widget.books[index],
-                                              _getBooks())));
-                                    },
-                        child: Image.network(
-                          widget.books[index].picture,
-
-                        ),
-                      )
-                    )
-                ) //Icon(Icons.autorenew, color: Colors.white),
-            ),
-          ),
-
-          Positioned(
-              child: Align(
-                alignment: FractionalOffset.bottomLeft,
-                child: FriendsPreview(widget.books[index].friends_reading),
-              )
-          ),
-        ],
-      );
-
-    } else {
-      return Padding(
-        padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
-        child: Container(
-            width: 90,
-            //padding: EdgeInsets.only(right: 12.0),
-            padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-            decoration: new BoxDecoration(
-                border: new Border(
-                    right: new BorderSide(width: 1.0, color: Colors.blueGrey),
-                    left: new BorderSide(width: .075, color: Colors.blueGrey),
-                    bottom: new BorderSide(width: .075, color: Colors.blueGrey),
-                    top: new BorderSide(width: .075, color: Colors.blueGrey)
-                )
-            ),
-
-            child: Container(
-                color: Colors.black,
-                height: 150,
-                width: double.infinity,
-                child: FittedBox(
-                  fit: BoxFit.fill,
-                  child: Image.network(
-                      widget.books[index].picture
-                  ),
-                )
-            ) //Icon(Icons.autorenew, color: Colors.white),
-        ),
-      );
-    }
-  }
-
-  _makeCard(int index) {
-    return  Card(
-      /*shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(7.0),
-      ),*/
-      elevation: 10,
-      margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
-      child:  Container(
-        height: 160,
-        decoration: BoxDecoration(
-          color: Colors.blueGrey,
-        ),
-        child: _makeListTile(index),
-      ),
-    );
-  }
-
-  _makeBody() {
-    if (widget.type == ListType.add_custom_list){
-      return Stack(
-        children: <Widget>[
-          Container(
-            child: ListView.builder(
-              scrollDirection: Axis.vertical,
-              shrinkWrap: true,
-              itemCount: widget.books.length + 1,
-              itemBuilder: (BuildContext context, int index) {
-                  if(index == 0)
-                    return ListTitle(widget.title);
-                  return _makeCard(index - 1);
-              },
-            ),
-          ),
-
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Container(
-              color: Colors.white,
-              height: 50,
-              width:  MediaQuery.of(context).size.width,
-              child: Row(
-                children: <Widget>[
-                  Expanded(
-                    flex: 5,
-                    child: FlatButton(
-                      child: Text(
-                          "Accept",
-                          style: TextStyle(color: Colors.blue,)
-                      ),
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                    ),
-                  ),
-                  Expanded(
-                    flex: 5,
-                    child: FlatButton(
-                      child: Text(
-                          "Cancel",
-                          style: TextStyle(color: Colors.red,)
-                      ),
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                    ),
-                  )
-                ],
-              ),
-            ),
-          )
-        ],
-      );
-    } else {
-      return Container(
-        child: ListView.builder(
-          scrollDirection: Axis.vertical,
-          shrinkWrap: true,
-          itemCount: widget.books.length,
-          itemBuilder: (BuildContext context, int index) {
-            return _makeCard(index);
-          },
-        ),
-      );
-    }
   }
 }

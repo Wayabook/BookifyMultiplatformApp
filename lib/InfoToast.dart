@@ -6,7 +6,7 @@ class InfoToast {
 
   static void showBookAddedCorrectlyToast(String bookTitle){
     Fluttertoast.showToast(
-        msg: bookTitle + " added correctly to Reading page.",
+        msg: bookTitle + " correctly added to Reading page.",
         toastLength: Toast.LENGTH_LONG,
         gravity: ToastGravity.BOTTOM,
         timeInSecForIosWeb: 1,
@@ -17,7 +17,15 @@ class InfoToast {
   }
 
   static void showBookRemovedCorrectlyToast(String bookTitle){
-
+    Fluttertoast.showToast(
+        msg: bookTitle + " correctly removed to Reading page.",
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.black,
+        textColor: Colors.white,
+        fontSize: 16.0
+    );
   }
 
 }

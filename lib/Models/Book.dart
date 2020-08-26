@@ -14,8 +14,10 @@ class Book {
   String _ean;
   String editorial;
   String language;
+  int addedBy;
   //int sumRatings;
   //int numRatings;
+
   double avgRating;
   bool isNew;
   List<String> chapters_titles;
@@ -46,6 +48,7 @@ class Book {
       {
         this.avgRating,
         this.isNew = false,
+        this.addedBy = 2049,
         this.chapters_titles = const [],
         this.friends_reading = const [],
       }
@@ -74,6 +77,7 @@ class Book {
         this.shops_items,
         this.editorial,
         this.language,
+        this.addedBy,
         avgRating: this.avgRating,
         isNew: this.isNew,
         chapters_titles: this.chapters_titles,
@@ -152,6 +156,12 @@ class Book {
 
   set ean(String ean) {
     _ean = ean;
+  }
+
+  int get addedByNumberOfPeople => addedBy;
+
+  set addedByNumberOfPeople(int addedByNumberOfPeople) {
+    addedByNumberOfPeople = addedByNumberOfPeople;
   }
 
   /*String get language => language;

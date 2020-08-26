@@ -22,6 +22,7 @@ class Lecture extends Book{
       Map<String, List<Item>> shops_items,
       String editorial,
       String language,
+      int addedByNumberoOfPeople,
       {
         double avgRating,
         bool isNew = false,
