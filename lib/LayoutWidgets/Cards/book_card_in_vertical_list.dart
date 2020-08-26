@@ -170,13 +170,14 @@ class BookCardInVerticalList extends StatelessWidget {
                                       ),
 
                                       AutoSizeText(
-                                        chapter_title.substring(0, 15) + "...",
+                                        /*chapter_title.substring(0, 15)*/ this.book.current_chapter_title.substring(0, 15) + "...",
                                         style: TextStyle( fontWeight: FontWeight.bold,),
                                         maxLines: 1,
                                       ),
 
                                       AutoSizeText(
-                                        "+ 28",
+
+                                        "+" + (this.book.chaptersTitles.length - this.book.currentChapter - 1).toString(),
                                         style: TextStyle(
                                           color: Colors.grey[500],
                                           fontWeight: FontWeight.bold,

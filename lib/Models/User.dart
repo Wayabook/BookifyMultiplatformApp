@@ -152,6 +152,13 @@ class User extends ChangeNotifier{
     List<Item> items = new List();
     List<Genre> genres = new List();
 
+    List<String> chapter_titles = [
+      "Capitulo 1 :  Inicio" ,
+      "Capitulo 2 :  Post Inicio" ,
+      "Capitulo 3 :  Pre Final" ,
+      "Capitulo 4 :  Final" ,
+    ];
+
     Shop shop1 = new Shop.withoutIds("Casa del Libro", "https://i.pinimg.com/280x280_RS/77/56/01/77560124a4abb4053f4f95c9153ef565.jpg");
     Shop shop2 = new Shop.withoutIds("Fnac", "https://upload.wikimedia.org/wikipedia/commons/2/2e/Fnac_Logo.svg");
     Shop shop3 = new Shop.withoutIds("El corte ingles", "https://pbs.twimg.com/profile_images/1214523397239115781/wuA5BVB4_400x400.jpg");
@@ -199,7 +206,9 @@ class User extends ChangeNotifier{
         description,
         "1",
         "2",
-        shopItems);
+        shopItems,
+        chaptersTitles: chapter_titles
+    );
 
     Book book2 = new Book.withSummary(
         "En busca del chico irrompible",
@@ -208,7 +217,9 @@ class User extends ChangeNotifier{
         description,
         "2",
         "2",
-        shopItems);
+        shopItems,
+        chaptersTitles: chapter_titles
+    );
 
     Book book3 = new Book.withSummary(
         "Con el amor bastaba",
@@ -217,7 +228,9 @@ class User extends ChangeNotifier{
         description,
         "3",
         "2",
-        shopItems);
+        shopItems,
+        chaptersTitles: chapter_titles
+    );
 
     Book book4 = new Book.withSummary(
         "A próposito de nada",
@@ -226,7 +239,9 @@ class User extends ChangeNotifier{
         description,
         "4",
         "2",
-        shopItems);
+        shopItems,
+        chaptersTitles: chapter_titles
+    );
 
     books.add(book1);
     books.add(book2);

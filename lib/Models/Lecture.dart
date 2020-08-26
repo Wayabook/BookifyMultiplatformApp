@@ -28,7 +28,7 @@ class Lecture extends Book{
         bool isNew = false,
         List<String> chapters_titles = const [],
         List<User> friends_reading = const [],
-        currentChapter = 0
+        this.currentChapter = 0
       }) : super(
       title,
       author,
