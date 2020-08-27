@@ -1,5 +1,6 @@
 import 'package:bookifyapp/Models/Book.dart';
 import 'package:bookifyapp/Models/Genre.dart';
+import 'package:bookifyapp/Models/MainComment.dart';
 import 'package:flutter/material.dart';
 
 import 'Chapter.dart';
@@ -154,10 +155,10 @@ class User extends ChangeNotifier{
     List<Genre> genres = new List();
 
     List<Chapter> chapters = new List();
-    chapters.add(new Chapter(1, "Capitulo 1 :  Inicio"));
-    chapters.add(new Chapter(2, "Capitulo 2 :  Post Inicio"));
-    chapters.add(new Chapter(3, "Capitulo 3 :  Pre Final"));
-    chapters.add(new Chapter(4, "Capitulo 4 :  Final"));
+    chapters.add(new Chapter(1, "Capitulo 1 :  Inicio", comments: MainComment.getMockMainComments()));
+    chapters.add(new Chapter(2, "Capitulo 2 :  Post Inicio", comments: MainComment.getMockMainComments()));
+    chapters.add(new Chapter(3, "Capitulo 3 :  Pre Final", comments: MainComment.getMockMainComments()));
+    chapters.add(new Chapter(4, "Capitulo 4 :  Final", comments: MainComment.getMockMainComments()));
 
     Shop shop1 = new Shop.withoutIds("Casa del Libro", "https://i.pinimg.com/280x280_RS/77/56/01/77560124a4abb4053f4f95c9153ef565.jpg");
     Shop shop2 = new Shop.withoutIds("Fnac", "https://upload.wikimedia.org/wikipedia/commons/2/2e/Fnac_Logo.svg");

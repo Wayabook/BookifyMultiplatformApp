@@ -1,5 +1,6 @@
 import 'package:bookifyapp/LayoutWidgets/BookWidgets/summary_text.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/user_preview_card.dart';
+import 'package:bookifyapp/Models/Comment.dart';
 import 'package:bookifyapp/Models/User.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -7,15 +8,16 @@ import 'package:like_button/like_button.dart';
 
 class SubCommentCard extends StatelessWidget {
 
-  String text;
-  User author;
+  //String text;
+  //User author;
   //TextField textField;
+  Comment comment;
   TextEditingController textEditingController;
-  User user;
+  //User user;
 
-  SubCommentCard(this.user, {
+
+  SubCommentCard(this.comment, {
     this.textEditingController = null,
-    this.text = "Me encantaron todos los libros de la saga. Una historia muy entretenida y que te hace sentir todo lo que le sucede a los personajes. Me encanta la forma en la que todo es muy real. Las buenas y malas decisiones de los personajes son completamente creibles. Se leen muy rápido y los recomiendo :)",
   });
 
   /*_getUser(){
@@ -42,11 +44,11 @@ class SubCommentCard extends StatelessWidget {
           //margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
           child: Column(
             children: <Widget>[
-              UserPreviewCard(this.user,  height: 50, fontSize: 15, card: false,
+              UserPreviewCard(this.comment.author,  height: 50, fontSize: 15, card: false,
               ),
 
               SummaryTextWidget(
-                text: this.text,
+                text: this.comment.comment,
                 backgroundColor: Colors.blueGrey,
               ),
 
@@ -82,7 +84,7 @@ class SubCommentCard extends StatelessWidget {
                               size: 30,
                             );
                           },*/
-                              likeCount: 999,
+                              likeCount: this.comment.likes,
                               /*countBuilder: (int count, bool isLiked, String text) {
                             var color = isLiked ? Colors.deepPurpleAccent : Colors.grey;
                             Widget result;
@@ -129,8 +131,8 @@ class SubCommentCard extends StatelessWidget {
                           child: GestureDetector(
 
                             onTap: (){
-                              print(this.user.name);
-                              textEditingController.text = '@' + this.user.name;
+                              //print(this.comment.author.name);
+                              textEditingController.text = '@' + this.comment.author.name;
                             },
 
                             child: Text(

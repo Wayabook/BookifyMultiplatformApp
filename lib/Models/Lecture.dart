@@ -50,7 +50,7 @@ class Lecture extends Book{
       friends_reading) {}
       
       
-  List<Reaction> reactions() {
+  /*List<Reaction> reactions() {
     if(this._reactions == null){
       this._reactions = new List();
       this._reactions.add(new Reaction("ANGRY", "images/angry.png", 60));
@@ -65,6 +65,10 @@ class Lecture extends Book{
 
     }
     return this._reactions;
+  }*/
+
+  List<Reaction> getCurrentChapterReactions(){
+    return this.chapters[this.currentChapter].reactions;
   }
 
   void increaseChapter() {

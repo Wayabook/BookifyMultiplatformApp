@@ -1,4 +1,6 @@
 
+import 'package:bookifyapp/Models/MainComment.dart';
+
 import 'Reaction.dart';
 
 class Chapter{
@@ -6,8 +8,9 @@ class Chapter{
   int number;
   String title;
   List<Reaction> reactions;
+  List<MainComment> comments;
 
-  Chapter(this.number, this.title,) {
+  Chapter(this.number, this.title, {this.comments = const[]}) {
     this.reactions = _getReactions();
   }
 

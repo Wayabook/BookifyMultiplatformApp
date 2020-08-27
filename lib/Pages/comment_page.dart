@@ -3,16 +3,27 @@ import 'dart:async';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/main_comment_card.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/sub_comment_card.dart';
+import 'package:bookifyapp/Models/Chapter.dart';
+import 'package:bookifyapp/Models/MainComment.dart';
 import 'package:bookifyapp/Models/User.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:bookifyapp/Models/Comment.dart';
+import 'package:provider/provider.dart';
 
   class CommentPage extends StatefulWidget {
 
   bool subCommentsPage;
   String bookTitleAndChapter;
+  MainComment mainComment;
+  String chapterTitle;
+  int chapterNumber;
+
   CommentPage(
+      this.mainComment,
       {
+        this.chapterTitle,
+        this.chapterNumber,
         this.subCommentsPage = true,
         this.bookTitleAndChapter = "",
       });
@@ -45,28 +56,19 @@ class _CommentPage extends State<CommentPage>{
 
     scrollController = new ScrollController();
     textEditingController = new TextEditingController();
-    comments = new List();
-
-    user  = User(
-        "1",
-        "Bill Gates",
-        "\"Not as good as Steve Jobs\"",
-        null,
-        null,
-        21,
-        198,
-        345,
-        "https://avatars0.githubusercontent.com/u/35029261?s=460&u=c54ea4c26c7f0659c014f362e538d2927f567a4f&v=4"
-    );
 
     if(widget.subCommentsPage){
-      mainCommentCard = MainCommentCard();
+      comments = new List();
       subComments = new List();
+      mainCommentCard = MainCommentCard(widget.mainComment, chapterTitle: widget.chapterTitle, chapterNumber: widget.chapterNumber,);
+      for(Comment comment in widget.mainComment.answers){
+        subComments.add(SubCommentCard(comment,  textEditingController: this.textEditingController));
+      }
+      /*subComments.add(new SubCommentCard(user, textEditingController: this.textEditingController));
       subComments.add(new SubCommentCard(user, textEditingController: this.textEditingController));
       subComments.add(new SubCommentCard(user, textEditingController: this.textEditingController));
       subComments.add(new SubCommentCard(user, textEditingController: this.textEditingController));
-      subComments.add(new SubCommentCard(user, textEditingController: this.textEditingController));
-      subComments.add(new SubCommentCard(user, textEditingController: this.textEditingController));
+      subComments.add(new SubCommentCard(user, textEditingController: this.textEditingController));*/
 
       comments.add(mainCommentCard);
       comments.addAll(subComments);
@@ -159,6 +161,7 @@ class _CommentPage extends State<CommentPage>{
         ),
         appBar: AppBar(title: Text("01 : Chapter name")),
       );
+
     } else {
       return Scaffold(
         body: Container(
@@ -213,7 +216,8 @@ class _CommentPage extends State<CommentPage>{
 
   _addComment(){
     FocusScope.of(context).requestFocus(FocusNode());
-    SubCommentCard subCommentCard = SubCommentCard(this.user, text: newComment,);
+    var user = Provider.of<User>(context, listen: false);
+    SubCommentCard subCommentCard = SubCommentCard(new Comment(user, newComment));
     setState(() {
       this.comments.add(subCommentCard);
     });

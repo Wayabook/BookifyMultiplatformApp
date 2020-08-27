@@ -1,6 +1,8 @@
 import 'package:bookifyapp/LayoutWidgets/BookWidgets/summary_text.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/sub_comment_card.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/user_preview_card.dart';
+import 'package:bookifyapp/Models/Chapter.dart';
+import 'package:bookifyapp/Models/MainComment.dart';
 import 'package:bookifyapp/Models/User.dart';
 import 'package:bookifyapp/Pages/comment_page.dart';
 import 'package:flutter/cupertino.dart';
@@ -11,12 +13,19 @@ class MainCommentCard extends StatelessWidget {
 
   //bool subComments;
   bool fromDialog;
+  String chapterTitle;
+  int chapterNumber;
+  MainComment mainComment;
   //List<SubCommentCard> subCommentsList;
   //_MainCommentCard __mainCommentCard;
 
-  MainCommentCard({
-    this.fromDialog = false,
-  });
+  MainCommentCard(
+      this.mainComment,
+      {
+        this.fromDialog = false,
+        this.chapterTitle = "",
+        this.chapterNumber = 0,
+      });
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +33,7 @@ class MainCommentCard extends StatelessWidget {
       return GestureDetector(
         onTap: (){
           Navigator.of(context)
-              .push(MaterialPageRoute(builder: (context) => CommentPage()));
+              .push(MaterialPageRoute(builder: (context) => CommentPage(this.mainComment)));
         },
         child: _getCard(),
       );
@@ -40,21 +49,11 @@ class MainCommentCard extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-              UserPreviewCard(new User(
-                  "1",
-                  "Bill Gates",
-                  "\"Not as good as Steve Jobs\"",
-                  null,
-                  null,
-                  21,
-                  198,
-                  345,
-                  "https://avatars0.githubusercontent.com/u/35029261?s=460&u=c54ea4c26c7f0659c014f362e538d2927f567a4f&v=4"
-              ), height: 50, fontSize: 15, card: false,
+              UserPreviewCard(mainComment.author, height: 50, fontSize: 15, card: false,
               ),
 
               SummaryTextWidget(
-                text: "Me encantaron todos los libros de la saga. Una historia muy entretenida y que te hace sentir todo lo que le sucede a los personajes. Me encanta la forma en la que todo es muy real. Las buenas y malas decisiones de los personajes son completamente creibles. Se leen muy rápido y los recomiendo :)",
+                text: mainComment.comment,
                 backgroundColor: Colors.blueGrey,
               ),
 
@@ -77,55 +76,23 @@ class MainCommentCard extends StatelessWidget {
                           children: <Widget>[
                             LikeButton(
                               size: 30,
-                              /*circleColor:
-                          CircleColor(start: Color(0xff00ddff), end: Color(0xff0099cc)),
-                          bubblesColor: BubblesColor(
-                            dotPrimaryColor: Color(0xff33b5e5),
-                            dotSecondaryColor: Color(0xff0099cc),
-                          ),*/
-                              /*likeBuilder: (bool isLiked) {
-                            return Icon(
-                              Icons.home,
-                              color: isLiked ? Colors.deepPurpleAccent : Colors.grey,
-                              size: 30,
-                            );
-                          },*/
-                              likeCount: 999,
-                              /*countBuilder: (int count, bool isLiked, String text) {
-                            var color = isLiked ? Colors.deepPurpleAccent : Colors.grey;
-                            Widget result;
-                            if (count == 0) {
-                              result = Text(
-                                "love",
-                                style: TextStyle(color: color),
-                              );
-                            } else
-                              result = Text(
-                                text,
-                                style: TextStyle(color: color),
-                              );
-                            return result;
-                          },*/
+                              likeCount: mainComment.likes,
+                              countBuilder: (int count, bool isLiked, String text) {
+                                final ColorSwatch<int> color =
+                                isLiked ? Colors.pinkAccent : Colors.grey;
+                                Widget result;
+                                if (count > 0) {
+                                  result = Text(
+                                    count >= 1000
+                                        ? (count / 1000).toStringAsFixed(1) +
+                                        'k'
+                                        : text,
+                                    style: TextStyle(color: color),
+                                  );
+                                }
+                                return result;
+                              },
                             ),
-                            /*Align(
-                          alignment: Alignment.center,
-                          child: Icon(
-                            Icons.supervised_user_circle,
-                            color: Colors.black,
-                            size: 30,
-                          ),
-                        ),
-
-                        Align(
-                          alignment: Alignment.center,
-                          child: Text(
-                            "12 me gusta",
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 10,
-                            ),
-                          ),
-                        ),*/
                           ],
                         ),
                       ),
@@ -148,7 +115,7 @@ class MainCommentCard extends StatelessWidget {
                             Align(
                               alignment: Alignment.center,
                               child: Text(
-                                "12 respuestas",
+                                mainComment.answers.length.toString() + " respuestas",
                                 style: TextStyle(
                                   color: Colors.grey,
                                   fontSize: 10,
@@ -210,19 +177,6 @@ class MainCommentCard extends StatelessWidget {
           ),
         )
     );
-  }
-
-  /*{
-    __mainCommentCard = new _MainCommentCard(subCommentsList);
-  }*/
-
-  //_MainCommentCard __mainCommentCard = new _MainCommentCard(subCommentsList);
-
-  /*@override
-  _MainCommentCard createState() => __mainCommentCard;*/
-
-  addSubComment(String comment){
-    //__mainCommentCard.addSubComment(comment);
   }
 }
 

@@ -2,8 +2,12 @@ import 'package:bookifyapp/LayoutWidgets/Cards/main_comment_card.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/reaction_card.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/shop_item_card.dart';
 import 'package:bookifyapp/LayoutWidgets/carousel_card.dart';
+import 'package:bookifyapp/Models/Chapter.dart';
+import 'package:bookifyapp/Models/Comment.dart';
 import 'package:bookifyapp/Models/Item.dart';
 import 'package:bookifyapp/Models/Lecture.dart';
+import 'package:bookifyapp/Models/MainComment.dart';
+import 'package:bookifyapp/Models/User.dart';
 import 'package:bookifyapp/Pages/comment_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +19,7 @@ import 'package:flutter_page_indicator/flutter_page_indicator.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:bordered_text/bordered_text.dart';
+import 'package:provider/provider.dart';
 
 class AddFeedbackDialog extends StatefulWidget{
 
@@ -37,6 +42,8 @@ class _AddFeedbackDialog extends State<AddFeedbackDialog>{
   double height;
   List<Widget> mainComments = [];
   int listSize;
+  int currentChapterNumber;
+  Chapter currentChapter;
 
   final TextEditingController inputController = TextEditingController();
 
@@ -45,25 +52,12 @@ class _AddFeedbackDialog extends State<AddFeedbackDialog>{
 
     super.initState();
 
-    //var aux = _getTitleSection("¿Como estuvo?");
-    //widgets.add(_getTitleSection("¿Como estuvo?"));
-
-    /*widgets.add(_getRatingBar());
-
-    widgets.add(_getTitleSection("¿Como te sentiste?"));
-
-    widgets.add(_getReactionsGrid());
-
-    widgets.add(_getCommentsTitle());*/
-
-    mainComments.add(MainCommentCard(fromDialog: true));
-
-    mainComments.add(MainCommentCard(fromDialog: true));
-
-    mainComments.add(MainCommentCard(fromDialog: true));
-
-    mainComments.add(MainCommentCard(fromDialog: true));
-
+    currentChapterNumber = widget.book.currentChapter;
+    currentChapter = widget.book.chapters[currentChapterNumber];
+    for(MainComment mainComment in currentChapter.comments){
+      mainComments.add(MainCommentCard(mainComment, fromDialog: true, chapterTitle: this.currentChapter.title,  chapterNumber: this.currentChapterNumber));
+    }
+    listSize = mainComments.length + 5;
     listSize = mainComments.length + 5;
 
 
@@ -84,8 +78,8 @@ class _AddFeedbackDialog extends State<AddFeedbackDialog>{
             shrinkWrap: true,
             crossAxisCount: 4,
             childAspectRatio: ((width - 20) / 4) / (110),
-            children: List.generate(widget.book.reactions().length, (index) {
-              return ReactionCard(widget.book.reactions()[index]);
+            children: List.generate(widget.book.getCurrentChapterReactions().length, (index) {
+              return ReactionCard(widget.book.getCurrentChapterReactions()[index]);
             },)
         )
     );
@@ -107,7 +101,7 @@ class _AddFeedbackDialog extends State<AddFeedbackDialog>{
             ),
           ),
 
-          _getTitleSection("12 comentarios"),
+          _getTitleSection(listSize.toString() + " comentarios"),
 
           /*Align(
             alignment: Alignment.center,
@@ -319,108 +313,22 @@ class _AddFeedbackDialog extends State<AddFeedbackDialog>{
   }
 
   _navigateToCommentsPage(BuildContext context) async {
+
     final String result = await Navigator.of(context)
         .push(MaterialPageRoute(builder: (context) => CommentPage(
+      null,
       subCommentsPage: false,
-      bookTitleAndChapter: "Publicar sobre Titulo Libro | Cap 01",
+      chapterTitle: this.currentChapter.title,
+      chapterNumber: this.currentChapterNumber,
+      //bookTitleAndChapter: "Publicar sobre Titulo Libro | Cap 01",
     )));
 
     setState(() {
-      mainComments.add(MainCommentCard(fromDialog: true));
-      listSize = mainComments.length + 5;
+      var user = Provider.of<User>(context, listen: false);
+      MainComment mainComment = new MainComment(user, result, answers: Comment.getMockComments());
+      mainComments.add(MainCommentCard(mainComment, fromDialog: true));
+      //listSize = mainComments.length + 5;
     });
     //print(result);
   }
-
-  _getGrid(){
-    return Card(
-        color: Colors.blueGrey,
-        margin: EdgeInsets.all(10),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20.0),
-        ),
-        elevation: 10,
-        child: Row(
-          children: <Widget>[
-            Container(
-              //color: Colors.white,
-                width: 50,
-                height: 100,
-                child: FittedBox(
-                  fit: BoxFit.contain,
-                  child: BorderedText(
-                    strokeWidth: 1.0,
-                    strokeColor: Colors.white,
-                    child: Text(
-                      "2",
-                      style: TextStyle(
-                          color: Colors.blueGrey,
-                          decoration: TextDecoration.none,
-                          //decorationColor: Colors.,
-                          decorationThickness: 1
-                      ),
-                    ),
-                  ),
-                  /*Text(
-                          (index + 1).toString(),
-                          style: TextStyle(
-                            color: Colors.blueGrey,
-                            fontWeight: FontWeight.bold,
-                            //height: double.infinity,
-                          ),
-                        ),*/
-                  //Icon(Icons.filter_1)
-                )
-            ),
-
-            Container(
-                width: 110,
-                height: double.infinity,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: Colors.white
-                ),
-                child: Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        Image.asset(
-                          "images/genre1.png",
-                          height: 50,
-                          width: 50,
-                        ),
-
-                        Text("Misterious",
-                          style: TextStyle(
-                            color: Colors.blueGrey,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        )
-                      ],
-                    )
-                )
-            ),
-          ],
-        )
-    );
-  }
-
-  /*
-  *  Padding(
-                  padding: EdgeInsets.fromLTRB(15, 220, 0, 0),
-                  child: Column(
-                      children: <Widget>[
-                        Align(
-                          alignment: Alignment.center,
-                          child: Text(
-                            "¿Como estuvo?",
-                            style: TextStyle(
-                              color: Colors.blueGrey,
-                            ),
-                          ),
-                        ),
-                      ],
-                  ),
-                )*/
 }
