@@ -1,3 +1,4 @@
+import 'package:bookifyapp/Models/Chapter.dart';
 import 'package:bookifyapp/Models/Lecture.dart';
 import 'package:bookifyapp/Models/User.dart';
 import 'package:bookifyapp/Models/Item.dart';
@@ -20,7 +21,8 @@ class Book {
 
   double avgRating;
   bool isNew;
-  List<String> chaptersTitles;
+  //List<String> chaptersTitles;
+  List<Chapter> chapters;
   List<User> friends_reading; /*Canviar i ficar al lecture ?*/
   Map<String, List<Item>> _shops_items;
 
@@ -49,7 +51,7 @@ class Book {
         this.avgRating,
         this.isNew = false,
         this.addedBy = 2049,
-        this.chaptersTitles = const [],
+        this.chapters = const [],
         this.friends_reading = const [],
       }
     );
@@ -62,7 +64,7 @@ class Book {
       this._isbn,
       this._ean,
       this._shops_items,
-      {this.editorial="SUMA", this.language="CASTELLANO", this.chaptersTitles = const []});
+      {this.editorial="SUMA", this.language="CASTELLANO", this.chapters = const []});
 
   Lecture toLecture({int currentChapter = 0}){
     return new Lecture(
@@ -80,7 +82,7 @@ class Book {
         this.addedBy,
         avgRating: this.avgRating,
         isNew: this.isNew,
-        chapters_titles: this.chaptersTitles,
+        chapters: this.chapters,
         friends_reading: this.friends_reading,
         currentChapter: currentChapter
     );
@@ -164,10 +166,10 @@ class Book {
     addedByNumberOfPeople = addedByNumberOfPeople;
   }
 
-  List<String> get chapterTitlesList => chaptersTitles;
+  List<Chapter> get chapterTitlesList => chapters;
 
-  set chapterTitlesList(List<String> chapterTitlesList) {
-    this.chaptersTitles = chapterTitlesList;
+  set chapterTitlesList(List<Chapter> chapterTitlesList) {
+    this.chapters = chapterTitlesList;
   }
 
   /*String getChapterTitleByIndex(int index){

@@ -12,6 +12,7 @@
 import 'package:bookifyapp/Enums/profile_type.dart';
 import 'package:custom_navigator/custom_navigation.dart';
 import 'package:flutter/material.dart';
+import 'Models/Chapter.dart';
 import 'Models/Item.dart';
 import 'Models/Lecture.dart';
 import 'Models/Shop.dart';
@@ -169,12 +170,19 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     Posteriormente la autora, también conocida por sus fans como@BetaCoqueta, ha continuado cosechando grandes éxitos con la publicación de su«Saga Silvia», la trilogía«Mi elección», la bilogía«Horizonte Martina» y la novelaMi isla.
     """;
 
-      List<String> chapter_titles = [
+      List<Chapter> chapters = new List();
+      chapters.add(new Chapter(1, "Capitulo 1 :  Inicio"));
+      chapters.add(new Chapter(2, "Capitulo 2 :  Post Inicio"));
+      chapters.add(new Chapter(3, "Capitulo 3 :  Pre Final"));
+      chapters.add(new Chapter(4, "Capitulo 4 :  Final"));
+
+
+      /*List<String> chapter_titles = [
         "Capitulo 1 :  Inicio" ,
         "Capitulo 2 :  Post Inicio" ,
         "Capitulo 3 :  Pre Final" ,
         "Capitulo 4 :  Final" ,
-      ];
+      ];*/
 
       Book book1 = new Book.withSummary(
           "En los Zapatos de Valeria",
@@ -184,7 +192,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           "1",
           "2",
           shopItems,
-          chaptersTitles: chapter_titles);
+          chapters: chapters);
 
       Book book2 = new Book.withSummary(
           "En busca del chico irrompible",
@@ -194,7 +202,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           "2",
           "2",
           shopItems,
-          chaptersTitles: chapter_titles
+          chapters: chapters
       );
 
       Book book3 = new Book.withSummary(
@@ -205,7 +213,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           "3",
           "2",
           shopItems,
-          chaptersTitles: chapter_titles
+          chapters: chapters
       );
 
       Book book4 = new Book.withSummary(
@@ -216,7 +224,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           "4",
           "2",
           shopItems,
-          chaptersTitles: chapter_titles
+          chapters: chapters
       );
 
       books.add(book1);
