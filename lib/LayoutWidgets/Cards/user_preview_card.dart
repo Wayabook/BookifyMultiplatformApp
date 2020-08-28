@@ -43,7 +43,7 @@ class UserPreviewCard extends StatelessWidget {
             flex: 3,
             child: Padding(
               padding: EdgeInsets.all(10),
-              child: ProfilePicture("https://upload.wikimedia.org/wikipedia/commons/a/a0/Bill_Gates_2018.jpg",),
+              child: ProfilePicture(user.profilePictureUrl,),
             ),
           ),
 
@@ -82,7 +82,7 @@ class UserPreviewCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           ProfilePicture(
-            "https://upload.wikimedia.org/wikipedia/commons/a/a0/Bill_Gates_2018.jpg",
+              user.profilePictureUrl,
             circleRadius: this.height,
             circleBorderWidth: 0.0,
           ),

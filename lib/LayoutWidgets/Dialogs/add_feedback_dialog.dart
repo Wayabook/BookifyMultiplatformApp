@@ -327,7 +327,7 @@ class _AddFeedbackDialog extends State<AddFeedbackDialog>{
       var user = Provider.of<User>(context, listen: false);
       MainComment mainComment = new MainComment(user, result, answers: Comment.getMockComments());
       mainComments.add(MainCommentCard(mainComment, fromDialog: true));
-      //listSize = mainComments.length + 5;
+      listSize = mainComments.length + 5;
     });
     //print(result);
   }

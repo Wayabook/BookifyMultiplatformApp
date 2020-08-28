@@ -14,7 +14,7 @@ import 'package:provider/provider.dart';
   class CommentPage extends StatefulWidget {
 
   bool subCommentsPage;
-  String bookTitleAndChapter;
+  //String bookTitleAndChapter;
   MainComment mainComment;
   String chapterTitle;
   int chapterNumber;
@@ -22,10 +22,9 @@ import 'package:provider/provider.dart';
   CommentPage(
       this.mainComment,
       {
-        this.chapterTitle,
         this.chapterNumber,
         this.subCommentsPage = true,
-        this.bookTitleAndChapter = "",
+        this.chapterTitle = "",
       });
 
 /*Dialog alertDialog;
@@ -87,7 +86,7 @@ class _CommentPage extends State<CommentPage>{
       decoration: InputDecoration(
           contentPadding: EdgeInsets.fromLTRB(5, 0, 0, 0),
           //border: InputBorder,
-          hintText: widget.subCommentsPage ? 'Add Comment...' : widget.bookTitleAndChapter,
+          hintText: widget.subCommentsPage ? 'Add Comment...' : widget.chapterTitle,
           floatingLabelBehavior: FloatingLabelBehavior.never,
       ),
       maxLines: null,
@@ -159,7 +158,7 @@ class _CommentPage extends State<CommentPage>{
             ],
           ),
         ),
-        appBar: AppBar(title: Text("01 : Chapter name")),
+        appBar: AppBar(title: Text(widget.subCommentsPage ?  'Add Comment...' : widget.chapterTitle )),
       );
 
     } else {
