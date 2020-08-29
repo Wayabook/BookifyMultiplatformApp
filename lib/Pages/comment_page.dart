@@ -158,7 +158,7 @@ class _CommentPage extends State<CommentPage>{
             ],
           ),
         ),
-        appBar: AppBar(title: Text(widget.subCommentsPage ?  'Add Comment...' : widget.chapterTitle )),
+        appBar: AppBar(title: Text(widget.subCommentsPage ?  widget.chapterTitle : 'Add Comment...')),
       );
 
     } else {

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:bookifyapp/LayoutWidgets/Cards/main_comment_card.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/reaction_card.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/shop_item_card.dart';
@@ -46,6 +48,7 @@ class _AddFeedbackDialog extends State<AddFeedbackDialog>{
   Chapter currentChapter;
   Color readButtonColor;
   bool visible;
+  ScrollController scrollController;
 
   final TextEditingController inputController = TextEditingController();
 
@@ -53,6 +56,8 @@ class _AddFeedbackDialog extends State<AddFeedbackDialog>{
   void initState(){
 
     super.initState();
+
+    scrollController = new ScrollController();
 
     currentChapterNumber = widget.book.currentChapter;
     currentChapter = widget.book.chapters[currentChapterNumber];
@@ -252,7 +257,7 @@ class _AddFeedbackDialog extends State<AddFeedbackDialog>{
                   child: Padding(
                     padding: EdgeInsets.fromLTRB(7, 220, 7, 0),
                     child:  ListView.builder(
-                      //controller: scrollController,
+                        controller: scrollController,
                         shrinkWrap: true,
                         padding: const EdgeInsets.all(8),
                         itemCount: listSize,
@@ -378,12 +383,24 @@ class _AddFeedbackDialog extends State<AddFeedbackDialog>{
       //bookTitleAndChapter: "Publicar sobre Titulo Libro | Cap 01",
     )));
 
-    setState(() {
-      var user = Provider.of<User>(context, listen: false);
-      MainComment mainComment = new MainComment(user, result, answers: Comment.getMockComments());
-      mainComments.add(MainCommentCard(mainComment, fromDialog: true));
-      listSize = mainComments.length + 5;
-    });
+    var aux = result;
+
+    if(result != null || result.length > 0){
+      setState(() {
+        var user = Provider.of<User>(context, listen: false);
+        MainComment mainComment = new MainComment(user, result, answers: Comment.getMockComments());
+        mainComments.add(MainCommentCard(mainComment, fromDialog: true));
+        listSize = mainComments.length + 5;
+        _scrollToLastPosition();
+      });
+    }
     //print(result);
+  }
+
+  _scrollToLastPosition(){
+    Timer(
+      Duration(seconds: 1),
+          () => scrollController.jumpTo(scrollController.position.maxScrollExtent),
+    );
   }
 }
