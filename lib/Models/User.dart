@@ -60,6 +60,26 @@ class User extends ChangeNotifier{
     return books;
   }*/
 
+  void increaseChapter(Lecture lecture){
+    int position;
+    if(isInReadingList(lecture)){
+      position = this._lecture_lists["Reading"].indexOf(lecture);
+      this._lecture_lists["Reading"][position].increaseChapter();
+    } else if (isInPendingList(lecture)) {
+      position = _lecture_lists["Pending"].indexOf(lecture);
+      this._lecture_lists["Pending"][position].increaseChapter();
+
+    }
+    /*for(String key in _lecture_lists.keys){
+      for(int i=0; i < _lecture_lists[key].length; i++){
+        if(_lecture_lists[key][i] == lecture){
+          _lecture_lists[key][i].increaseChapter();
+        }
+      }
+    }*/
+    notifyListeners();
+  }
+
   List<Book> get bookshelf {
     List<Book> books = new List();
     for(String key in _lecture_lists.keys){

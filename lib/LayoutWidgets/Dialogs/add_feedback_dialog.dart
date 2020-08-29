@@ -49,6 +49,7 @@ class _AddFeedbackDialog extends State<AddFeedbackDialog>{
   Color readButtonColor;
   bool visible;
   ScrollController scrollController;
+  String chapterTitle;
 
   final TextEditingController inputController = TextEditingController();
 
@@ -61,6 +62,8 @@ class _AddFeedbackDialog extends State<AddFeedbackDialog>{
 
     currentChapterNumber = widget.book.currentChapter;
     currentChapter = widget.book.chapters[currentChapterNumber];
+    chapterTitle = currentChapter.title;
+
     for(MainComment mainComment in currentChapter.comments){
       mainComments.add(MainCommentCard(mainComment, fromDialog: true, chapterTitle: this.currentChapter.title,  chapterNumber: this.currentChapterNumber));
     }
@@ -183,6 +186,8 @@ class _AddFeedbackDialog extends State<AddFeedbackDialog>{
             width: width,
             child: Stack(
               children: <Widget>[
+
+
                 Positioned(
                     top: 140,
                     child: Container(
@@ -220,6 +225,10 @@ class _AddFeedbackDialog extends State<AddFeedbackDialog>{
                                 setState(() {
                                   readButtonColor = Colors.lightGreen;
                                   visible = true;
+
+                                  var user = Provider.of<User>(context, listen: false);
+                                  user.increaseChapter(widget.book);
+
                                 });
                               },
                               backgroundColor: Colors.white,
@@ -240,7 +249,7 @@ class _AddFeedbackDialog extends State<AddFeedbackDialog>{
                     showInfo: false,
                     height: 180,
                     showTitle: false,
-                    chapterTitle: widget.book.current_chapter_title,
+                    chapterTitle: chapterTitle,
                   ),
                 ),
 
