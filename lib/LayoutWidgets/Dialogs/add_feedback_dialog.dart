@@ -323,6 +323,16 @@ class _AddFeedbackDialog extends State<AddFeedbackDialog>{
                   ),
                 ),
 
+                Center(
+                  child: Visibility(
+                    visible: !visible,
+                    maintainSize: false,
+                    maintainAnimation: false,
+                    maintainState: false,
+                    child:  _getTitleSection("To give feedback and see comments. Mark as read first"),
+                  ),
+                ),
+
                 Positioned(
                     bottom: 5,
                     right: 10,

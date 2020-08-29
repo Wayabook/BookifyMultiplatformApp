@@ -204,13 +204,18 @@ class BookCardInVerticalList extends StatelessWidget {
                       child: SizedBox(
                         height: 75,
                         width: 75,
-                        child: CircularPercentIndicator(
+                        child: floatingActionButton,
+
+
+                        /*CircularPercentIndicator(
                           radius: 60.0,
                           lineWidth: 3.0,
                           percent: .5,
                           center: floatingActionButton,
                           progressColor: Colors.green,
-                        ),
+                        ),*/
+
+
                         /*child: FloatingActionButton(
                           backgroundColor: Colors.white,
                           child: Icon(
