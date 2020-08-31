@@ -9,6 +9,7 @@ class Lecture extends Book{
   //String title;
 
   int currentChapter;
+  bool read;
   List<Reaction> _reactions;
 
   Lecture(
@@ -29,7 +30,8 @@ class Lecture extends Book{
         bool isNew = false,
         List<Chapter> chapters = const [],
         List<User> friends_reading = const [],
-        this.currentChapter = 0
+        this.currentChapter = 0,
+        this.read = false,
       }) : super(
       title,
       author,
@@ -72,11 +74,15 @@ class Lecture extends Book{
   }
 
   void increaseChapter() {
-    this.currentChapter++;
+    this.read = this.currentChapter + 1 < super.chapters.length ? false : true;
+    if(!finished)
+      this.currentChapter++;
   }
 
+  bool get finished =>  read;
+
   double get progress =>
-    this.currentChapter + 1 / super.chapters.length;
+    this.currentChapter / super.chapters.length;
 
   String get current_chapter_title =>
       super.chapters[this.currentChapter].title;

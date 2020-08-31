@@ -14,7 +14,7 @@ import 'package:bookifyapp/LayoutWidgets/Lists/list_title.dart';
 
 class BookCardInVerticalList extends StatelessWidget {
 
-  String chapter_title = "Nombre capitulo";
+  //String chapter_title = "Nombre capitulo";
   BuildContext context;
   ButtonType buttonType;
   Lecture book;
@@ -32,7 +32,9 @@ class BookCardInVerticalList extends StatelessWidget {
           showDialog(
             context: context,
             builder: (BuildContext context) => AddFeedbackDialog(this.book),
-          );
+          ).then((value) => (){
+            //Guardar index i llista;
+          });
         },
         child: Container(
           height: 160,
@@ -101,10 +103,9 @@ class BookCardInVerticalList extends StatelessWidget {
                         flex: 1,
                         child: Center(
                           child: LinearPercentIndicator(
-                            //width: //150.0,
                             lineHeight: 5.0,
-                            percent: 0.5,
-                            progressColor: Colors.lightGreen,
+                            percent: !this.book.finished ? this.book.progress : 1.0,
+                            progressColor: !this.book.finished ? Colors.lightGreen : Colors.deepPurple,
                           ),
                         )
                     )
@@ -170,20 +171,25 @@ class BookCardInVerticalList extends StatelessWidget {
                                       ),
 
                                       AutoSizeText(
-                                        /*chapter_title.substring(0, 15)*/ this.book.current_chapter_title.substring(0, 15) + "...",
+                                        this.book.current_chapter_title.substring(0, 15) + "...",
                                         style: TextStyle( fontWeight: FontWeight.bold,),
                                         maxLines: 1,
                                       ),
 
-                                      AutoSizeText(
-
-                                        "+" + (this.book.chapters.length - this.book.currentChapter - 1).toString(),
-                                        style: TextStyle(
-                                          color: Colors.grey[500],
-                                          fontWeight: FontWeight.bold,
+                                      Visibility(
+                                        visible: this.book.currentChapter != this.book.chapters.length - 1,
+                                        maintainSize: false,
+                                        maintainAnimation: false,
+                                        maintainState: false,
+                                        child:  AutoSizeText(
+                                          "+" + (this.book.chapters.length - this.book.currentChapter - 1).toString(),
+                                          style: TextStyle(
+                                            color: Colors.grey[500],
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                          maxLines: 1,
+                                          textAlign: TextAlign.left,
                                         ),
-                                        maxLines: 1,
-                                        textAlign: TextAlign.left,
                                       ),
                                     ],
                                   ),
