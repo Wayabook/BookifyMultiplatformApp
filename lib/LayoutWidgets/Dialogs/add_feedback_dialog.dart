@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:bookifyapp/InfoToast.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/main_comment_card.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/reaction_card.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/shop_item_card.dart';
@@ -21,6 +22,7 @@ import 'package:flutter_page_indicator/flutter_page_indicator.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:bordered_text/bordered_text.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 
 class AddFeedbackDialog extends StatefulWidget{
@@ -220,22 +222,29 @@ class _AddFeedbackDialog extends State<AddFeedbackDialog>{
                           //color: Colors.white,
                           child:  Align(
                             alignment: Alignment.topRight,
-                            child: FloatingActionButton(
-                              onPressed: (){
-                                setState(() {
-                                  readButtonColor = Colors.lightGreen;
-                                  visible = true;
+                            child: AnimatedOpacity(
+                              opacity: !widget.book.finished ? 1.0 : 0.0,
+                              duration: Duration(milliseconds: 500),
+                              child: FloatingActionButton(
+                                onPressed: (){
+                                  setState(() {
+                                    readButtonColor = Colors.lightGreen;
+                                    visible = true;
 
-                                  var user = Provider.of<User>(context, listen: false);
-                                  user.increaseChapter(widget.book);
+                                    var user = Provider.of<User>(context, listen: false);
+                                    user.increaseChapter(widget.book);
 
-                                });
-                              },
-                              backgroundColor: Colors.white,
-                              child: Icon(
-                                Icons.beenhere,
-                                color: readButtonColor,
-                                size: 50,
+                                    if(widget.book.finished)
+                                      InfoToast.showFinishedCongratulationsMessage(widget.book.title);
+
+                                  });
+                                },
+                                backgroundColor: Colors.white,
+                                child: Icon(
+                                  Icons.beenhere,
+                                  color: readButtonColor,
+                                  size: 50,
+                                ),
                               ),
                             ),
                           )
