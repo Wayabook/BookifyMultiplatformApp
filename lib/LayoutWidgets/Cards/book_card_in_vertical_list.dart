@@ -26,7 +26,7 @@ class BookCardInVerticalList extends StatefulWidget {
 }
 
 
-class _BookCardInVerticalList extends State<BookCardInVerticalList> {
+class _BookCardInVerticalList extends State<BookCardInVerticalList>{
 
   //String chapter_title = "Nombre capitulo";
   BuildContext context;
@@ -34,13 +34,17 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> {
   Lecture book;
   Card card;
   bool showEndLectureFrame = false;
+  double initialHeight = 10.0;
+  double initialWidth = 10.0;
 
   _BookCardInVerticalList(this.book, this.buttonType);
 
   @override
   Widget build(BuildContext context) {
     this.context = context;
-    return Card(
+
+
+    /*return Card(
         elevation: 10,
         margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
         child:  GestureDetector(
@@ -72,8 +76,9 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> {
             child: _makeListTile(),
           ),
         )
-    );
-    /*return Stack(
+    );*/
+
+    return Stack(
       children: [
         Visibility(
           visible: !showEndLectureFrame,
@@ -90,6 +95,11 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> {
                     builder: (BuildContext context) => AddFeedbackDialog(this.book),
                   ).whenComplete(() {
                     if(this.book.finished){
+                      setState(() {
+                        showEndLectureFrame = true;
+                        initialHeight = 160.0;
+                        initialWidth = MediaQuery.of(context).size.width - 20;
+                      });
                       //showEndLectureFrame = true;
                       //InfoToast.showFinishedCongratulationsMessage("VERGGGGGAAAAAA");
                       /*card = Card(
@@ -114,12 +124,25 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> {
           ),
         ),
 
-        Visibility(
+        /*Visibility(
           visible: showEndLectureFrame,
           maintainSize: false,
           maintainAnimation: false,
           maintainState: false,
-          child: Card(
+          child: AnimatedContainer(
+            // Use the properties stored in the State class.
+            width: initialWidth,
+            height: initialHeight,
+            decoration: BoxDecoration(
+              color: Colors.lightGreen,
+              //borderRadius: 5.0,
+            ),
+            // Define how long the animation should take.
+            duration: Duration(seconds: 3),
+            // Provide an optional curve to make the animation feel smoother.
+            curve: Curves.fastOutSlowIn,
+          ),
+          /*child: Card(
             elevation: 10,
             margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
             child:  Container(
@@ -129,12 +152,12 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> {
               ),
               //child: _makeListTile(),
             ),
-          ),
-        ),
+          ),*/
+        ),*/
 
         //Container(color: Colors.lightGreen, height: 160,),
       ],
-    );*/
+    );
   }
 
   _makeListTile()   {
