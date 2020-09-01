@@ -21,6 +21,15 @@ class VerticalBookList/*<T extends Book>*/ extends StatefulWidget {
 
 class _VerticalBookList extends State<VerticalBookList> {
 
+  int positionToChange;
+
+  changeLecturePositionContent(positionChanged) {
+    setState(() {
+      positionToChange = positionChanged;
+      print(positionToChange);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,7 +39,7 @@ class _VerticalBookList extends State<VerticalBookList> {
   }
 
   _makeCard(int index, List<Book> books, ButtonType buttonType) {
-    return BookCardInVerticalList(books[index], buttonType);
+    return BookCardInVerticalList(books[index], buttonType, index, changeLecturePositionContent);
   }
 
   _makeBody() {
@@ -55,7 +64,6 @@ class _VerticalBookList extends State<VerticalBookList> {
   }
 
   _makeHeader(String title){
-    double width = MediaQuery.of(context).size.width;
     return ListTitle(title);
   }
 }

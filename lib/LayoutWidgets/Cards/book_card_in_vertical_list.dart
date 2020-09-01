@@ -12,34 +12,48 @@ import 'package:bookifyapp/Enums/button_type.dart';
 //import  'package:explode_view/explode_view.dart';
 import 'package:bookifyapp/LayoutWidgets/Lists/list_title.dart';
 
+class BookCardInVerticalList extends StatefulWidget {
 
-class BookCardInVerticalList extends StatelessWidget {
+  ButtonType buttonType;
+  Lecture book;
+  Function(int) changeLecturePositionContent;
+  int position;
+
+  BookCardInVerticalList(this.book, this.buttonType, this.position, this.changeLecturePositionContent);
+
+  @override
+  _BookCardInVerticalList createState() => _BookCardInVerticalList(this.book, this.buttonType);
+}
+
+
+class _BookCardInVerticalList extends State<BookCardInVerticalList> {
 
   //String chapter_title = "Nombre capitulo";
   BuildContext context;
   ButtonType buttonType;
   Lecture book;
   Card card;
+  bool showEndLectureFrame = false;
 
-  BookCardInVerticalList(this.book, this.buttonType);
+  _BookCardInVerticalList(this.book, this.buttonType);
 
   @override
   Widget build(BuildContext context) {
     this.context = context;
-    return Stack(
-      children: [
-        Card(
-            elevation: 10,
-            margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
-            child:  GestureDetector(
-              onTap: () async {
-                await showDialog(
-                  context: context,
-                  builder: (BuildContext context) => AddFeedbackDialog(this.book),
-                ).whenComplete(() {
-                  if(this.book.finished){
-                    //InfoToast.showFinishedCongratulationsMessage("VERGGGGGAAAAAA");
-                    /*card = Card(
+    return Card(
+        elevation: 10,
+        margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
+        child:  GestureDetector(
+          onTap: () async {
+            await showDialog(
+              context: context,
+              builder: (BuildContext context) => AddFeedbackDialog(this.book),
+            ).whenComplete(() {
+              if(this.book.finished){
+                widget.changeLecturePositionContent(widget.position);
+                //showEndLectureFrame = true;
+                //InfoToast.showFinishedCongratulationsMessage("VERGGGGGAAAAAA");
+                /*card = Card(
                     elevation: 10,
                     margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
                     child:  Container(
@@ -47,25 +61,65 @@ class BookCardInVerticalList extends StatelessWidget {
                       //width: doub,
                     )
                 );*/
-                  }
-                });
-              },
-              child: Container(
-                height: 160,
-                decoration: BoxDecoration(
-                  color: Colors.blueGrey,
-                ),
-                child: _makeListTile(),
-              ),
-            )
-        ),
-
+              }
+            });
+          },
+          child: Container(
+            height: 160,
+            decoration: BoxDecoration(
+              color: Colors.blueGrey,
+            ),
+            child: _makeListTile(),
+          ),
+        )
+    );
+    /*return Stack(
+      children: [
         Visibility(
-          visible: false,
+          visible: !showEndLectureFrame,
           maintainSize: false,
           maintainAnimation: false,
           maintainState: false,
-          child:  Card(
+          child: Card(
+              elevation: 10,
+              margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
+              child:  GestureDetector(
+                onTap: () async {
+                  await showDialog(
+                    context: context,
+                    builder: (BuildContext context) => AddFeedbackDialog(this.book),
+                  ).whenComplete(() {
+                    if(this.book.finished){
+                      //showEndLectureFrame = true;
+                      //InfoToast.showFinishedCongratulationsMessage("VERGGGGGAAAAAA");
+                      /*card = Card(
+                    elevation: 10,
+                    margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
+                    child:  Container(
+                      color: Colors.lightGreen,
+                      //width: doub,
+                    )
+                );*/
+                    }
+                  });
+                },
+                child: Container(
+                  height: 160,
+                  decoration: BoxDecoration(
+                    color: Colors.blueGrey,
+                  ),
+                  child: _makeListTile(),
+                ),
+              )
+          ),
+        ),
+
+        Visibility(
+          visible: showEndLectureFrame,
+          maintainSize: false,
+          maintainAnimation: false,
+          maintainState: false,
+          child: Card(
             elevation: 10,
             margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
             child:  Container(
@@ -80,7 +134,7 @@ class BookCardInVerticalList extends StatelessWidget {
 
         //Container(color: Colors.lightGreen, height: 160,),
       ],
-    );
+    );*/
   }
 
   _makeListTile()   {
