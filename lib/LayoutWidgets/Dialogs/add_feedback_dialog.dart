@@ -73,7 +73,7 @@ class _AddFeedbackDialog extends State<AddFeedbackDialog>{
     listSize = mainComments.length + 5;
 
     readButtonColor = Colors.blueGrey;
-    visible = false;
+    visible = widget.book.finished ? true : false;
 
 
     /*MainCommentCard(fromDialog: true),
@@ -228,15 +228,17 @@ class _AddFeedbackDialog extends State<AddFeedbackDialog>{
                               child: FloatingActionButton(
                                 onPressed: (){
                                   setState(() {
-                                    readButtonColor = Colors.lightGreen;
-                                    visible = true;
+                                    if(!widget.book.finished){
+                                      readButtonColor = Colors.lightGreen;
+                                      visible = true;
 
-                                    var user = Provider.of<User>(context, listen: false);
-                                    user.increaseChapter(widget.book);
+                                      var user = Provider.of<User>(context, listen: false);
+                                      user.increaseChapter(widget.book);
 
-                                    if(widget.book.finished)
-                                      InfoToast.showFinishedCongratulationsMessage(widget.book.title);
+                                      if(widget.book.finished)
+                                        InfoToast.showFinishedCongratulationsMessage(widget.book.title);
 
+                                    }
                                   });
                                 },
                                 backgroundColor: Colors.white,
@@ -267,39 +269,42 @@ class _AddFeedbackDialog extends State<AddFeedbackDialog>{
                   child: Container(color: Colors.blueGrey, height: 2, width: width),
                 ),
 
-                Visibility(
-                  visible: visible,
-                  maintainSize: false,
-                  maintainAnimation: false,
-                  maintainState: false,
-                  child: Padding(
-                    padding: EdgeInsets.fromLTRB(7, 220, 7, 0),
-                    child:  ListView.builder(
-                        controller: scrollController,
-                        shrinkWrap: true,
-                        padding: const EdgeInsets.all(8),
-                        itemCount: listSize,
-                        itemBuilder: (BuildContext context, int index) {
-                          //return addFeedbackSections[index];
-                          if(index == 0){
-                            return _getTitleSection("¿Como estuvo?");
-                          } else if (index == 1) {
-                            return _getRatingBar();
-                          } else if (index == 2) {
-                            return _getTitleSection("¿Como te sentiste?");
-                          } else if (index == 3) {
-                            return _getReactionsGrid();
-                          } else if (index == 4) {
-                            return _getCommentsTitle();
-                          } else {
-                            return mainComments[index - 5];
+                AnimatedOpacity(
+                  opacity: visible ? 1.0 : 0.0,
+                  duration: Duration(milliseconds: 500),
+                  child:  Visibility(
+                    visible: visible,
+                    maintainSize: false,
+                    maintainAnimation: false,
+                    maintainState: false,
+                    child: Padding(
+                      padding: EdgeInsets.fromLTRB(7, 220, 7, 0),
+                      child:  ListView.builder(
+                          controller: scrollController,
+                          shrinkWrap: true,
+                          padding: const EdgeInsets.all(8),
+                          itemCount: listSize,
+                          itemBuilder: (BuildContext context, int index) {
+                            //return addFeedbackSections[index];
+                            if(index == 0){
+                              return _getTitleSection("¿Como estuvo?");
+                            } else if (index == 1) {
+                              return _getRatingBar();
+                            } else if (index == 2) {
+                              return _getTitleSection("¿Como te sentiste?");
+                            } else if (index == 3) {
+                              return _getReactionsGrid();
+                            } else if (index == 4) {
+                              return _getCommentsTitle();
+                            } else {
+                              return mainComments[index - 5];
+                            }
+
                           }
-
-                        }
-                    ),
+                      ),
 
 
-                    /*child: ListView(
+                      /*child: ListView(
                       children: <Widget>[
                         Padding(
                           padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
@@ -343,6 +348,7 @@ class _AddFeedbackDialog extends State<AddFeedbackDialog>{
                         )*/
                       ],
                   ),*/
+                    ),
                   ),
                 ),
 
@@ -359,27 +365,31 @@ class _AddFeedbackDialog extends State<AddFeedbackDialog>{
                 Positioned(
                     bottom: 5,
                     right: 10,
-                    child: Visibility(
-                      visible: visible,
-                      maintainSize: false,
-                      maintainAnimation: false,
-                      maintainState: false,
-                      child: Container(
-                        height: 40,
-                        width: 40,
-                        child: FittedBox(
-                          child: FloatingActionButton(
-                            onPressed: (){
-                              _navigateToCommentsPage(context);
-                            },
-                            backgroundColor: Colors.yellow,
-                            child: Icon(
-                              Icons.add,
-                              color: Colors.blueGrey,),
+                    child: AnimatedOpacity(
+                        opacity: visible ? 1.0 : 0.0,
+                        duration: Duration(milliseconds: 500),
+                        child:  Visibility(
+                          visible: visible,
+                          maintainSize: false,
+                          maintainAnimation: false,
+                          maintainState: false,
+                          child: Container(
+                            height: 40,
+                            width: 40,
+                            child: FittedBox(
+                              child: FloatingActionButton(
+                                onPressed: (){
+                                  _navigateToCommentsPage(context);
+                                },
+                                backgroundColor: Colors.yellow,
+                                child: Icon(
+                                  Icons.add,
+                                  color: Colors.blueGrey,),
+                              ),
+                            ),
                           ),
-                        ),
-                      ),
-                    )
+                        )
+                    ),
                 ),
 
               ],

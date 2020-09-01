@@ -1,3 +1,4 @@
+import 'package:bookifyapp/InfoToast.dart';
 import 'package:bookifyapp/LayoutWidgets/Buttons/read_action_button.dart';
 import 'package:bookifyapp/LayoutWidgets/Dialogs/add_feedback_dialog.dart';
 import 'package:bookifyapp/LayoutWidgets/Dialogs/book_shops_dialog.dart';
@@ -18,32 +19,67 @@ class BookCardInVerticalList extends StatelessWidget {
   BuildContext context;
   ButtonType buttonType;
   Lecture book;
+  Card card;
 
   BookCardInVerticalList(this.book, this.buttonType);
 
   @override
   Widget build(BuildContext context) {
     this.context = context;
-    return Card(
-      elevation: 10,
-      margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
-      child:  GestureDetector(
-        onTap: () {
-          showDialog(
-            context: context,
-            builder: (BuildContext context) => AddFeedbackDialog(this.book),
-          ).then((value) => (){
-            //Guardar index i llista;
-          });
-        },
-        child: Container(
-          height: 160,
-          decoration: BoxDecoration(
-            color: Colors.blueGrey,
-          ),
-          child: _makeListTile(),
+    return Stack(
+      children: [
+        Card(
+            elevation: 10,
+            margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
+            child:  GestureDetector(
+              onTap: () async {
+                await showDialog(
+                  context: context,
+                  builder: (BuildContext context) => AddFeedbackDialog(this.book),
+                ).whenComplete(() {
+                  if(this.book.finished){
+                    //InfoToast.showFinishedCongratulationsMessage("VERGGGGGAAAAAA");
+                    /*card = Card(
+                    elevation: 10,
+                    margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
+                    child:  Container(
+                      color: Colors.lightGreen,
+                      //width: doub,
+                    )
+                );*/
+                  }
+                });
+              },
+              child: Container(
+                height: 160,
+                decoration: BoxDecoration(
+                  color: Colors.blueGrey,
+                ),
+                child: _makeListTile(),
+              ),
+            )
         ),
-      )
+
+        Visibility(
+          visible: false,
+          maintainSize: false,
+          maintainAnimation: false,
+          maintainState: false,
+          child:  Card(
+            elevation: 10,
+            margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
+            child:  Container(
+              height: 160,
+              decoration: BoxDecoration(
+                color: Colors.lightGreen,
+              ),
+              //child: _makeListTile(),
+            ),
+          ),
+        ),
+
+        //Container(color: Colors.lightGreen, height: 160,),
+      ],
     );
   }
 
