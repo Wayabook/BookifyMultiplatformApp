@@ -36,14 +36,89 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList>{
   bool showEndLectureFrame = false;
   double initialHeight = 10.0;
   double initialWidth = 10.0;
+  Widget content;
 
   _BookCardInVerticalList(this.book, this.buttonType);
+
+  _bookRead(){
+    content = new Card(
+        elevation: 10,
+        margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
+        child:   Container(
+          height: 160,
+          decoration: BoxDecoration(
+            color: Colors.blueGrey,
+          ),
+          child: _makeListTile(),
+        ),
+    );
+  }
+
+  @override
+  void initState(){
+
+    super.initState();
+
+    content = Container(
+      height: 160,
+      decoration: BoxDecoration(
+        color: Colors.blueGrey,
+      ),
+      child: _makeListTile(),
+    );
+    /*content = Card(
+        elevation: 10,
+        margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
+        child:  GestureDetector(
+          onTap: () async {
+            await showDialog(
+              context: context,
+              builder: (BuildContext context) => AddFeedbackDialog(this.book),
+            ).whenComplete(() {
+              if(this.book.finished){
+                _bookRead();
+                widget.changeLecturePositionContent(widget.position);
+                //showEndLectureFrame = true;
+                //InfoToast.showFinishedCongratulationsMessage("VERGGGGGAAAAAA");
+                /*card = Card(
+                    elevation: 10,
+                    margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
+                    child:  Container(
+                      color: Colors.lightGreen,
+                      //width: doub,
+                    )
+                );*/
+              }
+            });
+          },
+          child: Container(
+            height: 160,
+            decoration: BoxDecoration(
+              color: Colors.blueGrey,
+            ),
+            child: _makeListTile(),
+          ),
+        )
+    );*/
+
+
+    /*items = new List();
+    for(int index = 0; index < widget.readingBooks.length + widget.pendingBooks.length + 2; index++){
+      if (index == 0) {
+        items.add(_makeHeader('Reading:'));
+      } else if (index <= widget.readingBooks.length) {
+        items.add(_makeCard(index - 1, widget.readingBooks, ButtonType.read));
+      } else if (index == widget.readingBooks.length + 1) {
+        items.add( _makeHeader('Pending:'));
+      } else {
+        items.add(_makeCard(index - 2 - widget.readingBooks.length, widget.pendingBooks, ButtonType.read));
+      }
+    }*/
+  }
 
   @override
   Widget build(BuildContext context) {
     this.context = context;
-
-
     return Card(
         elevation: 10,
         margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
@@ -54,6 +129,7 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList>{
               builder: (BuildContext context) => AddFeedbackDialog(this.book),
             ).whenComplete(() {
               if(this.book.finished){
+                _bookRead();
                 widget.changeLecturePositionContent(widget.position);
                 //showEndLectureFrame = true;
                 //InfoToast.showFinishedCongratulationsMessage("VERGGGGGAAAAAA");
