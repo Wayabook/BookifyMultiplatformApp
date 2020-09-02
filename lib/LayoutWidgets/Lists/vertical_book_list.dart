@@ -28,7 +28,7 @@ class _VerticalBookList extends State<VerticalBookList> {
   void initState(){
 
     super.initState();
-    /*items = new List();
+    items = new List();
 
     for(int index = 0; index < widget.readingBooks.length + widget.pendingBooks.length + 2; index++){
       if (index == 0) {
@@ -40,15 +40,22 @@ class _VerticalBookList extends State<VerticalBookList> {
       } else {
         items.add(_makeCard(index - 2 - widget.readingBooks.length, widget.pendingBooks, ButtonType.read));
       }
-    }*/
+    }
+  }
+
+
+  Future wait(seconds) {
+    return new Future.delayed(Duration(seconds: seconds), () => "1");
   }
 
 
 
-  changeLecturePositionContent(positionChanged) {
+  changeLecturePositionContent(positionInList) async{
+    await wait(3);
     setState(() {
-      positionToChange = positionChanged;
-      print(positionToChange);
+      widget.readingBooks.removeAt(positionInList);
+      //positionToChange = positionChanged;
+      //print(positionToChange);
     });
   }
 
@@ -71,8 +78,8 @@ class _VerticalBookList extends State<VerticalBookList> {
         shrinkWrap: true,
         itemCount: widget.readingBooks.length + widget.pendingBooks.length + 2,
         itemBuilder: (BuildContext context, int index) {
-          //return items[index];
-          if (index == 0) {
+          return items[index];
+          /*if (index == 0) {
             return _makeHeader('Reading:');
           } else if (index <= widget.readingBooks.length) {
             return _makeCard(index - 1, widget.readingBooks, ButtonType.read);
@@ -80,7 +87,7 @@ class _VerticalBookList extends State<VerticalBookList> {
             return _makeHeader('Pending:');
           } else {
             return _makeCard(index - 2 - widget.readingBooks.length, widget.pendingBooks, ButtonType.read);
-          }
+          }*/
         },
       ),
     );

@@ -44,7 +44,7 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList>{
     this.context = context;
 
 
-    /*return Card(
+    return Card(
         elevation: 10,
         margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
         child:  GestureDetector(
@@ -76,9 +76,9 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList>{
             child: _makeListTile(),
           ),
         )
-    );*/
+    );
 
-    return Stack(
+    /*return Stack(
       children: [
         Visibility(
           visible: !showEndLectureFrame,
@@ -124,7 +124,7 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList>{
           ),
         ),
 
-        /*Visibility(
+        Visibility(
           visible: showEndLectureFrame,
           maintainSize: false,
           maintainAnimation: false,
@@ -153,11 +153,11 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList>{
               //child: _makeListTile(),
             ),
           ),*/
-        ),*/
+        ),
 
         //Container(color: Colors.lightGreen, height: 160,),
       ],
-    );
+    );*/
   }
 
   _makeListTile()   {
