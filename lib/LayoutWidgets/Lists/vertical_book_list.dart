@@ -53,7 +53,7 @@ class _VerticalBookList extends State<VerticalBookList> {
   changeLecturePositionContent(positionInList) async{
     await wait(3);
     setState(() {
-      widget.readingBooks.removeAt(positionInList);
+      //widget.readingBooks.removeAt(positionInList);
       //positionToChange = positionChanged;
       //print(positionToChange);
     });

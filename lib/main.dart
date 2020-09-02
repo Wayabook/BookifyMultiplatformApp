@@ -82,14 +82,33 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   List<Lecture> lectures;
   List<Genre> genres;
   User user;
+  int _currentIndex;
 
 
   static const TextStyle optionStyle =
   TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
 
   @override
+  void initState(){
+
+    super.initState();
+    _currentIndex = 0;
+  }
+
+  changeCurrentIndex(int position){
+    setState(() {
+      _currentIndex = position;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
 
+    BottomNavigationBar bottomNavigationBar =  BottomNavigationBar(
+      items: _items,
+      currentIndex: _currentIndex,
+    );
+    //bottomNavigationBar.selected
     //initialize_items();
     // Here's the custom scaffold widget
     // It takes a normal scaffold with mandatory bottom navigation bar
@@ -98,6 +117,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       scaffold: Scaffold(
         bottomNavigationBar: BottomNavigationBar(
           items: _items,
+          //currentIndex: 2,
         ),
       ),
 

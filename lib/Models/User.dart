@@ -40,6 +40,21 @@ class User extends ChangeNotifier{
     notifyListeners();
   }
 
+  void addLectureToReadingList(Lecture lecture){
+    this._lecture_lists["Reading"].add(lecture);
+    notifyListeners();
+  }
+
+  void removeLectureFromReadingList(Lecture lecture){
+    this._lecture_lists["Reading"].remove(lecture);
+    notifyListeners();
+  }
+
+  void removeLectureFromReadingListAtPosition(int position){
+    this._lecture_lists["Reading"].remove(position);
+    notifyListeners();
+  }
+
   bool isInReadingList(Lecture lecture){
     return this._lecture_lists["Reading"].contains(lecture);
   }
@@ -59,6 +74,10 @@ class User extends ChangeNotifier{
     }
     return books;
   }*/
+  /*void removeLectureFromReadingList(Lecture lecture){
+    this._lecture_lists["Reading"].remove(lecture);
+    notifyListeners();
+  }*/
 
   void increaseChapter(Lecture lecture){
     int position;
@@ -68,6 +87,10 @@ class User extends ChangeNotifier{
     } else if (isInPendingList(lecture)) {
       position = _lecture_lists["Pending"].indexOf(lecture);
       this._lecture_lists["Pending"][position].increaseChapter();
+      if(this._lecture_lists["Pending"][position].currentChapter == 1){
+        this._lecture_lists["Reading"].add(this._lecture_lists["Pending"][position]);
+        this._lecture_lists["Pending"].removeAt(position);
+      }
 
     }
     /*for(String key in _lecture_lists.keys){

@@ -3,6 +3,7 @@ import 'package:bookifyapp/LayoutWidgets/Buttons/read_action_button.dart';
 import 'package:bookifyapp/LayoutWidgets/Dialogs/add_feedback_dialog.dart';
 import 'package:bookifyapp/LayoutWidgets/Dialogs/book_shops_dialog.dart';
 import 'package:bookifyapp/Models/Lecture.dart';
+import 'package:bookifyapp/Models/User.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
@@ -11,6 +12,7 @@ import 'package:bookifyapp/Models/Book.dart';
 import 'package:bookifyapp/Enums/button_type.dart';
 //import  'package:explode_view/explode_view.dart';
 import 'package:bookifyapp/LayoutWidgets/Lists/list_title.dart';
+import 'package:provider/provider.dart';
 
 class BookCardInVerticalList extends StatefulWidget {
 
@@ -129,8 +131,12 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList>{
               builder: (BuildContext context) => AddFeedbackDialog(this.book),
             ).whenComplete(() {
               if(this.book.finished){
-                _bookRead();
-                widget.changeLecturePositionContent(widget.position);
+                //_bookRead();
+                var user = Provider.of<User>(context, listen: false);
+                user.removeLectureFromReadingListAtPosition(widget.position);
+                //widget.changeLecturePositionContent(widget.position);
+
+
                 //showEndLectureFrame = true;
                 //InfoToast.showFinishedCongratulationsMessage("VERGGGGGAAAAAA");
                 /*card = Card(
