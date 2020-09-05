@@ -133,8 +133,8 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList>{
               if(this.book.finished){
                 //_bookRead();
                 var user = Provider.of<User>(context, listen: false);
-                user.removeLectureFromReadingListAtPosition(widget.position);
-                //widget.changeLecturePositionContent(widget.position);
+                //user.removeLectureFromReadingListAtPosition(widget.position);
+                widget.changeLecturePositionContent(widget.position);
 
 
                 //showEndLectureFrame = true;

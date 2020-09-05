@@ -28,19 +28,19 @@ class _VerticalBookList extends State<VerticalBookList> {
   void initState(){
 
     super.initState();
-    /*items = new List();
 
+    items = new List();
     for(int index = 0; index < widget.readingBooks.length + widget.pendingBooks.length + 2; index++){
       if (index == 0) {
         items.add(_makeHeader('Reading:'));
       } else if (index <= widget.readingBooks.length) {
         items.add(_makeCard(index - 1, widget.readingBooks, ButtonType.read));
       } else if (index == widget.readingBooks.length + 1) {
-        items.add( _makeHeader('Pending:'));
+        items.add(_makeHeader('Pending:'));
       } else {
         items.add(_makeCard(index - 2 - widget.readingBooks.length, widget.pendingBooks, ButtonType.read));
       }
-    }*/
+    }
   }
 
 
@@ -51,8 +51,22 @@ class _VerticalBookList extends State<VerticalBookList> {
 
 
   changeLecturePositionContent(positionInList) async{
-    await wait(3);
+    //await wait(3);
     setState(() {
+      items[positionInList] = AnimatedContainer(
+        // Use the properties stored in the State class.
+        width: 150,
+        height: 150,
+        decoration: BoxDecoration(
+          color: Colors.lightGreen,
+          //borderRadius: 5.0,
+        ),
+        // Define how long the animation should take.
+        duration: Duration(seconds: 3),
+        // Provide an optional curve to make the animation feel smoother.
+        curve: Curves.fastOutSlowIn,
+      );
+
       //widget.readingBooks.removeAt(positionInList);
       //positionToChange = positionChanged;
       //print(positionToChange);
@@ -78,8 +92,14 @@ class _VerticalBookList extends State<VerticalBookList> {
         shrinkWrap: true,
         itemCount: widget.readingBooks.length + widget.pendingBooks.length + 2,
         itemBuilder: (BuildContext context, int index) {
-          //return items[index];
-          if (index == 0) {
+          return Padding(
+            key: UniqueKey(),
+            padding: EdgeInsets.all(0),
+            child: items[index],
+          );
+
+          return items[index];
+          /*if (index == 0) {
             return _makeHeader('Reading:');
           } else if (index <= widget.readingBooks.length) {
             return _makeCard(index - 1, widget.readingBooks, ButtonType.read);
@@ -87,7 +107,7 @@ class _VerticalBookList extends State<VerticalBookList> {
             return _makeHeader('Pending:');
           } else {
             return _makeCard(index - 2 - widget.readingBooks.length, widget.pendingBooks, ButtonType.read);
-          }
+          }*/
         },
       ),
     );
