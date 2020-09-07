@@ -30,6 +30,12 @@ class User extends ChangeNotifier{
     this._lecture_lists = lectures;
   }
 
+  List<Lecture> getLectureListByName(String listName){
+    if(this._lecture_lists.containsKey(listName))
+      return this._lecture_lists[listName];
+    return new List();
+  }
+
   void addLectureToPendingList(Lecture lecture){
     this._lecture_lists["Pending"].add(lecture);
     notifyListeners();
@@ -43,6 +49,14 @@ class User extends ChangeNotifier{
   void addLectureToReadingList(Lecture lecture){
     this._lecture_lists["Reading"].add(lecture);
     notifyListeners();
+  }
+
+  void moveLectureFromReadingListToReadList(Lecture lecture){
+    if(isInReadingList(lecture)){
+      this._lecture_lists["Read"].add(lecture);
+      this._lecture_lists["Reading"].remove(lecture);
+      notifyListeners();
+    }
   }
 
   void removeLectureFromReadingList(Lecture lecture){

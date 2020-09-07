@@ -18,13 +18,18 @@ class BookCardInVerticalList extends StatefulWidget {
 
   ButtonType buttonType;
   Lecture book;
-  Function(int) changeLecturePositionContent;
+  Function(int, Lecture) changeLecturePositionContent;
   int position;
+  bool _visible;
 
   BookCardInVerticalList(this.book, this.buttonType, this.position, this.changeLecturePositionContent);
 
   @override
   _BookCardInVerticalList createState() => _BookCardInVerticalList(this.book, this.buttonType);
+
+  hideTitles(){
+    this._visible = false;
+  }
 }
 
 
@@ -60,62 +65,13 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList>{
   void initState(){
 
     super.initState();
+    widget._visible = true;
+  }
 
-    content = Container(
-      height: 160,
-      decoration: BoxDecoration(
-        color: Colors.blueGrey,
-      ),
-      child: _makeListTile(),
-    );
-    /*content = Card(
-        elevation: 10,
-        margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
-        child:  GestureDetector(
-          onTap: () async {
-            await showDialog(
-              context: context,
-              builder: (BuildContext context) => AddFeedbackDialog(this.book),
-            ).whenComplete(() {
-              if(this.book.finished){
-                _bookRead();
-                widget.changeLecturePositionContent(widget.position);
-                //showEndLectureFrame = true;
-                //InfoToast.showFinishedCongratulationsMessage("VERGGGGGAAAAAA");
-                /*card = Card(
-                    elevation: 10,
-                    margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
-                    child:  Container(
-                      color: Colors.lightGreen,
-                      //width: doub,
-                    )
-                );*/
-              }
-            });
-          },
-          child: Container(
-            height: 160,
-            decoration: BoxDecoration(
-              color: Colors.blueGrey,
-            ),
-            child: _makeListTile(),
-          ),
-        )
-    );*/
-
-
-    /*items = new List();
-    for(int index = 0; index < widget.readingBooks.length + widget.pendingBooks.length + 2; index++){
-      if (index == 0) {
-        items.add(_makeHeader('Reading:'));
-      } else if (index <= widget.readingBooks.length) {
-        items.add(_makeCard(index - 1, widget.readingBooks, ButtonType.read));
-      } else if (index == widget.readingBooks.length + 1) {
-        items.add( _makeHeader('Pending:'));
-      } else {
-        items.add(_makeCard(index - 2 - widget.readingBooks.length, widget.pendingBooks, ButtonType.read));
-      }
-    }*/
+  void changeTextAppearence(){
+    setState(() {
+      widget._visible = false;
+    });
   }
 
   @override
@@ -125,16 +81,15 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList>{
         elevation: 10,
         margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
         child:  GestureDetector(
-          onTap: () async {
-            await showDialog(
+          key: UniqueKey(),
+          onTap: () {
+            showDialog(
               context: context,
               builder: (BuildContext context) => AddFeedbackDialog(this.book),
             ).whenComplete(() {
               if(this.book.finished){
-                //_bookRead();
-                var user = Provider.of<User>(context, listen: false);
-                //user.removeLectureFromReadingListAtPosition(widget.position);
-                widget.changeLecturePositionContent(widget.position);
+                //changeTextAppearence();
+                widget.changeLecturePositionContent(widget.position, widget.book);
 
 
                 //showEndLectureFrame = true;
@@ -247,8 +202,8 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList>{
       backgroundColor: Colors.white,
       child: Icon(
         Icons.beenhere,
-        color: Colors.blueGrey,
-        size: 50,
+        color: !this.book.finished ? Colors.blueGrey : Colors.lightGreen,
+        size: !this.book.finished ? 50 : 75,
       ),
     );
 
@@ -322,12 +277,41 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList>{
                         Flexible(
                           flex: 2,
                           child: Center(
-                            child: Container(
+                            child: AnimatedOpacity(
+                              // If the widget is visible, animate to 0.0 (invisible).
+                              // If the widget is hidden, animate to 1.0 (fully visible).
+                              opacity: !this.book.finished ? 1.0 : 0.0,
+                              duration: Duration(milliseconds: 5000),
+                              // The green box must be a child of the AnimatedOpacity widget.
+                              child: Center(
+                                child: Container(
+                                  child: Text(
+                                    book.title,
+                                    style: TextStyle(
+                                      //color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+
+                        Flexible(
+                          flex: 2,
+                          child: AnimatedOpacity(
+                            // If the widget is visible, animate to 0.0 (invisible).
+                            // If the widget is hidden, animate to 1.0 (fully visible).
+                            opacity: !this.book.finished ? 1.0 : 0.0,
+                            duration: Duration(milliseconds: 5000),
+                            // The green box must be a child of the AnimatedOpacity widget.
+                            child: Center(
                               child: Text(
-                                book.title,
+                                book.author,
                                 style: TextStyle(
-                                  //color: Colors.white,
-                                  fontWeight: FontWeight.bold,
+                                  color: Colors.grey[500],
                                 ),
                                 textAlign: TextAlign.center,
                               ),
@@ -336,60 +320,56 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList>{
                         ),
 
                         Flexible(
-                          flex: 2,
-                          child: Center(
-                            child: Text(
-                              book.author,
-                              style: TextStyle(
-                                color: Colors.grey[500],
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                        ),
-
-                        Flexible(
                           flex: 4,
                           child:  Align(
                               alignment: Alignment.bottomCenter,
-                              child: Wrap(
-                                direction: Axis.horizontal,
-                                alignment: WrapAlignment.center,
-                                children: <Widget>[
-                                  Row(
-                                    children: <Widget>[
+                              child: AnimatedOpacity(
+                                // If the widget is visible, animate to 0.0 (invisible).
+                                // If the widget is hidden, animate to 1.0 (fully visible).
+                                opacity: !this.book.finished  ? 1.0 : 0.0,
+                                duration: Duration(milliseconds: 5000),
+                                // The green box must be a child of the AnimatedOpacity widget.
+                                child: Wrap(
+                                  direction: Axis.horizontal,
+                                  alignment: WrapAlignment.center,
+                                  children: <Widget>[
+                                    Row(
+                                      children: <Widget>[
 
-                                      Icon(
-                                        Icons.bookmark,
-                                        color: Colors.blueGrey,
-                                        size: 20,
-                                      ),
-
-                                      AutoSizeText(
-                                        this.book.current_chapter_title.substring(0, 15) + "...",
-                                        style: TextStyle( fontWeight: FontWeight.bold,),
-                                        maxLines: 1,
-                                      ),
-
-                                      Visibility(
-                                        visible: this.book.currentChapter != this.book.chapters.length - 1,
-                                        maintainSize: false,
-                                        maintainAnimation: false,
-                                        maintainState: false,
-                                        child:  AutoSizeText(
-                                          "+" + (this.book.chapters.length - this.book.currentChapter - 1).toString(),
-                                          style: TextStyle(
-                                            color: Colors.grey[500],
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                          maxLines: 1,
-                                          textAlign: TextAlign.left,
+                                        Icon(
+                                          Icons.bookmark,
+                                          color: Colors.blueGrey,
+                                          size: 20,
                                         ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              )
+
+
+
+                                        AutoSizeText(
+                                          this.book.current_chapter_title.substring(0, 15) + "...",
+                                          style: TextStyle( fontWeight: FontWeight.bold,),
+                                          maxLines: 1,
+                                        ),
+
+                                        Visibility(
+                                          visible: this.book.currentChapter != this.book.chapters.length - 1,
+                                          maintainSize: false,
+                                          maintainAnimation: false,
+                                          maintainState: false,
+                                          child:  AutoSizeText(
+                                            "+" + (this.book.chapters.length - this.book.currentChapter - 1).toString(),
+                                            style: TextStyle(
+                                              color: Colors.grey[500],
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                            maxLines: 1,
+                                            textAlign: TextAlign.left,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                )
+                              ),
                           ),
                         )
                       ],
