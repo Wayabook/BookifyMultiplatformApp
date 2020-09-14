@@ -28,6 +28,8 @@ import 'package:provider/provider.dart';
 class AddFeedbackDialog extends StatefulWidget{
 
   Lecture book;
+  //AnimationController an
+  Function() callAnimation;
   AddFeedbackDialog(this.book);
 
   @override
@@ -175,6 +177,13 @@ class _AddFeedbackDialog extends State<AddFeedbackDialog>{
   }
 
   @override
+  void dispose() {
+    //animationController.dispose();
+    //widget.callAnimation();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
 
     width = MediaQuery.of(context).size.width;
@@ -200,6 +209,7 @@ class _AddFeedbackDialog extends State<AddFeedbackDialog>{
                           alignment: Alignment.topLeft,
                           child: IconButton(
                             onPressed: (){
+                              //widget.callAnimation();
                               Navigator.pop(context);
                             },
                             icon: Icon(

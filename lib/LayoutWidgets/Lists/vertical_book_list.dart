@@ -21,7 +21,7 @@ class VerticalBookList/*<T extends Book>*/ extends StatefulWidget {
   _VerticalBookList createState() => _VerticalBookList();
 }
 
-class _VerticalBookList extends State<VerticalBookList> {
+class _VerticalBookList extends State<VerticalBookList> with TickerProviderStateMixin {
 
   int positionToChange;
   List<Widget> items;
@@ -56,8 +56,6 @@ class _VerticalBookList extends State<VerticalBookList> {
     super.didChangeDependencies();
     //changeLecturePositionContent(0);
   }
-
-
 
   changeLecturePositionContent(positionInList, book) async {
     await wait(3);
@@ -172,7 +170,14 @@ class _VerticalBookList extends State<VerticalBookList> {
   }
 
   _makeCard(int index, List<Book> books, ButtonType buttonType) {
-    return BookCardInVerticalList(books[index], buttonType, index, changeLecturePositionContent);
+    //double width = MediaQuery.of(context).size.width;
+    /*return Container(
+      //width: width,
+      height: 160,
+      color: Colors.green,
+    );*/
+    //int aux = this;
+    return BookCardInVerticalList(books[index], buttonType, index, changeLecturePositionContent, this);
   }
 
   _makeBody() {

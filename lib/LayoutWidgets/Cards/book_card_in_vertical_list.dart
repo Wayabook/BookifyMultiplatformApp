@@ -19,10 +19,12 @@ class BookCardInVerticalList extends StatefulWidget {
   ButtonType buttonType;
   Lecture book;
   Function(int, Lecture) changeLecturePositionContent;
+  TickerProvider tickerProvider;
+
   int position;
   bool _visible;
 
-  BookCardInVerticalList(this.book, this.buttonType, this.position, this.changeLecturePositionContent);
+  BookCardInVerticalList(this.book, this.buttonType, this.position, this.changeLecturePositionContent, this.tickerProvider);
 
   @override
   _BookCardInVerticalList createState() => _BookCardInVerticalList(this.book, this.buttonType);
@@ -33,7 +35,7 @@ class BookCardInVerticalList extends StatefulWidget {
 }
 
 
-class _BookCardInVerticalList extends State<BookCardInVerticalList> with TickerProviderStateMixin {
+class _BookCardInVerticalList extends State<BookCardInVerticalList> {
 
   //String chapter_title = "Nombre capitulo";
   BuildContext context;
@@ -46,7 +48,9 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> with TickerP
   Widget content;
 
   // Rotation controller
-  AnimationController rotationController;
+  AnimationController animationController;
+  Animation<double> animation;
+
 
 
   /*bool isOpened = false;
@@ -72,10 +76,28 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> with TickerP
   }*/
 
   @override
+  void dispose() {
+    animationController.dispose();
+    super.dispose();
+  }
+
+  @override
   void initState(){
 
     widget._visible = true;
-    rotationController = AnimationController(duration: const Duration(milliseconds: 1000), vsync: this);
+    animationController = AnimationController(
+        duration: const Duration(milliseconds: 7000),
+        vsync: widget.tickerProvider
+    );
+
+    //animationController.forward();
+
+    animation = CurvedAnimation(
+      parent: animationController,
+      curve: Curves.elasticIn,
+
+    );
+
 
     /*_animationController =
     AnimationController(vsync: this, duration: Duration(milliseconds: 500))
@@ -101,11 +123,6 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> with TickerP
     super.initState();
   }
 
-  @override
-  dispose() {
-    //_animationController.dispose();
-    super.dispose();
-  }
 
   void changeTextAppearence(){
     setState(() {
@@ -113,30 +130,23 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> with TickerP
     });
   }
 
-  @override
-  Widget build(BuildContext context) {
-    this.context = context;
-    return Card(
-        elevation: 10,
-        margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
-        child:  GestureDetector(
-          key: UniqueKey(),
-          onTap: () {
-            showDialog(
-              context: context,
-              builder: (BuildContext context) => AddFeedbackDialog(this.book),
-            ).whenComplete(() {
-              if(this.book.finished){
-                //changeTextAppearence();
-                //widget.changeLecturePositionContent(widget.position, widget.book);
-                rotationController.forward(from: 0.0);
-                InfoToast.showFinishedCongratulationsMessage(widget.book.title);
-                //_animationController.forward();
 
 
-                //showEndLectureFrame = true;
-                //InfoToast.showFinishedCongratulationsMessage("VERGGGGGAAAAAA");
-                /*card = Card(
+  /*void startAnimation(){
+    setState(() {
+      if(this.book.finished){
+        //changeTextAppearence();
+        //widget.changeLecturePositionContent(widget.position, widget.book);
+
+        InfoToast.showFinishedCongratulationsMessage(widget.book.title);
+        animationController.forward();
+        //startAnimation();
+        //_animationController.forward();
+
+
+        //showEndLectureFrame = true;
+        //InfoToast.showFinishedCongratulationsMessage("VERGGGGGAAAAAA");
+        /*card = Card(
                     elevation: 10,
                     margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
                     child:  Container(
@@ -144,8 +154,43 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> with TickerP
                       //width: doub,
                     )
                 );*/
+      }
+    });
+  }*/
+
+  @override
+  Widget build(BuildContext context) {
+    double width =  MediaQuery.of(context).size.width;
+    this.context = context;
+    if(this.book.finished){
+      setState(() {
+          animationController.forward();
+      });
+    }
+    return Card(
+        elevation: 10,
+        margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
+        child:  GestureDetector(
+          key: UniqueKey(),
+          onTap: () async {
+            await showDialog(
+              context: context,
+              builder: (BuildContext context) => AddFeedbackDialog(this.book),
+            ).whenComplete(() {
+              if(this.book.finished){
+                //changeTextAppearence();
+
+                //widget.changeLecturePositionContent(widget.position, widget.book);
+                //animationController.forward();
+                InfoToast.showFinishedCongratulationsMessage(widget.book.title);
+
+                //startAnimation();
               }
-            });
+            });/*.then((value) => () {
+              setState(() {
+                animationController.forward();
+              });
+            });*/
           },
           child: Container(
             height: 160,
@@ -242,11 +287,14 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> with TickerP
   _makeListTile()   {
     FloatingActionButton floatingActionButton = new FloatingActionButton(
       backgroundColor: Colors.white,
-      child: Icon(
-        Icons.beenhere,
-        color: !this.book.finished ? Colors.blueGrey : Colors.lightGreen,
-        size: !this.book.finished ? 50 : 75,
-
+      child: RotationTransition(
+        turns: animation,
+        child: Icon(
+          Icons.beenhere,
+          color: !this.book.finished ? Colors.blueGrey : Colors.lightGreen,
+          size: !this.book.finished ? 50 : 75,
+        ),
+        //transitionType: TransitionType.native
       ),
     );
 
@@ -428,11 +476,7 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> with TickerP
                       child: SizedBox(
                         height: 75,
                         width: 75,
-                        child: RotationTransition(
-                          turns: Tween(begin: 0.0, end: 1.0).animate(rotationController),
-                          child: floatingActionButton,
-                          //transitionType: TransitionType.native
-                        ),
+                        child: floatingActionButton
 
 
                         /*CircularPercentIndicator(
