@@ -45,6 +45,7 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> {
   bool showEndLectureFrame = false;
   double initialHeight = 10.0;
   double initialWidth = 10.0;
+  double buttonSize = 50.0;
   Widget content;
 
   // Rotation controller
@@ -86,7 +87,7 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> {
 
     widget._visible = true;
     animationController = AnimationController(
-        duration: const Duration(milliseconds: 7000),
+        duration: const Duration(milliseconds: 3000),
         vsync: widget.tickerProvider
     );
 
@@ -95,8 +96,13 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> {
     animation = CurvedAnimation(
       parent: animationController,
       curve: Curves.elasticIn,
-
-    );
+    )..addStatusListener((status) {
+      if(status == AnimationStatus.completed){
+        setState(() {
+          buttonSize = 75.0;
+        });
+      }
+    });
 
 
     /*_animationController =
@@ -157,6 +163,9 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> {
       }
     });
   }*/
+  Future wait(seconds) {
+    return new Future.delayed(Duration(seconds: seconds), () => "1");
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -166,6 +175,10 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> {
       setState(() {
           animationController.forward();
       });
+      /*wait(3);
+      setState(() {
+        buttonSize = 75.0;
+      });*/
     }
     return Card(
         elevation: 10,
@@ -292,10 +305,19 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> {
         child: Icon(
           Icons.beenhere,
           color: !this.book.finished ? Colors.blueGrey : Colors.lightGreen,
-          size: !this.book.finished ? 50 : 75,
+          size: buttonSize,
         ),
         //transitionType: TransitionType.native
       ),
+      onPressed: () {
+        setState(() {
+          var user = Provider.of<User>(context, listen: false);
+          user.increaseChapter(widget.book);
+          /*if(this.book.finished){
+            buttonSize = 75.0;
+          }*/
+        });
+      },
     );
 
     return Container(
