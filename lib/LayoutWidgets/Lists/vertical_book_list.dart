@@ -176,13 +176,16 @@ class _VerticalBookList extends State<VerticalBookList> {
   }
 
   _makeBody() {
+    double width = MediaQuery.of(context).size.width;
     return Container(
       child: ListView.builder(
         scrollDirection: Axis.vertical,
         shrinkWrap: true,
         itemCount: widget.readingBooks.length + widget.pendingBooks.length + 2,
         itemBuilder: (BuildContext context, int index) {
-          return Padding(
+          return Container(
+            width: width,
+            height: (index == 0) || (index == widget.readingBooks.length + 1) ? 100 : 160 ,
             key: UniqueKey(),
             padding: EdgeInsets.all(0),
             child: items[index],

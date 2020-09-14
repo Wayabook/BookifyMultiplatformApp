@@ -235,8 +235,8 @@ class _AddFeedbackDialog extends State<AddFeedbackDialog>{
                                       var user = Provider.of<User>(context, listen: false);
                                       user.increaseChapter(widget.book);
 
-                                      if(widget.book.finished)
-                                        InfoToast.showFinishedCongratulationsMessage(widget.book.title);
+                                      //if(widget.book.finished)
+                                      //  InfoToast.showFinishedCongratulationsMessage(widget.book.title);
 
                                     }
                                   });

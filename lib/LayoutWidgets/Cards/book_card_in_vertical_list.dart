@@ -33,7 +33,7 @@ class BookCardInVerticalList extends StatefulWidget {
 }
 
 
-class _BookCardInVerticalList extends State<BookCardInVerticalList>{
+class _BookCardInVerticalList extends State<BookCardInVerticalList> with TickerProviderStateMixin {
 
   //String chapter_title = "Nombre capitulo";
   BuildContext context;
@@ -45,9 +45,19 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList>{
   double initialWidth = 10.0;
   Widget content;
 
+  // Rotation controller
+  AnimationController rotationController;
+
+
+  /*bool isOpened = false;
+  AnimationController _animationController;
+  Animation<Color> _animateColor;
+  Animation<double> _animateIcon;
+  Curve _curve = Curves.easeOut;*/
+
   _BookCardInVerticalList(this.book, this.buttonType);
 
-  _bookRead(){
+  /*_bookRead(){
     content = new Card(
         elevation: 10,
         margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
@@ -59,13 +69,42 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList>{
           child: _makeListTile(),
         ),
     );
-  }
+  }*/
 
   @override
   void initState(){
 
-    super.initState();
     widget._visible = true;
+    rotationController = AnimationController(duration: const Duration(milliseconds: 1000), vsync: this);
+
+    /*_animationController =
+    AnimationController(vsync: this, duration: Duration(milliseconds: 500))
+      ..addListener(() {
+        setState(() {});
+      });
+
+    _animateIcon =
+        Tween<double>(begin: 0.0, end: 1.0).animate(_animationController);
+
+    _animateColor = ColorTween(
+      begin: Colors.blueGrey,
+      end: Colors.lightGreen,
+    ).animate(CurvedAnimation(
+      parent: _animationController,
+      curve: Interval(
+        0.00,
+        1.00,
+        curve: _curve,
+      ),
+    ));*/
+
+    super.initState();
+  }
+
+  @override
+  dispose() {
+    //_animationController.dispose();
+    super.dispose();
   }
 
   void changeTextAppearence(){
@@ -89,7 +128,10 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList>{
             ).whenComplete(() {
               if(this.book.finished){
                 //changeTextAppearence();
-                widget.changeLecturePositionContent(widget.position, widget.book);
+                //widget.changeLecturePositionContent(widget.position, widget.book);
+                rotationController.forward(from: 0.0);
+                InfoToast.showFinishedCongratulationsMessage(widget.book.title);
+                //_animationController.forward();
 
 
                 //showEndLectureFrame = true;
@@ -204,6 +246,7 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList>{
         Icons.beenhere,
         color: !this.book.finished ? Colors.blueGrey : Colors.lightGreen,
         size: !this.book.finished ? 50 : 75,
+
       ),
     );
 
@@ -385,7 +428,11 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList>{
                       child: SizedBox(
                         height: 75,
                         width: 75,
-                        child: floatingActionButton,
+                        child: RotationTransition(
+                          turns: Tween(begin: 0.0, end: 1.0).animate(rotationController),
+                          child: floatingActionButton,
+                          //transitionType: TransitionType.native
+                        ),
 
 
                         /*CircularPercentIndicator(
