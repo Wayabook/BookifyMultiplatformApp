@@ -101,7 +101,7 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> {
     animation = CurvedAnimation(
       parent: animationController,
       curve: Curves.elasticIn,
-    )..addStatusListener((status) {
+    )..addStatusListener((status) async {
       if(status == AnimationStatus.completed){
         setState(() {
           if(this.book.finished){
@@ -112,6 +112,10 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> {
             this.buttonColor = Colors.blueGrey;
           }
         });
+        if(this.book.finished){
+          await wait(1);
+          bookCompletedProcess();
+        }
       }
     });
 
@@ -140,40 +144,11 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> {
     super.initState();
   }
 
+  void bookCompletedProcess(){
+    widget.changeLecturePositionContent(widget.position, widget.book);
+    InfoToast.showFinishedCongratulationsMessage(widget.book.title);
+  }
 
-  /*void changeTextAppearence(){
-    setState(() {
-      widget._visible = false;
-    });
-  }*/
-
-
-
-  /*void startAnimation(){
-    setState(() {
-      if(this.book.finished){
-        //changeTextAppearence();
-        //widget.changeLecturePositionContent(widget.position, widget.book);
-
-        InfoToast.showFinishedCongratulationsMessage(widget.book.title);
-        animationController.forward();
-        //startAnimation();
-        //_animationController.forward();
-
-
-        //showEndLectureFrame = true;
-        //InfoToast.showFinishedCongratulationsMessage("VERGGGGGAAAAAA");
-        /*card = Card(
-                    elevation: 10,
-                    margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
-                    child:  Container(
-                      color: Colors.lightGreen,
-                      //width: doub,
-                    )
-                );*/
-      }
-    });
-  }*/
   Future wait(seconds) {
     return new Future.delayed(Duration(seconds: seconds), () => "1");
   }
@@ -184,7 +159,7 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> {
     this.context = context;
     if(this.book.finished){
       setState(() {
-          animationControllerDuration = 3000;
+          //animationControllerDuration = 3000;
           animationController.forward();
       });
       /*wait(3);
@@ -203,19 +178,9 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> {
               builder: (BuildContext context) => AddFeedbackDialog(this.book),
             ).whenComplete(() {
               if(this.book.finished){
-                //changeTextAppearence();
-
-                //widget.changeLecturePositionContent(widget.position, widget.book);
-                //animationController.forward();
-                InfoToast.showFinishedCongratulationsMessage(widget.book.title);
-
-                //startAnimation();
+                bookCompletedProcess();
               }
-            });/*.then((value) => () {
-              setState(() {
-                animationController.forward();
-              });
-            });*/
+            });
           },
           child: Container(
             height: 160,
@@ -249,9 +214,6 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> {
         setState(() {
           var user = Provider.of<User>(context, listen: false);
           user.increaseChapter(widget.book);
-          /*if(this.book.finished){
-            buttonSize = 75.0;
-          }*/
         });
       },
     );
@@ -330,7 +292,7 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> {
                               // If the widget is visible, animate to 0.0 (invisible).
                               // If the widget is hidden, animate to 1.0 (fully visible).
                               opacity: widget._visible ? 1.0 : 0.0,
-                              duration: Duration(milliseconds: 3000),
+                              duration: Duration(milliseconds: animationControllerDuration),
                               // The green box must be a child of the AnimatedOpacity widget.
                               child: Center(
                                 child: Container(
@@ -354,7 +316,7 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> {
                             // If the widget is visible, animate to 0.0 (invisible).
                             // If the widget is hidden, animate to 1.0 (fully visible).
                             opacity: widget._visible  ? 1.0 : 0.0,
-                            duration: Duration(milliseconds: 3000),
+                            duration: Duration(milliseconds: animationControllerDuration),
                             // The green box must be a child of the AnimatedOpacity widget.
                             child: Center(
                               child: Text(
@@ -376,7 +338,7 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> {
                                 // If the widget is visible, animate to 0.0 (invisible).
                                 // If the widget is hidden, animate to 1.0 (fully visible).
                                 opacity: widget._visible  ? 1.0 : 0.0,
-                                duration: Duration(milliseconds: 3000),
+                                duration: Duration(milliseconds: animationControllerDuration),
                                 // The green box must be a child of the AnimatedOpacity widget.
                                 child: Wrap(
                                   direction: Axis.horizontal,
@@ -435,26 +397,6 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> {
                         height: 75,
                         width: 75,
                         child: floatingActionButton
-
-
-                        /*CircularPercentIndicator(
-                          radius: 60.0,
-                          lineWidth: 3.0,
-                          percent: .5,
-                          center: floatingActionButton,
-                          progressColor: Colors.green,
-                        ),*/
-
-
-                        /*child: FloatingActionButton(
-                          backgroundColor: Colors.white,
-                          child: Icon(
-                            buttonType == ButtonType.read ?
-                            Icons.beenhere : Icons.arrow_drop_up,
-                            color: Colors.blueGrey,
-                            size: 50,
-                          ),
-                        ),*/
                       )
                   )
               ),

@@ -58,7 +58,7 @@ class _VerticalBookList extends State<VerticalBookList> with TickerProviderState
   }
 
   changeLecturePositionContent(positionInList, book) async {
-    await wait(3);
+    //await wait(3);
     setState(() {
 
       var user = Provider.of<User>(context, listen: false);
@@ -82,82 +82,6 @@ class _VerticalBookList extends State<VerticalBookList> with TickerProviderState
           items.add(_makeCard(index - 2 - widget.readingBooks.length, widget.pendingBooks, ButtonType.read));
         }
       }
-
-
-      /*for(int index = 0; index < widget.readingBooks.length + widget.pendingBooks.length + 3; index++){
-        if (index == 0) {
-          items.add(_makeHeader('Reading:'));
-        } else if (index == 1){
-          items.add(_makeHeader('Doooing it:'));
-        } else if (index <= widget.readingBooks.length) {
-          items.add(_makeCard(index - 2, widget.readingBooks, ButtonType.read));
-        } else if (index == widget.readingBooks.length + 2) {
-          items.add(_makeHeader('Pending:'));
-        } else {
-          items.add(_makeCard(index - 2 - widget.readingBooks.length - 1, widget.pendingBooks, ButtonType.read));
-        }
-      }*/
-
-      /*items[1] =  AnimatedContainer(
-        // Use the properties stored in the State class.
-        width: MediaQuery.of(context).size.width,
-        height: 160,
-        /*decoration: BoxDecoration(
-          //color: Colors.lightGreen,
-          //borderRadius: 5.0,
-        ),*/
-        // Define how long the animation should take.
-        duration: Duration(seconds: 3),
-        // Provide an optional curve to make the animation feel smoother.
-        curve: Curves.fastOutSlowIn,
-        child: Card(
-          elevation: 10,
-          margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
-          child:  Container(
-            height: 160,
-            decoration: BoxDecoration(
-              color: Colors.lightGreen,
-            ),
-            //child: _makeListTile(),
-          ),
-        ),
-      );*/
-
-      //items.removeAt(positionToChange);
-
-      /*AnimatedContainer animatedContainer =  AnimatedContainer(
-        // Use the properties stored in the State class.
-        width: MediaQuery.of(context).size.width,
-        height: 160,
-        /*decoration: BoxDecoration(
-          //color: Colors.lightGreen,
-          //borderRadius: 5.0,
-        ),*/
-        // Define how long the animation should take.
-        duration: Duration(seconds: 3),
-        // Provide an optional curve to make the animation feel smoother.
-        curve: Curves.fastOutSlowIn,
-        child: Card(
-          elevation: 10,
-          margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
-          child:  Container(
-            height: 160,
-            decoration: BoxDecoration(
-              color: Colors.lightGreen,
-            ),
-            //child: _makeListTile(),
-          ),
-        ),
-      );*/
-      //items[positionToChange] = animatedContainer;
-
-      //items.insert(positionToChange, animatedContainer);
-
-      //items[positionInList] =
-
-      //widget.readingBooks.removeAt(positionInList);
-      //positionToChange = positionChanged;
-      //print(positionToChange);
     });
   }
 
