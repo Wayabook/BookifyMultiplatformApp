@@ -29,21 +29,9 @@ class _VerticalBookList extends State<VerticalBookList> with TickerProviderState
 
   @override
   void initState(){
-
     super.initState();
-
-    items = new List();
-    for(int index = 0; index < widget.readingBooks.length + widget.pendingBooks.length + 2; index++){
-      if (index == 0) {
-        items.add(_makeHeader('Reading:'));
-      } else if (index <= widget.readingBooks.length) {
-        items.add(_makeCard(index - 1, widget.readingBooks, ButtonType.read));
-      } else if (index == widget.readingBooks.length + 1) {
-        items.add(_makeHeader('Pending:'));
-      } else {
-        items.add(_makeCard(index - 2 - widget.readingBooks.length, widget.pendingBooks, ButtonType.read));
-      }
-    }
+    //updateLists();
+    //updateUILists();
   }
 
 
@@ -54,7 +42,6 @@ class _VerticalBookList extends State<VerticalBookList> with TickerProviderState
   @override
   void didChangeDependencies(){
     super.didChangeDependencies();
-    //changeLecturePositionContent(0);
   }
 
   changeLecturePositionContent(positionInList, book) async {
@@ -64,11 +51,7 @@ class _VerticalBookList extends State<VerticalBookList> with TickerProviderState
       var user = Provider.of<User>(context, listen: false);
       user.moveLectureFromReadingListToReadList(book);
 
-      //BookCardInVerticalList aux = items[positionToChange];
-      //aux.hideTitles();
-
-      widget.readingBooks = user.getLectureListByName("Reading");
-      widget.pendingBooks = user.getLectureListByName("Pending");
+      updateLists();
 
       items = new List();
       for(int index = 0; index < widget.readingBooks.length + widget.pendingBooks.length + 2; index++){
@@ -85,8 +68,33 @@ class _VerticalBookList extends State<VerticalBookList> with TickerProviderState
     });
   }
 
+  void updateLists(){
+    var user = Provider.of<User>(context, listen: false);
+    widget.readingBooks = user.getLectureListByName("Reading");
+    widget.pendingBooks = user.getLectureListByName("Pending");
+  }
+
+  void updateUILists(){
+    items = new List();
+    for(int index = 0; index < widget.readingBooks.length + widget.pendingBooks.length + 2; index++){
+      if (index == 0) {
+        items.add(_makeHeader('Reading:'));
+      } else if (index <= widget.readingBooks.length) {
+        items.add(_makeCard(index - 1, widget.readingBooks, ButtonType.read));
+      } else if (index == widget.readingBooks.length + 1) {
+        items.add(_makeHeader('Pending:'));
+      } else {
+        items.add(_makeCard(index - 2 - widget.readingBooks.length, widget.pendingBooks, ButtonType.read));
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+
+    updateLists();
+    updateUILists();
+    
     return Scaffold(
       backgroundColor: Colors.blueGrey, //Color.fromRGBO(58, 66, 86, 1.0),
       body: _makeBody(),
@@ -94,13 +102,6 @@ class _VerticalBookList extends State<VerticalBookList> with TickerProviderState
   }
 
   _makeCard(int index, List<Book> books, ButtonType buttonType) {
-    //double width = MediaQuery.of(context).size.width;
-    /*return Container(
-      //width: width,
-      height: 160,
-      color: Colors.green,
-    );*/
-    //int aux = this;
     return BookCardInVerticalList(books[index], buttonType, index, changeLecturePositionContent, this);
   }
 
@@ -114,22 +115,11 @@ class _VerticalBookList extends State<VerticalBookList> with TickerProviderState
         itemBuilder: (BuildContext context, int index) {
           return Container(
             width: width,
-            height: (index == 0) || (index == widget.readingBooks.length + 1) ? 100 : 160 ,
+            height: (index == 0) || (index == widget.readingBooks.length + 1) ? 80 : 160 ,
             key: UniqueKey(),
             padding: EdgeInsets.all(0),
             child: items[index],
           );
-
-          return items[index];
-          /*if (index == 0) {
-            return _makeHeader('Reading:');
-          } else if (index <= widget.readingBooks.length) {
-            return _makeCard(index - 1, widget.readingBooks, ButtonType.read);
-          } else if (index == widget.readingBooks.length + 1) {
-            return _makeHeader('Pending:');
-          } else {
-            return _makeCard(index - 2 - widget.readingBooks.length, widget.pendingBooks, ButtonType.read);
-          }*/
         },
       ),
     );

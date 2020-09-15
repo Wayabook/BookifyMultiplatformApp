@@ -80,18 +80,23 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> {
     )..addStatusListener((status) async {
       if(status == AnimationStatus.completed){
         setState(() {
+
+          var user = Provider.of<User>(context, listen: false);
+          user.increaseChapter(widget.book);
+
           if(this.book.finished){
             buttonSize = 75.0;
             widget._visible = false;
             this.buttonColor = Colors.lightGreen;
+            bookCompletedProcess();
           } else {
             this.buttonColor = Colors.blueGrey;
           }
         });
-        if(this.book.finished){
+        /*if(this.book.finished){
           await wait(1);
-          bookCompletedProcess();
-        }
+
+        }*/
       }
     });
 
@@ -117,7 +122,6 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> {
     this.context = context;
     if(this.book.finished){
       setState(() {
-          //animationControllerDuration = 3000;
           confettiController.play();
           animationController.forward();
       });
@@ -180,11 +184,11 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> {
         setState(() {
           buttonColor = Colors.lightGreen;
         });
-        await animationController.forward();
-        setState(() {
+        animationController.forward();
+        /*setState(() {
           var user = Provider.of<User>(context, listen: false);
           user.increaseChapter(widget.book);
-        });
+        });*/
       },
     );
 

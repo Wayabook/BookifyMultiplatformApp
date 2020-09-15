@@ -59,6 +59,14 @@ class User extends ChangeNotifier{
     }
   }
 
+  void moveLectureFromPendingListToReadingList(Lecture lecture){
+    if(isInPendingList(lecture)){
+      this._lecture_lists["Reading"].insert(0, lecture);
+      this._lecture_lists["Pending"].remove(lecture);
+      //notifyListeners();
+    }
+  }
+
   void removeLectureFromReadingList(Lecture lecture){
     this._lecture_lists["Reading"].remove(lecture);
     notifyListeners();
@@ -102,18 +110,10 @@ class User extends ChangeNotifier{
       position = _lecture_lists["Pending"].indexOf(lecture);
       this._lecture_lists["Pending"][position].increaseChapter();
       if(this._lecture_lists["Pending"][position].currentChapter == 1){
-        this._lecture_lists["Reading"].add(this._lecture_lists["Pending"][position]);
-        this._lecture_lists["Pending"].removeAt(position);
+        moveLectureFromPendingListToReadingList(this._lecture_lists["Pending"][position]);
       }
 
     }
-    /*for(String key in _lecture_lists.keys){
-      for(int i=0; i < _lecture_lists[key].length; i++){
-        if(_lecture_lists[key][i] == lecture){
-          _lecture_lists[key][i].increaseChapter();
-        }
-      }
-    }*/
     notifyListeners();
   }
 
