@@ -104,8 +104,12 @@ class User extends ChangeNotifier{
   void increaseChapter(Lecture lecture){
     int position;
     if(isInReadingList(lecture)){
+      lecture.increaseChapter();
       position = this._lecture_lists["Reading"].indexOf(lecture);
-      this._lecture_lists["Reading"][position].increaseChapter();
+      if(position != 0){
+        this._lecture_lists["Reading"].removeAt(position);
+        this._lecture_lists["Reading"].insert(0, lecture);
+      }
     } else if (isInPendingList(lecture)) {
       position = _lecture_lists["Pending"].indexOf(lecture);
       this._lecture_lists["Pending"][position].increaseChapter();

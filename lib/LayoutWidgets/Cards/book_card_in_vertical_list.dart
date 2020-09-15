@@ -13,13 +13,13 @@ class BookCardInVerticalList extends StatefulWidget {
 
   ButtonType buttonType;
   Lecture book;
-  Function(int, Lecture) changeLecturePositionContent;
+  //Function(int, Lecture) changeLecturePositionContent;
   TickerProvider tickerProvider;
 
   int position;
   bool _visible;
 
-  BookCardInVerticalList(this.book, this.buttonType, this.position, this.changeLecturePositionContent, this.tickerProvider);
+  BookCardInVerticalList(this.book, this.buttonType, this.position, this.tickerProvider);
 
   @override
   _BookCardInVerticalList createState() => _BookCardInVerticalList(this.book, this.buttonType);
@@ -108,7 +108,9 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> {
   }
 
   void bookCompletedProcess(){
-    widget.changeLecturePositionContent(widget.position, widget.book);
+    //widget.changeLecturePositionContent(widget.position, widget.book);
+    var user = Provider.of<User>(context, listen: false);
+    user.moveLectureFromReadingListToReadList(book);
     InfoToast.showFinishedCongratulationsMessage(widget.book.title);
   }
 

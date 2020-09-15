@@ -18,20 +18,24 @@ class VerticalBookList/*<T extends Book>*/ extends StatefulWidget {
   List<Lecture> pendingBooks;
 
   @override
-  _VerticalBookList createState() => _VerticalBookList();
+  _VerticalBookList createState() => _VerticalBookList(this.readingBooks, this.pendingBooks);
 }
 
 class _VerticalBookList extends State<VerticalBookList> with TickerProviderStateMixin {
 
   int positionToChange;
   List<Widget> items;
+  List<Lecture> readingBooks;
+  List<Lecture> pendingBooks;
+
+  _VerticalBookList(this.readingBooks, this.pendingBooks);
 
 
   @override
   void initState(){
     super.initState();
-    //updateLists();
-    //updateUILists();
+    updateLists();
+    updateUILists();
   }
 
 
@@ -48,12 +52,12 @@ class _VerticalBookList extends State<VerticalBookList> with TickerProviderState
     //await wait(3);
     setState(() {
 
-      var user = Provider.of<User>(context, listen: false);
-      user.moveLectureFromReadingListToReadList(book);
+      //var user = Provider.of<User>(context, listen: false);
+      //user.moveLectureFromReadingListToReadList(book);
 
-      updateLists();
+      //updateLists();
 
-      items = new List();
+      /*items = new List();
       for(int index = 0; index < widget.readingBooks.length + widget.pendingBooks.length + 2; index++){
         if (index == 0) {
           items.add(_makeHeader('Reading:'));
@@ -64,7 +68,7 @@ class _VerticalBookList extends State<VerticalBookList> with TickerProviderState
         } else {
           items.add(_makeCard(index - 2 - widget.readingBooks.length, widget.pendingBooks, ButtonType.read));
         }
-      }
+      }*/
     });
   }
 
@@ -102,11 +106,32 @@ class _VerticalBookList extends State<VerticalBookList> with TickerProviderState
   }
 
   _makeCard(int index, List<Book> books, ButtonType buttonType) {
-    return BookCardInVerticalList(books[index], buttonType, index, changeLecturePositionContent, this);
+    return BookCardInVerticalList(books[index], buttonType, index, this);
   }
 
   _makeBody() {
     double width = MediaQuery.of(context).size.width;
+    return Container(
+      child: FutureBuilder(
+        builder: (context, projectSnap) {
+          return ListView.builder(
+            scrollDirection: Axis.vertical,
+            shrinkWrap: true,
+            itemCount: this.readingBooks.length + pendingBooks.length + 2,
+            itemBuilder: (BuildContext context, int index) {
+              return Container(
+                width: width,
+                height: (index == 0) || (index == this.readingBooks.length + 1) ? 80 : 160 ,
+                key: UniqueKey(),
+                padding: EdgeInsets.all(0),
+                child: items[index],
+              );
+            },
+          );
+        },
+
+      ),
+    );
     return Container(
       child: ListView.builder(
         scrollDirection: Axis.vertical,
