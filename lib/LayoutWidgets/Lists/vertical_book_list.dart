@@ -94,7 +94,7 @@ class _VerticalBookList extends State<VerticalBookList> with TickerProviderState
 
     updateLists();
     updateUILists();
-    
+
     return Scaffold(
       backgroundColor: Colors.blueGrey, //Color.fromRGBO(58, 66, 86, 1.0),
       body: _makeBody(),
