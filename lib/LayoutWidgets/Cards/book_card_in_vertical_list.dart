@@ -1,18 +1,13 @@
 import 'package:bookifyapp/InfoToast.dart';
-import 'package:bookifyapp/LayoutWidgets/Buttons/read_action_button.dart';
 import 'package:bookifyapp/LayoutWidgets/Dialogs/add_feedback_dialog.dart';
-import 'package:bookifyapp/LayoutWidgets/Dialogs/book_shops_dialog.dart';
 import 'package:bookifyapp/Models/Lecture.dart';
 import 'package:bookifyapp/Models/User.dart';
 import 'package:flutter/material.dart';
-import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:bookifyapp/Models/Book.dart';
 import 'package:bookifyapp/Enums/button_type.dart';
-//import  'package:explode_view/explode_view.dart';
-import 'package:bookifyapp/LayoutWidgets/Lists/list_title.dart';
 import 'package:provider/provider.dart';
+import 'package:confetti/confetti.dart';
 
 class BookCardInVerticalList extends StatefulWidget {
 
@@ -55,29 +50,11 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> {
   AnimationController animationController;
   Animation<double> animation;
 
+  // Confetti controller
+  ConfettiController confettiController;
 
-
-  /*bool isOpened = false;
-  AnimationController _animationController;
-  Animation<Color> _animateColor;
-  Animation<double> _animateIcon;
-  Curve _curve = Curves.easeOut;*/
 
   _BookCardInVerticalList(this.book, this.buttonType);
-
-  /*_bookRead(){
-    content = new Card(
-        elevation: 10,
-        margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
-        child:   Container(
-          height: 160,
-          decoration: BoxDecoration(
-            color: Colors.blueGrey,
-          ),
-          child: _makeListTile(),
-        ),
-    );
-  }*/
 
   @override
   void dispose() {
@@ -89,14 +66,13 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> {
   void initState(){
 
     buttonColor = Colors.blueGrey;
+
     animationControllerDuration = 1500;
     widget._visible = true;
     animationController = AnimationController(
         duration: Duration(milliseconds: animationControllerDuration),
         vsync: widget.tickerProvider
     );
-
-    //animationController.forward();
 
     animation = CurvedAnimation(
       parent: animationController,
@@ -119,27 +95,9 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> {
       }
     });
 
-
-    /*_animationController =
-    AnimationController(vsync: this, duration: Duration(milliseconds: 500))
-      ..addListener(() {
-        setState(() {});
-      });
-
-    _animateIcon =
-        Tween<double>(begin: 0.0, end: 1.0).animate(_animationController);
-
-    _animateColor = ColorTween(
-      begin: Colors.blueGrey,
-      end: Colors.lightGreen,
-    ).animate(CurvedAnimation(
-      parent: _animationController,
-      curve: Interval(
-        0.00,
-        1.00,
-        curve: _curve,
-      ),
-    ));*/
+    confettiController = new ConfettiController(
+      duration: new Duration(seconds: 2),
+    );
 
     super.initState();
   }
@@ -160,13 +118,11 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> {
     if(this.book.finished){
       setState(() {
           //animationControllerDuration = 3000;
+          confettiController.play();
           animationController.forward();
       });
-      /*wait(3);
-      setState(() {
-        buttonSize = 75.0;
-      });*/
     }
+
     return Card(
         elevation: 10,
         margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
@@ -182,13 +138,28 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> {
               }
             });
           },
-          child: Container(
-            height: 160,
-            decoration: BoxDecoration(
-              color: Colors.blueGrey,
+          child: ConfettiWidget(
+            blastDirectionality: BlastDirectionality.explosive,
+            confettiController: confettiController,
+            particleDrag: 0.05,
+            emissionFrequency: 0.05,
+            numberOfParticles: 25,
+            gravity: 0.05,
+            shouldLoop: false,
+            colors: [
+              Colors.green,
+              Colors.red,
+              Colors.yellow,
+              Colors.blue,
+            ],
+            child: Container(
+              height: 160,
+              decoration: BoxDecoration(
+                color: Colors.blueGrey,
+              ),
+              child: _makeListTile(),
             ),
-            child: _makeListTile(),
-          ),
+          )
         )
     );
   }
@@ -201,10 +172,9 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> {
         turns: animation,
         child: Icon(
           Icons.beenhere,
-          color: buttonColor,
+          color: !this.book.finished ? buttonColor : Colors.lightGreen,
           size: buttonSize,
         ),
-        //transitionType: TransitionType.native
       ),
       onPressed: () async {
         setState(() {
@@ -256,7 +226,7 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> {
                                     book.picture
                                 ),
                               )
-                          ) //Icon(Icons.autorenew, color: Colors.white),
+                          )
                       ),
                     ),
 
