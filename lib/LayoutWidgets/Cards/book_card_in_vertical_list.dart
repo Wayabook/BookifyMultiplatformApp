@@ -47,6 +47,9 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> {
   double initialWidth = 10.0;
   double buttonSize = 50.0;
   Widget content;
+  bool visible;
+  int animationControllerDuration;
+  Color buttonColor;
 
   // Rotation controller
   AnimationController animationController;
@@ -85,9 +88,11 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> {
   @override
   void initState(){
 
+    buttonColor = Colors.blueGrey;
+    animationControllerDuration = 1500;
     widget._visible = true;
     animationController = AnimationController(
-        duration: const Duration(milliseconds: 3000),
+        duration: Duration(milliseconds: animationControllerDuration),
         vsync: widget.tickerProvider
     );
 
@@ -99,7 +104,13 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> {
     )..addStatusListener((status) {
       if(status == AnimationStatus.completed){
         setState(() {
-          buttonSize = 75.0;
+          if(this.book.finished){
+            buttonSize = 75.0;
+            widget._visible = false;
+            this.buttonColor = Colors.lightGreen;
+          } else {
+            this.buttonColor = Colors.blueGrey;
+          }
         });
       }
     });
@@ -130,11 +141,11 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> {
   }
 
 
-  void changeTextAppearence(){
+  /*void changeTextAppearence(){
     setState(() {
       widget._visible = false;
     });
-  }
+  }*/
 
 
 
@@ -173,6 +184,7 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> {
     this.context = context;
     if(this.book.finished){
       setState(() {
+          animationControllerDuration = 3000;
           animationController.forward();
       });
       /*wait(3);
@@ -214,102 +226,26 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> {
           ),
         )
     );
-
-    /*return Stack(
-      children: [
-        Visibility(
-          visible: !showEndLectureFrame,
-          maintainSize: false,
-          maintainAnimation: false,
-          maintainState: false,
-          child: Card(
-              elevation: 10,
-              margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
-              child:  GestureDetector(
-                onTap: () async {
-                  await showDialog(
-                    context: context,
-                    builder: (BuildContext context) => AddFeedbackDialog(this.book),
-                  ).whenComplete(() {
-                    if(this.book.finished){
-                      setState(() {
-                        showEndLectureFrame = true;
-                        initialHeight = 160.0;
-                        initialWidth = MediaQuery.of(context).size.width - 20;
-                      });
-                      //showEndLectureFrame = true;
-                      //InfoToast.showFinishedCongratulationsMessage("VERGGGGGAAAAAA");
-                      /*card = Card(
-                    elevation: 10,
-                    margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
-                    child:  Container(
-                      color: Colors.lightGreen,
-                      //width: doub,
-                    )
-                );*/
-                    }
-                  });
-                },
-                child: Container(
-                  height: 160,
-                  decoration: BoxDecoration(
-                    color: Colors.blueGrey,
-                  ),
-                  child: _makeListTile(),
-                ),
-              )
-          ),
-        ),
-
-        Visibility(
-          visible: showEndLectureFrame,
-          maintainSize: false,
-          maintainAnimation: false,
-          maintainState: false,
-          child: AnimatedContainer(
-            // Use the properties stored in the State class.
-            width: initialWidth,
-            height: initialHeight,
-            decoration: BoxDecoration(
-              color: Colors.lightGreen,
-              //borderRadius: 5.0,
-            ),
-            // Define how long the animation should take.
-            duration: Duration(seconds: 3),
-            // Provide an optional curve to make the animation feel smoother.
-            curve: Curves.fastOutSlowIn,
-          ),
-          /*child: Card(
-            elevation: 10,
-            margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
-            child:  Container(
-              height: 160,
-              decoration: BoxDecoration(
-                color: Colors.lightGreen,
-              ),
-              //child: _makeListTile(),
-            ),
-          ),*/
-        ),
-
-        //Container(color: Colors.lightGreen, height: 160,),
-      ],
-    );*/
   }
 
   _makeListTile()   {
+    //bool aux = animationController.isAnimating;
     FloatingActionButton floatingActionButton = new FloatingActionButton(
       backgroundColor: Colors.white,
       child: RotationTransition(
         turns: animation,
         child: Icon(
           Icons.beenhere,
-          color: !this.book.finished ? Colors.blueGrey : Colors.lightGreen,
+          color: buttonColor,
           size: buttonSize,
         ),
         //transitionType: TransitionType.native
       ),
-      onPressed: () {
+      onPressed: () async {
+        setState(() {
+          buttonColor = Colors.lightGreen;
+        });
+        await animationController.forward();
         setState(() {
           var user = Provider.of<User>(context, listen: false);
           user.increaseChapter(widget.book);
@@ -393,8 +329,8 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> {
                             child: AnimatedOpacity(
                               // If the widget is visible, animate to 0.0 (invisible).
                               // If the widget is hidden, animate to 1.0 (fully visible).
-                              opacity: !this.book.finished ? 1.0 : 0.0,
-                              duration: Duration(milliseconds: 5000),
+                              opacity: widget._visible ? 1.0 : 0.0,
+                              duration: Duration(milliseconds: 3000),
                               // The green box must be a child of the AnimatedOpacity widget.
                               child: Center(
                                 child: Container(
@@ -417,8 +353,8 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> {
                           child: AnimatedOpacity(
                             // If the widget is visible, animate to 0.0 (invisible).
                             // If the widget is hidden, animate to 1.0 (fully visible).
-                            opacity: !this.book.finished ? 1.0 : 0.0,
-                            duration: Duration(milliseconds: 5000),
+                            opacity: widget._visible  ? 1.0 : 0.0,
+                            duration: Duration(milliseconds: 3000),
                             // The green box must be a child of the AnimatedOpacity widget.
                             child: Center(
                               child: Text(
@@ -439,8 +375,8 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> {
                               child: AnimatedOpacity(
                                 // If the widget is visible, animate to 0.0 (invisible).
                                 // If the widget is hidden, animate to 1.0 (fully visible).
-                                opacity: !this.book.finished  ? 1.0 : 0.0,
-                                duration: Duration(milliseconds: 5000),
+                                opacity: widget._visible  ? 1.0 : 0.0,
+                                duration: Duration(milliseconds: 3000),
                                 // The green box must be a child of the AnimatedOpacity widget.
                                 child: Wrap(
                                   direction: Axis.horizontal,
