@@ -36,7 +36,7 @@ class AddFeedbackDialog extends StatefulWidget{
   _AddFeedbackDialog createState() => _AddFeedbackDialog();
 }
 
-class _AddFeedbackDialog extends State<AddFeedbackDialog>{
+class _AddFeedbackDialog extends State<AddFeedbackDialog> with SingleTickerProviderStateMixin{
 
   //Lecture book;
   //AddFeedbackDialog(this.book);
@@ -55,6 +55,10 @@ class _AddFeedbackDialog extends State<AddFeedbackDialog>{
   ScrollController scrollController;
   String chapterTitle;
 
+  AnimationController animationController;
+  Animation<double> animation;
+
+
   final TextEditingController inputController = TextEditingController();
 
   @override
@@ -63,6 +67,18 @@ class _AddFeedbackDialog extends State<AddFeedbackDialog>{
     super.initState();
 
     scrollController = new ScrollController();
+
+    animationController = AnimationController(
+        duration: Duration(milliseconds: 1500),
+        vsync:this
+    );
+
+    //animationController.forward();
+
+    animation = CurvedAnimation(
+      parent: animationController,
+      curve: Curves.elasticIn,
+    );
 
     currentChapterNumber = widget.book.currentChapter;
     currentChapter = widget.book.chapters[currentChapterNumber];
@@ -178,7 +194,7 @@ class _AddFeedbackDialog extends State<AddFeedbackDialog>{
 
   @override
   void dispose() {
-    //animationController.dispose();
+    animationController.dispose();
     //widget.callAnimation();
     super.dispose();
   }
@@ -236,27 +252,30 @@ class _AddFeedbackDialog extends State<AddFeedbackDialog>{
                               opacity: !widget.book.finished ? 1.0 : 0.0,
                               duration: Duration(milliseconds: 500),
                               child: FloatingActionButton(
-                                onPressed: (){
+                                onPressed: () async {
                                   setState(() {
                                     if(!widget.book.finished){
                                       readButtonColor = Colors.lightGreen;
+                                    }
+                                  });
+                                  await animationController.forward();
+                                  setState(() {
+                                    if(!widget.book.finished){
                                       visible = true;
-
                                       var user = Provider.of<User>(context, listen: false);
                                       user.increaseChapter(widget.book);
-
-                                      //if(widget.book.finished)
-                                      //  InfoToast.showFinishedCongratulationsMessage(widget.book.title);
-
                                     }
                                   });
                                 },
                                 backgroundColor: Colors.white,
-                                child: Icon(
-                                  Icons.beenhere,
-                                  color: readButtonColor,
-                                  size: 50,
-                                ),
+                                child: RotationTransition(
+                                  turns: animation,
+                                  child: Icon(
+                                    Icons.beenhere,
+                                    color: readButtonColor,
+                                    size: 50,
+                                  ),
+                                )
                               ),
                             ),
                           )
