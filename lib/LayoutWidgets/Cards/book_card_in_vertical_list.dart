@@ -79,15 +79,12 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> {
       curve: Curves.elasticIn,
     )..addStatusListener((status) async {
       if(status == AnimationStatus.completed){
+        var user = Provider.of<User>(context, listen: false);
+        user.increaseChapter(widget.book);
         setState(() {
-
-          var user = Provider.of<User>(context, listen: false);
-          user.increaseChapter(widget.book);
-
           if(this.book.finished){
             buttonSize = 75.0;
             widget._visible = false;
-            this.buttonColor = Colors.lightGreen;
             bookCompletedProcess();
           } else {
             this.buttonColor = Colors.blueGrey;
@@ -95,7 +92,7 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> {
         });
         /*if(this.book.finished){
           await wait(1);
-
+          bookCompletedProcess();
         }*/
       }
     });
@@ -120,15 +117,13 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> {
 
   @override
   Widget build(BuildContext context) {
-    double width =  MediaQuery.of(context).size.width;
     this.context = context;
     if(this.book.finished){
       setState(() {
-          confettiController.play();
-          animationController.forward();
+        confettiController.play();
+        animationController.forward();
       });
     }
-
     return Card(
         elevation: 10,
         margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
@@ -138,11 +133,12 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> {
             await showDialog(
               context: context,
               builder: (BuildContext context) => AddFeedbackDialog(this.book),
-            ).whenComplete(() {
+            );/*.whenComplete(() {
               if(this.book.finished){
+                //animationController.forward();
                 bookCompletedProcess();
               }
-            });
+            });*/
           },
           child: ConfettiWidget(
             blastDirectionality: BlastDirectionality.explosive,
@@ -163,14 +159,14 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> {
               decoration: BoxDecoration(
                 color: Colors.blueGrey,
               ),
-              child: _makeListTile(),
+              child: _makeListTile(context),
             ),
           )
         )
     );
   }
 
-  _makeListTile()   {
+  _makeListTile(BuildContext context)   {
     //bool aux = animationController.isAnimating;
     FloatingActionButton floatingActionButton = new FloatingActionButton(
       backgroundColor: Colors.white,
@@ -179,18 +175,18 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> {
         child: Icon(
           Icons.beenhere,
           color: !this.book.finished ? buttonColor : Colors.lightGreen,
-          size: buttonSize,
+          size: !this.book.finished ? buttonSize : 75.0,
         ),
       ),
-      onPressed: () async {
+      onPressed: () {
         setState(() {
           buttonColor = Colors.lightGreen;
         });
-        animationController.forward();
-        /*setState(() {
-          var user = Provider.of<User>(context, listen: false);
-          user.increaseChapter(widget.book);
-        });*/
+        setState(() {
+          //if(this.book.currentChapter == this.book.chapters.length - 1)
+          //  confettiController.play();
+          animationController.forward();
+        });
       },
     );
 
@@ -267,7 +263,7 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> {
                             child: AnimatedOpacity(
                               // If the widget is visible, animate to 0.0 (invisible).
                               // If the widget is hidden, animate to 1.0 (fully visible).
-                              opacity: widget._visible ? 1.0 : 0.0,
+                              opacity: !this.book.finished  ? 1.0 : 0.0,
                               duration: Duration(milliseconds: animationControllerDuration),
                               // The green box must be a child of the AnimatedOpacity widget.
                               child: Center(
@@ -291,7 +287,7 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> {
                           child: AnimatedOpacity(
                             // If the widget is visible, animate to 0.0 (invisible).
                             // If the widget is hidden, animate to 1.0 (fully visible).
-                            opacity: widget._visible  ? 1.0 : 0.0,
+                            opacity: !this.book.finished   ? 1.0 : 0.0,
                             duration: Duration(milliseconds: animationControllerDuration),
                             // The green box must be a child of the AnimatedOpacity widget.
                             child: Center(
@@ -313,7 +309,7 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> {
                               child: AnimatedOpacity(
                                 // If the widget is visible, animate to 0.0 (invisible).
                                 // If the widget is hidden, animate to 1.0 (fully visible).
-                                opacity: widget._visible  ? 1.0 : 0.0,
+                                opacity: !this.book.finished   ? 1.0 : 0.0,
                                 duration: Duration(milliseconds: animationControllerDuration),
                                 // The green box must be a child of the AnimatedOpacity widget.
                                 child: Wrap(
