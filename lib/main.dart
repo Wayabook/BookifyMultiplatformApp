@@ -139,7 +139,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       ReadingPage(),
       DiscoverPage(Colors.white, "Discover Page"),
       //DiscoverPage(Colors.white, "Discover Page"),
-      ProfilePage(this.user, ProfileType.user_profile),
+      ProfilePage(Provider.of<User>(context, listen: false), ProfileType.user_profile),
     ];
   }
 

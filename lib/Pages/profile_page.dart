@@ -30,6 +30,7 @@ class ProfilePage extends StatelessWidget {
   double width_per_child;
   double width;
   BuildContext context;
+  String randomBackgroundImage;
 
   ProfilePage(this.user, this.profileType);
 
@@ -47,9 +48,26 @@ class ProfilePage extends StatelessWidget {
     );
   }
 
+  _getRandomBackgroundImage(){
+    final _random = new Random();
+    List<String> listNames = user.bookLists.keys.toList();
+    String randomListName = listNames[_random.nextInt(listNames.length)];
+    int r = 0;
+    if(this.user.bookLists[randomListName].length > 1){
+      r = 0 + _random.nextInt(this.user.bookLists[randomListName].length - 1 - 0);
+    }
+    randomBackgroundImage = user.bookLists[randomListName][r].picture;
+  }
+
   _getBody(){
-    var rnd = new Random();
-    int r = 0 + rnd.nextInt(this.user.bookLists["Reading"].length - 1 - 0);
+
+    _getRandomBackgroundImage();
+    /*var rnd = new Random();
+    int r = 0;
+    if(this.user.bookLists["Reading"].length > 1){
+      r = 0 + rnd.nextInt(this.user.bookLists["Reading"].length - 1 - 0);
+    }*/
+
 
 
     return ListView(
@@ -58,7 +76,7 @@ class ProfilePage extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.only(bottom: 120.0),
-              child: ArcBannerImage(user.bookLists["Reading"][r].picture),
+              child: ArcBannerImage(randomBackgroundImage),
             ),
             Positioned(
               bottom: 0.0,
