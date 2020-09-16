@@ -48,7 +48,7 @@ class _VerticalBookList extends State<VerticalBookList> with TickerProviderState
     super.didChangeDependencies();
   }
 
-  changeLecturePositionContent(positionInList, book) async {
+  /*changeLecturePositionContent(positionInList, book) async {
     //await wait(3);
     setState(() {
 
@@ -70,7 +70,7 @@ class _VerticalBookList extends State<VerticalBookList> with TickerProviderState
         }
       }*/
     });
-  }
+  }*/
 
   void updateLists(){
     var user = Provider.of<User>(context, listen: false);

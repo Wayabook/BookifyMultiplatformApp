@@ -106,9 +106,11 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> {
 
   void bookCompletedProcess(){
     //widget.changeLecturePositionContent(widget.position, widget.book);
-    var user = Provider.of<User>(context, listen: false);
-    user.moveLectureFromReadingListToReadList(book);
-    InfoToast.showFinishedCongratulationsMessage(widget.book.title);
+    setState(() {
+      var user = Provider.of<User>(context, listen: false);
+      user.moveLectureFromReadingListToReadList(book);
+      InfoToast.showFinishedCongratulationsMessage(widget.book.title);
+    });
   }
 
   Future wait(seconds) {
@@ -328,7 +330,8 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> {
 
 
                                         AutoSizeText(
-                                          this.book.current_chapter_title.substring(0, 15) + "...",
+                                          this.book.current_chapter_title.length > 15 ?
+                                          this.book.current_chapter_title.substring(0, 15) + "..." : this.book.current_chapter_title + "...",
                                           style: TextStyle( fontWeight: FontWeight.bold,),
                                           maxLines: 1,
                                         ),
