@@ -143,6 +143,10 @@ class User extends ChangeNotifier{
     _following = followers;
   }*/
 
+  bool isEqual(User user){
+    return this._uid == user._uid;
+  }
+
   int get pagesRead => _pages_read;
 
   set pagesRead(int pagesRead) {

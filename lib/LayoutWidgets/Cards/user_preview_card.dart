@@ -4,6 +4,7 @@ import 'package:bookifyapp/LayoutWidgets/Profile/profile_picture.dart';
 import 'package:bookifyapp/Models/User.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class UserPreviewCard extends StatelessWidget {
 
@@ -11,16 +12,18 @@ class UserPreviewCard extends StatelessWidget {
   double height;
   double fontSize;
   bool card;
+  bool isAuthor;
 
   UserPreviewCard(
       this.user,
       {
         this.height = 100,
         this.fontSize = 30,
-        this.card = true
+        this.card = true,
+        this.isAuthor = false
       });
 
-  _makeListTile() {
+  _makeListTile(BuildContext context) {
     return Container(
         decoration: BoxDecoration(
             //color: Colors.black,
@@ -31,11 +34,11 @@ class UserPreviewCard extends StatelessWidget {
           padding: card ? EdgeInsets.symmetric(horizontal: 5.0, vertical: 10.0) : EdgeInsets.symmetric(horizontal: 0.0, vertical: 0.0),
           child: _getRow()
         )*/
-        child: _getRow(),
+        child: _getRow(context),
     );
   }
 
-  _getRow(){
+  _getRow(BuildContext context){
     if(card){
       return Row(
         children: <Widget>[
@@ -79,40 +82,150 @@ class UserPreviewCard extends StatelessWidget {
       );
     } else {
       return Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          ProfilePicture(
-              user.profilePictureUrl,
-            circleRadius: this.height,
-            circleBorderWidth: 0.0,
-          ),
-
-          Padding(
-            padding: EdgeInsets.all(12.0),
-            child: Container(
-              //color: Colors.black,
-              //height: 150,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  AutoSizeText(
-                    user.name,
-                    style: TextStyle( fontWeight: FontWeight.bold, color: Colors.black, fontSize: this.fontSize,),
-                    maxLines: 1,
+          Flexible(
+            flex: 8,
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Flexible(
+                  flex: 3,
+                  child: ProfilePicture(
+                    user.profilePictureUrl,
+                    circleRadius: this.height,
+                    circleBorderWidth: 0.0,
                   ),
-                ],
+                ),
 
-                /*AutoSizeText(
+                Flexible(
+                  flex: 6,
+                  child: Padding(
+                    padding: EdgeInsets.all(12.0),
+                    child: Container(
+                      //color: Colors.black,
+                      //height: 150,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          AutoSizeText(
+                            user.name,
+                            style: TextStyle( fontWeight: FontWeight.bold, color: Colors.black, fontSize: this.fontSize,),
+                            maxLines: 1,
+                          ),
+                        ],
+
+                        /*AutoSizeText(
                         _chapter_title.substring(0, 18) + "...",
                         style: TextStyle( fontWeight: FontWeight.bold,),
                         maxLines: 1,
                       ),*/
-              ),
+                      ),
 
+                    ),
+                  ),
+                ),
+
+                /*Flexible(
+                    flex: 2,
+                    child: Align(
+                      alignment: Alignment.centerRight,
+                      child: IconButton(
+                        onPressed: (){
+                          //widget.callAnimation();
+                          //Navigator.pop(context);
+                        },
+                        icon: Icon(
+                            Icons.close,
+                            color: Colors.black
+                        ),
+                      ),
+                    )
+                )*/
+              ],
+            )
+          ),
+
+          Flexible(
+            flex: 2,
+            child: Align(
+              alignment: Alignment.centerRight,
+              child: Visibility(
+                visible: this.isAuthor,
+                maintainSize: false,
+                maintainAnimation: false,
+                maintainState: false,
+                child:  IconButton(
+                  onPressed: (){
+                    _showDeleteAlertDialog(context);
+                  },
+                  icon: Icon(
+                      Icons.close,
+                      color: Colors.black
+                  ),
+                ),
+              ),
+            ),
+          )
+        ],
+      );
+      /*return Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Flexible(
+            flex: 3,
+            child: ProfilePicture(
+              user.profilePictureUrl,
+              circleRadius: this.height,
+              circleBorderWidth: 0.0,
             ),
           ),
 
+          Flexible(
+            flex: 5,
+            child: Padding(
+              padding: EdgeInsets.all(12.0),
+              child: Container(
+                //color: Colors.black,
+                //height: 150,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    AutoSizeText(
+                      user.name,
+                      style: TextStyle( fontWeight: FontWeight.bold, color: Colors.black, fontSize: this.fontSize,),
+                      maxLines: 1,
+                    ),
+                  ],
+
+                  /*AutoSizeText(
+                        _chapter_title.substring(0, 18) + "...",
+                        style: TextStyle( fontWeight: FontWeight.bold,),
+                        maxLines: 1,
+                      ),*/
+                ),
+
+              ),
+            ),
+          ),
+
+          Flexible(
+            flex: 2,
+            child: Align(
+              alignment: Alignment.centerRight,
+              child: IconButton(
+                onPressed: (){
+                  //widget.callAnimation();
+                  //Navigator.pop(context);
+                },
+                icon: Icon(
+                    Icons.close,
+                    color: Colors.black
+                ),
+              ),
+            )
+          )
         ],
       );
 
@@ -142,8 +255,36 @@ class UserPreviewCard extends StatelessWidget {
             ),
           ),*/
         ],
-      );
+      );*/
     }
+  }
+
+  _showDeleteAlertDialog(BuildContext context){
+    Widget cancelButton = FlatButton(
+      color: Colors.redAccent,
+      child: Text("Cancel"),
+      onPressed:  () {},
+    );
+    Widget acceptButton = FlatButton(
+      child: Text("Accept"),
+      onPressed:  () {},
+    );
+
+    AlertDialog alert = AlertDialog(
+      title: Text("Delete Comment"),
+      content: Text("Are you sure........."),
+      actions: [
+        cancelButton,
+        acceptButton
+      ],
+    );
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
   }
 
 
@@ -158,16 +299,18 @@ class UserPreviewCard extends StatelessWidget {
           decoration: BoxDecoration(
             color: Colors.blueGrey,
           ),
-          child: _makeListTile(),
+          child: _makeListTile(context),
         ),
       );
     } else {
+      User currentUser = Provider.of<User>(context, listen: false);
+      this.isAuthor = currentUser.isEqual(this.user);
       return Container(
         height: this.height,
         decoration: BoxDecoration(
           color: Colors.blueGrey,
         ),
-        child: _makeListTile(),
+        child: _makeListTile(context),
       );
     }
   }
