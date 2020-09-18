@@ -28,9 +28,9 @@ class ReadingPage extends StatelessWidget {
       body: Consumer<User>(
           builder: (context, user, child) =>
               VerticalBookList(user.lectures["Reading"], user.lectures["Pending"])),
-      appBar: AppBar(
+      /*appBar: AppBar(
         title: Text("Reading Page"),
-      ),
+      ),*/
     );
   }
 }

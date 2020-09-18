@@ -1,3 +1,4 @@
+import 'package:bookifyapp/LayoutWidgets/Lists/list_title.dart';
 import 'package:bookifyapp/LayoutWidgets/carousel_card.dart';
 import 'package:bookifyapp/Models/Chapter.dart';
 import 'package:bookifyapp/Models/Lecture.dart';
@@ -242,7 +243,7 @@ class DiscoverPage extends StatelessWidget {
 
     return Scaffold(
       body: Container(
-        color: color,
+        color: Colors.blueGrey,
         child: ListView.builder(
           itemBuilder: (context, index) => _buildSection(context, index),
           itemCount: sectionsTitles.length,
@@ -252,7 +253,8 @@ class DiscoverPage extends StatelessWidget {
       ),
 
       appBar: AppBar(
-        title: Text(this.text),
+        backgroundColor: Colors.blueGrey,
+        title: Text("Search book..."),
         actions: <Widget>[
           IconButton(
               onPressed: () {
@@ -277,10 +279,11 @@ class DiscoverPage extends StatelessWidget {
             margin: EdgeInsets.fromLTRB(5, 2, 2, 2),
             child:  Align(
               alignment: Alignment.topLeft,
-              child: Text(
+              child: ListTitle(sectionTitle),
+              /*child: Text(
                 sectionTitle,
                 style: optionStyle,
-              ),
+              ),*/
             ),
           ),
 
@@ -295,12 +298,23 @@ class DiscoverPage extends StatelessWidget {
             margin: EdgeInsets.fromLTRB(5, 2, 2, 2),
             child:  Align(
               alignment: Alignment.topLeft,
+              child: ListTitle(sectionTitle),
+              /*child: Text(
+                sectionTitle,
+                style: optionStyle,
+              ),*/
+            ),
+          ),
+          /*Container(
+            margin: EdgeInsets.fromLTRB(5, 2, 2, 2),
+            child:  Align(
+              alignment: Alignment.topLeft,
               child: Text(
                 sectionTitle,
                 style: optionStyle,
               ),
             ),
-          ),
+          ),*/
 
           HorizontalBookList(books, ListType.discover_option),
         ],

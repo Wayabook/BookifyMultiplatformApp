@@ -1,4 +1,5 @@
 import 'package:bookifyapp/Enums/list_type.dart';
+import 'package:bookifyapp/LayoutWidgets/Lists/list_title.dart';
 import 'package:bookifyapp/Pages/friends_page.dart';
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/LayoutWidgets/Lists/vertical_book_list_search.dart';
@@ -41,10 +42,11 @@ class ProfilePage extends StatelessWidget {
     width_per_child = (width - 30 - (10 * 2)) / 3;
 
     return Scaffold(
+      backgroundColor: Colors.blueGrey,
       body: _getBody(),
-      appBar: AppBar(
+      /*appBar: AppBar(
         title: Text("Profile Page"),
-      ),
+      ),*/
     );
   }
 
@@ -214,7 +216,7 @@ class ProfilePage extends StatelessWidget {
 
         Padding(
           padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
-          child: Container(color: Colors.blueGrey, height: 2, width: width),
+          child: Container(color: Colors.white, height: 2, width: width),
         ),
 
         Center(
@@ -225,11 +227,11 @@ class ProfilePage extends StatelessWidget {
 
               InfoRow.withIcon(RowType.icon_image,  "BOOKS READ", Icons.book,  user.booksRead.toString(), width_per_child, 105),
 
-              Container(color: Colors.blueGrey, height: 105, width: 2,),
+              Container(color: Colors.white, height: 105, width: 2,),
 
               InfoRow.withIcon(RowType.icon_image,  "CHAPS READ", Icons.collections_bookmark,  user.chaptersRead.toString(), width_per_child, 105),
 
-              Container(color: Colors.blueGrey, height: 105, width: 2,),
+              Container(color: Colors.white, height: 105, width: 2,),
 
               InfoRow.withIcon(RowType.icon_image,  "PAGES READ", Icons.description,  user.pagesRead.toString(), width_per_child, 105),
 
@@ -240,17 +242,18 @@ class ProfilePage extends StatelessWidget {
 
         Padding(
           padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
-          child: Container(color: Colors.blueGrey, height: 2, width: width),
+          child: Container(color: Colors.white, height: 2, width: width),
         ),
 
         Container(
           margin: EdgeInsets.fromLTRB(10, 10, 2, 0),
           child:  Align(
             alignment: Alignment.topLeft,
-            child: Text(
+            child: ListTitle("Genres of Interest")
+            /*Text(
               "Genres of Interest:",
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.blueGrey),
-            ),
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
+            ),*/
           ),
         ),
 
@@ -269,10 +272,11 @@ class ProfilePage extends StatelessWidget {
           margin: EdgeInsets.fromLTRB(10, 10, 2, 0),
           child:  Align(
             alignment: Alignment.topLeft,
-            child: Text(
+            child:  ListTitle("Bookshelf")
+            /*Text(
               "Bookshelf:",
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.blueGrey),
-            ),
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
+            ),*/
           ),
         ),
 
@@ -295,67 +299,5 @@ class ProfilePage extends StatelessWidget {
       ],
     );
   }
-
-  _addSettingsWidget() {
-    if (profileType == ProfileType.user_profile){
-      return BookCard.option(BookCardType.settings);
-    }
-  }
 }
-
-// See multiple profiles
-/*class CustomAvatars extends StatelessWidget {
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 80,
-      height: 40,
-      color: Colors.white,
-      child: Stack(
-        children: <Widget>[
-          Align(
-            alignment: Alignment.centerRight,
-            child: CircleAvatar(
-              backgroundColor: Colors.white,
-              child: CircleAvatar(
-                radius: 18,
-                backgroundColor: Colors.red,
-                backgroundImage: NetworkImage(
-                  'https://upload.wikimedia.org/wikipedia/commons/a/a0/Bill_Gates_2018.jpg',
-                ),
-              ),
-            ),
-          ),
-          Align(
-            alignment: Alignment.center,
-            child: CircleAvatar(
-              backgroundColor: Colors.white,
-              child: CircleAvatar(
-                radius: 18,
-                backgroundColor: Colors.red,
-                backgroundImage: NetworkImage(
-                  'https://upload.wikimedia.org/wikipedia/commons/a/a0/Bill_Gates_2018.jpg',
-                ), // P// Provide your custom image
-              ),
-            ),
-          ),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: CircleAvatar(
-              backgroundColor: Colors.white,
-              child: CircleAvatar(
-                radius: 18,
-                backgroundColor: Colors.red,
-                backgroundImage: NetworkImage(
-                'https://upload.wikimedia.org/wikipedia/commons/a/a0/Bill_Gates_2018.jpg',
-                ), // Provide your custom image
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}*/
 

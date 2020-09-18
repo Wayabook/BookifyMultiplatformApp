@@ -126,7 +126,7 @@ class InfoRow extends StatelessWidget {
                       child: Text(
                         this.subTitle,
                         style: TextStyle(
-                          color: Colors.grey[500],
+                          color: Colors.black,
                           fontSize: 20
                         ),
                       ),
