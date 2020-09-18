@@ -261,18 +261,25 @@ class UserPreviewCard extends StatelessWidget {
 
   _showDeleteAlertDialog(BuildContext context){
     Widget cancelButton = FlatButton(
-      color: Colors.redAccent,
+      //color: Colors.redAccent,
       child: Text("Cancel"),
-      onPressed:  () {},
+      onPressed:  () {
+        Navigator.pop(context);
+      },
     );
     Widget acceptButton = FlatButton(
-      child: Text("Accept"),
-      onPressed:  () {},
+      child: Text(
+        "Accept",
+        style: TextStyle(color: Colors.red),
+      ),
+      onPressed:  () {
+        Navigator.pop(context);
+      },
     );
 
     AlertDialog alert = AlertDialog(
       title: Text("Delete Comment"),
-      content: Text("Are you sure........."),
+      content: Text("Are you sure you want to delete this comment?"),
       actions: [
         cancelButton,
         acceptButton

@@ -442,14 +442,16 @@ class _AddFeedbackDialog extends State<AddFeedbackDialog> with SingleTickerProvi
 
     var aux = result;
 
-    if(result != null || result.length > 0){
-      setState(() {
-        var user = Provider.of<User>(context, listen: false);
-        MainComment mainComment = new MainComment(user, result, answers: Comment.getMockComments());
-        mainComments.add(MainCommentCard(mainComment, fromDialog: true));
-        listSize = mainComments.length + 5;
-        _scrollToLastPosition();
-      });
+    if(result != null){
+      if(result.length > 0){
+        setState(() {
+          var user = Provider.of<User>(context, listen: false);
+          MainComment mainComment = new MainComment(user, result, answers: Comment.getMockComments());
+          mainComments.add(MainCommentCard(mainComment, fromDialog: true));
+          listSize = mainComments.length + 5;
+          _scrollToLastPosition();
+        });
+      }
     }
     //print(result);
   }

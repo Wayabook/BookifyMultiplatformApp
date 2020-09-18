@@ -33,7 +33,15 @@ class MainCommentCard extends StatelessWidget {
       return GestureDetector(
         onTap: (){
           Navigator.of(context)
-              .push(MaterialPageRoute(builder: (context) => CommentPage(this.mainComment)));
+              .push(MaterialPageRoute(builder: (context) =>
+              CommentPage(
+                this.mainComment,
+                subCommentsPage: true,
+                chapterTitle: this.chapterTitle,
+                chapterNumber: this.chapterNumber,
+                //bookTitleAndChapter: "Publicar sobre Titulo Libro | Cap 01",
+              )
+              /*CommentPage(this.mainComment)*/));
         },
         child: _getCard(),
       );
