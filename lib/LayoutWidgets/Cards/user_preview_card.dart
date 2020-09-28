@@ -13,6 +13,7 @@ class UserPreviewCard extends StatelessWidget {
   double fontSize;
   bool card;
   bool isAuthor;
+  Function() removeComment;
 
   UserPreviewCard(
       this.user,
@@ -20,7 +21,8 @@ class UserPreviewCard extends StatelessWidget {
         this.height = 100,
         this.fontSize = 30,
         this.card = true,
-        this.isAuthor = false
+        this.isAuthor = false,
+        this.removeComment
       });
 
   _makeListTile(BuildContext context) {
@@ -273,6 +275,7 @@ class UserPreviewCard extends StatelessWidget {
         style: TextStyle(color: Colors.red),
       ),
       onPressed:  () {
+        this.removeComment();
         Navigator.pop(context);
       },
     );

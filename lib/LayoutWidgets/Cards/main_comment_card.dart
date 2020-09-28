@@ -2,6 +2,7 @@ import 'package:bookifyapp/LayoutWidgets/BookWidgets/summary_text.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/sub_comment_card.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/user_preview_card.dart';
 import 'package:bookifyapp/Models/Chapter.dart';
+import 'package:bookifyapp/Models/Lecture.dart';
 import 'package:bookifyapp/Models/MainComment.dart';
 import 'package:bookifyapp/Models/User.dart';
 import 'package:bookifyapp/Pages/comment_page.dart';
@@ -12,19 +13,27 @@ import 'package:like_button/like_button.dart';
 class MainCommentCard extends StatelessWidget {
 
   //bool subComments;
+  //Lecture currentChapter;
   bool fromDialog;
   String chapterTitle;
   int chapterNumber;
+  int commentPosition;
   MainComment mainComment;
+  Function(int) removeCommentFunction;
+  int positionKey;
   //List<SubCommentCard> subCommentsList;
   //_MainCommentCard __mainCommentCard;
 
   MainCommentCard(
+      //this.lecture,
       this.mainComment,
       {
         this.fromDialog = false,
         this.chapterTitle = "",
         this.chapterNumber = 0,
+        this.removeCommentFunction,
+        this.positionKey,
+        //this.commentPosition = -1,
       });
 
   @override
@@ -50,6 +59,11 @@ class MainCommentCard extends StatelessWidget {
     }
   }
 
+  removeComment(){
+    removeCommentFunction(this.positionKey);
+    print("RemoveComment");
+  }
+
   _getCard(){
     return Card(
         elevation: 10,
@@ -57,7 +71,7 @@ class MainCommentCard extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-              UserPreviewCard(mainComment.author, height: 50, fontSize: 15, card: false,
+              UserPreviewCard(mainComment.author, height: 50, fontSize: 15, card: false, removeComment: removeComment,
               ),
 
               SummaryTextWidget(

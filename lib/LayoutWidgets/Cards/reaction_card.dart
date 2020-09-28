@@ -57,24 +57,31 @@ class _ReactionCard extends State<ReactionCard> {
               elevation: 10,
               child: Column(
                 children: <Widget>[
-                  Image.asset(
-                    widget.reaction.image,
-                    height: 45,
-                    width: 45,
-                  ),
-
-                  Text(
-                    text,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 8,
-                      //fontWeight: FontWeight.bold,
+                  Flexible(
+                    flex: 8,
+                    child: Image.asset(
+                      widget.reaction.image,
+                      height: 45,
+                      width: 45,
                     ),
                   ),
 
-                  Padding(
+                  Flexible(
+                    flex: 2,
+                    child: Text(
+                      text,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 8,
+                        //fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  )
+
+
+                  /*Padding(
                     padding: EdgeInsets.fromLTRB(0, 0, 0, 5),
-                  ),
+                  ),*/
                 ],
               )
           ),

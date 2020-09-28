@@ -24,6 +24,14 @@ class User extends ChangeNotifier{
   /*List<User> _followers;
   List<User> _following;*/
 
+  /*void addCommentToLecture(Lecture lecture, MainComment mainComment){
+     int lecturePos;
+    if(isInReadingList(lecture)) {
+      lecturePos = this._lecture_lists["Reading"].indexOf(lecture);
+      this._lecture_lists["Reading"][lecturePos]
+    }
+  }*/
+
   Map<String, List<Lecture>> get lectures => this._lecture_lists;
 
   set lectures(Map<String, List<Lecture>>  lectures){

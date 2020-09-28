@@ -14,6 +14,14 @@ class Chapter{
     this.reactions = _getReactions();
   }
 
+  void removeComment(MainComment mainComment){
+    this.comments.remove(mainComment);
+  }
+
+  void addComment(MainComment mainComment){
+    this.comments.add(mainComment);
+  }
+
   List<Reaction> _getReactions() {
     List<Reaction> reactions = new List();
 

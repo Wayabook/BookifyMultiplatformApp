@@ -43,11 +43,10 @@ class _AddFeedbackDialog extends State<AddFeedbackDialog> with SingleTickerProvi
 
   Dialog alertDialog;
   bool _firstTime = true;
-  //BuildContext context;
   double width;
   double height;
   List<Widget> mainComments = [];
-  int listSize;
+  //int listSize;
   int currentChapterNumber;
   Chapter currentChapter;
   Color readButtonColor;
@@ -55,6 +54,7 @@ class _AddFeedbackDialog extends State<AddFeedbackDialog> with SingleTickerProvi
   ScrollController scrollController;
   String chapterTitle;
 
+  List<Widget> widgets;
   AnimationController animationController;
   Animation<double> animation;
 
@@ -65,6 +65,9 @@ class _AddFeedbackDialog extends State<AddFeedbackDialog> with SingleTickerProvi
   void initState(){
 
     super.initState();
+
+    //width = MediaQuery.of(context).size.width;
+    //height = MediaQuery.of(context).size.height;
 
     scrollController = new ScrollController();
 
@@ -84,11 +87,53 @@ class _AddFeedbackDialog extends State<AddFeedbackDialog> with SingleTickerProvi
     currentChapter = widget.book.chapters[currentChapterNumber];
     chapterTitle = currentChapter.title;
 
-    for(MainComment mainComment in currentChapter.comments){
-      mainComments.add(MainCommentCard(mainComment, fromDialog: true, chapterTitle: this.currentChapter.title,  chapterNumber: this.currentChapterNumber));
+    for(int i=0; i < currentChapter.comments.length; i++){
+      mainComments.add(
+          MainCommentCard(
+              currentChapter.comments[i],
+              fromDialog: true,
+              chapterTitle: this.currentChapter.title,
+              chapterNumber: this.currentChapterNumber,
+              positionKey: (i + 5),
+          ));
     }
-    listSize = mainComments.length + 5;
-    listSize = mainComments.length + 5;
+
+    /*for(MainComment mainComment in currentChapter.comments){
+      mainComments.add(
+          MainCommentCard(
+              mainComment,
+              fromDialog: true,
+              chapterTitle: this.currentChapter.title,
+              chapterNumber: this.currentChapterNumber,
+              key: new Key()
+          ));
+    }*/
+
+    //listSize = mainComments.length + 5;
+
+    widgets = new List();
+    widgets.add(_getTitleSection("¿Como estuvo?"));
+    widgets.add(_getRatingBar());
+    widgets.add(_getTitleSection("¿Como te sentiste?"));
+    widgets.add(_getReactionsGrid());
+    widgets.add(_getCommentsTitle());
+    widgets.addAll(mainComments);
+
+    /*
+    if(index == 0){
+      return _getTitleSection("¿Como estuvo?");
+    } else if (index == 1) {
+      return _getRatingBar();
+    } else if (index == 2) {
+      return _getTitleSection("¿Como te sentiste?");
+    } else if (index == 3) {
+      return _getReactionsGrid();
+    } else if (index == 4) {
+      return _getCommentsTitle();
+    } else {
+      return mainComments[index - 5];
+    }
+    * */
 
     readButtonColor = Colors.blueGrey;
     visible = widget.book.finished ? true : false;
@@ -103,14 +148,14 @@ class _AddFeedbackDialog extends State<AddFeedbackDialog> with SingleTickerProvi
   _getReactionsGrid(){
     return Container(
         height: 190,
-        width: double.infinity,
+        //width: double.infinity,
         //color: Colors.black,
         child: GridView.count(
-            padding:EdgeInsets.fromLTRB(0, 10, 0, 10),
+            padding:EdgeInsets.fromLTRB(0, 10, 0, 0),
             scrollDirection: Axis.vertical,
             shrinkWrap: true,
             crossAxisCount: 4,
-            childAspectRatio: ((width - 20) / 4) / (110),
+            //childAspectRatio: ((width - 20) / 4) / (110),
             children: List.generate(widget.book.getCurrentChapterReactions().length, (index) {
               return ReactionCard(widget.book.getCurrentChapterReactions()[index]);
             },)
@@ -134,17 +179,7 @@ class _AddFeedbackDialog extends State<AddFeedbackDialog> with SingleTickerProvi
             ),
           ),
 
-          _getTitleSection(listSize.toString() + " comentarios"),
-
-          /*Align(
-            alignment: Alignment.center,
-            child: Text(
-              "12 comentarios",
-              style: TextStyle(
-                color: Colors.blueGrey,
-              ),
-            ),
-          ),*/
+          _getTitleSection(mainComments.length.toString()  + " comentarios"),
         ],
       ),
     );
@@ -195,7 +230,6 @@ class _AddFeedbackDialog extends State<AddFeedbackDialog> with SingleTickerProvi
   @override
   void dispose() {
     animationController.dispose();
-    //widget.callAnimation();
     super.dispose();
   }
 
@@ -312,10 +346,10 @@ class _AddFeedbackDialog extends State<AddFeedbackDialog> with SingleTickerProvi
                           controller: scrollController,
                           shrinkWrap: true,
                           padding: const EdgeInsets.all(8),
-                          itemCount: listSize,
+                          itemCount: widgets.length,
                           itemBuilder: (BuildContext context, int index) {
-                            //return addFeedbackSections[index];
-                            if(index == 0){
+                            return widgets[index];
+                            /*if(index == 0){
                               return _getTitleSection("¿Como estuvo?");
                             } else if (index == 1) {
                               return _getRatingBar();
@@ -327,56 +361,9 @@ class _AddFeedbackDialog extends State<AddFeedbackDialog> with SingleTickerProvi
                               return _getCommentsTitle();
                             } else {
                               return mainComments[index - 5];
-                            }
-
+                            }*/
                           }
                       ),
-
-
-                      /*child: ListView(
-                      children: <Widget>[
-                        Padding(
-                          padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: <Widget>[
-                              Align(
-                                alignment: Alignment.center,
-                                child: Icon(
-                                  Icons.comment,
-                                  //color: Colors.black,
-                                  size: 25,
-                                ),
-                              ),
-
-                              Align(
-                                alignment: Alignment.center,
-                                child: Text(
-                                  "12 comentarios",
-                                  style: TextStyle(
-                                    color: Colors.blueGrey,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-
-                        MainCommentCard(fromDialog: true),
-                        MainCommentCard(fromDialog: true),
-                        MainCommentCard(fromDialog: true),
-                        MainCommentCard(fromDialog: true),
-
-                        /*GestureDetector(
-                          onTap: (){
-                            Navigator.of(context)
-                                .push(MaterialPageRoute(builder: (context) => CommentPage()));
-                          },
-                          child: MainCommentCard(),
-                        )*/
-                      ],
-                  ),*/
                     ),
                   ),
                 ),
@@ -440,20 +427,43 @@ class _AddFeedbackDialog extends State<AddFeedbackDialog> with SingleTickerProvi
       //bookTitleAndChapter: "Publicar sobre Titulo Libro | Cap 01",
     )));
 
-    var aux = result;
 
     if(result != null){
       if(result.length > 0){
         setState(() {
           var user = Provider.of<User>(context, listen: false);
           MainComment mainComment = new MainComment(user, result, answers: Comment.getMockComments());
-          mainComments.add(MainCommentCard(mainComment, fromDialog: true));
-          listSize = mainComments.length + 5;
+          this.currentChapter.addComment(mainComment);
+
+          //int pos = mainComments.length;
+          /*mainComments.add(
+              MainCommentCard(
+                  mainComment,
+                  fromDialog: true,
+                  chapterTitle: this.currentChapter.title,
+                  chapterNumber: this.currentChapterNumber,
+                  removeCommentFunction: removeComment));*/
+          widgets.add(MainCommentCard(
+              mainComment,
+              fromDialog: true,
+              chapterTitle: this.currentChapter.title,
+              chapterNumber: this.currentChapterNumber,
+              removeCommentFunction: removeComment,
+              positionKey: widgets.length,
+          ));
+          //listSize = mainComments.length + 5;
           _scrollToLastPosition();
         });
       }
     }
     //print(result);
+  }
+
+  void removeComment(int key){
+    //print(key);
+    setState(() {
+     widgets.removeAt(key);
+    });
   }
 
   _scrollToLastPosition(){
