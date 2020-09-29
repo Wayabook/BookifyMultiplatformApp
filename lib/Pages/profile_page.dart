@@ -99,7 +99,7 @@ class ProfilePage extends StatelessWidget {
                                 alignment: Alignment.center,
                                 child: Icon(
                                   Icons.security,
-                                  color: Colors.black,
+                                  color: Colors.white,
                                   size: 30,
                                 ),
                               ),
@@ -107,7 +107,7 @@ class ProfilePage extends StatelessWidget {
                                 alignment: Alignment.center,
                                 child:Text(
                                   "BADGETS",
-                                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Colors.black),
+                                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Colors.white),
                                 ),
                               ),
                             ],
@@ -120,31 +120,6 @@ class ProfilePage extends StatelessWidget {
                           },
                         )
                     ),
-                    /*Container(
-                      height: 100,
-                      width: 100,
-                      child: Center(
-                          child: Column(
-                            children: <Widget>[
-                              Align(
-                                alignment: Alignment.center,
-                                child: Icon(
-                                  Icons.security,
-                                  color: Colors.black,
-                                  size: 30,
-                                ),
-                              ),
-                              Align(
-                                alignment: Alignment.center,
-                                child:Text(
-                                  "BADGETS",
-                                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Colors.black),
-                                ),
-                              ),
-                            ],
-                          )
-                      ),
-                    )*/
                   ),
                   Flexible(
                     child: ProfileInfo(user),
@@ -161,7 +136,7 @@ class ProfilePage extends StatelessWidget {
                                 alignment: Alignment.center,
                                 child: Icon(
                                   Icons.people,
-                                  color: Colors.black,
+                                  color: Colors.white,
                                   size: 30,
                                 ),
                               ),
@@ -169,7 +144,7 @@ class ProfilePage extends StatelessWidget {
                                 alignment: Alignment.center,
                                 child:Text(
                                   "FRIENDS",
-                                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Colors.black),
+                                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Colors.white),
                                 ),
                               ),
                             ],
@@ -182,31 +157,6 @@ class ProfilePage extends StatelessWidget {
                           },
                         )
                     ),
-                    /*Container(
-                      height: 100,
-                      width: 100,
-                      child: Center(
-                        child: Column(
-                          children: <Widget>[
-                            Align(
-                              alignment: Alignment.center,
-                              child: Icon(
-                                Icons.people,
-                                color: Colors.black,
-                                size: 30,
-                              ),
-                            ),
-                            Align(
-                              alignment: Alignment.center,
-                              child:Text(
-                                "FRIENDS",
-                                style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Colors.black),
-                              ),
-                            ),
-                          ],
-                        )
-                      ),
-                    ),*/
                   )
                 ],
               ),
@@ -225,15 +175,15 @@ class ProfilePage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center, //Center Row contents vertically,
             children: <Widget>[
 
-              InfoRow.withIcon(RowType.icon_image,  "BOOKS READ", Icons.book,  user.booksRead.toString(), width_per_child, 105),
+              InfoRow.withIcon(RowType.icon_image,  "BOOKS READ", Icons.book,  user.booksRead.toString(), width_per_child, 105, Colors.white),
 
               Container(color: Colors.white, height: 105, width: 2,),
 
-              InfoRow.withIcon(RowType.icon_image,  "CHAPS READ", Icons.collections_bookmark,  user.chaptersRead.toString(), width_per_child, 105),
+              InfoRow.withIcon(RowType.icon_image,  "CHAPS READ", Icons.collections_bookmark,  user.chaptersRead.toString(), width_per_child, 105, Colors.white),
 
               Container(color: Colors.white, height: 105, width: 2,),
 
-              InfoRow.withIcon(RowType.icon_image,  "PAGES READ", Icons.description,  user.pagesRead.toString(), width_per_child, 105),
+              InfoRow.withIcon(RowType.icon_image,  "PAGES READ", Icons.description,  user.pagesRead.toString(), width_per_child, 105, Colors.white),
 
 
             ],
