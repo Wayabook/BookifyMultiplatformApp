@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:bookifyapp/Interfaces/RemoveCommentInterface.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/main_comment_card.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/sub_comment_card.dart';
 import 'package:bookifyapp/Models/Chapter.dart';
@@ -30,7 +31,9 @@ import 'package:provider/provider.dart';
   _CommentPage createState() => _CommentPage();
 }
 
-class _CommentPage extends State<CommentPage>{
+class _CommentPage
+    extends State<CommentPage>
+    implements RemoveCommentInterface{
 
   List<Widget> comments;
   List<SubCommentCard> subComments;
@@ -73,15 +76,6 @@ class _CommentPage extends State<CommentPage>{
             )
         );
       }
-
-      /*for(Comment comment in widget.mainComment.answers){
-        subComments.add(
-            SubCommentCard(
-                comment,
-                textEditingController: this.textEditingController
-            )
-        );
-      }*/
       comments.addAll(subComments);
 
     } else {
@@ -220,7 +214,6 @@ class _CommentPage extends State<CommentPage>{
         appBar: AppBar(title: Text("Add comment")),
       );
     }
-    //return  MainCommentCard(subComments: true,);
   }
 
   void removeComment(int key){

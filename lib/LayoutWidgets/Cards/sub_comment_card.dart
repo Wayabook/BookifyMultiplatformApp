@@ -1,3 +1,4 @@
+import 'package:bookifyapp/Interfaces/RemoveCommentInterface.dart';
 import 'package:bookifyapp/LayoutWidgets/BookWidgets/summary_text.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/user_preview_card.dart';
 import 'package:bookifyapp/Models/Comment.dart';
@@ -6,7 +7,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:like_button/like_button.dart';
 
-class SubCommentCard extends StatelessWidget {
+class SubCommentCard extends StatelessWidget implements RemoveCommentInterface{
 
   //String text;
   //User author;
@@ -23,7 +24,7 @@ class SubCommentCard extends StatelessWidget {
     this.positionKey,
   });
 
-  removeComment(){
+  removeComment(int position){
     removeCommentFunction(this.positionKey);
   }
 

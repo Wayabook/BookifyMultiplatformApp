@@ -15,7 +15,7 @@ class UserPreviewCard extends StatelessWidget {
   bool isAuthor;
   bool fromDialog;
 
-  Function() removeComment;
+  Function(int pos) removeComment;
 
   UserPreviewCard(
       this.user,
@@ -174,7 +174,7 @@ class UserPreviewCard extends StatelessWidget {
         style: TextStyle(color: Colors.red),
       ),
       onPressed:  () {
-        this.removeComment();
+        this.removeComment(0);
         Navigator.pop(context);
       },
     );
