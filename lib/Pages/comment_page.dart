@@ -14,7 +14,6 @@ import 'package:provider/provider.dart';
   class CommentPage extends StatefulWidget {
 
   bool subCommentsPage;
-  //String bookTitleAndChapter;
   MainComment mainComment;
   String chapterTitle;
   int chapterNumber;
@@ -26,12 +25,6 @@ import 'package:provider/provider.dart';
         this.subCommentsPage = true,
         this.chapterTitle = "",
       });
-
-/*Dialog alertDialog;
-  bool _firstTime = true;
-  BuildContext context;
-  double width;
-  double height;*/
 
   @override
   _CommentPage createState() => _CommentPage();
@@ -57,23 +50,21 @@ class _CommentPage extends State<CommentPage>{
     textEditingController = new TextEditingController();
 
     if(widget.subCommentsPage){
+
       comments = new List();
       subComments = new List();
       mainCommentCard = MainCommentCard(widget.mainComment, chapterTitle: widget.chapterTitle, chapterNumber: widget.chapterNumber,);
       for(Comment comment in widget.mainComment.answers){
         subComments.add(SubCommentCard(comment,  textEditingController: this.textEditingController));
       }
-      /*subComments.add(new SubCommentCard(user, textEditingController: this.textEditingController));
-      subComments.add(new SubCommentCard(user, textEditingController: this.textEditingController));
-      subComments.add(new SubCommentCard(user, textEditingController: this.textEditingController));
-      subComments.add(new SubCommentCard(user, textEditingController: this.textEditingController));
-      subComments.add(new SubCommentCard(user, textEditingController: this.textEditingController));*/
-
       comments.add(mainCommentCard);
       comments.addAll(subComments);
+
     } else {
+
       publishContainerColor = Colors.yellow[100];
       publishTextColor = Colors.grey[300];
+
     }
 
     _getTextField();
