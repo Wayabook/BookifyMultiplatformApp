@@ -432,6 +432,7 @@ class _AddFeedbackDialog
   void removeComment(int key){
     setState(() {
      widgets.removeAt(key);
+     InfoToast.showCommentRemovedCorrectly(true);
     });
   }
 

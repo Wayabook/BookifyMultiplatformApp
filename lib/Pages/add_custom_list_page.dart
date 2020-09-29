@@ -85,6 +85,7 @@ class _AddCustomListPage extends State<AddCustomListPage> {
 
     final appBody = Container(
       child: VerticalBookListSearch(_bookshelf, ListType.add_custom_list, title: widget.listTitle,),
+        //VerticalBookListSearch(_bookshelf, ListType.preview_friends)
     );
     /*final appBody = Scaffold(
         backgroundColor: Colors.grey,

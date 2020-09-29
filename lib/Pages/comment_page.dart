@@ -12,6 +12,8 @@ import 'package:flutter/painting.dart';
 import 'package:bookifyapp/Models/Comment.dart';
 import 'package:provider/provider.dart';
 
+import '../InfoToast.dart';
+
   class CommentPage extends StatefulWidget {
 
   bool subCommentsPage;
@@ -220,6 +222,7 @@ class _CommentPage
     if(key != 0){
       setState(() {
         comments.removeAt(key);
+        InfoToast.showCommentRemovedCorrectly(false);
       });
     }
   }
