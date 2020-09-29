@@ -127,23 +127,6 @@ class UserPreviewCard extends StatelessWidget {
                     ),
                   ),
                 ),
-
-                /*Flexible(
-                    flex: 2,
-                    child: Align(
-                      alignment: Alignment.centerRight,
-                      child: IconButton(
-                        onPressed: (){
-                          //widget.callAnimation();
-                          //Navigator.pop(context);
-                        },
-                        icon: Icon(
-                            Icons.close,
-                            color: Colors.black
-                        ),
-                      ),
-                    )
-                )*/
               ],
             )
           ),
@@ -171,93 +154,6 @@ class UserPreviewCard extends StatelessWidget {
           )
         ],
       );
-      /*return Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Flexible(
-            flex: 3,
-            child: ProfilePicture(
-              user.profilePictureUrl,
-              circleRadius: this.height,
-              circleBorderWidth: 0.0,
-            ),
-          ),
-
-          Flexible(
-            flex: 5,
-            child: Padding(
-              padding: EdgeInsets.all(12.0),
-              child: Container(
-                //color: Colors.black,
-                //height: 150,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    AutoSizeText(
-                      user.name,
-                      style: TextStyle( fontWeight: FontWeight.bold, color: Colors.black, fontSize: this.fontSize,),
-                      maxLines: 1,
-                    ),
-                  ],
-
-                  /*AutoSizeText(
-                        _chapter_title.substring(0, 18) + "...",
-                        style: TextStyle( fontWeight: FontWeight.bold,),
-                        maxLines: 1,
-                      ),*/
-                ),
-
-              ),
-            ),
-          ),
-
-          Flexible(
-            flex: 2,
-            child: Align(
-              alignment: Alignment.centerRight,
-              child: IconButton(
-                onPressed: (){
-                  //widget.callAnimation();
-                  //Navigator.pop(context);
-                },
-                icon: Icon(
-                    Icons.close,
-                    color: Colors.black
-                ),
-              ),
-            )
-          )
-        ],
-      );
-
-
-      return Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          ProfilePicture("https://upload.wikimedia.org/wikipedia/commons/a/a0/Bill_Gates_2018.jpg",),
-          /*Padding(
-            padding: EdgeInsets.all(12.0),
-            child: Container(
-              //color: Colors.black,
-              //height: 150,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  AutoSizeText(
-                    user.name,
-                    style: TextStyle( fontWeight: FontWeight.bold, color: Colors.black, fontSize: this.fontSize,),
-                    maxLines: 1,
-                  ),
-                ],
-              ),
-
-            ),
-          ),*/
-        ],
-      );*/
     }
   }
 
