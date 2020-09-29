@@ -65,12 +65,12 @@ class _AddCustomListPage extends State<AddCustomListPage> {
                 color: Colors.black45, fontWeight: FontWeight.bold),
           ),);
 
-    Card personCard(bookOrPerson) => Card(
+    /*Card personCard(bookOrPerson) => Card(
       child: Container(
         decoration: BoxDecoration(color: Colors.grey[300]),
         child: personListTile(bookOrPerson),
       ),
-    );
+    );*/
 
     if ((filter.isNotEmpty)) {
       List<Book> tmpList = new List<Book>();
@@ -87,33 +87,6 @@ class _AddCustomListPage extends State<AddCustomListPage> {
       child: VerticalBookListSearch(_bookshelf, ListType.add_custom_list, title: widget.listTitle,),
         //VerticalBookListSearch(_bookshelf, ListType.preview_friends)
     );
-    /*final appBody = Scaffold(
-        backgroundColor: Colors.grey,
-        body: ListView(
-          children: <Widget>[
-            Container(
-              margin: EdgeInsets.fromLTRB(10, 10, 2, 0),
-              child: Align(
-                alignment: Alignment.topLeft,
-                child: Text(
-                  widget.listTitle.isEmpty ? "Custom List 1" : widget.listTitle,
-                  style: TextStyle(fontSize: 30,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white),
-                ),
-              ),
-            ),
-
-            Padding(
-              padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
-              child: Container(color: Colors.white, height: 2, width: MediaQuery.of(context).size.width),
-            ),
-
-            VerticalBookListSearch(_bookshelf),
-          ],
-        ),
-        //child: VerticalBookListSearch(_bookshelf)
-    );*/
 
     final appTopAppBar = AppBar(
       elevation: 0.1,

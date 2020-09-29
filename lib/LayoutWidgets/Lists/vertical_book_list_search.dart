@@ -1,6 +1,7 @@
 import 'package:bookifyapp/Enums/list_type.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/book_card_in_vertical_search_list.dart';
 import 'package:bookifyapp/Models/Item.dart';
+import 'package:bookifyapp/Models/Lecture.dart';
 import 'package:bookifyapp/Models/Shop.dart';
 import 'package:bookifyapp/Models/User.dart';
 import 'package:bookifyapp/Pages/book_page.dart';
@@ -21,8 +22,6 @@ class VerticalBookListSearch extends StatefulWidget {
   final List<Book> books;
   final ListType type;
   final String title;
-  /*final List<Book> readingBooks;
-  final List<Book> pendingBooks;*/
 
   @override
   _VerticalBookListSearch createState() => _VerticalBookListSearch();
@@ -30,26 +29,37 @@ class VerticalBookListSearch extends StatefulWidget {
 
 class _VerticalBookListSearch extends State<VerticalBookListSearch> {
 
-  User user;
-  String _chapter_title = "2048 personas han guardado este libro";
+  List<Lecture> customBooksList;
 
   @override
   void initState() {
     super.initState();
-    user = Provider.of<User>(context, listen: false);
+    customBooksList = new List();
+  }
 
+  addOrRemoveBookFromTemporalCustomList(Book book, bool add){
+    if(add){
+      customBooksList.add(book);
+    } else {
+      customBooksList.remove(book);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blueGrey, //Color.fromRGBO(58, 66, 86, 1.0),
+      backgroundColor: Colors.blueGrey,
       body: _makeBody(),
     );
   }
 
   _makeCard(int index) {
-    return BookCardInVerticalSearchList(widget.books[index], widget.type);
+    if(widget.type == ListType.add_custom_list){
+      return BookCardInVerticalSearchList(widget.books[index], widget.type, addOrRemoveBookFromTemporalCustomList: addOrRemoveBookFromTemporalCustomList);
+    } else {
+      return BookCardInVerticalSearchList(widget.books[index], widget.type);
+    }
+
   }
 
   _makeBody() {
@@ -85,7 +95,12 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
                           style: TextStyle(color: Colors.blue,)
                       ),
                       onPressed: () {
-                        Navigator.pop(context);
+                        setState(() {
+                          User user = Provider.of<User>(context, listen: false);
+                          user.addCustomLectureList(widget.title, customBooksList);
+                        });
+                        //print(customBooksList.length);
+                        Navigator.pop(context, 0);
                       },
                     ),
                   ),

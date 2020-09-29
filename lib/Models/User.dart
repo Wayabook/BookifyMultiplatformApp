@@ -92,6 +92,10 @@ class User extends ChangeNotifier{
   bool isInPendingList(Lecture lecture){
     return this._lecture_lists["Pending"].contains(lecture);
   }
+  
+  void addCustomLectureList(String listName, List<Lecture> list){
+    this._lecture_lists.addAll({listName : list});
+  }
 
   /*List<Lecture> get bookshelf {
     List<Lecture> books = new List();

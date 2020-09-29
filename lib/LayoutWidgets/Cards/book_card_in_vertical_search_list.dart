@@ -19,9 +19,16 @@ class BookCardInVerticalSearchList extends StatefulWidget{
 
   Book book;
   final ListType type;
+  Function(Book book, bool add) addOrRemoveBookFromTemporalCustomList;
   String _addedBy = " personas han guardado este libro";
 
-  BookCardInVerticalSearchList(this.book, this.type);
+  BookCardInVerticalSearchList(
+      this.book,
+      this.type,
+  {
+    this.addOrRemoveBookFromTemporalCustomList
+  }
+  );
 
   @override
   _BookCardInVerticalSearchList createState() => _BookCardInVerticalSearchList();
@@ -34,10 +41,12 @@ class _BookCardInVerticalSearchList extends State<BookCardInVerticalSearchList>{
   Color buttonColor;
   bool isInPendingList;
   bool isInReadingList;
+  bool added;
 
   @override
   void initState() {
     super.initState();
+
 
     if(widget.type != ListType.add_custom_list){
       user = Provider.of<User>(context, listen: false);
@@ -52,6 +61,7 @@ class _BookCardInVerticalSearchList extends State<BookCardInVerticalSearchList>{
         buttonColor = Colors.blueGrey;
       }
     } else {
+      added = false;
       iconData = Icons.add;
       buttonColor = Colors.blueGrey;
     }
@@ -466,8 +476,15 @@ class _BookCardInVerticalSearchList extends State<BookCardInVerticalSearchList>{
                             ),
                             onPressed: () {
                               setState(() {
-                                iconData = Icons.check;
-                                buttonColor = Colors.green;
+                                added = !added;
+                                if(added){
+                                  iconData = Icons.check;
+                                  buttonColor = Colors.green;
+                                } else {
+                                  iconData = Icons.add;
+                                  buttonColor = Colors.blueGrey;
+                                }
+                                widget.addOrRemoveBookFromTemporalCustomList(widget.book, added);
                               });
                             },
                           ),
