@@ -1,3 +1,4 @@
+import 'package:bookifyapp/Models/Lecture.dart';
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/Models/Book.dart';
 import 'package:bookifyapp/Pages/book_page.dart';
@@ -9,7 +10,7 @@ import 'package:bookifyapp/Enums/book_card_type.dart';
 
 class HorizontalBookList extends StatelessWidget {
 
-  List<Book> books;
+  List<Lecture> books;
   BuildContext context;
   ListType type;
 
@@ -56,49 +57,6 @@ class HorizontalBookList extends StatelessWidget {
                 return BookCard.option(BookCardType.view_all);
                 //return BookCard(this.books[index], BookCardType.without_add_option);
               }
-              /*return GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => SearchPage()),
-                  );
-                },
-                child: Card(
-                  margin: EdgeInsets.all(10),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(7.0),
-                  ),
-                  elevation: 10,
-                  child: Container(
-                      width: 120,
-                      //height: double.infinity,
-                      color: Colors.white,
-                      child: Center(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: <Widget>[
-                              Icon(
-                                this.type == ListType.discover_option ?
-                                Icons.add : Icons.remove_red_eye,
-                                color: Colors.blueGrey,
-                                size: 50,
-                              ),
-
-                              Text(
-                                this.type == ListType.discover_option ?
-                                "Discover Books" : "View All",
-                                style: TextStyle(
-                                  color: Colors.blueGrey,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              )
-                            ],
-                          )
-                      )
-                  ),
-                ),
-              );*/
             }
           } else {
             return BookCard(this.books[index], BookCardType.add_option);

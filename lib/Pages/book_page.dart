@@ -296,7 +296,7 @@ class _BookPage extends State<BookPage> {
             ),
           ),
 
-          HorizontalBookList(auxBooksForPrototype, ListType.normal),
+          HorizontalBookList(Book.toLectureList(auxBooksForPrototype), ListType.normal),
           ],
         ),
 
@@ -313,7 +313,7 @@ class _BookPage extends State<BookPage> {
               ),
             ),
 
-            HorizontalBookList(auxBooksForPrototype, ListType.normal),
+            HorizontalBookList(Book.toLectureList(auxBooksForPrototype), ListType.normal),
           ],
         ),
 

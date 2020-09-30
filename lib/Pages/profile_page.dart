@@ -223,19 +223,10 @@ class ProfilePage extends StatelessWidget {
           child:  Align(
             alignment: Alignment.topLeft,
             child:  ListTitle("Bookshelf")
-            /*Text(
-              "Bookshelf:",
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
-            ),*/
           ),
         ),
 
-        /*Padding(
-          padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
-          child: Container(color: Colors.blueGrey, height: 2, width: width),
-        ),*/
-
-        HorizontalBookList(user.bookLists["Reading"], ListType.view_all),
+        HorizontalBookList(user.getNLecturesFromBookshelf(5), ListType.view_all),
 
         BookCard.option(
             profileType == ProfileType.user_profile ?  BookCardType.add_custom_list : BookCardType.recommend_book

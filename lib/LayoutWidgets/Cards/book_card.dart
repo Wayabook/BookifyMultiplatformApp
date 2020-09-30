@@ -14,12 +14,12 @@ import 'package:bookifyapp/Models/User.dart';
 import 'package:provider/provider.dart';
 
 
-class BookCard<T extends Book> extends StatelessWidget {
+class BookCard extends StatelessWidget {
 
   //List<Book> books;
   BuildContext context;
   BookCardType type;
-  T book;
+  Lecture book;
 
   BookCard(this.book, this.type);
   BookCard.option(this.type);
@@ -130,8 +130,8 @@ class BookCard<T extends Book> extends StatelessWidget {
                   child: LinearPercentIndicator(
                     //width: double.infinity,
                     lineHeight: 5.0,
-                    percent: 0.5,
-                    progressColor: Colors.lightGreen,
+                    percent: !this.book.finished ? this.book.progress : 1.0,
+                    progressColor: !this.book.finished ? Colors.lightGreen : Colors.deepPurple,
                   ),
                 ),
               )
@@ -140,6 +140,7 @@ class BookCard<T extends Book> extends StatelessWidget {
       );
 
     } else if (this.type == BookCardType.book_card_in_grid){
+      //Lecture lecture = (Lecture) book;
       return Card(
         color: Colors.black,
         margin: EdgeInsets.all(10),
@@ -173,8 +174,8 @@ class BookCard<T extends Book> extends StatelessWidget {
                   child: LinearPercentIndicator(
                     //width: double.infinity,
                     lineHeight: 5.0,
-                    percent: 0.5,
-                    progressColor: Colors.lightGreen,
+                    percent: !this.book.finished ? this.book.progress : 1.0,
+                    progressColor: !this.book.finished ? Colors.lightGreen : Colors.deepPurple,
                   ),
                 ),
               )
