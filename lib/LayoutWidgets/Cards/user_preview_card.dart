@@ -34,11 +34,6 @@ class UserPreviewCard extends StatelessWidget {
             //color: Colors.black,
             borderRadius:  card ? BorderRadius.circular(7.0) : BorderRadius.circular(0.0)
         ),//Color.fromRGBO(64, 75, 96, .9),
-        /*child: Padding(
-            //padding:  EdgeInsets.symmetric(horizontal: 0.0, vertical: 0.0),
-          padding: card ? EdgeInsets.symmetric(horizontal: 5.0, vertical: 10.0) : EdgeInsets.symmetric(horizontal: 0.0, vertical: 0.0),
-          child: _getRow()
-        )*/
         child: _getRow(context),
     );
   }
@@ -58,28 +53,15 @@ class UserPreviewCard extends StatelessWidget {
           Flexible(
             flex: 7,
             child: Padding(
-              padding: EdgeInsets.all(12.0),
+              padding: EdgeInsets.all(15.0),
               child: Container(
                 //color: Colors.black,
                 //height: 150,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    AutoSizeText(
-                      user.name,
-                      style: TextStyle( fontWeight: FontWeight.bold, color: Colors.white, fontSize: this.fontSize,),
-                      maxLines: 1,
-                    ),
-                  ],
-
-                  /*AutoSizeText(
-                        _chapter_title.substring(0, 18) + "...",
-                        style: TextStyle( fontWeight: FontWeight.bold,),
-                        maxLines: 1,
-                      ),*/
+                child: AutoSizeText(
+                  user.name,
+                  style: TextStyle( fontWeight: FontWeight.bold, color: Colors.white, fontSize: this.fontSize,),
+                  maxLines: 1,
                 ),
-
               ),
             ),
           ),

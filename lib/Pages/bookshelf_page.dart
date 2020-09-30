@@ -17,26 +17,38 @@ import 'package:bookifyapp/Models/User.dart';
 class BookshelfPage extends StatelessWidget {
 
   User user;
+  bool scrollToLastPosition;
   static const TextStyle optionStyle =
   TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  //List<Book> books =  List();
   BuildContext context;
 
-  BookshelfPage(this.user);
+  BookshelfPage(
+      this.user,{ this.scrollToLastPosition=false }
+  );
 
   @override
   Widget build(BuildContext context) {
+
     this.context = context;
 
     return Scaffold(
       backgroundColor: Colors.blueGrey,
-      body: CustomScrollView(
-        slivers: _createBookshelf(this.user.bookLists),
-      ),
+      body: _getCustomScrollView(),
       appBar: AppBar(
-        title: Text("Bookshelf"),
+        backgroundColor: Colors.blueGrey,
+        title: Text("Bookshelf (" + user.lectures.length.toString() + " lists)"),
       ),
     );
+  }
+
+  _getCustomScrollView(){
+    CustomScrollView customScrollView = CustomScrollView(
+      controller: scrollToLastPosition ?
+          ScrollController(initialScrollOffset: (MediaQuery.of(context).size.height / 4) * ((user.lectures.keys.length * 2) - 1)) :
+          ScrollController(),
+      slivers: _createBookshelf(this.user.bookLists),
+    );
+    return customScrollView;
   }
 
   _createBookshelf(Map<String, List<Lecture>> userLists){
