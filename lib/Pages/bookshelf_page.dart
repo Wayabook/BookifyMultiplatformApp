@@ -1,3 +1,4 @@
+import 'package:bookifyapp/Enums/button_type.dart';
 import 'package:bookifyapp/LayoutWidgets/Lists/list_title.dart';
 import 'package:bookifyapp/Models/Item.dart';
 import 'package:bookifyapp/Models/Lecture.dart';
@@ -94,7 +95,7 @@ class BookshelfPage extends StatelessWidget {
   }
 
   _makeHeader(String title, width) {
-    return ListTitle(title);
+    return ListTitle(title, withButton: true, buttonType: ButtonType.edit_list,);
   }
 
 

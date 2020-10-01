@@ -9,8 +9,6 @@ import 'Shop.dart';
 import 'User.dart';
 
 class MainComment extends Comment{
-  //int answers;
-  //String comment;
   List<Comment> answers;
 
   MainComment(

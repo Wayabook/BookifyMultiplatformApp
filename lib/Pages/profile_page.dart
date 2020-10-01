@@ -222,7 +222,7 @@ class ProfilePage extends StatelessWidget {
           margin: EdgeInsets.fromLTRB(10, 10, 2, 0),
           child:  Align(
             alignment: Alignment.topLeft,
-            child:  ListTitle("Bookshelf")
+            child:  ListTitle("Bookshelf", withButton: true,)
           ),
         ),
 
