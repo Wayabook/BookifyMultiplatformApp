@@ -1,5 +1,7 @@
 import 'package:bookifyapp/Enums/button_type.dart';
+import 'package:bookifyapp/Enums/list_type.dart';
 import 'package:bookifyapp/Models/User.dart';
+import 'package:bookifyapp/Pages/add_custom_list_page.dart';
 import 'package:bookifyapp/Pages/bookshelf_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -92,11 +94,17 @@ class ListTitle extends StatelessWidget{
 
   _getEditListButton(BuildContext context){
     return GestureDetector(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => BookshelfPage(Provider.of<User>(context, listen: false))),
-        );
+      onTap: () async {
+        final result = await Navigator.of(context)
+            .push(MaterialPageRoute(builder: (context) => AddCustomListPage(Provider.of<User>(context, listen: false).bookshelf, title, ListType.edit_custom_list)));
+        //Navigator.pop(context);
+        /*if(result == 0){
+          final result = await Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => BookshelfPage(Provider.of<User>(context, listen: false), scrollToLastPosition: true,)),
+          );
+          Navigator.pop(context);
+        }*/
       },
       child: Text(
         "Edit",

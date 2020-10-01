@@ -42,12 +42,23 @@ class BookshelfPage extends StatelessWidget {
     );
   }
 
+  _addReadListToLastPosition(Map<String, List<Lecture>> userLists ){
+    List<Lecture> read = userLists['Read'];
+    userLists.remove('Read');
+    userLists['Read'] = read;
+    return userLists;
+  }
+
   _getCustomScrollView(){
+    Map<String, List<Lecture>> userLists = this.user.bookLists;
+    if(!scrollToLastPosition)
+      userLists = _addReadListToLastPosition(userLists);
+
     CustomScrollView customScrollView = CustomScrollView(
       controller: scrollToLastPosition ?
           ScrollController(initialScrollOffset: (MediaQuery.of(context).size.height / 4) * ((user.lectures.keys.length * 2) - 1)) :
           ScrollController(),
-      slivers: _createBookshelf(this.user.bookLists),
+      slivers: _createBookshelf(userLists),
     );
     return customScrollView;
   }

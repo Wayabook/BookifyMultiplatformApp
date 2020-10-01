@@ -34,7 +34,8 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
   @override
   void initState() {
     super.initState();
-    customBooksList = new List();
+    User user = Provider.of<User>(context, listen: false);
+    customBooksList = user.hasLectureList(widget.title) ? user.getLectureListByName(widget.title) : new List();
   }
 
   addOrRemoveBookFromTemporalCustomList(Book book, bool add){
@@ -54,16 +55,50 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
   }
 
   _makeCard(int index) {
-    if(widget.type == ListType.add_custom_list){
-      return BookCardInVerticalSearchList(widget.books[index], widget.type, addOrRemoveBookFromTemporalCustomList: addOrRemoveBookFromTemporalCustomList);
+    if(widget.type == ListType.add_custom_list || widget.type == ListType.edit_custom_list){
+      return BookCardInVerticalSearchList(
+          widget.books[index],
+          widget.type,
+          addOrRemoveBookFromTemporalCustomList: addOrRemoveBookFromTemporalCustomList,
+          listTitle: widget.title,
+      );
     } else {
       return BookCardInVerticalSearchList(widget.books[index], widget.type);
     }
 
   }
 
+  _getAcceptButton(){
+    return FlatButton(
+      child: Text(
+          "Accept",
+          style: TextStyle(color: Colors.blue,)
+      ),
+      onPressed: () {
+        setState(() {
+          User user = Provider.of<User>(context, listen: false);
+          user.addCustomLectureList(widget.title, customBooksList);
+        });
+        //print(customBooksList.length);
+        Navigator.pop(context, 0);
+      },
+    );
+  }
+
+  _getCancelButton(){
+    return FlatButton(
+      child: Text(
+          "Cancel",
+          style: TextStyle(color: Colors.red,)
+      ),
+      onPressed: () {
+        Navigator.pop(context);
+      },
+    );
+  }
+
   _makeBody() {
-    if (widget.type == ListType.add_custom_list){
+    if (widget.type == ListType.add_custom_list || widget.type == ListType.edit_custom_list){
       return Stack(
         children: <Widget>[
           Container(
@@ -89,32 +124,11 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
                 children: <Widget>[
                   Expanded(
                     flex: 5,
-                    child: FlatButton(
-                      child: Text(
-                          "Accept",
-                          style: TextStyle(color: Colors.blue,)
-                      ),
-                      onPressed: () {
-                        setState(() {
-                          User user = Provider.of<User>(context, listen: false);
-                          user.addCustomLectureList(widget.title, customBooksList);
-                        });
-                        //print(customBooksList.length);
-                        Navigator.pop(context, 0);
-                      },
-                    ),
+                    child: _getAcceptButton()
                   ),
                   Expanded(
                     flex: 5,
-                    child: FlatButton(
-                      child: Text(
-                          "Cancel",
-                          style: TextStyle(color: Colors.red,)
-                      ),
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                    ),
+                    child: _getCancelButton()
                   )
                 ],
               ),

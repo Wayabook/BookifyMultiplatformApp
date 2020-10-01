@@ -19,6 +19,7 @@ class BookCardInVerticalSearchList extends StatefulWidget{
 
   Book book;
   final ListType type;
+  String listTitle;
   Function(Book book, bool add) addOrRemoveBookFromTemporalCustomList;
   String _addedBy = " personas han guardado este libro";
 
@@ -26,7 +27,8 @@ class BookCardInVerticalSearchList extends StatefulWidget{
       this.book,
       this.type,
   {
-    this.addOrRemoveBookFromTemporalCustomList
+    this.addOrRemoveBookFromTemporalCustomList,
+    this.listTitle = ""
   }
   );
 
@@ -48,8 +50,8 @@ class _BookCardInVerticalSearchList extends State<BookCardInVerticalSearchList>{
     super.initState();
 
 
-    if(widget.type != ListType.add_custom_list){
-      user = Provider.of<User>(context, listen: false);
+    user = Provider.of<User>(context, listen: false);
+    if(widget.type != ListType.add_custom_list && widget.type != ListType.edit_custom_list){
       isInPendingList = user.isInPendingList(widget.book.toLecture());
       isInReadingList = user.isInReadingList(widget.book.toLecture());
 
@@ -61,9 +63,10 @@ class _BookCardInVerticalSearchList extends State<BookCardInVerticalSearchList>{
         buttonColor = Colors.blueGrey;
       }
     } else {
-      added = false;
-      iconData = Icons.add;
-      buttonColor = Colors.blueGrey;
+      added = user.isLectureInList(widget.book.toLecture(), widget.listTitle);
+      //added = false;
+      iconData = added ? Icons.check : Icons.add;
+      buttonColor = added ? Colors.green : Colors.blueGrey;
     }
 
   }
@@ -361,7 +364,7 @@ class _BookCardInVerticalSearchList extends State<BookCardInVerticalSearchList>{
             ),
           )
       );
-    } else if (widget.type == ListType.add_custom_list){
+    } else if (widget.type == ListType.add_custom_list|| widget.type == ListType.edit_custom_list){
       return Container(
           decoration: BoxDecoration(
               color: Colors.white,

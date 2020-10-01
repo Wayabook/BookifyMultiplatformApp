@@ -9,7 +9,9 @@ class AddCustomListPage extends StatefulWidget {
 
   List<Book> bookshelf;
   String listTitle;
-  AddCustomListPage(this.bookshelf, this.listTitle);
+  ListType listType;
+
+  AddCustomListPage(this.bookshelf, this.listTitle, this.listType);
 
   @override
   _AddCustomListPage createState() => _AddCustomListPage();
@@ -69,7 +71,7 @@ class _AddCustomListPage extends State<AddCustomListPage> {
     }
 
     final appBody = Container(
-      child: VerticalBookListSearch(_bookshelf, ListType.add_custom_list, title: widget.listTitle,),
+      child: VerticalBookListSearch(_bookshelf, widget.listType, title: widget.listTitle,),
     );
 
     final appTopAppBar = AppBar(

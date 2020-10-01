@@ -1,4 +1,5 @@
 
+import 'package:bookifyapp/Enums/list_type.dart';
 import 'package:bookifyapp/Pages/add_custom_list_page.dart';
 import 'package:bookifyapp/Pages/bookshelf_page.dart';
 import 'package:flutter/cupertino.dart';
@@ -78,7 +79,7 @@ class DialogWithInputText extends StatelessWidget{
               }
               //Navigator.pop(context);
               final result = await Navigator.of(context)
-                .push(MaterialPageRoute(builder: (context) => AddCustomListPage(this.user.bookshelf, listTitle)));
+                .push(MaterialPageRoute(builder: (context) => AddCustomListPage(this.user.bookshelf, listTitle, ListType.add_custom_list)));
               if(result == 0){
                 final result = await Navigator.push(
                   context,
