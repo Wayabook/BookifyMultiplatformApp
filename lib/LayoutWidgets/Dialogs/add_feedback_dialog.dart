@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bookifyapp/InfoToast.dart';
+import 'package:bookifyapp/Interfaces/RemoveCommentInterface.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/main_comment_card.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/reaction_card.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/shop_item_card.dart';
@@ -36,24 +37,21 @@ class AddFeedbackDialog extends StatefulWidget{
   _AddFeedbackDialog createState() => _AddFeedbackDialog();
 }
 
-class _AddFeedbackDialog extends State<AddFeedbackDialog> with SingleTickerProviderStateMixin{
+class _AddFeedbackDialog
+    extends State<AddFeedbackDialog> with SingleTickerProviderStateMixin
+    implements RemoveCommentInterface{
 
-  //Lecture book;
-  //AddFeedbackDialog(this.book);
 
   Dialog alertDialog;
-  bool _firstTime = true;
   double width;
   double height;
   List<Widget> mainComments = [];
-  //int listSize;
   int currentChapterNumber;
   Chapter currentChapter;
   Color readButtonColor;
   bool visible;
   ScrollController scrollController;
   String chapterTitle;
-
   List<Widget> widgets;
   AnimationController animationController;
   Animation<double> animation;
@@ -66,17 +64,12 @@ class _AddFeedbackDialog extends State<AddFeedbackDialog> with SingleTickerProvi
 
     super.initState();
 
-    //width = MediaQuery.of(context).size.width;
-    //height = MediaQuery.of(context).size.height;
-
     scrollController = new ScrollController();
 
     animationController = AnimationController(
         duration: Duration(milliseconds: 1500),
         vsync:this
     );
-
-    //animationController.forward();
 
     animation = CurvedAnimation(
       parent: animationController,
@@ -98,19 +91,6 @@ class _AddFeedbackDialog extends State<AddFeedbackDialog> with SingleTickerProvi
               positionKey: (i + 5),
           ));
     }
-
-    /*for(MainComment mainComment in currentChapter.comments){
-      mainComments.add(
-          MainCommentCard(
-              mainComment,
-              fromDialog: true,
-              chapterTitle: this.currentChapter.title,
-              chapterNumber: this.currentChapterNumber,
-              key: new Key()
-          ));
-    }*/
-
-    //listSize = mainComments.length + 5;
 
     widgets = new List();
     widgets.add(_getTitleSection("¿Como estuvo?"));
@@ -138,19 +118,11 @@ class _AddFeedbackDialog extends State<AddFeedbackDialog> with SingleTickerProvi
 
     readButtonColor = Colors.blueGrey;
     visible = widget.book.finished ? true : false;
-
-
-    /*MainCommentCard(fromDialog: true),
-    MainCommentCard(fromDialog: true),
-    MainCommentCard(fromDialog: true),
-    MainCommentCard(fromDialog: true),*/
   }
 
   _getReactionsGrid(){
     return Container(
         height: 190,
-        //width: double.infinity,
-        //color: Colors.black,
         child: GridView.count(
             padding:EdgeInsets.fromLTRB(0, 10, 0, 0),
             scrollDirection: Axis.vertical,
@@ -175,11 +147,9 @@ class _AddFeedbackDialog extends State<AddFeedbackDialog> with SingleTickerProvi
             alignment: Alignment.center,
             child: Icon(
               Icons.comment,
-              //color: Colors.black,
               size: 25,
             ),
           ),
-
           _getTitleSection(mainComments.length.toString()  + " comentarios"),
         ],
       ),
@@ -457,13 +427,12 @@ class _AddFeedbackDialog extends State<AddFeedbackDialog> with SingleTickerProvi
         });
       }
     }
-    //print(result);
   }
 
   void removeComment(int key){
-    //print(key);
     setState(() {
      widgets.removeAt(key);
+     InfoToast.showCommentRemovedCorrectly(true);
     });
   }
 

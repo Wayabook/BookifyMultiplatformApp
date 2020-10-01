@@ -9,6 +9,7 @@ class InfoRow extends StatelessWidget {
   final double width;
   final double height;
   IconData icon;
+  Color color = Colors.black;
 
   InfoRow(
       this.rowType,
@@ -25,11 +26,13 @@ class InfoRow extends StatelessWidget {
       this.icon,
       this.subTitle,
       this.width,
-      this.height
+      this.height,
+      this.color,
   );
 
   @override
   Widget build(BuildContext context) {
+
     if (this.rowType == RowType.image) {
       return Padding(
         padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
@@ -103,6 +106,7 @@ class InfoRow extends StatelessWidget {
                         this.title,
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
+                          color: this.color
                         ),
                       ),
                     ),
@@ -113,7 +117,7 @@ class InfoRow extends StatelessWidget {
                   alignment: Alignment.center,
                   child: Icon(
                     this.icon,
-                    color: Colors.black,
+                    color: color,
                     size: 50,
                   ),
                 ),
@@ -126,7 +130,7 @@ class InfoRow extends StatelessWidget {
                       child: Text(
                         this.subTitle,
                         style: TextStyle(
-                          color: Colors.black,
+                          color: color,
                           fontSize: 20
                         ),
                       ),

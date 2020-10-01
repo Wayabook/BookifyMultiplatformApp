@@ -88,6 +88,14 @@ class Book {
     );
   }
 
+  static List<Lecture>  toLectureList(List<Book> books){
+    List<Lecture> lectures = new List();
+    for(Book book in books)
+      lectures.add(book.toLecture());
+    return lectures;
+
+  }
+
   /*List<String> get chapters_title => _chapters_title;
 
   set chapters_title(List<String> chapters_titles){

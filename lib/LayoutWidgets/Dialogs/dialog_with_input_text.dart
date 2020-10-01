@@ -1,8 +1,10 @@
 
 import 'package:bookifyapp/Pages/add_custom_list_page.dart';
+import 'package:bookifyapp/Pages/bookshelf_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/Models/User.dart';
+import 'package:provider/provider.dart';
 
 class DialogWithInputText extends StatelessWidget{
 
@@ -67,7 +69,7 @@ class DialogWithInputText extends StatelessWidget{
               "Accept",
               style: TextStyle(color: Colors.blue,)
           ),
-          onPressed: () {
+          onPressed: () async {
               String listTitle = "";
               if (inputController.text.isNotEmpty && inputController.text.toString() != "List Title") {
                 listTitle = inputController.text.toString();
@@ -75,8 +77,18 @@ class DialogWithInputText extends StatelessWidget{
                 listTitle = "Custom list";
               }
               //Navigator.pop(context);
-              Navigator.of(context)
+              final result = await Navigator.of(context)
                 .push(MaterialPageRoute(builder: (context) => AddCustomListPage(this.user.bookshelf, listTitle)));
+              if(result == 0){
+                final result = await Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => BookshelfPage(Provider.of<User>(context, listen: false), scrollToLastPosition: true,)),
+                );
+                Navigator.pop(context);
+              } /*else {
+                Navigator.pop(context);
+              }*/
+
           },
         ),
         FlatButton(

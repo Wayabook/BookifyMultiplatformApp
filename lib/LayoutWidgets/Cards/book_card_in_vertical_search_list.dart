@@ -19,9 +19,16 @@ class BookCardInVerticalSearchList extends StatefulWidget{
 
   Book book;
   final ListType type;
+  Function(Book book, bool add) addOrRemoveBookFromTemporalCustomList;
   String _addedBy = " personas han guardado este libro";
 
-  BookCardInVerticalSearchList(this.book, this.type);
+  BookCardInVerticalSearchList(
+      this.book,
+      this.type,
+  {
+    this.addOrRemoveBookFromTemporalCustomList
+  }
+  );
 
   @override
   _BookCardInVerticalSearchList createState() => _BookCardInVerticalSearchList();
@@ -34,30 +41,36 @@ class _BookCardInVerticalSearchList extends State<BookCardInVerticalSearchList>{
   Color buttonColor;
   bool isInPendingList;
   bool isInReadingList;
+  bool added;
 
   @override
   void initState() {
     super.initState();
 
-    user = Provider.of<User>(context, listen: false);
-    isInPendingList = user.isInPendingList(widget.book.toLecture());
-    isInReadingList = user.isInReadingList(widget.book.toLecture());
 
-    if (isInPendingList || isInReadingList) {
-      iconData = Icons.check;
-      buttonColor = isInReadingList ? Colors.green : Colors.blueGrey;
+    if(widget.type != ListType.add_custom_list){
+      user = Provider.of<User>(context, listen: false);
+      isInPendingList = user.isInPendingList(widget.book.toLecture());
+      isInReadingList = user.isInReadingList(widget.book.toLecture());
+
+      if (isInPendingList || isInReadingList) {
+        iconData = Icons.check;
+        buttonColor = isInReadingList ? Colors.green : Colors.blueGrey;
+      } else {
+        iconData = Icons.add;
+        buttonColor = Colors.blueGrey;
+      }
     } else {
+      added = false;
       iconData = Icons.add;
       buttonColor = Colors.blueGrey;
     }
+
   }
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      /*shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(7.0),
-      ),*/
       elevation: 10,
       margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
       child:  Container(
@@ -341,6 +354,140 @@ class _BookCardInVerticalSearchList extends State<BookCardInVerticalSearchList>{
                           height: 75,
                           width: 75,
                           child: _getFloatingActionButton(widget.book),
+                        )
+                    )
+                ),
+              ],
+            ),
+          )
+      );
+    } else if (widget.type == ListType.add_custom_list){
+      return Container(
+          decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius:  BorderRadius.circular(7.0)
+          ),//Color.fromRGBO(64, 75, 96, .9),
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 5.0, vertical: 10.0),
+            child: Row(
+              children: <Widget>[
+                Flexible(
+                    flex: 3,
+                    child: _getFriendsPreview()
+                ),
+
+                Flexible(
+                  flex: 5,
+                  child: Padding(
+                    padding: EdgeInsets.all(12.0),
+                    child: Container(
+                      //color: Colors.black,
+                      height: 150,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          Flexible(
+                            flex: 2,
+                            child: Center(
+                              child: Container(
+                                child: Text(
+                                  widget.book.title,
+                                  style: TextStyle(
+                                    //color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
+                            ),
+                          ),
+
+                          Flexible(
+                            flex: 2,
+                            child: Center(
+                              child: Text(
+                                widget.book.author,
+                                style: TextStyle(
+                                  color: Colors.grey[500],
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          ),
+
+                          Flexible(
+                            flex: 4,
+                            child:  Align(
+                                alignment: Alignment.bottomCenter,
+                                child: Wrap(
+                                  direction: Axis.horizontal,
+                                  alignment: WrapAlignment.center,
+                                  children: <Widget>[
+                                    Row(
+                                      children: <Widget>[
+
+                                        Icon(
+                                          Icons.bookmark,
+                                          color: Colors.blueGrey,
+                                          size: 20,
+                                        ),
+
+                                        AutoSizeText(
+                                          widget.book.addedByNumberOfPeople.toString() + widget._addedBy.substring(0, 12) + "...",
+                                          style: TextStyle( fontWeight: FontWeight.bold,),
+                                          maxLines: 1,
+                                        ),
+
+                                        /*AutoSizeText(
+                                        "+ 28",
+                                        style: TextStyle(
+                                          color: Colors.grey[500],
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                        maxLines: 1,
+                                        textAlign: TextAlign.left,
+                                      ),*/
+                                      ],
+                                    ),
+                                  ],
+                                )
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+
+                Flexible(
+                    flex: 2,
+                    child: Align(
+                        alignment: Alignment.center,
+                        child: SizedBox(
+                          height: 75,
+                          width: 75,
+                          child: FloatingActionButton(
+                            backgroundColor: Colors.white,
+                            child: Icon(
+                              iconData,
+                              color: buttonColor,
+                              size: 50,
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                added = !added;
+                                if(added){
+                                  iconData = Icons.check;
+                                  buttonColor = Colors.green;
+                                } else {
+                                  iconData = Icons.add;
+                                  buttonColor = Colors.blueGrey;
+                                }
+                                widget.addOrRemoveBookFromTemporalCustomList(widget.book, added);
+                              });
+                            },
+                          ),
                         )
                     )
                 ),

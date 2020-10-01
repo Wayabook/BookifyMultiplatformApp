@@ -4,9 +4,22 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 class InfoToast {
 
+  static void showCommentRemovedCorrectly(bool comment){
+    String commentText =  comment ? "Comment" : "Sub-comment";
+    Fluttertoast.showToast(
+        msg: commentText + " removed correctly.",
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.black,
+        textColor: Colors.white,
+        fontSize: 16.0
+    );
+  }
+
   static void showFinishedCongratulationsMessage(String bookTitle){
     Fluttertoast.showToast(
-        msg: "Congratulations you just ended: " + bookTitle + ".",
+        msg: "Congratulations you just finished: " + bookTitle + ".",
         toastLength: Toast.LENGTH_LONG,
         gravity: ToastGravity.BOTTOM,
         timeInSecForIosWeb: 1,

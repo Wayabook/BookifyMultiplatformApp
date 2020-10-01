@@ -316,7 +316,7 @@ class DiscoverPage extends StatelessWidget {
             ),
           ),*/
 
-          HorizontalBookList(books, ListType.discover_option),
+          HorizontalBookList(Book.toLectureList(books), ListType.discover_option),
         ],
       );
     }

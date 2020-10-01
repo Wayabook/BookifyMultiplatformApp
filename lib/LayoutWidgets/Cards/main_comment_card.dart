@@ -1,3 +1,4 @@
+import 'package:bookifyapp/Interfaces/RemoveCommentInterface.dart';
 import 'package:bookifyapp/LayoutWidgets/BookWidgets/summary_text.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/sub_comment_card.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/user_preview_card.dart';
@@ -10,10 +11,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:like_button/like_button.dart';
 
-class MainCommentCard extends StatelessWidget {
+class MainCommentCard extends StatelessWidget implements RemoveCommentInterface {
 
-  //bool subComments;
-  //Lecture currentChapter;
   bool fromDialog;
   String chapterTitle;
   int chapterNumber;
@@ -21,11 +20,8 @@ class MainCommentCard extends StatelessWidget {
   MainComment mainComment;
   Function(int) removeCommentFunction;
   int positionKey;
-  //List<SubCommentCard> subCommentsList;
-  //_MainCommentCard __mainCommentCard;
 
   MainCommentCard(
-      //this.lecture,
       this.mainComment,
       {
         this.fromDialog = false,
@@ -33,7 +29,6 @@ class MainCommentCard extends StatelessWidget {
         this.chapterNumber = 0,
         this.removeCommentFunction,
         this.positionKey,
-        //this.commentPosition = -1,
       });
 
   @override
@@ -48,7 +43,6 @@ class MainCommentCard extends StatelessWidget {
                 subCommentsPage: true,
                 chapterTitle: this.chapterTitle,
                 chapterNumber: this.chapterNumber,
-                //bookTitleAndChapter: "Publicar sobre Titulo Libro | Cap 01",
               )
               /*CommentPage(this.mainComment)*/));
         },
@@ -59,7 +53,7 @@ class MainCommentCard extends StatelessWidget {
     }
   }
 
-  removeComment(){
+  removeComment(int pos){
     removeCommentFunction(this.positionKey);
   }
 

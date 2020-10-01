@@ -44,6 +44,19 @@ class User extends ChangeNotifier{
     return new List();
   }
 
+  List<Lecture> getNLecturesFromBookshelf(int n){
+      List<Lecture> books = new List();
+      for(String key in _lecture_lists.keys){
+        for(Lecture book in _lecture_lists[key]){
+          if(!books.contains(book)){
+            books.add(book);
+          }
+        }
+      }
+      books.shuffle();
+      return n > books.length ? books : books.sublist(0, n-1);
+  }
+
   void addLectureToPendingList(Lecture lecture){
     this._lecture_lists["Pending"].add(lecture);
     notifyListeners();
@@ -91,6 +104,10 @@ class User extends ChangeNotifier{
 
   bool isInPendingList(Lecture lecture){
     return this._lecture_lists["Pending"].contains(lecture);
+  }
+  
+  void addCustomLectureList(String listName, List<Lecture> list){
+    this._lecture_lists.addAll({listName : list});
   }
 
   /*List<Lecture> get bookshelf {

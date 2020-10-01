@@ -11,14 +11,15 @@ import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:bookifyapp/Pages/bookshelf_page.dart';
 import 'package:bookifyapp/LayoutWidgets/Dialogs/dialog_with_input_text.dart';
 import 'package:bookifyapp/Models/User.dart';
+import 'package:provider/provider.dart';
 
 
-class BookCard<T extends Book> extends StatelessWidget {
+class BookCard extends StatelessWidget {
 
   //List<Book> books;
   BuildContext context;
   BookCardType type;
-  T book;
+  Lecture book;
 
   BookCard(this.book, this.type);
   BookCard.option(this.type);
@@ -129,8 +130,8 @@ class BookCard<T extends Book> extends StatelessWidget {
                   child: LinearPercentIndicator(
                     //width: double.infinity,
                     lineHeight: 5.0,
-                    percent: 0.5,
-                    progressColor: Colors.lightGreen,
+                    percent: !this.book.finished ? this.book.progress : 1.0,
+                    progressColor: !this.book.finished ? Colors.lightGreen : Colors.deepPurple,
                   ),
                 ),
               )
@@ -139,6 +140,7 @@ class BookCard<T extends Book> extends StatelessWidget {
       );
 
     } else if (this.type == BookCardType.book_card_in_grid){
+      //Lecture lecture = (Lecture) book;
       return Card(
         color: Colors.black,
         margin: EdgeInsets.all(10),
@@ -172,8 +174,8 @@ class BookCard<T extends Book> extends StatelessWidget {
                   child: LinearPercentIndicator(
                     //width: double.infinity,
                     lineHeight: 5.0,
-                    percent: 0.5,
-                    progressColor: Colors.lightGreen,
+                    percent: !this.book.finished ? this.book.progress : 1.0,
+                    progressColor: !this.book.finished ? Colors.lightGreen : Colors.deepPurple,
                   ),
                 ),
               )
@@ -210,12 +212,12 @@ class BookCard<T extends Book> extends StatelessWidget {
           } else if (this.type == BookCardType.view_all){
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => BookshelfPage(_getUser())),
+              MaterialPageRoute(builder: (context) => BookshelfPage(Provider.of<User>(context, listen: false))),
             );
           } else if (this.type == BookCardType.add_custom_list){
             showDialog(
               context: context,
-              builder: (BuildContext context) => DialogWithInputText(_getUser()),
+              builder: (BuildContext context) => DialogWithInputText(Provider.of<User>(context, listen: false)),
             );
           }
 
@@ -358,32 +360,6 @@ class BookCard<T extends Book> extends StatelessWidget {
     books.add(book3);
     books.add(book4);
     return books;
-  }
-
-  _getUser() {
-    List<Book> books = _getBooks();
-    List<Lecture> lectures = new List();
-    for(Book book in books){
-      lectures.add(book.toLecture());
-    }
-
-    Map<String, List<Lecture>> userLectures =
-    {'Reading': lectures, 'Pending': lectures, 'Read': lectures, 'Recommended': lectures, 'Custom List 1': lectures};
-
-    /*Map<String, List<Book>> userLists =
-    {'Reading': _getBooks(), 'Pending': _getBooks(), 'Read': _getBooks(), 'Recommended': _getBooks(), 'Custom List 1': _getBooks()};*/
-
-    return new User(
-        "1",
-        "Bill Gates",
-        "\"Not as good as Steve Jobs\"",
-        null,
-        userLectures,
-        21,
-        198,
-        345,
-        "https://avatars0.githubusercontent.com/u/35029261?s=460&u=c54ea4c26c7f0659c014f362e538d2927f567a4f&v=4"
-    );
   }
 }
 
