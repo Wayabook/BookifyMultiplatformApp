@@ -20,9 +20,4 @@ class Shop {
     _logo_url = logo;
   }
 
-  /* List<User> get friends_reading => _friends_reading;
-
-  set friends_reading(List<User> fr) {
-    _friends_reading = fr;
-  }*/
 }

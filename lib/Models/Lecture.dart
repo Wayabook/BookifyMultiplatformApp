@@ -6,7 +6,6 @@ import 'Item.dart';
 import 'User.dart';
 
 class Lecture extends Book{
-  //String title;
 
   int currentChapter;
   bool read;
@@ -50,24 +49,6 @@ class Lecture extends Book{
       chapters,
       friends_reading:
       friends_reading) {}
-      
-      
-  /*List<Reaction> reactions() {
-    if(this._reactions == null){
-      this._reactions = new List();
-      this._reactions.add(new Reaction("ANGRY", "images/angry.png", 60));
-      this._reactions.add(new Reaction("SCARED", "images/scared.png", 60));
-      this._reactions.add(new Reaction("SAD", "images/unhappy.png", 60));
-      this._reactions.add(new Reaction("CONFUSED", "images/confused.png", 60));
-
-      this._reactions.add(new Reaction("BORED", "images/bored.png", 60));
-      this._reactions.add(new Reaction("SURPRISED", "images/surprised.png", 60));
-      this._reactions.add(new Reaction("HAPPY", "images/happy.png", 60));
-      this._reactions.add(new Reaction("EXCITED", "images/excited.png", 60));
-
-    }
-    return this._reactions;
-  }*/
 
   List<Reaction> getCurrentChapterReactions(){
     return this.chapters[this.currentChapter].reactions;

@@ -110,22 +110,6 @@ class User extends ChangeNotifier{
     this._lecture_lists.addAll({listName : list});
   }
 
-  /*List<Lecture> get bookshelf {
-    List<Lecture> books = new List();
-    for(String key in _book_lists.keys){
-      for(Lecture book in _book_lists[key]){
-        if(!books.contains(book)){
-          books.add(book);
-        }
-      }
-    }
-    return books;
-  }*/
-  /*void removeLectureFromReadingList(Lecture lecture){
-    this._lecture_lists["Reading"].remove(lecture);
-    notifyListeners();
-  }*/
-
   void increaseChapter(Lecture lecture){
     int position;
     if(isInReadingList(lecture)){
@@ -162,11 +146,6 @@ class User extends ChangeNotifier{
   set friends(List<User> friends) {
     _friends = friends;
   }
-
-  /*List<User> get following => this._following;
-  set following(List<User> followers) {
-    _following = followers;
-  }*/
 
   bool isEqual(User user){
     return this._uid == user._uid;
@@ -436,7 +415,7 @@ class User extends ChangeNotifier{
     users.add(user4);
 
     this._uid = "1112";
-    this.name = "Radu Fucking Spaimoc";
+    this.name = "Radu Spaimovich";
     this._description_sentence = "\"Best trollo ever\"";
     this._interested_genres = genres;
     this._lecture_lists = userLectures;

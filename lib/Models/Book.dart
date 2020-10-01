@@ -96,18 +96,6 @@ class Book {
 
   }
 
-  /*List<String> get chapters_title => _chapters_title;
-
-  set chapters_title(List<String> chapters_titles){
-    _chapters_title = chapters_title;
-  }
-
-  List<User> get friends_reading => friends_reading;
-
-  set friends_reading(List<User> fr) {
-    _friends_reading = fr;
-  }*/
-
   Map<String, List<Item>> get shops_items => _shops_items;
 
   set shops_items(Map<String, List<Item>> fr) {
@@ -137,12 +125,6 @@ class Book {
   set summary(String summary) {
     _summary = summary;
   }
-
-  /*bool get read => _read;
-
-  set read(bool read) {
-    _read = read;
-  }*/
 
   int get year => _year;
 
@@ -179,35 +161,6 @@ class Book {
   set chapterTitlesList(List<Chapter> chapterTitlesList) {
     this.chapters = chapterTitlesList;
   }
-
-  /*String getChapterTitleByIndex(int index){
-    return this.chaptersTitles[index];
-  }*/
-
-
-  /*String get language => language;
-
-  set ean(String ean) {
-    _ean = ean;
-  }*/
-
-  /*int get sumRatings => _sumRatings;
-
-  set sumRatings(int sumRatings) {
-    _sumRatings = sumRatings;
-  }
-
-  int get numRatings => _numRatings;
-
-  set numRatings(int numRatings) {
-    _numRatings = numRatings;
-  }
-
-  bool get isNew => _isNew;
-
-  set isNew(bool isNew) {
-    _isNew = isNew;
-  }*/
 
   @override
   bool operator ==( other) {
