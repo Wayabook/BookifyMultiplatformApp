@@ -61,7 +61,6 @@ class MainCommentCard extends StatelessWidget {
 
   removeComment(){
     removeCommentFunction(this.positionKey);
-    print("RemoveComment");
   }
 
   _getCard(){
@@ -71,8 +70,7 @@ class MainCommentCard extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-              UserPreviewCard(mainComment.author, height: 50, fontSize: 15, card: false, removeComment: removeComment,
-              ),
+              UserPreviewCard(mainComment.author, height: 50, fontSize: 15, card: false, fromDialog: fromDialog, removeComment: removeComment),
 
               SummaryTextWidget(
                 text: mainComment.comment,
@@ -169,32 +167,12 @@ class MainCommentCard extends StatelessWidget {
                     ],
                   ),
                 ),
-
-
               ),
 
               Padding(
                 padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
                 child: Container(color: Colors.white, height: 0.5, width: double.infinity),
               ),
-
-              /*ListView.builder(
-                  shrinkWrap: true,
-                  padding: const EdgeInsets.all(8),
-                  itemCount: subCommentsList.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return subCommentsList[index];
-                  }
-              ),*/
-
-              /*widget.subComments ? subCommentsListView : Padding(
-                padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
-                child: Container(color: Colors.white, height: 0.5, width: double.infinity),
-              ),*/
-
-              //_getSubCommentsList(),
-
-
             ],
           ),
         )

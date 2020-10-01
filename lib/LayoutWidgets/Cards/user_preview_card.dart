@@ -13,6 +13,8 @@ class UserPreviewCard extends StatelessWidget {
   double fontSize;
   bool card;
   bool isAuthor;
+  bool fromDialog;
+
   Function() removeComment;
 
   UserPreviewCard(
@@ -22,6 +24,7 @@ class UserPreviewCard extends StatelessWidget {
         this.fontSize = 30,
         this.card = true,
         this.isAuthor = false,
+        this.fromDialog = true,
         this.removeComment
       });
 
@@ -136,7 +139,7 @@ class UserPreviewCard extends StatelessWidget {
             child: Align(
               alignment: Alignment.centerRight,
               child: Visibility(
-                visible: this.isAuthor,
+                visible: (this.isAuthor && this.fromDialog) ,
                 maintainSize: false,
                 maintainAnimation: false,
                 maintainState: false,

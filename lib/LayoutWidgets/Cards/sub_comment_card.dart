@@ -13,27 +13,19 @@ class SubCommentCard extends StatelessWidget {
   //TextField textField;
   Comment comment;
   TextEditingController textEditingController;
-  //User user;
+  Function(int) removeCommentFunction;
+  int positionKey;
 
 
   SubCommentCard(this.comment, {
     this.textEditingController = null,
+    this.removeCommentFunction,
+    this.positionKey,
   });
 
-  /*_getUser(){
-    User user  = const User(
-        "1",
-        "Bill Gates",
-        "\"Not as good as Steve Jobs\"",
-        null,
-        null,
-        21,
-        198,
-        345,
-        "https://avatars0.githubusercontent.com/u/35029261?s=460&u=c54ea4c26c7f0659c014f362e538d2927f567a4f&v=4"
-    );
-    return const user;
-  }*/
+  removeComment(){
+    removeCommentFunction(this.positionKey);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,10 +33,9 @@ class SubCommentCard extends StatelessWidget {
       padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
       child: Card(
           elevation: 10,
-          //margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
           child: Column(
             children: <Widget>[
-              UserPreviewCard(this.comment.author,  height: 50, fontSize: 15, card: false,
+              UserPreviewCard(this.comment.author,  height: 50, fontSize: 15, card: false, removeComment: removeComment
               ),
 
               SummaryTextWidget(
@@ -71,55 +62,8 @@ class SubCommentCard extends StatelessWidget {
                           children: <Widget>[
                             LikeButton(
                               size: 30,
-                              /*circleColor:
-                          CircleColor(start: Color(0xff00ddff), end: Color(0xff0099cc)),
-                          bubblesColor: BubblesColor(
-                            dotPrimaryColor: Color(0xff33b5e5),
-                            dotSecondaryColor: Color(0xff0099cc),
-                          ),*/
-                              /*likeBuilder: (bool isLiked) {
-                            return Icon(
-                              Icons.home,
-                              color: isLiked ? Colors.deepPurpleAccent : Colors.grey,
-                              size: 30,
-                            );
-                          },*/
                               likeCount: this.comment.likes,
-                              /*countBuilder: (int count, bool isLiked, String text) {
-                            var color = isLiked ? Colors.deepPurpleAccent : Colors.grey;
-                            Widget result;
-                            if (count == 0) {
-                              result = Text(
-                                "love",
-                                style: TextStyle(color: color),
-                              );
-                            } else
-                              result = Text(
-                                text,
-                                style: TextStyle(color: color),
-                              );
-                            return result;
-                          },*/
                             ),
-                            /*Align(
-                          alignment: Alignment.center,
-                          child: Icon(
-                            Icons.supervised_user_circle,
-                            color: Colors.black,
-                            size: 30,
-                          ),
-                        ),
-
-                        Align(
-                          alignment: Alignment.center,
-                          child: Text(
-                            "12 me gusta",
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 10,
-                            ),
-                          ),
-                        ),*/
                           ],
                         ),
                       ),
@@ -129,12 +73,9 @@ class SubCommentCard extends StatelessWidget {
                         child: Align(
                           alignment: Alignment.center,
                           child: GestureDetector(
-
                             onTap: (){
-                              //print(this.comment.author.name);
                               textEditingController.text = '@' + this.comment.author.name;
                             },
-
                             child: Text(
                               "Responder",
                               style: TextStyle(
@@ -145,38 +86,10 @@ class SubCommentCard extends StatelessWidget {
                           )
                         ),
                       ),
-
-                      /*Flexible(
-                      flex: 3,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: <Widget>[
-
-                          Align(
-                            alignment: Alignment.center,
-                            child: Icon(
-                              Icons.share,
-                              color: Colors.grey,
-                              size: 30,
-                            ),
-                          ),
-                        ],
-                      ),
-                    )*/
                     ],
                   ),
                 ),
-
-
               ),
-
-              /*Padding(
-              padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
-              child: Container(color: Colors.white, height: 0.5, width: double.infinity),
-            ),*/
-
-
             ],
           )
       ),

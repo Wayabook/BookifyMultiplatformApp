@@ -53,11 +53,35 @@ class _CommentPage extends State<CommentPage>{
 
       comments = new List();
       subComments = new List();
-      mainCommentCard = MainCommentCard(widget.mainComment, chapterTitle: widget.chapterTitle, chapterNumber: widget.chapterNumber,);
-      for(Comment comment in widget.mainComment.answers){
-        subComments.add(SubCommentCard(comment,  textEditingController: this.textEditingController));
-      }
+      mainCommentCard = MainCommentCard(
+        widget.mainComment,
+        chapterTitle: widget.chapterTitle,
+        chapterNumber: widget.chapterNumber,
+        removeCommentFunction: removeComment,
+        positionKey: 0,
+      );
       comments.add(mainCommentCard);
+
+      for(int i=0; i < widget.mainComment.answers.length; i++){
+        Comment comment  = widget.mainComment.answers[i];
+        subComments.add(
+            SubCommentCard(
+                comment,
+                textEditingController: this.textEditingController,
+                removeCommentFunction: removeComment,
+                positionKey: (i + 1),
+            )
+        );
+      }
+
+      /*for(Comment comment in widget.mainComment.answers){
+        subComments.add(
+            SubCommentCard(
+                comment,
+                textEditingController: this.textEditingController
+            )
+        );
+      }*/
       comments.addAll(subComments);
 
     } else {
@@ -199,15 +223,23 @@ class _CommentPage extends State<CommentPage>{
     //return  MainCommentCard(subComments: true,);
   }
 
-  _closePageAndReturnComment(){
-
+  void removeComment(int key){
+    if(key != 0){
+      setState(() {
+        comments.removeAt(key);
+      });
+    }
   }
 
 
   _addComment(){
     FocusScope.of(context).requestFocus(FocusNode());
     var user = Provider.of<User>(context, listen: false);
-    SubCommentCard subCommentCard = SubCommentCard(new Comment(user, newComment));
+    SubCommentCard subCommentCard = SubCommentCard(
+      new Comment(user, newComment),
+      removeCommentFunction: removeComment,
+      positionKey: this.comments.length,
+    );
     setState(() {
       this.comments.add(subCommentCard);
     });

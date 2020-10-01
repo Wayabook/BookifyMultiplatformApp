@@ -94,6 +94,7 @@ class _AddFeedbackDialog extends State<AddFeedbackDialog> with SingleTickerProvi
               fromDialog: true,
               chapterTitle: this.currentChapter.title,
               chapterNumber: this.currentChapterNumber,
+              removeCommentFunction: removeComment,
               positionKey: (i + 5),
           ));
     }
