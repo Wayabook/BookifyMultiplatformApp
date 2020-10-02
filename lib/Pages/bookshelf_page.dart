@@ -19,7 +19,7 @@ import 'package:provider/provider.dart';
 import 'add_custom_list_page.dart';
 
 
-class BookshelfPage extends StatelessWidget {
+class BookshelfPage extends StatefulWidget {
 
   User user;
   bool scrollToLastPosition;
@@ -28,11 +28,11 @@ class BookshelfPage extends StatelessWidget {
 
   BookshelfPage(this.user, { this.scrollToLastPosition = false });
 
-  //@override
-  //_BookshelfPage createState() => _BookshelfPage();
-//}
+  @override
+  _BookshelfPage createState() => _BookshelfPage();
+}
 
-//class _BookshelfPage extends State<BookshelfPage>{
+class _BookshelfPage extends State<BookshelfPage>{
 
   BuildContext context;
 
@@ -52,17 +52,17 @@ class BookshelfPage extends StatelessWidget {
       body: _getListView(),
       appBar: AppBar(
         backgroundColor: Colors.blueGrey,
-        title: Text("Bookshelf (" + user.lectures.length.toString() + " lists)"),
+        title: Text("Bookshelf (" + widget.user.lectures.length.toString() + " lists)"),
       ),
     );
   }
 
   _getListView(){
     double width = MediaQuery.of(context).size.width;
-    List<String> keys = user.lectures.keys.toList();
+    List<String> keys = widget.user.lectures.keys.toList();
     return ListView.builder
       (
-        itemCount: user.lectures.keys.length * 2,
+        itemCount: widget.user.lectures.keys.length * 2,
         itemBuilder: (BuildContext ctxt, int index) {
           if (index % 2 == 0){
             return _makeHeader(keys[index == 0 ? index : (index~/2)], width);
@@ -83,9 +83,9 @@ class BookshelfPage extends StatelessWidget {
             mainAxisSpacing: 10.0,
             crossAxisSpacing: 10.0,
             childAspectRatio:  (MediaQuery.of(context).size.width / 4) / (MediaQuery.of(context).size.height / 4),
-            children: List.generate(user.lectures[key].length, (index) {
+            children: List.generate(widget.user.lectures[key].length, (index) {
               //Lecture aux = user.lectures[key][index];
-              return BookCard(user.lectures[key][index], BookCardType.book_card_in_grid);
+              return BookCard(widget.user.lectures[key][index], BookCardType.book_card_in_grid);
             }),
           );
           }
@@ -96,20 +96,20 @@ class BookshelfPage extends StatelessWidget {
   }
 
   _addReadListToLastPosition(){
-    List<Lecture> read = user.lectures['Read'];
-    user.lectures.remove('Read');
-    user.lectures['Read'] = read;
+    List<Lecture> read = widget.user.lectures['Read'];
+    widget.user.lectures.remove('Read');
+    widget.user.lectures['Read'] = read;
     //return user.lectures;
   }
 
   _getCustomScrollView(){
     //Map<String, List<Lecture>> userLists = user.bookLists;
-    if(!scrollToLastPosition)
+    if(! widget.scrollToLastPosition)
       _addReadListToLastPosition();
 
     return  CustomScrollView(
-      controller: scrollToLastPosition ?
-          ScrollController(initialScrollOffset: (MediaQuery.of(context).size.height / 4) * ((user.lectures.keys.length * 2) - 1)) :
+      controller: widget.scrollToLastPosition ?
+          ScrollController(initialScrollOffset: (MediaQuery.of(context).size.height / 4) * ((widget.user.lectures.keys.length * 2) - 1)) :
           ScrollController(),
       slivers: _createBookshelf(),
     );
@@ -120,7 +120,7 @@ class BookshelfPage extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
     List<Widget> bookshelf = new List<Widget>();
 
-    for(String key in user.lectures.keys){
+    for(String key in widget.user.lectures.keys){
       //List<Lecture> bookList = userLists[key];
 
       bookshelf.add(
@@ -146,9 +146,9 @@ class BookshelfPage extends StatelessWidget {
 
             delegate: SliverChildBuilderDelegate(
                   (BuildContext context, int index) {
-                return BookCard(user.lectures[key][index], BookCardType.book_card_in_grid);
+                return BookCard(widget.user.lectures[key][index], BookCardType.book_card_in_grid);
               },
-              childCount: user.lectures[key].length,
+              childCount: widget.user.lectures[key].length,
 
             ),
 
@@ -159,13 +159,17 @@ class BookshelfPage extends StatelessWidget {
   }
 
   goToEditListPage(String title) async {
+
     final result = await Navigator.of(context)
         .push(MaterialPageRoute(builder: (context) =>
         AddCustomListPage(Provider
             .of<User>(context, listen: false)
             .bookshelf, title, ListType.edit_custom_list)));
-    //userLists[key] =
 
+    setState(() {
+      User user = Provider.of<User>(context, listen: false);
+      widget.user.lectures[title] = user.lectures[title];
+    });
   }
 
   _makeHeader(String title, width) {
