@@ -11,12 +11,14 @@ class ListTitle extends StatelessWidget{
   final String title;
   bool withButton;
   ButtonType buttonType;
+  Function(String) goToPageFromParent;
 
   ListTitle(
       this.title,
       {
         this.withButton = false,
-        this.buttonType = ButtonType.view_all
+        this.buttonType = ButtonType.view_all,
+        this.goToPageFromParent
       });
 
   @override
@@ -95,16 +97,15 @@ class ListTitle extends StatelessWidget{
   _getEditListButton(BuildContext context){
     return GestureDetector(
       onTap: () async {
-        final result = await Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => AddCustomListPage(Provider.of<User>(context, listen: false).bookshelf, title, ListType.edit_custom_list)));
-        //Navigator.pop(context);
-        /*if(result == 0){
-          final result = await Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => BookshelfPage(Provider.of<User>(context, listen: false), scrollToLastPosition: true,)),
-          );
-          Navigator.pop(context);
-        }*/
+        if(buttonType == ButtonType.view_all) {
+          final result = await Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) =>
+              AddCustomListPage(Provider
+                  .of<User>(context, listen: false)
+                  .bookshelf, title, ListType.edit_custom_list)));
+        } else if (buttonType == ButtonType.edit_list) {
+          this.goToPageFromParent(title);
+        }
       },
       child: Text(
         "Edit",
