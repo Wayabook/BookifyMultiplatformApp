@@ -65,7 +65,7 @@ class _BookshelfPage extends State<BookshelfPage>{
         itemCount: widget.user.lectures.keys.length * 2,
         itemBuilder: (BuildContext ctxt, int index) {
           if (index % 2 == 0){
-            return _makeHeader(keys[index == 0 ? index : (index~/2)], width);
+            return _makeHeader(keys[index == 0 ? index : (index~/2)], width, index == 0);
           } else {
             var auxIndex = index;
             var key = keys[((auxIndex-1)~/2)];
@@ -102,7 +102,7 @@ class _BookshelfPage extends State<BookshelfPage>{
     //return user.lectures;
   }
 
-  _getCustomScrollView(){
+  /*_getCustomScrollView(){
     //Map<String, List<Lecture>> userLists = user.bookLists;
     if(! widget.scrollToLastPosition)
       _addReadListToLastPosition();
@@ -113,9 +113,9 @@ class _BookshelfPage extends State<BookshelfPage>{
           ScrollController(),
       slivers: _createBookshelf(),
     );
-  }
+  }*/
 
-  _createBookshelf(){
+  /*_createBookshelf(){
 
     double width = MediaQuery.of(context).size.width;
     List<Widget> bookshelf = new List<Widget>();
@@ -156,7 +156,7 @@ class _BookshelfPage extends State<BookshelfPage>{
       );
     }
     return bookshelf;
-  }
+  }*/
 
   goToEditListPage(String title) async {
 
@@ -172,8 +172,11 @@ class _BookshelfPage extends State<BookshelfPage>{
     });
   }
 
-  _makeHeader(String title, width) {
-    return ListTitle(title, withButton: true, buttonType: ButtonType.edit_list, goToPageFromParent: goToEditListPage,);
+  _makeHeader(String title, width, [reading]) {
+    //if return ListTitle(title);
+
+    return reading ?   ListTitle(title):
+      ListTitle(title, withButton: true, buttonType: ButtonType.edit_list, goToPageFromParent: goToEditListPage,);
   }
 
 
