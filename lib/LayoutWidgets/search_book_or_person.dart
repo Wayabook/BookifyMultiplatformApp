@@ -88,21 +88,6 @@ class _SearchBookOrPerson extends State<SearchBookOrPerson> with SingleTickerPro
   @override
   Widget build(BuildContext context) {
 
-    ListTile personListTile(String bookOrPerson) =>
-        ListTile(
-          title: Text(
-            bookOrPerson,
-            style: TextStyle(
-                color: Colors.black45, fontWeight: FontWeight.bold),
-          ),);
-
-    /*Card personCard(bookOrPerson) => Card(
-      child: Container(
-        decoration: BoxDecoration(color: Colors.grey[300]),
-        child: personListTile(bookOrPerson),
-      ),
-    );*/
-
     if ((filter.isNotEmpty)) {
       List<Book> tmpList = new List<Book>();
       for (int i = 0; i < _filteredList.length; i++) {
@@ -130,30 +115,15 @@ class _SearchBookOrPerson extends State<SearchBookOrPerson> with SingleTickerPro
         children: [
           Container(
               child: VerticalBookListSearch(_filteredList, ListType.preview_friends)
-            /*ListView.builder(
-              scrollDirection: Axis.vertical,
-              shrinkWrap: true,
-              itemCount: widget.books == null ? 0 : _filteredList.length,
-              itemBuilder: (BuildContext context, int index) {
-                return personCard(_filteredList[index].title);
-              },
-            ),*/
           ),
 
           Container(
             child: VerticalUserList(_personsList)
-            /*ListView.builder(
-              scrollDirection: Axis.vertical,
-              shrinkWrap: true,
-              itemCount: _persons == null ? 0 : _personsList.length,
-              itemBuilder: (BuildContext context, int index) {
-                return personCard(_personsList[index]);
-              },
-            ),*/
           ),
         ]);
 
     final appTopAppBar = AppBar(
+      backgroundColor: Colors.blueGrey,
       elevation: 0.1,
       bottom: TabBar(
           controller: _tabController,

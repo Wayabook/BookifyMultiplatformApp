@@ -15,8 +15,6 @@ class VerticalUserList extends StatefulWidget {
   VerticalUserList(this.users); // : super(key: key);
 
   final List<User> users;
-  /*final List<Book> readingBooks;
-  final List<Book> pendingBooks;*/
 
   @override
   _VerticalUserList createState() => _VerticalUserList();
@@ -24,69 +22,13 @@ class VerticalUserList extends StatefulWidget {
 
 class _VerticalUserList extends State<VerticalUserList> {
 
-  //String _chapter_title = "2048 personas han guardado este libro";
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blueGrey, //Color.fromRGBO(58, 66, 86, 1.0),
-      //appBar: topAppBar,
+      backgroundColor: Colors.blueGrey,
       body: _makeBody(),
-      //bottomNavigationBar: makeBottom,
-
     );
   }
-
-  /*_makeListTile(index) {
-    final double circleRadius = 120.0;
-    final double circleBorderWidth = 8.0;
-    return Container(
-        decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius:  BorderRadius.circular(7.0)
-        ),//Color.fromRGBO(64, 75, 96, .9),
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 5.0, vertical: 10.0),
-          child: Row(
-            children: <Widget>[
-              Flexible(
-                flex: 3,
-                child: ProfilePicture("https://upload.wikimedia.org/wikipedia/commons/a/a0/Bill_Gates_2018.jpg"),
-              ),
-
-              Flexible(
-                flex: 7,
-                child: Padding(
-                  padding: EdgeInsets.all(12.0),
-                  child: Container(
-                    //color: Colors.black,
-                    //height: 150,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        AutoSizeText(
-                          widget.users[index].name,
-                          style: TextStyle( fontWeight: FontWeight.bold, color: Colors.black, fontSize: 30,),
-                          maxLines: 1,
-                       ),
-                     ],
-
-                      /*AutoSizeText(
-                        _chapter_title.substring(0, 18) + "...",
-                        style: TextStyle( fontWeight: FontWeight.bold,),
-                        maxLines: 1,
-                      ),*/
-                    ),
-
-                  ),
-                ),
-              ),
-            ],
-          ),
-        )
-    );
-  }*/
 
   _makeCard(int index) {
     return  GestureDetector(
@@ -94,22 +36,8 @@ class _VerticalUserList extends State<VerticalUserList> {
         Navigator.of(context)
             .push(MaterialPageRoute(builder: (context) => ProfilePage(widget.users[index], ProfileType.friend_profile)));
       },
-      child: UserPreviewCard(widget.users[index]),
-      /*child: Card(
-        /*shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(7.0),
-      ),*/
-        elevation: 10,
-        margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
-        child:  Container(
-          height: 120,
-          /*height: 160,*/
-          decoration: BoxDecoration(
-            color: Colors.blueGrey,
-          ),
-          child: _makeListTile(index),
-        ),
-      ),*/
+      //child: UserPreviewCard(widget.users[index]),
+      child: UserPreviewCard(widget.users[index], padding: 5, fontSize: 26,),
     );
   }
 
@@ -125,29 +53,4 @@ class _VerticalUserList extends State<VerticalUserList> {
       ),
     );
   }
-
-/*_makeHeader(String title){
-    double width = MediaQuery.of(context).size.width;
-    return Container(
-      child: Column(
-        children: <Widget>[
-          Container(
-            margin: EdgeInsets.fromLTRB(10, 10, 2, 0),
-            child:  Align(
-              alignment: Alignment.topLeft,
-              child: Text(
-                title,
-                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: Colors.white),
-              ),
-            ),
-          ),
-
-          Padding(
-            padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
-            child: Container(color: Colors.white, height: 2, width: width),
-          ),
-        ],
-      ),
-    );
-  }*/
 }

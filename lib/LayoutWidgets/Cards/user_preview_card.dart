@@ -11,9 +11,11 @@ class UserPreviewCard extends StatelessWidget {
   User user;
   double height;
   double fontSize;
+  double padding;
   bool card;
   bool isAuthor;
   bool fromDialog;
+
 
   Function(int pos) removeComment;
 
@@ -22,6 +24,7 @@ class UserPreviewCard extends StatelessWidget {
       {
         this.height = 100,
         this.fontSize = 30,
+        this.padding = 10,
         this.card = true,
         this.isAuthor = false,
         this.fromDialog = true,
@@ -31,9 +34,8 @@ class UserPreviewCard extends StatelessWidget {
   _makeListTile(BuildContext context) {
     return Container(
         decoration: BoxDecoration(
-            //color: Colors.black,
             borderRadius:  card ? BorderRadius.circular(7.0) : BorderRadius.circular(0.0)
-        ),//Color.fromRGBO(64, 75, 96, .9),
+        ),
         child: _getRow(context),
     );
   }
@@ -45,7 +47,7 @@ class UserPreviewCard extends StatelessWidget {
           Flexible(
             flex: 3,
             child: Padding(
-              padding: EdgeInsets.all(10),
+              padding: EdgeInsets.all(this.padding),
               child: ProfilePicture(user.profilePictureUrl,),
             ),
           ),
@@ -54,15 +56,80 @@ class UserPreviewCard extends StatelessWidget {
             flex: 7,
             child: Padding(
               padding: EdgeInsets.all(15.0),
-              child: Container(
-                //color: Colors.black,
-                //height: 150,
-                child: AutoSizeText(
-                  user.name,
-                  style: TextStyle( fontWeight: FontWeight.bold, color: Colors.white, fontSize: this.fontSize,),
-                  maxLines: 1,
-                ),
-              ),
+              child: Column(
+                children: [
+                  Container(
+                    //color: Colors.black,
+                    //height: 150,
+                    child: Padding(
+                      padding: EdgeInsets.fromLTRB(0, 0, 0, 15),
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: AutoSizeText(
+                          user.name,
+                          style: TextStyle( fontWeight: FontWeight.bold, color: Colors.white, fontSize: this.fontSize,),
+                          maxLines: 1,
+                        ),
+                      ),
+                    )
+                  ),
+
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child:  Text(
+                        "View Bookshelf",
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.blue,
+                          decoration: TextDecoration.underline,
+                        ),
+                      ),
+                    ),
+
+                  )
+
+                  /*Padding(
+                    padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                    child: Row(
+                      children: [
+                        Align(
+                          alignment: Alignment.center,
+                          child: Icon(
+                            Icons.book,
+                            color: Colors.white,
+                            size: 15,
+                          ),
+                        ),
+
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(4, 0, 0, 0),
+                          child: AutoSizeText(
+                            "21",
+                            style: TextStyle( fontWeight: FontWeight.bold, color: Colors.white, fontSize: 15,),
+                            maxLines: 1,
+                          ),
+                        ),
+
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(4, 0, 0, 0),
+                          child: Text(
+                            "View Bookshelf",
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.blue,
+                              decoration: TextDecoration.underline,
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  )*/
+                ],
+              )
             ),
           ),
         ],

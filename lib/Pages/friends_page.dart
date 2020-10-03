@@ -59,21 +59,6 @@ class _FriendsPage extends State<FriendsPage> {
   @override
   Widget build(BuildContext context) {
 
-    ListTile personListTile(String bookOrPerson) =>
-        ListTile(
-          title: Text(
-            bookOrPerson,
-            style: TextStyle(
-                color: Colors.black45, fontWeight: FontWeight.bold),
-          ),);
-
-    Card personCard(bookOrPerson) => Card(
-      child: Container(
-        decoration: BoxDecoration(color: Colors.grey[300]),
-        child: personListTile(bookOrPerson),
-      ),
-    );
-
     if ((filter.isNotEmpty)) {
       List<User> tmpList = new List<User>();
       for (int i = 0; i < _friends.length; i++) {
@@ -90,6 +75,7 @@ class _FriendsPage extends State<FriendsPage> {
     );
 
     final appTopAppBar = AppBar(
+      backgroundColor: Colors.blueGrey,
       elevation: 0.1,
       title: appBarTitle,
       actions: <Widget>[
