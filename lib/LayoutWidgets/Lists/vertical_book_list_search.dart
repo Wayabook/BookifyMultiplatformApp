@@ -14,6 +14,8 @@ import 'package:bookifyapp/Enums/button_type.dart';
 import 'package:bookifyapp/LayoutWidgets/friends_preview.dart';
 import 'package:provider/provider.dart';
 
+import '../editable_list_title.dart';
+
 
 class VerticalBookListSearch extends StatefulWidget {
 
@@ -108,6 +110,7 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
               itemCount: widget.books.length + 1,
               itemBuilder: (BuildContext context, int index) {
                   if(index == 0)
+                    //return EditableListTitle(widget.title);
                     return ListTitle(widget.title);
                   return _makeCard(index - 1);
               },
