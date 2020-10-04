@@ -21,20 +21,26 @@ import 'package:bookifyapp/Pages/profile_page.dart';
 import 'dart:math';
 
 
-class ProfilePage extends StatelessWidget {
+class ProfilePage extends StatefulWidget {
   static const TextStyle optionStyle =
   TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
 
-
   User user;
   ProfileType profileType;
-  double width_per_child;
-  double width;
-  BuildContext context;
-  String randomBackgroundImage;
   bool isFriend;
 
   ProfilePage(this.user, this.profileType, { this.isFriend = false});
+
+  @override
+  _ProfilePage createState() => _ProfilePage();
+}
+
+
+class _ProfilePage extends State<ProfilePage>{
+  String randomBackgroundImage;
+  BuildContext context;
+  double width_per_child;
+  double width;
 
   @override
   Widget build(BuildContext context) {
@@ -45,31 +51,24 @@ class ProfilePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.blueGrey,
       body: _getBody(),
-      appBar: this.profileType == ProfileType.friend_profile ? AppBar(backgroundColor: Colors.blueGrey,) : null,
+      appBar: widget.profileType == ProfileType.friend_profile ? AppBar(backgroundColor: Colors.blueGrey,) : null,
     );
   }
 
   _getRandomBackgroundImage(){
     final _random = new Random();
-    List<String> listNames = user.bookLists.keys.toList();
+    List<String> listNames = widget.user.bookLists.keys.toList();
     String randomListName = listNames[_random.nextInt(listNames.length)];
     int r = 0;
-    if(this.user.bookLists[randomListName].length > 1){
-      r = 0 + _random.nextInt(this.user.bookLists[randomListName].length - 1 - 0);
+    if(widget.user.bookLists[randomListName].length > 1){
+      r = 0 + _random.nextInt(widget.user.bookLists[randomListName].length - 1 - 0);
     }
-    randomBackgroundImage = user.bookLists[randomListName][r].picture;
+    randomBackgroundImage = widget.user.bookLists[randomListName][r].picture;
   }
 
   _getBody(){
 
     _getRandomBackgroundImage();
-    /*var rnd = new Random();
-    int r = 0;
-    if(this.user.bookLists["Reading"].length > 1){
-      r = 0 + rnd.nextInt(this.user.bookLists["Reading"].length - 1 - 0);
-    }*/
-
-
 
     return ListView(
       children: <Widget>[
@@ -121,7 +120,7 @@ class ProfilePage extends StatelessWidget {
                     ),
                   ),
                   Flexible(
-                    child: ProfileInfo(user),
+                    child: ProfileInfo(widget.user),
                     flex: 6,
                   ),
                   Flexible(
@@ -151,7 +150,7 @@ class ProfilePage extends StatelessWidget {
                           onTap: () {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => FriendsPage(user.friends)),
+                              MaterialPageRoute(builder: (context) => FriendsPage(widget.user.friends)),
                             );
                           },
                         )
@@ -176,15 +175,15 @@ class ProfilePage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center, //Center Row contents vertically,
             children: <Widget>[
 
-              InfoRow.withIcon(RowType.icon_image,  "BOOKS READ", Icons.book,  user.booksRead.toString(), width_per_child, 105, Colors.white),
+              InfoRow.withIcon(RowType.icon_image,  "BOOKS READ", Icons.book,  widget.user.booksRead.toString(), width_per_child, 105, Colors.white),
 
               Container(color: Colors.white, height: 105, width: 2,),
 
-              InfoRow.withIcon(RowType.icon_image,  "CHAPS READ", Icons.collections_bookmark,  user.chaptersRead.toString(), width_per_child, 105, Colors.white),
+              InfoRow.withIcon(RowType.icon_image,  "CHAPS READ", Icons.collections_bookmark,  widget.user.chaptersRead.toString(), width_per_child, 105, Colors.white),
 
               Container(color: Colors.white, height: 105, width: 2,),
 
-              InfoRow.withIcon(RowType.icon_image,  "PAGES READ", Icons.description,  user.pagesRead.toString(), width_per_child, 105, Colors.white),
+              InfoRow.withIcon(RowType.icon_image,  "PAGES READ", Icons.description,  widget.user.pagesRead.toString(), width_per_child, 105, Colors.white),
 
 
             ],
@@ -201,10 +200,6 @@ class ProfilePage extends StatelessWidget {
           child:  Align(
             alignment: Alignment.topLeft,
             child: ListTitle("Genres of Interest")
-            /*Text(
-              "Genres of Interest:",
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
-            ),*/
           ),
         ),
 
@@ -215,8 +210,8 @@ class ProfilePage extends StatelessWidget {
 
 
         HorizontalGenresList(
-            user.interestedGenres,
-            profileType == ProfileType.user_profile ? ListType.add_genre : ListType.normal
+            widget.user.interestedGenres,
+            widget.profileType == ProfileType.user_profile ? ListType.add_genre : ListType.normal
         ),
 
         Container(
@@ -227,10 +222,10 @@ class ProfilePage extends StatelessWidget {
           ),
         ),
 
-        HorizontalBookList(user.getNLecturesFromBookshelf(5), ListType.view_all),
+        HorizontalBookList(widget.user.getNLecturesFromBookshelf(5), ListType.view_all),
 
         BookCard.option(
-            profileType == ProfileType.user_profile ?  BookCardType.add_custom_list : BookCardType.recommend_book
+            widget.profileType == ProfileType.user_profile ?  BookCardType.add_custom_list : BookCardType.recommend_book
         ),
 
         //BookCard.option(BookCardType.settings),
@@ -243,22 +238,25 @@ class ProfilePage extends StatelessWidget {
   }
 
   _getFriendButton(){
-    if(this.profileType == ProfileType.friend_profile){
+    if(widget.profileType == ProfileType.friend_profile){
       return Column(
         children: [
           Align(
             alignment: Alignment.center,
             child:  RaisedButton(
               onPressed: () {
+                setState(() {
+                  widget.isFriend = !widget.isFriend;
+                });
                 /*showDialog(
                     context: context,
                     builder: (BuildContext context) => BookShopsDialog(this.book),
                   );*/
               },
               textColor: Colors.white,
-              color: isFriend ? Colors.lightGreen[500] : Colors.blueGrey[300],
+              color: widget.isFriend ? Colors.lightGreen[500] : Colors.blueGrey[300],
               child: Text(
-                isFriend ? "Friend" : "Add Friend",
+                widget.isFriend ? "Friend" : "Add Friend",
                 style: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.bold,
