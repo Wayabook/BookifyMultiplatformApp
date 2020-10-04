@@ -15,22 +15,15 @@ class User extends ChangeNotifier{
   String _description_sentence;
   List<Genre> _interested_genres;
   String _profile_picture_url;
-  //Map<String, List<Book>> _book_lists;
   Map<String, List<Lecture>> _lecture_lists;
   int _books_read;
   int _chapters_read;
   int _pages_read;
   List<User> _friends;
-  /*List<User> _followers;
-  List<User> _following;*/
 
-  /*void addCommentToLecture(Lecture lecture, MainComment mainComment){
-     int lecturePos;
-    if(isInReadingList(lecture)) {
-      lecturePos = this._lecture_lists["Reading"].indexOf(lecture);
-      this._lecture_lists["Reading"][lecturePos]
-    }
-  }*/
+  bool isFriend(User user){
+    return friends.contains(user);
+  }
 
   Map<String, List<Lecture>> get lectures => this._lecture_lists;
 
@@ -229,101 +222,14 @@ class User extends ChangeNotifier{
 
   User.getMockUser(){
 
-    //User user;
-    //List<Book> books = new List();
     List<Lecture> lectures = Lecture.getUserMockLectures();
     List<Genre> genres = Genre.getMockGenres();
-    List<Chapter> chapters = Chapter.getMockChapters();
-
-
-    /*Map<String, List<Item>> shopItems = {
-      'Tapa Blanda': items,
-      'Tapa Dura' : items,
-      'Tapa Ebook': items,
-    };*/
-
-
-
-    /*books.add(book1);
-    books.add(book2);
-    books.add(book3);
-    books.add(book4);*/
-
-    /*lectures.add(book1.toLecture());
-    lectures.add(book2.toLecture());
-    lectures.add(book3.toLecture());
-    lectures.add(book4.toLecture());*/
 
 
     Map<String, List<Lecture>> userLectures =
     {'Reading': lectures.sublist(0, 1), 'Pending': lectures.sublist(2, 3), 'Read': lectures, 'Recommended': lectures, 'Custom List 1': lectures};
 
-    List<User> users = new List();
-    User user222 = new User(
-        "1",
-        "Steve Jobs",
-        "\"Not as good as Steve Jobs\"",
-        genres,
-        userLectures,
-        21,
-        198,
-        345,
-        "https://upload.wikimedia.org/wikipedia/commons/a/a0/Bill_Gates_2018.jpg"
-    );
-
-    User user1 = new User(
-        "1",
-        "Steve Jobs 1",
-        "\"Not as good as Steve Jobs\"",
-        genres,
-        userLectures,
-        21,
-        198,
-        345,
-        "https://upload.wikimedia.org/wikipedia/commons/a/a0/Bill_Gates_2018.jpg"
-    );
-
-    User user2 = new User(
-        "1",
-        "Steve Jobs 2",
-        "\"Not as good as Steve Jobs\"",
-        genres,
-        userLectures,
-        21,
-        198,
-        345,
-        "https://upload.wikimedia.org/wikipedia/commons/a/a0/Bill_Gates_2018.jpg"
-    );
-
-    User user3 = new User(
-        "1",
-        "Steve Jobs 3",
-        "\"Not as good as Steve Jobs\"",
-        genres,
-        userLectures,
-        21,
-        198,
-        345,
-        "https://upload.wikimedia.org/wikipedia/commons/a/a0/Bill_Gates_2018.jpg"
-    );
-
-    User user4 = new User(
-        "1",
-        "Steve Jobs 33",
-        "\"Not as good as Steve Jobs\"",
-        genres,
-        userLectures,
-        21,
-        198,
-        345,
-        "https://upload.wikimedia.org/wikipedia/commons/a/a0/Bill_Gates_2018.jpg"
-    );
-
-    users.add(user222);
-    users.add(user1);
-    users.add(user2);
-    users.add(user3);
-    users.add(user4);
+    List<User> friends = getMockUserFriends();
 
     this._uid = "1112";
     this.name = "Radu Spaimovich";
@@ -334,9 +240,79 @@ class User extends ChangeNotifier{
     this._chapters_read = 278;
     this._pages_read = 334;
     this._profile_picture_url = "https://avatars0.githubusercontent.com/u/35029261?s=460&u=c54ea4c26c7f0659c014f362e538d2927f567a4f&v=4";
-    this.friends = users;
+    this.friends = friends;
+  }
 
+  List<User> getMockUserFriends(){
 
+    List<User> friends = new List();
+    List<Lecture> lectures = Lecture.getUserMockLectures();
+    List<Genre> genres = Genre.getMockGenres();
+
+    Map<String, List<Lecture>> userLectures =
+    {'Reading': lectures.sublist(0, 1), 'Pending': lectures.sublist(2, 3), 'Read': lectures, 'Recommended': lectures, 'Custom List 1': lectures};
+
+    friends.add(new User(
+        "1",
+        "Steve Jobs",
+        "\"Not as good as Steve Jobs\"",
+        genres,
+        userLectures,
+        21,
+        198,
+        345,
+        "https://upload.wikimedia.org/wikipedia/commons/a/a0/Bill_Gates_2018.jpg"
+    ));
+
+    friends.add(new User(
+        "1",
+        "Steve Jobs 1",
+        "\"Not as good as Steve Jobs\"",
+        genres,
+        userLectures,
+        21,
+        198,
+        345,
+        "https://upload.wikimedia.org/wikipedia/commons/a/a0/Bill_Gates_2018.jpg"
+    ));
+
+    friends.add(new User(
+        "1",
+        "Steve Jobs 2",
+        "\"Not as good as Steve Jobs\"",
+        genres,
+        userLectures,
+        21,
+        198,
+        345,
+        "https://upload.wikimedia.org/wikipedia/commons/a/a0/Bill_Gates_2018.jpg"
+    ));
+
+    friends.add( new User(
+        "1",
+        "Steve Jobs 3",
+        "\"Not as good as Steve Jobs\"",
+        genres,
+        userLectures,
+        21,
+        198,
+        345,
+        "https://upload.wikimedia.org/wikipedia/commons/a/a0/Bill_Gates_2018.jpg"
+    ));
+
+    friends.add(User(
+        "1",
+        "Steve Jobs 33",
+        "\"Not as good as Steve Jobs\"",
+        genres,
+        userLectures,
+        21,
+        198,
+        345,
+        "https://upload.wikimedia.org/wikipedia/commons/a/a0/Bill_Gates_2018.jpg"
+    ));
+
+    return friends;
   }
 
 

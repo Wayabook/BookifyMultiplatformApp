@@ -14,7 +14,9 @@ class UserPreviewCard extends StatelessWidget {
   double padding;
   bool card;
   bool isAuthor;
+  bool isFriend;
   bool fromDialog;
+
 
 
   Function(int pos) removeComment;
@@ -28,6 +30,7 @@ class UserPreviewCard extends StatelessWidget {
         this.card = true,
         this.isAuthor = false,
         this.fromDialog = true,
+        //this.isFriend = false,
         this.removeComment
       });
 
@@ -53,7 +56,7 @@ class UserPreviewCard extends StatelessWidget {
           ),
 
           Flexible(
-            flex: 4,
+            flex: 6,
             child: Padding(
               padding: EdgeInsets.all(15.0),
               child: Column(
@@ -94,7 +97,7 @@ class UserPreviewCard extends StatelessWidget {
             ),
           ),
 
-          Flexible(
+          /*Flexible(
             flex: 3,
             child: Padding(
               padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
@@ -106,9 +109,9 @@ class UserPreviewCard extends StatelessWidget {
                   );*/
                 },
                 textColor: Colors.white,
-                color: Colors.blueGrey[300],
+                color: isFriend ? Colors.lightGreen[500] : Colors.blueGrey[300],
                 child: Text(
-                  "Add Friend",
+                  isFriend ? "Friend" : "Add Friend",
                   style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
@@ -126,7 +129,7 @@ class UserPreviewCard extends StatelessWidget {
                 //Icon(Icons.add_circle_outline),
               ),
             ),
-          ),
+          ),*/
         ],
       );
     } else {

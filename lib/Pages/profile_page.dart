@@ -32,8 +32,9 @@ class ProfilePage extends StatelessWidget {
   double width;
   BuildContext context;
   String randomBackgroundImage;
+  bool isFriend;
 
-  ProfilePage(this.user, this.profileType);
+  ProfilePage(this.user, this.profileType, { this.isFriend = false});
 
   @override
   Widget build(BuildContext context) {
@@ -164,9 +165,11 @@ class ProfilePage extends StatelessWidget {
           ],
         ),
 
+
+
         Padding(
-          padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
-          child: Container(color: Colors.white, height: 2, width: width),
+          padding: EdgeInsets.fromLTRB(10, 0, 15, 10),
+          child: _getFriendButton()
         ),
 
         Center(
@@ -239,6 +242,42 @@ class ProfilePage extends StatelessWidget {
 
       ],
     );
+  }
+
+  _getFriendButton(){
+    if(this.profileType == ProfileType.friend_profile){
+      return Column(
+        children: [
+          Align(
+            alignment: Alignment.center,
+            child:  RaisedButton(
+              onPressed: () {
+                /*showDialog(
+                    context: context,
+                    builder: (BuildContext context) => BookShopsDialog(this.book),
+                  );*/
+              },
+              textColor: Colors.white,
+              color: isFriend ? Colors.lightGreen[500] : Colors.blueGrey[300],
+              child: Text(
+                isFriend ? "Friend" : "Add Friend",
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
+
+          Padding(
+            padding: EdgeInsets.fromLTRB(0, 7, 0, 0),
+            child: Container(color: Colors.white, height: 2, width: width),
+          )
+        ],
+      );
+    } else {
+      return Container(color: Colors.white, height: 2, width: width);
+    }
   }
 }
 

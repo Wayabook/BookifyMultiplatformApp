@@ -88,8 +88,7 @@ class _FriendsPage extends State<FriendsPage> {
                 this.appBarTitle = new TextField(
                   controller: controller,
                   decoration: new InputDecoration(
-                    /*prefixIcon: new Icon(Icons.search, color: Colors.white),*/
-                    hintText: "Search...",
+                    hintText: "Search by name...",
                     hintStyle: new TextStyle(color: Colors.white),
                   ),
                   style: new TextStyle(
