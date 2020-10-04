@@ -45,9 +45,7 @@ class ProfilePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.blueGrey,
       body: _getBody(),
-      /*appBar: AppBar(
-        title: Text("Profile Page"),
-      ),*/
+      appBar: this.profileType == ProfileType.friend_profile ? AppBar(backgroundColor: Colors.blueGrey,) : null,
     );
   }
 

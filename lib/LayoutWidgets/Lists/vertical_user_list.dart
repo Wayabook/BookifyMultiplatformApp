@@ -35,8 +35,13 @@ class _VerticalUserList extends State<VerticalUserList> {
     User user = Provider.of<User>(context, listen: false);
     return  GestureDetector(
       onTap: () {
-        Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => ProfilePage(widget.users[index], ProfileType.friend_profile, isFriend: user.isFriend(widget.users[index]))));
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => ProfilePage(widget.users[index], ProfileType.friend_profile, isFriend: user.isFriend(widget.users[index]))));
+
+
+        //Navigator.of(context)
+        //    .push(MaterialPageRoute(builder: (context) => ProfilePage(widget.users[index], ProfileType.friend_profile, isFriend: user.isFriend(widget.users[index]))));
       },
       child: UserPreviewCard(widget.users[index], padding: 5, fontSize: 26, /*isFriend: user.isFriend(widget.users[index]),*/),
     );
