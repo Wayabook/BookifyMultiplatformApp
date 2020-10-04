@@ -74,4 +74,17 @@ class Lecture extends Book{
   bool get readed =>
       this.currentChapter == super.chapters.length - 1;
 
+  static List<Lecture> bookListToLectures(List<Book> books){
+    List<Lecture> lectures = new List();
+    for(Book book in books){
+      lectures.add(book.toLecture());
+    }
+    return lectures;
+  }
+
+  static  List<Lecture> getUserMockLectures(){
+    return bookListToLectures(Book.getUserMockBooks());
+
+  }
+
 }

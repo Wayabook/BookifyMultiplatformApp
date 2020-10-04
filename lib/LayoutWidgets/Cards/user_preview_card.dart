@@ -53,7 +53,7 @@ class UserPreviewCard extends StatelessWidget {
           ),
 
           Flexible(
-            flex: 7,
+            flex: 4,
             child: Padding(
               padding: EdgeInsets.all(15.0),
               child: Column(
@@ -81,55 +81,50 @@ class UserPreviewCard extends StatelessWidget {
                       child:  Text(
                         "View Bookshelf",
                         style: TextStyle(
-                          fontSize: 15,
+                          fontSize: 14,
                           fontWeight: FontWeight.bold,
                           color: Colors.blue,
                           decoration: TextDecoration.underline,
                         ),
                       ),
                     ),
-
                   )
-
-                  /*Padding(
-                    padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                    child: Row(
-                      children: [
-                        Align(
-                          alignment: Alignment.center,
-                          child: Icon(
-                            Icons.book,
-                            color: Colors.white,
-                            size: 15,
-                          ),
-                        ),
-
-                        Padding(
-                          padding: EdgeInsets.fromLTRB(4, 0, 0, 0),
-                          child: AutoSizeText(
-                            "21",
-                            style: TextStyle( fontWeight: FontWeight.bold, color: Colors.white, fontSize: 15,),
-                            maxLines: 1,
-                          ),
-                        ),
-
-                        Padding(
-                          padding: EdgeInsets.fromLTRB(4, 0, 0, 0),
-                          child: Text(
-                            "View Bookshelf",
-                            style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.blue,
-                              decoration: TextDecoration.underline,
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                  )*/
                 ],
               )
+            ),
+          ),
+
+          Flexible(
+            flex: 3,
+            child: Padding(
+              padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+              child: RaisedButton(
+                onPressed: () {
+                  /*showDialog(
+                    context: context,
+                    builder: (BuildContext context) => BookShopsDialog(this.book),
+                  );*/
+                },
+                textColor: Colors.white,
+                color: Colors.blueGrey[300],
+                child: Text(
+                  "Add Friend",
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                    //color: Colors.blue,
+                    //decoration: TextDecoration.underline,
+                  ),
+                ),
+                /*child: IconButton(
+                  icon: Icon(
+                      Icons.shop_two,
+                      color: Colors.white
+                  ),
+
+                ),*/
+                //Icon(Icons.add_circle_outline),
+              ),
             ),
           ),
         ],

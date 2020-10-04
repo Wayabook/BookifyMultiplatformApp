@@ -62,6 +62,8 @@ class _BookshelfPage extends State<BookshelfPage>{
     List<String> keys = widget.user.lectures.keys.toList();
     return ListView.builder
       (
+        controller: widget.scrollToLastPosition ?
+        ScrollController(initialScrollOffset: (MediaQuery.of(context).size.height / 4) * (widget.user.lectures.keys.length * 2)) : ScrollController(),
         itemCount: widget.user.lectures.keys.length * 2,
         itemBuilder: (BuildContext ctxt, int index) {
           if (index % 2 == 0){
