@@ -6,20 +6,22 @@ import 'package:bookifyapp/Pages/bookshelf_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class ListTitle extends StatelessWidget{
+class EditableListTitle extends StatelessWidget{
 
-  final String title;
-  bool withButton;
-  ButtonType buttonType;
-  Function(String) goToPageFromParent;
+  String title;
+  TextEditingController textEditingController = new TextEditingController();
+  //bool withButton;
+  //ButtonType buttonType;
+  //Function(String) goToPageFromParent;
 
-  ListTitle(
+  EditableListTitle(
       this.title,
-      {
+  /*    {
         this.withButton = false,
         this.buttonType = ButtonType.view_all,
         this.goToPageFromParent
-      });
+      }*/
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +32,7 @@ class ListTitle extends StatelessWidget{
         children: <Widget>[
           Container(
             margin: EdgeInsets.fromLTRB(10, 10, 2, 0),
-            child: withButton ? _getRowWithButton(context) : _getTitle(),
+            child: _getTextField(),
           ),
 
           Padding(
@@ -42,7 +44,33 @@ class ListTitle extends StatelessWidget{
     );
   }
 
-  _getTitle(){
+  _getTextField(){
+    TextField textField = TextField(
+      controller: textEditingController,
+      decoration: InputDecoration(
+        contentPadding: EdgeInsets.fromLTRB(5, 0, 0, 0),
+        //border: InputBorder,
+        hintText: this.title,
+        floatingLabelBehavior: FloatingLabelBehavior.never,
+      ),
+      maxLines: null,
+      //expands: widget.subCommentsPage ? false : true,
+      keyboardType: TextInputType.multiline,
+      onChanged: (value){
+        this.title = value;
+        /*newComment = value;
+        if(!widget.subCommentsPage){
+          setState(() {
+            publishContainerColor = Colors.yellow;
+            publishTextColor = Colors.black;
+          });
+        }*/
+      },
+    );
+    return textField;
+  }
+
+  /*_getTitle(){
     return Align(
       alignment: Alignment.topLeft,
       child:  Text(
@@ -63,11 +91,11 @@ class ListTitle extends StatelessWidget{
         Flexible(
           flex: 4,
           child:  Align(
-            alignment: Alignment.bottomRight,
-            child:  Padding(
-              padding: EdgeInsets.fromLTRB(0, 0, 15, 0),
-              child: this.buttonType == ButtonType.edit_list ? _getEditListButton(context) : _getViewAllButton(context),
-            )
+              alignment: Alignment.bottomRight,
+              child:  Padding(
+                padding: EdgeInsets.fromLTRB(0, 0, 15, 0),
+                child: this.buttonType == ButtonType.edit_list ? _getEditListButton(context) : _getViewAllButton(context),
+              )
           ),
         )
       ],
@@ -92,9 +120,9 @@ class ListTitle extends StatelessWidget{
         ),
       ),
     );
-  }
+  }*/
 
-  _getEditListButton(BuildContext context){
+  /*_getEditListButton(BuildContext context){
     return GestureDetector(
       onTap: () async {
         if(buttonType == ButtonType.view_all) {
@@ -118,5 +146,5 @@ class ListTitle extends StatelessWidget{
       ),
     );
 
-  }
+  }*/
 }

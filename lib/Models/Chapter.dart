@@ -23,18 +23,15 @@ class Chapter{
   }
 
   List<Reaction> _getReactions() {
-    List<Reaction> reactions = new List();
+    return Reaction.getMockReactions();
+  }
 
-    reactions.add(new Reaction("ANGRY", "images/angry.png", 60));
-    reactions.add(new Reaction("SCARED", "images/scared.png", 60));
-    reactions.add(new Reaction("SAD", "images/unhappy.png", 60));
-    reactions.add(new Reaction("CONFUSED", "images/confused.png", 60));
-
-    reactions.add(new Reaction("BORED", "images/bored.png", 60));
-    reactions.add(new Reaction("SURPRISED", "images/surprised.png", 60));
-    reactions.add(new Reaction("HAPPY", "images/happy.png", 60));
-    reactions.add(new Reaction("EXCITED", "images/excited.png", 60));
-
-    return reactions;
+  static List<Chapter> getMockChapters(){
+    List<Chapter> chapters = new List();
+    chapters.add(new Chapter(1, "Capitulo 1 :  Inicio", comments: MainComment.getMockMainComments()));
+    chapters.add(new Chapter(2, "Capitulo 2 :  Post Inicio", comments: MainComment.getMockMainComments()));
+    chapters.add(new Chapter(3, "Capitulo 3 :  Pre Final", comments: MainComment.getMockMainComments()));
+    chapters.add(new Chapter(4, "Capitulo 4 :  Final", comments: MainComment.getMockMainComments()));
+    return chapters;
   }
 }

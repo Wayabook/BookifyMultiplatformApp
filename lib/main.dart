@@ -117,6 +117,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       scaffold: Scaffold(
         bottomNavigationBar: BottomNavigationBar(
           items: _items,
+          backgroundColor: Colors.white54,
           //currentIndex: 2,
         ),
       ),
