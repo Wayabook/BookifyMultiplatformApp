@@ -7,12 +7,13 @@ import 'package:bookifyapp/Models/User.dart';
 import 'package:bookifyapp/Enums/button_type.dart';
 import 'package:bookifyapp/LayoutWidgets/Profile/profile_picture.dart';
 import 'package:bookifyapp/Pages/profile_page.dart';
+import 'package:provider/provider.dart';
 
 
 
 class VerticalUserList extends StatefulWidget {
 
-  VerticalUserList(this.users); // : super(key: key);
+  VerticalUserList(this.users);
 
   final List<User> users;
 
@@ -20,7 +21,7 @@ class VerticalUserList extends StatefulWidget {
   _VerticalUserList createState() => _VerticalUserList();
 }
 
-class _VerticalUserList extends State<VerticalUserList> {
+class _VerticalUserList extends State<VerticalUserList> with TickerProviderStateMixin{
 
   @override
   Widget build(BuildContext context) {
@@ -31,13 +32,18 @@ class _VerticalUserList extends State<VerticalUserList> {
   }
 
   _makeCard(int index) {
+    User user = Provider.of<User>(context, listen: false);
     return  GestureDetector(
       onTap: () {
-        Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => ProfilePage(widget.users[index], ProfileType.friend_profile)));
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => ProfilePage(widget.users[index], ProfileType.friend_profile, isFriend: user.isFriend(widget.users[index]))));
+
+
+        //Navigator.of(context)
+        //    .push(MaterialPageRoute(builder: (context) => ProfilePage(widget.users[index], ProfileType.friend_profile, isFriend: user.isFriend(widget.users[index]))));
       },
-      //child: UserPreviewCard(widget.users[index]),
-      child: UserPreviewCard(widget.users[index], padding: 5, fontSize: 26,),
+      child: UserPreviewCard(widget.users[index], padding: 5, fontSize: 26, /*isFriend: user.isFriend(widget.users[index]),*/),
     );
   }
 

@@ -140,7 +140,6 @@ class BookCard extends StatelessWidget {
       );
 
     } else if (this.type == BookCardType.book_card_in_grid){
-      //Lecture lecture = (Lecture) book;
       return Card(
         color: Colors.black,
         margin: EdgeInsets.all(10),

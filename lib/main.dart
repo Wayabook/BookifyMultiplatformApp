@@ -293,7 +293,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       this.user = new User(
           "1",
           "Bill Gates",
-          "\"Not as good as Steve Jobs\"",
           this.genres,
           userLectures,
           21,
@@ -307,7 +306,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       User user222 = new User(
           "1",
           "Steve Jobs",
-          "\"Not as good as Steve Jobs\"",
           genres,
           userLectures,
           21,
@@ -319,7 +317,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       User user1 = new User(
           "1",
           "Steve Jobs 1",
-          "\"Not as good as Steve Jobs\"",
           genres,
           userLectures,
           21,
@@ -331,7 +328,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       User user2 = new User(
           "1",
           "Steve Jobs 2",
-          "\"Not as good as Steve Jobs\"",
           genres,
           userLectures,
           21,
@@ -343,7 +339,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       User user3 = new User(
           "1",
           "Steve Jobs 3",
-          "\"Not as good as Steve Jobs\"",
           genres,
           userLectures,
           21,
@@ -355,7 +350,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       User user4 = new User(
           "1",
           "Steve Jobs 33",
-          "\"Not as good as Steve Jobs\"",
           genres,
           userLectures,
           21,

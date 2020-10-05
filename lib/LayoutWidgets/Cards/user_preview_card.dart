@@ -2,6 +2,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bookifyapp/LayoutWidgets/Profile/profile_picture.dart';
 import 'package:bookifyapp/Models/User.dart';
+import 'package:bookifyapp/Pages/bookshelf_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -14,7 +15,9 @@ class UserPreviewCard extends StatelessWidget {
   double padding;
   bool card;
   bool isAuthor;
+  bool isFriend;
   bool fromDialog;
+
 
 
   Function(int pos) removeComment;
@@ -28,6 +31,7 @@ class UserPreviewCard extends StatelessWidget {
         this.card = true,
         this.isAuthor = false,
         this.fromDialog = true,
+        //this.isFriend = false,
         this.removeComment
       });
 
@@ -53,7 +57,7 @@ class UserPreviewCard extends StatelessWidget {
           ),
 
           Flexible(
-            flex: 4,
+            flex: 6,
             child: Padding(
               padding: EdgeInsets.all(15.0),
               child: Column(
@@ -78,7 +82,25 @@ class UserPreviewCard extends StatelessWidget {
                     padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
                     child: Align(
                       alignment: Alignment.centerLeft,
-                      child:  Text(
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => BookshelfPage(this.user)),
+                          );
+                        },
+                        child: Text(
+                          "View Bookshelf",
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.blue,
+                            decoration: TextDecoration.underline,
+                          ),
+                        )
+                      )
+
+                      /*Text(
                         "View Bookshelf",
                         style: TextStyle(
                           fontSize: 14,
@@ -86,7 +108,7 @@ class UserPreviewCard extends StatelessWidget {
                           color: Colors.blue,
                           decoration: TextDecoration.underline,
                         ),
-                      ),
+                      ),*/
                     ),
                   )
                 ],
@@ -94,7 +116,7 @@ class UserPreviewCard extends StatelessWidget {
             ),
           ),
 
-          Flexible(
+          /*Flexible(
             flex: 3,
             child: Padding(
               padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
@@ -106,9 +128,9 @@ class UserPreviewCard extends StatelessWidget {
                   );*/
                 },
                 textColor: Colors.white,
-                color: Colors.blueGrey[300],
+                color: isFriend ? Colors.lightGreen[500] : Colors.blueGrey[300],
                 child: Text(
-                  "Add Friend",
+                  isFriend ? "Friend" : "Add Friend",
                   style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
@@ -126,7 +148,7 @@ class UserPreviewCard extends StatelessWidget {
                 //Icon(Icons.add_circle_outline),
               ),
             ),
-          ),
+          ),*/
         ],
       );
     } else {

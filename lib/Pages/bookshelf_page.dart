@@ -86,7 +86,6 @@ class _BookshelfPage extends State<BookshelfPage>{
             crossAxisSpacing: 10.0,
             childAspectRatio:  (MediaQuery.of(context).size.width / 4) / (MediaQuery.of(context).size.height / 4),
             children: List.generate(widget.user.lectures[key].length, (index) {
-              //Lecture aux = user.lectures[key][index];
               return BookCard(widget.user.lectures[key][index], BookCardType.book_card_in_grid);
             }),
           );
