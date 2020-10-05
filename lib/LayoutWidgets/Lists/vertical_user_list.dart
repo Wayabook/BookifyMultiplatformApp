@@ -1,11 +1,7 @@
 import 'package:bookifyapp/Enums/profile_type.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/user_preview_card.dart';
 import 'package:flutter/material.dart';
-import 'package:percent_indicator/linear_percent_indicator.dart';
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bookifyapp/Models/User.dart';
-import 'package:bookifyapp/Enums/button_type.dart';
-import 'package:bookifyapp/LayoutWidgets/Profile/profile_picture.dart';
 import 'package:bookifyapp/Pages/profile_page.dart';
 import 'package:provider/provider.dart';
 
