@@ -231,6 +231,6 @@ class SearchPage extends StatelessWidget {
     books.add(book4.toLecture());
 
 
-    return SearchBookOrPerson(books, users);
+    return SearchBookOrPerson(books, User.getMockAlterantiveUsers());
   }
 }

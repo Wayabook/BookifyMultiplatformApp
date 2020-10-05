@@ -1,4 +1,5 @@
 import 'package:bookifyapp/Enums/list_type.dart';
+import 'package:bookifyapp/LayoutWidgets/Dialogs/dialog_with_accept_and_cancel_options.dart';
 import 'package:bookifyapp/LayoutWidgets/Lists/list_title.dart';
 import 'package:bookifyapp/Pages/friends_page.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +20,8 @@ import 'package:bookifyapp/Pages/badgets_page.dart';
 
 import 'package:bookifyapp/Pages/profile_page.dart';
 import 'dart:math';
+
+import 'package:provider/provider.dart';
 
 
 class ProfilePage extends StatefulWidget {
@@ -244,14 +247,32 @@ class _ProfilePage extends State<ProfilePage>{
           Align(
             alignment: Alignment.center,
             child:  RaisedButton(
-              onPressed: () {
-                setState(() {
-                  widget.isFriend = !widget.isFriend;
-                });
-                /*showDialog(
+              onPressed: () async {
+                if(widget.isFriend){
+                  int result = await showDialog(
                     context: context,
-                    builder: (BuildContext context) => BookShopsDialog(this.book),
-                  );*/
+                    builder: (BuildContext context) => DialogWithAcceptAndCancelOptions(
+                        "Delete Friend",
+                        "Are you sure you want to delete friend?",
+                        TextStyle(color: Colors.red,),
+                        TextStyle(color: Colors.blue,)
+                    ),
+                  );
+                  if(result == DialogWithAcceptAndCancelOptions.ACCEPT_TAP){
+                    User user = Provider.of<User>(context, listen: false);
+                    user.removeFriend(widget.user);
+                    setState(() {
+                      widget.isFriend = !widget.isFriend;
+                    });
+                  }
+                } else {
+                  User user = Provider.of<User>(context, listen: false);
+                  user.addFriend(widget.user);
+                  setState(() {
+                    widget.isFriend = !widget.isFriend;
+                  });
+                }
+
               },
               textColor: Colors.white,
               color: widget.isFriend ? Colors.lightGreen[500] : Colors.blueGrey[300],

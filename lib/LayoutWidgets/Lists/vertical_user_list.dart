@@ -21,7 +21,7 @@ class VerticalUserList extends StatefulWidget {
   _VerticalUserList createState() => _VerticalUserList();
 }
 
-class _VerticalUserList extends State<VerticalUserList> {
+class _VerticalUserList extends State<VerticalUserList> with TickerProviderStateMixin{
 
   @override
   Widget build(BuildContext context) {

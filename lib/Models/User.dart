@@ -25,6 +25,16 @@ class User extends ChangeNotifier{
     return friends.contains(user);
   }
 
+  void addFriend(User user){
+    if(!this.isEqual(user))
+      this._friends.add(user);
+  }
+
+  void removeFriend(User user){
+    if(this._friends.contains(user))
+      this._friends.remove(user);
+  }
+
   Map<String, List<Lecture>> get lectures => this._lecture_lists;
 
   set lectures(Map<String, List<Lecture>>  lectures){
@@ -241,6 +251,77 @@ class User extends ChangeNotifier{
     this._pages_read = 334;
     this._profile_picture_url = "https://avatars0.githubusercontent.com/u/35029261?s=460&u=c54ea4c26c7f0659c014f362e538d2927f567a4f&v=4";
     this.friends = friends;
+  }
+
+  static List<User> getMockAlterantiveUsers(){
+    List<User> friends = new List();
+    List<Lecture> lectures = Lecture.getUserMockLectures();
+    List<Genre> genres = Genre.getMockGenres();
+
+    Map<String, List<Lecture>> userLectures =
+    {'Reading': lectures.sublist(0, 1), 'Pending': lectures.sublist(2, 3), 'Read': lectures, 'Recommended': lectures, 'Custom List 1': lectures};
+
+    friends.add(new User(
+        "9",
+        "Bill Gatius",
+        "\"Not as good as Steve Jobs\"",
+        genres,
+        userLectures,
+        21,
+        198,
+        345,
+        "https://upload.wikimedia.org/wikipedia/commons/a/a0/Bill_Gates_2018.jpg"
+    ));
+
+    friends.add(new User(
+        "10",
+        "Bill Gatius 1",
+        "\"Not as good as Steve Jobs\"",
+        genres,
+        userLectures,
+        21,
+        198,
+        345,
+        "https://upload.wikimedia.org/wikipedia/commons/a/a0/Bill_Gates_2018.jpg"
+    ));
+
+    friends.add(new User(
+        "11",
+        "Bill Gatius 2",
+        "\"Not as good as Steve Jobs\"",
+        genres,
+        userLectures,
+        21,
+        198,
+        345,
+        "https://upload.wikimedia.org/wikipedia/commons/a/a0/Bill_Gates_2018.jpg"
+    ));
+
+    friends.add( new User(
+        "12",
+        "Bill Gatius 3",
+        "\"Not as good as Steve Jobs\"",
+        genres,
+        userLectures,
+        21,
+        198,
+        345,
+        "https://upload.wikimedia.org/wikipedia/commons/a/a0/Bill_Gates_2018.jpg"
+    ));
+
+    friends.add(User(
+        "13",
+        "Bill Gatius 4",
+        "\"Not as good as Steve Jobs\"",
+        genres,
+        userLectures,
+        21,
+        198,
+        345,
+        "https://upload.wikimedia.org/wikipedia/commons/a/a0/Bill_Gates_2018.jpg"
+    ));
+
+    return friends;
   }
 
   List<User> getMockUserFriends(){

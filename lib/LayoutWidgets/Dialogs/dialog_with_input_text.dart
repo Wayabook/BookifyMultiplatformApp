@@ -17,27 +17,6 @@ class DialogWithInputText extends StatelessWidget{
 
   final TextEditingController inputController = TextEditingController();
 
-  /*TextField listTitle = TextField(
-        decoration: InputDecoration(
-            filled: true,
-            enabledBorder:  OutlineInputBorder(
-              borderSide: error != false ?  BorderSide(color: Colors.greenAccent, width: 2.0) : BorderSide(color: Colors.red, width: 2.0),
-            ),
-            errorBorder: const OutlineInputBorder(
-              borderSide: const BorderSide(color: Colors.red, width: 2.0),
-            ),
-            hintText:  "List Title"
-        ),
-        controller: inputController,
-  );*/
-
-  /*@override
-  void dispose() {
-    inputController.dispose();
-    super.dispose();
-  }*/
-
-
   @override
   Widget build(BuildContext context) {
     alertDialog = new AlertDialog(
@@ -61,7 +40,6 @@ class DialogWithInputText extends StatelessWidget{
             ),
             controller: inputController,
           ),
-          //_buildLogoAttribution(),
         ],
       ),
       actions: <Widget>[
@@ -86,10 +64,7 @@ class DialogWithInputText extends StatelessWidget{
                   MaterialPageRoute(builder: (context) => BookshelfPage(Provider.of<User>(context, listen: false), scrollToLastPosition: true,)),
                 );
                 Navigator.pop(context);
-              } /*else {
-                Navigator.pop(context);
-              }*/
-
+              }
           },
         ),
         FlatButton(
@@ -121,32 +96,6 @@ class DialogWithInputText extends StatelessWidget{
       text: new TextSpan(
         text: 'Add a custom list of books from your Bookshelf, and share it with your friends.\n\n',
         style: const TextStyle(color: Colors.black87),
-      ),
-    );
-  }
-
-  Widget _buildLogoAttribution() {
-    return new Padding(
-      padding: const EdgeInsets.only(top: 16.0),
-      child: new Row(
-        children: <Widget>[
-          new Padding(
-            padding: const EdgeInsets.only(top: 0.0),
-            child: new Image.asset(
-              "assets/flutter.png",
-              width: 32.0,
-            ),
-          ),
-          const Expanded(
-            child: const Padding(
-              padding: const EdgeInsets.only(left: 12.0),
-              child: const Text(
-                'Popup window is like a dialog box that gains complete focus when it appears on screen.',
-                style: const TextStyle(fontSize: 12.0),
-              ),
-            ),
-          ),
-        ],
       ),
     );
   }
