@@ -12,7 +12,7 @@ class User extends ChangeNotifier{
 
   String _uid;
   String _name;
-  String _description_sentence;
+  //String _description_sentence;
   List<Genre> _interested_genres;
   String _profile_picture_url;
   Map<String, List<Lecture>> _lecture_lists;
@@ -190,11 +190,11 @@ class User extends ChangeNotifier{
     _interested_genres = interestedGenres;
   }
 
-  String get descriptionSentence => _description_sentence;
+  //String get descriptionSentence => _description_sentence;
 
-  set descriptionSentence(String descriptionSentence) {
+  /*set descriptionSentence(String descriptionSentence) {
     _description_sentence = descriptionSentence;
-  }
+  }*/
 
   String get name => _name;
 
@@ -217,7 +217,7 @@ class User extends ChangeNotifier{
   User(
       this._uid,
       this._name,
-      this._description_sentence,
+      //this._description_sentence,
       this._interested_genres,
       this._lecture_lists,
       this._books_read,
@@ -243,7 +243,7 @@ class User extends ChangeNotifier{
 
     this._uid = "1112";
     this.name = "Radu Spaimovich";
-    this._description_sentence = "\"Best trollo ever\"";
+    //this._description_sentence = "\"Best trollo ever\"";
     this._interested_genres = genres;
     this._lecture_lists = userLectures;
     this._books_read = 10;
@@ -264,7 +264,6 @@ class User extends ChangeNotifier{
     friends.add(new User(
         "9",
         "Bill Gatius",
-        "\"Not as good as Steve Jobs\"",
         genres,
         userLectures,
         21,
@@ -276,7 +275,6 @@ class User extends ChangeNotifier{
     friends.add(new User(
         "10",
         "Bill Gatius 1",
-        "\"Not as good as Steve Jobs\"",
         genres,
         userLectures,
         21,
@@ -288,7 +286,6 @@ class User extends ChangeNotifier{
     friends.add(new User(
         "11",
         "Bill Gatius 2",
-        "\"Not as good as Steve Jobs\"",
         genres,
         userLectures,
         21,
@@ -300,7 +297,6 @@ class User extends ChangeNotifier{
     friends.add( new User(
         "12",
         "Bill Gatius 3",
-        "\"Not as good as Steve Jobs\"",
         genres,
         userLectures,
         21,
@@ -312,7 +308,6 @@ class User extends ChangeNotifier{
     friends.add(User(
         "13",
         "Bill Gatius 4",
-        "\"Not as good as Steve Jobs\"",
         genres,
         userLectures,
         21,
@@ -336,7 +331,6 @@ class User extends ChangeNotifier{
     friends.add(new User(
         "1",
         "Steve Jobs",
-        "\"Not as good as Steve Jobs\"",
         genres,
         userLectures,
         21,
@@ -348,7 +342,6 @@ class User extends ChangeNotifier{
     friends.add(new User(
         "1",
         "Steve Jobs 1",
-        "\"Not as good as Steve Jobs\"",
         genres,
         userLectures,
         21,
@@ -360,7 +353,6 @@ class User extends ChangeNotifier{
     friends.add(new User(
         "1",
         "Steve Jobs 2",
-        "\"Not as good as Steve Jobs\"",
         genres,
         userLectures,
         21,
@@ -372,7 +364,6 @@ class User extends ChangeNotifier{
     friends.add( new User(
         "1",
         "Steve Jobs 3",
-        "\"Not as good as Steve Jobs\"",
         genres,
         userLectures,
         21,
@@ -384,7 +375,6 @@ class User extends ChangeNotifier{
     friends.add(User(
         "1",
         "Steve Jobs 33",
-        "\"Not as good as Steve Jobs\"",
         genres,
         userLectures,
         21,

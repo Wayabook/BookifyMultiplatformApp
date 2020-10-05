@@ -147,7 +147,6 @@ class Comment {
     User user1= new User(
         "1",
         "John Cobra",
-        "\"Not as good as Steve Jobs\"",
         genres,
         userLectures,
         21,
@@ -159,7 +158,6 @@ class Comment {
     User user2 = new User(
         "2",
         "Usain Ahmad",
-        "\"Not as good as Steve Jobs\"",
         genres,
         userLectures,
         21,
@@ -171,7 +169,6 @@ class Comment {
     User user3 = new User(
         "3",
         "Alberto Chicote",
-        "\"Not as good as Steve Jobs\"",
         genres,
         userLectures,
         21,
@@ -183,7 +180,6 @@ class Comment {
     User user4 = new User(
         "4",
         "Jose Calderon",
-        "\"Not as good as Steve Jobs\"",
         genres,
         userLectures,
         21,
@@ -195,7 +191,6 @@ class Comment {
     User user5 = new User(
         "5",
         "Antonio Puerta",
-        "\"Not as good as Steve Jobs\"",
         genres,
         userLectures,
         21,

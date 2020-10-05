@@ -159,77 +159,10 @@ class DiscoverPage extends StatelessWidget {
     Map<String, List<Lecture>> userLectures =
     {'Reading': lectures, 'Pending': lectures, 'Read': lectures, 'Recommended': lectures, 'Custom List 1': lectures};
 
-    List<User> users = new List<User>();
 
-    User user = new User(
-        "1",
-        "Steve Jobs",
-        "\"Not as good as Steve Jobs\"",
-        genres,
-        userLectures,
-        21,
-        198,
-        345,
-        "https://upload.wikimedia.org/wikipedia/commons/a/a0/Bill_Gates_2018.jpg"
-    );
-
-    User user1 = new User(
-        "1",
-        "Steve Jobs 1",
-        "\"Not as good as Steve Jobs\"",
-        genres,
-        userLectures,
-        21,
-        198,
-        345,
-        "https://upload.wikimedia.org/wikipedia/commons/a/a0/Bill_Gates_2018.jpg"
-    );
-
-    User user2 = new User(
-        "1",
-        "Steve Jobs 2",
-        "\"Not as good as Steve Jobs\"",
-        genres,
-        userLectures,
-        21,
-        198,
-        345,
-        "https://upload.wikimedia.org/wikipedia/commons/a/a0/Bill_Gates_2018.jpg"
-    );
-
-    User user3 = new User(
-        "1",
-        "Steve Jobs 3",
-        "\"Not as good as Steve Jobs\"",
-        genres,
-        userLectures,
-        21,
-        198,
-        345,
-        "https://upload.wikimedia.org/wikipedia/commons/a/a0/Bill_Gates_2018.jpg"
-    );
-
-    User user4 = new User(
-        "1",
-        "Steve Jobs 33",
-        "\"Not as good as Steve Jobs\"",
-        genres,
-        userLectures,
-        21,
-        198,
-        345,
-        "https://upload.wikimedia.org/wikipedia/commons/a/a0/Bill_Gates_2018.jpg"
-    );
-
-    users.add(user);
-    users.add(user1);
-    users.add(user2);
-    users.add(user3);
-    users.add(user4);
-
-    book1.friends_reading = users;
-    book2.friends_reading = users.sublist(0, 2);
-    book3.friends_reading = users.sublist(0, 1);
+    book1.friends_reading =  User.getMockAlterantiveUsers();
+    book2.friends_reading =  User.getMockAlterantiveUsers().sublist(0, 2);
+    book3.friends_reading =  User.getMockAlterantiveUsers().sublist(0, 1);
 
     books.add(book1);
     books.add(book2);

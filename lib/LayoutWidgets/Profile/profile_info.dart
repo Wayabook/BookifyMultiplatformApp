@@ -36,7 +36,7 @@ class ProfileInfo extends StatelessWidget {
           ),
         ),
 
-        Align(
+        /*Align(
           alignment: Alignment.center,
           child: Text(
             user.descriptionSentence,
@@ -44,7 +44,7 @@ class ProfileInfo extends StatelessWidget {
               color: Colors.blueGrey,
             ),
           ),
-        ),
+        ),*/
       ],
     );
   }
