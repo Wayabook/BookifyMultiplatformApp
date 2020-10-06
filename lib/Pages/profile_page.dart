@@ -1,4 +1,5 @@
 import 'package:bookifyapp/Enums/list_type.dart';
+import 'package:bookifyapp/LayoutWidgets/Buttons/small_button_underlined.dart';
 import 'package:bookifyapp/LayoutWidgets/Dialogs/dialog_with_accept_and_cancel_options.dart';
 import 'package:bookifyapp/LayoutWidgets/Lists/list_title.dart';
 import 'package:bookifyapp/Pages/friends_page.dart';
@@ -221,14 +222,19 @@ class _ProfilePage extends State<ProfilePage>{
           margin: EdgeInsets.fromLTRB(10, 10, 2, 0),
           child:  Align(
             alignment: Alignment.topLeft,
-            child:  ListTitle("Bookshelf", withButton: true,)
+            child: ListTitle(
+              "Bookshelf",
+              withButton: true,
+              user: widget.user,
+            )
           ),
         ),
 
-        HorizontalBookList(widget.user.getNLecturesFromBookshelf(5), ListType.view_all),
+        HorizontalBookList(widget.user.getNLecturesFromBookshelf(5), ListType.view_all, user: widget.user,),
 
         BookCard.option(
-            widget.profileType == ProfileType.user_profile ?  BookCardType.add_custom_list : BookCardType.recommend_book
+          widget.profileType == ProfileType.user_profile ?  BookCardType.add_custom_list : BookCardType.recommend_book,
+          user: widget.user,
         ),
 
         //BookCard.option(BookCardType.settings),

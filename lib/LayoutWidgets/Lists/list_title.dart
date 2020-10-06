@@ -1,5 +1,6 @@
 import 'package:bookifyapp/Enums/button_type.dart';
 import 'package:bookifyapp/Enums/list_type.dart';
+import 'package:bookifyapp/LayoutWidgets/Buttons/small_button_underlined.dart';
 import 'package:bookifyapp/Models/User.dart';
 import 'package:bookifyapp/Pages/add_custom_list_page.dart';
 import 'package:bookifyapp/Pages/bookshelf_page.dart';
@@ -8,8 +9,9 @@ import 'package:provider/provider.dart';
 
 class ListTitle extends StatelessWidget{
 
-  final String title;
+  User user;
   bool withButton;
+  final String title;
   ButtonType buttonType;
   Function(String) goToPageFromParent;
 
@@ -18,6 +20,7 @@ class ListTitle extends StatelessWidget{
       {
         this.withButton = false,
         this.buttonType = ButtonType.view_all,
+        this.user,
         this.goToPageFromParent
       });
 
@@ -66,7 +69,8 @@ class ListTitle extends StatelessWidget{
             alignment: Alignment.bottomRight,
             child:  Padding(
               padding: EdgeInsets.fromLTRB(0, 0, 15, 0),
-              child: this.buttonType == ButtonType.edit_list ? _getEditListButton(context) : _getViewAllButton(context),
+              child: (this.buttonType == ButtonType.edit_list || this.buttonType == ButtonType.copy_list) ?
+              _getEditListButton(context) : _getViewAllButton(context),
             )
           ),
         )
@@ -79,18 +83,10 @@ class ListTitle extends StatelessWidget{
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => BookshelfPage(Provider.of<User>(context, listen: false))),
+          MaterialPageRoute(builder: (context) => BookshelfPage(this.user)),
         );
       },
-      child: Text(
-        "View All",
-        style: TextStyle(
-          fontSize: 15,
-          fontWeight: FontWeight.bold,
-          color: Colors.blue,
-          decoration: TextDecoration.underline,
-        ),
-      ),
+      child: SmallButtonUnderlined("View All")
     );
   }
 
@@ -107,15 +103,8 @@ class ListTitle extends StatelessWidget{
           this.goToPageFromParent(title);
         }
       },
-      child: Text(
-        "Edit",
-        style: TextStyle(
-          fontSize: 15,
-          fontWeight: FontWeight.bold,
-          color: Colors.blue,
-          decoration: TextDecoration.underline,
-        ),
-      ),
+      child: buttonType == ButtonType.edit_list ?
+      SmallButtonUnderlined("Edit") : SmallButtonUnderlined("Copy")
     );
 
   }

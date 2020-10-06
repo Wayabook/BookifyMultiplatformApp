@@ -110,7 +110,6 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
               itemCount: widget.books.length + 1,
               itemBuilder: (BuildContext context, int index) {
                   if(index == 0)
-                    //return EditableListTitle(widget.title);
                     return ListTitle(widget.title);
                   return _makeCard(index - 1);
               },

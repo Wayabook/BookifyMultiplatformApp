@@ -54,6 +54,7 @@ class _ReadActionButton extends State<ReadActionButton>
 
   Widget toggle() {
     return FloatingActionButton(
+      heroTag: "ToggleButton",
       backgroundColor: _animateColor.value,
       onPressed: animate,
       tooltip: 'Toggle',

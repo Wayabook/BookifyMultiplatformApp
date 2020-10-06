@@ -10,7 +10,12 @@ class BookshelfPage extends StatelessWidget {
   User user;
   bool scrollToLastPosition;
 
-  BookshelfPage(this.user, { this.scrollToLastPosition = false });
+  BookshelfPage(
+      this.user,
+
+      {
+        this.scrollToLastPosition = false }
+      );
 
   @override
   Widget build(BuildContext context) {

@@ -26,6 +26,15 @@ class BooskelfGridList extends StatefulWidget {
 
 class _BooskelfGridList extends State<BooskelfGridList> with TickerProviderStateMixin{
 
+  bool showEditButton;
+
+  @override
+  initState() {
+    super.initState();
+    User user = Provider.of<User>(context, listen: false);
+    showEditButton = user.isEqual(widget.user);
+  }
+
   @override
   Widget build(BuildContext context) {
 
@@ -43,7 +52,7 @@ class _BooskelfGridList extends State<BooskelfGridList> with TickerProviderState
             var auxIndex = index;
             var key = keys[((auxIndex-1)~/2)];
             return GridView.count(
-              //primary: true,
+              key: UniqueKey(),
               physics: NeverScrollableScrollPhysics(), // to disable GridView's scrolling
               shrinkWrap: true,
               crossAxisCount: 3,
@@ -74,8 +83,13 @@ class _BooskelfGridList extends State<BooskelfGridList> with TickerProviderState
   }
 
   _makeHeader(String title, width, [reading]) {
-    return reading ?   ListTitle(title):
-    ListTitle(title, withButton: true, buttonType: ButtonType.edit_list, goToPageFromParent: goToEditListPage,);
+    if (reading)
+      return ListTitle(title);
+    if(!showEditButton)
+      return ListTitle(title, withButton: true, buttonType: ButtonType.copy_list, goToPageFromParent: goToEditListPage,);
+    return ListTitle(title, withButton: true, buttonType: ButtonType.edit_list, goToPageFromParent: goToEditListPage,);
+    //return (reading || !showEditButton) ?   ListTitle(title):
+    //ListTitle(title, withButton: true, buttonType: ButtonType.edit_list, goToPageFromParent: goToEditListPage,);
   }
 
 }

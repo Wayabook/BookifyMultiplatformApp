@@ -1,4 +1,5 @@
 import 'package:bookifyapp/Models/Lecture.dart';
+import 'package:bookifyapp/Models/User.dart';
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/Models/Book.dart';
 import 'package:bookifyapp/Pages/book_page.dart';
@@ -13,8 +14,9 @@ class HorizontalBookList extends StatelessWidget {
   List<Lecture> books;
   BuildContext context;
   ListType type;
+  User user;
 
-  HorizontalBookList(this.books, this.type);
+  HorizontalBookList(this.books, this.type, {this.user});
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +56,7 @@ class HorizontalBookList extends StatelessWidget {
               if (this.type == ListType.discover_option) {
                 return BookCard.option(BookCardType.disover);
               } else {
-                return BookCard.option(BookCardType.view_all);
+                return BookCard.option(BookCardType.view_all, user: this.user);
                 //return BookCard(this.books[index], BookCardType.without_add_option);
               }
             }

@@ -58,7 +58,7 @@ class _VerticalBookList extends State<VerticalBookList> with TickerProviderState
     items = new List();
     for(int index = 0; index < widget.readingBooks.length + widget.pendingBooks.length + 2; index++){
       if (index == 0) {
-        items.add(ListTitle("Reading:", withButton: true,));
+        items.add(ListTitle("Reading:", withButton: true, user: Provider.of<User>(context, listen: false),));
       } else if (index <= widget.readingBooks.length) {
         items.add(_makeCard(index - 1, widget.readingBooks, ButtonType.read));
       } else if (index == widget.readingBooks.length + 1) {

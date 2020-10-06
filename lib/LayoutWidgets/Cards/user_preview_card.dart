@@ -1,5 +1,6 @@
 
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:bookifyapp/LayoutWidgets/Buttons/small_button_underlined.dart';
 import 'package:bookifyapp/LayoutWidgets/Profile/profile_picture.dart';
 import 'package:bookifyapp/Models/User.dart';
 import 'package:bookifyapp/Pages/bookshelf_page.dart';
@@ -89,15 +90,7 @@ class UserPreviewCard extends StatelessWidget {
                             MaterialPageRoute(builder: (context) => BookshelfPage(this.user)),
                           );
                         },
-                        child: Text(
-                          "View Bookshelf",
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.blue,
-                            decoration: TextDecoration.underline,
-                          ),
-                        )
+                        child: SmallButtonUnderlined("View Bookshelf")
                       )
 
                       /*Text(

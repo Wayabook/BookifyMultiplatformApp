@@ -471,6 +471,7 @@ class _BookCardInVerticalSearchList extends State<BookCardInVerticalSearchList>{
                           height: 75,
                           width: 75,
                           child: FloatingActionButton(
+                            heroTag: "FLTB1" + widget.book.title,
                             backgroundColor: Colors.white,
                             child: Icon(
                               iconData,
@@ -588,6 +589,7 @@ class _BookCardInVerticalSearchList extends State<BookCardInVerticalSearchList>{
 
   _getFloatingActionButton(Book book) {
     return FloatingActionButton(
+      heroTag: book.isbn,
       backgroundColor: Colors.white,
       child: Icon(
         iconData,

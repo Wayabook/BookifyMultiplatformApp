@@ -171,6 +171,7 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> {
   _makeListTile(BuildContext context)   {
     //bool aux = animationController.isAnimating;
     FloatingActionButton floatingActionButton = new FloatingActionButton(
+      heroTag: "AddButton",
       backgroundColor: Colors.white,
       child: RotationTransition(
         turns: animation,

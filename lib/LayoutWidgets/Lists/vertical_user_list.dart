@@ -33,7 +33,10 @@ class _VerticalUserList extends State<VerticalUserList> with TickerProviderState
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => ProfilePage(widget.users[index], ProfileType.friend_profile, isFriend: user.isFriend(widget.users[index]))));
+          MaterialPageRoute(builder: (context) => ProfilePage(
+              widget.users[index],
+              ProfileType.friend_profile,
+              isFriend: user.isFriend(widget.users[index]))));
 
 
         //Navigator.of(context)

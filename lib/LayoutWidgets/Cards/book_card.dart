@@ -20,9 +20,10 @@ class BookCard extends StatelessWidget {
   BuildContext context;
   BookCardType type;
   Lecture book;
+  User user;
 
   BookCard(this.book, this.type);
-  BookCard.option(this.type);
+  BookCard.option(this.type, {this.user});
 
   @override
   Widget build(BuildContext context) {
@@ -211,12 +212,12 @@ class BookCard extends StatelessWidget {
           } else if (this.type == BookCardType.view_all){
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => BookshelfPage(Provider.of<User>(context, listen: false))),
+              MaterialPageRoute(builder: (context) => BookshelfPage(this.user)),
             );
           } else if (this.type == BookCardType.add_custom_list){
             showDialog(
               context: context,
-              builder: (BuildContext context) => DialogWithInputText(Provider.of<User>(context, listen: false)),
+              builder: (BuildContext context) => DialogWithInputText(this.user),
             );
           }
 
