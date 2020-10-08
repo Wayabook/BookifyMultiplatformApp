@@ -8,8 +8,8 @@ import 'package:provider/provider.dart';
 
 class DialogWithAcceptAndCancelOptions extends StatelessWidget{
 
-  static int ACCEPT_TAP = 0;
-  static int CANCEL_TAP = 1;
+  static const int ACCEPT_TAP = 0;
+  static const int CANCEL_TAP = 1;
   String title;
   String description;
   TextStyle acceptButtonTextStyle;

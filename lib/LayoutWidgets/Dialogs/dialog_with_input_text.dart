@@ -9,8 +9,18 @@ import 'package:provider/provider.dart';
 
 class DialogWithInputText extends StatelessWidget{
 
-  User user;
-  DialogWithInputText(this.user);
+  static const int ACCEPT_TAP = 0;
+  static const int CANCEL_TAP = 1;
+  //User user;
+  String title;
+  String description;
+  String entryTextDescription;
+
+  DialogWithInputText(
+      this.title,
+      this.description,
+      this.entryTextDescription
+  );
 
   AlertDialog alertDialog;
   bool _firstTime = true;
@@ -20,7 +30,7 @@ class DialogWithInputText extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     alertDialog = new AlertDialog(
-      title: const Text('Add List Title:'),
+      title: Text(this.title),
       content: new Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -35,7 +45,7 @@ class DialogWithInputText extends StatelessWidget{
                 errorBorder: const OutlineInputBorder(
                   borderSide: const BorderSide(color: Colors.red, width: 2.0),
                 ),
-                labelText:  "List Title",
+                labelText:  this.entryTextDescription,
                 errorText: validateListTitle(inputController.text),
             ),
             controller: inputController,
@@ -50,13 +60,14 @@ class DialogWithInputText extends StatelessWidget{
           ),
           onPressed: () async {
               String listTitle = "";
-              if (inputController.text.isNotEmpty && inputController.text.toString() != "List Title") {
+              if (inputController.text.isNotEmpty && inputController.text.toString() != this.entryTextDescription) {
                 listTitle = inputController.text.toString();
               } else {
                 listTitle = "Custom list";
               }
+              Navigator.of(context).pop(listTitle);
               //Navigator.pop(context);
-              final result = await Navigator.of(context)
+              /*final result = await Navigator.of(context)
                 .push(MaterialPageRoute(builder: (context) => AddCustomListPage(this.user.bookshelf, listTitle, ListType.add_custom_list)));
               if(result == 0){
                 final result = await Navigator.push(
@@ -64,7 +75,7 @@ class DialogWithInputText extends StatelessWidget{
                   MaterialPageRoute(builder: (context) => BookshelfPage(Provider.of<User>(context, listen: false), scrollToLastPosition: true,)),
                 );
                 Navigator.pop(context);
-              }
+              }*/
           },
         ),
         FlatButton(
@@ -73,7 +84,7 @@ class DialogWithInputText extends StatelessWidget{
               style: TextStyle(color: Colors.red,)
           ),
           onPressed: () {
-            Navigator.pop(context);
+            Navigator.of(context).pop(CANCEL_TAP);
           },
         ),
       ],
@@ -94,7 +105,7 @@ class DialogWithInputText extends StatelessWidget{
   Widget _buildAboutText() {
     return new RichText(
       text: new TextSpan(
-        text: 'Add a custom list of books from your Bookshelf, and share it with your friends.\n\n',
+        text: this.description,
         style: const TextStyle(color: Colors.black87),
       ),
     );

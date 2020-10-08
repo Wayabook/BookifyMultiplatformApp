@@ -4,6 +4,18 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 class InfoToast {
 
+  static void showListCopiedCorrecltyToBookshelf(String listTitle){
+    Fluttertoast.showToast(
+        msg: listTitle + "books list was added correctly to your Bookshelf.",
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.black,
+        textColor: Colors.white,
+        fontSize: 16.0
+    );
+  }
+
   static void showCommentRemovedCorrectly(bool comment){
     String commentText =  comment ? "Comment" : "Sub-comment";
     Fluttertoast.showToast(

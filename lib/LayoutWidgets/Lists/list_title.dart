@@ -99,7 +99,7 @@ class ListTitle extends StatelessWidget{
               AddCustomListPage(Provider
                   .of<User>(context, listen: false)
                   .bookshelf, title, ListType.edit_custom_list)));
-        } else if (buttonType == ButtonType.edit_list) {
+        } else if (buttonType == ButtonType.edit_list || buttonType == ButtonType.copy_list) {
           this.goToPageFromParent(title);
         }
       },

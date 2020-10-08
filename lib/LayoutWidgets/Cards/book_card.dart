@@ -1,6 +1,8 @@
+import 'package:bookifyapp/Enums/list_type.dart';
 import 'package:bookifyapp/Models/Item.dart';
 import 'package:bookifyapp/Models/Lecture.dart';
 import 'package:bookifyapp/Models/Shop.dart';
+import 'package:bookifyapp/Pages/add_custom_list_page.dart';
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/Models/Book.dart';
 import 'package:bookifyapp/Pages/book_page.dart';
@@ -203,7 +205,7 @@ class BookCard extends StatelessWidget {
       }
 
       return GestureDetector(
-        onTap: () {
+        onTap: () async {
           if(this.type == BookCardType.disover){
             Navigator.push(
               context,
@@ -215,10 +217,17 @@ class BookCard extends StatelessWidget {
               MaterialPageRoute(builder: (context) => BookshelfPage(this.user)),
             );
           } else if (this.type == BookCardType.add_custom_list){
-            showDialog(
+            var result = await showDialog(
               context: context,
-              builder: (BuildContext context) => DialogWithInputText(this.user),
+              builder: (BuildContext context) => DialogWithInputText(
+                  'Add List Title:',
+                  'Add a custom list of books from your Bookshelf, and share it with your friends.\n\n',
+                  'List Title'
+              ),
             );
+            if(result != DialogWithInputText.CANCEL_TAP){
+              await _pushAddCustomListPage(result);
+            }
           }
 
         },
@@ -257,6 +266,18 @@ class BookCard extends StatelessWidget {
         ),
       );
 
+    }
+  }
+
+  _pushAddCustomListPage(String listTitle) async {
+    final result = await Navigator.of(context)
+        .push(MaterialPageRoute(builder: (context) => AddCustomListPage(this.user.bookshelf, listTitle, ListType.add_custom_list)));
+    if(result == 0){
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => BookshelfPage(Provider.of<User>(context, listen: false), scrollToLastPosition: true,)),
+      );
+      //Navigator.pop(context);
     }
   }
 

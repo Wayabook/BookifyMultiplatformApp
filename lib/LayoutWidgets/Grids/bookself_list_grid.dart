@@ -2,8 +2,10 @@ import 'package:bookifyapp/Enums/book_card_type.dart';
 import 'package:bookifyapp/Enums/button_type.dart';
 import 'package:bookifyapp/Enums/list_type.dart';
 import 'package:bookifyapp/Enums/profile_type.dart';
+import 'package:bookifyapp/InfoToast.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/book_card.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/user_preview_card.dart';
+import 'package:bookifyapp/LayoutWidgets/Dialogs/dialog_with_input_text.dart';
 import 'package:bookifyapp/LayoutWidgets/Lists/list_title.dart';
 import 'package:bookifyapp/Pages/add_custom_list_page.dart';
 import 'package:flutter/material.dart';
@@ -68,26 +70,36 @@ class _BooskelfGridList extends State<BooskelfGridList> with TickerProviderState
     );
   }
 
-  goToEditListPage(String title) async {
-
+  _goToEditListPage(String title) async {
     final result = await Navigator.of(context)
         .push(MaterialPageRoute(builder: (context) =>
         AddCustomListPage(Provider
             .of<User>(context, listen: false)
             .bookshelf, title, ListType.edit_custom_list)));
+  }
 
-    /*setState(() {
+  _copyList(String title) async {
+    var newTitle = await showDialog(
+      context: context,
+      builder: (BuildContext context) => DialogWithInputText(
+          'Copy Friends List',
+          'Are you sure you want to copy this list?\n\n',
+          title,
+      ),
+    );
+    if(newTitle != DialogWithInputText.CANCEL_TAP){
       User user = Provider.of<User>(context, listen: false);
-      widget.user.lectures[title] = user.lectures[title];
-    });*/
+      user.addCustomLectureList(newTitle, widget.user.getLectureListByName(title));
+      InfoToast.showListCopiedCorrecltyToBookshelf(newTitle);
+    }
   }
 
   _makeHeader(String title, width, [reading]) {
     if (reading)
       return ListTitle(title);
     if(!showEditButton)
-      return ListTitle(title, withButton: true, buttonType: ButtonType.copy_list, goToPageFromParent: goToEditListPage,);
-    return ListTitle(title, withButton: true, buttonType: ButtonType.edit_list, goToPageFromParent: goToEditListPage,);
+      return ListTitle(title, withButton: true, buttonType: ButtonType.copy_list, goToPageFromParent: _copyList,);
+    return ListTitle(title, withButton: true, buttonType: ButtonType.edit_list, goToPageFromParent: _goToEditListPage,);
     //return (reading || !showEditButton) ?   ListTitle(title):
     //ListTitle(title, withButton: true, buttonType: ButtonType.edit_list, goToPageFromParent: goToEditListPage,);
   }
