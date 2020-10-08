@@ -1,5 +1,8 @@
 import 'package:bookifyapp/Enums/list_type.dart';
+import 'package:bookifyapp/InfoToast.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/book_card_in_vertical_search_list.dart';
+import 'package:bookifyapp/LayoutWidgets/Dialogs/dialog_with_accept_and_cancel_options.dart';
+import 'package:bookifyapp/LayoutWidgets/Dialogs/dialog_with_input_text.dart';
 import 'package:bookifyapp/Models/Item.dart';
 import 'package:bookifyapp/Models/Lecture.dart';
 import 'package:bookifyapp/Models/Shop.dart';
@@ -76,12 +79,28 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
           "Accept",
           style: TextStyle(color: Colors.blue,)
       ),
-      onPressed: () {
-        setState(() {
-          User user = Provider.of<User>(context, listen: false);
-          user.addCustomLectureList(widget.title, customBooksList);
-        });
-        //print(customBooksList.length);
+      onPressed: () async {
+        if(customBooksList.length == 0){
+          int result = await showDialog(
+            context: context,
+            builder: (BuildContext context) => DialogWithAcceptAndCancelOptions(
+                "Delete List",
+                "Any book selected. Are you sure you want to delete list?",
+                TextStyle(color: Colors.red,),
+                TextStyle(color: Colors.blue,)
+            ),
+          );
+          if(result == DialogWithAcceptAndCancelOptions.ACCEPT_TAP){
+            User user = Provider.of<User>(context, listen: false);
+            user.removeLectureListByName(widget.title);
+            InfoToast.showListRemovedCorrecltyFromBookshelf(widget.title);
+          }
+        } else {
+          setState(() {
+            User user = Provider.of<User>(context, listen: false);
+            user.addCustomLectureList(widget.title, customBooksList);
+          });
+        }
         Navigator.pop(context, 0);
       },
     );

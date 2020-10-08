@@ -49,7 +49,8 @@ class _BooskelfGridList extends State<BooskelfGridList> with TickerProviderState
         itemCount: widget.user.lectures.keys.length * 2,
         itemBuilder: (BuildContext ctxt, int index) {
           if (index % 2 == 0){
-            return _makeHeader(keys[index == 0 ? index : (index~/2)], width, (index == 0 || index == 2));
+            String key = keys[index == 0 ? index : (index~/2)];
+            return _makeHeader(key, width, User.uneditableLists().contains(key));
           } else {
             var auxIndex = index;
             var key = keys[((auxIndex-1)~/2)];

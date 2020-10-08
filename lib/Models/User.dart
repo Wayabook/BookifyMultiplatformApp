@@ -21,6 +21,10 @@ class User extends ChangeNotifier{
   int _pages_read;
   List<User> _friends;
 
+  static List<String> uneditableLists(){
+    return ['Reading', 'Pending', 'Read'];
+  }
+
   bool isFriend(User user){
     return friends.contains(user);
   }
@@ -39,6 +43,11 @@ class User extends ChangeNotifier{
 
   set lectures(Map<String, List<Lecture>>  lectures){
     this._lecture_lists = lectures;
+  }
+
+  void removeLectureListByName(String listName){
+    if(this._lecture_lists.containsKey(listName))
+      this._lecture_lists.remove(listName);
   }
 
   List<Lecture> getLectureListByName(String listName){
@@ -190,12 +199,6 @@ class User extends ChangeNotifier{
     _interested_genres = interestedGenres;
   }
 
-  //String get descriptionSentence => _description_sentence;
-
-  /*set descriptionSentence(String descriptionSentence) {
-    _description_sentence = descriptionSentence;
-  }*/
-
   String get name => _name;
 
   set name(String name) {
@@ -217,7 +220,6 @@ class User extends ChangeNotifier{
   User(
       this._uid,
       this._name,
-      //this._description_sentence,
       this._interested_genres,
       this._lecture_lists,
       this._books_read,
@@ -232,18 +234,20 @@ class User extends ChangeNotifier{
 
   User.getMockUser(){
 
-    List<Lecture> lectures = Lecture.getUserMockLectures();
     List<Genre> genres = Genre.getMockGenres();
-
-
     Map<String, List<Lecture>> userLectures =
-    {'Reading': lectures.sublist(0, 1), 'Pending': lectures.sublist(2, 3), 'Read': lectures, 'Recommended': lectures, 'Custom List 1': lectures};
+    {
+      'Reading': Lecture.getUserMockLectures().sublist(0, 1),
+      'Pending': Lecture.getUserMockLectures().sublist(2, 3),
+      'Read': Lecture.getUserMockLectures(),
+      'Recommended': Lecture.getUserMockLectures(),
+      'Custom List 1': Lecture.getUserMockLectures()
+    };
 
     List<User> friends = getMockUserFriends();
 
     this._uid = "1112";
     this.name = "Radu Spaimovich";
-    //this._description_sentence = "\"Best trollo ever\"";
     this._interested_genres = genres;
     this._lecture_lists = userLectures;
     this._books_read = 10;
@@ -255,11 +259,16 @@ class User extends ChangeNotifier{
 
   static List<User> getMockAlterantiveUsers(){
     List<User> friends = new List();
-    List<Lecture> lectures = Lecture.getUserMockLectures();
     List<Genre> genres = Genre.getMockGenres();
 
     Map<String, List<Lecture>> userLectures =
-    {'Reading': lectures.sublist(0, 1), 'Pending': lectures.sublist(2, 3), 'Read': lectures, 'Recommended': lectures, 'Custom List 1': lectures};
+    {
+      'Reading': Lecture.getUserMockLectures().sublist(0, 1),
+      'Pending': Lecture.getUserMockLectures().sublist(2, 3),
+      'Read': Lecture.getUserMockLectures(),
+      'Recommended': Lecture.getUserMockLectures(),
+      'Custom List 1': Lecture.getUserMockLectures()
+    };
 
     friends.add(new User(
         "9",
@@ -322,11 +331,16 @@ class User extends ChangeNotifier{
   List<User> getMockUserFriends(){
 
     List<User> friends = new List();
-    List<Lecture> lectures = Lecture.getUserMockLectures();
     List<Genre> genres = Genre.getMockGenres();
 
     Map<String, List<Lecture>> userLectures =
-    {'Reading': lectures.sublist(0, 1), 'Pending': lectures.sublist(2, 3), 'Read': lectures, 'Recommended': lectures, 'Custom List 1': lectures};
+    {
+      'Reading': Lecture.getUserMockLectures().sublist(0, 1),
+      'Pending': Lecture.getUserMockLectures().sublist(2, 3),
+      'Read': Lecture.getUserMockLectures(),
+      'Recommended': Lecture.getUserMockLectures(),
+      'Custom List 1': Lecture.getUserMockLectures()
+    };
 
     friends.add(new User(
         "1",
