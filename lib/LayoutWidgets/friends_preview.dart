@@ -29,7 +29,7 @@ class FriendsPreview extends StatelessWidget {
             Align(
               alignment: Alignment.centerLeft,
               child: CircleAvatar(
-                backgroundColor: Colors.white,
+                backgroundColor: Colors.blueGrey,
                 child: CircleAvatar(
                   radius: 18,
                   backgroundColor: Colors.white,
@@ -40,7 +40,7 @@ class FriendsPreview extends StatelessWidget {
             Align(
               alignment: Alignment.center,
               child: CircleAvatar(
-                backgroundColor: Colors.white,
+                backgroundColor: Colors.blueGrey,
                 child: CircleAvatar(
                   radius: 18,
                   backgroundColor: Colors.white,
@@ -52,7 +52,7 @@ class FriendsPreview extends StatelessWidget {
             Align(
               alignment: Alignment.centerRight,
               child: CircleAvatar(
-                backgroundColor: Colors.black,
+                backgroundColor: Colors.blueGrey,
                 child: CircleAvatar(
                   radius: 18,
                   backgroundColor: Colors.white,

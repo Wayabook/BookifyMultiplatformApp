@@ -1,3 +1,4 @@
+import 'package:bookifyapp/LayoutWidgets/Buttons/small_button_underlined.dart';
 import 'package:bookifyapp/Models/Book.dart';
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/LayoutWidgets/arc_banner_image.dart';
@@ -15,6 +16,7 @@ import 'package:provider/provider.dart';
 
 import '../InfoToast.dart';
 import '../Models/User.dart';
+import 'comment_page.dart';
 
 
 class BookPage extends StatefulWidget {
@@ -280,6 +282,46 @@ class _BookPage extends State<BookPage> {
             SummaryTextWidget(
               text: this.book.summary,
             ),
+
+            SizedBox(height: 8.0),
+
+            Padding(
+              padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Icon(
+                      Icons.comment,
+                      size: 25,
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Text(
+                      widget.book.getBookTotalNumberOfComments().toString() + " comentarios",
+                      style: TextStyle(
+                        color: Colors.black,
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: Align(
+                      alignment: Alignment.bottomRight,
+                      child: GestureDetector(
+                        child: SmallButtonUnderlined("View All"),
+                        onTap: () async {
+                          final String result = await Navigator.of(context)
+                              .push(MaterialPageRoute(builder: (context) => CommentPage.showingAllBookComments(this.book)));
+                        },
+                      )
+                    ),
+                  )
+                ],
+              ),
+            )
           ],
         ),
 

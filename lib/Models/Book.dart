@@ -96,6 +96,14 @@ class Book {
 
   }
 
+  int getBookTotalNumberOfComments(){
+    int comments = 0;
+    for(Chapter chapter in this.chapters){
+      comments += chapter.comments.length;
+    }
+    return comments;
+  }
+
   Map<String, List<Item>> get shops_items => _shops_items;
 
   set shops_items(Map<String, List<Item>> fr) {
