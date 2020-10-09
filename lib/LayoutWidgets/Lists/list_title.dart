@@ -14,6 +14,7 @@ class ListTitle extends StatelessWidget{
   final String title;
   ButtonType buttonType;
   Function(String) goToPageFromParent;
+  Function(String) goToPageFromParent2;
 
   ListTitle(
       this.title,
@@ -21,7 +22,8 @@ class ListTitle extends StatelessWidget{
         this.withButton = false,
         this.buttonType = ButtonType.view_all,
         this.user,
-        this.goToPageFromParent
+        this.goToPageFromParent,
+        this.goToPageFromParent2
       });
 
   @override
@@ -59,12 +61,12 @@ class ListTitle extends StatelessWidget{
     return Row(
       children: [
         Flexible(
-          flex: 6,
+          flex: 8,
           child:  _getTitle(),
         ),
 
         Flexible(
-          flex: 4,
+          flex: 3,
           child:  Align(
             alignment: Alignment.bottomRight,
             child:  Padding(
@@ -91,21 +93,57 @@ class ListTitle extends StatelessWidget{
   }
 
   _getEditListButton(BuildContext context){
+    if(buttonType == ButtonType.copy_list){
+      return _getEditOrCopyButton(context);
+    } else {
+      return Row(
+        children: [
+          Flexible(
+            flex: 5,
+            //child:  _getEditOrCopyButton(context),
+            child: Padding(
+              padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+              child:  _getEditOrCopyButton(context),
+            ),
+          ) ,
+
+          Flexible(
+            flex: 5,
+            child: _getDeleteButton(),
+          )
+        ],
+      );
+    }
+
+  }
+
+  _getDeleteButton(){
     return GestureDetector(
-      onTap: () async {
-        if(buttonType == ButtonType.view_all) {
-          final result = await Navigator.of(context)
-              .push(MaterialPageRoute(builder: (context) =>
-              AddCustomListPage(Provider
-                  .of<User>(context, listen: false)
-                  .bookshelf, title, ListType.edit_custom_list)));
-        } else if (buttonType == ButtonType.edit_list || buttonType == ButtonType.copy_list) {
-          this.goToPageFromParent(title);
-        }
-      },
-      child: buttonType == ButtonType.edit_list ?
-      SmallButtonUnderlined("Edit") : SmallButtonUnderlined("Copy")
+        onTap: () {
+          this.goToPageFromParent2(title);
+        },
+        child: SmallButtonUnderlined("Delete", textColor: Colors.red,),
     );
 
   }
+
+  _getEditOrCopyButton(BuildContext context){
+    return GestureDetector(
+        onTap: () async {
+          if(buttonType == ButtonType.view_all) {
+            final result = await Navigator.of(context)
+                .push(MaterialPageRoute(builder: (context) =>
+                AddCustomListPage(Provider
+                    .of<User>(context, listen: false)
+                    .bookshelf, title, ListType.edit_custom_list)));
+          } else if (buttonType == ButtonType.edit_list || buttonType == ButtonType.copy_list) {
+            this.goToPageFromParent(title);
+          }
+        },
+        child: buttonType == ButtonType.edit_list ?
+        SmallButtonUnderlined("Edit") : SmallButtonUnderlined("Copy")
+    );
+  }
+
+  //getED
 }

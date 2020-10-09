@@ -5,6 +5,7 @@ import 'package:bookifyapp/Enums/profile_type.dart';
 import 'package:bookifyapp/InfoToast.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/book_card.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/user_preview_card.dart';
+import 'package:bookifyapp/LayoutWidgets/Dialogs/dialog_with_accept_and_cancel_options.dart';
 import 'package:bookifyapp/LayoutWidgets/Dialogs/dialog_with_input_text.dart';
 import 'package:bookifyapp/LayoutWidgets/Lists/list_title.dart';
 import 'package:bookifyapp/Pages/add_custom_list_page.dart';
@@ -95,14 +96,42 @@ class _BooskelfGridList extends State<BooskelfGridList> with TickerProviderState
     }
   }
 
+  _deleteList(String title) async {
+    int result = await showDialog(
+      context: context,
+      builder: (BuildContext context) => DialogWithAcceptAndCancelOptions(
+          "Delete List",
+          "Are you sure you want to delete list?",
+          TextStyle(color: Colors.red,),
+          TextStyle(color: Colors.blue,)
+      ),
+    );
+    if(result == DialogWithAcceptAndCancelOptions.ACCEPT_TAP){
+      setState(() {
+        User user = Provider.of<User>(context, listen: false);
+        user.removeLectureListByName(title);
+      });
+      InfoToast.showListRemovedCorrecltyFromBookshelf(title);
+    }
+  }
+
   _makeHeader(String title, width, [reading]) {
     if (reading)
       return ListTitle(title);
     if(!showEditButton)
-      return ListTitle(title, withButton: true, buttonType: ButtonType.copy_list, goToPageFromParent: _copyList,);
-    return ListTitle(title, withButton: true, buttonType: ButtonType.edit_list, goToPageFromParent: _goToEditListPage,);
-    //return (reading || !showEditButton) ?   ListTitle(title):
-    //ListTitle(title, withButton: true, buttonType: ButtonType.edit_list, goToPageFromParent: goToEditListPage,);
+      return ListTitle(
+        title,
+        withButton: true,
+        buttonType: ButtonType.copy_list,
+        goToPageFromParent: _copyList,
+      );
+    return ListTitle(
+      title,
+      withButton: true,
+      buttonType: ButtonType.edit_list,
+      goToPageFromParent: _goToEditListPage,
+      goToPageFromParent2: _deleteList,
+    );
   }
 
 }

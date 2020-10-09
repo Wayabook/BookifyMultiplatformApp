@@ -48,6 +48,7 @@ class User extends ChangeNotifier{
   void removeLectureListByName(String listName){
     if(this._lecture_lists.containsKey(listName))
       this._lecture_lists.remove(listName);
+    notifyListeners();
   }
 
   List<Lecture> getLectureListByName(String listName){
