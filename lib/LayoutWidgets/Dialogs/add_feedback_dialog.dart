@@ -321,19 +321,6 @@ class _AddFeedbackDialog
                           itemCount: widgets.length,
                           itemBuilder: (BuildContext context, int index) {
                             return widgets[index];
-                            /*if(index == 0){
-                              return _getTitleSection("¿Como estuvo?");
-                            } else if (index == 1) {
-                              return _getRatingBar();
-                            } else if (index == 2) {
-                              return _getTitleSection("¿Como te sentiste?");
-                            } else if (index == 3) {
-                              return _getReactionsGrid();
-                            } else if (index == 4) {
-                              return _getCommentsTitle();
-                            } else {
-                              return mainComments[index - 5];
-                            }*/
                           }
                       ),
                     ),
@@ -397,7 +384,6 @@ class _AddFeedbackDialog
       subCommentsPage: false,
       chapterTitle: this.currentChapter.title,
       chapterNumber: this.currentChapterNumber,
-      //bookTitleAndChapter: "Publicar sobre Titulo Libro | Cap 01",
     )));
 
 
@@ -408,14 +394,7 @@ class _AddFeedbackDialog
           MainComment mainComment = new MainComment(user, result, answers: Comment.getMockComments());
           this.currentChapter.addComment(mainComment);
 
-          //int pos = mainComments.length;
-          /*mainComments.add(
-              MainCommentCard(
-                  mainComment,
-                  fromDialog: true,
-                  chapterTitle: this.currentChapter.title,
-                  chapterNumber: this.currentChapterNumber,
-                  removeCommentFunction: removeComment));*/
+
           widgets.add(MainCommentCard(
               mainComment,
               fromDialog: true,

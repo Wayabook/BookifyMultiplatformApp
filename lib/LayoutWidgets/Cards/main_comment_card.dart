@@ -14,6 +14,7 @@ import 'package:like_button/like_button.dart';
 class MainCommentCard extends StatelessWidget implements RemoveCommentInterface {
 
   bool fromDialog;
+  bool seeAllComments;
   String chapterTitle;
   int chapterNumber;
   int commentPosition;
@@ -25,6 +26,7 @@ class MainCommentCard extends StatelessWidget implements RemoveCommentInterface 
       this.mainComment,
       {
         this.fromDialog = false,
+        this.seeAllComments = false,
         this.chapterTitle = "",
         this.chapterNumber = 0,
         this.removeCommentFunction,
@@ -33,7 +35,7 @@ class MainCommentCard extends StatelessWidget implements RemoveCommentInterface 
 
   @override
   Widget build(BuildContext context) {
-    if (fromDialog) {
+    if (fromDialog || seeAllComments) {
       return GestureDetector(
         onTap: (){
           Navigator.of(context)
@@ -43,6 +45,7 @@ class MainCommentCard extends StatelessWidget implements RemoveCommentInterface 
                 subCommentsPage: true,
                 chapterTitle: this.chapterTitle,
                 chapterNumber: this.chapterNumber,
+                inactiveAddCommentOption: this.seeAllComments,
               )
               /*CommentPage(this.mainComment)*/));
         },

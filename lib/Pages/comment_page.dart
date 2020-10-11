@@ -18,6 +18,7 @@ import '../InfoToast.dart';
   class CommentPage extends StatefulWidget {
 
   bool subCommentsPage;
+  bool inactiveAddCommentOption;
   MainComment mainComment;
   String chapterTitle;
   int chapterNumber;
@@ -28,6 +29,7 @@ import '../InfoToast.dart';
       {
         this.chapterNumber,
         this.subCommentsPage = true,
+        this.inactiveAddCommentOption = false,
         this.chapterTitle = "",
       }
   );
@@ -107,6 +109,7 @@ class _CommentPage
         for(Comment comment in chapter.comments){
           comments.add(MainCommentCard(
             comment,
+            fromDialog: true,
             chapterTitle: chapter.title,
             chapterNumber: chapterNumber,
             removeCommentFunction: removeComment,
@@ -144,6 +147,58 @@ class _CommentPage
     );
   }
 
+  _getSubcommentsListView(){
+    return ListView.builder(
+        controller: scrollController,
+        shrinkWrap: true,
+        padding: const EdgeInsets.all(8),
+        itemCount: this.comments.length,
+        itemBuilder: (BuildContext context, int index) {
+          return this.comments[index];
+        }
+    );
+  }
+
+  _getColumnWithListViewAndAddCommentOption(){
+    return Column(
+      children: [
+        Flexible(
+          flex: 9,
+          child: _getSubcommentsListView(),
+        ),
+
+
+        Flexible(
+            flex: 0,
+            child: Card(
+              color: Colors.blueGrey,
+              //margin: EdgeInsets.fromLTRB(0, 0, 0, 3),
+              child: Row(
+                children: [
+                  Flexible(
+                    flex: 9,
+                    child: textField,
+                  ),
+
+                  Flexible(
+                      flex: 1,
+                      child: GestureDetector(
+                        child: Icon(
+                          Icons.send,
+                          color: Colors.yellow,
+                          size: 30,
+                        ),
+                        onTap: _addComment,
+                      )
+                  ),
+                ],
+              ),
+            )
+        ),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
    if(widget.mainComment != null){
@@ -154,51 +209,7 @@ class _CommentPage
            height: MediaQuery.of(context).size.height,
            width: MediaQuery.of(context).size.width,
            //child:  _createListView(),
-           child: Column(
-             children: [
-               Flexible(
-                 flex: 9,
-                 child: ListView.builder(
-                     controller: scrollController,
-                     shrinkWrap: true,
-                     padding: const EdgeInsets.all(8),
-                     itemCount: this.comments.length,
-                     itemBuilder: (BuildContext context, int index) {
-                       return this.comments[index];
-                     }
-                 ),
-               ),
-
-
-               Flexible(
-                   flex: 0,
-                   child: Card(
-                     color: Colors.blueGrey,
-                     //margin: EdgeInsets.fromLTRB(0, 0, 0, 3),
-                     child: Row(
-                       children: [
-                         Flexible(
-                           flex: 9,
-                           child: textField,
-                         ),
-
-                         Flexible(
-                             flex: 1,
-                             child: GestureDetector(
-                               child: Icon(
-                                 Icons.send,
-                                 color: Colors.yellow,
-                                 size: 30,
-                               ),
-                               onTap: _addComment,
-                             )
-                         ),
-                       ],
-                     ),
-                   )
-               ),
-             ],
-           ),
+           child: widget.inactiveAddCommentOption ? _getSubcommentsListView() : _getColumnWithListViewAndAddCommentOption(),
          ),
          appBar: AppBar(
              backgroundColor: Colors.blueGrey,
