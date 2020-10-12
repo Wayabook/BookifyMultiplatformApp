@@ -4,7 +4,6 @@ import 'package:bookifyapp/Models/User.dart';
 import 'package:bookifyapp/Models/Item.dart';
 
 class Book {
-
   String _title;
   String _author;
   String _coverImage;
@@ -16,12 +15,8 @@ class Book {
   String editorial;
   String language;
   int addedBy;
-  //int sumRatings;
-  //int numRatings;
-
   double avgRating;
   bool isNew;
-  //List<String> chaptersTitles;
   List<Chapter> chapters;
   List<User> friends_reading; /*Canviar i ficar al lecture ?*/
   Map<String, List<Item>> _shops_items;

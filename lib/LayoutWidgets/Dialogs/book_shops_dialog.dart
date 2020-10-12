@@ -1,6 +1,15 @@
+import 'package:bookifyapp/Enums/profile_type.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/shop_item_card.dart';
 import 'package:bookifyapp/LayoutWidgets/carousel_card.dart';
 import 'package:bookifyapp/Models/Item.dart';
+import 'package:bookifyapp/Models/User.dart';
+import 'package:bookifyapp/Pages/badgets_page.dart';
+import 'package:bookifyapp/Pages/book_page.dart';
+import 'package:bookifyapp/Pages/discover_page.dart';
+import 'package:bookifyapp/Pages/friends_page.dart';
+import 'package:bookifyapp/Pages/profile_page.dart';
+import 'package:bookifyapp/Pages/reading_page.dart';
+import 'package:custom_navigator/custom_scaffold.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/Models/Book.dart';
@@ -8,26 +17,35 @@ import 'package:bookifyapp/LayoutWidgets/BookWidgets/book_cover.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter_page_indicator/flutter_page_indicator.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:provider/provider.dart';
 
 
-class BookShopsDialog extends StatelessWidget{
+class BookShopsDialog<T extends TickerProviderStateMixin> extends StatefulWidget {
 
   Book book;
-  BookShopsDialog(this.book);
+  T page;
 
-  Dialog alertDialog;
-  bool _firstTime = true;
-  BuildContext context;
-  double width;
-  double height;
+  BookShopsDialog(this.book, this.page);
 
   final TextEditingController inputController = TextEditingController();
 
   @override
+  _BookShopsDialog createState() => _BookShopsDialog();
+}
+
+class _BookShopsDialog extends State<BookShopsDialog>{
+
+  double width;
+  double height;
+  Dialog alertDialog;
+  bool _firstTime = true;
+  BuildContext context;
+
+  @override
   Widget build(BuildContext context) {
     List<Book> books = new List();
-    books.add(book);
-    books.add(book);
+    books.add(widget.book);
+    books.add(widget.book);
 
     width = MediaQuery.of(context).size.width;
     height = MediaQuery.of(context).size.height;
@@ -39,7 +57,9 @@ class BookShopsDialog extends StatelessWidget{
       child: Container(
         height: height,
         width: width,
-        child: Swiper(
+        child: //_getCardOptionBar()
+        _getCardContent(0)
+        /*Swiper(
           //containerHeight: 25.0,
           itemBuilder: (BuildContext context, int index) {
             return _getCardContent(index);
@@ -47,17 +67,88 @@ class BookShopsDialog extends StatelessWidget{
 
           indicatorLayout: PageIndicatorLayout.COLOR,
           autoplay: false,
-          itemCount: this.book.shops_items.length,
+          itemCount: widget.book.shops_items.length,
           pagination: null,
           control: null,
           viewportFraction: 0.85,
           scale: 0.9,
-        )
+        )*/
       )
     );
     return alertDialog;
   }
 
+  _getCardOptionBar(){
+    var _controller = new TabController(length: 3, vsync: widget.page);
+    final tab = new TabBar(
+      tabs: <Tab>[
+        new Tab(text: 'Tab 1',),
+        new Tab(text: 'Tab 2',),
+        new Tab(text: 'Tab 3', ),
+      ],
+      controller: _controller,
+      labelColor: Colors.black,
+      indicatorColor: Colors.blueGrey,
+    );
+
+    return new Scaffold(
+      appBar: PreferredSize(
+        preferredSize: tab.preferredSize,
+        child: new Card(
+          elevation: 26.0,
+          color: Colors.white,
+          child: tab,
+        ),
+      ),
+      body: new TabBarView(
+          controller: _controller,
+          children: [
+            _get_book_info(0),
+            _get_book_info(1),
+            _get_book_info(2)
+
+          ]
+      ),
+    );
+
+
+
+    return Scaffold(
+
+      body: Column(
+        children: [
+          //tab,
+          FriendsPage(User.getMockUser().friends),
+          //FriendsPage(User.getMockUser().friends),
+          //FriendsPage(User.getMockUser().friends)
+
+        ],
+      ),
+    );
+    /*return new Scaffold(
+      appBar: new AppBar(
+          backgroundColor: Colors.grey,
+          bottom: new TabBar(
+              //controller: controller,
+              tabs: <Tab>[
+                new Tab(icon: new Icon(Icons.arrow_forward)),
+                new Tab(icon: new Icon(Icons.arrow_downward)),
+                new Tab(icon: new Icon(Icons.arrow_back)),
+              ]
+          )
+      ),
+      /*body: new TabBarView(
+          controller: controller,
+          children: <Widget>[
+            new first.First(),
+            new second.Second(),
+            new third.Third(),
+            new fourth.Fourth(),
+            new fifth.Fifth()
+          ]
+      ),*/
+    );*/
+  }
   _getCardContent(int index){
 
     return Container(
@@ -87,7 +178,7 @@ class BookShopsDialog extends StatelessWidget{
 
           Center(
             child: BookCover(
-              book,
+              widget.book,
               showInfo: false,
               height: 180,
             ),
@@ -100,10 +191,16 @@ class BookShopsDialog extends StatelessWidget{
 
           Padding(
             padding: EdgeInsets.fromLTRB(15, 220, 0, 0),
-            child: ListView(
-              children: get_book_info(index)
-            ),
+            child: _getCardOptionBar()
           )
+
+          /*Padding(
+            padding: EdgeInsets.fromLTRB(15, 220, 0, 0),
+            child: ListView(
+              children: _getCardOptionBar()
+              //get_book_info(index)
+            ),
+          )*/
         ],
       ),
     );
@@ -150,7 +247,7 @@ class BookShopsDialog extends StatelessWidget{
               textAlign: TextAlign.left,
             ),
             Text(
-              book.editorial,
+              widget.book.editorial,
               style: TextStyle(fontSize: 14),
               textAlign: TextAlign.left,
             ),
@@ -168,7 +265,7 @@ class BookShopsDialog extends StatelessWidget{
               textAlign: TextAlign.left,
             ),
             Text(
-              book.ean,
+              widget.book.ean,
               style: TextStyle(fontSize: 14),
               textAlign: TextAlign.left,
             ),
@@ -186,7 +283,7 @@ class BookShopsDialog extends StatelessWidget{
               textAlign: TextAlign.left,
             ),
             Text(
-              book.isbn,
+              widget.book.isbn,
               style: TextStyle(fontSize: 14),
               textAlign: TextAlign.left,
             ),
@@ -204,7 +301,7 @@ class BookShopsDialog extends StatelessWidget{
                 textAlign: TextAlign.left,
               ),
               Text(
-                book.language,
+                widget.book.language,
                 style: TextStyle(fontSize: 14),
                 textAlign: TextAlign.left,
               ),
@@ -216,8 +313,8 @@ class BookShopsDialog extends StatelessWidget{
     return bookDataSheet;
   }
 
-  List<Widget> get_book_info(int index){
-    var aux = this.book.shops_items.entries.toList();
+  _get_book_info(int index){
+    var aux = widget.book.shops_items.entries.toList();
     String cover_type = aux[index].key;
     List<Item> items  = aux[index].value;
 
@@ -245,7 +342,9 @@ class BookShopsDialog extends StatelessWidget{
       );
     }
 
-    return infoItems;
+    return Column(
+      children: infoItems,
+    );
   }
 
 }

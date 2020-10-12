@@ -34,7 +34,7 @@ class BookPage extends StatefulWidget {
       this.auxBooksForPrototype);
 }
 
-class _BookPage extends State<BookPage> {
+class _BookPage extends State<BookPage> with TickerProviderStateMixin{
 
   final String title;
   final Book book;
@@ -170,7 +170,7 @@ class _BookPage extends State<BookPage> {
                   onPressed: () {
                     showDialog(
                       context: context,
-                      builder: (BuildContext context) => BookShopsDialog(this.book),
+                      builder: (BuildContext context) => BookShopsDialog(this.book, this),
                     );
                   },
                   color: Colors.blueGrey,
