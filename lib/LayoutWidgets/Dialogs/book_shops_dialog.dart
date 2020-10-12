@@ -91,11 +91,11 @@ class _BookShopsDialog extends State<BookShopsDialog>{
       indicatorColor: Colors.blueGrey,
     );
 
-    return new Scaffold(
+    return Scaffold(
       appBar: PreferredSize(
         preferredSize: tab.preferredSize,
         child: new Card(
-          elevation: 26.0,
+          elevation: 10.0,
           color: Colors.white,
           child: tab,
         ),
@@ -341,6 +341,15 @@ class _BookShopsDialog extends State<BookShopsDialog>{
           )
       );
     }
+
+    return ListView.builder
+      (
+        //physics: NeverScrollableScrollPhysics(),
+        itemCount: infoItems.length,
+        itemBuilder: (BuildContext ctxt, int index) {
+          return infoItems[index];
+        }
+    );
 
     return Column(
       children: infoItems,
