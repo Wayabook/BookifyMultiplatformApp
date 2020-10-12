@@ -22,7 +22,7 @@ class ShopItemCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: 10,
-      margin: new EdgeInsets.fromLTRB(0, 0, 15, 0),
+      margin: new EdgeInsets.fromLTRB(0, 0, 0, 0),
       child:  Container(
         height: 100,
         child: _makeListTile(),

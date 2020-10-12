@@ -74,14 +74,14 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
 
   @override
   Widget build(BuildContext context) {
-    final text = Text('Details of $title');
-
     return Scaffold(
       body: Container(
-        //child:  _createListView(),
         child: _buildBookPage(context),
       ),
-      appBar: AppBar(title: text),
+      appBar: AppBar(
+          backgroundColor: Colors.blueGrey,
+          title: Text('Details of $title'),
+      ),
     );
   }
 

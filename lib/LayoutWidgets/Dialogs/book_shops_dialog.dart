@@ -42,10 +42,6 @@ class _BookShopsDialog extends State<BookShopsDialog>{
 
   @override
   Widget build(BuildContext context) {
-    /*List<Book> books = new List();
-    books.add(widget.book);
-    books.add(widget.book);*/
-
     width = MediaQuery.of(context).size.width;
     height = MediaQuery.of(context).size.height;
 
@@ -55,8 +51,7 @@ class _BookShopsDialog extends State<BookShopsDialog>{
       child: Container(
         height: height,
         width: width,
-        child: _getCardContent(0)
-
+        child: _getCardContent(context)
       )
     );
     return alertDialog;
@@ -64,8 +59,11 @@ class _BookShopsDialog extends State<BookShopsDialog>{
 
   _getCardOptionBar(){
     List<Tab> tabs = new List();
+    List<Widget> tabBarViews = new List();
+    var index = 0;
     for(String key in widget.book.shops_items.keys){
       tabs.add(new Tab(text: key,));
+      tabBarViews.add(_get_book_info(index));
     }
 
     var _controller = new TabController(length: tabs.length, vsync: widget.page);
@@ -79,62 +77,24 @@ class _BookShopsDialog extends State<BookShopsDialog>{
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: tab.preferredSize,
-        child: new Card(
+        child: Card(
           elevation: 10.0,
           color: Colors.white,
           child: tab,
         ),
       ),
-      body: new TabBarView(
-          controller: _controller,
-          children: [
-            _get_book_info(0),
-            _get_book_info(1),
-            _get_book_info(2)
-
-          ]
-      ),
+      body: Padding(
+        padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
+        child: TabBarView(
+            controller: _controller,
+            children: tabBarViews
+        ),
+      )
     );
-
-
-
-    return Scaffold(
-
-      body: Column(
-        children: [
-          //tab,
-          FriendsPage(User.getMockUser().friends),
-          //FriendsPage(User.getMockUser().friends),
-          //FriendsPage(User.getMockUser().friends)
-
-        ],
-      ),
-    );
-    /*return new Scaffold(
-      appBar: new AppBar(
-          backgroundColor: Colors.grey,
-          bottom: new TabBar(
-              //controller: controller,
-              tabs: <Tab>[
-                new Tab(icon: new Icon(Icons.arrow_forward)),
-                new Tab(icon: new Icon(Icons.arrow_downward)),
-                new Tab(icon: new Icon(Icons.arrow_back)),
-              ]
-          )
-      ),
-      /*body: new TabBarView(
-          controller: controller,
-          children: <Widget>[
-            new first.First(),
-            new second.Second(),
-            new third.Third(),
-            new fourth.Fourth(),
-            new fifth.Fifth()
-          ]
-      ),*/
-    );*/
   }
-  _getCardContent(int index){
+
+
+  _getCardContent(BuildContext context){
 
     return Container(
       //color: Colors.black,
@@ -175,17 +135,9 @@ class _BookShopsDialog extends State<BookShopsDialog>{
           ),
 
           Padding(
-            padding: EdgeInsets.fromLTRB(15, 220, 0, 0),
+            padding: EdgeInsets.fromLTRB(0, 220, 0, 0),
             child: _getCardOptionBar()
           )
-
-          /*Padding(
-            padding: EdgeInsets.fromLTRB(15, 220, 0, 0),
-            child: ListView(
-              children: _getCardOptionBar()
-              //get_book_info(index)
-            ),
-          )*/
         ],
       ),
     );
@@ -309,14 +261,14 @@ class _BookShopsDialog extends State<BookShopsDialog>{
 
     List<Widget> infoItems = <Widget>[
       Padding(
-          padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
+          padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
           child: Column(
             children: get_book_data_sheet(cover_type, items[0])
           )
       ),
 
       Padding(
-        padding: EdgeInsets.fromLTRB(0, 10, 15, 10),
+        padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
         child: Container(color: Colors.blueGrey, height: 2, width: width),
       ),
     ];
