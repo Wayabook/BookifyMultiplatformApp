@@ -18,8 +18,8 @@ class Lecture extends Book{
       String summary,
       int year,
       int extension,
-      String isbn,
-      String ean,
+      /*String isbn,
+      String ean,*/
       Map<String, List<Item>> shops_items,
       String editorial,
       String language,
@@ -38,8 +38,8 @@ class Lecture extends Book{
       summary,
       year,
       extension,
-      isbn,
-      ean,
+      /*isbn,
+      ean,*/
       shops_items,
       editorial,
       language,

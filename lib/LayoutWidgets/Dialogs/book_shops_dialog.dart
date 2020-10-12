@@ -38,54 +38,39 @@ class _BookShopsDialog extends State<BookShopsDialog>{
   double width;
   double height;
   Dialog alertDialog;
-  bool _firstTime = true;
   BuildContext context;
 
   @override
   Widget build(BuildContext context) {
-    List<Book> books = new List();
+    /*List<Book> books = new List();
     books.add(widget.book);
-    books.add(widget.book);
+    books.add(widget.book);*/
 
     width = MediaQuery.of(context).size.width;
     height = MediaQuery.of(context).size.height;
 
 
     alertDialog = new Dialog(
-      //title: const Text('Add List Title:'),
       backgroundColor: Colors.transparent,
       child: Container(
         height: height,
         width: width,
-        child: //_getCardOptionBar()
-        _getCardContent(0)
-        /*Swiper(
-          //containerHeight: 25.0,
-          itemBuilder: (BuildContext context, int index) {
-            return _getCardContent(index);
-          },
+        child: _getCardContent(0)
 
-          indicatorLayout: PageIndicatorLayout.COLOR,
-          autoplay: false,
-          itemCount: widget.book.shops_items.length,
-          pagination: null,
-          control: null,
-          viewportFraction: 0.85,
-          scale: 0.9,
-        )*/
       )
     );
     return alertDialog;
   }
 
   _getCardOptionBar(){
-    var _controller = new TabController(length: 3, vsync: widget.page);
+    List<Tab> tabs = new List();
+    for(String key in widget.book.shops_items.keys){
+      tabs.add(new Tab(text: key,));
+    }
+
+    var _controller = new TabController(length: tabs.length, vsync: widget.page);
     final tab = new TabBar(
-      tabs: <Tab>[
-        new Tab(text: 'Tab 1',),
-        new Tab(text: 'Tab 2',),
-        new Tab(text: 'Tab 3', ),
-      ],
+      tabs: tabs,
       controller: _controller,
       labelColor: Colors.black,
       indicatorColor: Colors.blueGrey,
@@ -206,20 +191,24 @@ class _BookShopsDialog extends State<BookShopsDialog>{
     );
   }
 
-  List<Widget> get_book_data_sheet(String cover_type){
+  List<Widget> get_book_data_sheet(String cover_type, Item item){
     List<Widget> bookDataSheet = [
-      Container(
-        height: 20,
-        width: width,
-        //color: Colors.black,
-        child: Text(
-          'Ficha Tecnica:',
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-          textAlign: TextAlign.left,
-        ),
-      ),
 
       Padding(
+          padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
+          child: Container(
+            height: 20,
+            width: width,
+            //color: Colors.black,
+            child: Text(
+              'Ficha Tecnica:',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              textAlign: TextAlign.left,
+            ),
+          ),
+      ),
+
+      /*Padding(
           padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
           child: Row(
             children: <Widget>[
@@ -235,7 +224,7 @@ class _BookShopsDialog extends State<BookShopsDialog>{
               ),
             ],
           )
-      ),
+      ),*/
 
       Padding(
         padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
@@ -265,7 +254,7 @@ class _BookShopsDialog extends State<BookShopsDialog>{
               textAlign: TextAlign.left,
             ),
             Text(
-              widget.book.ean,
+              item.ean,
               style: TextStyle(fontSize: 14),
               textAlign: TextAlign.left,
             ),
@@ -283,7 +272,7 @@ class _BookShopsDialog extends State<BookShopsDialog>{
               textAlign: TextAlign.left,
             ),
             Text(
-              widget.book.isbn,
+              item.isbn,
               style: TextStyle(fontSize: 14),
               textAlign: TextAlign.left,
             ),
@@ -322,7 +311,7 @@ class _BookShopsDialog extends State<BookShopsDialog>{
       Padding(
           padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
           child: Column(
-            children: get_book_data_sheet(cover_type)
+            children: get_book_data_sheet(cover_type, items[0])
           )
       ),
 
@@ -349,10 +338,6 @@ class _BookShopsDialog extends State<BookShopsDialog>{
         itemBuilder: (BuildContext ctxt, int index) {
           return infoItems[index];
         }
-    );
-
-    return Column(
-      children: infoItems,
     );
   }
 

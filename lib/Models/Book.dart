@@ -10,25 +10,16 @@ class Book {
   String _summary;
   int _year;
   int _extension;
-  String _isbn;
-  String _ean;
+  /*String _isbn;
+  String _ean;*/
   String editorial;
   String language;
   int addedBy;
   double avgRating;
   bool isNew;
   List<Chapter> chapters;
-  List<User> friends_reading; /*Canviar i ficar al lecture ?*/
+  List<User> friends_reading;
   Map<String, List<Item>> _shops_items;
-
-  //ArrayList<Emoji> emojis;
-  //Calendar calendar;
-  //Genre genre;
-  //Author auth;
-  //ArrayList<Review> comments;
-  //private ArrayList<Review>
-
-  //Book();
 
   Book(
       this._title,
@@ -37,8 +28,8 @@ class Book {
       this._summary,
       this._year,
       this._extension,
-      this._isbn,
-      this._ean,
+      /*this._isbn,
+      this._ean,*/
       this._shops_items,
       this.editorial,
       this.language,
@@ -56,8 +47,8 @@ class Book {
       this._author,
       this._coverImage,
       this._summary,
-      this._isbn,
-      this._ean,
+      /*this._isbn,
+      this._ean,*/
       this._shops_items,
       {this.editorial="SUMA", this.language="CASTELLANO", this.chapters = const []});
 
@@ -69,8 +60,6 @@ class Book {
         this.summary,
         this.year,
         this.extension,
-        this.isbn,
-        this.ean,
         this.shops_items,
         this.editorial,
         this.language,
@@ -141,7 +130,7 @@ class Book {
     _extension = extension;
   }
 
-  String get isbn => _isbn;
+  /*String get isbn => _isbn;
 
   set isbn(String id) {
     _isbn = id;
@@ -151,7 +140,7 @@ class Book {
 
   set ean(String ean) {
     _ean = ean;
-  }
+  }*/
 
   int get addedByNumberOfPeople => addedBy;
 
@@ -167,7 +156,7 @@ class Book {
 
   @override
   bool operator ==( other) {
-    if(this._isbn ==  other.isbn)
+    if(this.title ==  other.title && this.author == other.author)
       return true;
     return false;
     // TODO: implement ==
@@ -213,8 +202,6 @@ class Book {
         "Elisabeth Benavent",
         "https://imagessl3.casadellibro.com/a/l/t0/73/9788490628973.jpg",
         description,
-        "1",
-        "2",
         shopItems,
         chapters : chapters
     );
@@ -224,8 +211,6 @@ class Book {
         "Coque Mesa",
         "https://imagessl9.casadellibro.com/a/l/t5/59/9788408228059.jpg",
         description,
-        "2",
-        "2",
         shopItems,
         chapters: chapters
     );
@@ -235,8 +220,6 @@ class Book {
         "Maxim Huerta",
         "https://imagessl2.casadellibro.com/a/l/t5/92/9788408221692.jpg",
         description,
-        "3",
-        "2",
         shopItems,
         chapters: chapters
     );
@@ -246,8 +229,6 @@ class Book {
         "Woody Allen",
         "https://imagessl0.casadellibro.com/a/l/t5/50/9788491819950.jpg",
         description,
-        "4",
-        "2",
         shopItems,
         chapters: chapters
     );

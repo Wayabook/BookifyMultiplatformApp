@@ -32,11 +32,11 @@ class Comment {
     Shop shop4 = new Shop.withoutIds("Taugus Books", "https://imagessl.casadellibro.com/t19/i/logo.png");
     Shop shop5 = new Shop.withoutIds("Me gusta leer", "https://tienda.megustaleer.com/img/tienda-megustaleer-logo-1585260247.jpg");
 
-    items.add(new Item.withoutId(shop1, "https://www.casadellibro.com/libro-en-busca-del-chico-irrompible/9788408228059/11405104", 16.05, "€"));
-    items.add(new Item.withoutId(shop2, "https://www.fnac.es/a7456973/En-busca-del-chico-irrompible#st=el+chico+irr&ct=En+todo+Fnac&t=p", 16.05, "€"));
-    items.add(new Item.withoutId(shop3, "https://www.elcorteingles.es/libros/A35120735-en-busca-del-chico-irrompible-tapa-dura-9788408228059/", 16.05, "€"));
-    items.add(new Item.withoutId(shop4, "https://www.tagusbooks.com/ebook-en-busca-del-chico-irrompible-ebook/9788408230663/11537354", 16.05, "€"));
-    items.add(new Item.withoutId(shop5, "https://tienda.megustaleer.com/libros/2519-dulce-chico-indecente-9788490708248.html", 16.05, "€"));
+    items.add(new Item.withoutId(shop1, "https://www.casadellibro.com/libro-en-busca-del-chico-irrompible/9788408228059/11405104", 16.05, "€", "1", "2"));
+    items.add(new Item.withoutId(shop2, "https://www.fnac.es/a7456973/En-busca-del-chico-irrompible#st=el+chico+irr&ct=En+todo+Fnac&t=p", 16.05, "€", "1", "2"));
+    items.add(new Item.withoutId(shop3, "https://www.elcorteingles.es/libros/A35120735-en-busca-del-chico-irrompible-tapa-dura-9788408228059/", 16.05, "€", "1", "2"));
+    items.add(new Item.withoutId(shop4, "https://www.tagusbooks.com/ebook-en-busca-del-chico-irrompible-ebook/9788408230663/11537354", 16.05, "€", "1", "2"));
+    items.add(new Item.withoutId(shop5, "https://tienda.megustaleer.com/libros/2519-dulce-chico-indecente-9788490708248.html", 16.05, "€", "1", "2"));
 
     Map<String, List<Item>> shopItems = {
       'Tapa Blanda': items,
@@ -71,8 +71,6 @@ class Comment {
         "Elisabeth Benavent",
         "https://imagessl3.casadellibro.com/a/l/t0/73/9788490628973.jpg",
         description,
-        "1",
-        "2",
         shopItems,
         chapters : chapters
     );
@@ -82,8 +80,6 @@ class Comment {
         "Coque Mesa",
         "https://imagessl9.casadellibro.com/a/l/t5/59/9788408228059.jpg",
         description,
-        "2",
-        "2",
         shopItems,
         chapters: chapters
     );
@@ -93,8 +89,6 @@ class Comment {
         "Maxim Huerta",
         "https://imagessl2.casadellibro.com/a/l/t5/92/9788408221692.jpg",
         description,
-        "3",
-        "2",
         shopItems,
         chapters: chapters
     );
@@ -104,8 +98,6 @@ class Comment {
         "Woody Allen",
         "https://imagessl0.casadellibro.com/a/l/t5/50/9788491819950.jpg",
         description,
-        "4",
-        "2",
         shopItems,
         chapters: chapters
     );
