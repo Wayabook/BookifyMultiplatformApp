@@ -10,6 +10,7 @@
 // bar items. The first one is selected.](https://flutter.github.io/assets-for-api-docs/assets/material/bottom_navigation_bar.png)
 
 import 'package:bookifyapp/Enums/profile_type.dart';
+import 'package:bookifyapp/Pages/LoginPages/Welcome/welcome_page.dart';
 import 'package:custom_navigator/custom_navigation.dart';
 import 'package:flutter/material.dart';
 import 'Models/Chapter.dart';
@@ -57,7 +58,8 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         title: _title,
-        home: MyStatefulWidget(),
+        home: //MyStatefulWidget(),
+         WelcomePage(),
       )
     );
 

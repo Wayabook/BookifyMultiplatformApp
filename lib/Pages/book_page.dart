@@ -51,9 +51,11 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
   void initState(){
     super.initState();
     addIconBackgroundColor = Colors.blueGrey;
+
     var user = Provider.of<User>(context, listen: false);
     isInPendingList = user.isInPendingList(book.toLecture());
     isInReadingList = user.isInReadingList(book.toLecture());
+
     if(isInReadingList) {
       addIcon = Icons.local_library;
       addIconBackgroundColor = Colors.blueGrey[500];
@@ -131,11 +133,11 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
                       if(!isInReadingList){
                         var user = Provider.of<User>(context, listen: false);
                         if(isInPendingList){
-                          user.addLectureToPendingList(this.book.toLecture());
-                          InfoToast.showBookAddedCorrectlyToast(widget.book.title);
-                        } else {
                           user.removeLectureFromPendingList(this.book.toLecture());
                           InfoToast.showBookRemovedCorrectlyToast(widget.book.title);
+                        } else {
+                          user.addLectureToPendingList(this.book.toLecture());
+                          InfoToast.showBookAddedCorrectlyToast(widget.book.title);
                         }
                         isInPendingList = !isInPendingList;
                         changeAddButtonColors();

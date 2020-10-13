@@ -67,7 +67,7 @@ class InfoToast {
 
   static void showBookRemovedCorrectlyToast(String bookTitle){
     Fluttertoast.showToast(
-        msg: bookTitle + " correctly removed to Reading page.",
+        msg: bookTitle + " correctly removed from Reading page.",
         toastLength: Toast.LENGTH_LONG,
         gravity: ToastGravity.BOTTOM,
         timeInSecForIosWeb: 1,
