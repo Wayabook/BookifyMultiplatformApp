@@ -2,14 +2,6 @@ import 'package:bookifyapp/Enums/profile_type.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/shop_item_card.dart';
 import 'package:bookifyapp/LayoutWidgets/carousel_card.dart';
 import 'package:bookifyapp/Models/Item.dart';
-import 'package:bookifyapp/Models/User.dart';
-import 'package:bookifyapp/Pages/badgets_page.dart';
-import 'package:bookifyapp/Pages/book_page.dart';
-import 'package:bookifyapp/Pages/discover_page.dart';
-import 'package:bookifyapp/Pages/friends_page.dart';
-import 'package:bookifyapp/Pages/profile_page.dart';
-import 'package:bookifyapp/Pages/reading_page.dart';
-import 'package:custom_navigator/custom_scaffold.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/Models/Book.dart';
@@ -160,24 +152,6 @@ class _BookShopsDialog extends State<BookShopsDialog>{
           ),
       ),
 
-      /*Padding(
-          padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
-          child: Row(
-            children: <Widget>[
-              Text(
-                'Enucadernación:',
-                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
-                textAlign: TextAlign.left,
-              ),
-              Text(
-                cover_type,
-                style: TextStyle(fontSize: 14),
-                textAlign: TextAlign.left,
-              ),
-            ],
-          )
-      ),*/
-
       Padding(
         padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
         child: Row(
@@ -285,7 +259,6 @@ class _BookShopsDialog extends State<BookShopsDialog>{
 
     return ListView.builder
       (
-        //physics: NeverScrollableScrollPhysics(),
         itemCount: infoItems.length,
         itemBuilder: (BuildContext ctxt, int index) {
           return infoItems[index];

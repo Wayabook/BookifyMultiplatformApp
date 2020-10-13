@@ -1,5 +1,6 @@
 import 'package:bookifyapp/LayoutWidgets/Buttons/small_button_underlined.dart';
 import 'package:bookifyapp/Models/Book.dart';
+import 'package:bookifyapp/Pages/chapters_page.dart';
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/LayoutWidgets/arc_banner_image.dart';
 import 'package:bookifyapp/LayoutWidgets/BookWidgets/book_cover.dart';
@@ -88,12 +89,7 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
   _buildBookPage(BuildContext context){
 
     double width = MediaQuery.of(context).size.width;
-    //double horizontal_margin = (width - (3 * 105)) / 2;
     double width_per_child = (width - 30 - (10 * 2)) / 3;
-    var textTheme = Theme.of(context).textTheme;
-    var theme = Theme.of(context);
-
-
     return ListView(
       children: <Widget>[
         Stack(
@@ -115,8 +111,6 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
                     book,
                     height: 180.0,
                   ),
-                  //SizedBox(width: 16.0),
-                  //Expanded(child: movieInformation),
                 ],
               ),
             ),
@@ -160,7 +154,6 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
                       color: addIconColor
                     ),
                   ),
-                  //Icon(Icons.add_circle_outline),
                 ),
               ),
 
@@ -179,16 +172,19 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
                       Icons.shop_two,
                       color: Colors.white
                     ),
-
                   ),
-                  //Icon(Icons.add_circle_outline),
                 ),
               ),
 
               Padding(
                 padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
                 child: RaisedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) => ChaptersPage(this.book),
+                    );
+                  },
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.only(
                         topRight: Radius.circular(25.0),
@@ -197,12 +193,10 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
                   color: Colors.blueGrey,
                   child: IconButton(
                     icon:Icon(
-                        Icons.comment,
+                        Icons.list,
                         color: Colors.white
                     ),
-
                   ),
-                  //Icon(Icons.add_circle_outline),
                 ),
               ),
 

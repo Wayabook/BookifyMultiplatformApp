@@ -1,22 +1,13 @@
-import 'package:bookifyapp/Enums/profile_type.dart';
 import 'package:bookifyapp/Models/Item.dart';
 import 'package:flutter/material.dart';
-import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:bookifyapp/Models/Book.dart';
-import 'package:bookifyapp/Enums/button_type.dart';
 import 'package:bookifyapp/LayoutWidgets/Profile/profile_picture.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:bookifyapp/Pages/profile_page.dart';
 
 class ShopItemCard extends StatelessWidget {
 
   Item item;
   ShopItemCard(this.item); // : super(key: key);
-
-  //final List<User> users;
-  /*final List<Book> readingBooks;
-  final List<Book> pendingBooks;*/
 
   @override
   Widget build(BuildContext context) {
@@ -31,13 +22,11 @@ class ShopItemCard extends StatelessWidget {
   }
 
   _makeListTile() {
-    final double circleRadius = 100.0;
-    final double circleBorderWidth = 8.0;
     return Container(
         decoration: BoxDecoration(
             color: Colors.white,
             borderRadius:  BorderRadius.circular(7.0)
-        ),//Color.fromRGBO(64, 75, 96, .9),
+        ),
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 5.0, vertical: 10.0),
           child: Row(

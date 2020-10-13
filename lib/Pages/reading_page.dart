@@ -11,26 +11,15 @@ import 'package:bookifyapp/Models/Book.dart';
 
 
 class ReadingPage extends StatelessWidget {
-  static const TextStyle optionStyle =
-  TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
 
-  //List<Lecture> books;
-  //List<Book> books =  List();
-  //User user;
-
-  ReadingPage(/*this.user*/);
+  ReadingPage();
 
   @override
   Widget build(BuildContext context) {
-    //List<Lecture> lectures = this.user.lectures["Reading"];
-
     return Scaffold(
       body: Consumer<User>(
           builder: (context, user, child) =>
               VerticalBookList(user.lectures["Reading"], user.lectures["Pending"])),
-      /*appBar: AppBar(
-        title: Text("Reading Page"),
-      ),*/
     );
   }
 }

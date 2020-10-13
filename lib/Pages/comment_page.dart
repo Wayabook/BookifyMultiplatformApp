@@ -23,6 +23,7 @@ import '../InfoToast.dart';
   String chapterTitle;
   int chapterNumber;
   Book book;
+  bool showAllCommentsOfChapter;
 
   CommentPage(
       this.mainComment,
@@ -39,8 +40,18 @@ import '../InfoToast.dart';
     this.chapterNumber,
     this.subCommentsPage = true,
     this.chapterTitle = "",
+    this.showAllCommentsOfChapter = false,
   }
   );
+
+  /*CommentPage.showAllCommentsOfChapter(
+      this.book,
+      {
+        this.chapterNumber,
+        this.subCommentsPage = true,
+        this.chapterTitle = "",
+      }
+  )*/
 
   @override
   _CommentPage createState() => _CommentPage();
@@ -105,7 +116,8 @@ class _CommentPage
     } else {
       int position = 0;
       int chapterNumber = 1;
-      for(Chapter chapter in widget.book.chapters){
+      if(widget.showAllCommentsOfChapter){
+        Chapter chapter = widget.book.chapters[widget.chapterNumber];
         for(Comment comment in chapter.comments){
           comments.add(MainCommentCard(
             comment,
@@ -117,6 +129,21 @@ class _CommentPage
           ));
           position += 1;
           chapterNumber += 1;
+        }
+      } else {
+        for(Chapter chapter in widget.book.chapters){
+          for(Comment comment in chapter.comments){
+            comments.add(MainCommentCard(
+              comment,
+              fromDialog: true,
+              chapterTitle: chapter.title,
+              chapterNumber: chapterNumber,
+              removeCommentFunction: removeComment,
+              positionKey: position,
+            ));
+            position += 1;
+            chapterNumber += 1;
+          }
         }
       }
     }
@@ -279,53 +306,10 @@ class _CommentPage
                return this.comments[index];
              }
          ),
-         /*child: Column(
-           children: [
-             Flexible(
-                 flex: 1,
-                 child: Card(
-                   color: Colors.blueGrey,
-                   //margin: EdgeInsets.fromLTRB(0, 0, 0, 3),
-                   child: Row(
-                     children: [
-                       Flexible(
-                         flex: 9,
-                         child: textField,
-                       ),
-
-                       Flexible(
-                           flex: 1,
-                           child: GestureDetector(
-                             child: Icon(
-                               Icons.send,
-                               color: Colors.yellow,
-                               size: 30,
-                             ),
-                             onTap: _addComment,
-                           )
-                       ),
-                     ],
-                   ),
-                 )
-             ),
-             Flexible(
-               flex: 9,
-               child: ListView.builder(
-                   controller: scrollController,
-                   shrinkWrap: true,
-                   padding: const EdgeInsets.all(8),
-                   itemCount: this.comments.length,
-                   itemBuilder: (BuildContext context, int index) {
-                     return this.comments[index];
-                   }
-               ),
-             ),
-           ],
-         ),*/
        ),
        appBar: AppBar(
            backgroundColor: Colors.blueGrey,
-           title: Text(widget.book.title)
+           title: Text(!widget.showAllCommentsOfChapter ? widget.book.title : widget.chapterTitle)
        ),
      );
    }
