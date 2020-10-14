@@ -1,3 +1,4 @@
+import 'package:bookifyapp/Design/constants.dart';
 import 'package:bookifyapp/Enums/button_type.dart';
 import 'package:bookifyapp/Enums/list_type.dart';
 import 'package:bookifyapp/LayoutWidgets/Buttons/small_button_underlined.dart';
@@ -40,7 +41,7 @@ class ListTitle extends StatelessWidget{
 
           Padding(
             padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
-            child: Container(color: Colors.white, height: 2, width: width),
+            child: Container(color: kPrimaryLightColor, height: 2, width: width),
           ),
         ],
       ),
@@ -52,7 +53,7 @@ class ListTitle extends StatelessWidget{
       alignment: Alignment.topLeft,
       child:  Text(
         title,
-        style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: Colors.white),
+        style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: kPrimaryLightColor),
       ),
     );
   }

@@ -1,3 +1,4 @@
+import 'package:bookifyapp/Design/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/Models/User.dart';
 import 'package:bookifyapp/Pages/book_page.dart';
@@ -16,7 +17,6 @@ class FriendsPreview extends StatelessWidget {
     return Container(
       width: 80,
       height: 30,
-      //color: Colors.white,
       child: _getCircleAvatars(),
     );
   }
@@ -29,10 +29,10 @@ class FriendsPreview extends StatelessWidget {
             Align(
               alignment: Alignment.centerLeft,
               child: CircleAvatar(
-                backgroundColor: Colors.blueGrey,
+                backgroundColor: kPrimaryDarkColor,
                 child: CircleAvatar(
                   radius: 18,
-                  backgroundColor: Colors.white,
+                  backgroundColor: kPrimaryLightColor,
                   backgroundImage: NetworkImage(this.friendsReading[1].profilePictureUrl), // Provide your custom image
                 ),
               ),
@@ -40,10 +40,10 @@ class FriendsPreview extends StatelessWidget {
             Align(
               alignment: Alignment.center,
               child: CircleAvatar(
-                backgroundColor: Colors.blueGrey,
+                backgroundColor: kPrimaryDarkColor,
                 child: CircleAvatar(
                   radius: 18,
-                  backgroundColor: Colors.white,
+                  backgroundColor: kPrimaryLightColor,
                   backgroundImage:  NetworkImage(this.friendsReading[0].profilePictureUrl),
                   //backgroundImage: NetworkImage('https://avatars0.githubusercontent.com/u/13257788?s=460&u=aaeef51a634fb1db0d1dc7337ec9e4515e9a314f&v=4'), // Provide your custom image
                 ),
@@ -52,10 +52,10 @@ class FriendsPreview extends StatelessWidget {
             Align(
               alignment: Alignment.centerRight,
               child: CircleAvatar(
-                backgroundColor: Colors.blueGrey,
+                backgroundColor: kPrimaryDarkColor,
                 child: CircleAvatar(
                   radius: 18,
-                  backgroundColor: Colors.white,
+                  backgroundColor: kPrimaryLightColor,
                   child: Text("+" + num.toString()), // Provide your custom image
                 ),
               ),
@@ -69,10 +69,10 @@ class FriendsPreview extends StatelessWidget {
             Align(
               alignment: Alignment.centerLeft,
               child: CircleAvatar(
-                backgroundColor: Colors.white,
+                backgroundColor: kPrimaryLightColor,
                 child: CircleAvatar(
                   radius: 18,
-                  backgroundColor: Colors.white,
+                  backgroundColor: kPrimaryLightColor,
                   backgroundImage: NetworkImage(this.defaultUserUrl), // Provide your custom image
                 ),
               ),
@@ -80,10 +80,10 @@ class FriendsPreview extends StatelessWidget {
             Align(
               alignment: Alignment.center,
               child: CircleAvatar(
-                backgroundColor: Colors.white,
+                backgroundColor: kPrimaryLightColor,
                 child: CircleAvatar(
                   radius: 18,
-                  backgroundColor: Colors.white,
+                  backgroundColor: kPrimaryLightColor,
                   backgroundImage:  NetworkImage(this.friendsReading[0].profilePictureUrl),
                   //backgroundImage: NetworkImage('https://avatars0.githubusercontent.com/u/13257788?s=460&u=aaeef51a634fb1db0d1dc7337ec9e4515e9a314f&v=4'), // Provide your custom image
                 ),
@@ -92,10 +92,10 @@ class FriendsPreview extends StatelessWidget {
             Align(
               alignment: Alignment.centerRight,
               child: CircleAvatar(
-                backgroundColor: Colors.white,
+                backgroundColor: kPrimaryLightColor,
                 child: CircleAvatar(
                   radius: 18,
-                  backgroundColor: Colors.white,
+                  backgroundColor: kPrimaryLightColor,
                   backgroundImage: NetworkImage(this.friendsReading[0].profilePictureUrl), // Provide your custom image
                 ),
               ),
@@ -109,10 +109,10 @@ class FriendsPreview extends StatelessWidget {
             Align(
               alignment: Alignment.centerLeft,
               child: CircleAvatar(
-                backgroundColor: Colors.white,
+                backgroundColor: kPrimaryLightColor,
                 child: CircleAvatar(
                   radius: 18,
-                  backgroundColor: Colors.white,
+                  backgroundColor: kPrimaryLightColor,
                   backgroundImage: NetworkImage(this.defaultUserUrl), // Provide your custom image
                 ),
               ),
@@ -120,22 +120,21 @@ class FriendsPreview extends StatelessWidget {
             Align(
               alignment: Alignment.center,
               child: CircleAvatar(
-                backgroundColor: Colors.white,
+                backgroundColor: kPrimaryLightColor,
                 child: CircleAvatar(
                   radius: 18,
-                  backgroundColor: Colors.white,
+                  backgroundColor: kPrimaryLightColor,
                   backgroundImage: NetworkImage(this.defaultUserUrl),
-                  //backgroundImage: NetworkImage('https://avatars0.githubusercontent.com/u/13257788?s=460&u=aaeef51a634fb1db0d1dc7337ec9e4515e9a314f&v=4'), // Provide your custom image
                 ),
               ),
             ),
             Align(
               alignment: Alignment.centerRight,
               child: CircleAvatar(
-                backgroundColor: Colors.white,
+                backgroundColor: kPrimaryLightColor,
                 child: CircleAvatar(
                   radius: 18,
-                  backgroundColor: Colors.white,
+                  backgroundColor: kPrimaryLightColor,
                   backgroundImage: NetworkImage(this.friendsReading[0].profilePictureUrl), // Provide your custom image
                 ),
               ),

@@ -1,3 +1,4 @@
+import 'package:bookifyapp/Design/constants.dart';
 import 'package:bookifyapp/InfoToast.dart';
 import 'package:bookifyapp/LayoutWidgets/Dialogs/add_feedback_dialog.dart';
 import 'package:bookifyapp/Models/Lecture.dart';
@@ -169,10 +170,9 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> {
   }
 
   _makeListTile(BuildContext context)   {
-    //bool aux = animationController.isAnimating;
     FloatingActionButton floatingActionButton = new FloatingActionButton(
-      heroTag: "AddButton",
-      backgroundColor: Colors.white,
+      heroTag: "AddButton" + book.title,
+      backgroundColor: kPrimaryLightColor,
       child: RotationTransition(
         turns: animation,
         child: Icon(
@@ -195,7 +195,7 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> {
 
     return Container(
         decoration: BoxDecoration(
-            color: Colors.white,
+            color: kPrimaryLightColor,
             borderRadius:  BorderRadius.circular(7.0)
         ),//Color.fromRGBO(64, 75, 96, .9),
         child: Padding(
@@ -274,7 +274,6 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> {
                                   child: Text(
                                     book.title,
                                     style: TextStyle(
-                                      //color: Colors.white,
                                       fontWeight: FontWeight.bold,
                                     ),
                                     textAlign: TextAlign.center,

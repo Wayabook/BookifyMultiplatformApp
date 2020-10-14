@@ -1,6 +1,7 @@
 
 
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:bookifyapp/Design/constants.dart';
 import 'package:bookifyapp/Enums/list_type.dart';
 import 'package:bookifyapp/Models/Book.dart';
 import 'package:bookifyapp/Models/Item.dart';
@@ -90,7 +91,7 @@ class _BookCardInVerticalSearchList extends State<BookCardInVerticalSearchList>{
     if (widget.type == ListType.normal){
       return Container(
           decoration: BoxDecoration(
-              color: Colors.white,
+              color: kPrimaryLightColor,
               borderRadius:  BorderRadius.circular(7.0)
           ),//Color.fromRGBO(64, 75, 96, .9),
           child: Padding(
@@ -178,7 +179,6 @@ class _BookCardInVerticalSearchList extends State<BookCardInVerticalSearchList>{
                                 child: Text(
                                   widget.book.title,
                                   style: TextStyle(
-                                    //color: Colors.white,
                                     fontWeight: FontWeight.bold,
                                   ),
                                   textAlign: TextAlign.center,
@@ -253,9 +253,9 @@ class _BookCardInVerticalSearchList extends State<BookCardInVerticalSearchList>{
     } else if (widget.type == ListType.preview_friends){
       return Container(
           decoration: BoxDecoration(
-              color: Colors.white,
+              color: kPrimaryLightColor,
               borderRadius:  BorderRadius.circular(7.0)
-          ),//Color.fromRGBO(64, 75, 96, .9),
+          ),
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 5.0, vertical: 10.0),
             child: Row(
@@ -283,7 +283,6 @@ class _BookCardInVerticalSearchList extends State<BookCardInVerticalSearchList>{
                                 child: Text(
                                   widget.book.title,
                                   style: TextStyle(
-                                    //color: Colors.white,
                                     fontWeight: FontWeight.bold,
                                   ),
                                   textAlign: TextAlign.center,
@@ -367,7 +366,7 @@ class _BookCardInVerticalSearchList extends State<BookCardInVerticalSearchList>{
     } else if (widget.type == ListType.add_custom_list|| widget.type == ListType.edit_custom_list){
       return Container(
           decoration: BoxDecoration(
-              color: Colors.white,
+              color: kPrimaryLightColor,
               borderRadius:  BorderRadius.circular(7.0)
           ),//Color.fromRGBO(64, 75, 96, .9),
           child: Padding(
@@ -397,7 +396,6 @@ class _BookCardInVerticalSearchList extends State<BookCardInVerticalSearchList>{
                                 child: Text(
                                   widget.book.title,
                                   style: TextStyle(
-                                    //color: Colors.white,
                                     fontWeight: FontWeight.bold,
                                   ),
                                   textAlign: TextAlign.center,
@@ -472,7 +470,7 @@ class _BookCardInVerticalSearchList extends State<BookCardInVerticalSearchList>{
                           width: 75,
                           child: FloatingActionButton(
                             heroTag: "FLTB1" + widget.book.title,
-                            backgroundColor: Colors.white,
+                            backgroundColor: kPrimaryLightColor,
                             child: Icon(
                               iconData,
                               color: buttonColor,
@@ -542,7 +540,7 @@ class _BookCardInVerticalSearchList extends State<BookCardInVerticalSearchList>{
                           ),
                         )
                     )
-                ) //Icon(Icons.autorenew, color: Colors.white),
+                )
             ),
           ),
 
@@ -581,7 +579,7 @@ class _BookCardInVerticalSearchList extends State<BookCardInVerticalSearchList>{
                       widget.book.picture
                   ),
                 )
-            ) //Icon(Icons.autorenew, color: Colors.white),
+            )
         ),
       );
     }
@@ -590,7 +588,7 @@ class _BookCardInVerticalSearchList extends State<BookCardInVerticalSearchList>{
   _getFloatingActionButton(Book book) {
     return FloatingActionButton(
       heroTag: book.title + book.author + book.chapters.length.toString(),
-      backgroundColor: Colors.white,
+      backgroundColor: kPrimaryLightColor,
       child: Icon(
         iconData,
         color: buttonColor,

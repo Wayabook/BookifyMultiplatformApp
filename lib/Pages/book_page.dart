@@ -1,3 +1,4 @@
+import 'package:bookifyapp/Design/constants.dart';
 import 'package:bookifyapp/LayoutWidgets/Buttons/small_button_underlined.dart';
 import 'package:bookifyapp/Models/Book.dart';
 import 'package:bookifyapp/Pages/chapters_page.dart';
@@ -71,7 +72,7 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
       addIconColor = Colors.redAccent;
     } else {
       addIcon  = Icons.add_circle_outline;
-      addIconColor = Colors.white;
+      addIconColor = kPrimaryLightColor;
     }
   }
 
@@ -172,7 +173,7 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
                   child: IconButton(
                     icon: Icon(
                       Icons.shop_two,
-                      color: Colors.white
+                      color: kPrimaryLightColor
                     ),
                   ),
                 ),
@@ -196,7 +197,7 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
                   child: IconButton(
                     icon:Icon(
                         Icons.list,
-                        color: Colors.white
+                        color: kPrimaryLightColor
                     ),
                   ),
                 ),

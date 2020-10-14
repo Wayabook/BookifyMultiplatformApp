@@ -1,3 +1,4 @@
+import 'package:bookifyapp/Design/constants.dart';
 import 'package:bookifyapp/Models/Lecture.dart';
 import 'package:bookifyapp/Models/User.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +25,7 @@ class HorizontalBookList extends StatelessWidget {
     return Container(
       child: Card(
         margin: EdgeInsets.fromLTRB(5, 0, 5, 10),
-        color: Colors.blueGrey,
+        color: kPrimaryDarkColor,
         child: _createListView(),
       ),
     );

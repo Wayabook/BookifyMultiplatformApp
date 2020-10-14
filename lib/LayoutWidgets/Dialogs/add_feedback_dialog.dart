@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:bookifyapp/Design/constants.dart';
 import 'package:bookifyapp/InfoToast.dart';
 import 'package:bookifyapp/Interfaces/RemoveCommentInterface.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/main_comment_card.dart';
@@ -225,7 +226,7 @@ class _AddFeedbackDialog
                     child: Container(
                         width: width,
                         height: height-140,
-                        color: Colors.white,
+                        color: kPrimaryLightColor,
                         child:  Align(
                           alignment: Alignment.topLeft,
                           child: IconButton(
@@ -250,7 +251,6 @@ class _AddFeedbackDialog
                       child: Container(
                           width: width,
                           height: height-140,
-                          //color: Colors.white,
                           child:  Align(
                             alignment: Alignment.topRight,
                             child: AnimatedOpacity(
@@ -273,7 +273,7 @@ class _AddFeedbackDialog
                                     }
                                   });
                                 },
-                                backgroundColor: Colors.white,
+                                backgroundColor: kPrimaryLightColor,
                                 child: RotationTransition(
                                   turns: animation,
                                   child: Icon(

@@ -1,5 +1,6 @@
 
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:bookifyapp/Design/constants.dart';
 import 'package:bookifyapp/LayoutWidgets/Buttons/small_button_underlined.dart';
 import 'package:bookifyapp/LayoutWidgets/Profile/profile_picture.dart';
 import 'package:bookifyapp/Models/User.dart';
@@ -72,7 +73,10 @@ class UserPreviewCard extends StatelessWidget {
                         alignment: Alignment.centerLeft,
                         child: AutoSizeText(
                           user.name,
-                          style: TextStyle( fontWeight: FontWeight.bold, color: Colors.white, fontSize: this.fontSize,),
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: kPrimaryLightColor,
+                            fontSize: this.fontSize,),
                           maxLines: 1,
                         ),
                       ),

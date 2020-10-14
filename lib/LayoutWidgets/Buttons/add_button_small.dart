@@ -1,3 +1,4 @@
+import 'package:bookifyapp/Design/constants.dart';
 import 'package:bookifyapp/InfoToast.dart';
 import 'package:bookifyapp/Models/Book.dart';
 import 'package:bookifyapp/Models/User.dart';
@@ -64,7 +65,7 @@ class _AddButtonSmall extends State<AddButtonSmall>{
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(7)),
           border: Border.all(color: Colors.black),
-          color: Colors.white,
+          color: kPrimaryLightColor,
         ),
         child: Icon(
             iconData,

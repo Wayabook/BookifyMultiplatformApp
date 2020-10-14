@@ -1,3 +1,4 @@
+import 'package:bookifyapp/Design/constants.dart';
 import 'package:bookifyapp/Enums/list_type.dart';
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/LayoutWidgets/Lists/vertical_book_list_search.dart';
@@ -19,18 +20,6 @@ class SearchBookOrPerson extends StatefulWidget {
 }
 
 class _SearchBookOrPerson extends State<SearchBookOrPerson> with SingleTickerProviderStateMixin {
-
-  /*List<String> _cities = ['Albania', 'Andorra', 'Armenia', 'Austria',
-    'Azerbaijan', 'Belarus', 'Belgium', 'Bosnia and Herzegovina', 'Bulgaria',
-    'Croatia', 'Cyprus', 'Czech Republic', 'Denmark', 'Estonia', 'Finland',
-    'France', 'Georgia', 'Germany', 'Greece', 'Hungary', 'Iceland', 'Ireland',
-    'Italy', 'Kazakhstan', 'Kosovo', 'Latvia', 'Liechtenstein', 'Lithuania',
-    'Luxembourg', 'Macedonia', 'Malta', 'Moldova', 'Monaco', 'Montenegro',
-    'Netherlands', 'Norway', 'Poland', 'Portugal', 'Romania', 'Russia',
-    'San Marino', 'Serbia', 'Slovakia', 'Slovenia', 'Spain', 'Sweden',
-    'Switzerland', 'Turkey', 'Ukraine', 'United Kingdom', 'Vatican City'];*/
-
-  List<String> _persons = ["John Smith", "Alex Johnson", "Jane Doe", "Eric Johnson", "Michael Eastwood", "Benjamin Woods"];
 
   List<Book> _filteredList = [];
 
@@ -123,7 +112,7 @@ class _SearchBookOrPerson extends State<SearchBookOrPerson> with SingleTickerPro
         ]);
 
     final appTopAppBar = AppBar(
-      backgroundColor: Colors.blueGrey,
+      backgroundColor: kPrimaryDarkColor,
       elevation: 0.1,
       bottom: TabBar(
           controller: _tabController,
@@ -145,15 +134,14 @@ class _SearchBookOrPerson extends State<SearchBookOrPerson> with SingleTickerPro
                 this.appBarTitle = new TextField(
                   controller: controller,
                   decoration: new InputDecoration(
-                    /*prefixIcon: new Icon(Icons.search, color: Colors.white),*/
                     hintText: "Search...",
-                    hintStyle: new TextStyle(color: Colors.white),
+                    hintStyle: new TextStyle(color: kPrimaryLightColor),
                   ),
                   style: new TextStyle(
-                    color: Colors.white,
+                    color: kPrimaryLightColor,
                   ),
                   autofocus: true,
-                  cursorColor: Colors.white,
+                  cursorColor: kPrimaryLightColor,
                 );
               } else {
                 this.actionIcon = new Icon(Icons.search);

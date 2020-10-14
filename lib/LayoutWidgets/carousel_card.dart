@@ -1,3 +1,4 @@
+import 'package:bookifyapp/Design/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/Models/Book.dart';
 import 'package:bookifyapp/LayoutWidgets/card_swiper.dart';
@@ -17,7 +18,7 @@ class CarouselCard extends StatelessWidget {
      height: 300,
      child: Center(
          child: Card(
-           color: Colors.blueGrey,
+           color: kPrimaryDarkColor,
            child: InkWell(
                //splashColor: Colors.blue.withAlpha(30),
                //onTap: _goToBookPage(),

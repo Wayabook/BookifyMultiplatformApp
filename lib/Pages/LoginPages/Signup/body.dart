@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/Pages/LoginPages/Login/login_page.dart';
 import 'package:bookifyapp/Pages/LoginPages/Signup/background.dart';
-import 'package:bookifyapp/Pages/LoginPages/Signup/or_divider.dart';
-import 'package:bookifyapp/Pages/LoginPages/Signup/social_icon.dart';
+import 'package:bookifyapp/Pages/LoginPages/Components/or_divider.dart';
+import 'package:bookifyapp/Pages/LoginPages/Components/social_icon.dart';
 import 'package:bookifyapp/Pages/LoginPages/Components/already_have_an_account_acheck.dart';
 import 'package:bookifyapp/Pages/LoginPages/Components/rounded_password_field.dart';
 import 'package:bookifyapp/Pages/LoginPages/Components/rounded_input_field.dart';
 import 'package:bookifyapp/Pages/LoginPages/Components/rounded_button.dart';
 import 'package:flutter_svg/svg.dart';
+
+import '../../main_tab_page.dart';
 
 class Body extends StatelessWidget {
   @override
@@ -36,7 +38,16 @@ class Body extends StatelessWidget {
             ),
             RoundedButton(
               text: "SIGNUP",
-              press: () {},
+              press: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return MainTabPage();
+                    },
+                  ),
+                );
+              },
             ),
             SizedBox(height: size.height * 0.03),
             AlreadyHaveAnAccountCheck(

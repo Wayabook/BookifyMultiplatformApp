@@ -1,3 +1,4 @@
+import 'package:bookifyapp/Design/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/Models/Genre.dart';
 import 'package:bookifyapp/Pages/book_page.dart';
@@ -20,7 +21,7 @@ class HorizontalGenresList extends StatelessWidget {
     return Container(
       child: Card(
         margin: EdgeInsets.fromLTRB(5, 0, 5, 10),
-        color: Colors.blueGrey,
+        color: kPrimaryDarkColor,
         child: _createListView(),
       ),
     );
@@ -39,7 +40,7 @@ class HorizontalGenresList extends StatelessWidget {
           {*/
             if(index < genres.length){
               return Card(
-                color: Colors.blueGrey,
+                color: kPrimaryDarkColor,
                 margin: EdgeInsets.all(10),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20.0),
@@ -48,18 +49,17 @@ class HorizontalGenresList extends StatelessWidget {
                 child: Row(
                   children: <Widget>[
                     Container(
-                      //color: Colors.white,
                         width: 50,
                         height: 100,
                         child: FittedBox(
                           fit: BoxFit.contain,
                           child: BorderedText(
                             strokeWidth: 1.0,
-                            strokeColor: Colors.white,
+                            strokeColor: kPrimaryLightColor,
                             child: Text(
                               (index + 1).toString(),
                               style: TextStyle(
-                                  color: Colors.blueGrey,
+                                  color: kPrimaryDarkColor,
                                   decoration: TextDecoration.none,
                                   //decorationColor: Colors.,
                                   decorationThickness: 1
@@ -83,7 +83,7 @@ class HorizontalGenresList extends StatelessWidget {
                         height: double.infinity,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20),
-                            color: Colors.white
+                            color: kPrimaryLightColor
                         ),
                         child: Center(
                             child: Column(
@@ -98,7 +98,7 @@ class HorizontalGenresList extends StatelessWidget {
 
                                 Text(genres[index].name,
                                   style: TextStyle(
-                                    color: Colors.blueGrey,
+                                    color: kPrimaryDarkColor,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 )
@@ -128,7 +128,7 @@ class HorizontalGenresList extends StatelessWidget {
                       //height: double.infinity,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
-                          color: Colors.white
+                          color: kPrimaryLightColor
                       ),
                       child: Center(
                           child: Column(
@@ -137,13 +137,13 @@ class HorizontalGenresList extends StatelessWidget {
                             children: <Widget>[
                               Icon(
                                 Icons.add,
-                                color: Colors.blueGrey,
+                                color: kPrimaryDarkColor,
                                 size: 50,
                               ),
 
                               Text("Add Genre",
                                 style: TextStyle(
-                                  color: Colors.blueGrey,
+                                  color: kPrimaryDarkColor,
                                   fontWeight: FontWeight.bold,
                                 ),
                               )
@@ -154,49 +154,9 @@ class HorizontalGenresList extends StatelessWidget {
                 ),
               );
             }
-          /*} else {
-            return Card(
-              margin: EdgeInsets.all(10),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(7.0),
-              ),
-              elevation: 10,
-              child: Container(
-                color: Colors.black,
-              ),
-            );
-          }*/
         },
       ),
     );
   }
-
-
-
-  /*_getListElement(index){
-    return Stack(
-        children: <Widget>[
-          Padding(
-            padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-            child: Align(
-              alignment: Alignment.center,
-              child: InkWell(
-                onTap: () {
-                  Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (context) => BookPage("title", books[index], this.books)));
-                },
-                child: Image.network(books[index].picture),
-              ),
-            ),
-          ),
-
-          Positioned(
-            top: 0,
-            right: 0,
-            child: AddButtonSmall(),
-          )
-        ]
-    );
-  }*/
 }
 

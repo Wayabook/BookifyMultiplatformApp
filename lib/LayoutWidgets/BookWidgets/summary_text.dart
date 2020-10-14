@@ -1,10 +1,11 @@
+import 'package:bookifyapp/Design/constants.dart';
 import 'package:flutter/material.dart';
 
 class SummaryTextWidget extends StatefulWidget {
   final String text;
   Color backgroundColor;
 
-  SummaryTextWidget({@required this.text, this.backgroundColor = Colors.white});
+  SummaryTextWidget({@required this.text, this.backgroundColor = kPrimaryLightColor});
 
   @override
   _SummaryTextWidgetState createState() => new _SummaryTextWidgetState();

@@ -1,3 +1,4 @@
+import 'package:bookifyapp/Design/constants.dart';
 import 'package:bookifyapp/Interfaces/RemoveCommentInterface.dart';
 import 'package:bookifyapp/LayoutWidgets/BookWidgets/summary_text.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/user_preview_card.dart';
@@ -46,7 +47,7 @@ class SubCommentCard extends StatelessWidget implements RemoveCommentInterface{
 
               Padding(
                 padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
-                child: Container(color: Colors.white, height: 0.5, width: double.infinity),
+                child: Container(color: kPrimaryLightColor, height: 0.5, width: double.infinity),
               ),
 
               Container(

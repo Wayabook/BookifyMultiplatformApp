@@ -1,3 +1,4 @@
+import 'package:bookifyapp/Design/constants.dart';
 import 'package:flutter/material.dart';
 
 class ReadActionButton extends StatefulWidget {
@@ -24,8 +25,8 @@ class _ReadActionButton extends State<ReadActionButton>
     _animateIcon =
         Tween<double>(begin: 0.0, end: 1.0).animate(_animationController);
     _animateColor = ColorTween(
-      begin: Colors.white,
-      end: Colors.white,
+      begin: kPrimaryLightColor,
+      end: kPrimaryLightColor,
     ).animate(CurvedAnimation(
       parent: _animationController,
       curve: Interval(

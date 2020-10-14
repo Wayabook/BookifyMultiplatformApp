@@ -1,3 +1,4 @@
+import 'package:bookifyapp/Design/constants.dart';
 import 'package:bookifyapp/Models/Item.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
@@ -24,7 +25,7 @@ class ShopItemCard extends StatelessWidget {
   _makeListTile() {
     return Container(
         decoration: BoxDecoration(
-            color: Colors.white,
+            color: kPrimaryLightColor,
             borderRadius:  BorderRadius.circular(7.0)
         ),
         child: Padding(

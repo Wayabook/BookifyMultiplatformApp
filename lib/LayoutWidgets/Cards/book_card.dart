@@ -1,3 +1,4 @@
+import 'package:bookifyapp/Design/constants.dart';
 import 'package:bookifyapp/Enums/list_type.dart';
 import 'package:bookifyapp/Models/Item.dart';
 import 'package:bookifyapp/Models/Lecture.dart';
@@ -239,8 +240,7 @@ class BookCard extends StatelessWidget {
           elevation: 10,
           child: Container(
               width: 120,
-              //height: double.infinity,
-              color: Colors.white,
+              color: kPrimaryLightColor,
               child: Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,

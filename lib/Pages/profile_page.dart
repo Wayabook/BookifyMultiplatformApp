@@ -1,3 +1,4 @@
+import 'package:bookifyapp/Design/constants.dart';
 import 'package:bookifyapp/Enums/list_type.dart';
 import 'package:bookifyapp/LayoutWidgets/Buttons/small_button_underlined.dart';
 import 'package:bookifyapp/LayoutWidgets/Dialogs/dialog_with_accept_and_cancel_options.dart';
@@ -101,7 +102,7 @@ class _ProfilePage extends State<ProfilePage>{
                                 alignment: Alignment.center,
                                 child: Icon(
                                   Icons.security,
-                                  color: Colors.white,
+                                  color: kPrimaryLightColor,
                                   size: 30,
                                 ),
                               ),
@@ -109,7 +110,10 @@ class _ProfilePage extends State<ProfilePage>{
                                 alignment: Alignment.center,
                                 child:Text(
                                   "BADGETS",
-                                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Colors.white),
+                                  style: TextStyle(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.bold,
+                                      color: kPrimaryLightColor),
                                 ),
                               ),
                             ],
@@ -138,7 +142,7 @@ class _ProfilePage extends State<ProfilePage>{
                                 alignment: Alignment.center,
                                 child: Icon(
                                   Icons.people,
-                                  color: Colors.white,
+                                  color: kPrimaryLightColor,
                                   size: 30,
                                 ),
                               ),
@@ -146,7 +150,10 @@ class _ProfilePage extends State<ProfilePage>{
                                 alignment: Alignment.center,
                                 child:Text(
                                   "FRIENDS",
-                                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Colors.white),
+                                  style: TextStyle(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.bold,
+                                      color: kPrimaryLightColor),
                                 ),
                               ),
                             ],
@@ -179,15 +186,35 @@ class _ProfilePage extends State<ProfilePage>{
             crossAxisAlignment: CrossAxisAlignment.center, //Center Row contents vertically,
             children: <Widget>[
 
-              InfoRow.withIcon(RowType.icon_image,  "BOOKS READ", Icons.book,  widget.user.booksRead.toString(), width_per_child, 105, Colors.white),
+              InfoRow.withIcon(
+                  RowType.icon_image,
+                  "BOOKS READ",
+                  Icons.book,
+                  widget.user.booksRead.toString(),
+                  width_per_child,
+                  105,
+                  kPrimaryLightColor),
 
-              Container(color: Colors.white, height: 105, width: 2,),
+              Container(color: kPrimaryLightColor, height: 105, width: 2,),
 
-              InfoRow.withIcon(RowType.icon_image,  "CHAPS READ", Icons.collections_bookmark,  widget.user.chaptersRead.toString(), width_per_child, 105, Colors.white),
+              InfoRow.withIcon(
+                  RowType.icon_image,
+                  "CHAPS READ",
+                  Icons.collections_bookmark,
+                  widget.user.chaptersRead.toString(),
+                  width_per_child, 105,
+                  kPrimaryLightColor),
 
-              Container(color: Colors.white, height: 105, width: 2,),
+              Container(color: kPrimaryLightColor, height: 105, width: 2,),
 
-              InfoRow.withIcon(RowType.icon_image,  "PAGES READ", Icons.description,  widget.user.pagesRead.toString(), width_per_child, 105, Colors.white),
+              InfoRow.withIcon(
+                  RowType.icon_image,
+                  "PAGES READ",
+                  Icons.description,
+                  widget.user.pagesRead.toString(),
+                  width_per_child,
+                  105,
+                  kPrimaryLightColor),
 
 
             ],
@@ -196,7 +223,7 @@ class _ProfilePage extends State<ProfilePage>{
 
         Padding(
           padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
-          child: Container(color: Colors.white, height: 2, width: width),
+          child: Container(color: kPrimaryLightColor, height: 2, width: width),
         ),
 
         Container(
@@ -280,7 +307,7 @@ class _ProfilePage extends State<ProfilePage>{
                 }
 
               },
-              textColor: Colors.white,
+              textColor: kPrimaryLightColor,
               color: widget.isFriend ? Colors.lightGreen[500] : Colors.blueGrey[300],
               child: Text(
                 widget.isFriend ? "Friend" : "Add Friend",
@@ -294,12 +321,12 @@ class _ProfilePage extends State<ProfilePage>{
 
           Padding(
             padding: EdgeInsets.fromLTRB(0, 7, 0, 0),
-            child: Container(color: Colors.white, height: 2, width: width),
+            child: Container(color: kPrimaryLightColor, height: 2, width: width),
           )
         ],
       );
     } else {
-      return Container(color: Colors.white, height: 2, width: width);
+      return Container(color: kPrimaryLightColor, height: 2, width: width);
     }
   }
 }

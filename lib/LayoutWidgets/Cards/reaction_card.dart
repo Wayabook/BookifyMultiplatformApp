@@ -1,3 +1,4 @@
+import 'package:bookifyapp/Design/constants.dart';
 import 'package:bookifyapp/Models/Reaction.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -36,10 +37,10 @@ class _ReactionCard extends State<ReactionCard> {
       width = 2.0;
     
     return Border(
-      top: BorderSide(color: Colors.white, width: width),
-      bottom: BorderSide(color: Colors.white, width: width),
-      left: BorderSide(color: Colors.white, width: width),
-      right: BorderSide(color: Colors.white, width: width),
+      top: BorderSide(color: kPrimaryLightColor, width: width),
+      bottom: BorderSide(color: kPrimaryLightColor, width: width),
+      left: BorderSide(color: kPrimaryLightColor, width: width),
+      right: BorderSide(color: kPrimaryLightColor, width: width),
     );
   }
 
@@ -71,17 +72,11 @@ class _ReactionCard extends State<ReactionCard> {
                     child: Text(
                       text,
                       style: TextStyle(
-                        color: Colors.white,
+                        color: kPrimaryLightColor,
                         fontSize: 8,
-                        //fontWeight: FontWeight.bold,
                       ),
                     ),
                   )
-
-
-                  /*Padding(
-                    padding: EdgeInsets.fromLTRB(0, 0, 0, 5),
-                  ),*/
                 ],
               )
           ),

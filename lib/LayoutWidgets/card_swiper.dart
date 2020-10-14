@@ -1,3 +1,4 @@
+import 'package:bookifyapp/Design/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/Models/Book.dart';
 import 'package:flutter_page_indicator/flutter_page_indicator.dart';
@@ -13,7 +14,7 @@ class CardSwiper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-        backgroundColor: Colors.blueGrey,
+        backgroundColor: kPrimaryDarkColor,
         body: new Swiper(
           //containerHeight: 25.0,
           itemBuilder: (BuildContext context, int index) {
@@ -37,7 +38,7 @@ class CardSwiper extends StatelessWidget {
         borderRadius: BorderRadius.circular(7.0),
       ),
       elevation: 10,
-      color: Colors.white,
+      color: kPrimaryLightColor,
         child: GestureDetector(
           onTap: () {
             Navigator.of(context)
@@ -77,7 +78,7 @@ class CardSwiper extends StatelessWidget {
                   child: Text(
                     this.books[index].author,
                     style: TextStyle(
-                      color: Colors.blueGrey,
+                      color: kPrimaryDarkColor,
                     ),
                   ),
                 ),
@@ -89,9 +90,4 @@ class CardSwiper extends StatelessWidget {
 
     );
   }
-
-  /*_goToBookPage(BuildContext context){
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => BookPage("title", this.books)));
-  }*/
 }

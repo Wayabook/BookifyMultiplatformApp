@@ -1,3 +1,4 @@
+import 'package:bookifyapp/Design/constants.dart';
 import 'package:bookifyapp/Enums/profile_type.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/shop_item_card.dart';
 import 'package:bookifyapp/LayoutWidgets/carousel_card.dart';
@@ -71,7 +72,7 @@ class _BookShopsDialog extends State<BookShopsDialog>{
         preferredSize: tab.preferredSize,
         child: Card(
           elevation: 10.0,
-          color: Colors.white,
+          color: kPrimaryLightColor,
           child: tab,
         ),
       ),
@@ -97,7 +98,7 @@ class _BookShopsDialog extends State<BookShopsDialog>{
               child: Container(
                   width: width,
                   height: height-140,
-                  color: Colors.white,
+                  color: kPrimaryLightColor,
                   child:  Align(
                     alignment: Alignment.topLeft,
                     child: IconButton(
@@ -252,7 +253,7 @@ class _BookShopsDialog extends State<BookShopsDialog>{
       infoItems.add(
           Padding(
             padding: EdgeInsets.fromLTRB(0, 2, 0, 0),
-            child: Container(color: Colors.white, height: 2, width: width),
+            child: Container(color: kPrimaryLightColor, height: 2, width: width),
           )
       );
     }

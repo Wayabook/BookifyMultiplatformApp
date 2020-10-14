@@ -1,3 +1,4 @@
+import 'package:bookifyapp/Design/constants.dart';
 import 'package:bookifyapp/Models/Book.dart';
 import 'package:bookifyapp/Models/Chapter.dart';
 import 'package:bookifyapp/Models/Item.dart';
@@ -28,7 +29,7 @@ class ChapterCard extends StatelessWidget {
   _makeListTile(BuildContext context) {
     return Container(
         decoration: BoxDecoration(
-            color: Colors.white,
+            color: kPrimaryLightColor,
             borderRadius:  BorderRadius.circular(7.0)
         ),
         child: Padding(

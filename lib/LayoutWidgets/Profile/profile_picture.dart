@@ -1,3 +1,4 @@
+import 'package:bookifyapp/Design/constants.dart';
 import 'package:flutter/material.dart';
 
 class ProfilePicture extends StatelessWidget {
@@ -17,7 +18,7 @@ class ProfilePicture extends StatelessWidget {
         width: circleRadius,
         height: circleRadius,
         decoration:
-        ShapeDecoration(shape: CircleBorder(), color: Colors.white),
+        ShapeDecoration(shape: CircleBorder(), color: kPrimaryLightColor),
         child: Padding(
           padding: EdgeInsets.all(circleBorderWidth),
           child: DecoratedBox(

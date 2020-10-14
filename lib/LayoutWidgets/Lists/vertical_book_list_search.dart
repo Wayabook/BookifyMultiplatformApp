@@ -1,3 +1,4 @@
+import 'package:bookifyapp/Design/constants.dart';
 import 'package:bookifyapp/Enums/list_type.dart';
 import 'package:bookifyapp/InfoToast.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/book_card_in_vertical_search_list.dart';
@@ -138,7 +139,7 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
-              color: Colors.white,
+              color: kPrimaryLightColor,
               height: 50,
               width:  MediaQuery.of(context).size.width,
               child: Row(

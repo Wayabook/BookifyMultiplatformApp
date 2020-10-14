@@ -1,3 +1,4 @@
+import 'package:bookifyapp/Design/constants.dart';
 import 'package:bookifyapp/Enums/list_type.dart';
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/LayoutWidgets/Lists/vertical_book_list_search.dart';
@@ -89,13 +90,13 @@ class _AddCustomListPage extends State<AddCustomListPage> {
                   controller: controller,
                   decoration: new InputDecoration(
                     hintText: "Search...",
-                    hintStyle: new TextStyle(color: Colors.white),
+                    hintStyle: new TextStyle(color: kPrimaryLightColor),
                   ),
                   style: new TextStyle(
-                    color: Colors.white,
+                    color: kPrimaryLightColor,
                   ),
                   autofocus: true,
-                  cursorColor: Colors.white,
+                  cursorColor: kPrimaryLightColor,
                 );
               } else {
                 this.actionIcon = new Icon(Icons.search);

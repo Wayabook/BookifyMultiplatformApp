@@ -2,6 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
+import 'Design/constants.dart';
+
 class InfoToast {
 
   static void showListRemovedCorrecltyFromBookshelf(String listTitle){
@@ -11,7 +13,7 @@ class InfoToast {
         gravity: ToastGravity.BOTTOM,
         timeInSecForIosWeb: 1,
         backgroundColor: Colors.black,
-        textColor: Colors.white,
+        textColor: kPrimaryLightColor,
         fontSize: 16.0
     );
   }
@@ -23,7 +25,7 @@ class InfoToast {
         gravity: ToastGravity.BOTTOM,
         timeInSecForIosWeb: 1,
         backgroundColor: Colors.black,
-        textColor: Colors.white,
+        textColor: kPrimaryLightColor,
         fontSize: 16.0
     );
   }
@@ -36,7 +38,7 @@ class InfoToast {
         gravity: ToastGravity.BOTTOM,
         timeInSecForIosWeb: 1,
         backgroundColor: Colors.black,
-        textColor: Colors.white,
+        textColor: kPrimaryLightColor,
         fontSize: 16.0
     );
   }
@@ -48,7 +50,7 @@ class InfoToast {
         gravity: ToastGravity.BOTTOM,
         timeInSecForIosWeb: 1,
         backgroundColor: Colors.black,
-        textColor: Colors.white,
+        textColor: kPrimaryLightColor,
         fontSize: 16.0
     );
   }
@@ -60,7 +62,7 @@ class InfoToast {
         gravity: ToastGravity.BOTTOM,
         timeInSecForIosWeb: 1,
         backgroundColor: Colors.black,
-        textColor: Colors.white,
+        textColor: kPrimaryLightColor,
         fontSize: 16.0
     );
   }
@@ -72,7 +74,7 @@ class InfoToast {
         gravity: ToastGravity.BOTTOM,
         timeInSecForIosWeb: 1,
         backgroundColor: Colors.black,
-        textColor: Colors.white,
+        textColor: kPrimaryLightColor,
         fontSize: 16.0
     );
   }

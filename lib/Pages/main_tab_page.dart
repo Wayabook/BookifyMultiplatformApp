@@ -1,84 +1,31 @@
-// Flutter code sample for BottomNavigationBar
-
-// This example shows a [BottomNavigationBar] as it is used within a [Scaffold]
-// widget. The [BottomNavigationBar] has three [BottomNavigationBarItem]
-// widgets and the [currentIndex] is set to index 0. The selected item is
-// amber. The `_onItemTapped` function changes the selected item's index
-// and displays a corresponding message in the center of the [Scaffold].
-//
-// ![A scaffold with a bottom navigation bar containing three bottom navigation
-// bar items. The first one is selected.](https://flutter.github.io/assets-for-api-docs/assets/material/bottom_navigation_bar.png)
-
+import 'package:bookifyapp/Design/constants.dart';
 import 'package:bookifyapp/Enums/profile_type.dart';
+import 'package:bookifyapp/Models/Chapter.dart';
+import 'package:bookifyapp/Models/Item.dart';
+import 'package:bookifyapp/Models/Lecture.dart';
+import 'package:bookifyapp/Models/Shop.dart';
 import 'package:bookifyapp/Pages/LoginPages/Welcome/welcome_page.dart';
+import 'package:bookifyapp/Pages/profile_page.dart';
+import 'package:bookifyapp/Pages/reading_page.dart';
 import 'package:custom_navigator/custom_navigation.dart';
 import 'package:flutter/material.dart';
-import 'Design/constants.dart';
-import 'Models/Chapter.dart';
-import 'Models/Item.dart';
-import 'Models/Lecture.dart';
-import 'Models/Shop.dart';
-import 'Pages/discover_page.dart';
-import 'Pages/profile_page.dart';
-import 'Pages/reading_page.dart';
 import 'package:bookifyapp/Models/Genre.dart';
 import 'package:bookifyapp/Models/Book.dart';
 import 'package:bookifyapp/Models/User.dart';
 import 'package:provider/provider.dart';
 
-//import 'package:bookifyapp/provider.dart';
+import 'discover_page.dart';
 
 
-void main() => runApp(MyApp());
+class MainTabPage extends StatefulWidget {
 
-/// This Widget is the main application widget.
-class MyApp extends StatelessWidget {
-  static const String _title = 'Flutter Code Sample';
+  MainTabPage({Key key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-
-    return MultiProvider(
-      providers: [
-        // In this sample app, CatalogModel never changes, so a simple Provider
-        // is sufficient.
-        //Provider(create: (context) => User.getMockUser()),
-
-        ChangeNotifierProvider<User>(create: (context) => User.getMockUser())
-
-        // CartModel is implemented as a ChangeNotifier, which calls for the use
-        // of ChangeNotifierProvider. Moreover, CartModel depends
-        // on CatalogModel, so a ProxyProvider is needed.
-        /*ChangeNotifierProxyProvider<CatalogModel, CartModel>(
-          create: (context) => CartModel(),
-          update: (context, catalog, cart) {
-            cart.catalog = catalog;
-            return cart;
-          },
-        ),*/
-      ],
-      child: MaterialApp(
-        title: _title,
-        home: //MyStatefulWidget(),
-         WelcomePage(),
-      )
-    );
-
-    /*return MaterialApp(
-      title: _title,
-      home: MyStatefulWidget(),
-    );*/
-  }
+  _MainTabPage createState() => _MainTabPage();
 }
 
-class MyStatefulWidget extends StatefulWidget {
-  MyStatefulWidget({Key key}) : super(key: key);
-
-  @override
-  _MyStatefulWidgetState createState() => _MyStatefulWidgetState();
-}
-
-class _MyStatefulWidgetState extends State<MyStatefulWidget> {
+class _MainTabPage extends State<MainTabPage> {
   int _selectedIndex = 0;
 
   List<Book> books;
@@ -378,50 +325,4 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
 
   ];
 
-}
-
-class Page extends StatelessWidget {
-  final String title;
-
-  const Page(this.title) : assert(title != null);
-
-  @override
-  Widget build(BuildContext context) {
-    final text = Text(title);
-
-    return Scaffold(
-      body: Container(
-        child: Center(
-            child: FlatButton(
-                onPressed: () => _openDetailsPage(context), child: text)),
-      ),
-      appBar: AppBar(
-        title: text,
-      ),
-    );
-  }
-
-  //Use the navigator like you usually do with .of(context) method
-  _openDetailsPage(BuildContext context) => Navigator.of(context)
-      .push(MaterialPageRoute(builder: (context) => DetailsPage(title)));
-
-//  _openDetailsPage(BuildContext context) => mainNavigatorKey.currentState.push(MaterialPageRoute(builder: (context) => DetailsPage(title)));
-
-}
-
-class DetailsPage extends StatelessWidget {
-  final String title;
-
-  const DetailsPage(this.title) : assert(title != null);
-
-  @override
-  Widget build(BuildContext context) {
-    final text = Text('Details of $title');
-    return Scaffold(
-      body: Container(
-        child: Center(child: text),
-      ),
-      appBar: AppBar(title: text),
-    );
-  }
 }
