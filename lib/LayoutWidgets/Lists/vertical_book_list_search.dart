@@ -55,7 +55,7 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blueGrey,
+      backgroundColor: kPrimaryDarkColor,
       body: _makeBody(),
     );
   }

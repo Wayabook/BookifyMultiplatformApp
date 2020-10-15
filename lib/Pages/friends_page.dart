@@ -76,7 +76,7 @@ class _FriendsPage extends State<FriendsPage> {
     );
 
     final appTopAppBar = AppBar(
-      backgroundColor: Colors.blueGrey,
+      backgroundColor: kPrimaryDarkColor,
       elevation: 0.1,
       title: appBarTitle,
       actions: <Widget>[

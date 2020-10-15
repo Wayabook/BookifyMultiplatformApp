@@ -64,7 +64,7 @@ class _BookShopsDialog extends State<BookShopsDialog>{
       tabs: tabs,
       controller: _controller,
       labelColor: Colors.black,
-      indicatorColor: Colors.blueGrey,
+      indicatorColor: kPrimaryDarkColor,
     );
 
     return Scaffold(
@@ -124,7 +124,7 @@ class _BookShopsDialog extends State<BookShopsDialog>{
 
           Padding(
             padding: EdgeInsets.fromLTRB(15, 210, 15, 10),
-            child: Container(color: Colors.blueGrey, height: 2, width: width),
+            child: Container(color: kPrimaryDarkColor, height: 2, width: width),
           ),
 
           Padding(
@@ -244,7 +244,7 @@ class _BookShopsDialog extends State<BookShopsDialog>{
 
       Padding(
         padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
-        child: Container(color: Colors.blueGrey, height: 2, width: width),
+        child: Container(color: kPrimaryDarkColor, height: 2, width: width),
       ),
     ];
 

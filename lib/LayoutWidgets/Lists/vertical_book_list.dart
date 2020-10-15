@@ -1,3 +1,4 @@
+import 'package:bookifyapp/Design/constants.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/book_card_in_vertical_list.dart';
 import 'package:bookifyapp/Models/Lecture.dart';
 import 'package:bookifyapp/Models/User.dart';
@@ -76,7 +77,7 @@ class _VerticalBookList extends State<VerticalBookList> with TickerProviderState
     updateUILists();
 
     return Scaffold(
-      backgroundColor: Colors.blueGrey,
+      backgroundColor: kPrimaryDarkColor,
       body: _makeBody(),
     );
   }

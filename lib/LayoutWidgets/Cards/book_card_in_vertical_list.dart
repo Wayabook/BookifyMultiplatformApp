@@ -66,7 +66,7 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> {
   @override
   void initState(){
 
-    buttonColor = Colors.blueGrey;
+    buttonColor = kPrimaryDarkColor;
 
     animationControllerDuration = 1500;
     widget._visible = true;
@@ -88,7 +88,7 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> {
             widget._visible = false;
             bookCompletedProcess();
           } else {
-            this.buttonColor = Colors.blueGrey;
+            this.buttonColor = kPrimaryDarkColor;
           }
         });
         /*if(this.book.finished){
@@ -160,7 +160,7 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> {
             child: Container(
               height: 160,
               decoration: BoxDecoration(
-                color: Colors.blueGrey,
+                color: kPrimaryDarkColor,
               ),
               child: _makeListTile(context),
             ),
@@ -214,10 +214,10 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> {
                           padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
                           decoration: new BoxDecoration(
                               border: new Border(
-                                  right: new BorderSide(width: 1.0, color: Colors.blueGrey),
-                                  left: new BorderSide(width: .075, color: Colors.blueGrey),
-                                  bottom: new BorderSide(width: .075, color: Colors.blueGrey),
-                                  top: new BorderSide(width: .075, color: Colors.blueGrey)
+                                  right: new BorderSide(width: 1.0, color: kPrimaryDarkColor),
+                                  left: new BorderSide(width: .075, color: kPrimaryDarkColor),
+                                  bottom: new BorderSide(width: .075, color: kPrimaryDarkColor),
+                                  top: new BorderSide(width: .075, color: kPrimaryDarkColor)
                               )
                           ),
 
@@ -323,7 +323,7 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> {
 
                                         Icon(
                                           Icons.bookmark,
-                                          color: Colors.blueGrey,
+                                          color: kPrimaryDarkColor,
                                           size: 20,
                                         ),
 

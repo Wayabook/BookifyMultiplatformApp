@@ -72,7 +72,7 @@ class MainCommentCard extends StatelessWidget implements RemoveCommentInterface 
 
               SummaryTextWidget(
                 text: mainComment.comment,
-                backgroundColor: Colors.blueGrey,
+                backgroundColor: kPrimaryDarkColor,
               ),
 
               Padding(
@@ -81,7 +81,7 @@ class MainCommentCard extends StatelessWidget implements RemoveCommentInterface 
               ),
 
               Container(
-                color: Colors.blueGrey,
+                color: kPrimaryDarkColor,
                 child:  Padding(
                   padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
                   child: Row(

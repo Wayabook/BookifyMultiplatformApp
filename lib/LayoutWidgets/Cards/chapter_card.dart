@@ -56,7 +56,7 @@ class ChapterCard extends StatelessWidget {
                       child: IconButton(
                         icon: Icon(
                           Icons.arrow_forward_ios,
-                          color: Colors.blueGrey,
+                          color: kPrimaryDarkColor,
                         ),
                         onPressed: (){
                           Navigator.of(context)
@@ -65,6 +65,7 @@ class ChapterCard extends StatelessWidget {
                                   chapterTitle: this.book.chapters[this.chapter].title,
                                   chapterNumber: this.book.chapters[this.chapter].number,
                                   showAllCommentsOfChapter: true,
+                                  inactiveAddCommentOption: true,
                               )
                             /*CommentPage(
                             null,

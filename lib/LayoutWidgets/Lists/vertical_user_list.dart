@@ -1,3 +1,4 @@
+import 'package:bookifyapp/Design/constants.dart';
 import 'package:bookifyapp/Enums/profile_type.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/user_preview_card.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +23,7 @@ class _VerticalUserList extends State<VerticalUserList> with TickerProviderState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blueGrey,
+      backgroundColor: kPrimaryDarkColor,
       body: _makeBody(),
     );
   }

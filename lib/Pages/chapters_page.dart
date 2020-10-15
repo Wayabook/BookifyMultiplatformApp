@@ -1,3 +1,4 @@
+import 'package:bookifyapp/Design/constants.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/chapter_card.dart';
 import 'package:bookifyapp/Models/Item.dart';
 import 'package:bookifyapp/Models/Lecture.dart';
@@ -22,7 +23,7 @@ class ChaptersPage extends StatelessWidget {
     return Scaffold(
       body: Container(
         child: Container(
-          color: Colors.blueGrey,
+          color: kPrimaryDarkColor,
           child: Column(
             children: [
 
@@ -50,7 +51,7 @@ class ChaptersPage extends StatelessWidget {
         ),
       ),
       appBar: AppBar(
-        backgroundColor: Colors.blueGrey,
+        backgroundColor: kPrimaryDarkColor,
       ),
     );
   }

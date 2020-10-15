@@ -52,7 +52,7 @@ class _ReactionCard extends State<ReactionCard> {
         child: GestureDetector(
           onTap: changeText,
           child:  Card(
-              color: Colors.blueGrey,
+              color: kPrimaryDarkColor,
               margin: EdgeInsets.all(10),
               shape: tapped ? _getBorder(true) : _getBorder(false),
               elevation: 10,

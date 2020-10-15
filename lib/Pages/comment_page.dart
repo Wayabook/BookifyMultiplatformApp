@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:bookifyapp/Design/constants.dart';
 import 'package:bookifyapp/Interfaces/RemoveCommentInterface.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/main_comment_card.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/sub_comment_card.dart';
@@ -32,6 +33,7 @@ import '../InfoToast.dart';
         this.subCommentsPage = true,
         this.inactiveAddCommentOption = false,
         this.chapterTitle = "",
+        this.showAllCommentsOfChapter = false,
       }
   );
 
@@ -41,6 +43,7 @@ import '../InfoToast.dart';
     this.subCommentsPage = true,
     this.chapterTitle = "",
     this.showAllCommentsOfChapter = false,
+    this.inactiveAddCommentOption = false,
   }
   );
 
@@ -89,6 +92,7 @@ class _CommentPage
           chapterNumber: widget.chapterNumber,
           removeCommentFunction: removeComment,
           positionKey: 0,
+          seeAllComments: widget.inactiveAddCommentOption,
         );
         comments.add(mainCommentCard);
 
@@ -126,6 +130,7 @@ class _CommentPage
             chapterNumber: chapterNumber,
             removeCommentFunction: removeComment,
             positionKey: position,
+            seeAllComments: widget.inactiveAddCommentOption,
           ));
           position += 1;
           chapterNumber += 1;
@@ -140,6 +145,7 @@ class _CommentPage
               chapterNumber: chapterNumber,
               removeCommentFunction: removeComment,
               positionKey: position,
+              seeAllComments: widget.inactiveAddCommentOption,
             ));
             position += 1;
             chapterNumber += 1;
@@ -198,7 +204,7 @@ class _CommentPage
         Flexible(
             flex: 0,
             child: Card(
-              color: Colors.blueGrey,
+              color: kPrimaryDarkColor,
               //margin: EdgeInsets.fromLTRB(0, 0, 0, 3),
               child: Row(
                 children: [
@@ -232,14 +238,14 @@ class _CommentPage
      if(widget.subCommentsPage){
        return Scaffold(
          body: Container(
-           color: Colors.blueGrey,
+           color: kPrimaryDarkColor,
            height: MediaQuery.of(context).size.height,
            width: MediaQuery.of(context).size.width,
            //child:  _createListView(),
            child: widget.inactiveAddCommentOption ? _getSubcommentsListView() : _getColumnWithListViewAndAddCommentOption(),
          ),
          appBar: AppBar(
-             backgroundColor: Colors.blueGrey,
+             backgroundColor: kPrimaryDarkColor,
              title: Text(widget.subCommentsPage ?  widget.chapterTitle : 'Add Comment...')
          ),
        );
@@ -249,7 +255,7 @@ class _CommentPage
          body: Container(
            height: MediaQuery.of(context).size.height,
            width: MediaQuery.of(context).size.width,
-           color: Colors.blueGrey,
+           color: kPrimaryDarkColor,
            child: Column(
              children: [
                Flexible(
@@ -286,7 +292,7 @@ class _CommentPage
            ),
          ),
          appBar: AppBar(
-             backgroundColor: Colors.blueGrey,
+             backgroundColor: kPrimaryDarkColor,
              title: Text("Add comment")
          ),
        );
@@ -294,7 +300,7 @@ class _CommentPage
    } else {
      return Scaffold(
        body: Container(
-         color: Colors.blueGrey,
+         color: kPrimaryDarkColor,
          height: MediaQuery.of(context).size.height,
          width: MediaQuery.of(context).size.width,
          child: ListView.builder(
@@ -308,7 +314,7 @@ class _CommentPage
          ),
        ),
        appBar: AppBar(
-           backgroundColor: Colors.blueGrey,
+           backgroundColor: kPrimaryDarkColor,
            title: Text(!widget.showAllCommentsOfChapter ? widget.book.title : widget.chapterTitle)
        ),
      );

@@ -35,16 +35,6 @@ class ProfileInfo extends StatelessWidget {
             ),
           ),
         ),
-
-        /*Align(
-          alignment: Alignment.center,
-          child: Text(
-            user.descriptionSentence,
-            style: TextStyle(
-              color: Colors.blueGrey,
-            ),
-          ),
-        ),*/
       ],
     );
   }

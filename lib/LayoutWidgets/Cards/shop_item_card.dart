@@ -72,7 +72,7 @@ class ShopItemCard extends StatelessWidget {
                             child: IconButton(
                               icon: Icon(
                                 Icons.arrow_forward_ios,
-                                color: Colors.blueGrey,
+                                color: kPrimaryDarkColor,
                               ),
                               onPressed: (){
                                 launch(item.shop_link);

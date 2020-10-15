@@ -54,9 +54,10 @@ class _ProfilePage extends State<ProfilePage>{
     width_per_child = (width - 30 - (10 * 2)) / 3;
 
     return Scaffold(
-      backgroundColor: Colors.blueGrey,
+      backgroundColor: kPrimaryDarkColor,
       body: _getBody(),
-      appBar: widget.profileType == ProfileType.friend_profile ? AppBar(backgroundColor: Colors.blueGrey,) : null,
+      appBar: widget.profileType == ProfileType.friend_profile ?
+      AppBar(backgroundColor: kPrimaryDarkColor,) : null,
     );
   }
 
@@ -233,12 +234,6 @@ class _ProfilePage extends State<ProfilePage>{
             child: ListTitle("Genres of Interest")
           ),
         ),
-
-        /*Padding(
-          padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
-          child: Container(color: Colors.blueGrey, height: 2, width: width),
-        ),*/
-
 
         HorizontalGenresList(
             widget.user.interestedGenres,

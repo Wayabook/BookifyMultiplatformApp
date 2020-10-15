@@ -58,16 +58,16 @@ class _BookCardInVerticalSearchList extends State<BookCardInVerticalSearchList>{
 
       if (isInPendingList || isInReadingList) {
         iconData = Icons.check;
-        buttonColor = isInReadingList ? Colors.green : Colors.blueGrey;
+        buttonColor = isInReadingList ? Colors.green : kPrimaryDarkColor;
       } else {
         iconData = Icons.add;
-        buttonColor = Colors.blueGrey;
+        buttonColor = kPrimaryDarkColor;
       }
     } else {
       added = user.isLectureInList(widget.book.toLecture(), widget.listTitle);
       //added = false;
       iconData = added ? Icons.check : Icons.add;
-      buttonColor = added ? Colors.green : Colors.blueGrey;
+      buttonColor = added ? Colors.green : kPrimaryDarkColor;
     }
 
   }
@@ -80,7 +80,7 @@ class _BookCardInVerticalSearchList extends State<BookCardInVerticalSearchList>{
       child:  Container(
         height: 160,
         decoration: BoxDecoration(
-          color: Colors.blueGrey,
+          color: kPrimaryDarkColor,
         ),
         child: _makeListTile(),
       ),
@@ -110,10 +110,10 @@ class _BookCardInVerticalSearchList extends State<BookCardInVerticalSearchList>{
                           padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
                           decoration: new BoxDecoration(
                               border: new Border(
-                                  right: new BorderSide(width: 1.0, color: Colors.blueGrey),
-                                  left: new BorderSide(width: .075, color: Colors.blueGrey),
-                                  bottom: new BorderSide(width: .075, color: Colors.blueGrey),
-                                  top: new BorderSide(width: .075, color: Colors.blueGrey)
+                                  right: new BorderSide(width: 1.0, color: kPrimaryDarkColor),
+                                  left: new BorderSide(width: .075, color: kPrimaryDarkColor),
+                                  bottom: new BorderSide(width: .075, color: kPrimaryDarkColor),
+                                  top: new BorderSide(width: .075, color: kPrimaryDarkColor)
                               )
                           ),
 
@@ -213,7 +213,7 @@ class _BookCardInVerticalSearchList extends State<BookCardInVerticalSearchList>{
 
                                         Icon(
                                           Icons.bookmark,
-                                          color: Colors.blueGrey,
+                                          color: kPrimaryDarkColor,
                                           size: 20,
                                         ),
 
@@ -317,7 +317,7 @@ class _BookCardInVerticalSearchList extends State<BookCardInVerticalSearchList>{
 
                                         Icon(
                                           Icons.bookmark,
-                                          color: Colors.blueGrey,
+                                          color: kPrimaryDarkColor,
                                           size: 20,
                                         ),
 
@@ -430,7 +430,7 @@ class _BookCardInVerticalSearchList extends State<BookCardInVerticalSearchList>{
 
                                         Icon(
                                           Icons.bookmark,
-                                          color: Colors.blueGrey,
+                                          color: kPrimaryDarkColor,
                                           size: 20,
                                         ),
 
@@ -484,7 +484,7 @@ class _BookCardInVerticalSearchList extends State<BookCardInVerticalSearchList>{
                                   buttonColor = Colors.green;
                                 } else {
                                   iconData = Icons.add;
-                                  buttonColor = Colors.blueGrey;
+                                  buttonColor = kPrimaryDarkColor;
                                 }
                                 widget.addOrRemoveBookFromTemporalCustomList(widget.book, added);
                               });
@@ -514,10 +514,10 @@ class _BookCardInVerticalSearchList extends State<BookCardInVerticalSearchList>{
                 padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
                 decoration: new BoxDecoration(
                     border: new Border(
-                        right: new BorderSide(width: 1.0, color: Colors.blueGrey),
-                        left: new BorderSide(width: .075, color: Colors.blueGrey),
-                        bottom: new BorderSide(width: .075, color: Colors.blueGrey),
-                        top: new BorderSide(width: .075, color: Colors.blueGrey)
+                        right: new BorderSide(width: 1.0, color: kPrimaryDarkColor),
+                        left: new BorderSide(width: .075, color: kPrimaryDarkColor),
+                        bottom: new BorderSide(width: .075, color: kPrimaryDarkColor),
+                        top: new BorderSide(width: .075, color: kPrimaryDarkColor)
                     )
                 ),
 
@@ -562,10 +562,10 @@ class _BookCardInVerticalSearchList extends State<BookCardInVerticalSearchList>{
             padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
             decoration: new BoxDecoration(
                 border: new Border(
-                    right: new BorderSide(width: 1.0, color: Colors.blueGrey),
-                    left: new BorderSide(width: .075, color: Colors.blueGrey),
-                    bottom: new BorderSide(width: .075, color: Colors.blueGrey),
-                    top: new BorderSide(width: .075, color: Colors.blueGrey)
+                    right: new BorderSide(width: 1.0, color: kPrimaryDarkColor),
+                    left: new BorderSide(width: .075, color: kPrimaryDarkColor),
+                    bottom: new BorderSide(width: .075, color: kPrimaryDarkColor),
+                    top: new BorderSide(width: .075, color: kPrimaryDarkColor)
                 )
             ),
 

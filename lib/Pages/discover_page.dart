@@ -1,3 +1,4 @@
+import 'package:bookifyapp/Design/constants.dart';
 import 'package:bookifyapp/LayoutWidgets/Lists/list_title.dart';
 import 'package:bookifyapp/LayoutWidgets/carousel_card.dart';
 import 'package:bookifyapp/Models/Chapter.dart';
@@ -168,7 +169,7 @@ class DiscoverPage extends StatelessWidget {
 
     return Scaffold(
       body: Container(
-        color: Colors.blueGrey,
+        color: kPrimaryDarkColor,
         child: ListView.builder(
           itemBuilder: (context, index) => _buildSection(context, index),
           itemCount: sectionsTitles.length,
@@ -178,7 +179,7 @@ class DiscoverPage extends StatelessWidget {
       ),
 
       appBar: AppBar(
-        backgroundColor: Colors.blueGrey,
+        backgroundColor: kPrimaryDarkColor,
         title: Text("Search book..."),
         actions: <Widget>[
           IconButton(

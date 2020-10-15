@@ -51,7 +51,7 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
   @override
   void initState(){
     super.initState();
-    addIconBackgroundColor = Colors.blueGrey;
+    addIconBackgroundColor = kPrimaryDarkColor;
 
     var user = Provider.of<User>(context, listen: false);
     isInPendingList = user.isInPendingList(book.toLecture());
@@ -83,7 +83,7 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
         child: _buildBookPage(context),
       ),
       appBar: AppBar(
-          backgroundColor: Colors.blueGrey,
+          backgroundColor: kPrimaryDarkColor,
           title: Text('Details of $title'),
       ),
     );
@@ -169,7 +169,7 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
                       builder: (BuildContext context) => BookShopsDialog(this.book, this),
                     );
                   },
-                  color: Colors.blueGrey,
+                  color: kPrimaryDarkColor,
                   child: IconButton(
                     icon: Icon(
                       Icons.shop_two,
@@ -193,7 +193,7 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
                         topRight: Radius.circular(25.0),
                         )
                   ),
-                  color: Colors.blueGrey,
+                  color: kPrimaryDarkColor,
                   child: IconButton(
                     icon:Icon(
                         Icons.list,
@@ -210,7 +210,7 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
 
         Padding(
           padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
-          child: Container(color: Colors.blueGrey, height: 2, width: width),
+          child: Container(color: kPrimaryDarkColor, height: 2, width: width),
         ),
 
         Center(
@@ -221,11 +221,11 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
 
               InfoRow(RowType.image,  "GENDER", "images/genre1.png",  "Romance", width_per_child, 105),
 
-              Container(color: Colors.blueGrey, height: 105, width: 2,),
+              Container(color: kPrimaryDarkColor, height: 105, width: 2,),
 
               InfoRow(RowType.text,  "PUBLICATION", "2017",  "Year", width_per_child, 105),
 
-              Container(color: Colors.blueGrey, height: 105, width: 2,),
+              Container(color: kPrimaryDarkColor, height: 105, width: 2,),
 
               InfoRow(RowType.text,  "EXTENSION", "128",  "Pages", width_per_child, 105),
 
@@ -236,7 +236,7 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
 
         Padding(
           padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
-          child: Container(color: Colors.blueGrey, height: 2, width: width),
+          child: Container(color: kPrimaryDarkColor, height: 2, width: width),
         ),
 
         _getFriendsPreview(),
@@ -311,7 +311,7 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
                         child: SmallButtonUnderlined("View All"),
                         onTap: () async {
                           final String result = await Navigator.of(context)
-                              .push(MaterialPageRoute(builder: (context) => CommentPage.showingAllBookComments(this.book)));
+                              .push(MaterialPageRoute(builder: (context) => CommentPage.showingAllBookComments(this.book, inactiveAddCommentOption: true,)));
                         },
                       )
                     ),

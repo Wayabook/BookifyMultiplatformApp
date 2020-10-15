@@ -117,7 +117,7 @@ class _AddFeedbackDialog
     }
     * */
 
-    readButtonColor = Colors.blueGrey;
+    readButtonColor = kPrimaryDarkColor;
     visible = widget.book.finished ? true : false;
   }
 
@@ -160,7 +160,7 @@ class _AddFeedbackDialog
   _getRatingBar(){
     return Card(
       margin: EdgeInsets.fromLTRB(0, 5, 0, 5),
-      color: Colors.blueGrey,
+      color: kPrimaryDarkColor,
       child: Container(
           height: 50,
           child: Align(
@@ -193,7 +193,7 @@ class _AddFeedbackDialog
       child: Text(
         title,
         style: TextStyle(
-          color: Colors.blueGrey,
+          color: kPrimaryDarkColor,
         ),
       ),
     );
@@ -301,7 +301,7 @@ class _AddFeedbackDialog
 
                 Padding(
                   padding: EdgeInsets.fromLTRB(7, 210, 7, 10),
-                  child: Container(color: Colors.blueGrey, height: 2, width: width),
+                  child: Container(color: kPrimaryDarkColor, height: 2, width: width),
                 ),
 
                 AnimatedOpacity(
@@ -360,7 +360,7 @@ class _AddFeedbackDialog
                                 backgroundColor: Colors.yellow,
                                 child: Icon(
                                   Icons.add,
-                                  color: Colors.blueGrey,),
+                                  color: kPrimaryDarkColor,),
                               ),
                             ),
                           ),

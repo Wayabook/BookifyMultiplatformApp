@@ -1,3 +1,4 @@
+import 'package:bookifyapp/Design/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/Models/Book.dart';
 
@@ -96,7 +97,7 @@ class BookCover extends StatelessWidget {
       child: Text(
         this.book.author,
         style: TextStyle(
-          color: Colors.blueGrey,
+          color: kPrimaryDarkColor,
         ),
       ),
     );

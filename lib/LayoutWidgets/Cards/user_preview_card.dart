@@ -269,7 +269,7 @@ class UserPreviewCard extends StatelessWidget {
         child:  Container(
           height: this.height,
           decoration: BoxDecoration(
-            color: Colors.blueGrey,
+            color: kPrimaryDarkColor,
           ),
           child: _makeListTile(context),
         ),
@@ -280,7 +280,7 @@ class UserPreviewCard extends StatelessWidget {
       return Container(
         height: this.height,
         decoration: BoxDecoration(
-          color: Colors.blueGrey,
+          color: kPrimaryDarkColor,
         ),
         child: _makeListTile(context),
       );

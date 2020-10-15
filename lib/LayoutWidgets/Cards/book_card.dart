@@ -248,14 +248,14 @@ class BookCard extends StatelessWidget {
                     children: <Widget>[
                       Icon(
                         icon,
-                        color: Colors.blueGrey,
+                        color: kPrimaryDarkColor,
                         size: 50,
                       ),
 
                       Text(
                         text,
                         style: TextStyle(
-                          color: Colors.blueGrey,
+                          color: kPrimaryDarkColor,
                           fontWeight: FontWeight.bold,
                         ),
                       )
