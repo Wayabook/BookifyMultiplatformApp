@@ -47,15 +47,6 @@ import '../InfoToast.dart';
   }
   );
 
-  /*CommentPage.showAllCommentsOfChapter(
-      this.book,
-      {
-        this.chapterNumber,
-        this.subCommentsPage = true,
-        this.chapterTitle = "",
-      }
-  )*/
-
   @override
   _CommentPage createState() => _CommentPage();
 }
@@ -109,34 +100,18 @@ class _CommentPage
         }
         comments.addAll(subComments);
 
-      } else {
+      } /*else {
 
         publishContainerColor = Colors.yellow[100];
         publishTextColor = Colors.grey[300];
 
-      }
-
-      _getTextField();
+      }*/
     } else {
       int position = 0;
-      int chapterNumber = 1;
-      if(widget.showAllCommentsOfChapter){
-        Chapter chapter = widget.book.chapters[widget.chapterNumber];
-        for(Comment comment in chapter.comments){
-          comments.add(MainCommentCard(
-            comment,
-            fromDialog: true,
-            chapterTitle: chapter.title,
-            chapterNumber: chapterNumber,
-            removeCommentFunction: removeComment,
-            positionKey: position,
-            seeAllComments: widget.inactiveAddCommentOption,
-          ));
-          position += 1;
-          chapterNumber += 1;
-        }
-      } else {
-        for(Chapter chapter in widget.book.chapters){
+      int chapterNumber = 0;
+      if(widget.book != null){
+        if(widget.showAllCommentsOfChapter){
+          Chapter chapter = widget.book.chapters[widget.chapterNumber];
           for(Comment comment in chapter.comments){
             comments.add(MainCommentCard(
               comment,
@@ -150,9 +125,30 @@ class _CommentPage
             position += 1;
             chapterNumber += 1;
           }
+        } else {
+          for(Chapter chapter in widget.book.chapters){
+            for(Comment comment in chapter.comments){
+              comments.add(MainCommentCard(
+                comment,
+                fromDialog: true,
+                chapterTitle: chapter.title,
+                chapterNumber: chapterNumber,
+                removeCommentFunction: removeComment,
+                positionKey: position,
+                seeAllComments: widget.inactiveAddCommentOption,
+              ));
+              position += 1;
+              chapterNumber += 1;
+            }
+          }
         }
+      } else {
+        publishContainerColor = Colors.yellow[100];
+        publishTextColor = Colors.grey[300];
       }
     }
+    _getTextField();
+
     super.initState();
   }
 
@@ -249,7 +245,31 @@ class _CommentPage
              title: Text(widget.subCommentsPage ?  widget.chapterTitle : 'Add Comment...')
          ),
        );
+     } /*else {
 
+     }*/
+   } else {
+     if(widget.book != null){
+       return Scaffold(
+         body: Container(
+           color: kPrimaryDarkColor,
+           height: MediaQuery.of(context).size.height,
+           width: MediaQuery.of(context).size.width,
+           child: ListView.builder(
+               controller: scrollController,
+               shrinkWrap: true,
+               padding: const EdgeInsets.all(8),
+               itemCount: this.comments.length,
+               itemBuilder: (BuildContext context, int index) {
+                 return this.comments[index];
+               }
+           ),
+         ),
+         appBar: AppBar(
+             backgroundColor: kPrimaryDarkColor,
+             title: Text((!widget.showAllCommentsOfChapter && widget.book != null) ? widget.book.title : widget.chapterTitle)
+         ),
+       );
      } else {
        return Scaffold(
          body: Container(
@@ -297,27 +317,6 @@ class _CommentPage
          ),
        );
      }
-   } else {
-     return Scaffold(
-       body: Container(
-         color: kPrimaryDarkColor,
-         height: MediaQuery.of(context).size.height,
-         width: MediaQuery.of(context).size.width,
-         child: ListView.builder(
-             controller: scrollController,
-             shrinkWrap: true,
-             padding: const EdgeInsets.all(8),
-             itemCount: this.comments.length,
-             itemBuilder: (BuildContext context, int index) {
-               return this.comments[index];
-             }
-         ),
-       ),
-       appBar: AppBar(
-           backgroundColor: kPrimaryDarkColor,
-           title: Text(!widget.showAllCommentsOfChapter ? widget.book.title : widget.chapterTitle)
-       ),
-     );
    }
   }
 

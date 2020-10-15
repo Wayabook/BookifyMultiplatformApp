@@ -63,7 +63,7 @@ class ChapterCard extends StatelessWidget {
                               .push(MaterialPageRoute(builder: (context) =>
                               CommentPage.showingAllBookComments(this.book, subCommentsPage: false,
                                   chapterTitle: this.book.chapters[this.chapter].title,
-                                  chapterNumber: this.book.chapters[this.chapter].number,
+                                  chapterNumber: this.chapter,
                                   showAllCommentsOfChapter: true,
                                   inactiveAddCommentOption: true,
                               )
