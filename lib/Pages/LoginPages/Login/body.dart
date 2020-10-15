@@ -9,6 +9,7 @@ import 'package:bookifyapp/Pages/LoginPages/Components/or_divider.dart';
 import 'package:bookifyapp/Pages/LoginPages/Signup/singup_page.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../../first_time_form_page.dart';
 import '../../main_tab_page.dart';
 
 class Body extends StatelessWidget {
@@ -48,7 +49,7 @@ class Body extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder: (context) {
-                      return MainTabPage();
+                      return FirstTimeFormPage();
                     },
                   ),
                 );

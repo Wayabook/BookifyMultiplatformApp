@@ -1,4 +1,5 @@
 import 'package:bookifyapp/Design/constants.dart';
+import 'package:bookifyapp/LayoutWidgets/Cards/genre_card.dart';
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/Models/Genre.dart';
 import 'package:bookifyapp/Pages/book_page.dart';
@@ -36,123 +37,10 @@ class HorizontalGenresList extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         itemCount: this.type == ListType.add_genre ?  genres.length + 1: genres.length,
         itemBuilder: (BuildContext context, int index) {
-          /*if(this.type == ListType.add_genre)
-          {*/
             if(index < genres.length){
-              return Card(
-                color: kPrimaryDarkColor,
-                margin: EdgeInsets.all(10),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20.0),
-                ),
-                elevation: 10,
-                child: Row(
-                  children: <Widget>[
-                    Container(
-                        width: 50,
-                        height: 100,
-                        child: FittedBox(
-                          fit: BoxFit.contain,
-                          child: BorderedText(
-                            strokeWidth: 1.0,
-                            strokeColor: kPrimaryLightColor,
-                            child: Text(
-                              (index + 1).toString(),
-                              style: TextStyle(
-                                  color: kPrimaryDarkColor,
-                                  decoration: TextDecoration.none,
-                                  //decorationColor: Colors.,
-                                  decorationThickness: 1
-                              ),
-                            ),
-                          ),
-                          /*Text(
-                          (index + 1).toString(),
-                          style: TextStyle(
-                            color: Colors.blueGrey,
-                            fontWeight: FontWeight.bold,
-                            //height: double.infinity,
-                          ),
-                        ),*/
-                          //Icon(Icons.filter_1)
-                        )
-                    ),
-
-                    Container(
-                        width: 110,
-                        height: double.infinity,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            color: kPrimaryLightColor
-                        ),
-                        child: Center(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: <Widget>[
-                                Image.asset(
-                                  "images/" + genres[index].picture,
-                                  height: 50,
-                                  width: 50,
-                                ),
-
-                                Text(genres[index].name,
-                                  style: TextStyle(
-                                    color: kPrimaryDarkColor,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                )
-                              ],
-                            )
-                        )
-                    ),
-                  ],
-                )
-              );
+              return GenreCard(genres[index], addGenreCard: false, index: index,);
             } else {
-              return GestureDetector(
-                onTap: () {
-                  /*Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => SearchPage()),
-                  );*/
-                },
-                child: Card(
-                  margin: EdgeInsets.all(10),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20.0),
-                  ),
-                  elevation: 10,
-                  child: Container(
-                      width: 110,
-                      //height: double.infinity,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          color: kPrimaryLightColor
-                      ),
-                      child: Center(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: <Widget>[
-                              Icon(
-                                Icons.add,
-                                color: kPrimaryDarkColor,
-                                size: 50,
-                              ),
-
-                              Text("Add Genre",
-                                style: TextStyle(
-                                  color: kPrimaryDarkColor,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              )
-                            ],
-                          )
-                      )
-                  ),
-                ),
-              );
+              return GenreCard(null, addGenreCard: true,);
             }
         },
       ),
