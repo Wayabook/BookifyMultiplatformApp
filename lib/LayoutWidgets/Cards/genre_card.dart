@@ -1,4 +1,5 @@
 import 'package:bookifyapp/Design/constants.dart';
+import 'package:bookifyapp/LayoutWidgets/Cards/genre_container.dart';
 import 'package:bookifyapp/Models/Genre.dart';
 import 'package:bordered_text/bordered_text.dart';
 import 'package:flutter/material.dart';
@@ -89,34 +90,7 @@ class GenreCard extends StatelessWidget {
                   )
               ),
 
-              Container(
-                  width: 110,
-                  height: double.infinity,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: kPrimaryLightColor
-                  ),
-                  child: Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: <Widget>[
-                          Image.asset(
-                            "images/" + genre.picture,
-                            height: 50,
-                            width: 50,
-                          ),
-
-                          Text(genre.name,
-                            style: TextStyle(
-                              color: kPrimaryDarkColor,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          )
-                        ],
-                      )
-                  )
-              ),
+              GenreContainer(this.genre)
             ],
           )
       );

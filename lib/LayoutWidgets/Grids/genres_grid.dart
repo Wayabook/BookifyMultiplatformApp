@@ -5,6 +5,7 @@ import 'package:bookifyapp/Enums/profile_type.dart';
 import 'package:bookifyapp/InfoToast.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/book_card.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/genre_card.dart';
+import 'package:bookifyapp/LayoutWidgets/Cards/genre_container.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/user_preview_card.dart';
 import 'package:bookifyapp/LayoutWidgets/Dialogs/dialog_with_accept_and_cancel_options.dart';
 import 'package:bookifyapp/LayoutWidgets/Dialogs/dialog_with_input_text.dart';
@@ -49,9 +50,9 @@ class _GenresGrid extends State<GenresGrid> with TickerProviderStateMixin{
         crossAxisCount: 3,
         mainAxisSpacing: 10.0,
         crossAxisSpacing: 10.0,
-        childAspectRatio:  (MediaQuery.of(context).size.width / 4) / (MediaQuery.of(context).size.height / 4),
+        childAspectRatio:  (MediaQuery.of(context).size.width / 3) / (MediaQuery.of(context).size.height / 4),
         children: List.generate(widget.genres.length, (index) {
-          return GenreCard(widget.genres[index], addGenreCard: false, index: index,);
+          return GenreContainer(widget.genres[index], width: (MediaQuery.of(context).size.width / 3) , height: (MediaQuery.of(context).size.height / 4),);
         })
     );
   }
