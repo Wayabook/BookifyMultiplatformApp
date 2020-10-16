@@ -11,8 +11,16 @@ class AddCustomListPage extends StatefulWidget {
   List<Book> bookshelf;
   String listTitle;
   ListType listType;
+  bool showListTitleAndButtons;
 
-  AddCustomListPage(this.bookshelf, this.listTitle, this.listType);
+  AddCustomListPage(
+      this.bookshelf,
+      this.listTitle,
+      this.listType,
+      {
+        this.showListTitleAndButtons = false,
+      }
+  );
 
   @override
   _AddCustomListPage createState() => _AddCustomListPage();

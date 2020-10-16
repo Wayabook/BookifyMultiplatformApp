@@ -1,3 +1,4 @@
+import 'package:bookifyapp/Design/constants.dart';
 import 'package:bookifyapp/Enums/book_card_type.dart';
 import 'package:bookifyapp/Enums/button_type.dart';
 import 'package:bookifyapp/Enums/list_type.dart';
@@ -22,8 +23,9 @@ import 'package:provider/provider.dart';
 class GenresGrid extends StatefulWidget {
 
   List<Genre> genres;
+  //double height;
 
-  GenresGrid(this.genres);
+  GenresGrid(this.genres, /*this.height*/);
 
   @override
   _GenresGrid createState() => _GenresGrid();
@@ -50,9 +52,31 @@ class _GenresGrid extends State<GenresGrid> with TickerProviderStateMixin{
         crossAxisCount: 3,
         mainAxisSpacing: 10.0,
         crossAxisSpacing: 10.0,
-        childAspectRatio:  (MediaQuery.of(context).size.width / 3) / (MediaQuery.of(context).size.height / 4),
+        //childAspectRatio:  3 / 4,
         children: List.generate(widget.genres.length, (index) {
-          return GenreContainer(widget.genres[index], width: (MediaQuery.of(context).size.width / 3) , height: (MediaQuery.of(context).size.height / 4),);
+          /*return Container(
+            color: Colors.black,
+            height: 100,
+            width: 100,
+          );*/
+
+          return Container(
+              width: (MediaQuery.of(context).size.width / 3),
+              height: (MediaQuery.of(context).size.height / 4),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: kPrimaryDarkColor
+              ),
+              child: Padding(
+                padding: EdgeInsets.all(2),
+                child: /*Container(
+                  color: Colors.black,
+                  height: widget.height,
+                  width: 100,
+                )*/
+                GenreContainer(widget.genres[index], width: (MediaQuery.of(context).size.width / 3) -10 , height: (MediaQuery.of(context).size.height / 4) - 10, ),
+              )
+          );
         })
     );
   }
