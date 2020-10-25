@@ -46,16 +46,16 @@ class FirstTimeFormPage extends StatelessWidget {
                     //height: MediaQuery.of(context).size.height - 45,
                     child: Center(
                       child: Card(
-                          color: kPrimaryLightColor,
+                          color: kPrimaryDarkColor,
                           child: Padding(
-                              padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                              padding: EdgeInsets.fromLTRB(5, 20, 5, 20),
                               child: //GenresGrid(Genre.getMockGenres(), /*MediaQuery.of(context).size.height - 100 - 100 - 20*/)
                               Swiper(
                                 //containerHeight: 25.0,
                                 itemBuilder: (BuildContext context, int index) {
                                   if(index == 0)
                                     return GenresGrid(Genre.getMockGenres(), /*MediaQuery.of(context).size.height - 100 - 100 - 20*/);
-                                  return AddCustomListPage(Book.getUserMockBooks(), "Leidos", ListType.normal);
+                                  return AddCustomListPage(Book.getUserMockBooks(), "Leidos", ListType.normal, removeBackButton: false,);
                                 },
                                 indicatorLayout: PageIndicatorLayout.COLOR,
                                 containerHeight: double.infinity,

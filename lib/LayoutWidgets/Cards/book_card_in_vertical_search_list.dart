@@ -364,6 +364,8 @@ class _BookCardInVerticalSearchList extends State<BookCardInVerticalSearchList>{
           )
       );
     } else if (widget.type == ListType.add_custom_list|| widget.type == ListType.edit_custom_list){
+      List<String> heroes = ("FLTB1" + widget.book.title).split('');
+      heroes.shuffle();
       return Container(
           decoration: BoxDecoration(
               color: kPrimaryLightColor,
@@ -469,7 +471,7 @@ class _BookCardInVerticalSearchList extends State<BookCardInVerticalSearchList>{
                           height: 75,
                           width: 75,
                           child: FloatingActionButton(
-                            heroTag: "FLTB1" + widget.book.title,
+                            heroTag: heroes,
                             backgroundColor: kPrimaryLightColor,
                             child: Icon(
                               iconData,
@@ -586,8 +588,10 @@ class _BookCardInVerticalSearchList extends State<BookCardInVerticalSearchList>{
   }
 
   _getFloatingActionButton(Book book) {
+    List<String> heroes = (book.title + book.author + book.chapters.length.toString()).split(' ');
+    heroes.shuffle();
     return FloatingActionButton(
-      heroTag: book.title + book.author + book.chapters.length.toString(),
+      heroTag: heroes.join(','),
       backgroundColor: kPrimaryLightColor,
       child: Icon(
         iconData,

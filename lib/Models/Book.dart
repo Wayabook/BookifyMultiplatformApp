@@ -50,7 +50,12 @@ class Book {
       /*this._isbn,
       this._ean,*/
       this._shops_items,
-      {this.editorial="SUMA", this.language="CASTELLANO", this.chapters = const []});
+      {
+        this.editorial="SUMA",
+        this.language="CASTELLANO",
+        this.chapters = const [],
+        this.addedBy = 100
+      });
 
   Lecture toLecture({int currentChapter = 0}){
     return new Lecture(

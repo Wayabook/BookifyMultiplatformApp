@@ -12,6 +12,7 @@ class AddCustomListPage extends StatefulWidget {
   String listTitle;
   ListType listType;
   bool showListTitleAndButtons;
+  bool removeBackButton;
 
   AddCustomListPage(
       this.bookshelf,
@@ -19,6 +20,7 @@ class AddCustomListPage extends StatefulWidget {
       this.listType,
       {
         this.showListTitleAndButtons = false,
+        this.removeBackButton = true,
       }
   );
 
@@ -84,6 +86,7 @@ class _AddCustomListPage extends State<AddCustomListPage> {
     );
 
     final appTopAppBar = AppBar(
+      automaticallyImplyLeading: widget.removeBackButton,
       backgroundColor: kPrimaryDarkColor,
       elevation: 0.1,
       title: appBarTitle,

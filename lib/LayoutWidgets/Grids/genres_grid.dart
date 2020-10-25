@@ -43,8 +43,6 @@ class _GenresGrid extends State<GenresGrid> with TickerProviderStateMixin{
   @override
   Widget build(BuildContext context) {
 
-    double width = MediaQuery.of(context).size.width;
-    //ist<String> keys = widget.user.lectures.keys.toList();
     return GridView.count(
         key: UniqueKey(),
         //physics: NeverScrollableScrollPhysics(), // to disable GridView's scrolling
@@ -54,18 +52,12 @@ class _GenresGrid extends State<GenresGrid> with TickerProviderStateMixin{
         crossAxisSpacing: 10.0,
         //childAspectRatio:  3 / 4,
         children: List.generate(widget.genres.length, (index) {
-          /*return Container(
-            color: Colors.black,
-            height: 100,
-            width: 100,
-          );*/
-
           return Container(
               width: (MediaQuery.of(context).size.width / 3),
               height: (MediaQuery.of(context).size.height / 4),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
-                  color: kPrimaryDarkColor
+                  color: kPrimaryLightColor
               ),
               child: Padding(
                 padding: EdgeInsets.all(2),
