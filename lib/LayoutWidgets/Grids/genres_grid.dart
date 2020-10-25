@@ -57,7 +57,7 @@ class _GenresGrid extends State<GenresGrid> with TickerProviderStateMixin{
               height: (MediaQuery.of(context).size.height / 4),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
-                  color: kPrimaryLightColor
+                  color: Colors.white38,
               ),
               child: Padding(
                 padding: EdgeInsets.all(2),

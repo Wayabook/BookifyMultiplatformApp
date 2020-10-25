@@ -17,70 +17,69 @@ class FirstTimeFormPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        child: Padding(
-          padding: EdgeInsets.fromLTRB(5, 40, 10, 5),
-          child:  Column(
-            children: [
-              Align(
-                alignment: Alignment.topRight,
-                child: GestureDetector(
-                  onTap: (){
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) {
-                          return MainTabPage();
-                        },
-                      ),
-                    );
-                  },
-                  child: SmallButtonUnderlined("Skip", textColor: kPrimaryDarkColor,),
-                ),
-              ),
-
-              Padding(
-                padding: EdgeInsets.fromLTRB(10, 50, 10, 50),
-                child: Container(
-                    height: MediaQuery.of(context).size.height - 200,
-                    //height: MediaQuery.of(context).size.height - 45,
-                    child: Center(
-                      child: Card(
-                          color: kPrimaryDarkColor,
-                          child: Padding(
-                              padding: EdgeInsets.fromLTRB(5, 20, 5, 20),
-                              child: //GenresGrid(Genre.getMockGenres(), /*MediaQuery.of(context).size.height - 100 - 100 - 20*/)
-                              Swiper(
-                                //containerHeight: 25.0,
-                                itemBuilder: (BuildContext context, int index) {
-                                  if(index == 0)
-                                    return GenresGrid(Genre.getMockGenres(), /*MediaQuery.of(context).size.height - 100 - 100 - 20*/);
-                                  return AddCustomListPage(Book.getUserMockBooks(), "Leidos", ListType.normal, removeBackButton: false,);
-                                },
-                                indicatorLayout: PageIndicatorLayout.COLOR,
-                                containerHeight: double.infinity,
-                                containerWidth: double.infinity,
-                                //autoplay: false,
-                                itemCount: 3,
-                                pagination: SwiperPagination(
-                                    margin: new EdgeInsets.all(5.0),
-                                ),
-                                //pagination: null,
-                                //control: null,
-                                //viewportFraction: 0.1,
-                                //scale: 0.9,
-                              )
-                          )
-                      ),
+      backgroundColor: kPrimaryLightColor,
+      body: SingleChildScrollView(
+        child: Stack(
+          children: [
+            Padding(
+              padding: EdgeInsets.fromLTRB(5, 40, 5, 10),
+              child: Container(
+                  color: kPrimaryLightColor,
+                  child: Align(
+                    alignment: Alignment.topRight,
+                    child: GestureDetector(
+                      onTap: (){
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return MainTabPage();
+                            },
+                          ),
+                        );
+                      },
+                      child: SmallButtonUnderlined("Skip", textColor: kPrimaryDarkColor,),
                     ),
+                  ),
+              ),
+            ),
+
+            Padding(
+              padding: EdgeInsets.fromLTRB(10, 60, 10, 30),
+              child: Container(
+                height: MediaQuery.of(context).size.height - 90,
+                //height: MediaQuery.of(context).size.height - 45,
+                child: Center(
+                  child: Card(
+                      color: kPrimaryDarkColor,
+                      child:  Swiper(
+                        //containerHeight: 25.0,
+
+                        itemBuilder: (BuildContext context, int index) {
+                          //if(index == 0)
+                          //  return GenresGrid(Genre.getMockGenres(), /*MediaQuery.of(context).size.height - 100 - 100 - 20*/);
+                          return AddCustomListPage(Book.getUserMockBooks(), "Leidos", ListType.normal, removeBackButton: false,);
+                        },
+                        index: 0,
+                        indicatorLayout: PageIndicatorLayout.COLOR,
+                        containerHeight: double.infinity,
+                        containerWidth: double.infinity,
+                        //autoplay: false,
+                        itemCount: 3,
+                        pagination: SwiperPagination(
+                          margin: new EdgeInsets.all(5.0),
+                        ),
+                        //pagination: null,
+                        //control: null,
+                        //viewportFraction: 0.1,
+                        //scale: 0.9,
+                      )
+                  ),
                 ),
               ),
-
-
-              //GenresGrid(Genre.getMockGenres())
-            ],
-          ),
-        )
+            ),
+          ],
+        ),
       ),
     );
   }
