@@ -13,6 +13,7 @@ class ListTitle extends StatelessWidget{
   User user;
   bool withButton;
   final String title;
+  double fontSize;
   ButtonType buttonType;
   Function(String) goToPageFromParent;
   Function(String) goToPageFromParent2;
@@ -24,7 +25,8 @@ class ListTitle extends StatelessWidget{
         this.buttonType = ButtonType.view_all,
         this.user,
         this.goToPageFromParent,
-        this.goToPageFromParent2
+        this.goToPageFromParent2,
+        this.fontSize = 30
       });
 
   @override
@@ -53,7 +55,7 @@ class ListTitle extends StatelessWidget{
       alignment: Alignment.topLeft,
       child:  Text(
         title,
-        style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: kPrimaryLightColor),
+        style: TextStyle(fontSize: this.fontSize, fontWeight: FontWeight.bold, color: kPrimaryLightColor),
       ),
     );
   }

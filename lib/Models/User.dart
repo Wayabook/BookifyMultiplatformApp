@@ -248,7 +248,7 @@ class User extends ChangeNotifier{
     List<Genre> genres = Genre.getMockGenres();
     Map<String, List<Lecture>> userLectures =
     {
-      'Reading': Lecture.getUserMockLectures().sublist(0, 1),
+      'Reading': new List<Lecture>(),
       'Pending': new List<Lecture>(),//Lecture.getUserMockLectures().sublist(2, 3),
       'Read': new List<Lecture>(),
       'Recommended': Lecture.getUserMockLectures(),

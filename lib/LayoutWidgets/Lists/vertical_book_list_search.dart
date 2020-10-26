@@ -188,7 +188,7 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
           itemCount: widget.books.length + 1,
           itemBuilder: (BuildContext context, int index) {
             if (index == 0)
-              return ListTitle(widget.title);
+              return ListTitle(widget.title, fontSize: 22,);
             return _makeCard(index - 1);
           },
         ),
