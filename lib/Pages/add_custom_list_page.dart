@@ -13,6 +13,8 @@ class AddCustomListPage extends StatefulWidget {
   ListType listType;
   bool showListTitleAndButtons;
   bool removeBackButton;
+  String specificUserBookList;
+  _AddCustomListPage _addCustomListPage = new _AddCustomListPage();
 
   AddCustomListPage(
       this.bookshelf,
@@ -21,33 +23,39 @@ class AddCustomListPage extends StatefulWidget {
       {
         this.showListTitleAndButtons = false,
         this.removeBackButton = true,
+        this.specificUserBookList = ";;;",
       }
   );
 
   @override
-  _AddCustomListPage createState() => _AddCustomListPage();
+  _AddCustomListPage createState() => _addCustomListPage;
 }
 
 class _AddCustomListPage extends State<AddCustomListPage> {
 
   List<Book> _bookshelf = [];
 
-  TextEditingController controller = new TextEditingController();
+  TextEditingController controller;
 
   TabController _tabController;
+  FocusNode _focusNode;
 
   String filter = "";
   Icon actionIcon = new Icon(Icons.search);
-  Widget appBarTitle = new Text("Search...");
+  String searchTitle = "Search...";
+  TextField appBarTitle;
 
   @override
   void dispose() {
+    controller.clear();
     controller.dispose();
     super.dispose();
   }
 
   @override
   void initState() {
+    _focusNode = new FocusNode();
+    controller = new TextEditingController();
     setState(() {
       _bookshelf = widget.bookshelf;
     });
@@ -63,7 +71,40 @@ class _AddCustomListPage extends State<AddCustomListPage> {
         });
       }
     });
+
+    this.appBarTitle = TextField(
+      controller: controller,
+      focusNode: _focusNode,
+      decoration: new InputDecoration(
+        hintText: searchTitle,
+        hintStyle: new TextStyle(color: kPrimaryLightColor),
+      ),
+      style: new TextStyle(
+        color: kPrimaryLightColor,
+      ),
+      //autofocus: true,
+      cursorColor: kPrimaryLightColor,
+      onTap: (){
+        _checkInuptTextState(false);
+      },
+    );
     super.initState();
+  }
+
+  _checkInuptTextState(fromButton){
+    setState(() {
+      if (this.actionIcon.icon == Icons.search) {
+        this.actionIcon = new Icon(Icons.close);
+        _focusNode.requestFocus();
+      } else {
+        this.actionIcon = new Icon(Icons.search);
+        _bookshelf = widget.bookshelf;
+        _focusNode.unfocus();
+        controller.clear();
+      }
+      if(fromButton)
+        searchTitle = "Search...";
+    });
   }
 
 
@@ -82,7 +123,12 @@ class _AddCustomListPage extends State<AddCustomListPage> {
     }
 
     final appBody = Container(
-      child: VerticalBookListSearch(_bookshelf, widget.listType, title: widget.listTitle,),
+      child: VerticalBookListSearch(
+        _bookshelf,
+        widget.listType,
+        title: widget.listTitle,
+        specificLectureTitle: widget.specificUserBookList,
+      ),
     );
 
     final appTopAppBar = AppBar(
@@ -94,28 +140,7 @@ class _AddCustomListPage extends State<AddCustomListPage> {
         new IconButton(
           icon: actionIcon,
           onPressed: () {
-            setState(() {
-              if (this.actionIcon.icon == Icons.search) {
-                this.actionIcon = new Icon(Icons.close);
-                this.appBarTitle = new TextField(
-                  controller: controller,
-                  decoration: new InputDecoration(
-                    hintText: "Search...",
-                    hintStyle: new TextStyle(color: kPrimaryLightColor),
-                  ),
-                  style: new TextStyle(
-                    color: kPrimaryLightColor,
-                  ),
-                  autofocus: true,
-                  cursorColor: kPrimaryLightColor,
-                );
-              } else {
-                this.actionIcon = new Icon(Icons.search);
-                this.appBarTitle = new Text(_tabController.index == 0 ? "Cities" : "Persons");
-                _bookshelf = widget.bookshelf;
-                controller.clear();
-              }
-            });
+            _checkInuptTextState(true);
           },
         ),
       ],

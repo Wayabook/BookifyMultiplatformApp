@@ -45,23 +45,16 @@ class FirstTimeFormPage extends StatelessWidget {
             ),
 
             Padding(
-              padding: EdgeInsets.fromLTRB(10, 60, 10, 30),
+              padding: EdgeInsets.fromLTRB(10, 60, 10, 0),
               child: Container(
-                height: MediaQuery.of(context).size.height - 90,
+                height: MediaQuery.of(context).size.height - 60,
                 //height: MediaQuery.of(context).size.height - 45,
                 child: Center(
                   child: Card(
                       color: kPrimaryDarkColor,
                       child:  Swiper(
-                        //containerHeight: 25.0,
-
-                        itemBuilder: (BuildContext context, int index) {
-                          //if(index == 0)
-                          //  return GenresGrid(Genre.getMockGenres(), /*MediaQuery.of(context).size.height - 100 - 100 - 20*/);
-                          return AddCustomListPage(Book.getUserMockBooks(), "Leidos", ListType.normal, removeBackButton: false,);
-                        },
                         index: 0,
-                        indicatorLayout: PageIndicatorLayout.COLOR,
+                        indicatorLayout: PageIndicatorLayout.SCALE,
                         containerHeight: double.infinity,
                         containerWidth: double.infinity,
                         //autoplay: false,
@@ -69,6 +62,30 @@ class FirstTimeFormPage extends StatelessWidget {
                         pagination: SwiperPagination(
                           margin: new EdgeInsets.all(5.0),
                         ),
+                        itemBuilder: (BuildContext context, int index) {
+                          if(index == 1)
+                            return AddCustomListPage(
+                              Book.getUserMockBooks(),
+                              "Seleccione Libros Leidos",
+                              ListType.first_time_form,
+                              removeBackButton: false,
+                              specificUserBookList: 'Read',);
+                          if(index == 2)
+                            return AddCustomListPage(
+                              Book.getUserMockBooks(),
+                              "Seleccione Libros Interesantes",
+                              ListType.first_time_form,
+                              removeBackButton: false,
+                              specificUserBookList: 'Pending',
+                            );
+                          return Center(
+                            child: Padding(
+                              padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                              child: GenresGrid(Genre.getMockGenres(),
+                            )
+                          ), /*MediaQuery.of(context).size.height - 100 - 100 - 20*/);
+                        },
+
                         //pagination: null,
                         //control: null,
                         //viewportFraction: 0.1,

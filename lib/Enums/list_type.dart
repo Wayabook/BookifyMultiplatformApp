@@ -7,4 +7,5 @@ enum ListType {
   add_custom_list,
   edit_custom_list,
   preview_friends,
+  first_time_form
 }

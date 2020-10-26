@@ -52,7 +52,11 @@ class _BookCardInVerticalSearchList extends State<BookCardInVerticalSearchList>{
 
 
     user = Provider.of<User>(context, listen: false);
-    if(widget.type != ListType.add_custom_list && widget.type != ListType.edit_custom_list){
+    if (widget.type == ListType.first_time_form){
+      added = false;
+      iconData = added ? Icons.check : Icons.add;
+      buttonColor = added ? Colors.green : kPrimaryDarkColor;
+    } else if(widget.type != ListType.add_custom_list && widget.type != ListType.edit_custom_list && widget.type != ListType.first_time_form) {
       isInPendingList = user.isInPendingList(widget.book.toLecture());
       isInReadingList = user.isInReadingList(widget.book.toLecture());
 
@@ -65,7 +69,6 @@ class _BookCardInVerticalSearchList extends State<BookCardInVerticalSearchList>{
       }
     } else {
       added = user.isLectureInList(widget.book.toLecture(), widget.listTitle);
-      //added = false;
       iconData = added ? Icons.check : Icons.add;
       buttonColor = added ? Colors.green : kPrimaryDarkColor;
     }
@@ -363,7 +366,10 @@ class _BookCardInVerticalSearchList extends State<BookCardInVerticalSearchList>{
             ),
           )
       );
-    } else if (widget.type == ListType.add_custom_list|| widget.type == ListType.edit_custom_list){
+    } else if (widget.type == ListType.add_custom_list ||
+        widget.type == ListType.edit_custom_list ||
+        widget.type == ListType.first_time_form){
+
       List<String> heroes = ("FLTB1" + widget.book.title).split('');
       heroes.shuffle();
       return Container(

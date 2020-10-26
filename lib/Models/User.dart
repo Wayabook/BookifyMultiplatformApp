@@ -70,6 +70,16 @@ class User extends ChangeNotifier{
       return n > books.length ? books : books.sublist(0, n-1);
   }
 
+  void addLectureToLectureListByKey(Lecture lecture, String lectureName){
+    if(this._lecture_lists.containsKey(lectureName))
+      this._lecture_lists[lectureName].add(lecture);
+  }
+
+  void removeLectureFromLectureListByKey(Lecture lecture, String lectureName){
+    if(this._lecture_lists.containsKey(lectureName))
+      this._lecture_lists[lectureName].remove(lecture);
+  }
+
   void addLectureToPendingList(Lecture lecture){
     this._lecture_lists["Pending"].add(lecture);
     notifyListeners();
@@ -239,8 +249,8 @@ class User extends ChangeNotifier{
     Map<String, List<Lecture>> userLectures =
     {
       'Reading': Lecture.getUserMockLectures().sublist(0, 1),
-      'Pending': Lecture.getUserMockLectures().sublist(2, 3),
-      'Read': Lecture.getUserMockLectures(),
+      'Pending': new List<Lecture>(),//Lecture.getUserMockLectures().sublist(2, 3),
+      'Read': new List<Lecture>(),
       'Recommended': Lecture.getUserMockLectures(),
       'Custom List 1': Lecture.getUserMockLectures()
     };

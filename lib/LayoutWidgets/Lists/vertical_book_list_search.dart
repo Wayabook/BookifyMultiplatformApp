@@ -23,11 +23,12 @@ import '../editable_list_title.dart';
 
 class VerticalBookListSearch extends StatefulWidget {
 
-  VerticalBookListSearch(this.books, this.type, {this.title}); // : super(key: key);
+  VerticalBookListSearch(this.books, this.type, {this.title, this.specificLectureTitle}); // : super(key: key);
 
   final List<Book> books;
   final ListType type;
   final String title;
+  final String specificLectureTitle;
 
   @override
   _VerticalBookListSearch createState() => _VerticalBookListSearch();
@@ -40,8 +41,12 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
   @override
   void initState() {
     super.initState();
-    User user = Provider.of<User>(context, listen: false);
-    customBooksList = user.hasLectureList(widget.title) ? user.getLectureListByName(widget.title) : new List();
+    if(widget.type != ListType.first_time_form){
+      User user = Provider.of<User>(context, listen: false);
+      customBooksList = user.hasLectureList(widget.title) ? user.getLectureListByName(widget.title) : new List();
+    } else {
+      customBooksList = new List();
+    }
   }
 
   addOrRemoveBookFromTemporalCustomList(Book book, bool add){
@@ -49,6 +54,15 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
       customBooksList.add(book);
     } else {
       customBooksList.remove(book);
+    }
+  }
+
+  addOrRemoveBookFromPendingOrReadingList(Book book, bool add){
+    User user = Provider.of<User>(context, listen: false);
+    if(add){
+      user.addLectureToLectureListByKey(book.toLecture(), widget.specificLectureTitle);
+    } else {
+      user.removeLectureFromLectureListByKey(book.toLecture(), widget.specificLectureTitle);
     }
   }
 
@@ -61,11 +75,16 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
   }
 
   _makeCard(int index) {
-    if(widget.type == ListType.add_custom_list || widget.type == ListType.edit_custom_list){
+    if
+    (
+        widget.type == ListType.add_custom_list ||
+        widget.type == ListType.edit_custom_list ||
+        widget.type == ListType.first_time_form
+    ) {
       return BookCardInVerticalSearchList(
           widget.books[index],
           widget.type,
-          addOrRemoveBookFromTemporalCustomList: addOrRemoveBookFromTemporalCustomList,
+          addOrRemoveBookFromTemporalCustomList: widget.type == ListType.first_time_form ? addOrRemoveBookFromPendingOrReadingList : addOrRemoveBookFromTemporalCustomList,
           listTitle: widget.title,
       );
     } else {
@@ -120,7 +139,7 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
   }
 
   _makeBody() {
-    if (widget.type == ListType.add_custom_list || widget.type == ListType.edit_custom_list){
+    if (widget.type == ListType.add_custom_list || widget.type == ListType.edit_custom_list) {
       return Stack(
         children: <Widget>[
           Container(
@@ -129,9 +148,9 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
               shrinkWrap: true,
               itemCount: widget.books.length + 1,
               itemBuilder: (BuildContext context, int index) {
-                  if(index == 0)
-                    return ListTitle(widget.title);
-                  return _makeCard(index - 1);
+                if (index == 0)
+                  return ListTitle(widget.title);
+                return _makeCard(index - 1);
               },
             ),
           ),
@@ -141,22 +160,38 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
             child: Container(
               color: kPrimaryLightColor,
               height: 50,
-              width:  MediaQuery.of(context).size.width,
+              width: MediaQuery
+                  .of(context)
+                  .size
+                  .width,
               child: Row(
                 children: <Widget>[
                   Expanded(
-                    flex: 5,
-                    child: _getAcceptButton()
+                      flex: 5,
+                      child: _getAcceptButton()
                   ),
                   Expanded(
-                    flex: 5,
-                    child: _getCancelButton()
+                      flex: 5,
+                      child: _getCancelButton()
                   )
                 ],
               ),
             ),
           )
         ],
+      );
+    } else if (widget.type == ListType.first_time_form) {
+      return Container(
+        child: ListView.builder(
+          scrollDirection: Axis.vertical,
+          shrinkWrap: true,
+          itemCount: widget.books.length + 1,
+          itemBuilder: (BuildContext context, int index) {
+            if (index == 0)
+              return ListTitle(widget.title);
+            return _makeCard(index - 1);
+          },
+        ),
       );
     } else {
       return Container(
