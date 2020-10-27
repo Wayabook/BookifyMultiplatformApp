@@ -11,14 +11,29 @@ import 'package:bookifyapp/Pages/main_tab_page.dart';
 import 'package:bookifyapp/Pages/search_page.dart';
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/Pages/LoginPages/Welcome/body.dart';
+import 'package:flutter/src/scheduler/ticker.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:flutter_page_indicator/flutter_page_indicator.dart';
 
-class FirstTimeFormPage extends StatelessWidget {
+class FirstTimeFormPage extends StatefulWidget{
+
+  FirstTimeFormPage();
+
+  @override
+  _FirstTimeFormPage createState() => _FirstTimeFormPage();
+}
+
+class _FirstTimeFormPage extends State<FirstTimeFormPage> with TickerProviderStateMixin{
 
   SwiperController _swiperController = new SwiperController();
   int _swiperIndex = 0;
   IconData _icon = Icons.arrow_forward_ios;
+  Color _floatingActionButtonColor = kPrimaryLightColor;
+
+  // Rotation controller
+  AnimationController animationController;
+  int animationControllerDuration;
+  Animation<double> animation;
 
   _goToMainTabPage(BuildContext context){
     InfoToast.showInterestsSavedCorrectly();
@@ -29,6 +44,22 @@ class FirstTimeFormPage extends StatelessWidget {
           return MainTabPage();
         },
       ),
+    );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    animationControllerDuration = 1500;
+    animationController = AnimationController(
+        duration: Duration(milliseconds: animationControllerDuration),
+        vsync: this
+    );
+
+    animation = CurvedAnimation(
+      parent: animationController,
+      curve: Curves.elasticIn,
     );
   }
 
@@ -65,8 +96,9 @@ class FirstTimeFormPage extends StatelessWidget {
                   child: Card(
                       color: kPrimaryDarkColor,
                       child:  Swiper(
+                        physics: NeverScrollableScrollPhysics(),
                         controller: _swiperController,
-                        index: 0,
+                        //index: 0,
                         indicatorLayout: PageIndicatorLayout.SCALE,
                         containerHeight: double.infinity,
                         containerWidth: double.infinity,
@@ -74,6 +106,8 @@ class FirstTimeFormPage extends StatelessWidget {
                         itemCount: 4,
                         pagination: SwiperPagination(
                           margin: new EdgeInsets.all(5.0),
+                          builder: new DotSwiperPaginationBuilder(
+                          color: Colors.grey, activeColor: Colors.blue),
                         ),
                         itemBuilder: (BuildContext context, int index) {
                           String title = "";
@@ -126,20 +160,31 @@ class FirstTimeFormPage extends StatelessWidget {
               bottom: 15,
               child: FloatingActionButton(
                 heroTag: "NEXTFABBUTTON",
-                onPressed: (){
-                  var aux = _swiperController.index;
+                backgroundColor: _floatingActionButtonColor,
+                child: RotationTransition(
+                  turns: animation,
+                  child: Icon(
+                    _icon,
+                    color:kPrimaryDarkColor
+                  ),
+                ),
+                onPressed: () {
+                  //var aux = _swiperController.complete();
                   if(_swiperIndex != 3){
                     _swiperIndex += 1;
-                    _swiperController.next();
+                    _swiperController.move(_swiperIndex);
+                    if(_swiperIndex  == 3){
+                      setState(() {
+                        animationController.forward();
+                        _floatingActionButtonColor = Colors.yellow;
+                        _icon = Icons.send;
+                      });
+                    }
                   } else {
                     _goToMainTabPage(context);
                   }
                 },
-                backgroundColor: kPrimaryLightColor,
-                child: Icon(
-                  _icon,
-                  color: kPrimaryDarkColor,),
-              ),
+              )
             ),
           ],
         ),
