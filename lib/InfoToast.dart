@@ -6,6 +6,18 @@ import 'Design/constants.dart';
 
 class InfoToast {
 
+  static void showInterestsSavedCorrectly(){
+    Fluttertoast.showToast(
+        msg: "Your interests as a lecturer were saved correctly.",
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.black,
+        textColor: kPrimaryLightColor,
+        fontSize: 16.0
+    );
+  }
+
   static void showListRemovedCorrecltyFromBookshelf(String listTitle){
     Fluttertoast.showToast(
         msg: listTitle + "books list was removed correctly from your Bookshelf.",

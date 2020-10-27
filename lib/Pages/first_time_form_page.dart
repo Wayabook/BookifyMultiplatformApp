@@ -1,5 +1,6 @@
 import 'package:bookifyapp/Design/constants.dart';
 import 'package:bookifyapp/Enums/list_type.dart';
+import 'package:bookifyapp/InfoToast.dart';
 import 'package:bookifyapp/LayoutWidgets/Buttons/small_button_underlined.dart';
 import 'package:bookifyapp/LayoutWidgets/Grids/genres_grid.dart';
 import 'package:bookifyapp/LayoutWidgets/Lists/list_title.dart';
@@ -16,8 +17,11 @@ import 'package:flutter_page_indicator/flutter_page_indicator.dart';
 class FirstTimeFormPage extends StatelessWidget {
 
   SwiperController _swiperController = new SwiperController();
+  int _swiperIndex = 0;
+  IconData _icon = Icons.arrow_forward_ios;
 
   _goToMainTabPage(BuildContext context){
+    InfoToast.showInterestsSavedCorrectly();
     Navigator.push(
       context,
       MaterialPageRoute(
@@ -120,23 +124,20 @@ class FirstTimeFormPage extends StatelessWidget {
             Positioned(
               right: 10,
               bottom: 15,
-              //padding: EdgeInsets.fromLTRB(0, 0, 15, 70),
               child: FloatingActionButton(
                 heroTag: "NEXTFABBUTTON",
                 onPressed: (){
                   var aux = _swiperController.index;
-                  if(_swiperController.index != 3){
-                    //_swiperController.move(_swiperController.index + 1);
+                  if(_swiperIndex != 3){
+                    _swiperIndex += 1;
                     _swiperController.next();
                   } else {
                     _goToMainTabPage(context);
                   }
-
-                  //_navigateToCommentsPage(context);
                 },
                 backgroundColor: kPrimaryLightColor,
                 child: Icon(
-                  Icons.arrow_forward_ios,
+                  _icon,
                   color: kPrimaryDarkColor,),
               ),
             ),

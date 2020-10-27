@@ -34,10 +34,30 @@ class GenresGrid extends StatefulWidget {
 class _GenresGrid extends State<GenresGrid> with TickerProviderStateMixin{
 
   bool showEditButton;
+  List<Genre> genresOfInterest;
 
   @override
   initState() {
+    genresOfInterest = new List();
     super.initState();
+  }
+
+  _setGenresList(index){
+    // Sets genres grid UI and user variable
+    setState(() {
+      User user = Provider.of<User>(context, listen: false);
+      Genre genre = widget.genres[index];
+      if(genresOfInterest.contains(widget.genres[index])){
+        genresOfInterest.remove(genre);
+        user.removeGenreFromInterestedGenres(genre);
+      }
+
+      if(!genresOfInterest.contains(widget.genres[index])){
+        genresOfInterest.add(genre);
+        user.addGenreToInterestedGenres(genre);
+      }
+    });
+
   }
 
   @override
@@ -56,19 +76,25 @@ class _GenresGrid extends State<GenresGrid> with TickerProviderStateMixin{
               width: (MediaQuery.of(context).size.width / 3),
               height: (MediaQuery.of(context).size.height / 4),
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: Colors.white38,
+                borderRadius: BorderRadius.circular(20),
+                color: genresOfInterest.contains(widget.genres[index]) ? Colors.lightGreen : Colors.white38,
               ),
-              child: Padding(
-                padding: EdgeInsets.all(2),
-                child: /*Container(
+              child: GestureDetector(
+                  onTap: (){
+                    _setGenresList(index);
+                  },
+                  child: Padding(
+                    padding: EdgeInsets.all(genresOfInterest.contains(widget.genres[index]) ? 4 : 2),
+                    child: /*Container(
                   color: Colors.black,
                   height: widget.height,
                   width: 100,
                 )*/
-                GenreContainer(widget.genres[index], width: (MediaQuery.of(context).size.width / 3) -10 , height: (MediaQuery.of(context).size.height / 4) - 10, ),
-              )
+                    GenreContainer(widget.genres[index], width: (MediaQuery.of(context).size.width / 3) -10 , height: (MediaQuery.of(context).size.height / 4) - 10, ),
+                  )
+              ),
           );
+
         })
     );
   }
