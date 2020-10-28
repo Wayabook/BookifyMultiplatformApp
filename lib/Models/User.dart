@@ -213,11 +213,13 @@ class User extends ChangeNotifier{
   void addGenreToInterestedGenres(Genre genre){
     if(!this._interested_genres.contains(genre))
       this._interested_genres.add(genre);
+    notifyListeners();
   }
 
   void removeGenreFromInterestedGenres(Genre genre){
     if(this._interested_genres.contains(genre))
       this._interested_genres.remove(genre);
+    notifyListeners();
   }
 
 
@@ -257,7 +259,7 @@ class User extends ChangeNotifier{
 
   User.getMockUser(){
 
-    List<Genre> genres = /*new List();*/ Genre.getMockGenres();
+    List<Genre> genres = new List();/* Genre.getMockGenres();*/
     Map<String, List<Lecture>> userLectures =
     {
       'Reading': new List<Lecture>(),

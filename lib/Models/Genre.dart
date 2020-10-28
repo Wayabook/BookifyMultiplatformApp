@@ -38,4 +38,9 @@ class Genre {
     genres.add(Genre("9", "Genre9", "genre9.png"));
     return genres;
   }
+
+  @override
+  bool operator ==(other) {
+    return (other.id == id && other.name == name);
+  }
 }

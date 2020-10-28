@@ -23,9 +23,8 @@ import 'package:provider/provider.dart';
 class GenresGrid extends StatefulWidget {
 
   List<Genre> genres;
-  //double height;
 
-  GenresGrid(this.genres, /*this.height*/);
+  GenresGrid(this.genres,);
 
   @override
   _GenresGrid createState() => _GenresGrid();
@@ -33,26 +32,27 @@ class GenresGrid extends StatefulWidget {
 
 class _GenresGrid extends State<GenresGrid> with TickerProviderStateMixin{
 
+  User user;
   bool showEditButton;
   List<Genre> genresOfInterest;
 
   @override
   initState() {
     genresOfInterest = new List();
+    user = Provider.of<User>(context, listen: false);
+    if(user.interestedGenres.length > 0)
+      genresOfInterest.addAll(user.interestedGenres);
     super.initState();
   }
 
   _setGenresList(index){
     // Sets genres grid UI and user variable
     setState(() {
-      User user = Provider.of<User>(context, listen: false);
       Genre genre = widget.genres[index];
       if(genresOfInterest.contains(widget.genres[index])){
         genresOfInterest.remove(genre);
         user.removeGenreFromInterestedGenres(genre);
-      }
-
-      if(!genresOfInterest.contains(widget.genres[index])){
+      } else {
         genresOfInterest.add(genre);
         user.addGenreToInterestedGenres(genre);
       }
@@ -79,7 +79,7 @@ class _GenresGrid extends State<GenresGrid> with TickerProviderStateMixin{
                 borderRadius: BorderRadius.circular(20),
                 color: genresOfInterest.contains(widget.genres[index]) ? Colors.lightGreen : Colors.white38,
               ),
-              child: GestureDetector(
+              child:  GestureDetector(
                   onTap: (){
                     _setGenresList(index);
                   },
@@ -92,7 +92,7 @@ class _GenresGrid extends State<GenresGrid> with TickerProviderStateMixin{
                 )*/
                     GenreContainer(widget.genres[index], width: (MediaQuery.of(context).size.width / 3) -10 , height: (MediaQuery.of(context).size.height / 4) - 10, ),
                   )
-              ),
+              )//Container(height: 100, width: 100, color: Colors.black,),
           );
 
         })
