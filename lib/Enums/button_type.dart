@@ -5,4 +5,5 @@ enum ButtonType {
   edit_list,
   copy_list,
   delete_list,
+  edit_genres_list,
 }

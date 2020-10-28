@@ -86,11 +86,12 @@ class ListTitle extends StatelessWidget{
   }
 
   _getViewAllButton(BuildContext context){
+    var buttonText = buttonType == ButtonType.edit_genres_list ? "Edit" : "View All";
     return GestureDetector(
       onTap: () {
         onListTitleButtonTapped(this.buttonType, context);
       },
-      child: SmallButtonUnderlined("View All")
+      child: SmallButtonUnderlined(buttonText)
     );
   }
 

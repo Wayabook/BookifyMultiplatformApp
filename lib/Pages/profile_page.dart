@@ -6,6 +6,7 @@ import 'package:bookifyapp/LayoutWidgets/Buttons/small_button_underlined.dart';
 import 'package:bookifyapp/LayoutWidgets/Dialogs/dialog_with_accept_and_cancel_options.dart';
 import 'package:bookifyapp/LayoutWidgets/Lists/list_title.dart';
 import 'package:bookifyapp/Pages/friends_page.dart';
+import 'package:bookifyapp/Pages/genres_page.dart';
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/LayoutWidgets/Lists/vertical_book_list_search.dart';
 import 'package:bookifyapp/Models/Book.dart';
@@ -237,7 +238,15 @@ class _ProfilePage extends State<ProfilePage> implements TitleButtonInterface{
           margin: EdgeInsets.fromLTRB(10, 10, 2, 0),
           child:  Align(
             alignment: Alignment.topLeft,
-            child: ListTitle("Genres of Interest")
+            child: widget.profileType  == ProfileType.user_profile ? ListTitle(
+              "Genres of Interest",
+              withButton: true,
+              user: widget.user,
+              buttonType: ButtonType.edit_genres_list,
+              onListTitleButtonTapped: onTitleButtonPressed,
+            ) : ListTitle("Genres of Interest")
+
+
           ),
         ),
 
@@ -281,6 +290,11 @@ class _ProfilePage extends State<ProfilePage> implements TitleButtonInterface{
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => BookshelfPage(widget.user)),
+      );
+    } else if (buttonType == ButtonType.edit_genres_list) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => GenresPage(widget.user)),
       );
     }
   }
