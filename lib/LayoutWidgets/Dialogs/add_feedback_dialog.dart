@@ -410,6 +410,7 @@ class _AddFeedbackDialog
     }
   }
 
+  @override
   void removeComment(int key){
     setState(() {
      widgets.removeAt(key);

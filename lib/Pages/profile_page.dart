@@ -1,5 +1,7 @@
 import 'package:bookifyapp/Design/constants.dart';
+import 'package:bookifyapp/Enums/button_type.dart';
 import 'package:bookifyapp/Enums/list_type.dart';
+import 'package:bookifyapp/Interfaces/TitleButtonInterface.dart';
 import 'package:bookifyapp/LayoutWidgets/Buttons/small_button_underlined.dart';
 import 'package:bookifyapp/LayoutWidgets/Dialogs/dialog_with_accept_and_cancel_options.dart';
 import 'package:bookifyapp/LayoutWidgets/Lists/list_title.dart';
@@ -25,6 +27,8 @@ import 'dart:math';
 
 import 'package:provider/provider.dart';
 
+import 'bookshelf_page.dart';
+
 
 class ProfilePage extends StatefulWidget {
   static const TextStyle optionStyle =
@@ -41,7 +45,7 @@ class ProfilePage extends StatefulWidget {
 }
 
 
-class _ProfilePage extends State<ProfilePage>{
+class _ProfilePage extends State<ProfilePage> implements TitleButtonInterface{
   String randomBackgroundImage;
   BuildContext context;
   double width_per_child;
@@ -70,11 +74,13 @@ class _ProfilePage extends State<ProfilePage>{
       r = 0 + _random.nextInt(widget.user.bookLists[randomListName].length - 1 - 0);
     }
     randomBackgroundImage = widget.user.bookLists[randomListName][r].picture;
+
   }
 
   _getBody(){
 
-    _getRandomBackgroundImage();
+    //_getRandomBackgroundImage();
+    randomBackgroundImage = "https://imagessl0.casadellibro.com/a/l/t5/50/9788491819950.jpg";
 
     return ListView(
       children: <Widget>[
@@ -248,6 +254,7 @@ class _ProfilePage extends State<ProfilePage>{
               "Bookshelf",
               withButton: true,
               user: widget.user,
+              onListTitleButtonTapped: onTitleButtonPressed,
             )
           ),
         ),
@@ -266,6 +273,16 @@ class _ProfilePage extends State<ProfilePage>{
 
       ],
     );
+  }
+
+  @override
+  onTitleButtonPressed(ButtonType buttonType, BuildContext context, {String title}){
+    if(buttonType == ButtonType.view_all){
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => BookshelfPage(widget.user)),
+      );
+    }
   }
 
   _getFriendButton(){

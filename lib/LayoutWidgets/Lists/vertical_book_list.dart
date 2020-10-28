@@ -1,7 +1,9 @@
 import 'package:bookifyapp/Design/constants.dart';
+import 'package:bookifyapp/Interfaces/TitleButtonInterface.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/book_card_in_vertical_list.dart';
 import 'package:bookifyapp/Models/Lecture.dart';
 import 'package:bookifyapp/Models/User.dart';
+import 'package:bookifyapp/Pages/bookshelf_page.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:auto_size_text/auto_size_text.dart';
@@ -22,7 +24,8 @@ class VerticalBookList/*<T extends Book>*/ extends StatefulWidget {
   _VerticalBookList createState() => _VerticalBookList(this.readingBooks, this.pendingBooks);
 }
 
-class _VerticalBookList extends State<VerticalBookList> with TickerProviderStateMixin {
+class _VerticalBookList extends State<VerticalBookList>
+    with TickerProviderStateMixin implements TitleButtonInterface{
 
   int positionToChange;
   List<Widget> items;
@@ -59,7 +62,12 @@ class _VerticalBookList extends State<VerticalBookList> with TickerProviderState
     items = new List();
     for(int index = 0; index < widget.readingBooks.length + widget.pendingBooks.length + 2; index++){
       if (index == 0) {
-        items.add(ListTitle("Reading:", withButton: true, user: Provider.of<User>(context, listen: false),));
+        items.add(ListTitle(
+          "Reading:",
+          withButton: true,
+          user: Provider.of<User>(context, listen: false),
+          onListTitleButtonTapped: onTitleButtonPressed,
+        ));
       } else if (index <= widget.readingBooks.length) {
         items.add(_makeCard(index - 1, widget.readingBooks, ButtonType.read));
       } else if (index == widget.readingBooks.length + 1) {
@@ -67,6 +75,16 @@ class _VerticalBookList extends State<VerticalBookList> with TickerProviderState
       } else {
         items.add(_makeCard(index - 2 - widget.readingBooks.length, widget.pendingBooks, ButtonType.read));
       }
+    }
+  }
+
+  @override
+  onTitleButtonPressed(ButtonType buttonType, BuildContext context, {String title}){
+    if(buttonType == ButtonType.view_all){
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => BookshelfPage(Provider.of<User>(context, listen: false))),
+      );
     }
   }
 

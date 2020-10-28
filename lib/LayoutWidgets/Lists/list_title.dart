@@ -15,8 +15,9 @@ class ListTitle extends StatelessWidget{
   final String title;
   double fontSize;
   ButtonType buttonType;
-  Function(String) goToPageFromParent;
-  Function(String) goToPageFromParent2;
+  //Function(String) goToPageFromParent;
+  //Function(String) goToPageFromParent2;
+  Function(ButtonType buttonType, BuildContext context, {String title}) onListTitleButtonTapped;
 
   ListTitle(
       this.title,
@@ -24,8 +25,9 @@ class ListTitle extends StatelessWidget{
         this.withButton = false,
         this.buttonType = ButtonType.view_all,
         this.user,
-        this.goToPageFromParent,
-        this.goToPageFromParent2,
+        //this.goToPageFromParent,
+        //this.goToPageFromParent2,
+        this.onListTitleButtonTapped,
         this.fontSize = 30
       });
 
@@ -86,10 +88,7 @@ class ListTitle extends StatelessWidget{
   _getViewAllButton(BuildContext context){
     return GestureDetector(
       onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => BookshelfPage(this.user)),
-        );
+        onListTitleButtonTapped(this.buttonType, context);
       },
       child: SmallButtonUnderlined("View All")
     );
@@ -103,7 +102,6 @@ class ListTitle extends StatelessWidget{
         children: [
           Flexible(
             flex: 5,
-            //child:  _getEditOrCopyButton(context),
             child: Padding(
               padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
               child:  _getEditOrCopyButton(context),
@@ -112,7 +110,7 @@ class ListTitle extends StatelessWidget{
 
           Flexible(
             flex: 5,
-            child: _getDeleteButton(),
+            child: _getDeleteButton(context),
           )
         ],
       );
@@ -120,10 +118,11 @@ class ListTitle extends StatelessWidget{
 
   }
 
-  _getDeleteButton(){
+  _getDeleteButton(BuildContext context){
     return GestureDetector(
         onTap: () {
-          this.goToPageFromParent2(title);
+          onListTitleButtonTapped(ButtonType.delete_list, context, title: title);
+          //this.goToPageFromParent2(title);
         },
         child: SmallButtonUnderlined("Delete", textColor: Colors.red,),
     );
@@ -133,7 +132,9 @@ class ListTitle extends StatelessWidget{
   _getEditOrCopyButton(BuildContext context){
     return GestureDetector(
         onTap: () async {
-          if(buttonType == ButtonType.view_all) {
+          onListTitleButtonTapped(buttonType, context, title: title);
+
+          /*if(buttonType == ButtonType.view_all) {
             final result = await Navigator.of(context)
                 .push(MaterialPageRoute(builder: (context) =>
                 AddCustomListPage(Provider
@@ -141,7 +142,7 @@ class ListTitle extends StatelessWidget{
                     .bookshelf, title, ListType.edit_custom_list)));
           } else if (buttonType == ButtonType.edit_list || buttonType == ButtonType.copy_list) {
             this.goToPageFromParent(title);
-          }
+          }*/
         },
         child: buttonType == ButtonType.edit_list ?
         SmallButtonUnderlined("Edit") : SmallButtonUnderlined("Copy")

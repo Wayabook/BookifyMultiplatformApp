@@ -261,7 +261,7 @@ class User extends ChangeNotifier{
     Map<String, List<Lecture>> userLectures =
     {
       'Reading': new List<Lecture>(),
-      'Pending': new List<Lecture>(),//Lecture.getUserMockLectures().sublist(2, 3),
+      'Pending': Lecture.getUserMockLectures().sublist(2, 3),
       'Read': new List<Lecture>(),
       'Recommended': Lecture.getUserMockLectures(),
       'Custom List 1': Lecture.getUserMockLectures()

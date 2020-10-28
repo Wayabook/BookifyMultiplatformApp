@@ -3,6 +3,7 @@ import 'package:bookifyapp/Enums/button_type.dart';
 import 'package:bookifyapp/Enums/list_type.dart';
 import 'package:bookifyapp/Enums/profile_type.dart';
 import 'package:bookifyapp/InfoToast.dart';
+import 'package:bookifyapp/Interfaces/TitleButtonInterface.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/book_card.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/user_preview_card.dart';
 import 'package:bookifyapp/LayoutWidgets/Dialogs/dialog_with_accept_and_cancel_options.dart';
@@ -27,7 +28,9 @@ class BooskelfGridList extends StatefulWidget {
   _BooskelfGridList createState() => _BooskelfGridList();
 }
 
-class _BooskelfGridList extends State<BooskelfGridList> with TickerProviderStateMixin{
+class _BooskelfGridList extends State<BooskelfGridList>
+    with TickerProviderStateMixin
+    implements TitleButtonInterface{
 
   bool showEditButton;
 
@@ -70,6 +73,29 @@ class _BooskelfGridList extends State<BooskelfGridList> with TickerProviderState
           }
         }
     );
+  }
+
+  @override
+  void onTitleButtonPressed(ButtonType buttonType, BuildContext context, {String title}) {
+    // TODO: implement onTitleButtonPressed
+    if(buttonType == ButtonType.view_all) {
+      _viewAllPressed(context, title);
+    } else if (buttonType == ButtonType.edit_list) {
+      _goToEditListPage(title);
+    } else if (buttonType == ButtonType.copy_list) {
+      _copyList(title);
+      //this.goToPageFromParent(title);
+    } else if (buttonType == ButtonType.delete_list){
+      _deleteList(title);
+    }
+  }
+
+  _viewAllPressed(BuildContext context, String title) async {
+    final result = await Navigator.of(context)
+        .push(MaterialPageRoute(builder: (context) =>
+        AddCustomListPage(Provider
+            .of<User>(context, listen: false)
+            .bookshelf, title, ListType.edit_custom_list)));
   }
 
   _goToEditListPage(String title) async {
@@ -123,14 +149,13 @@ class _BooskelfGridList extends State<BooskelfGridList> with TickerProviderState
         title,
         withButton: true,
         buttonType: ButtonType.copy_list,
-        goToPageFromParent: _copyList,
+        onListTitleButtonTapped: onTitleButtonPressed,
       );
     return ListTitle(
       title,
       withButton: true,
       buttonType: ButtonType.edit_list,
-      goToPageFromParent: _goToEditListPage,
-      goToPageFromParent2: _deleteList,
+      onListTitleButtonTapped: onTitleButtonPressed,
     );
   }
 

@@ -60,7 +60,14 @@ class _FirstTimeFormPage extends State<FirstTimeFormPage> with TickerProviderSta
     animation = CurvedAnimation(
       parent: animationController,
       curve: Curves.elasticIn,
-    );
+    )..addStatusListener((status) async {
+      if(status == AnimationStatus.completed){
+        setState(() {
+          _floatingActionButtonColor = Colors.yellow;
+          _icon = Icons.send;
+        });
+      }
+    });
   }
 
   @override
@@ -176,8 +183,8 @@ class _FirstTimeFormPage extends State<FirstTimeFormPage> with TickerProviderSta
                     if(_swiperIndex  == 3){
                       setState(() {
                         animationController.forward();
-                        _floatingActionButtonColor = Colors.yellow;
-                        _icon = Icons.send;
+                        //_floatingActionButtonColor = Colors.yellow;
+                        //_icon = Icons.send;
                       });
                     }
                   } else {

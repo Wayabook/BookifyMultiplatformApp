@@ -57,6 +57,7 @@ class MainCommentCard extends StatelessWidget implements RemoveCommentInterface 
     }
   }
 
+  @override
   removeComment(int pos){
     removeCommentFunction(this.positionKey);
   }
