@@ -1,4 +1,5 @@
 import 'package:bookifyapp/Design/constants.dart';
+import 'package:bookifyapp/Enums/button_type.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/genre_container.dart';
 import 'package:bookifyapp/Models/Genre.dart';
 import 'package:bordered_text/bordered_text.dart';
@@ -9,8 +10,9 @@ class GenreCard extends StatelessWidget {
   Genre genre;
   bool addGenreCard;
   int index;
+  Function (ButtonType buttonType, BuildContext context, {String title}) onAddGenrePressed;
 
-  GenreCard(this.genre, {this.addGenreCard = false, this.index = 0});
+  GenreCard(this.genre, {this.addGenreCard = false, this.index = 0, this.onAddGenrePressed});
 
   @override
   Widget build(BuildContext context) {
@@ -18,10 +20,7 @@ class GenreCard extends StatelessWidget {
     if(addGenreCard){
       return GestureDetector(
         onTap: () {
-          /*Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => SearchPage()),
-                  );*/
+          onAddGenrePressed(ButtonType.edit_genres_list, context);
         },
         child: Card(
           margin: EdgeInsets.all(10),

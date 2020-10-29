@@ -1,4 +1,5 @@
 import 'package:bookifyapp/Design/constants.dart';
+import 'package:bookifyapp/Enums/button_type.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/genre_card.dart';
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/Models/Genre.dart';
@@ -14,15 +15,18 @@ class HorizontalGenresList extends StatelessWidget {
   List<Widget> items;
   BuildContext context;
   ListType type;
+  Function (ButtonType buttonType, BuildContext context, {String title}) onTitleButtonPressed;
 
-  HorizontalGenresList(this.genres, this.type);
+  HorizontalGenresList(this.genres, this.type, {this.onTitleButtonPressed});
 
   _createListItems(){
     items  = new List();
     for(int i=0; i < genres.length; i++)
       items.add(GenreCard(genres[i], addGenreCard: false, index: i,));
-    if(type == ListType.add_genre)
-      items.add(GenreCard(null, addGenreCard: true,));
+
+    if(type == ListType.add_genre){
+      items.add(GenreCard(null, addGenreCard: true, onAddGenrePressed: onTitleButtonPressed,));
+    }
   }
 
   @override
@@ -50,11 +54,6 @@ class HorizontalGenresList extends StatelessWidget {
         itemCount: items.length,
         itemBuilder: (BuildContext context, int index) {
             return items[index];
-            /*if(index < genres.length){
-              return GenreCard(genres[index], addGenreCard: false, index: index,);
-            } else {
-              return GenreCard(null, addGenreCard: true,);
-            }*/
         },
       ),
     );
