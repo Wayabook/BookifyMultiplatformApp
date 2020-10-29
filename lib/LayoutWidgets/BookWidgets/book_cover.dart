@@ -82,6 +82,7 @@ class BookCover extends StatelessWidget {
       child: Container(
         child: Text(
           this.showTitle ? this.book.title : chapterTitle,
+          overflow: TextOverflow.ellipsis,
           style: TextStyle(
             fontWeight: FontWeight.bold,
           ),
@@ -96,6 +97,7 @@ class BookCover extends StatelessWidget {
       alignment: Alignment.center,
       child: Text(
         this.book.author,
+        overflow: TextOverflow.ellipsis,
         style: TextStyle(
           color: kPrimaryDarkColor,
         ),

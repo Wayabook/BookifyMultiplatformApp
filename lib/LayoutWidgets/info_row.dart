@@ -50,6 +50,7 @@ class InfoRow extends StatelessWidget {
                     child: Container(
                       child: Text(
                         this.title,
+                        overflow: TextOverflow.ellipsis,
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                         ),
@@ -74,6 +75,7 @@ class InfoRow extends StatelessWidget {
                     child: Container(
                       child: Text(
                         this.subTitle,
+                        overflow: TextOverflow.ellipsis,
                         style: TextStyle(
                           color: Colors.grey[500],
                         ),
@@ -104,6 +106,7 @@ class InfoRow extends StatelessWidget {
                     child: Container(
                       child: Text(
                         this.title,
+                        overflow: TextOverflow.ellipsis,
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           color: this.color
@@ -129,6 +132,7 @@ class InfoRow extends StatelessWidget {
                     child: Container(
                       child: Text(
                         this.subTitle,
+                        overflow: TextOverflow.ellipsis,
                         style: TextStyle(
                           color: color,
                           fontSize: 20
@@ -159,6 +163,7 @@ class InfoRow extends StatelessWidget {
                     child: Container(
                       child: Text(
                         this.title,
+                        overflow: TextOverflow.ellipsis,
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                         ),
@@ -173,6 +178,7 @@ class InfoRow extends StatelessWidget {
                     padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
                     child: Text(
                       this.content,
+                      overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 32
@@ -188,6 +194,7 @@ class InfoRow extends StatelessWidget {
                     child: Container(
                       child: Text(
                         this.subTitle,
+                        overflow: TextOverflow.ellipsis,
                         style: TextStyle(
                           color: Colors.grey[500],
                         ),

@@ -62,6 +62,7 @@ class CardSwiper extends StatelessWidget {
                   child: Container(
                     child: Text(
                       this.books[index].title,
+                      overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                       ),

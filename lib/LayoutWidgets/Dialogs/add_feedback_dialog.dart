@@ -192,6 +192,7 @@ class _AddFeedbackDialog
       alignment: Alignment.center,
       child: Text(
         title,
+        overflow: TextOverflow.ellipsis,
         style: TextStyle(
           color: kPrimaryDarkColor,
         ),

@@ -48,7 +48,7 @@ class DialogWithAcceptAndCancelOptions extends StatelessWidget{
     );
 
     AlertDialog alert = AlertDialog(
-      title: Text(this.title),
+      title: Text(this.title, overflow: TextOverflow.ellipsis,),
       content: Text(this.description),
       actions: [
         continueButton,

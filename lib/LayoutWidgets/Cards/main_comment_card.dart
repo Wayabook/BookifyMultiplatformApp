@@ -135,6 +135,7 @@ class MainCommentCard extends StatelessWidget implements RemoveCommentInterface 
                               alignment: Alignment.center,
                               child: Text(
                                 mainComment.answers.length.toString() + " respuestas",
+                                overflow: TextOverflow.ellipsis,
                                 style: TextStyle(
                                   color: Colors.grey,
                                   fontSize: 10,

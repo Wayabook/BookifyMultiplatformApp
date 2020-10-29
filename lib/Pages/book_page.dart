@@ -84,7 +84,10 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
       ),
       appBar: AppBar(
           backgroundColor: kPrimaryDarkColor,
-          title: Text('Details of $title'),
+          title: Text(
+              'Details of $title',
+              overflow: TextOverflow.ellipsis,
+          ),
       ),
     );
   }
@@ -299,6 +302,7 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
                     alignment: Alignment.bottomCenter,
                     child: Text(
                       widget.book.getBookTotalNumberOfComments().toString() + " comentarios",
+                      overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                         color: Colors.black,
                       ),
@@ -330,6 +334,7 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
               alignment: Alignment.topLeft,
               child: Text(
                 "More books of" + "Author X:",
+                overflow: TextOverflow.ellipsis,
                 style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                 ),
             ),
@@ -347,6 +352,7 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
                 alignment: Alignment.topLeft,
                 child: Text(
                   "More of X Genre:",
+                  overflow: TextOverflow.ellipsis,
                   style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                 ),
               ),
@@ -372,6 +378,7 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
               margin: EdgeInsets.fromLTRB(5, 2, 5, 0),
               child:  Text(
                 'Added by:',
+
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 textAlign: TextAlign.left,
               ),

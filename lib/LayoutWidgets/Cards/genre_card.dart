@@ -47,6 +47,7 @@ class GenreCard extends StatelessWidget {
                       ),
 
                       Text("Add Genre",
+                        overflow: TextOverflow.ellipsis,
                         style: TextStyle(
                           color: kPrimaryDarkColor,
                           fontWeight: FontWeight.bold,

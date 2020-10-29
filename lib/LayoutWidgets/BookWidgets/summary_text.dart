@@ -39,7 +39,9 @@ class _SummaryTextWidgetState extends State<SummaryTextWidget> {
           ? new SizedBox(width: double.infinity, child: Text(firstHalf, textAlign: TextAlign.left),)
           : new Column(
         children: <Widget>[
-          new Text(flag ? (firstHalf + "...") : (firstHalf + secondHalf), textAlign: TextAlign.justify),
+          new Text(
+              flag ? (firstHalf + "...") : (firstHalf + secondHalf), textAlign: TextAlign.justify
+          ),
           new InkWell(
             child: new Row(
               mainAxisAlignment: MainAxisAlignment.end,

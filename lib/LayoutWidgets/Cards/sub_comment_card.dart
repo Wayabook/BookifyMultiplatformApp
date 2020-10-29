@@ -80,6 +80,7 @@ class SubCommentCard extends StatelessWidget implements RemoveCommentInterface{
                             },
                             child: Text(
                               "Responder",
+                              overflow: TextOverflow.ellipsis,
                               style: TextStyle(
                                 color: Colors.grey,
                                 fontSize: 10,

@@ -29,7 +29,10 @@ class BookshelfPage extends StatelessWidget {
       body: BooskelfGridList(user, scrollToLastPosition: scrollToLastPosition),//_getListView(),
       appBar: AppBar(
         backgroundColor: kPrimaryDarkColor,
-        title: Text("Bookshelf (" + user.lectures.length.toString() + " lists)"),
+        title: Text(
+            "Bookshelf (" + user.lectures.length.toString() + " lists)",
+            overflow: TextOverflow.ellipsis,
+        ),
       ),
     );
   }

@@ -164,6 +164,7 @@ class _BookShopsDialog extends State<BookShopsDialog>{
             ),
             Text(
               widget.book.editorial,
+              overflow: TextOverflow.ellipsis,
               style: TextStyle(fontSize: 14),
               textAlign: TextAlign.left,
             ),
@@ -182,6 +183,7 @@ class _BookShopsDialog extends State<BookShopsDialog>{
             ),
             Text(
               item.ean,
+              overflow: TextOverflow.ellipsis,
               style: TextStyle(fontSize: 14),
               textAlign: TextAlign.left,
             ),
@@ -200,6 +202,7 @@ class _BookShopsDialog extends State<BookShopsDialog>{
             ),
             Text(
               item.isbn,
+              overflow: TextOverflow.ellipsis,
               style: TextStyle(fontSize: 14),
               textAlign: TextAlign.left,
             ),
@@ -218,6 +221,7 @@ class _BookShopsDialog extends State<BookShopsDialog>{
               ),
               Text(
                 widget.book.language,
+                overflow: TextOverflow.ellipsis,
                 style: TextStyle(fontSize: 14),
                 textAlign: TextAlign.left,
               ),

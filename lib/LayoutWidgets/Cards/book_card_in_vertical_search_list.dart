@@ -181,6 +181,7 @@ class _BookCardInVerticalSearchList extends State<BookCardInVerticalSearchList>{
                               child: Container(
                                 child: Text(
                                   widget.book.title,
+                                  overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -195,6 +196,7 @@ class _BookCardInVerticalSearchList extends State<BookCardInVerticalSearchList>{
                             child: Center(
                               child: Text(
                                 widget.book.author,
+                                overflow: TextOverflow.ellipsis,
                                 style: TextStyle(
                                   color: Colors.grey[500],
                                 ),
@@ -285,6 +287,7 @@ class _BookCardInVerticalSearchList extends State<BookCardInVerticalSearchList>{
                               child: Container(
                                 child: Text(
                                   widget.book.title,
+                                  overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -299,6 +302,7 @@ class _BookCardInVerticalSearchList extends State<BookCardInVerticalSearchList>{
                             child: Center(
                               child: Text(
                                 widget.book.author,
+                                overflow: TextOverflow.ellipsis,
                                 style: TextStyle(
                                   color: Colors.grey[500],
                                 ),
@@ -402,6 +406,7 @@ class _BookCardInVerticalSearchList extends State<BookCardInVerticalSearchList>{
                               child: Container(
                                 child: Text(
                                   widget.book.title,
+                                  overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -416,6 +421,7 @@ class _BookCardInVerticalSearchList extends State<BookCardInVerticalSearchList>{
                             child: Center(
                               child: Text(
                                 widget.book.author,
+                                overflow: TextOverflow.ellipsis,
                                 style: TextStyle(
                                   color: Colors.grey[500],
                                 ),

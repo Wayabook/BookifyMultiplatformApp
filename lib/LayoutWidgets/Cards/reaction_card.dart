@@ -71,6 +71,7 @@ class _ReactionCard extends State<ReactionCard> {
                     flex: 2,
                     child: Text(
                       text,
+                      overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                         color: kPrimaryLightColor,
                         fontSize: 8,

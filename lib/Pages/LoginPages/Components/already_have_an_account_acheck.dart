@@ -27,6 +27,7 @@ class AlreadyHaveAnAccountCheck extends StatelessWidget {
           onTap: press,
           child: Text(
             login ? "Sign Up" : "Sign In",
+            overflow: TextOverflow.ellipsis,
             style: TextStyle(
               color: kPrimaryColor,
               fontWeight: FontWeight.bold,

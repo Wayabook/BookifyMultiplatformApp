@@ -32,6 +32,7 @@ class GenreContainer extends StatelessWidget {
                 ),
 
                 Text(genre.name,
+                  overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     color: kPrimaryDarkColor,
                     fontWeight: FontWeight.bold,

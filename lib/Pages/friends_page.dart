@@ -100,7 +100,10 @@ class _FriendsPage extends State<FriendsPage> {
                 );
               } else {
                 this.actionIcon = new Icon(Icons.search);
-                this.appBarTitle = new Text("Search friends by name");
+                this.appBarTitle = new Text(
+                    "Search friends by name",
+                    overflow: TextOverflow.ellipsis,
+                );
                 _friends = widget.friends;
                 controller.clear();
               }

@@ -273,6 +273,7 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> {
                                 child: Container(
                                   child: Text(
                                     book.title,
+                                    overflow: TextOverflow.ellipsis,
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                     ),
@@ -295,6 +296,7 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> {
                             child: Center(
                               child: Text(
                                 book.author,
+                                overflow: TextOverflow.ellipsis,
                                 style: TextStyle(
                                   color: Colors.grey[500],
                                 ),
@@ -330,8 +332,8 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> {
 
 
                                         AutoSizeText(
-                                          this.book.current_chapter_title.length > 15 ?
-                                          this.book.current_chapter_title.substring(0, 15) + "..." : this.book.current_chapter_title + "...",
+                                          this.book.current_chapter_title,
+                                          overflow: TextOverflow.ellipsis,
                                           style: TextStyle( fontWeight: FontWeight.bold,),
                                           maxLines: 1,
                                         ),
@@ -343,6 +345,7 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> {
                                           maintainState: false,
                                           child:  AutoSizeText(
                                             "+" + (this.book.chapters.length - this.book.currentChapter - 1).toString(),
+                                            overflow: TextOverflow.ellipsis,
                                             style: TextStyle(
                                               color: Colors.grey[500],
                                               fontWeight: FontWeight.bold,

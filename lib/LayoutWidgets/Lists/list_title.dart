@@ -57,6 +57,7 @@ class ListTitle extends StatelessWidget{
       alignment: Alignment.topLeft,
       child:  Text(
         title,
+        overflow: TextOverflow.ellipsis,
         style: TextStyle(fontSize: this.fontSize, fontWeight: FontWeight.bold, color: kPrimaryLightColor),
       ),
     );

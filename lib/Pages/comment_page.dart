@@ -267,7 +267,10 @@ class _CommentPage
          ),
          appBar: AppBar(
              backgroundColor: kPrimaryDarkColor,
-             title: Text((!widget.showAllCommentsOfChapter && widget.book != null) ? widget.book.title : widget.chapterTitle)
+             title: Text((
+               !widget.showAllCommentsOfChapter && widget.book != null) ? widget.book.title : widget.chapterTitle,
+               overflow: TextOverflow.ellipsis,
+             )
          ),
        );
      } else {

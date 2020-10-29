@@ -254,6 +254,7 @@ class BookCard extends StatelessWidget {
 
                       Text(
                         text,
+                        overflow: TextOverflow.ellipsis,
                         style: TextStyle(
                           color: kPrimaryDarkColor,
                           fontWeight: FontWeight.bold,
