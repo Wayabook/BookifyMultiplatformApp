@@ -1,3 +1,4 @@
+import 'package:bookifyapp/Design/constants.dart';
 import 'package:bookifyapp/Pages/LoginPages/Signup/singup_page.dart';
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/Pages/LoginPages/Welcome/background.dart';
@@ -6,13 +7,8 @@ import 'package:bookifyapp/Pages/LoginPages/Components/rounded_password_field.da
 import 'package:bookifyapp/Pages/LoginPages/Components/rounded_input_field.dart';
 import 'package:bookifyapp/Pages/LoginPages/Components/rounded_button.dart';
 import 'package:bookifyapp/Pages/LoginPages/Login/login_page.dart';
-import 'package:flutter_svg/svg.dart';
-//import 'package:flutter';
 
 class Body extends StatelessWidget {
-
-  static const kPrimaryColor = Color(0xFF6F35A5);
-  static const kPrimaryLightColor = Color(0xFFF1E6FF);
 
   @override
   Widget build(BuildContext context) {
@@ -24,17 +20,25 @@ class Body extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              "WELCOME TO EDU",
+              "THE BIGGEST LIBRARY ON THE NET",
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
+
             SizedBox(height: size.height * 0.05),
-            SvgPicture.asset(
-              "assets/icons/chat.svg",
+
+            Image.asset(
+              "assets/icons/bookify_icon.png",
               height: size.height * 0.45,
             ),
+            /*SvgPicture.asset(
+              "assets/bookify_icon.png",
+              height: size.height * 0.45,
+            ),*/
             SizedBox(height: size.height * 0.05),
+
             RoundedButton(
               text: "LOGIN",
+              color: kPrimaryDarkColor,
               press: () {
                 Navigator.push(
                   context,
@@ -46,9 +50,10 @@ class Body extends StatelessWidget {
                 );
               },
             ),
+
             RoundedButton(
               text: "SIGN UP",
-              color: kPrimaryLightColor,
+              color: kSecondaryDarkColor,
               textColor: Colors.black,
               press: () {
                 Navigator.push(

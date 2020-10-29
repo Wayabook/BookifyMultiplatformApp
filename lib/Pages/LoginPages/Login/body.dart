@@ -1,3 +1,4 @@
+import 'package:bookifyapp/Design/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/Pages/LoginPages/Login/background.dart';
 import 'package:bookifyapp/Pages/LoginPages/Components/already_have_an_account_acheck.dart';
@@ -25,15 +26,16 @@ class Body extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              "LOGIN",
-              style: TextStyle(fontWeight: FontWeight.bold),
+
+            //SizedBox(height: size.height * 0.03),
+            Image.asset(
+              "assets/icons/bookify_icon.png",
+              height: size.height * 0.45,
             ),
-            SizedBox(height: size.height * 0.03),
-            SvgPicture.asset(
+            /*SvgPicture.asset(
               "assets/icons/login.svg",
               height: size.height * 0.35,
-            ),
+            ),*/
             SizedBox(height: size.height * 0.03),
             RoundedInputField(
               hintText: "Your Email",
@@ -44,6 +46,7 @@ class Body extends StatelessWidget {
             ),
             RoundedButton(
               text: "LOGIN",
+              color: kPrimaryDarkColor,
               press: () {
                 Navigator.push(
                   context,
@@ -55,7 +58,7 @@ class Body extends StatelessWidget {
                 );
               },
             ),
-            SizedBox(height: size.height * 0.03),
+            //SizedBox(height: size.height * 0.03),
             AlreadyHaveAnAccountCheck(
               press: () {
                 Navigator.push(

@@ -323,37 +323,44 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> {
                                     Row(
                                       children: <Widget>[
 
-                                        Icon(
-                                          Icons.bookmark,
-                                          color: kPrimaryDarkColor,
-                                          size: 20,
-                                        ),
+                                       Flexible(
+                                         flex: 2,
+                                         child: Icon(
+                                           Icons.bookmark,
+                                           color: kPrimaryDarkColor,
+                                           size: 20,
+                                         ),
+                                       ),
 
+                                       Flexible(
+                                         flex: 6,
+                                         child: AutoSizeText(
+                                           this.book.current_chapter_title,
+                                           overflow: TextOverflow.ellipsis,
+                                           style: TextStyle( fontWeight: FontWeight.bold,),
+                                           maxLines: 1,
+                                         ),
+                                       ),
 
-
-                                        AutoSizeText(
-                                          this.book.current_chapter_title,
-                                          overflow: TextOverflow.ellipsis,
-                                          style: TextStyle( fontWeight: FontWeight.bold,),
-                                          maxLines: 1,
-                                        ),
-
-                                        Visibility(
-                                          visible: this.book.currentChapter != this.book.chapters.length - 1,
-                                          maintainSize: false,
-                                          maintainAnimation: false,
-                                          maintainState: false,
-                                          child:  AutoSizeText(
-                                            "+" + (this.book.chapters.length - this.book.currentChapter - 1).toString(),
-                                            overflow: TextOverflow.ellipsis,
-                                            style: TextStyle(
-                                              color: Colors.grey[500],
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                            maxLines: 1,
-                                            textAlign: TextAlign.left,
-                                          ),
-                                        ),
+                                       Flexible(
+                                         flex: 2,
+                                         child: Visibility(
+                                           visible: this.book.currentChapter != this.book.chapters.length - 1,
+                                           maintainSize: false,
+                                           maintainAnimation: false,
+                                           maintainState: false,
+                                           child:  AutoSizeText(
+                                             "+" + (this.book.chapters.length - this.book.currentChapter - 1).toString(),
+                                             //overflow: TextOverflow.ellipsis,
+                                             style: TextStyle(
+                                               color: Colors.grey[500],
+                                               fontWeight: FontWeight.bold,
+                                             ),
+                                             maxLines: 1,
+                                             textAlign: TextAlign.left,
+                                           ),
+                                         ),
+                                       )
                                       ],
                                     ),
                                   ],

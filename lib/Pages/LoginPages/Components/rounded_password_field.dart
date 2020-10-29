@@ -1,11 +1,12 @@
+import 'package:bookifyapp/Design/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/Pages/LoginPages/Components/text_field_container.dart';
 
 
 class RoundedPasswordField extends StatelessWidget {
 
-  static const kPrimaryColor = Color(0xFF6F35A5);
-  static const kPrimaryLightColor = Color(0xFFF1E6FF);
+  //static const kPrimaryColor = Color(0xFF6F35A5);
+  //static const kPrimaryLightColor = Color(0xFFF1E6FF);
   final ValueChanged<String> onChanged;
   const RoundedPasswordField({
     Key key,
@@ -18,16 +19,16 @@ class RoundedPasswordField extends StatelessWidget {
       child: TextField(
         obscureText: true,
         onChanged: onChanged,
-        cursorColor: kPrimaryColor,
+        cursorColor: kPrimaryDarkColor,
         decoration: InputDecoration(
           hintText: "Password",
           icon: Icon(
             Icons.lock,
-            color: kPrimaryColor,
+            color: kPrimaryDarkColor,
           ),
           suffixIcon: Icon(
             Icons.visibility,
-            color: kPrimaryColor,
+            color: kPrimaryDarkColor,
           ),
           border: InputBorder.none,
         ),

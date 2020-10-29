@@ -1,10 +1,11 @@
+import 'package:bookifyapp/Design/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/Pages/LoginPages/Components/text_field_container.dart';
 
 class RoundedInputField extends StatelessWidget {
 
-  static const kPrimaryColor = Color(0xFF6F35A5);
-  static const kPrimaryLightColor = Color(0xFFF1E6FF);
+  //static const kPrimaryColor = Color(0xFF6F35A5);
+  //static const kPrimaryLightColor = Color(0xFFF1E6FF);
   final String hintText;
   final IconData icon;
   final ValueChanged<String> onChanged;
@@ -21,11 +22,11 @@ class RoundedInputField extends StatelessWidget {
     return TextFieldContainer(
       child: TextField(
         onChanged: onChanged,
-        cursorColor: kPrimaryColor,
+        cursorColor: kPrimaryLightColor,
         decoration: InputDecoration(
           icon: Icon(
             icon,
-            color: kPrimaryColor,
+            color: kPrimaryDarkColor,
           ),
           hintText: hintText,
           border: InputBorder.none,

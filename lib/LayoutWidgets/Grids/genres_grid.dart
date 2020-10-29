@@ -62,10 +62,8 @@ class _GenresGrid extends State<GenresGrid> with TickerProviderStateMixin{
 
   @override
   Widget build(BuildContext context) {
-
     return GridView.count(
         key: UniqueKey(),
-        //physics: NeverScrollableScrollPhysics(), // to disable GridView's scrolling
         shrinkWrap: true,
         crossAxisCount: 3,
         mainAxisSpacing: 10.0,
@@ -77,7 +75,7 @@ class _GenresGrid extends State<GenresGrid> with TickerProviderStateMixin{
               height: (MediaQuery.of(context).size.height / 4),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
-                color: genresOfInterest.contains(widget.genres[index]) ? Colors.lightGreen : Colors.white38,
+                color: genresOfInterest.contains(widget.genres[index]) ? kGreenLightColor : kSecondaryLightColor,
               ),
               child:  GestureDetector(
                   onTap: (){
@@ -85,16 +83,10 @@ class _GenresGrid extends State<GenresGrid> with TickerProviderStateMixin{
                   },
                   child: Padding(
                     padding: EdgeInsets.all(genresOfInterest.contains(widget.genres[index]) ? 4 : 2),
-                    child: /*Container(
-                  color: Colors.black,
-                  height: widget.height,
-                  width: 100,
-                )*/
-                    GenreContainer(widget.genres[index], width: (MediaQuery.of(context).size.width / 3) -10 , height: (MediaQuery.of(context).size.height / 4) - 10, ),
+                    child: GenreContainer(widget.genres[index], width: (MediaQuery.of(context).size.width / 3) -10 , height: (MediaQuery.of(context).size.height / 4) - 10, ),
                   )
-              )//Container(height: 100, width: 100, color: Colors.black,),
+              )
           );
-
         })
     );
   }

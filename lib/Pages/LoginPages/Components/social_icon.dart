@@ -1,3 +1,4 @@
+import 'package:bookifyapp/Design/constants.dart';
 import 'package:flutter/material.dart';
 //import 'package:flutter_auth/constants.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -13,8 +14,8 @@ class SocialIcon extends StatelessWidget {
     this.press,
   }) : super(key: key);
 
-  static const kPrimaryColor = Color(0xFF6F35A5);
-  static const kPrimaryLightColor = Color(0xFFF1E6FF);
+  //static const kPrimaryColor = Color(0xFF6F35A5);
+  //static const kPrimaryLightColor = Color(0xFFF1E6FF);
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +27,7 @@ class SocialIcon extends StatelessWidget {
         decoration: BoxDecoration(
           border: Border.all(
             width: 2,
-            color: kPrimaryLightColor,
+            color: kPrimaryDarkColor,
           ),
           shape: BoxShape.circle,
         ),
