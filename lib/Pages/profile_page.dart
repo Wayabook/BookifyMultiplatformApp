@@ -56,8 +56,11 @@ class _ProfilePage extends State<ProfilePage> implements TitleButtonInterface{
   @override
   void initState(){
     super.initState();
-    items = new List();
+    _updateList();
+  }
 
+  _updateList(){
+    items = new List();
     items.add(_getTopStack());
     items.add(_getFriendButtonContainer());
     items.add(_getUserLectureNumbers());
@@ -70,7 +73,6 @@ class _ProfilePage extends State<ProfilePage> implements TitleButtonInterface{
       widget.profileType == ProfileType.user_profile ?  BookCardType.add_custom_list : BookCardType.recommend_book,
       user: widget.user,
     ));
-
   }
 
   @override
@@ -103,7 +105,7 @@ class _ProfilePage extends State<ProfilePage> implements TitleButtonInterface{
     //_getRandomBackgroundImage();
     randomBackgroundImage = "https://imagessl0.casadellibro.com/a/l/t5/50/9788491819950.jpg";
 
-    
+
     return Stack(
       children: [
         Padding(
@@ -339,18 +341,22 @@ class _ProfilePage extends State<ProfilePage> implements TitleButtonInterface{
   }
 
   @override
-  onTitleButtonPressed(ButtonType buttonType, BuildContext context, {String title}){
+  onTitleButtonPressed(ButtonType buttonType, BuildContext context, {String title}) async {
     if(buttonType == ButtonType.view_all){
-      Navigator.push(
+      var result = await Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => BookshelfPage(widget.user)),
       );
     } else if (buttonType == ButtonType.edit_genres_list) {
-      Navigator.push(
+      var result = await Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => GenresPage(widget.user)),
       );
     }
+
+    setState(() {
+      _updateList();
+    });
   }
 
   _getFriendButton(){
