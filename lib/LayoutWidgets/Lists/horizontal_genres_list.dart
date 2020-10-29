@@ -11,14 +11,26 @@ import 'package:bordered_text/bordered_text.dart';
 class HorizontalGenresList extends StatelessWidget {
 
   List<Genre> genres;
+  List<Widget> items;
   BuildContext context;
   ListType type;
 
   HorizontalGenresList(this.genres, this.type);
 
+  _createListItems(){
+    items  = new List();
+    for(int i=0; i < genres.length; i++)
+      items.add(GenreCard(genres[i], addGenreCard: false, index: i,));
+    if(type == ListType.add_genre)
+      items.add(GenreCard(null, addGenreCard: true,));
+  }
+
   @override
   Widget build(BuildContext context) {
+
+
     this.context = context;
+    _createListItems();
     return Container(
       child: Card(
         margin: EdgeInsets.fromLTRB(5, 0, 5, 10),
@@ -35,13 +47,14 @@ class HorizontalGenresList extends StatelessWidget {
       width: double.infinity,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: this.type == ListType.add_genre ?  genres.length + 1: genres.length,
+        itemCount: items.length,
         itemBuilder: (BuildContext context, int index) {
-            if(index < genres.length){
+            return items[index];
+            /*if(index < genres.length){
               return GenreCard(genres[index], addGenreCard: false, index: index,);
             } else {
               return GenreCard(null, addGenreCard: true,);
-            }
+            }*/
         },
       ),
     );
