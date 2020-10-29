@@ -257,7 +257,7 @@ class _AddFeedbackDialog
                               opacity: !widget.book.finished ? 1.0 : 0.0,
                               duration: Duration(milliseconds: 500),
                               child: FloatingActionButton(
-                                heroTag: "FAB2",
+                                heroTag: UniqueKey(),
                                 onPressed: () async {
                                   setState(() {
                                     if(!widget.book.finished){
@@ -353,7 +353,7 @@ class _AddFeedbackDialog
                             width: 40,
                             child: FittedBox(
                               child: FloatingActionButton(
-                                heroTag: "FAB3",
+                                heroTag: UniqueKey(),
                                 onPressed: (){
                                   _navigateToCommentsPage(context);
                                 },

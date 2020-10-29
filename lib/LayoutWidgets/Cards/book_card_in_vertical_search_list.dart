@@ -370,8 +370,7 @@ class _BookCardInVerticalSearchList extends State<BookCardInVerticalSearchList>{
         widget.type == ListType.edit_custom_list ||
         widget.type == ListType.first_time_form){
 
-      List<String> heroes = ("FLTB1" + widget.book.title).split('');
-      heroes.shuffle();
+
       return Container(
           decoration: BoxDecoration(
               color: kPrimaryLightColor,
@@ -477,7 +476,7 @@ class _BookCardInVerticalSearchList extends State<BookCardInVerticalSearchList>{
                           height: 75,
                           width: 75,
                           child: FloatingActionButton(
-                            heroTag: heroes,
+                            heroTag: UniqueKey(),
                             backgroundColor: kPrimaryLightColor,
                             child: Icon(
                               iconData,

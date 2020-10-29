@@ -105,8 +105,6 @@ class _ProfilePage extends State<ProfilePage> implements TitleButtonInterface{
   _getTopStack(){
     //_getRandomBackgroundImage();
     randomBackgroundImage = "https://imagessl0.casadellibro.com/a/l/t5/50/9788491819950.jpg";
-
-
     return Stack(
       children: [
         Padding(

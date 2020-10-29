@@ -171,7 +171,7 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> {
 
   _makeListTile(BuildContext context)   {
     FloatingActionButton floatingActionButton = new FloatingActionButton(
-      heroTag: "AddButton" + book.title,
+      heroTag: UniqueKey(),
       backgroundColor: kPrimaryLightColor,
       child: RotationTransition(
         turns: animation,

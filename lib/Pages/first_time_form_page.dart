@@ -166,7 +166,7 @@ class _FirstTimeFormPage extends State<FirstTimeFormPage> with TickerProviderSta
               right: 10,
               bottom: 15,
               child: FloatingActionButton(
-                heroTag: "NEXTFABBUTTON",
+                heroTag: UniqueKey(),
                 backgroundColor: _floatingActionButtonColor,
                 child: RotationTransition(
                   turns: animation,
