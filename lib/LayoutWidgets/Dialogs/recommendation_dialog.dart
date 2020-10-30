@@ -1,36 +1,17 @@
 import 'dart:async';
-
 import 'package:bookifyapp/Design/constants.dart';
 import 'package:bookifyapp/Enums/list_type.dart';
 import 'package:bookifyapp/InfoToast.dart';
-import 'package:bookifyapp/Interfaces/RemoveCommentInterface.dart';
-import 'package:bookifyapp/LayoutWidgets/Cards/main_comment_card.dart';
-import 'package:bookifyapp/LayoutWidgets/Cards/reaction_card.dart';
-import 'package:bookifyapp/LayoutWidgets/Cards/shop_item_card.dart';
-import 'package:bookifyapp/LayoutWidgets/Cards/user_preview_card.dart';
-import 'package:bookifyapp/LayoutWidgets/Lists/list_title.dart';
 import 'package:bookifyapp/LayoutWidgets/Lists/vertical_book_list_search.dart';
 import 'package:bookifyapp/LayoutWidgets/Profile/profile_info.dart';
-import 'package:bookifyapp/LayoutWidgets/carousel_card.dart';
-import 'package:bookifyapp/Models/Chapter.dart';
-import 'package:bookifyapp/Models/Comment.dart';
-import 'package:bookifyapp/Models/Item.dart';
 import 'package:bookifyapp/Models/Lecture.dart';
-import 'package:bookifyapp/Models/MainComment.dart';
 import 'package:bookifyapp/Models/Recommendation.dart';
 import 'package:bookifyapp/Models/User.dart';
-import 'package:bookifyapp/Pages/comment_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/Models/Book.dart';
-import 'package:bookifyapp/LayoutWidgets/BookWidgets/book_cover.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter_page_indicator/flutter_page_indicator.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:flutter_swiper/flutter_swiper.dart';
-import 'package:bordered_text/bordered_text.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 
 class RecommendationDialog extends StatefulWidget{
@@ -44,7 +25,7 @@ class RecommendationDialog extends StatefulWidget{
 }
 
 class _RecommendationDialog
-    extends State<RecommendationDialog> /*with SingleTickerProviderStateMixin*/ {
+    extends State<RecommendationDialog> {
 
 
   Dialog alertDialog;
@@ -69,16 +50,12 @@ class _RecommendationDialog
     scrollController = new ScrollController();
     _backgroundColor = kPrimaryLightColor;
 
-
     widgets = new List();
 
-    //readButtonColor = kPrimaryDarkColor;
-    //visible = widget.book.finished ? true : false;
   }
 
   @override
   void dispose() {
-    //animationController.dispose();
     super.dispose();
   }
 
@@ -118,16 +95,12 @@ class _RecommendationDialog
     height = MediaQuery.of(context).size.height;
 
     alertDialog = new Dialog(
-      //title: const Text('Add List Title:'),
         backgroundColor: Colors.transparent,
         child: Container(
           height: height,
           width: width,
-          //color: _backgroundColor,
           child: Stack(
             children: <Widget>[
-
-
               Positioned(
                   top: 70,
                   child: Container(
@@ -138,7 +111,6 @@ class _RecommendationDialog
                         alignment: Alignment.topLeft,
                         child: IconButton(
                           onPressed: (){
-                            //widget.callAnimation();
                             Navigator.pop(context);
                           },
                           icon: Icon(
@@ -161,7 +133,6 @@ class _RecommendationDialog
                 top: 150,
                 left: 7,
                 right: 7,
-                //left: Alignment.center,
                 child: Container(
                   width: width,
                   height: 50,
@@ -184,7 +155,6 @@ class _RecommendationDialog
                   top: 180,
                   left: 7,
                   right: 7,
-                  //left: Alignment.center,
                   child: Container(
                     width: width,
                     height: 50,
@@ -208,7 +178,6 @@ class _RecommendationDialog
                 padding: EdgeInsets.fromLTRB(0, 240, 0, 0),
                 child: VerticalBookListSearch(
                   Recommendation.getRecommendedBooksFromRecommendations(widget._recommendations),
-                  //widget._recommendations.recommendedBooks,
                   ListType.recommendation_form,
                   backgroundColor: kPrimaryLightColor,
                   onAcceptButtonTapped: onRecommendationsAccepted,
@@ -223,53 +192,4 @@ class _RecommendationDialog
 
     return alertDialog;
   }
-
-  /*_navigateToCommentsPage(BuildContext context) async {
-
-    final String result = await Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => CommentPage(
-      null,
-      subCommentsPage: false,
-      chapterTitle: this.currentChapter.title,
-      chapterNumber: this.currentChapterNumber,
-    )));
-
-
-    if(result != null){
-      if(result.length > 0){
-        setState(() {
-          var user = Provider.of<User>(context, listen: false);
-          MainComment mainComment = new MainComment(user, result, answers: Comment.getMockComments());
-          this.currentChapter.addComment(mainComment);
-
-
-          widgets.add(MainCommentCard(
-            mainComment,
-            fromDialog: true,
-            chapterTitle: this.currentChapter.title,
-            chapterNumber: this.currentChapterNumber,
-            removeCommentFunction: removeComment,
-            positionKey: widgets.length,
-          ));
-          //listSize = mainComments.length + 5;
-          //_scrollToLastPosition();
-        });
-      }
-    }
-  }*/
-
-  /*@override
-  void removeComment(int key){
-    setState(() {
-      widgets.removeAt(key);
-      InfoToast.showCommentRemovedCorrectly(true);
-    });
-  }
-
-  _scrollToLastPosition(){
-    Timer(
-      Duration(seconds: 1),
-          () => scrollController.jumpTo(scrollController.position.maxScrollExtent),
-    );
-  }*/
 }

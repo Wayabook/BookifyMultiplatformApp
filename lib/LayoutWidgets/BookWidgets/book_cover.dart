@@ -52,7 +52,6 @@ class BookCover extends StatelessWidget {
       return Column(
         children: <Widget>[
           Card(
-            //margin: EdgeInsets.all(10),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(7.0),
             ),

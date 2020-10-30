@@ -13,7 +13,6 @@ import 'package:flutter/painting.dart';
 import 'package:bookifyapp/Enums/list_type.dart';
 import 'package:bookifyapp/LayoutWidgets/friends_preview.dart';
 import 'package:bookifyapp/LayoutWidgets/Dialogs/book_shops_dialog.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 
 import '../InfoToast.dart';
@@ -253,13 +252,6 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
               margin: EdgeInsets.fromLTRB(5, 2, 5, 0),
               child:  Row(
                 children: <Widget>[
-                  /*Align(
-                    alignment: Alignment.topLeft,
-                    child: Text(
-                      'Summary:',
-                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                    ),
-                  ),*/
                   Text(
                     'Summary:',
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),

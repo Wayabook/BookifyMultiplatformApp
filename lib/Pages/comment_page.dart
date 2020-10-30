@@ -196,7 +196,6 @@ class _CommentPage
           child: _getSubcommentsListView(),
         ),
 
-
         Flexible(
             flex: 0,
             child: Card(

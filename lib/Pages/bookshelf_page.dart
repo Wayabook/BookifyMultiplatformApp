@@ -13,7 +13,6 @@ class BookshelfPage extends StatelessWidget {
 
   BookshelfPage(
       this.user,
-
       {
         this.scrollToLastPosition = false }
       );

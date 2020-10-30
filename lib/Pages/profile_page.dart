@@ -306,10 +306,7 @@ class _ProfilePage extends State<ProfilePage> implements TitleButtonInterface{
     );
   }
 
-
-
   _getBody(){
-
     return ListView.builder(
       scrollDirection: Axis.vertical,
       shrinkWrap: true,
@@ -318,32 +315,6 @@ class _ProfilePage extends State<ProfilePage> implements TitleButtonInterface{
         return items[index];
       },
     );
-
-    /*return ListView(
-      children: <Widget>[
-        _getTopStack(),
-
-        _getFriendButtonContainer(),
-
-        _getUserLectureNumbers(),
-
-        _getHorizontalLineSeparator(),
-
-        _getGenresTitle(),
-
-        _getGenresHorizontalList(),
-
-        _getBookshelfTitle(),
-
-        HorizontalBookList(widget.user.getNLecturesFromBookshelf(5), ListType.view_all, user: widget.user,),
-
-        BookCard.option(
-          widget.profileType == ProfileType.user_profile ?  BookCardType.add_custom_list : BookCardType.recommend_book,
-          user: widget.user,
-        ),
-
-      ],
-    );*/
   }
 
   @override
