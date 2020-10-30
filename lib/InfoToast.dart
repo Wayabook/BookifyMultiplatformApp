@@ -18,6 +18,18 @@ class InfoToast {
     );
   }
 
+  static void showRecommendationsSavedCorrectly(){
+    Fluttertoast.showToast(
+        msg: "Selected recommendations were saved correctly.",
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.black,
+        textColor: kPrimaryLightColor,
+        fontSize: 16.0
+    );
+  }
+
   static void showListRemovedCorrecltyFromBookshelf(String listTitle){
     Fluttertoast.showToast(
         msg: listTitle + "books list was removed correctly from your Bookshelf.",

@@ -56,7 +56,7 @@ class _BookCardInVerticalSearchList extends State<BookCardInVerticalSearchList>{
 
 
     user = Provider.of<User>(context, listen: false);
-    if (widget.type == ListType.first_time_form){
+    if (widget.type == ListType.first_time_form || widget.type == ListType.recommendation_form){
       added = false;
       iconData = added ? Icons.check : Icons.add;
       buttonColor = added ? Colors.green : kPrimaryDarkColor;
@@ -266,7 +266,7 @@ class _BookCardInVerticalSearchList extends State<BookCardInVerticalSearchList>{
           )
       );
 
-    } else if (widget.type == ListType.preview_friends || widget.type == ListType.recommendation_form){
+    } else if (widget.type == ListType.preview_friends){
       return Container(
           decoration: BoxDecoration(
               color: kPrimaryLightColor,
@@ -380,7 +380,8 @@ class _BookCardInVerticalSearchList extends State<BookCardInVerticalSearchList>{
       );
     } else if (widget.type == ListType.add_custom_list ||
         widget.type == ListType.edit_custom_list ||
-        widget.type == ListType.first_time_form){
+        widget.type == ListType.first_time_form ||
+        widget.type == ListType.recommendation_form){
 
 
       return Container(

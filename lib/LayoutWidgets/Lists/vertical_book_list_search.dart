@@ -28,7 +28,8 @@ class VerticalBookListSearch extends StatefulWidget {
     this.specificLectureTitle,
     this.backgroundColor = kPrimaryDarkColor,
     this.onAcceptButtonTapped,
-    this.onCancelButtonTapped
+    this.onCancelButtonTapped,
+    this.addOrRemoveBook,
   }); // : super(key: key);
 
   final List<Book> books;
@@ -38,6 +39,7 @@ class VerticalBookListSearch extends StatefulWidget {
   Color backgroundColor;
   Function() onAcceptButtonTapped;
   Function() onCancelButtonTapped;
+  Function(Book book, bool add) addOrRemoveBook;
 
   @override
   _VerticalBookListSearch createState() => _VerticalBookListSearch();
@@ -50,7 +52,7 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
   @override
   void initState() {
     super.initState();
-    if(widget.type != ListType.first_time_form){
+    if(widget.type != ListType.first_time_form && widget.type != ListType.recommendation_form){
       User user = Provider.of<User>(context, listen: false);
       customBooksList = user.hasLectureList(widget.title) ? user.getLectureListByName(widget.title) : new List();
     } else {
@@ -59,10 +61,14 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
   }
 
   addOrRemoveBookFromTemporalCustomList(Book book, bool add){
-    if(add){
-      customBooksList.add(book);
+    if(widget.type == ListType.recommendation_form){
+      widget.addOrRemoveBook(book, add);
     } else {
-      customBooksList.remove(book);
+      if(add){
+        customBooksList.add(book);
+      } else {
+        customBooksList.remove(book);
+      }
     }
   }
 
@@ -100,7 +106,13 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
         listTitle: widget.title,
       );
     } else if(widget.type == ListType.recommendation_form) {
-      return BookCardInVerticalSearchList(widget.books[index], widget.type, backgroundColor: widget.backgroundColor, cardHeight: 140,);
+      return BookCardInVerticalSearchList(
+        widget.books[index],
+        widget.type,
+        backgroundColor: widget.backgroundColor,
+        cardHeight: 140,
+        addOrRemoveBookFromTemporalCustomList: addOrRemoveBookFromTemporalCustomList,
+      );
     } else {
       return BookCardInVerticalSearchList(widget.books[index], widget.type);
     }

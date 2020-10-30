@@ -74,6 +74,11 @@ class User extends ChangeNotifier{
     if(this._lecture_lists.containsKey(lectureName))
       this._lecture_lists[lectureName].add(lecture);
   }
+  
+  void addListOfLecturesToLectureListByKey(List<Lecture> lectures, String lectureName){
+    if(this._lecture_lists.containsKey(lectureName))
+      this._lecture_lists[lectureName].addAll(lectures);
+  }
 
   void removeLectureFromLectureListByKey(Lecture lecture, String lectureName){
     if(this._lecture_lists.containsKey(lectureName))

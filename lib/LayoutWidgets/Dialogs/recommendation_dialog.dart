@@ -91,11 +91,17 @@ class _RecommendationDialog
   }
 
   void onRecommendationsAccepted(){
-    print("ACcepteeeed");
+    User user = Provider.of<User>(context, listen: false);
+    setState(() {
+      user.addListOfLecturesToLectureListByKey(recommendationsAccepted, 'Recommended');
+      user.addListOfLecturesToLectureListByKey(recommendationsAccepted, 'Pending');
+    });
+    InfoToast.showRecommendationsSavedCorrectly();
+    onRecommendationCanceled();
   }
 
   void onRecommendationCanceled(){
-    print("Caaancelleeeed");
+    Navigator.pop(context);
   }
 
   @override
@@ -199,6 +205,7 @@ class _RecommendationDialog
                   backgroundColor: kPrimaryLightColor,
                   onAcceptButtonTapped: onRecommendationsAccepted,
                   onCancelButtonTapped: onRecommendationCanceled,
+                  addOrRemoveBook: addOrDeleteRecommendation,
                 )
               )
             ],
