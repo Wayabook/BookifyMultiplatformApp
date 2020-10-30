@@ -129,7 +129,7 @@ class _FirstTimeFormPage extends State<FirstTimeFormPage> with TickerProviderSta
                             title = "Seleccione Lecturas en Curso:";
                             lectureList = 'Reading';
                           } else {
-                            title = "Elija Generos de Interes:";
+                            title = "Elija Generos de su Interes:";
                           }
 
 

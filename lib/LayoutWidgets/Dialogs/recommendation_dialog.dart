@@ -35,9 +35,9 @@ import 'package:provider/provider.dart';
 
 class RecommendationDialog extends StatefulWidget{
 
-  Recommendation _recommendation;
+  List<Recommendation> _recommendations;
 
-  RecommendationDialog(this._recommendation);
+  RecommendationDialog(this._recommendations);
 
   @override
   _RecommendationDialog createState() => _RecommendationDialog();
@@ -54,6 +54,7 @@ class _RecommendationDialog
   List<Widget> widgets;
   Color _backgroundColor;
   List<Lecture> recommendationsAccepted;
+  List<Book> keepingRecommendations;
 
 
   final TextEditingController inputController = TextEditingController();
@@ -64,6 +65,7 @@ class _RecommendationDialog
     super.initState();
 
     recommendationsAccepted = new List();
+    keepingRecommendations = new List();
     scrollController = new ScrollController();
     _backgroundColor = kPrimaryLightColor;
 
@@ -82,11 +84,15 @@ class _RecommendationDialog
 
   void addOrDeleteRecommendation(Book recommendedBook, bool add){
     if(add){
-      if(!recommendationsAccepted.contains(recommendedBook.toLecture()))
+      if(!recommendationsAccepted.contains(recommendedBook.toLecture())){
         recommendationsAccepted.add(recommendedBook.toLecture());
+        keepingRecommendations.add(recommendedBook);
+      }
     } else {
-      if(recommendationsAccepted.contains(recommendedBook.toLecture()))
+      if(recommendationsAccepted.contains(recommendedBook.toLecture())){
         recommendationsAccepted.remove(recommendedBook.toLecture());
+        keepingRecommendations.remove(recommendedBook);
+      }
     }
   }
 
@@ -95,6 +101,7 @@ class _RecommendationDialog
     setState(() {
       user.addListOfLecturesToLectureListByKey(recommendationsAccepted, 'Recommended');
       user.addListOfLecturesToLectureListByKey(recommendationsAccepted, 'Pending');
+      user.addNewRecommendationsReceived(Recommendation.getRecommendationListFromBook(keepingRecommendations, user));
     });
     InfoToast.showRecommendationsSavedCorrectly();
     onRecommendationCanceled();
@@ -143,7 +150,7 @@ class _RecommendationDialog
                   )
               ),
 
-              ProfileInfo(widget._recommendation.recommendedBy, nameColor: kPrimaryDarkColor,),
+              ProfileInfo(widget._recommendations[0].recommendedBy, nameColor: kPrimaryDarkColor,),
 
               Padding(
                 padding: EdgeInsets.fromLTRB(7, 140, 7, 10),
@@ -161,7 +168,7 @@ class _RecommendationDialog
                   child: Align(
                     alignment: Alignment.center,
                     child:  Text(
-                      ("Just recommended you " + widget._recommendation.recommendedBooks.length.toString() + " books."),
+                      ("Just recommended you " + widget._recommendations.length.toString() + " books."),
                       overflow: TextOverflow.clip,
                       textAlign: TextAlign.center,
                       style: TextStyle(
@@ -200,7 +207,8 @@ class _RecommendationDialog
               Padding(
                 padding: EdgeInsets.fromLTRB(0, 240, 0, 0),
                 child: VerticalBookListSearch(
-                  widget._recommendation.recommendedBooks,
+                  Recommendation.getRecommendedBooksFromRecommendations(widget._recommendations),
+                  //widget._recommendations.recommendedBooks,
                   ListType.recommendation_form,
                   backgroundColor: kPrimaryLightColor,
                   onAcceptButtonTapped: onRecommendationsAccepted,

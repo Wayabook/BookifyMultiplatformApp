@@ -3,20 +3,38 @@ import 'User.dart';
 
 class Recommendation {
 
-  List<Book> _recommendedBooks;
+  //List<Book> _recommendedBooks;
+  Book _recommendedBook;
   User _recommendedBy;
 
-  Recommendation(this._recommendedBy, this._recommendedBooks);
+  Recommendation(this._recommendedBy, this._recommendedBook);
 
   User get recommendedBy => _recommendedBy;
 
-  List<Book> get recommendedBooks => _recommendedBooks;
+  Book get recommendedBook => _recommendedBook;
 
-  static Recommendation getMockRecommendation(){
-    return new Recommendation(
-        User.getMockUser(),
-        Book.getUserMockBooks(),//.sublist(0, 1),
-    );
+  static List<Recommendation> getRecommendationListFromBook(List<Book> books, User user){
+    List<Recommendation> recommendations = new List();
+    for(Book book in books){
+      recommendations.add(new Recommendation(user, book));
+    }
+    return recommendations;
+  }
+
+  static List<Book> getRecommendedBooksFromRecommendations(List<Recommendation> recommendations){
+    List<Book> books = new List();
+    for(Recommendation recommendation in recommendations)
+      books.add(recommendation.recommendedBook);
+    return books;
+
+  }
+
+  static List<Recommendation> getMockRecommendation(){
+    List<Recommendation> mockRecommendation = new List();
+    for(Book book in Book.getUserMockBooks()){
+      mockRecommendation.add(new Recommendation(User.getMockUser(), book));
+    }
+    return mockRecommendation;
   }
 
 }

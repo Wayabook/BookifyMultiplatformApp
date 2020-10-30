@@ -1,6 +1,7 @@
 import 'package:bookifyapp/Models/Book.dart';
 import 'package:bookifyapp/Models/Genre.dart';
 import 'package:bookifyapp/Models/MainComment.dart';
+import 'package:bookifyapp/Models/Recommendation.dart';
 import 'package:flutter/material.dart';
 
 import 'Chapter.dart';
@@ -16,6 +17,7 @@ class User extends ChangeNotifier{
   List<Genre> _interested_genres;
   String _profile_picture_url;
   Map<String, List<Lecture>> _lecture_lists;
+  List<Recommendation> _recommendations_received;
   int _books_read;
   int _chapters_read;
   int _pages_read;
@@ -24,6 +26,20 @@ class User extends ChangeNotifier{
   static List<String> uneditableLists(){
     return ['Reading', 'Pending', 'Read'];
   }
+
+  List<Recommendation> get recommendationsReceived{
+    if(this._recommendations_received == null)
+      return new List<Recommendation>();
+    return this._recommendations_received;
+  }
+
+  void addNewRecommendationsReceived(List<Recommendation> recommendations) {
+    if(this._recommendations_received == null)
+      this._recommendations_received = new List();
+    this._recommendations_received.addAll(recommendations);
+  }
+
+  //set recomme
 
   bool isFriend(User user){
     return friends.contains(user);
@@ -74,7 +90,7 @@ class User extends ChangeNotifier{
     if(this._lecture_lists.containsKey(lectureName))
       this._lecture_lists[lectureName].add(lecture);
   }
-  
+
   void addListOfLecturesToLectureListByKey(List<Lecture> lectures, String lectureName){
     if(this._lecture_lists.containsKey(lectureName))
       this._lecture_lists[lectureName].addAll(lectures);
@@ -144,7 +160,7 @@ class User extends ChangeNotifier{
     return false;
   }
 
-  
+
   void addCustomLectureList(String listName, List<Lecture> list){
     this._lecture_lists.addAll({listName : list});
     notifyListeners();
