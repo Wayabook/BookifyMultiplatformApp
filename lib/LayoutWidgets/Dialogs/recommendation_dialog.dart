@@ -6,12 +6,15 @@ import 'package:bookifyapp/Interfaces/RemoveCommentInterface.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/main_comment_card.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/reaction_card.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/shop_item_card.dart';
+import 'package:bookifyapp/LayoutWidgets/Cards/user_preview_card.dart';
+import 'package:bookifyapp/LayoutWidgets/Profile/profile_info.dart';
 import 'package:bookifyapp/LayoutWidgets/carousel_card.dart';
 import 'package:bookifyapp/Models/Chapter.dart';
 import 'package:bookifyapp/Models/Comment.dart';
 import 'package:bookifyapp/Models/Item.dart';
 import 'package:bookifyapp/Models/Lecture.dart';
 import 'package:bookifyapp/Models/MainComment.dart';
+import 'package:bookifyapp/Models/Recommendation.dart';
 import 'package:bookifyapp/Models/User.dart';
 import 'package:bookifyapp/Pages/comment_page.dart';
 import 'package:flutter/cupertino.dart';
@@ -27,35 +30,35 @@ import 'package:bordered_text/bordered_text.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 
-class AddFeedbackDialog extends StatefulWidget{
+class RecommendationDialog extends StatefulWidget{
 
-  Lecture book;
+  Recommendation _recommendation;
   //AnimationController an
-  Function() callAnimation;
-  AddFeedbackDialog(this.book);
+  //Function() callAnimation;
+
+  RecommendationDialog(this._recommendation);
 
   @override
-  _AddFeedbackDialog createState() => _AddFeedbackDialog();
+  _RecommendationDialog createState() => _RecommendationDialog();
 }
 
-class _AddFeedbackDialog
-    extends State<AddFeedbackDialog> with SingleTickerProviderStateMixin
-    implements RemoveCommentInterface{
+class _RecommendationDialog
+    extends State<RecommendationDialog> /*with SingleTickerProviderStateMixin*/ {
 
 
   Dialog alertDialog;
   double width;
   double height;
-  List<Widget> mainComments = [];
-  int currentChapterNumber;
-  Chapter currentChapter;
-  Color readButtonColor;
-  bool visible;
+  //List<Widget> mainComments = [];
+  //int currentChapterNumber;
+  //Chapter currentChapter;
+  //Color readButtonColor;
+  //bool visible;
   ScrollController scrollController;
-  String chapterTitle;
+  //String chapterTitle;
   List<Widget> widgets;
-  AnimationController animationController;
-  Animation<double> animation;
+  //AnimationController animationController;
+  //Animation<double> animation;
   Color _backgroundColor;
 
 
@@ -69,45 +72,14 @@ class _AddFeedbackDialog
     scrollController = new ScrollController();
     _backgroundColor = kPrimaryLightColor;
 
-    animationController = AnimationController(
-        duration: Duration(milliseconds: 1500),
-        vsync:this
-    );
-
-    animation = CurvedAnimation(
-      parent: animationController,
-      curve: Curves.elasticIn,
-    );
-
-    currentChapterNumber = widget.book.currentChapter;
-    currentChapter = widget.book.chapters[currentChapterNumber];
-    chapterTitle = currentChapter.title;
-
-    for(int i=0; i < currentChapter.comments.length; i++){
-      mainComments.add(
-          MainCommentCard(
-              currentChapter.comments[i],
-              fromDialog: true,
-              chapterTitle: this.currentChapter.title,
-              chapterNumber: this.currentChapterNumber,
-              removeCommentFunction: removeComment,
-              positionKey: (i + 5),
-          ));
-    }
 
     widgets = new List();
-    widgets.add(_getTitleSection("¿Como estuvo?"));
-    widgets.add(_getRatingBar());
-    widgets.add(_getTitleSection("¿Como te sentiste?"));
-    widgets.add(_getReactionsGrid());
-    widgets.add(_getCommentsTitle());
-    widgets.addAll(mainComments);
 
-    readButtonColor = kPrimaryDarkColor;
-    visible = widget.book.finished ? true : false;
+    //readButtonColor = kPrimaryDarkColor;
+    //visible = widget.book.finished ? true : false;
   }
 
-  _getReactionsGrid(){
+  /*_getReactionsGrid(){
     return Container(
         height: 190,
         child: GridView.count(
@@ -121,9 +93,9 @@ class _AddFeedbackDialog
             },)
         )
     );
-  }
+  }*/
 
-  _getCommentsTitle(){
+  /*_getCommentsTitle(){
     return Padding(
       padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
       child: Row(
@@ -141,7 +113,7 @@ class _AddFeedbackDialog
         ],
       ),
     );
-  }
+  }*/
 
   _getRatingBar(){
     return Card(
@@ -188,7 +160,7 @@ class _AddFeedbackDialog
   }
 
   _getTitleSection(String title){
-   return Align(
+    return Align(
       alignment: Alignment.center,
       child: Text(
         title,
@@ -202,7 +174,7 @@ class _AddFeedbackDialog
 
   @override
   void dispose() {
-    animationController.dispose();
+    //animationController.dispose();
     super.dispose();
   }
 
@@ -216,65 +188,65 @@ class _AddFeedbackDialog
       //title: const Text('Add List Title:'),
         backgroundColor: Colors.transparent,
         child: Container(
-            height: height,
-            width: width,
-            //color: _backgroundColor,
-            child: Stack(
-              children: <Widget>[
+          height: height,
+          width: width,
+          //color: _backgroundColor,
+          child: Stack(
+            children: <Widget>[
 
 
-                Positioned(
-                    top: 140,
+              Positioned(
+                  top: 70,
+                  child: Container(
+                      width: width,
+                      height: height - 70,
+                      color: _backgroundColor,
+                      child:  Align(
+                        alignment: Alignment.topLeft,
+                        child: IconButton(
+                          onPressed: (){
+                            //widget.callAnimation();
+                            Navigator.pop(context);
+                          },
+                          icon: Icon(
+                              Icons.keyboard_arrow_down,
+                              color: Colors.black
+                          ),
+                        ),
+                      )
+                  )
+              ),
+
+              /*Positioned(
+                  top: 150,
+                  right: 10,
+                  child: Align(
+                    alignment: Alignment.topRight,
                     child: Container(
                         width: width,
                         height: height-140,
-                        color: _backgroundColor,
+                        //color: _backgroundColor,
                         child:  Align(
-                          alignment: Alignment.topLeft,
-                          child: IconButton(
-                            onPressed: (){
-                              //widget.callAnimation();
-                              Navigator.pop(context);
-                            },
-                            icon: Icon(
-                                Icons.keyboard_arrow_down,
-                                color: Colors.black
-                            ),
-                          ),
-                        )
-                    )
-                ),
-
-                Positioned(
-                    top: 150,
-                    right: 10,
-                    child: Align(
-                      alignment: Alignment.topRight,
-                      child: Container(
-                          width: width,
-                          height: height-140,
-                          //color: _backgroundColor,
-                          child:  Align(
-                            alignment: Alignment.topRight,
-                            child: AnimatedOpacity(
-                              opacity: !widget.book.finished ? 1.0 : 0.0,
-                              duration: Duration(milliseconds: 500),
-                              child: FloatingActionButton(
+                          alignment: Alignment.topRight,
+                          child: AnimatedOpacity(
+                            //opacity: !widget.book.finished ? 1.0 : 0.0,
+                            duration: Duration(milliseconds: 500),
+                            child: FloatingActionButton(
                                 heroTag: UniqueKey(),
                                 onPressed: () async {
                                   setState(() {
-                                    if(!widget.book.finished){
+                                    /*if(!widget.book.finished){
                                       readButtonColor = Colors.lightGreen;
-                                    }
+                                    }*/
                                   });
-                                  await animationController.forward();
+                                  /*await animationController.forward();
                                   setState(() {
                                     if(!widget.book.finished){
                                       visible = true;
                                       var user = Provider.of<User>(context, listen: false);
                                       user.increaseChapter(widget.book);
                                     }
-                                  });
+                                  });*/
                                 },
                                 backgroundColor: kPrimaryLightColor,
                                 child: RotationTransition(
@@ -285,101 +257,123 @@ class _AddFeedbackDialog
                                     size: 50,
                                   ),
                                 )
-                              ),
-                            ),
-                          )
-                      ),
-                    )
-                ),
-
-                Center(
-                  child: BookCover(
-                    widget.book,
-                    showInfo: false,
-                    height: 180,
-                    showTitle: false,
-                    chapterTitle: chapterTitle,
-                  ),
-                ),
-
-                Padding(
-                  padding: EdgeInsets.fromLTRB(7, 210, 7, 10),
-                  child: Container(color: kPrimaryDarkColor, height: 2, width: width),
-                ),
-
-                AnimatedOpacity(
-                  opacity: visible ? 1.0 : 0.0,
-                  duration: Duration(milliseconds: 500),
-                  child:  Visibility(
-                    visible: visible,
-                    maintainSize: false,
-                    maintainAnimation: false,
-                    maintainState: false,
-                    child: Padding(
-                      padding: EdgeInsets.fromLTRB(7, 220, 7, 0),
-                      child:  ListView.builder(
-                          controller: scrollController,
-                          shrinkWrap: true,
-                          padding: const EdgeInsets.all(8),
-                          itemCount: widgets.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            return widgets[index];
-                          }
-                      ),
-                    ),
-                  ),
-                ),
-
-                Center(
-                  child: Visibility(
-                    visible: !visible,
-                    maintainSize: false,
-                    maintainAnimation: false,
-                    maintainState: false,
-                    child:  _getTitleSection("To give feedback and see comments. Mark as read first"),
-                  ),
-                ),
-
-                Positioned(
-                    bottom: 5,
-                    right: 10,
-                    child: AnimatedOpacity(
-                        opacity: visible ? 1.0 : 0.0,
-                        duration: Duration(milliseconds: 500),
-                        child:  Visibility(
-                          visible: visible,
-                          maintainSize: false,
-                          maintainAnimation: false,
-                          maintainState: false,
-                          child: Container(
-                            height: 40,
-                            width: 40,
-                            child: FittedBox(
-                              child: FloatingActionButton(
-                                heroTag: UniqueKey(),
-                                onPressed: (){
-                                  _navigateToCommentsPage(context);
-                                },
-                                backgroundColor: Colors.yellow,
-                                child: Icon(
-                                  Icons.add,
-                                  color: kPrimaryDarkColor,),
-                              ),
                             ),
                           ),
                         )
                     ),
-                ),
+                  )
+              ),*/
 
-              ],
-            ),
+              /*UserPreviewCard(
+                widget._recommendation.recommendedBy,
+                height: 150,
+              ),*/
+
+              ProfileInfo(widget._recommendation.recommendedBy),
+
+              /*
+              UserPreviewCard(
+      this.user,
+      {
+        this.height = 100,
+        this.fontSize = 30,
+        this.padding = 10,
+        this.card = true,
+        this.isAuthor = false,
+        this.fromDialog = true,
+        //this.isFriend = false,
+        this.removeComment
+      });
+              */
+
+              /*Center(
+                child: BookCover(
+                  widget.book,
+                  showInfo: false,
+                  height: 180,
+                  showTitle: false,
+                  chapterTitle: chapterTitle,
+                ),
+              ),*/
+
+              Padding(
+                padding: EdgeInsets.fromLTRB(7, 210, 7, 10),
+                child: Container(color: kPrimaryDarkColor, height: 2, width: width),
+              ),
+
+              /*AnimatedOpacity(
+                opacity: visible ? 1.0 : 0.0,
+                duration: Duration(milliseconds: 500),
+                child:  Visibility(
+                  visible: visible,
+                  maintainSize: false,
+                  maintainAnimation: false,
+                  maintainState: false,
+                  child: Padding(
+                    padding: EdgeInsets.fromLTRB(7, 220, 7, 0),
+                    child:  ListView.builder(
+                        controller: scrollController,
+                        shrinkWrap: true,
+                        padding: const EdgeInsets.all(8),
+                        itemCount: widgets.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return widgets[index];
+                        }
+                    ),
+                  ),
+                ),
+              ),
+
+              Center(
+                child: Visibility(
+                  visible: !visible,
+                  maintainSize: false,
+                  maintainAnimation: false,
+                  maintainState: false,
+                  child:  _getTitleSection("To give feedback and see comments. Mark as read first"),
+                ),
+              ),
+
+              Positioned(
+                bottom: 5,
+                right: 10,
+                child: AnimatedOpacity(
+                    opacity: visible ? 1.0 : 0.0,
+                    duration: Duration(milliseconds: 500),
+                    child:  Visibility(
+                      visible: visible,
+                      maintainSize: false,
+                      maintainAnimation: false,
+                      maintainState: false,
+                      child: Container(
+                        height: 40,
+                        width: 40,
+                        child: FittedBox(
+                          child: FloatingActionButton(
+                            heroTag: UniqueKey(),
+                            onPressed: (){
+                              //_navigateToCommentsPage(context);
+                            },
+                            backgroundColor: Colors.yellow,
+                            child: Icon(
+                              Icons.add,
+                              color: kPrimaryDarkColor,),
+                          ),
+                        ),
+                      ),
+                    )
+                ),
+              ),*/
+
+            ],
+          ),
         )
     );
 
     return alertDialog;
   }
 
-  _navigateToCommentsPage(BuildContext context) async {
+  /*_navigateToCommentsPage(BuildContext context) async {
 
     final String result = await Navigator.of(context)
         .push(MaterialPageRoute(builder: (context) => CommentPage(
@@ -399,25 +393,25 @@ class _AddFeedbackDialog
 
 
           widgets.add(MainCommentCard(
-              mainComment,
-              fromDialog: true,
-              chapterTitle: this.currentChapter.title,
-              chapterNumber: this.currentChapterNumber,
-              removeCommentFunction: removeComment,
-              positionKey: widgets.length,
+            mainComment,
+            fromDialog: true,
+            chapterTitle: this.currentChapter.title,
+            chapterNumber: this.currentChapterNumber,
+            removeCommentFunction: removeComment,
+            positionKey: widgets.length,
           ));
           //listSize = mainComments.length + 5;
-          _scrollToLastPosition();
+          //_scrollToLastPosition();
         });
       }
     }
-  }
+  }*/
 
-  @override
+  /*@override
   void removeComment(int key){
     setState(() {
-     widgets.removeAt(key);
-     InfoToast.showCommentRemovedCorrectly(true);
+      widgets.removeAt(key);
+      InfoToast.showCommentRemovedCorrectly(true);
     });
   }
 
@@ -426,5 +420,5 @@ class _AddFeedbackDialog
       Duration(seconds: 1),
           () => scrollController.jumpTo(scrollController.position.maxScrollExtent),
     );
-  }
+  }*/
 }

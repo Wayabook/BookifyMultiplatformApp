@@ -5,7 +5,9 @@ import 'package:bookifyapp/InfoToast.dart';
 import 'package:bookifyapp/Interfaces/TitleButtonInterface.dart';
 import 'package:bookifyapp/LayoutWidgets/Buttons/small_button_underlined.dart';
 import 'package:bookifyapp/LayoutWidgets/Dialogs/dialog_with_accept_and_cancel_options.dart';
+import 'package:bookifyapp/LayoutWidgets/Dialogs/recommendation_dialog.dart';
 import 'package:bookifyapp/LayoutWidgets/Lists/list_title.dart';
+import 'package:bookifyapp/Models/Recommendation.dart';
 import 'package:bookifyapp/Pages/friends_page.dart';
 import 'package:bookifyapp/Pages/genres_page.dart';
 import 'package:flutter/material.dart';
@@ -146,11 +148,15 @@ class _ProfilePage extends State<ProfilePage> implements TitleButtonInterface{
                           ),
                         ],
                       ),
-                      onTap: () {
-                        Navigator.push(
+                      onTap: () async {
+                        await showDialog(
+                            context: context,
+                            builder: (BuildContext context) => RecommendationDialog(Recommendation.getMockRecommendation()),
+                        );
+                        /*Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) => BadgetsPage()),
-                        );
+                        );*/
                       },
                     )
                 ),
