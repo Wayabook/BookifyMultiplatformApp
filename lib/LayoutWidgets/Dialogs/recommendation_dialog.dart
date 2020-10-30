@@ -7,6 +7,7 @@ import 'package:bookifyapp/LayoutWidgets/Cards/main_comment_card.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/reaction_card.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/shop_item_card.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/user_preview_card.dart';
+import 'package:bookifyapp/LayoutWidgets/Lists/list_title.dart';
 import 'package:bookifyapp/LayoutWidgets/Profile/profile_info.dart';
 import 'package:bookifyapp/LayoutWidgets/carousel_card.dart';
 import 'package:bookifyapp/Models/Chapter.dart';
@@ -217,88 +218,58 @@ class _RecommendationDialog
                   )
               ),
 
-              /*Positioned(
-                  top: 150,
-                  right: 10,
-                  child: Align(
-                    alignment: Alignment.topRight,
-                    child: Container(
-                        width: width,
-                        height: height-140,
-                        //color: _backgroundColor,
-                        child:  Align(
-                          alignment: Alignment.topRight,
-                          child: AnimatedOpacity(
-                            //opacity: !widget.book.finished ? 1.0 : 0.0,
-                            duration: Duration(milliseconds: 500),
-                            child: FloatingActionButton(
-                                heroTag: UniqueKey(),
-                                onPressed: () async {
-                                  setState(() {
-                                    /*if(!widget.book.finished){
-                                      readButtonColor = Colors.lightGreen;
-                                    }*/
-                                  });
-                                  /*await animationController.forward();
-                                  setState(() {
-                                    if(!widget.book.finished){
-                                      visible = true;
-                                      var user = Provider.of<User>(context, listen: false);
-                                      user.increaseChapter(widget.book);
-                                    }
-                                  });*/
-                                },
-                                backgroundColor: kPrimaryLightColor,
-                                child: RotationTransition(
-                                  turns: animation,
-                                  child: Icon(
-                                    Icons.beenhere,
-                                    color: readButtonColor,
-                                    size: 50,
-                                  ),
-                                )
-                            ),
-                          ),
-                        )
-                    ),
-                  )
-              ),*/
-
-              /*UserPreviewCard(
-                widget._recommendation.recommendedBy,
-                height: 150,
-              ),*/
-
-              ProfileInfo(widget._recommendation.recommendedBy),
-
-              /*
-              UserPreviewCard(
-      this.user,
-      {
-        this.height = 100,
-        this.fontSize = 30,
-        this.padding = 10,
-        this.card = true,
-        this.isAuthor = false,
-        this.fromDialog = true,
-        //this.isFriend = false,
-        this.removeComment
-      });
-              */
-
-              /*Center(
-                child: BookCover(
-                  widget.book,
-                  showInfo: false,
-                  height: 180,
-                  showTitle: false,
-                  chapterTitle: chapterTitle,
-                ),
-              ),*/
+              ProfileInfo(widget._recommendation.recommendedBy, nameColor: kPrimaryDarkColor,),
 
               Padding(
-                padding: EdgeInsets.fromLTRB(7, 210, 7, 10),
+                padding: EdgeInsets.fromLTRB(7, 140, 7, 10),
                 child: Container(color: kPrimaryDarkColor, height: 2, width: width),
+              ),
+
+              Positioned(
+                top: 150,
+                left: 7,
+                right: 7,
+                //left: Alignment.center,
+                child: Container(
+                  width: width,
+                  height: 50,
+                  child: Align(
+                    alignment: Alignment.center,
+                    child:  Text(
+                      ("Just recommended you " + widget._recommendation.recommendedBooks.length.toString() + " books."),
+                      overflow: TextOverflow.clip,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: kPrimaryDarkColor,
+                        fontSize: 20,
+                      ),
+                    ),
+                  ),
+                )
+              ),
+
+              Positioned(
+                  top: 180,
+                  left: 7,
+                  right: 7,
+                  //left: Alignment.center,
+                  child: Container(
+                    width: width,
+                    height: 50,
+                    child: Align(
+                      alignment: Alignment.center,
+                      child:  Text(
+                        ("Select the ones that you want to add to your Pending list!"),
+                        overflow: TextOverflow.clip,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 12,
+                          fontStyle: FontStyle.italic
+                        ),
+                      ),
+                    ),
+                  )
               ),
 
               /*AnimatedOpacity(

@@ -15,6 +15,8 @@ class ListTitle extends StatelessWidget{
   final String title;
   double fontSize;
   ButtonType buttonType;
+  Color barAndTitleColor;
+  bool withPadding;
   //Function(String) goToPageFromParent;
   //Function(String) goToPageFromParent2;
   Function(ButtonType buttonType, BuildContext context, {String title}) onListTitleButtonTapped;
@@ -25,10 +27,10 @@ class ListTitle extends StatelessWidget{
         this.withButton = false,
         this.buttonType = ButtonType.view_all,
         this.user,
-        //this.goToPageFromParent,
-        //this.goToPageFromParent2,
         this.onListTitleButtonTapped,
-        this.fontSize = 30
+        this.fontSize = 30,
+        this.barAndTitleColor = kPrimaryLightColor,
+        this.withPadding = true,
       });
 
   @override
@@ -39,13 +41,13 @@ class ListTitle extends StatelessWidget{
       child: Column(
         children: <Widget>[
           Container(
-            margin: EdgeInsets.fromLTRB(10, 10, 2, 0),
+            margin: withPadding ? EdgeInsets.fromLTRB(10, 10, 2, 0) : EdgeInsets.fromLTRB(0, 0, 0, 0),
             child: withButton ? _getRowWithButton(context) : _getTitle(),
           ),
 
           Padding(
-            padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
-            child: Container(color: kPrimaryLightColor, height: 2, width: width),
+            padding: withPadding ? EdgeInsets.fromLTRB(15, 10, 15, 10) : EdgeInsets.fromLTRB(0, 0, 0, 0),
+            child: Container(color: this.barAndTitleColor, height: 2, width: width),
           ),
         ],
       ),
@@ -58,7 +60,7 @@ class ListTitle extends StatelessWidget{
       child:  Text(
         title,
         overflow: TextOverflow.ellipsis,
-        style: TextStyle(fontSize: this.fontSize, fontWeight: FontWeight.bold, color: kPrimaryLightColor),
+        style: TextStyle(fontSize: this.fontSize, fontWeight: FontWeight.bold, color: this.barAndTitleColor),
       ),
     );
   }
