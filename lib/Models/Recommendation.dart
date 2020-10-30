@@ -15,7 +15,7 @@ class Recommendation {
   static Recommendation getMockRecommendation(){
     return new Recommendation(
         User.getMockUser(),
-        Book.getUserMockBooks(),
+        Book.getUserMockBooks(),//.sublist(0, 1),
     );
   }
 

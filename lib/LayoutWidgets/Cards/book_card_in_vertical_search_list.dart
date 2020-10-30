@@ -23,13 +23,17 @@ class BookCardInVerticalSearchList extends StatefulWidget{
   String listTitle;
   Function(Book book, bool add) addOrRemoveBookFromTemporalCustomList;
   String _addedBy = " personas han guardado este libro";
+  Color backgroundColor;
+  double cardHeight;
 
   BookCardInVerticalSearchList(
       this.book,
       this.type,
   {
     this.addOrRemoveBookFromTemporalCustomList,
-    this.listTitle = ""
+    this.listTitle = "",
+    this.backgroundColor = kPrimaryDarkColor,
+    this.cardHeight = 160
   }
   );
 
@@ -81,9 +85,9 @@ class _BookCardInVerticalSearchList extends State<BookCardInVerticalSearchList>{
       elevation: 10,
       margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
       child:  Container(
-        height: 160,
+        height: widget.cardHeight,
         decoration: BoxDecoration(
-          color: kPrimaryDarkColor,
+          color: widget.backgroundColor,
         ),
         child: _makeListTile(),
       ),
@@ -216,17 +220,24 @@ class _BookCardInVerticalSearchList extends State<BookCardInVerticalSearchList>{
                                     Row(
                                       children: <Widget>[
 
-                                        Icon(
-                                          Icons.bookmark,
-                                          color: kPrimaryDarkColor,
-                                          size: 20,
+                                        Flexible(
+                                          flex: 3,
+                                          child: Icon(
+                                            Icons.bookmark,
+                                            color: kPrimaryDarkColor,
+                                            size: 20,
+                                          ),
                                         ),
 
-                                        AutoSizeText(
-                                          widget.book.addedByNumberOfPeople.toString() + widget._addedBy.substring(0, 12) + "...",
-                                          style: TextStyle( fontWeight: FontWeight.bold,),
-                                          maxLines: 1,
-                                        ),
+                                        Flexible(
+                                          flex: 7,
+                                          child: AutoSizeText(
+                                            (widget.book.addedByNumberOfPeople.toString() + widget._addedBy),
+                                            overflow: TextOverflow.ellipsis,
+                                            style: TextStyle( fontWeight: FontWeight.bold,),
+                                            maxLines: 1,
+                                          ),
+                                        )
                                       ],
                                     ),
                                   ],
@@ -255,7 +266,7 @@ class _BookCardInVerticalSearchList extends State<BookCardInVerticalSearchList>{
           )
       );
 
-    } else if (widget.type == ListType.preview_friends){
+    } else if (widget.type == ListType.preview_friends || widget.type == ListType.recommendation_form){
       return Container(
           decoration: BoxDecoration(
               color: kPrimaryLightColor,
@@ -322,27 +333,24 @@ class _BookCardInVerticalSearchList extends State<BookCardInVerticalSearchList>{
                                     Row(
                                       children: <Widget>[
 
-                                        Icon(
-                                          Icons.bookmark,
-                                          color: kPrimaryDarkColor,
-                                          size: 20,
+                                        Flexible(
+                                          flex: 3,
+                                          child: Icon(
+                                            Icons.bookmark,
+                                            color: kPrimaryDarkColor,
+                                            size: 20,
+                                          ),
                                         ),
 
-                                        AutoSizeText(
-                                          widget.book.addedByNumberOfPeople.toString() + widget._addedBy.substring(0, 12) + "...",
-                                          style: TextStyle( fontWeight: FontWeight.bold,),
-                                          maxLines: 1,
-                                        ),
-
-                                        /*AutoSizeText(
-                                        "+ 28",
-                                        style: TextStyle(
-                                          color: Colors.grey[500],
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                        maxLines: 1,
-                                        textAlign: TextAlign.left,
-                                      ),*/
+                                        Flexible(
+                                          flex: 7,
+                                          child: AutoSizeText(
+                                            (widget.book.addedByNumberOfPeople.toString() + widget._addedBy),
+                                            overflow: TextOverflow.ellipsis,
+                                            style: TextStyle( fontWeight: FontWeight.bold,),
+                                            maxLines: 1,
+                                          ),
+                                        )
                                       ],
                                     ),
                                   ],
@@ -441,27 +449,24 @@ class _BookCardInVerticalSearchList extends State<BookCardInVerticalSearchList>{
                                     Row(
                                       children: <Widget>[
 
-                                        Icon(
-                                          Icons.bookmark,
-                                          color: kPrimaryDarkColor,
-                                          size: 20,
+                                        Flexible(
+                                          flex: 3,
+                                          child: Icon(
+                                            Icons.bookmark,
+                                            color: kPrimaryDarkColor,
+                                            size: 20,
+                                          ),
                                         ),
 
-                                        AutoSizeText(
-                                          widget.book.addedByNumberOfPeople.toString() + widget._addedBy.substring(0, 12) + "...",
-                                          style: TextStyle( fontWeight: FontWeight.bold,),
-                                          maxLines: 1,
-                                        ),
-
-                                        /*AutoSizeText(
-                                        "+ 28",
-                                        style: TextStyle(
-                                          color: Colors.grey[500],
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                        maxLines: 1,
-                                        textAlign: TextAlign.left,
-                                      ),*/
+                                        Flexible(
+                                          flex: 7,
+                                          child: AutoSizeText(
+                                            (widget.book.addedByNumberOfPeople.toString() + widget._addedBy),
+                                            overflow: TextOverflow.ellipsis,
+                                            style: TextStyle( fontWeight: FontWeight.bold,),
+                                            maxLines: 1,
+                                          ),
+                                        )
                                       ],
                                     ),
                                   ],

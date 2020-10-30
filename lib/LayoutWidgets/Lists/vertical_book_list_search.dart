@@ -23,12 +23,21 @@ import '../editable_list_title.dart';
 
 class VerticalBookListSearch extends StatefulWidget {
 
-  VerticalBookListSearch(this.books, this.type, {this.title, this.specificLectureTitle}); // : super(key: key);
+  VerticalBookListSearch(this.books, this.type, {
+    this.title,
+    this.specificLectureTitle,
+    this.backgroundColor = kPrimaryDarkColor,
+    this.onAcceptButtonTapped,
+    this.onCancelButtonTapped
+  }); // : super(key: key);
 
   final List<Book> books;
   final ListType type;
   final String title;
   final String specificLectureTitle;
+  Color backgroundColor;
+  Function() onAcceptButtonTapped;
+  Function() onCancelButtonTapped;
 
   @override
   _VerticalBookListSearch createState() => _VerticalBookListSearch();
@@ -69,7 +78,7 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kPrimaryDarkColor,
+      backgroundColor: widget.backgroundColor,
       body: _makeBody(),
     );
   }
@@ -82,11 +91,16 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
         widget.type == ListType.first_time_form
     ) {
       return BookCardInVerticalSearchList(
-          widget.books[index],
-          widget.type,
-          addOrRemoveBookFromTemporalCustomList: widget.type == ListType.first_time_form ? addOrRemoveBookFromPendingOrReadingList : addOrRemoveBookFromTemporalCustomList,
-          listTitle: widget.title,
+        widget.books[index],
+        widget.type,
+        addOrRemoveBookFromTemporalCustomList: widget.type ==
+            ListType.first_time_form
+            ? addOrRemoveBookFromPendingOrReadingList
+            : addOrRemoveBookFromTemporalCustomList,
+        listTitle: widget.title,
       );
+    } else if(widget.type == ListType.recommendation_form) {
+      return BookCardInVerticalSearchList(widget.books[index], widget.type, backgroundColor: widget.backgroundColor, cardHeight: 140,);
     } else {
       return BookCardInVerticalSearchList(widget.books[index], widget.type);
     }
@@ -100,29 +114,33 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
           style: TextStyle(color: Colors.blue,)
       ),
       onPressed: () async {
-        if(customBooksList.length == 0){
-          int result = await showDialog(
-            context: context,
-            builder: (BuildContext context) => DialogWithAcceptAndCancelOptions(
-                "Delete List",
-                "Any book selected. Are you sure you want to delete list?",
-                TextStyle(color: Colors.red,),
-                TextStyle(color: Colors.blue,)
-            ),
-          );
-          if(result == DialogWithAcceptAndCancelOptions.ACCEPT_TAP){
-            User user = Provider.of<User>(context, listen: false);
-            user.removeLectureListByName(widget.title);
-            InfoToast.showListRemovedCorrecltyFromBookshelf(widget.title);
-          }
+        if(widget.type == ListType.recommendation_form){
+          widget.onAcceptButtonTapped();
         } else {
-          setState(() {
-            User user = Provider.of<User>(context, listen: false);
-            user.addCustomLectureList(widget.title, customBooksList);
-          });
+          if(customBooksList.length == 0){
+            int result = await showDialog(
+              context: context,
+              builder: (BuildContext context) => DialogWithAcceptAndCancelOptions(
+                  "Delete List",
+                  "Any book selected. Are you sure you want to delete list?",
+                  TextStyle(color: Colors.red,),
+                  TextStyle(color: Colors.blue,)
+              ),
+            );
+            if(result == DialogWithAcceptAndCancelOptions.ACCEPT_TAP){
+              User user = Provider.of<User>(context, listen: false);
+              user.removeLectureListByName(widget.title);
+              InfoToast.showListRemovedCorrecltyFromBookshelf(widget.title);
+            }
+          } else {
+            setState(() {
+              User user = Provider.of<User>(context, listen: false);
+              user.addCustomLectureList(widget.title, customBooksList);
+            });
+          }
+          Navigator.pop(context, 0);
         }
-        Navigator.pop(context, 0);
-      },
+      }
     );
   }
 
@@ -133,24 +151,29 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
           style: TextStyle(color: Colors.red,)
       ),
       onPressed: () {
-        Navigator.pop(context);
+        if(widget.type == ListType.recommendation_form){
+          widget.onCancelButtonTapped();
+        } else {
+          Navigator.pop(context);
+        }
       },
     );
   }
 
   _makeBody() {
-    if (widget.type == ListType.add_custom_list || widget.type == ListType.edit_custom_list) {
+    if (widget.type == ListType.add_custom_list || widget.type == ListType.edit_custom_list || widget.type == ListType.recommendation_form) {
       return Stack(
         children: <Widget>[
           Container(
+            color: widget.backgroundColor,
             child: ListView.builder(
               scrollDirection: Axis.vertical,
               shrinkWrap: true,
-              itemCount: widget.books.length + 1,
+              itemCount: (widget.type == ListType.recommendation_form) ? widget.books.length : widget.books.length + 1,
               itemBuilder: (BuildContext context, int index) {
-                if (index == 0)
+                if (widget.type != ListType.recommendation_form && index == 0)
                   return ListTitle(widget.title);
-                return _makeCard(index - 1);
+                return _makeCard(widget.type == ListType.recommendation_form ? index : index - 1);
               },
             ),
           ),
@@ -182,6 +205,7 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
       );
     } else if (widget.type == ListType.first_time_form) {
       return Container(
+        color: widget.backgroundColor,
         child: ListView.builder(
           scrollDirection: Axis.vertical,
           shrinkWrap: true,
@@ -195,6 +219,7 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
       );
     } else {
       return Container(
+        color: widget.backgroundColor,
         child: ListView.builder(
           scrollDirection: Axis.vertical,
           shrinkWrap: true,
