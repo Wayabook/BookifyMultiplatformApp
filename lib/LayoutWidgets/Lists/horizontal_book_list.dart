@@ -33,17 +33,17 @@ class HorizontalBookList extends StatelessWidget {
 
 
   _createListView(){
-    var length = books.length;
+    /*var length = books.length;
     if(this.type == ListType.discover_option || this.type == ListType.view_all){
       length++;
-    }
+    }*/
 
     return Container(
       height: 200,
       width: 500,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: length,
+        itemCount: (this.type == ListType.discover_option || this.type == ListType.view_all) ? books.length + 1: books.length,
         itemBuilder: (BuildContext context, int index) {
           if(this.type == ListType.discover_option || this.type == ListType.view_all)
           {

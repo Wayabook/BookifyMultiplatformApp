@@ -44,6 +44,7 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
   Color addIconColor, addIconBackgroundColor;
   bool isInPendingList;
   bool isInReadingList;
+  List<Widget> items;
 
   _BookPage(this.title, this.book, this.auxBooksForPrototype);
 
@@ -78,7 +79,9 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: UniqueKey(),
       body: Container(
+        key: UniqueKey(),
         child: _buildBookPage(context),
       ),
       appBar: AppBar(
@@ -91,270 +94,349 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
     );
   }
 
-  _buildBookPage(BuildContext context){
+  _getBookCoverStack(){
+    return Stack(
+      key: UniqueKey(),
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(bottom: 140.0),
+          child: ArcBannerImage(this.book.picture),
+        ),
 
+        Positioned(
+          bottom: 30.0,
+          left: 16.0,
+          right: 16.0,
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              BookCover(
+                book,
+                height: 180.0,
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  _getBookTopRelatedButtons(){
+    return Center(
+      key: UniqueKey(),
+      child:  Row(
+        mainAxisAlignment: MainAxisAlignment.center, //Center Row contents horizontally,
+        crossAxisAlignment: CrossAxisAlignment.center, //Center Row contents vertically,
+        children: <Widget>[
+
+          Padding(
+            padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
+            child: RaisedButton(
+              onPressed: () {
+                setState(() {
+                  if(!isInReadingList){
+                    var user = Provider.of<User>(context, listen: false);
+                    if(isInPendingList){
+                      user.removeLectureFromPendingList(this.book.toLecture());
+                      InfoToast.showBookRemovedCorrectlyToast(widget.book.title);
+                    } else {
+                      user.addLectureToPendingList(this.book.toLecture());
+                      InfoToast.showBookAddedCorrectlyToast(widget.book.title);
+                    }
+                    isInPendingList = !isInPendingList;
+                    changeAddButtonColors();
+                  }
+                });
+              },
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(25.0),
+                  )
+              ),
+              color: addIconBackgroundColor,
+              child: IconButton(
+                icon: Icon(
+                    addIcon,
+                    color: addIconColor
+                ),
+              ),
+            ),
+          ),
+
+          Padding(
+            padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
+            child: RaisedButton(
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) => BookShopsDialog(this.book, this),
+                );
+              },
+              color: kPrimaryDarkColor,
+              child: IconButton(
+                icon: Icon(
+                    Icons.shop_two,
+                    color: kPrimaryLightColor
+                ),
+              ),
+            ),
+          ),
+
+          Padding(
+            padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
+            child: RaisedButton(
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) => ChaptersPage(this.book),
+                );
+              },
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(25.0),
+                  )
+              ),
+              color: kPrimaryDarkColor,
+              child: IconButton(
+                icon:Icon(
+                    Icons.list,
+                    color: kPrimaryLightColor
+                ),
+              ),
+            ),
+          ),
+
+
+        ],
+      ),
+    );
+  }
+
+  _getBookInfoRow(width_per_child){
+    return Center(
+      key: UniqueKey(),
+      child:  Row(
+        mainAxisAlignment: MainAxisAlignment.center, //Center Row contents horizontally,
+        crossAxisAlignment: CrossAxisAlignment.center, //Center Row contents vertically,
+        children: <Widget>[
+
+          InfoRow(RowType.image,  "GENDER", "images/genre1.png",  "Romance", width_per_child, 105),
+
+          Container(color: kPrimaryDarkColor, height: 105, width: 2,),
+
+          InfoRow(RowType.text,  "PUBLICATION", "2017",  "Year", width_per_child, 105),
+
+          Container(color: kPrimaryDarkColor, height: 105, width: 2,),
+
+          InfoRow(RowType.text,  "EXTENSION", "128",  "Pages", width_per_child, 105),
+
+
+        ],
+      ),
+    );
+  }
+
+  _getPaddingContainer(width){
+    return Padding(
+      key: UniqueKey(),
+      padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
+      child: Container(color: kPrimaryDarkColor, height: 2, width: width),
+    );
+  }
+
+  _getDescriptionSummary(){
+    return Column(
+      key: UniqueKey(),
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+          //color: Colors.black,
+            width: double.infinity,
+            margin: EdgeInsets.fromLTRB(5, 2, 5, 0),
+            child:  Row(
+              children: <Widget>[
+                Text(
+                  'Summary:',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  textAlign: TextAlign.left,
+                ),
+
+                Expanded(
+                  child: Text(
+                    '4/5',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    textAlign: TextAlign.right,
+                  ),
+                )
+              ],
+            )
+        ),
+
+        SizedBox(height: 8.0),
+
+        SummaryTextWidget(
+          text: this.book.summary,
+        ),
+
+        SizedBox(height: 8.0),
+
+        Padding(
+          padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: Icon(
+                  Icons.comment,
+                  size: 25,
+                ),
+              ),
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: Text(
+                  widget.book.getBookTotalNumberOfComments().toString() + " comentarios",
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    color: Colors.black,
+                  ),
+                ),
+              ),
+              Expanded(
+                child: Align(
+                    alignment: Alignment.bottomRight,
+                    child: GestureDetector(
+                      child: SmallButtonUnderlined("View All"),
+                      onTap: () async {
+                        final String result = await Navigator.of(context)
+                            .push(MaterialPageRoute(builder: (context) => CommentPage.showingAllBookComments(this.book, inactiveAddCommentOption: true,)));
+                      },
+                    )
+                ),
+              )
+            ],
+          ),
+        )
+      ],
+    );
+  }
+
+  _getAuthorRelatedBooks(){
+    return Column(
+      key: UniqueKey(),
+      children: <Widget>[
+        Container(
+          margin: EdgeInsets.fromLTRB(5, 2, 2, 2),
+          child:  Align(
+            alignment: Alignment.topLeft,
+            child: Text(
+              "More books of" + "Author X:",
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+            ),
+          ),
+        ),
+
+        Container(
+          key: UniqueKey(),
+          child: HorizontalBookList(Book.toLectureList(auxBooksForPrototype), ListType.normal),
+        )
+      ],
+    );
+  }
+
+  _getGenreRelatedBooks(){
+    return Column(
+      key: UniqueKey(),
+      children: <Widget>[
+        Container(
+          margin: EdgeInsets.fromLTRB(5, 2, 2, 2),
+          child:  Align(
+            alignment: Alignment.topLeft,
+            child: Text(
+              "More of X Genre:",
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+            ),
+          ),
+        ),
+
+        Container(
+          key: UniqueKey(),
+          child: HorizontalBookList(Book.toLectureList(auxBooksForPrototype), ListType.normal),
+        )
+      ],
+    );
+  }
+
+  _initializeItems(width){
+    double widthPerChild = (width - 30 - (10 * 2)) / 3;
+    items = new List();
+    items.add(_getBookCoverStack());
+    items.add(_getBookTopRelatedButtons());
+    items.add(_getPaddingContainer(width));
+    items.add(_getBookInfoRow(widthPerChild));
+    items.add(_getPaddingContainer(width));
+    if(book.friends_reading != null && book.friends_reading.length > 0)
+      items.add(_getFriendsPreview());
+    items.add(_getDescriptionSummary());
+    items.add(_getAuthorRelatedBooks());
+    items.add(_getGenreRelatedBooks());
+  }
+
+  _buildBookPage(BuildContext context){
     double width = MediaQuery.of(context).size.width;
     double width_per_child = (width - 30 - (10 * 2)) / 3;
-    return ListView(
-      children: <Widget>[
-        Stack(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(bottom: 140.0),
-              child: ArcBannerImage(this.book.picture),
-            ),
+    _initializeItems(width);
 
-            Positioned(
-              bottom: 30.0,
-              left: 16.0,
-              right: 16.0,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  BookCover(
-                    book,
-                    height: 180.0,
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
+    return ListView.builder(
+      key: UniqueKey(),
+      scrollDirection: Axis.vertical,
+      itemCount: items.length,
+      itemBuilder: (BuildContext context, int index) {
+        return items[index];
+        /*if(index == 0){
+          return _getBookCoverStack();
+        } else if(index == 1) {
+          return _getBookTopRelatedButtons();
+        } if(index == 2) {
+          return _getPaddingContainer(width);
+        } else if(index == 3) {
+          return _getBookInfoRow(width_per_child);
+        } else if(index == 4) {
+          return _getPaddingContainer(width);
+        } else if(index == 5){
+          return _getFriendsPreview();
+        } else if(index == 6){
+          return _getDescriptionSummary();
+        } else if(index == 7){
+          return _getAuthorRelatedBooks();
+        } else {
+          return _getGenreRelatedBooks();
+        }*/
+      },
+      /*children: <Widget>[
+        _getBookCoverStack(),
 
-        Center(
-          child:  Row(
-            mainAxisAlignment: MainAxisAlignment.center, //Center Row contents horizontally,
-            crossAxisAlignment: CrossAxisAlignment.center, //Center Row contents vertically,
-            children: <Widget>[
+        _getBookTopRelatedButtons(),
 
-              Padding(
-                padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
-                child: RaisedButton(
-                  onPressed: () {
-                    setState(() {
-                      if(!isInReadingList){
-                        var user = Provider.of<User>(context, listen: false);
-                        if(isInPendingList){
-                          user.removeLectureFromPendingList(this.book.toLecture());
-                          InfoToast.showBookRemovedCorrectlyToast(widget.book.title);
-                        } else {
-                          user.addLectureToPendingList(this.book.toLecture());
-                          InfoToast.showBookAddedCorrectlyToast(widget.book.title);
-                        }
-                        isInPendingList = !isInPendingList;
-                        changeAddButtonColors();
-                      }
-                    });
-                  },
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(25.0),
-                      )
-                  ),
-                  color: addIconBackgroundColor,
-                  child: IconButton(
-                    icon: Icon(
-                      addIcon,
-                      color: addIconColor
-                    ),
-                  ),
-                ),
-              ),
+        _getPaddingContainer(width),
 
-              Padding(
-                padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
-                child: RaisedButton(
-                  onPressed: () {
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) => BookShopsDialog(this.book, this),
-                    );
-                  },
-                  color: kPrimaryDarkColor,
-                  child: IconButton(
-                    icon: Icon(
-                      Icons.shop_two,
-                      color: kPrimaryLightColor
-                    ),
-                  ),
-                ),
-              ),
+        _getBookInfoRow(width_per_child),
 
-              Padding(
-                padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
-                child: RaisedButton(
-                  onPressed: () {
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) => ChaptersPage(this.book),
-                    );
-                  },
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(25.0),
-                        )
-                  ),
-                  color: kPrimaryDarkColor,
-                  child: IconButton(
-                    icon:Icon(
-                        Icons.list,
-                        color: kPrimaryLightColor
-                    ),
-                  ),
-                ),
-              ),
-
-
-            ],
-          ),
-        ),
-
-        Padding(
-          padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
-          child: Container(color: kPrimaryDarkColor, height: 2, width: width),
-        ),
-
-        Center(
-          child:  Row(
-            mainAxisAlignment: MainAxisAlignment.center, //Center Row contents horizontally,
-            crossAxisAlignment: CrossAxisAlignment.center, //Center Row contents vertically,
-            children: <Widget>[
-
-              InfoRow(RowType.image,  "GENDER", "images/genre1.png",  "Romance", width_per_child, 105),
-
-              Container(color: kPrimaryDarkColor, height: 105, width: 2,),
-
-              InfoRow(RowType.text,  "PUBLICATION", "2017",  "Year", width_per_child, 105),
-
-              Container(color: kPrimaryDarkColor, height: 105, width: 2,),
-
-              InfoRow(RowType.text,  "EXTENSION", "128",  "Pages", width_per_child, 105),
-
-
-            ],
-          ),
-        ),
-
-        Padding(
-          padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
-          child: Container(color: kPrimaryDarkColor, height: 2, width: width),
-        ),
+        _getPaddingContainer(width),
 
         _getFriendsPreview(),
 
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              //color: Colors.black,
-              width: double.infinity,
-              margin: EdgeInsets.fromLTRB(5, 2, 5, 0),
-              child:  Row(
-                children: <Widget>[
-                  Text(
-                    'Summary:',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                    textAlign: TextAlign.left,
-                  ),
+        _getDescriptionSummary(),
 
-                  Expanded(
-                    child: Text(
-                      '4/5',
-                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                      textAlign: TextAlign.right,
-                    ),
-                  )
-                ],
-              )
-            ),
+        _getAuthorRelatedBooks(),
 
-            SizedBox(height: 8.0),
+        _getGenreRelatedBooks(),
 
-            SummaryTextWidget(
-              text: this.book.summary,
-            ),
-
-            SizedBox(height: 8.0),
-
-            Padding(
-              padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  Align(
-                    alignment: Alignment.bottomCenter,
-                    child: Icon(
-                      Icons.comment,
-                      size: 25,
-                    ),
-                  ),
-                  Align(
-                    alignment: Alignment.bottomCenter,
-                    child: Text(
-                      widget.book.getBookTotalNumberOfComments().toString() + " comentarios",
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                        color: Colors.black,
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: Align(
-                      alignment: Alignment.bottomRight,
-                      child: GestureDetector(
-                        child: SmallButtonUnderlined("View All"),
-                        onTap: () async {
-                          final String result = await Navigator.of(context)
-                              .push(MaterialPageRoute(builder: (context) => CommentPage.showingAllBookComments(this.book, inactiveAddCommentOption: true,)));
-                        },
-                      )
-                    ),
-                  )
-                ],
-              ),
-            )
-          ],
-        ),
-
-        Column(
-          children: <Widget>[
-          Container(
-            margin: EdgeInsets.fromLTRB(5, 2, 2, 2),
-            child:  Align(
-              alignment: Alignment.topLeft,
-              child: Text(
-                "More books of" + "Author X:",
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-                ),
-            ),
-          ),
-
-          HorizontalBookList(Book.toLectureList(auxBooksForPrototype), ListType.normal),
-          ],
-        ),
-
-        Column(
-          children: <Widget>[
-            Container(
-              margin: EdgeInsets.fromLTRB(5, 2, 2, 2),
-              child:  Align(
-                alignment: Alignment.topLeft,
-                child: Text(
-                  "More of X Genre:",
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-                ),
-              ),
-            ),
-
-            HorizontalBookList(Book.toLectureList(auxBooksForPrototype), ListType.normal),
-          ],
-        ),
-
-      ],
+      ],*/
     );
   }
 
@@ -362,6 +444,7 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
     //FriendsPreview(book.friends_reading),
     if(book.friends_reading != null && book.friends_reading.length > 0){
       return Column(
+        key: UniqueKey(),
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
@@ -370,7 +453,6 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
               margin: EdgeInsets.fromLTRB(5, 2, 5, 0),
               child:  Text(
                 'Added by:',
-
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 textAlign: TextAlign.left,
               ),
@@ -382,6 +464,7 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
         ],
       );
     }
+    return null;
   }
 
 }

@@ -9,7 +9,7 @@ class Lecture extends Book{
 
   int currentChapter;
   bool read;
-  List<Reaction> _reactions;
+  //List<Reaction> _reactions;
 
   Lecture(
       String title,
