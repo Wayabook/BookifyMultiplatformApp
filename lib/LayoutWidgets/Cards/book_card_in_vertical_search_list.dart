@@ -56,7 +56,10 @@ class _BookCardInVerticalSearchList extends State<BookCardInVerticalSearchList>{
 
 
     user = Provider.of<User>(context, listen: false);
-    if (widget.type == ListType.first_time_form || widget.type == ListType.recommendation_form){
+    if (widget.type == ListType.first_time_form ||
+        widget.type == ListType.received_recommendation_form ||
+        widget.type == ListType.send_recommendation_form
+    ){
       added = false;
       iconData = added ? Icons.check : Icons.add;
       buttonColor = added ? Colors.green : kPrimaryDarkColor;
@@ -377,7 +380,9 @@ class _BookCardInVerticalSearchList extends State<BookCardInVerticalSearchList>{
     } else if (widget.type == ListType.add_custom_list ||
         widget.type == ListType.edit_custom_list ||
         widget.type == ListType.first_time_form ||
-        widget.type == ListType.recommendation_form){
+        widget.type == ListType.received_recommendation_form ||
+        widget.type == ListType.send_recommendation_form
+    ){
 
 
       return Container(

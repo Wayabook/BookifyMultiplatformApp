@@ -52,7 +52,10 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
   @override
   void initState() {
     super.initState();
-    if(widget.type != ListType.first_time_form && widget.type != ListType.recommendation_form){
+    if(widget.type != ListType.first_time_form &&
+        widget.type != ListType.received_recommendation_form &&
+        widget.type != ListType.send_recommendation_form
+    ){
       User user = Provider.of<User>(context, listen: false);
       customBooksList = user.hasLectureList(widget.title) ? user.getLectureListByName(widget.title) : new List();
     } else {
@@ -61,7 +64,7 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
   }
 
   addOrRemoveBookFromTemporalCustomList(Book book, bool add){
-    if(widget.type == ListType.recommendation_form){
+    if(widget.type == ListType.received_recommendation_form || widget.type == ListType.send_recommendation_form){
       widget.addOrRemoveBook(book, add);
     } else {
       if(add){
@@ -105,12 +108,20 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
             : addOrRemoveBookFromTemporalCustomList,
         listTitle: widget.title,
       );
-    } else if(widget.type == ListType.recommendation_form) {
+    } else if(widget.type == ListType.received_recommendation_form) {
       return BookCardInVerticalSearchList(
         widget.books[index],
         widget.type,
         backgroundColor: widget.backgroundColor,
         cardHeight: 140,
+        addOrRemoveBookFromTemporalCustomList: addOrRemoveBookFromTemporalCustomList,
+      );
+    } else if(widget.type == ListType.send_recommendation_form){
+      return BookCardInVerticalSearchList(
+        widget.books[index],
+        widget.type,
+        backgroundColor: widget.backgroundColor,
+        //cardHeight: 140,
         addOrRemoveBookFromTemporalCustomList: addOrRemoveBookFromTemporalCustomList,
       );
     } else {
@@ -126,7 +137,7 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
           style: TextStyle(color: Colors.blue,)
       ),
       onPressed: () async {
-        if(widget.type == ListType.recommendation_form){
+        if(widget.type == ListType.received_recommendation_form || widget.type == ListType.send_recommendation_form){
           widget.onAcceptButtonTapped();
         } else {
           if(customBooksList.length == 0){
@@ -163,7 +174,7 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
           style: TextStyle(color: Colors.red,)
       ),
       onPressed: () {
-        if(widget.type == ListType.recommendation_form){
+        if(widget.type == ListType.received_recommendation_form || widget.type == ListType.send_recommendation_form){
           widget.onCancelButtonTapped();
         } else {
           Navigator.pop(context);
@@ -173,7 +184,11 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
   }
 
   _makeBody() {
-    if (widget.type == ListType.add_custom_list || widget.type == ListType.edit_custom_list || widget.type == ListType.recommendation_form) {
+    if (widget.type == ListType.add_custom_list ||
+        widget.type == ListType.edit_custom_list ||
+        widget.type == ListType.received_recommendation_form ||
+        widget.type == ListType.send_recommendation_form
+    ) {
       return Stack(
         children: <Widget>[
           Container(
@@ -181,11 +196,11 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
             child: ListView.builder(
               scrollDirection: Axis.vertical,
               shrinkWrap: true,
-              itemCount: (widget.type == ListType.recommendation_form) ? widget.books.length : widget.books.length + 1,
+              itemCount: (widget.type == ListType.received_recommendation_form) ? widget.books.length : widget.books.length + 1,
               itemBuilder: (BuildContext context, int index) {
-                if (widget.type != ListType.recommendation_form && index == 0)
+                if (widget.type != ListType.received_recommendation_form && index == 0)
                   return ListTitle(widget.title);
-                return _makeCard(widget.type == ListType.recommendation_form ? index : index - 1);
+                return _makeCard((widget.type == ListType.received_recommendation_form) ? index : index - 1);
               },
             ),
           ),

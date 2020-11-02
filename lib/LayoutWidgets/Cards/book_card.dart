@@ -232,6 +232,8 @@ class BookCard extends StatelessWidget {
             if(result != DialogWithInputText.CANCEL_TAP){
               await _pushAddCustomListPage(result);
             }
+          } else if(this.type == BookCardType.recommend_book){
+            _pushRecommendBooksPage();
           }
 
         },
@@ -271,6 +273,18 @@ class BookCard extends StatelessWidget {
         ),
       );
 
+    }
+  }
+
+  _pushRecommendBooksPage() async{
+    final result = await Navigator.of(context)
+        .push(MaterialPageRoute(builder: (context) => AddCustomListPage(this.user.bookshelf, "Recommendation", ListType.send_recommendation_form)));
+    if(result == 0){
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => BookshelfPage(Provider.of<User>(context, listen: false), scrollToLastPosition: true,)),
+      );
+      //Navigator.pop(context);
     }
   }
 

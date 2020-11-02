@@ -178,7 +178,7 @@ class _RecommendationDialog
                 padding: EdgeInsets.fromLTRB(0, 240, 0, 0),
                 child: VerticalBookListSearch(
                   Recommendation.getRecommendedBooksFromRecommendations(widget._recommendations),
-                  ListType.recommendation_form,
+                  ListType.received_recommendation_form,
                   backgroundColor: kPrimaryLightColor,
                   onAcceptButtonTapped: onRecommendationsAccepted,
                   onCancelButtonTapped: onRecommendationCanceled,

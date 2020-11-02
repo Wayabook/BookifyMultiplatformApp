@@ -6,6 +6,8 @@ import 'package:bookifyapp/LayoutWidgets/Lists/vertical_user_list.dart';
 import 'package:bookifyapp/Models/Book.dart';
 import 'package:bookifyapp/Models/User.dart';
 
+import '../InfoToast.dart';
+
 class AddCustomListPage extends StatefulWidget {
 
   List<Book> bookshelf;
@@ -107,6 +109,57 @@ class _AddCustomListPage extends State<AddCustomListPage> {
     });
   }
 
+  void addOrDeleteRecommendation(Book recommendedBook, bool add){
+    /*if(add){
+      if(!recommendationsAccepted.contains(recommendedBook.toLecture())){
+        recommendationsAccepted.add(recommendedBook.toLecture());
+        keepingRecommendations.add(recommendedBook);
+      }
+    } else {
+      if(recommendationsAccepted.contains(recommendedBook.toLecture())){
+        recommendationsAccepted.remove(recommendedBook.toLecture());
+        keepingRecommendations.remove(recommendedBook);
+      }
+    }*/
+  }
+
+  void onRecommendationsAccepted(){
+    /*User user = Provider.of<User>(context, listen: false);
+    setState(() {
+      user.addListOfLecturesToLectureListByKey(recommendationsAccepted, 'Recommended');
+      user.addListOfLecturesToLectureListByKey(recommendationsAccepted, 'Pending');
+      user.addNewRecommendationsReceived(Recommendation.getRecommendationListFromBook(keepingRecommendations, user));
+    });/
+     */
+    InfoToast.showRecommendationsSavedCorrectly();
+    onRecommendationCanceled();
+  }
+
+  void onRecommendationCanceled(){
+    Navigator.pop(context);
+  }
+
+  _getVerticalBookListSearch(){
+    if(widget.listType == ListType.send_recommendation_form){
+      return VerticalBookListSearch(
+        _bookshelf,
+        widget.listType,
+        title: 'Recommend',
+        backgroundColor: kPrimaryDarkColor,
+        onAcceptButtonTapped: onRecommendationsAccepted,
+        onCancelButtonTapped: onRecommendationCanceled,
+        addOrRemoveBook: addOrDeleteRecommendation,
+      );
+    } else {
+      return VerticalBookListSearch(
+        _bookshelf,
+        widget.listType,
+        title: widget.listTitle,
+        specificLectureTitle: widget.specificUserBookList,
+      );
+    }
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -123,12 +176,7 @@ class _AddCustomListPage extends State<AddCustomListPage> {
     }
 
     final appBody = Container(
-      child: VerticalBookListSearch(
-        _bookshelf,
-        widget.listType,
-        title: widget.listTitle,
-        specificLectureTitle: widget.specificUserBookList,
-      ),
+      child: _getVerticalBookListSearch()
     );
 
     final appTopAppBar = AppBar(

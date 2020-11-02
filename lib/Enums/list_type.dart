@@ -8,5 +8,6 @@ enum ListType {
   edit_custom_list,
   preview_friends,
   first_time_form,
-  recommendation_form,
+  received_recommendation_form,
+  send_recommendation_form,
 }
