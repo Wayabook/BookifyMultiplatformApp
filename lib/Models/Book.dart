@@ -54,6 +54,7 @@ class Book {
         this.editorial="SUMA",
         this.language="CASTELLANO",
         this.chapters = const [],
+        this.friends_reading = const[],
         this.addedBy = 100
       });
 
@@ -173,6 +174,7 @@ class Book {
     List<Book> books = new List();
     List<Item> items = Item.getMockItems();
     List<Chapter> chapters = Chapter.getMockChapters();
+    //List<User> friends = User.getMockAlterantiveUsers();
 
     Map<String, List<Item>> shopItems = {
       'Tapa Blanda': items,
@@ -208,7 +210,8 @@ class Book {
         "https://imagessl3.casadellibro.com/a/l/t0/73/9788490628973.jpg",
         description,
         shopItems,
-        chapters : chapters
+        chapters : chapters,
+        //friends_reading: friends,
     );
 
     Book book2 = new Book.withSummary(
@@ -217,16 +220,18 @@ class Book {
         "https://imagessl9.casadellibro.com/a/l/t5/59/9788408228059.jpg",
         description,
         shopItems,
-        chapters: chapters
+        chapters: chapters,
+        //friends_reading: friends,
     );
 
     Book book3 = new Book.withSummary(
-        "Con el amor bastaba looooooooooooooooooooooooooooooooookasssssssssssssssssssssssoooooooooooooo",
+        "Con el amor bastaba looooooooooooooooooooooooooooooooookasssssssssssssssssssssssoooooooooooooo looooooooooooooooooooooooooooooooookasssssssssssssssssssssssoooooooooooooo",
         "Maxim Huerta",
         "https://imagessl2.casadellibro.com/a/l/t5/92/9788408221692.jpg",
         description,
         shopItems,
-        chapters: chapters
+        chapters: chapters,
+        //friends_reading: friends,
     );
 
     Book book4 = new Book.withSummary(
@@ -235,13 +240,23 @@ class Book {
         "https://imagessl0.casadellibro.com/a/l/t5/50/9788491819950.jpg",
         description,
         shopItems,
-        chapters: chapters
+        chapters: chapters,
+        //friends_reading: friends,
     );
 
     books.add(book1);
     books.add(book2);
     books.add(book3);
     books.add(book4);
+    return books;
+  }
+
+  static List<Book> getAppMockBooks(){
+    List<Book> books = Book.getUserMockBooks();
+    books[0].friends_reading = User.getMockAlterantiveUsers().sublist(0, 1);
+    books[1].friends_reading = User.getMockAlterantiveUsers().sublist(0, 2);
+    books[2].friends_reading = User.getMockAlterantiveUsers().sublist(0, 3);
+    books[3].friends_reading = User.getMockAlterantiveUsers().sublist(0, 1);
     return books;
   }
 

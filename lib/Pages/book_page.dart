@@ -94,7 +94,7 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
     );
   }
 
-  _getBookCoverStack(){
+  _getBookCoverStack(width){
     return Stack(
       key: UniqueKey(),
       children: [
@@ -107,16 +107,13 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
           bottom: 30.0,
           left: 16.0,
           right: 16.0,
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              BookCover(
-                book,
-                height: 180.0,
-              ),
-            ],
-          ),
+          child: Align(
+            alignment: Alignment.center,
+            child:  BookCover(
+              book,
+              height: 180.0,
+            ),
+          )
         ),
       ],
     );
@@ -374,7 +371,7 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
   _initializeItems(width){
     double widthPerChild = (width - 30 - (10 * 2)) / 3;
     items = new List();
-    items.add(_getBookCoverStack());
+    items.add(_getBookCoverStack(width));
     items.add(_getBookTopRelatedButtons());
     items.add(_getPaddingContainer(width));
     items.add(_getBookInfoRow(widthPerChild));

@@ -24,28 +24,39 @@ class BookCover extends StatelessWidget {
 
     if(showInfo){
       return Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          Card(
-            margin: EdgeInsets.all(10),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(7.0),
-            ),
-            elevation: 10,
-            child: Material(
-              borderRadius: BorderRadius.circular(4.0),
-              elevation: 2.0,
-              child: Image.network(
-                this.book.picture,
-                fit: BoxFit.cover,
-                width: width,
-                height: height,
+          Container(
+            width: width,
+            height: height,
+            child: Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(7.0),
+              ),
+              elevation: 10,
+              child: Material(
+                  borderRadius: BorderRadius.circular(4.0),
+                  elevation: 2.0,
+                  child: Center(
+                    child: Image.network(
+                      this.book.picture,
+                      fit: BoxFit.cover,
+                      width: width,
+                      height: height,
+                    ),
+                  )
               ),
             ),
           ),
 
-          _getTitle(),
+          Center(
+            child: _getTitle(),
+          ),
 
-          _getAuthor()
+          Center(
+            child: _getAuthor(),
+          )
         ],
       );
     } else {
@@ -57,18 +68,22 @@ class BookCover extends StatelessWidget {
             ),
             elevation: 10,
             child: Material(
-              borderRadius: BorderRadius.circular(4.0),
-              elevation: 2.0,
-              child: Image.network(
-                this.book.picture,
-                fit: BoxFit.cover,
-                width: width,
-                height: height,
-              ),
+                borderRadius: BorderRadius.circular(4.0),
+                elevation: 2.0,
+                child: Center(
+                  child: Image.network(
+                    this.book.picture,
+                    fit: BoxFit.cover,
+                    width: width,
+                    height: height,
+                  ),
+                )
             ),
           ),
 
-          _getTitle(),
+         Center(
+           child:  _getTitle(),
+         )
 
         ],
       );
@@ -78,13 +93,13 @@ class BookCover extends StatelessWidget {
   _getTitle(){
     return Align(
       alignment: Alignment.center,
-      child: Container(
-        child: Text(
-          this.showTitle ? this.book.title : chapterTitle,
-          overflow: TextOverflow.ellipsis,
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-          ),
+      child: Text(
+        this.showTitle ? this.book.title : chapterTitle,
+        overflow: TextOverflow.ellipsis,
+        maxLines: 1,
+        textAlign: TextAlign.center,
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
         ),
       ),
     );
@@ -97,6 +112,8 @@ class BookCover extends StatelessWidget {
       child: Text(
         this.book.author,
         overflow: TextOverflow.ellipsis,
+        maxLines: 1,
+        textAlign: TextAlign.center,
         style: TextStyle(
           color: kPrimaryDarkColor,
         ),
