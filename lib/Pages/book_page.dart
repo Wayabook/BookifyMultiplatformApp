@@ -87,7 +87,7 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
       appBar: AppBar(
           backgroundColor: kPrimaryDarkColor,
           title: Text(
-              'Details of $title',
+              book.title,
               overflow: TextOverflow.ellipsis,
           ),
       ),
@@ -376,8 +376,9 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
     items.add(_getPaddingContainer(width));
     items.add(_getBookInfoRow(widthPerChild));
     items.add(_getPaddingContainer(width));
-    if(book.friends_reading != null && book.friends_reading.length > 0)
-      items.add(_getFriendsPreview());
+    User user = Provider.of<User>(context, listen: false);
+    if((book.friends_reading != null && book.friends_reading.length > 0) || user.isBookRecommended(book))
+      items.add(_getFriendsPreview(user.isBookRecommended(book)));
     items.add(_getDescriptionSummary());
     items.add(_getAuthorRelatedBooks());
     items.add(_getGenreRelatedBooks());
@@ -437,31 +438,28 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
     );
   }
 
-  _getFriendsPreview(){
-    //FriendsPreview(book.friends_reading),
-    if(book.friends_reading != null && book.friends_reading.length > 0){
-      return Column(
-        key: UniqueKey(),
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            //color: Colors.black,
-              width: double.infinity,
-              margin: EdgeInsets.fromLTRB(5, 2, 5, 0),
-              child:  Text(
-                'Added by:',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                textAlign: TextAlign.left,
-              ),
+  _getFriendsPreview(bool isARecommendation){
+    User user = Provider.of<User>(context, listen: false);
+    return Column(
+      key: UniqueKey(),
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+          //color: kPrimaryLightColor,
+          width: double.infinity,
+          margin: EdgeInsets.fromLTRB(5, 2, 5, 0),
+          child:  Text(
+            isARecommendation ? 'Recommended by' : 'Added by:',
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            textAlign: TextAlign.left,
           ),
+        ),
 
-          SizedBox(height: 8.0),
+        SizedBox(height: 8.0),
 
-          FriendsPreview(book.friends_reading)
-        ],
-      );
-    }
-    return null;
+        FriendsPreview(isARecommendation ? user.getBookRecommenders(book) : book.friends_reading)
+      ],
+    );
   }
 
 }

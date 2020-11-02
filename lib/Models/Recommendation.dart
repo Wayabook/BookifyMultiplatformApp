@@ -37,4 +37,31 @@ class Recommendation {
     return mockRecommendation;
   }
 
+  static List<Book> getBooksFromRecommendations(List<Recommendation> recommendations){
+    List<Book> books = new List();
+    for(Recommendation recommendation in recommendations){
+      books.add(recommendation.recommendedBook);
+    }
+    return books;
+  }
+
+  static List<User> getUsersFromRecommendations(List<Recommendation> recommendations){
+    List<User> users = new List();
+    for(Recommendation recommendation in recommendations){
+      users.add(recommendation.recommendedBy);
+    }
+    return users;
+  }
+
+  static List<User> getBookRecommenders(List<Recommendation> recommendations, Book book){
+    List<User> recommenders = new List();
+    for(Recommendation recommendation in recommendations){
+      if(recommendation.recommendedBook == book)
+        recommenders.add(recommendation.recommendedBy);
+    }
+    return recommenders;
+  }
+
+
+
 }

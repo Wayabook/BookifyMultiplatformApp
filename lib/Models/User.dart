@@ -33,6 +33,17 @@ class User extends ChangeNotifier{
     return this._recommendations_received;
   }
 
+  bool isBookRecommended(Book book){
+    List<Book> recommendedBooks = Recommendation.getBooksFromRecommendations(recommendationsReceived);
+    return recommendedBooks.contains(book);
+  }
+
+  List<User> getBookRecommenders(Book book){
+    if(isBookRecommended(book))
+      return Recommendation.getBookRecommenders(recommendationsReceived, book);
+    return new List();
+  }
+
   void addNewRecommendationsReceived(List<Recommendation> recommendations) {
     if(this._recommendations_received == null)
       this._recommendations_received = new List();
