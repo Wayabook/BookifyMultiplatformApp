@@ -16,6 +16,7 @@ class AddCustomListPage extends StatefulWidget {
   bool showListTitleAndButtons;
   bool removeBackButton;
   String specificUserBookList;
+  Function(List<Book> recommendedBooks) sendRecommendedBooks;
   _AddCustomListPage _addCustomListPage = new _AddCustomListPage();
 
   AddCustomListPage(
@@ -26,6 +27,7 @@ class AddCustomListPage extends StatefulWidget {
         this.showListTitleAndButtons = false,
         this.removeBackButton = true,
         this.specificUserBookList = ";;;",
+        this.sendRecommendedBooks
       }
   );
 
@@ -36,6 +38,7 @@ class AddCustomListPage extends StatefulWidget {
 class _AddCustomListPage extends State<AddCustomListPage> {
 
   List<Book> _bookshelf = [];
+  List<Book> recommendedBooks;
 
   TextEditingController controller;
 
@@ -56,6 +59,7 @@ class _AddCustomListPage extends State<AddCustomListPage> {
 
   @override
   void initState() {
+    recommendedBooks = new List();
     _focusNode = new FocusNode();
     controller = new TextEditingController();
     setState(() {
@@ -110,33 +114,21 @@ class _AddCustomListPage extends State<AddCustomListPage> {
   }
 
   void addOrDeleteRecommendation(Book recommendedBook, bool add){
-    /*if(add){
-      if(!recommendationsAccepted.contains(recommendedBook.toLecture())){
-        recommendationsAccepted.add(recommendedBook.toLecture());
-        keepingRecommendations.add(recommendedBook);
-      }
-    } else {
-      if(recommendationsAccepted.contains(recommendedBook.toLecture())){
-        recommendationsAccepted.remove(recommendedBook.toLecture());
-        keepingRecommendations.remove(recommendedBook);
-      }
-    }*/
-  }
-
-  void onRecommendationsAccepted(){
-    /*User user = Provider.of<User>(context, listen: false);
-    setState(() {
-      user.addListOfLecturesToLectureListByKey(recommendationsAccepted, 'Recommended');
-      user.addListOfLecturesToLectureListByKey(recommendationsAccepted, 'Pending');
-      user.addNewRecommendationsReceived(Recommendation.getRecommendationListFromBook(keepingRecommendations, user));
-    });/
-     */
-    InfoToast.showRecommendationsSavedCorrectly();
-    onRecommendationCanceled();
+    if(add && !recommendedBooks.contains(recommendedBook)){
+      recommendedBooks.add(recommendedBook);
+    } else if (!add &&  recommendedBooks.contains(recommendedBook)) {
+      recommendedBooks.remove(recommendedBook);
+    }
   }
 
   void onRecommendationCanceled(){
     Navigator.pop(context);
+  }
+
+  void onRecommendationsAccepted(){
+    widget.sendRecommendedBooks(this.recommendedBooks);
+    //InfoToast.showRecommendationsSavedCorrectly();
+    onRecommendationCanceled();
   }
 
   _getVerticalBookListSearch(){

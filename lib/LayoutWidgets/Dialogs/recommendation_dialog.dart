@@ -17,8 +17,13 @@ import 'package:provider/provider.dart';
 class RecommendationDialog extends StatefulWidget{
 
   List<Recommendation> _recommendations;
+  User sendToUser;
+  ListType type;
 
-  RecommendationDialog(this._recommendations);
+  RecommendationDialog(this._recommendations, {
+    this.type = ListType.received_recommendation_form,
+    this.sendToUser,
+  });
 
   @override
   _RecommendationDialog createState() => _RecommendationDialog();
@@ -88,6 +93,176 @@ class _RecommendationDialog
     Navigator.pop(context);
   }
 
+  _getReceivedRecommendationStack(){
+    return Stack(
+      children: <Widget>[
+        Positioned(
+            top: 70,
+            child: Container(
+                width: width,
+                height: height - 70,
+                color: _backgroundColor,
+                child:  Align(
+                  alignment: Alignment.topLeft,
+                  child: IconButton(
+                    onPressed: (){
+                      Navigator.pop(context);
+                    },
+                    icon: Icon(
+                        Icons.keyboard_arrow_down,
+                        color: Colors.black
+                    ),
+                  ),
+                )
+            )
+        ),
+
+        ProfileInfo(widget._recommendations[0].recommendedBy, nameColor: kPrimaryDarkColor,),
+
+        Padding(
+          padding: EdgeInsets.fromLTRB(7, 140, 7, 10),
+          child: Container(color: kPrimaryDarkColor, height: 2, width: width),
+        ),
+
+        Positioned(
+            top: 150,
+            left: 7,
+            right: 7,
+            child: Container(
+              width: width,
+              height: 50,
+              child: Align(
+                alignment: Alignment.center,
+                child:  Text(
+                  ("Just recommended you " + widget._recommendations.length.toString() + " books."),
+                  overflow: TextOverflow.clip,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: kPrimaryDarkColor,
+                    fontSize: 20,
+                  ),
+                ),
+              ),
+            )
+        ),
+
+        Positioned(
+            top: 180,
+            left: 7,
+            right: 7,
+            child: Container(
+              width: width,
+              height: 50,
+              child: Align(
+                alignment: Alignment.center,
+                child:  Text(
+                  ("Select the ones that you want to add to your Pending list!"),
+                  overflow: TextOverflow.clip,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 12,
+                      fontStyle: FontStyle.italic
+                  ),
+                ),
+              ),
+            )
+        ),
+
+        Padding(
+            padding: EdgeInsets.fromLTRB(0, 240, 0, 0),
+            child: VerticalBookListSearch(
+              Recommendation.getRecommendedBooksFromRecommendations(widget._recommendations),
+              ListType.received_recommendation_form,
+              backgroundColor: kPrimaryLightColor,
+              onAcceptButtonTapped: onRecommendationsAccepted,
+              onCancelButtonTapped: onRecommendationCanceled,
+              addOrRemoveBook: addOrDeleteRecommendation,
+            )
+        )
+      ],
+    );
+  }
+
+  _getSendRecommendationStack(){
+    return Stack(
+      children: <Widget>[
+        Positioned(
+            top: 70,
+            child: Container(
+                width: width,
+                height: height - 70,
+                color: _backgroundColor,
+                child:  Align(
+                  alignment: Alignment.topLeft,
+                  child: IconButton(
+                    onPressed: (){
+                      Navigator.pop(context);
+                    },
+                    icon: Icon(
+                        Icons.keyboard_arrow_down,
+                        color: Colors.black
+                    ),
+                  ),
+                )
+            )
+        ),
+
+        ProfileInfo(widget.sendToUser, nameColor: kPrimaryDarkColor,),
+
+        Padding(
+          padding: EdgeInsets.fromLTRB(7, 140, 7, 10),
+          child: Container(color: kPrimaryDarkColor, height: 2, width: width),
+        ),
+
+        Positioned(
+            top: 150,
+            left: 7,
+            right: 7,
+            child: Container(
+              width: width,
+              height: 50,
+              child: Align(
+                alignment: Alignment.center,
+                child:  Text(
+                  ("Are you sure you want to recommend the " + widget._recommendations.length.toString() + " books?"),
+                  overflow: TextOverflow.clip,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: kPrimaryDarkColor,
+                    fontSize: 20,
+                  ),
+                ),
+              ),
+            )
+        ),
+
+        /*Positioned(
+            top: 180,
+            left: 7,
+            right: 7,
+            child: Container(
+              width: width,
+              height: 50,
+              child: Align(
+                alignment: Alignment.center,
+                child:  Text(
+                  ("Select the ones that you want to add to your Pending list!"),
+                  overflow: TextOverflow.clip,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 12,
+                      fontStyle: FontStyle.italic
+                  ),
+                ),
+              ),
+            )
+        ),*/
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
 
@@ -99,94 +274,8 @@ class _RecommendationDialog
         child: Container(
           height: height,
           width: width,
-          child: Stack(
-            children: <Widget>[
-              Positioned(
-                  top: 70,
-                  child: Container(
-                      width: width,
-                      height: height - 70,
-                      color: _backgroundColor,
-                      child:  Align(
-                        alignment: Alignment.topLeft,
-                        child: IconButton(
-                          onPressed: (){
-                            Navigator.pop(context);
-                          },
-                          icon: Icon(
-                              Icons.keyboard_arrow_down,
-                              color: Colors.black
-                          ),
-                        ),
-                      )
-                  )
-              ),
-
-              ProfileInfo(widget._recommendations[0].recommendedBy, nameColor: kPrimaryDarkColor,),
-
-              Padding(
-                padding: EdgeInsets.fromLTRB(7, 140, 7, 10),
-                child: Container(color: kPrimaryDarkColor, height: 2, width: width),
-              ),
-
-              Positioned(
-                top: 150,
-                left: 7,
-                right: 7,
-                child: Container(
-                  width: width,
-                  height: 50,
-                  child: Align(
-                    alignment: Alignment.center,
-                    child:  Text(
-                      ("Just recommended you " + widget._recommendations.length.toString() + " books."),
-                      overflow: TextOverflow.clip,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: kPrimaryDarkColor,
-                        fontSize: 20,
-                      ),
-                    ),
-                  ),
-                )
-              ),
-
-              Positioned(
-                  top: 180,
-                  left: 7,
-                  right: 7,
-                  child: Container(
-                    width: width,
-                    height: 50,
-                    child: Align(
-                      alignment: Alignment.center,
-                      child:  Text(
-                        ("Select the ones that you want to add to your Pending list!"),
-                        overflow: TextOverflow.clip,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 12,
-                          fontStyle: FontStyle.italic
-                        ),
-                      ),
-                    ),
-                  )
-              ),
-
-              Padding(
-                padding: EdgeInsets.fromLTRB(0, 240, 0, 0),
-                child: VerticalBookListSearch(
-                  Recommendation.getRecommendedBooksFromRecommendations(widget._recommendations),
-                  ListType.received_recommendation_form,
-                  backgroundColor: kPrimaryLightColor,
-                  onAcceptButtonTapped: onRecommendationsAccepted,
-                  onCancelButtonTapped: onRecommendationCanceled,
-                  addOrRemoveBook: addOrDeleteRecommendation,
-                )
-              )
-            ],
-          ),
+          child: widget.type == ListType.received_recommendation_form ?
+          _getReceivedRecommendationStack() : _getSendRecommendationStack()
         )
     );
 

@@ -1,7 +1,9 @@
 import 'package:bookifyapp/Design/constants.dart';
 import 'package:bookifyapp/Enums/list_type.dart';
+import 'package:bookifyapp/LayoutWidgets/Dialogs/recommendation_dialog.dart';
 import 'package:bookifyapp/Models/Item.dart';
 import 'package:bookifyapp/Models/Lecture.dart';
+import 'package:bookifyapp/Models/Recommendation.dart';
 import 'package:bookifyapp/Models/Shop.dart';
 import 'package:bookifyapp/Pages/add_custom_list_page.dart';
 import 'package:flutter/material.dart';
@@ -276,16 +278,40 @@ class BookCard extends StatelessWidget {
     }
   }
 
+  sendRecommendedBooks(List<Book> recommendedBooks) async {
+    List<Recommendation> recommendations = new List();
+    User recommender = Provider.of<User>(context, listen: false);
+    for(Book book in recommendedBooks){
+      recommendations.add(new Recommendation(recommender, book));
+    }
+    // show popup and on accept send it to user.
+    await showDialog(
+        context: context,
+        builder: (BuildContext context) => RecommendationDialog(
+            Recommendation.getMockRecommendation(), type: ListType.send_recommendation_form, sendToUser: this.user,),
+    );
+    /**
+     * Missing
+     * This part will be implemented in futher steps.
+     * */
+  }
+
   _pushRecommendBooksPage() async{
     final result = await Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => AddCustomListPage(this.user.bookshelf, "Recommendation", ListType.send_recommendation_form)));
-    if(result == 0){
+        .push(MaterialPageRoute(builder: (context) =>
+        AddCustomListPage(
+            this.user.bookshelf,
+            "Recommendation",
+            ListType.send_recommendation_form,
+            sendRecommendedBooks: sendRecommendedBooks,
+        )));
+    /*if(result == 0){
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => BookshelfPage(Provider.of<User>(context, listen: false), scrollToLastPosition: true,)),
       );
       //Navigator.pop(context);
-    }
+    }*/
   }
 
   _pushAddCustomListPage(String listTitle) async {
