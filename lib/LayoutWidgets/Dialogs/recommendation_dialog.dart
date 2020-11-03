@@ -186,47 +186,64 @@ class _RecommendationDialog
 
   _getSendRecommendationStack(){
     return Stack(
+      alignment: Alignment.center,
       children: <Widget>[
         Positioned(
-            top: 70,
+            top: 50,
+            left: 10,
             child: Container(
                 width: width,
-                height: height - 70,
+                height: 160,
                 color: _backgroundColor,
-                child:  Align(
-                  alignment: Alignment.topLeft,
-                  child: IconButton(
-                    onPressed: (){
-                      Navigator.pop(context);
-                    },
-                    icon: Icon(
-                        Icons.keyboard_arrow_down,
-                        color: Colors.black
+                /*child:  Container(
+                  width: width,
+                  color: kPrimaryLightColor,
+                  child: Align(
+                    alignment: Alignment.topLeft,
+                    child: IconButton(
+                      onPressed: (){
+                        Navigator.pop(context);
+                      },
+                      icon: Icon(
+                          Icons.keyboard_arrow_down,
+                          color: Colors.black
+                      ),
                     ),
                   ),
-                )
+                ),*/
             )
         ),
 
-        ProfileInfo(widget.sendToUser, nameColor: kPrimaryDarkColor,),
-
-        Padding(
-          padding: EdgeInsets.fromLTRB(7, 140, 7, 10),
-          child: Container(color: kPrimaryDarkColor, height: 2, width: width),
+        Positioned(
+          top: 0,
+          child: Align(
+            alignment: Alignment.center,
+            child: Icon(
+              Icons.card_giftcard,
+              color: kPrimaryDarkColor,
+              size: 100,
+            ),
+          ),
         ),
 
         Positioned(
-            top: 150,
-            left: 7,
-            right: 7,
+            top: 100,
+            left: 10,
+            right: 10,
             child: Container(
               width: width,
               height: 50,
+              color: kPrimaryLightColor,
               child: Align(
                 alignment: Alignment.center,
                 child:  Text(
-                  ("Are you sure you want to recommend the " + widget._recommendations.length.toString() + " books?"),
-                  overflow: TextOverflow.clip,
+                  ("Recommend "
+                      + widget._recommendations.length.toString()
+                      + " books to "
+                      + widget.sendToUser.name
+                      + "?"),
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 2,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: kPrimaryDarkColor,
@@ -237,29 +254,55 @@ class _RecommendationDialog
             )
         ),
 
-        /*Positioned(
-            top: 180,
-            left: 7,
-            right: 7,
-            child: Container(
-              width: width,
-              height: 50,
-              child: Align(
-                alignment: Alignment.center,
-                child:  Text(
-                  ("Select the ones that you want to add to your Pending list!"),
-                  overflow: TextOverflow.clip,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 12,
-                      fontStyle: FontStyle.italic
-                  ),
-                ),
+        Positioned(
+          top: 150,
+          left: 10,
+          right: 10,
+          child: Row(
+            children: <Widget>[
+              Expanded(
+                  flex: 5,
+                  child: _getAcceptButton()
               ),
-            )
-        ),*/
+              Expanded(
+                  flex: 5,
+                  child: _getCancelButton()
+              )
+            ],
+          ),
+        )
+
+
       ],
+    );
+  }
+
+  _getAcceptButton(){
+    return FlatButton(
+        child: Text(
+            "Accept",
+            style: TextStyle(color: Colors.blue,)
+        ),
+        onPressed: () async {
+          Navigator.pop(context);
+        }
+    );
+  }
+
+  _getCancelButton(){
+    return FlatButton(
+      child: Text(
+          "Cancel",
+          style: TextStyle(color: Colors.red,)
+      ),
+      onPressed: () {
+        Navigator.pop(context);
+        /*if(widget.type == ListType.received_recommendation_form || widget.type == ListType.send_recommendation_form){
+          widget.onCancelButtonTapped();
+        } else {
+          Navigator.pop(context);
+        }**/
+      },
     );
   }
 
