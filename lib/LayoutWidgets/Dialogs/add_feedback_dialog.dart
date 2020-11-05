@@ -1,36 +1,26 @@
 import 'dart:async';
-
 import 'package:bookifyapp/Design/constants.dart';
 import 'package:bookifyapp/InfoToast.dart';
 import 'package:bookifyapp/Interfaces/RemoveCommentInterface.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/main_comment_card.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/reaction_card.dart';
-import 'package:bookifyapp/LayoutWidgets/Cards/shop_item_card.dart';
-import 'package:bookifyapp/LayoutWidgets/carousel_card.dart';
 import 'package:bookifyapp/Models/Chapter.dart';
 import 'package:bookifyapp/Models/Comment.dart';
-import 'package:bookifyapp/Models/Item.dart';
 import 'package:bookifyapp/Models/Lecture.dart';
 import 'package:bookifyapp/Models/MainComment.dart';
 import 'package:bookifyapp/Models/User.dart';
 import 'package:bookifyapp/Pages/comment_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:bookifyapp/Models/Book.dart';
 import 'package:bookifyapp/LayoutWidgets/BookWidgets/book_cover.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter_page_indicator/flutter_page_indicator.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:flutter_swiper/flutter_swiper.dart';
-import 'package:bordered_text/bordered_text.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 
 class AddFeedbackDialog extends StatefulWidget{
 
   Lecture book;
-  //AnimationController an
   Function() callAnimation;
   AddFeedbackDialog(this.book);
 
@@ -181,7 +171,6 @@ class _AddFeedbackDialog
               },
             ),
           )
-        //width: 100,
       ),
       //child: _createListView(),
     );
@@ -213,15 +202,12 @@ class _AddFeedbackDialog
     height = MediaQuery.of(context).size.height;
 
     alertDialog = new Dialog(
-      //title: const Text('Add List Title:'),
         backgroundColor: Colors.transparent,
         child: Container(
             height: height,
             width: width,
-            //color: _backgroundColor,
             child: Stack(
               children: <Widget>[
-
 
                 Positioned(
                     top: 140,
@@ -406,7 +392,6 @@ class _AddFeedbackDialog
               removeCommentFunction: removeComment,
               positionKey: widgets.length,
           ));
-          //listSize = mainComments.length + 5;
           _scrollToLastPosition();
         });
       }

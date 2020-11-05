@@ -10,9 +10,6 @@ import 'package:like_button/like_button.dart';
 
 class SubCommentCard extends StatelessWidget implements RemoveCommentInterface{
 
-  //String text;
-  //User author;
-  //TextField textField;
   Comment comment;
   TextEditingController textEditingController;
   Function(int) removeCommentFunction;
@@ -20,7 +17,7 @@ class SubCommentCard extends StatelessWidget implements RemoveCommentInterface{
 
 
   SubCommentCard(this.comment, {
-    this.textEditingController = null,
+    this.textEditingController,
     this.removeCommentFunction,
     this.positionKey,
   });

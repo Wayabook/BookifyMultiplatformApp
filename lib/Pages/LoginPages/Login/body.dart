@@ -32,11 +32,6 @@ class Body extends StatelessWidget {
               "assets/icons/bookify_icon.png",
               height: size.height * 0.45,
             ),
-            /*SvgPicture.asset(
-              "assets/icons/login.svg",
-              height: size.height * 0.35,
-            ),*/
-            //SizedBox(height: size.height * 0.03),
             RoundedInputField(
               hintText: "Your Email",
               onChanged: (value) {},

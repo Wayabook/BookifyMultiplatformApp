@@ -1,11 +1,5 @@
 import 'package:bookifyapp/Design/constants.dart';
-import 'package:bookifyapp/Enums/button_type.dart';
-import 'package:bookifyapp/Enums/list_type.dart';
-import 'package:bookifyapp/Models/User.dart';
-import 'package:bookifyapp/Pages/add_custom_list_page.dart';
-import 'package:bookifyapp/Pages/bookshelf_page.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class EditableListTitle extends StatelessWidget{
 
@@ -42,22 +36,13 @@ class EditableListTitle extends StatelessWidget{
       controller: textEditingController,
       decoration: InputDecoration(
         contentPadding: EdgeInsets.fromLTRB(5, 0, 0, 0),
-        //border: InputBorder,
         hintText: this.title,
         floatingLabelBehavior: FloatingLabelBehavior.never,
       ),
       maxLines: null,
-      //expands: widget.subCommentsPage ? false : true,
       keyboardType: TextInputType.multiline,
       onChanged: (value){
         this.title = value;
-        /*newComment = value;
-        if(!widget.subCommentsPage){
-          setState(() {
-            publishContainerColor = Colors.yellow;
-            publishTextColor = Colors.black;
-          });
-        }*/
       },
     );
     return textField;

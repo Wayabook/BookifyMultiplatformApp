@@ -10,8 +10,6 @@ class Book {
   String _summary;
   int _year;
   int _extension;
-  /*String _isbn;
-  String _ean;*/
   String editorial;
   String language;
   int addedBy;

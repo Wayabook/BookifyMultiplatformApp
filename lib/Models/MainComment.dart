@@ -1,5 +1,4 @@
 import 'package:bookifyapp/Models/Comment.dart';
-
 import 'Book.dart';
 import 'Chapter.dart';
 import 'Genre.dart';

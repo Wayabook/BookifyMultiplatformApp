@@ -4,12 +4,11 @@ import 'package:bookifyapp/LayoutWidgets/Profile/profile_picture.dart';
 import 'package:bookifyapp/Models/User.dart';
 
 class ProfileInfo extends StatelessWidget {
+
   static const POSTER_RATIO = 0.7;
-  /*final Book book;*/
   final double height;
   final double circleRadius = 120.0;
   final double circleBorderWidth = 8.0;
-
 
   User user;
   Color nameColor;
@@ -33,7 +32,6 @@ class ProfileInfo extends StatelessWidget {
           child: Container(
             child: Text(
               user.name,
-              //: kPrimaryLightColor,
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 color: this.nameColor

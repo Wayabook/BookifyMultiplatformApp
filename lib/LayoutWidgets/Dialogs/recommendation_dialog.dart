@@ -195,22 +195,6 @@ class _RecommendationDialog
                 width: width,
                 height: 160,
                 color: _backgroundColor,
-                /*child:  Container(
-                  width: width,
-                  color: kPrimaryLightColor,
-                  child: Align(
-                    alignment: Alignment.topLeft,
-                    child: IconButton(
-                      onPressed: (){
-                        Navigator.pop(context);
-                      },
-                      icon: Icon(
-                          Icons.keyboard_arrow_down,
-                          color: Colors.black
-                      ),
-                    ),
-                  ),
-                ),*/
             )
         ),
 

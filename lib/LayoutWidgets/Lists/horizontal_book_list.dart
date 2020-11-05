@@ -2,11 +2,7 @@ import 'package:bookifyapp/Design/constants.dart';
 import 'package:bookifyapp/Models/Lecture.dart';
 import 'package:bookifyapp/Models/User.dart';
 import 'package:flutter/material.dart';
-import 'package:bookifyapp/Models/Book.dart';
-import 'package:bookifyapp/Pages/book_page.dart';
-import 'package:bookifyapp/LayoutWidgets/Buttons/add_button_small.dart';
 import 'package:bookifyapp/Enums/list_type.dart';
-import 'package:bookifyapp/Pages/search_page.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/book_card.dart';
 import 'package:bookifyapp/Enums/book_card_type.dart';
 
@@ -33,10 +29,6 @@ class HorizontalBookList extends StatelessWidget {
 
 
   _createListView(){
-    /*var length = books.length;
-    if(this.type == ListType.discover_option || this.type == ListType.view_all){
-      length++;
-    }*/
 
     return Container(
       height: 200,
@@ -58,7 +50,6 @@ class HorizontalBookList extends StatelessWidget {
                 return BookCard.option(BookCardType.disover);
               } else {
                 return BookCard.option(BookCardType.view_all, user: this.user);
-                //return BookCard(this.books[index], BookCardType.without_add_option);
               }
             }
           } else {

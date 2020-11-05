@@ -103,7 +103,7 @@ class _BookCardInVerticalSearchList extends State<BookCardInVerticalSearchList>{
           decoration: BoxDecoration(
               color: kPrimaryLightColor,
               borderRadius:  BorderRadius.circular(7.0)
-          ),//Color.fromRGBO(64, 75, 96, .9),
+          ),
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 5.0, vertical: 10.0),
             child: Row(
@@ -116,7 +116,6 @@ class _BookCardInVerticalSearchList extends State<BookCardInVerticalSearchList>{
                         flex: 9,
                         child: Container(
                           width: 90,
-                          //padding: EdgeInsets.only(right: 12.0),
                           padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
                           decoration: new BoxDecoration(
                               border: new Border(
@@ -161,12 +160,6 @@ class _BookCardInVerticalSearchList extends State<BookCardInVerticalSearchList>{
                   ),
                 ),
 
-                /*onTap: (){
-                      Navigator.of(context)
-                          .push(MaterialPageRoute(
-                          builder: (context) => BookPage("title", widget.books[index],
-                              _getBooks())));
-                    },*/
                 Flexible(
                   flex: 5,
                   child: Padding(

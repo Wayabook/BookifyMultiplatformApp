@@ -1,10 +1,8 @@
 import 'package:bookifyapp/Design/constants.dart';
 import 'package:bookifyapp/Enums/list_type.dart';
 import 'package:bookifyapp/LayoutWidgets/Dialogs/recommendation_dialog.dart';
-import 'package:bookifyapp/Models/Item.dart';
 import 'package:bookifyapp/Models/Lecture.dart';
 import 'package:bookifyapp/Models/Recommendation.dart';
-import 'package:bookifyapp/Models/Shop.dart';
 import 'package:bookifyapp/Pages/add_custom_list_page.dart';
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/Models/Book.dart';
@@ -94,12 +92,6 @@ class BookCard extends StatelessWidget {
                   ),
                 ),
               ),
-
-              /*Positioned(
-              top: 0,
-              right: 0,
-              child: AddButtonSmall(),
-            )*/
             ]
         ),
       );
@@ -305,13 +297,6 @@ class BookCard extends StatelessWidget {
             ListType.send_recommendation_form,
             sendRecommendedBooks: sendRecommendedBooks,
         )));
-    /*if(result == 0){
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => BookshelfPage(Provider.of<User>(context, listen: false), scrollToLastPosition: true,)),
-      );
-      //Navigator.pop(context);
-    }*/
   }
 
   _pushAddCustomListPage(String listTitle) async {

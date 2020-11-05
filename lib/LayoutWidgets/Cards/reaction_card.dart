@@ -28,7 +28,6 @@ class _ReactionCard extends State<ReactionCard> {
   void initState() {
     super.initState();
     text = widget.reaction.name;
-    //color = Colors.transparent;
   }
   
   _getBorder(enabled){

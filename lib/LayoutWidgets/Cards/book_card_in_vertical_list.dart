@@ -14,7 +14,6 @@ class BookCardInVerticalList extends StatefulWidget {
 
   ButtonType buttonType;
   Lecture book;
-  //Function(int, Lecture) changeLecturePositionContent;
   TickerProvider tickerProvider;
 
   int position;
@@ -33,7 +32,6 @@ class BookCardInVerticalList extends StatefulWidget {
 
 class _BookCardInVerticalList extends State<BookCardInVerticalList> {
 
-  //String chapter_title = "Nombre capitulo";
   BuildContext context;
   ButtonType buttonType;
   Lecture book;
@@ -186,8 +184,6 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> {
           buttonColor = Colors.lightGreen;
         });
         setState(() {
-          //if(this.book.currentChapter == this.book.chapters.length - 1)
-          //  confettiController.play();
           animationController.forward();
         });
       },

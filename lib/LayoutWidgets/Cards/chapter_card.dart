@@ -1,12 +1,8 @@
 import 'package:bookifyapp/Design/constants.dart';
 import 'package:bookifyapp/Models/Book.dart';
-import 'package:bookifyapp/Models/Chapter.dart';
-import 'package:bookifyapp/Models/Item.dart';
 import 'package:bookifyapp/Pages/comment_page.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:bookifyapp/LayoutWidgets/Profile/profile_picture.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class ChapterCard extends StatelessWidget {
 
@@ -67,12 +63,7 @@ class ChapterCard extends StatelessWidget {
                                   showAllCommentsOfChapter: true,
                                   inactiveAddCommentOption: true,
                               )
-                            /*CommentPage(
-                            null,
-                            subCommentsPage: false,
-                            chapterTitle: this.book.chapters[this.chapter].title,
-                            chapterNumber: this.book.chapters[this.chapter].number,
-                          )*/));
+                            ));
                         },
                       )
                   ),

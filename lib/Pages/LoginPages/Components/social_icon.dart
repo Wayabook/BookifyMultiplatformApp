@@ -14,9 +14,6 @@ class SocialIcon extends StatelessWidget {
     this.press,
   }) : super(key: key);
 
-  //static const kPrimaryColor = Color(0xFF6F35A5);
-  //static const kPrimaryLightColor = Color(0xFFF1E6FF);
-
   @override
   Widget build(BuildContext context) {
     return GestureDetector(

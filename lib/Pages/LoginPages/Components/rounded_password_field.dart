@@ -5,8 +5,6 @@ import 'package:bookifyapp/Pages/LoginPages/Components/text_field_container.dart
 
 class RoundedPasswordField extends StatelessWidget {
 
-  //static const kPrimaryColor = Color(0xFF6F35A5);
-  //static const kPrimaryLightColor = Color(0xFFF1E6FF);
   final ValueChanged<String> onChanged;
   const RoundedPasswordField({
     Key key,

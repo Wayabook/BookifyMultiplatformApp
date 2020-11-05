@@ -11,7 +11,6 @@ class DialogWithInputText extends StatelessWidget{
 
   static const int ACCEPT_TAP = 0;
   static const int CANCEL_TAP = 1;
-  //User user;
   String title;
   String description;
   String entryTextDescription;
@@ -66,16 +65,6 @@ class DialogWithInputText extends StatelessWidget{
                 listTitle = "Custom list";
               }
               Navigator.of(context).pop(listTitle);
-              //Navigator.pop(context);
-              /*final result = await Navigator.of(context)
-                .push(MaterialPageRoute(builder: (context) => AddCustomListPage(this.user.bookshelf, listTitle, ListType.add_custom_list)));
-              if(result == 0){
-                final result = await Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => BookshelfPage(Provider.of<User>(context, listen: false), scrollToLastPosition: true,)),
-                );
-                Navigator.pop(context);
-              }*/
           },
         ),
         FlatButton(

@@ -3,11 +3,7 @@ import 'package:bookifyapp/Enums/button_type.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/genre_card.dart';
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/Models/Genre.dart';
-import 'package:bookifyapp/Pages/book_page.dart';
-import 'package:bookifyapp/LayoutWidgets/Buttons/add_button_small.dart';
 import 'package:bookifyapp/Enums/list_type.dart';
-import 'package:bookifyapp/Pages/search_page.dart';
-import 'package:bordered_text/bordered_text.dart';
 
 class HorizontalGenresList extends StatelessWidget {
 

@@ -2,9 +2,6 @@ import 'package:bookifyapp/Design/constants.dart';
 import 'package:bookifyapp/Pages/LoginPages/Signup/singup_page.dart';
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/Pages/LoginPages/Welcome/background.dart';
-import 'package:bookifyapp/Pages/LoginPages/Components/already_have_an_account_acheck.dart';
-import 'package:bookifyapp/Pages/LoginPages/Components/rounded_password_field.dart';
-import 'package:bookifyapp/Pages/LoginPages/Components/rounded_input_field.dart';
 import 'package:bookifyapp/Pages/LoginPages/Components/rounded_button.dart';
 import 'package:bookifyapp/Pages/LoginPages/Login/login_page.dart';
 
@@ -30,10 +27,7 @@ class Body extends StatelessWidget {
               "assets/icons/bookify_icon.png",
               height: size.height * 0.45,
             ),
-            /*SvgPicture.asset(
-              "assets/bookify_icon.png",
-              height: size.height * 0.45,
-            ),*/
+
             SizedBox(height: size.height * 0.05),
 
             RoundedButton(

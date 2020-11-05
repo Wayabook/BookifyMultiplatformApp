@@ -27,15 +27,6 @@ class MainTabPage extends StatefulWidget {
 
 class _MainTabPage extends State<MainTabPage> {
 
-  List<Book> books;
-  List<Lecture> lectures;
-  List<Genre> genres;
-  User user;
-
-
-  static const TextStyle optionStyle =
-  TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-
   final _items = [
     BottomNavigationBarItem(
       icon: Icon(Icons.local_library),
@@ -56,7 +47,6 @@ class _MainTabPage extends State<MainTabPage> {
   void initState(){
 
     super.initState();
-    //_currentIndex = 0;
   }
 
   changeCurrentIndex(int position){
@@ -87,7 +77,6 @@ class _MainTabPage extends State<MainTabPage> {
 
 
   _getPages(){
-    //initialize_items();
     return [
       ReadingPage(),
       DiscoverPage(kPrimaryLightColor, "Discover Page"),

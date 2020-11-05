@@ -38,10 +38,6 @@ class _VerticalUserList extends State<VerticalUserList> with TickerProviderState
               widget.users[index],
               ProfileType.friend_profile,
               isFriend: user.isFriend(widget.users[index]))));
-
-
-        //Navigator.of(context)
-        //    .push(MaterialPageRoute(builder: (context) => ProfilePage(widget.users[index], ProfileType.friend_profile, isFriend: user.isFriend(widget.users[index]))));
       },
       child: UserPreviewCard(widget.users[index], padding: 5, fontSize: 26, /*isFriend: user.isFriend(widget.users[index]),*/),
     );

@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bookifyapp/Design/constants.dart';
 import 'package:bookifyapp/Interfaces/RemoveCommentInterface.dart';
@@ -99,13 +98,7 @@ class _CommentPage
           );
         }
         comments.addAll(subComments);
-
-      } /*else {
-
-        publishContainerColor = Colors.yellow[100];
-        publishTextColor = Colors.grey[300];
-
-      }*/
+      }
     } else {
       int position = 0;
       int chapterNumber = 0;
@@ -236,7 +229,6 @@ class _CommentPage
            color: kPrimaryDarkColor,
            height: MediaQuery.of(context).size.height,
            width: MediaQuery.of(context).size.width,
-           //child:  _createListView(),
            child: widget.inactiveAddCommentOption ? _getSubcommentsListView() : _getColumnWithListViewAndAddCommentOption(),
          ),
          appBar: AppBar(

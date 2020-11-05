@@ -2,9 +2,7 @@ import 'package:bookifyapp/Design/constants.dart';
 import 'package:bookifyapp/Enums/list_type.dart';
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/LayoutWidgets/Lists/vertical_book_list_search.dart';
-import 'package:bookifyapp/LayoutWidgets/Lists/vertical_user_list.dart';
 import 'package:bookifyapp/Models/Book.dart';
-import 'package:bookifyapp/Models/User.dart';
 
 import '../InfoToast.dart';
 
@@ -88,7 +86,6 @@ class _AddCustomListPage extends State<AddCustomListPage> {
       style: new TextStyle(
         color: kPrimaryLightColor,
       ),
-      //autofocus: true,
       cursorColor: kPrimaryLightColor,
       onTap: (){
         _checkInuptTextState(false);
@@ -127,7 +124,6 @@ class _AddCustomListPage extends State<AddCustomListPage> {
 
   void onRecommendationsAccepted(){
     widget.sendRecommendedBooks(this.recommendedBooks);
-    //InfoToast.showRecommendationsSavedCorrectly();
     onRecommendationCanceled();
   }
 

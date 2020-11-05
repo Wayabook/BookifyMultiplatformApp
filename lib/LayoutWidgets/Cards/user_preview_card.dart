@@ -65,8 +65,6 @@ class UserPreviewCard extends StatelessWidget {
               child: Column(
                 children: [
                   Container(
-                    //color: Colors.black,
-                    //height: 150,
                     child: Padding(
                       padding: EdgeInsets.fromLTRB(0, 0, 0, 15),
                       child: Align(
@@ -96,56 +94,12 @@ class UserPreviewCard extends StatelessWidget {
                         },
                         child: SmallButtonUnderlined("View Bookshelf")
                       )
-
-                      /*Text(
-                        "View Bookshelf",
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.blue,
-                          decoration: TextDecoration.underline,
-                        ),
-                      ),*/
                     ),
                   )
                 ],
               )
             ),
           ),
-
-          /*Flexible(
-            flex: 3,
-            child: Padding(
-              padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-              child: RaisedButton(
-                onPressed: () {
-                  /*showDialog(
-                    context: context,
-                    builder: (BuildContext context) => BookShopsDialog(this.book),
-                  );*/
-                },
-                textColor: Colors.white,
-                color: isFriend ? Colors.lightGreen[500] : Colors.blueGrey[300],
-                child: Text(
-                  isFriend ? "Friend" : "Add Friend",
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
-                    //color: Colors.blue,
-                    //decoration: TextDecoration.underline,
-                  ),
-                ),
-                /*child: IconButton(
-                  icon: Icon(
-                      Icons.shop_two,
-                      color: Colors.white
-                  ),
-
-                ),*/
-                //Icon(Icons.add_circle_outline),
-              ),
-            ),
-          ),*/
         ],
       );
     } else {
@@ -182,14 +136,7 @@ class UserPreviewCard extends StatelessWidget {
                             maxLines: 1,
                           ),
                         ],
-
-                        /*AutoSizeText(
-                        _chapter_title.substring(0, 18) + "...",
-                        style: TextStyle( fontWeight: FontWeight.bold,),
-                        maxLines: 1,
-                      ),*/
                       ),
-
                     ),
                   ),
                 ),

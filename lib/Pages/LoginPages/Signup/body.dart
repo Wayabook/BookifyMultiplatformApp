@@ -22,19 +22,10 @@ class Body extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            /*Text(
-              "SIGNUP",
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),*/
-            //SizedBox(height: size.height * 0.01),
             Image.asset(
               "assets/icons/bookify_icon.png",
               height: size.height * 0.45,
             ),
-            /*SvgPicture.asset(
-              "assets/icons/signup.svg",
-              height: size.height * 0.35,
-            ),*/
             RoundedInputField(
               hintText: "Your Email",
               onChanged: (value) {},
@@ -78,10 +69,6 @@ class Body extends StatelessWidget {
                   iconSrc: "assets/icons/facebook.svg",
                   press: () {},
                 ),
-                /*SocialIcon(
-                  iconSrc: "assets/icons/twitter.svg",
-                  press: () {},
-                ),*/
                 SocialIcon(
                   iconSrc: "assets/icons/google-plus.svg",
                   press: () {},

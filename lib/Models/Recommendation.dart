@@ -3,7 +3,6 @@ import 'User.dart';
 
 class Recommendation {
 
-  //List<Book> _recommendedBooks;
   Book _recommendedBook;
   User _recommendedBy;
 

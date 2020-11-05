@@ -17,8 +17,6 @@ class ListTitle extends StatelessWidget{
   ButtonType buttonType;
   Color barAndTitleColor;
   bool withPadding;
-  //Function(String) goToPageFromParent;
-  //Function(String) goToPageFromParent2;
   Function(ButtonType buttonType, BuildContext context, {String title}) onListTitleButtonTapped;
 
   ListTitle(
@@ -137,16 +135,6 @@ class ListTitle extends StatelessWidget{
     return GestureDetector(
         onTap: () async {
           onListTitleButtonTapped(buttonType, context, title: title);
-
-          /*if(buttonType == ButtonType.view_all) {
-            final result = await Navigator.of(context)
-                .push(MaterialPageRoute(builder: (context) =>
-                AddCustomListPage(Provider
-                    .of<User>(context, listen: false)
-                    .bookshelf, title, ListType.edit_custom_list)));
-          } else if (buttonType == ButtonType.edit_list || buttonType == ButtonType.copy_list) {
-            this.goToPageFromParent(title);
-          }*/
         },
         child: buttonType == ButtonType.edit_list ?
         SmallButtonUnderlined("Edit") : SmallButtonUnderlined("Copy")

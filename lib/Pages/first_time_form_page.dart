@@ -8,10 +8,7 @@ import 'package:bookifyapp/Models/Book.dart';
 import 'package:bookifyapp/Models/Genre.dart';
 import 'package:bookifyapp/Pages/add_custom_list_page.dart';
 import 'package:bookifyapp/Pages/main_tab_page.dart';
-import 'package:bookifyapp/Pages/search_page.dart';
 import 'package:flutter/material.dart';
-import 'package:bookifyapp/Pages/LoginPages/Welcome/body.dart';
-import 'package:flutter/src/scheduler/ticker.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:flutter_page_indicator/flutter_page_indicator.dart';
 
@@ -105,11 +102,9 @@ class _FirstTimeFormPage extends State<FirstTimeFormPage> with TickerProviderSta
                       child:  Swiper(
                         physics: NeverScrollableScrollPhysics(),
                         controller: _swiperController,
-                        //index: 0,
                         indicatorLayout: PageIndicatorLayout.SCALE,
                         containerHeight: double.infinity,
                         containerWidth: double.infinity,
-                        //autoplay: false,
                         itemCount: 4,
                         pagination: SwiperPagination(
                           margin: new EdgeInsets.all(5.0),
@@ -176,15 +171,12 @@ class _FirstTimeFormPage extends State<FirstTimeFormPage> with TickerProviderSta
                   ),
                 ),
                 onPressed: () {
-                  //var aux = _swiperController.complete();
                   if(_swiperIndex != 3){
                     _swiperIndex += 1;
                     _swiperController.move(_swiperIndex);
                     if(_swiperIndex  == 3){
                       setState(() {
                         animationController.forward();
-                        //_floatingActionButtonColor = Colors.yellow;
-                        //_icon = Icons.send;
                       });
                     }
                   } else {

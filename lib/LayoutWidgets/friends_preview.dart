@@ -1,12 +1,10 @@
 import 'package:bookifyapp/Design/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/Models/User.dart';
-import 'package:bookifyapp/Pages/book_page.dart';
 
 
 class FriendsPreview extends StatelessWidget {
 
-  //CarouselCard({Key key}) : super(key: key);
   final List<User> friendsReading;
   final String defaultUserUrl = 'https://cdn2.iconfinder.com/data/icons/user-interface-180/128/User-Interface-209-512.png';
 

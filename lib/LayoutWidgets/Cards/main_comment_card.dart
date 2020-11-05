@@ -1,12 +1,8 @@
 import 'package:bookifyapp/Design/constants.dart';
 import 'package:bookifyapp/Interfaces/RemoveCommentInterface.dart';
 import 'package:bookifyapp/LayoutWidgets/BookWidgets/summary_text.dart';
-import 'package:bookifyapp/LayoutWidgets/Cards/sub_comment_card.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/user_preview_card.dart';
-import 'package:bookifyapp/Models/Chapter.dart';
-import 'package:bookifyapp/Models/Lecture.dart';
 import 'package:bookifyapp/Models/MainComment.dart';
-import 'package:bookifyapp/Models/User.dart';
 import 'package:bookifyapp/Pages/comment_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -48,7 +44,7 @@ class MainCommentCard extends StatelessWidget implements RemoveCommentInterface 
                 chapterNumber: this.chapterNumber,
                 inactiveAddCommentOption: this.seeAllComments,
               )
-              /*CommentPage(this.mainComment)*/));
+             ));
         },
         child: _getCard(),
       );
@@ -65,7 +61,6 @@ class MainCommentCard extends StatelessWidget implements RemoveCommentInterface 
   _getCard(){
     return Card(
         elevation: 10,
-        //margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[

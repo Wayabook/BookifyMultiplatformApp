@@ -9,7 +9,6 @@ class Lecture extends Book{
 
   int currentChapter;
   bool read;
-  //List<Reaction> _reactions;
 
   Lecture(
       String title,
@@ -18,8 +17,6 @@ class Lecture extends Book{
       String summary,
       int year,
       int extension,
-      /*String isbn,
-      String ean,*/
       Map<String, List<Item>> shops_items,
       String editorial,
       String language,

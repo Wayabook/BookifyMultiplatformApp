@@ -14,7 +14,6 @@ import 'package:bookifyapp/Enums/list_type.dart';
 import 'package:bookifyapp/LayoutWidgets/friends_preview.dart';
 import 'package:bookifyapp/LayoutWidgets/Dialogs/book_shops_dialog.dart';
 import 'package:provider/provider.dart';
-
 import '../InfoToast.dart';
 import '../Models/User.dart';
 import 'comment_page.dart';
@@ -395,46 +394,7 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
       itemCount: items.length,
       itemBuilder: (BuildContext context, int index) {
         return items[index];
-        /*if(index == 0){
-          return _getBookCoverStack();
-        } else if(index == 1) {
-          return _getBookTopRelatedButtons();
-        } if(index == 2) {
-          return _getPaddingContainer(width);
-        } else if(index == 3) {
-          return _getBookInfoRow(width_per_child);
-        } else if(index == 4) {
-          return _getPaddingContainer(width);
-        } else if(index == 5){
-          return _getFriendsPreview();
-        } else if(index == 6){
-          return _getDescriptionSummary();
-        } else if(index == 7){
-          return _getAuthorRelatedBooks();
-        } else {
-          return _getGenreRelatedBooks();
-        }*/
       },
-      /*children: <Widget>[
-        _getBookCoverStack(),
-
-        _getBookTopRelatedButtons(),
-
-        _getPaddingContainer(width),
-
-        _getBookInfoRow(width_per_child),
-
-        _getPaddingContainer(width),
-
-        _getFriendsPreview(),
-
-        _getDescriptionSummary(),
-
-        _getAuthorRelatedBooks(),
-
-        _getGenreRelatedBooks(),
-
-      ],*/
     );
   }
 
@@ -445,7 +405,6 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          //color: kPrimaryLightColor,
           width: double.infinity,
           margin: EdgeInsets.fromLTRB(5, 2, 5, 0),
           child:  Text(

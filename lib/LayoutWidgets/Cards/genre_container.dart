@@ -1,6 +1,5 @@
 import 'package:bookifyapp/Design/constants.dart';
 import 'package:bookifyapp/Models/Genre.dart';
-import 'package:bordered_text/bordered_text.dart';
 import 'package:flutter/material.dart';
 
 class GenreContainer extends StatelessWidget {

@@ -1,6 +1,5 @@
 import 'package:bookifyapp/Models/Book.dart';
 import 'package:bookifyapp/Models/Genre.dart';
-import 'package:bookifyapp/Models/MainComment.dart';
 import 'package:bookifyapp/Models/Recommendation.dart';
 import 'package:flutter/material.dart';
 
@@ -13,7 +12,6 @@ class User extends ChangeNotifier{
 
   String _uid;
   String _name;
-  //String _description_sentence;
   List<Genre> _interested_genres;
   String _profile_picture_url;
   Map<String, List<Lecture>> _lecture_lists;

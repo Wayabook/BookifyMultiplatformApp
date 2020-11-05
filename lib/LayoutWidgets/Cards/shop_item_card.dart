@@ -81,12 +81,6 @@ class ShopItemCard extends StatelessWidget {
                           ),
                         )
                       ],
-
-                      /*AutoSizeText(
-                        _chapter_title.substring(0, 18) + "...",
-                        style: TextStyle( fontWeight: FontWeight.bold,),
-                        maxLines: 1,
-                      ),*/
                     ),
 
                   ),
