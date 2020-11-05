@@ -21,6 +21,9 @@ class RoundedButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    print(size);
+    var a = size.width*0.8;
+    print(a);
     return Container(
       margin: EdgeInsets.symmetric(vertical: 10),
       width: size.width * 0.8,
@@ -38,5 +41,27 @@ class RoundedButton extends StatelessWidget {
         ),
       ),
     );
+
+    /*
+    * return Container(
+      margin: EdgeInsets.symmetric(vertical: (1.47 * SizeConfig.widthMultiplier)),
+      width: size.width * 0.8,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(29),
+        child: FlatButton(
+          padding: EdgeInsets.symmetric(
+              vertical: (9.73 * SizeConfig.heightMultiplier),
+              horizontal: (9.73 * SizeConfig.widthMultiplier)
+          ),
+          color: color,
+          onPressed: press,
+          child: Text(
+            text,
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(color: textColor),
+          ),
+        ),
+      ),
+    );*/
   }
 }

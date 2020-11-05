@@ -1,5 +1,6 @@
 import 'package:bookifyapp/Design/constants.dart';
 import 'package:bookifyapp/Pages/LoginPages/Signup/singup_page.dart';
+import 'package:bookifyapp/SizeConfig.dart';
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/Pages/LoginPages/Welcome/background.dart';
 import 'package:bookifyapp/Pages/LoginPages/Components/rounded_button.dart';
@@ -18,7 +19,10 @@ class Body extends StatelessWidget {
           children: <Widget>[
             Text(
               "THE BIGGEST LIBRARY ON THE NET",
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 2.65 * SizeConfig.textMultiplier,
+              ),
             ),
 
             SizedBox(height: size.height * 0.05),

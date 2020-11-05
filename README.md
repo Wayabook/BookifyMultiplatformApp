@@ -16,4 +16,4 @@ For help getting started with Flutter, view our
 samples, guidance on mobile development, and a full API reference.
 
 ## UML
-![Image of Yaktocat](https://github.com/Wayabook/BookifyMultiplatformApp/tree/master/UML.png)
+![Image of Yaktocat](https://github.com/Wayabook/BookifyMultiplatformApp/blob/master/UML.png)
