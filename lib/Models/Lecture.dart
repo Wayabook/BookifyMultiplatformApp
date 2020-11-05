@@ -45,7 +45,7 @@ class Lecture extends Book{
       chapters:
       chapters,
       friends_reading:
-      friends_reading) {}
+      friends_reading);
 
   List<Reaction> getCurrentChapterReactions(){
     return this.chapters[this.currentChapter].reactions;

@@ -1,16 +1,9 @@
 import 'package:bookifyapp/Design/constants.dart';
 import 'package:bookifyapp/Enums/profile_type.dart';
-import 'package:bookifyapp/Models/Chapter.dart';
-import 'package:bookifyapp/Models/Item.dart';
-import 'package:bookifyapp/Models/Lecture.dart';
-import 'package:bookifyapp/Models/Shop.dart';
-import 'package:bookifyapp/Pages/LoginPages/Welcome/welcome_page.dart';
 import 'package:bookifyapp/Pages/profile_page.dart';
 import 'package:bookifyapp/Pages/reading_page.dart';
 import 'package:custom_navigator/custom_navigation.dart';
 import 'package:flutter/material.dart';
-import 'package:bookifyapp/Models/Genre.dart';
-import 'package:bookifyapp/Models/Book.dart';
 import 'package:bookifyapp/Models/User.dart';
 import 'package:provider/provider.dart';
 

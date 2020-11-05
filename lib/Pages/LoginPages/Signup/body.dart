@@ -8,10 +8,7 @@ import 'package:bookifyapp/Pages/LoginPages/Components/already_have_an_account_a
 import 'package:bookifyapp/Pages/LoginPages/Components/rounded_password_field.dart';
 import 'package:bookifyapp/Pages/LoginPages/Components/rounded_input_field.dart';
 import 'package:bookifyapp/Pages/LoginPages/Components/rounded_button.dart';
-import 'package:flutter_svg/svg.dart';
-
 import '../../first_time_form_page.dart';
-import '../../main_tab_page.dart';
 
 class Body extends StatelessWidget {
   @override

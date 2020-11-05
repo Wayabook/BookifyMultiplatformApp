@@ -1,20 +1,11 @@
 import 'package:bookifyapp/Design/constants.dart';
 import 'package:bookifyapp/LayoutWidgets/Lists/list_title.dart';
 import 'package:bookifyapp/LayoutWidgets/carousel_card.dart';
-import 'package:bookifyapp/Models/Chapter.dart';
-import 'package:bookifyapp/Models/Lecture.dart';
-import 'package:bookifyapp/Models/MainComment.dart';
-import 'package:bookifyapp/Models/Shop.dart' as prefix0;
 import 'package:flutter/material.dart';
-import 'book_page.dart';
 import 'package:bookifyapp/Pages/search_page.dart';
 import 'package:bookifyapp/Models/Book.dart';
 import 'package:bookifyapp/LayoutWidgets/Lists/horizontal_book_list.dart';
 import 'package:bookifyapp/Enums/list_type.dart';
-import 'package:bookifyapp/Models/User.dart';
-import 'package:bookifyapp/Models/Genre.dart';
-import 'package:bookifyapp/Models/Shop.dart';
-import 'package:bookifyapp/Models/Item.dart';
 
 
 

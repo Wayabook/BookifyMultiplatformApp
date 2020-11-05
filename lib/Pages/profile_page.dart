@@ -3,7 +3,6 @@ import 'package:bookifyapp/Enums/button_type.dart';
 import 'package:bookifyapp/Enums/list_type.dart';
 import 'package:bookifyapp/InfoToast.dart';
 import 'package:bookifyapp/Interfaces/TitleButtonInterface.dart';
-import 'package:bookifyapp/LayoutWidgets/Buttons/small_button_underlined.dart';
 import 'package:bookifyapp/LayoutWidgets/Dialogs/dialog_with_accept_and_cancel_options.dart';
 import 'package:bookifyapp/LayoutWidgets/Dialogs/recommendation_dialog.dart';
 import 'package:bookifyapp/LayoutWidgets/Lists/list_title.dart';
@@ -11,22 +10,16 @@ import 'package:bookifyapp/Models/Recommendation.dart';
 import 'package:bookifyapp/Pages/friends_page.dart';
 import 'package:bookifyapp/Pages/genres_page.dart';
 import 'package:flutter/material.dart';
-import 'package:bookifyapp/LayoutWidgets/Lists/vertical_book_list_search.dart';
-import 'package:bookifyapp/Models/Book.dart';
 import 'package:bookifyapp/LayoutWidgets/arc_banner_image.dart';
 import 'package:bookifyapp/LayoutWidgets/Profile/profile_info.dart';
 import 'package:bookifyapp/LayoutWidgets/Lists/horizontal_book_list.dart';
 import 'package:bookifyapp/LayoutWidgets/info_row.dart';
 import 'package:bookifyapp/Enums/row_type.dart';
-import 'package:bookifyapp/Models/Genre.dart';
 import 'package:bookifyapp/LayoutWidgets/Lists/horizontal_genres_list.dart';
 import 'package:bookifyapp/Enums/book_card_type.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/book_card.dart';
 import 'package:bookifyapp/Models/User.dart';
 import 'package:bookifyapp/Enums/profile_type.dart';
-import 'package:bookifyapp/Pages/badgets_page.dart';
-
-import 'package:bookifyapp/Pages/profile_page.dart';
 import 'dart:math';
 
 import 'package:provider/provider.dart';
@@ -52,7 +45,7 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePage extends State<ProfilePage> implements TitleButtonInterface{
   String randomBackgroundImage;
   BuildContext context;
-  double width_per_child;
+  double widthPerChild;
   double width;
   List<Widget> items;
 
@@ -82,7 +75,7 @@ class _ProfilePage extends State<ProfilePage> implements TitleButtonInterface{
   Widget build(BuildContext context) {
     this.context = context;
     width = MediaQuery.of(context).size.width;
-    width_per_child = (width - 30 - (10 * 2)) / 3;
+    widthPerChild = (width - 30 - (10 * 2)) / 3;
 
     return Scaffold(
       backgroundColor: kPrimaryDarkColor,
@@ -227,7 +220,7 @@ class _ProfilePage extends State<ProfilePage> implements TitleButtonInterface{
               "BOOKS READ",
               Icons.book,
               widget.user.booksRead.toString(),
-              width_per_child,
+              widthPerChild,
               105,
               kPrimaryLightColor),
 
@@ -238,7 +231,7 @@ class _ProfilePage extends State<ProfilePage> implements TitleButtonInterface{
               "CHAPS READ",
               Icons.collections_bookmark,
               widget.user.chaptersRead.toString(),
-              width_per_child, 105,
+              widthPerChild, 105,
               kPrimaryLightColor),
 
           Container(color: kPrimaryLightColor, height: 105, width: 2,),
@@ -248,7 +241,7 @@ class _ProfilePage extends State<ProfilePage> implements TitleButtonInterface{
               "PAGES READ",
               Icons.description,
               widget.user.pagesRead.toString(),
-              width_per_child,
+              widthPerChild,
               105,
               kPrimaryLightColor),
 
@@ -320,12 +313,12 @@ class _ProfilePage extends State<ProfilePage> implements TitleButtonInterface{
   @override
   onTitleButtonPressed(ButtonType buttonType, BuildContext context, {String title}) async {
     if(buttonType == ButtonType.view_all){
-      var result = await Navigator.push(
+      await Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => BookshelfPage(widget.user)),
       );
     } else if (buttonType == ButtonType.edit_genres_list) {
-      var result = await Navigator.push(
+      await Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => GenresPage(widget.user)),
       );

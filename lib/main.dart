@@ -8,21 +8,8 @@
 //
 // ![A scaffold with a bottom navigation bar containing three bottom navigation
 // bar items. The first one is selected.](https://flutter.github.io/assets-for-api-docs/assets/material/bottom_navigation_bar.png)
-
-import 'package:bookifyapp/Enums/profile_type.dart';
 import 'package:bookifyapp/Pages/LoginPages/Welcome/welcome_page.dart';
-import 'package:custom_navigator/custom_navigation.dart';
 import 'package:flutter/material.dart';
-import 'Design/constants.dart';
-import 'Models/Chapter.dart';
-import 'Models/Item.dart';
-import 'Models/Lecture.dart';
-import 'Models/Shop.dart';
-import 'Pages/discover_page.dart';
-import 'Pages/profile_page.dart';
-import 'Pages/reading_page.dart';
-import 'package:bookifyapp/Models/Genre.dart';
-import 'package:bookifyapp/Models/Book.dart';
 import 'package:bookifyapp/Models/User.dart';
 import 'package:provider/provider.dart';
 

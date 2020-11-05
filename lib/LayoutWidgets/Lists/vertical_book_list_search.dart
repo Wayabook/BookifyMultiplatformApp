@@ -10,8 +10,6 @@ import 'package:bookifyapp/Models/Book.dart';
 import 'package:bookifyapp/LayoutWidgets/Lists/list_title.dart';
 import 'package:provider/provider.dart';
 
-import '../editable_list_title.dart';
-
 
 class VerticalBookListSearch extends StatefulWidget {
 

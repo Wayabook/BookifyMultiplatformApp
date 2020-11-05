@@ -88,7 +88,7 @@ class _BooskelfGridList extends State<BooskelfGridList>
   }
 
   _viewAllPressed(BuildContext context, String title) async {
-    final result = await Navigator.of(context)
+    await Navigator.of(context)
         .push(MaterialPageRoute(builder: (context) =>
         AddCustomListPage(Provider
             .of<User>(context, listen: false)
@@ -96,7 +96,7 @@ class _BooskelfGridList extends State<BooskelfGridList>
   }
 
   _goToEditListPage(String title) async {
-    final result = await Navigator.of(context)
+    await Navigator.of(context)
         .push(MaterialPageRoute(builder: (context) =>
         AddCustomListPage(Provider
             .of<User>(context, listen: false)

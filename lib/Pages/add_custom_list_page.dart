@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:bookifyapp/LayoutWidgets/Lists/vertical_book_list_search.dart';
 import 'package:bookifyapp/Models/Book.dart';
 
-import '../InfoToast.dart';
-
 class AddCustomListPage extends StatefulWidget {
 
   List<Book> bookshelf;
@@ -39,8 +37,6 @@ class _AddCustomListPage extends State<AddCustomListPage> {
   List<Book> recommendedBooks;
 
   TextEditingController controller;
-
-  TabController _tabController;
   FocusNode _focusNode;
 
   String filter = "";

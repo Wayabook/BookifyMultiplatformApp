@@ -289,7 +289,7 @@ class BookCard extends StatelessWidget {
   }
 
   _pushRecommendBooksPage() async{
-    final result = await Navigator.of(context)
+    await Navigator.of(context)
         .push(MaterialPageRoute(builder: (context) =>
         AddCustomListPage(
             this.user.bookshelf,

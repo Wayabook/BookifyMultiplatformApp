@@ -89,7 +89,6 @@ class InfoRow extends StatelessWidget {
         ),
       );
     } else if (this.rowType == RowType.icon_image){
-      IconData ic = Icons.book;
       return Padding(
         padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
         child: Center(

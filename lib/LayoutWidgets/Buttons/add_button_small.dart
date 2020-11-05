@@ -3,7 +3,6 @@ import 'package:bookifyapp/InfoToast.dart';
 import 'package:bookifyapp/Models/Book.dart';
 import 'package:bookifyapp/Models/User.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 
 class AddButtonSmall extends StatefulWidget {

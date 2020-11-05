@@ -1,16 +1,11 @@
 import 'package:bookifyapp/Design/constants.dart';
-import 'package:bookifyapp/Enums/profile_type.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/shop_item_card.dart';
-import 'package:bookifyapp/LayoutWidgets/carousel_card.dart';
 import 'package:bookifyapp/Models/Item.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/Models/Book.dart';
 import 'package:bookifyapp/LayoutWidgets/BookWidgets/book_cover.dart';
 import 'package:flutter/painting.dart';
-import 'package:flutter_page_indicator/flutter_page_indicator.dart';
-import 'package:flutter_swiper/flutter_swiper.dart';
-import 'package:provider/provider.dart';
 
 
 class BookShopsDialog<T extends TickerProviderStateMixin> extends StatefulWidget {

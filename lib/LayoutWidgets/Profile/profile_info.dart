@@ -21,8 +21,6 @@ class ProfileInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var width = POSTER_RATIO * height;
-
     return Column(
       children: <Widget>[
         ProfilePicture(user.profilePictureUrl),

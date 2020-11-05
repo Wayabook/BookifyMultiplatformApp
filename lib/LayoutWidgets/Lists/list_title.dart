@@ -1,12 +1,8 @@
 import 'package:bookifyapp/Design/constants.dart';
 import 'package:bookifyapp/Enums/button_type.dart';
-import 'package:bookifyapp/Enums/list_type.dart';
 import 'package:bookifyapp/LayoutWidgets/Buttons/small_button_underlined.dart';
 import 'package:bookifyapp/Models/User.dart';
-import 'package:bookifyapp/Pages/add_custom_list_page.dart';
-import 'package:bookifyapp/Pages/bookshelf_page.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class ListTitle extends StatelessWidget{
 

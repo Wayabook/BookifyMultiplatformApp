@@ -209,7 +209,7 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
     );
   }
 
-  _getBookInfoRow(width_per_child){
+  _getBookInfoRow(widthPerChild){
     return Center(
       key: UniqueKey(),
       child:  Row(
@@ -217,15 +217,15 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
         crossAxisAlignment: CrossAxisAlignment.center, //Center Row contents vertically,
         children: <Widget>[
 
-          InfoRow(RowType.image,  "GENDER", "images/genre1.png",  "Romance", width_per_child, 105),
+          InfoRow(RowType.image,  "GENDER", "images/genre1.png",  "Romance", widthPerChild, 105),
 
           Container(color: kPrimaryDarkColor, height: 105, width: 2,),
 
-          InfoRow(RowType.text,  "PUBLICATION", "2017",  "Year", width_per_child, 105),
+          InfoRow(RowType.text,  "PUBLICATION", "2017",  "Year", widthPerChild, 105),
 
           Container(color: kPrimaryDarkColor, height: 105, width: 2,),
 
-          InfoRow(RowType.text,  "EXTENSION", "128",  "Pages", width_per_child, 105),
+          InfoRow(RowType.text,  "EXTENSION", "128",  "Pages", widthPerChild, 105),
 
 
         ],
@@ -306,7 +306,7 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
                     child: GestureDetector(
                       child: SmallButtonUnderlined("View All"),
                       onTap: () async {
-                        final String result = await Navigator.of(context)
+                        await Navigator.of(context)
                             .push(MaterialPageRoute(builder: (context) => CommentPage.showingAllBookComments(this.book, inactiveAddCommentOption: true,)));
                       },
                     )
@@ -385,7 +385,6 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
 
   _buildBookPage(BuildContext context){
     double width = MediaQuery.of(context).size.width;
-    double width_per_child = (width - 30 - (10 * 2)) / 3;
     _initializeItems(width);
 
     return ListView.builder(

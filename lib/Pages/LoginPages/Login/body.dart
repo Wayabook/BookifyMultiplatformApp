@@ -8,10 +8,7 @@ import 'package:bookifyapp/Pages/LoginPages/Components/rounded_button.dart';
 import 'package:bookifyapp/Pages/LoginPages/Components/social_icon.dart';
 import 'package:bookifyapp/Pages/LoginPages/Components/or_divider.dart';
 import 'package:bookifyapp/Pages/LoginPages/Signup/singup_page.dart';
-import 'package:flutter_svg/svg.dart';
-
 import '../../first_time_form_page.dart';
-import '../../main_tab_page.dart';
 
 class Body extends StatelessWidget {
   const Body({

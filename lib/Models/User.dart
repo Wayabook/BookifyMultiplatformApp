@@ -2,11 +2,7 @@ import 'package:bookifyapp/Models/Book.dart';
 import 'package:bookifyapp/Models/Genre.dart';
 import 'package:bookifyapp/Models/Recommendation.dart';
 import 'package:flutter/material.dart';
-
-import 'Chapter.dart';
-import 'Item.dart';
 import 'Lecture.dart';
-import 'Shop.dart';
 
 class User extends ChangeNotifier{
 
@@ -262,14 +258,14 @@ class User extends ChangeNotifier{
 
   String get profilePictureUrl => _profile_picture_url;
 
-  set profilePictureUrl(String profile_picture_url) {
-    _profile_picture_url = profile_picture_url;
+  set profilePictureUrl(String profilePictureUrl) {
+    _profile_picture_url = profilePictureUrl;
   }
 
   Map<String, List<Lecture>> get bookLists => _lecture_lists;
 
-  set bookLists(Map<String, List<Book>> book_lists) {
-    _lecture_lists = book_lists;
+  set bookLists(Map<String, List<Book>> bookLists) {
+    _lecture_lists = bookLists;
   }
 
   User(
