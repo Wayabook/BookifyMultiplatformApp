@@ -1,0 +1,112 @@
+@startuml
+Book }|--|| Chapter
+Book }o--o{ User
+Book }|--|| Item
+Book ||--|{ Genre
+Chapter }o--o| Reaction
+Chapter }o--o| MainComment
+Shop }|--|| Item
+Recommendation }|-- Book
+Recommendation ||-- User
+User }o-- Genre
+User }o--o{ Lecture
+User }o--o{ Recommendation
+User }o--o{ User
+
+
+
+class Book {
+  + String _title;
+  + String _author;
+  + String _coverImage;
+  + String _summary;
+  + int _year;
+  + int _extension;
+  + String editorial;
+  + String language;
+  + int addedBy;
+  + double avgRating;
+  + bool isNew;
+  + Genre genre;
+  + List<Chapter> chapters;
+  + List<User> friends_reading;
+  + Map<String, List<Item>> _shops_items;
+}
+
+class Chapter{
+
+  + int number;
+  + String title;
+  + List<Reaction> reactions;
+  + List<MainComment> comments;
+}
+
+class Comment {
+  + User author;
+  + int likes;
+  + String comment;
+}
+
+class Genre {
+  - String _id;
+  + String _name;
+  + String _picture;
+}
+
+class Item{
+  + String _id;
+  + double _price;
+  + String _symbol;
+  + String _shop_link;
+  + String _isbn;
+  + String _ean;
+  + Shop _shop;
+}
+
+class Lecture extends Book{
+
+  + int currentChapter;
+  + bool read;
+}
+
+class MainComment extends Comment{
+  + List<Comment> answers;
+}
+
+class Reaction {
+  + String name;
+  + String image;
+  + int percentage;
+}
+
+class Recommendation {
+
+  + Book _recommendedBook;
+  + User _recommendedBy;
+}
+
+class Shop {
+  - String _id;
+  + String _country_id;
+  + String _name;
+  + String _logo_url;
+}
+
+class User extends ChangeNotifier{
+
+  - String _uid;
+  + String _name;
+  + List<Genre> _interested_genres;
+  + String _profile_picture_url;
+  + Map<String, List<Lecture>> _lecture_lists;
+  + List<Recommendation> _recommendations_received;
+  + int _books_read;
+  + int _chapters_read;
+  + int _pages_read;
+  + List<User> _friends;
+}
+
+
+
+
+@enduml
