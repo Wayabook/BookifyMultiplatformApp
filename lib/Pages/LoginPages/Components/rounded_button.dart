@@ -1,3 +1,4 @@
+import 'package:bookifyapp/SizeConfig.dart';
 import 'package:flutter/material.dart';
 
 
@@ -21,22 +22,26 @@ class RoundedButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    print(size);
-    var a = size.width*0.8;
-    print(a);
+
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 10),
+      margin: EdgeInsets.symmetric(vertical: (1.47 * SizeConfig.heightMultiplier)),
       width: size.width * 0.8,
+      height: (8.8 * SizeConfig.heightMultiplier),
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(29),
+        borderRadius: BorderRadius.circular((7.05 * SizeConfig.imageSizeMultiplier)),
         child: FlatButton(
-          padding: EdgeInsets.symmetric(vertical: 20, horizontal: 40),
+          padding: EdgeInsets.symmetric(
+              vertical: (2.9 * SizeConfig.heightMultiplier),
+              horizontal: (9.73 * SizeConfig.widthMultiplier)),
           color: color,
           onPressed: press,
           child: Text(
             text,
             overflow: TextOverflow.ellipsis,
-            style: TextStyle(color: textColor),
+            style: TextStyle(
+                color: textColor,
+                fontSize: (2.05 * SizeConfig.textMultiplier)
+            ),
           ),
         ),
       ),

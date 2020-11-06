@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../SizeConfig.dart';
+
 class OrDivider extends StatelessWidget {
 
   static const kPrimaryColor = Color(0xFF6F35A5);
@@ -21,6 +23,7 @@ class OrDivider extends StatelessWidget {
               style: TextStyle(
                 color: kPrimaryColor,
                 fontWeight: FontWeight.w600,
+                fontSize: (2.05 * SizeConfig.textMultiplier),
               ),
             ),
           ),

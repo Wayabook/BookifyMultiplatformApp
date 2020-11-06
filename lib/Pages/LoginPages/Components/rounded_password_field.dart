@@ -2,6 +2,8 @@ import 'package:bookifyapp/Design/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/Pages/LoginPages/Components/text_field_container.dart';
 
+import '../../../SizeConfig.dart';
+
 
 class RoundedPasswordField extends StatelessWidget {
 
@@ -15,7 +17,16 @@ class RoundedPasswordField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFieldContainer(
       child: TextField(
-        obscureText: true,
+        //obscureText: true,
+        maxLines: null,
+        minLines: null,
+        expands: true,
+        textAlignVertical: TextAlignVertical.center,
+        //obscureText: true,
+        style: TextStyle(
+          fontWeight: FontWeight.w600,
+          fontSize: (2.05 * SizeConfig.textMultiplier),
+        ),
         onChanged: onChanged,
         cursorColor: kPrimaryDarkColor,
         decoration: InputDecoration(
@@ -23,10 +34,12 @@ class RoundedPasswordField extends StatelessWidget {
           icon: Icon(
             Icons.lock,
             color: kPrimaryDarkColor,
+            size: (7 * SizeConfig.imageSizeMultiplier),
           ),
           suffixIcon: Icon(
             Icons.visibility,
             color: kPrimaryDarkColor,
+            size: (7 * SizeConfig.imageSizeMultiplier),
           ),
           border: InputBorder.none,
         ),

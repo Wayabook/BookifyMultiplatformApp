@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../SizeConfig.dart';
+
 class AlreadyHaveAnAccountCheck extends StatelessWidget {
 
 
@@ -21,7 +23,10 @@ class AlreadyHaveAnAccountCheck extends StatelessWidget {
       children: <Widget>[
         Text(
           login ? "Don’t have an Account ? " : "Already have an Account ? ",
-          style: TextStyle(color: kPrimaryColor),
+          style: TextStyle(
+              color: kPrimaryColor,
+              fontSize: (2.05 * SizeConfig.textMultiplier)
+          ),
         ),
         GestureDetector(
           onTap: press,
@@ -31,6 +36,7 @@ class AlreadyHaveAnAccountCheck extends StatelessWidget {
             style: TextStyle(
               color: kPrimaryColor,
               fontWeight: FontWeight.bold,
+              fontSize: (2.05 * SizeConfig.textMultiplier)
             ),
           ),
         )

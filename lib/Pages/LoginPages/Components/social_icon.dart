@@ -1,4 +1,5 @@
 import 'package:bookifyapp/Design/constants.dart';
+import 'package:bookifyapp/SizeConfig.dart';
 import 'package:flutter/material.dart';
 //import 'package:flutter_auth/constants.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -19,19 +20,19 @@ class SocialIcon extends StatelessWidget {
     return GestureDetector(
       onTap: press,
       child: Container(
-        margin: EdgeInsets.symmetric(horizontal: 10),
-        padding: EdgeInsets.all(20),
+        margin: EdgeInsets.symmetric(horizontal: (2.43 * SizeConfig.widthMultiplier)),
+        padding: EdgeInsets.all((4.86 * SizeConfig.widthMultiplier)),
         decoration: BoxDecoration(
           border: Border.all(
-            width: 2,
+            width: (0.48 * SizeConfig.widthMultiplier),
             color: kPrimaryDarkColor,
           ),
           shape: BoxShape.circle,
         ),
         child: SvgPicture.asset(
           iconSrc,
-          height: 20,
-          width: 20,
+          height: (2.94 * SizeConfig.heightMultiplier),
+          width: (4.86 * SizeConfig.widthMultiplier),
         ),
       ),
     );

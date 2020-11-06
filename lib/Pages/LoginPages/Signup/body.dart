@@ -44,7 +44,6 @@ class Body extends StatelessWidget {
                 );
               },
             ),
-            SizedBox(height: size.height * 0.01),
             AlreadyHaveAnAccountCheck(
               login: false,
               press: () {

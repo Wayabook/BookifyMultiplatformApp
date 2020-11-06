@@ -24,7 +24,6 @@ class Body extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
 
-            //SizedBox(height: size.height * 0.03),
             Image.asset(
               "assets/icons/bookify_icon.png",
               height: size.height * 0.45,
