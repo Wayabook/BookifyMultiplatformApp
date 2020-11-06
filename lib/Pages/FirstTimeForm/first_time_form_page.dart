@@ -8,6 +8,7 @@ import 'package:bookifyapp/Models/Book.dart';
 import 'package:bookifyapp/Models/Genre.dart';
 import 'package:bookifyapp/Pages/add_custom_list_page.dart';
 import 'package:bookifyapp/Pages/main_tab_page.dart';
+import 'package:bookifyapp/SizeConfig.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:flutter_page_indicator/flutter_page_indicator.dart';
@@ -75,7 +76,12 @@ class _FirstTimeFormPage extends State<FirstTimeFormPage> with TickerProviderSta
         child: Stack(
           children: [
             Padding(
-              padding: EdgeInsets.fromLTRB(5, 40, 5, 10),
+              padding: EdgeInsets.fromLTRB(
+                  (1.21 * SizeConfig.widthMultiplier),
+                  (5.8 * SizeConfig.heightMultiplier),
+                  (1.21 * SizeConfig.widthMultiplier),
+                  (1.47 * SizeConfig.heightMultiplier),
+              ),
               child: Container(
                   color: kPrimaryLightColor,
                   child: Align(
@@ -92,10 +98,14 @@ class _FirstTimeFormPage extends State<FirstTimeFormPage> with TickerProviderSta
 
 
             Padding(
-              padding: EdgeInsets.fromLTRB(10, 60, 10, 30),
+              padding: EdgeInsets.fromLTRB(
+                  (2.43 * SizeConfig.widthMultiplier),
+                  (8.8 * SizeConfig.heightMultiplier),
+                  (2.43 * SizeConfig.widthMultiplier),
+                  (4.4 * SizeConfig.heightMultiplier)
+              ),
               child: Container(
-                height: MediaQuery.of(context).size.height - 90,
-                //height: MediaQuery.of(context).size.height - 45,
+                height: MediaQuery.of(context).size.height - (13.23 * SizeConfig.heightMultiplier),
                 child: Center(
                   child: Card(
                       color: kPrimaryDarkColor,
@@ -107,7 +117,7 @@ class _FirstTimeFormPage extends State<FirstTimeFormPage> with TickerProviderSta
                         containerWidth: double.infinity,
                         itemCount: 4,
                         pagination: SwiperPagination(
-                          margin: new EdgeInsets.all(5.0),
+                          margin: new EdgeInsets.all((1.21 * SizeConfig.widthMultiplier)),
                           builder: new DotSwiperPaginationBuilder(
                           color: Colors.grey, activeColor: Colors.blue),
                         ),
@@ -140,9 +150,14 @@ class _FirstTimeFormPage extends State<FirstTimeFormPage> with TickerProviderSta
                             return Center(
                               child: Column(
                                 children: [
-                                  ListTitle(title, fontSize: 22,),
+                                  ListTitle(title, fontSize: (3.23 * SizeConfig.textMultiplier),),
                                   Padding(
-                                      padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                                      padding: EdgeInsets.fromLTRB(
+                                          (2.43 * SizeConfig.widthMultiplier),
+                                          0,
+                                          (2.43 * SizeConfig.widthMultiplier),
+                                          0
+                                      ),
                                       child: GenresGrid(Genre.getMockGenres(),
                                       )
                                   ),
@@ -158,8 +173,8 @@ class _FirstTimeFormPage extends State<FirstTimeFormPage> with TickerProviderSta
             ),
 
             Positioned(
-              right: 10,
-              bottom: 15,
+              right: (1.47 * SizeConfig.heightMultiplier),
+              bottom: (2.2 * SizeConfig.heightMultiplier),
               child: FloatingActionButton(
                 heroTag: UniqueKey(),
                 backgroundColor: _floatingActionButtonColor,

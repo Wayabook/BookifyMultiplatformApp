@@ -1,4 +1,5 @@
 import 'package:bookifyapp/Design/constants.dart';
+import 'package:bookifyapp/Pages/FirstTimeForm/first_time_form_page.dart';
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/Pages/LoginPages/Login/background.dart';
 import 'package:bookifyapp/Pages/LoginPages/Components/already_have_an_account_acheck.dart';
@@ -8,7 +9,6 @@ import 'package:bookifyapp/Pages/LoginPages/Components/rounded_button.dart';
 import 'package:bookifyapp/Pages/LoginPages/Components/social_icon.dart';
 import 'package:bookifyapp/Pages/LoginPages/Components/or_divider.dart';
 import 'package:bookifyapp/Pages/LoginPages/Signup/singup_page.dart';
-import '../../first_time_form_page.dart';
 
 class Body extends StatelessWidget {
   const Body({
