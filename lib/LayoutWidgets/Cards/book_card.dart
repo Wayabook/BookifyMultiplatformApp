@@ -16,10 +16,11 @@ import 'package:bookifyapp/LayoutWidgets/Dialogs/dialog_with_input_text.dart';
 import 'package:bookifyapp/Models/User.dart';
 import 'package:provider/provider.dart';
 
+import '../../SizeConfig.dart';
+
 
 class BookCard extends StatelessWidget {
 
-  //List<Book> books;
   BuildContext context;
   BookCardType type;
   Lecture book;
@@ -38,15 +39,16 @@ class BookCard extends StatelessWidget {
     if(this.type == BookCardType.add_option){
       return Card(
         key: UniqueKey(),
-        margin: EdgeInsets.all(10),
+        color: Colors.transparent,
+        margin: EdgeInsets.all((2.43 * SizeConfig.imageSizeMultiplier)), // 10
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(7.0),
+          borderRadius: BorderRadius.circular((1.7 * SizeConfig.imageSizeMultiplier)),
         ),
-        elevation: 10,
+        elevation: (2.43 * SizeConfig.imageSizeMultiplier), // 10
         child: Stack(
             children: <Widget>[
               Padding(
-                padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                padding: EdgeInsets.all(0),
                 child: Align(
                   alignment: Alignment.center,
                   child: InkWell(
@@ -70,15 +72,16 @@ class BookCard extends StatelessWidget {
     } else if (this.type == BookCardType.without_add_option) {
       return Card(
         key: UniqueKey(),
-        margin: EdgeInsets.all(10),
+        color: Colors.transparent,
+        margin: EdgeInsets.all((2.43 * SizeConfig.imageSizeMultiplier)), // 10
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(7.0),
+          borderRadius: BorderRadius.circular((1.7 * SizeConfig.imageSizeMultiplier)),
         ),
-        elevation: 10,
+        elevation: (2.43 * SizeConfig.imageSizeMultiplier), // 10
         child: Stack(
             children: <Widget>[
               Padding(
-                padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                padding: EdgeInsets.all(0),
                 child: Align(
                   alignment: Alignment.center,
                   child: InkWell(
@@ -98,16 +101,16 @@ class BookCard extends StatelessWidget {
     } else if (this.type == BookCardType.without_add_option_and_progress_bar) {
       return Card(
         key: UniqueKey(),
-        color: Colors.black,
-        margin: EdgeInsets.all(10),
+        color: Colors.transparent,
+        margin: EdgeInsets.all((2.43 * SizeConfig.imageSizeMultiplier)), // 10
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(7.0),
+          borderRadius: BorderRadius.circular((1.7 * SizeConfig.imageSizeMultiplier)),
         ),
-        elevation: 10,
+        elevation: (2.43 * SizeConfig.imageSizeMultiplier), // 10
         child: Stack(
             children: <Widget>[
               Padding(
-                padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                padding: EdgeInsets.all(0),
                 child: Align(
                   alignment: Alignment.center,
                   child: InkWell(
@@ -124,13 +127,12 @@ class BookCard extends StatelessWidget {
               ),
 
               Positioned(
-                bottom: 1,
-                right: 1,
-                left: 1,
+                bottom: (0.24 * SizeConfig.imageSizeMultiplier), // 1
+                right: (0.24 * SizeConfig.imageSizeMultiplier),
+                left: (0.24 * SizeConfig.imageSizeMultiplier),
                 child: Center(
                   child: LinearPercentIndicator(
-                    //width: double.infinity,
-                    lineHeight: 5.0,
+                    lineHeight: (0.73 * SizeConfig.heightMultiplier), // 5
                     percent: !this.book.finished ? this.book.progress : 1.0,
                     progressColor: !this.book.finished ? Colors.lightGreen : Colors.deepPurple,
                   ),
@@ -142,16 +144,16 @@ class BookCard extends StatelessWidget {
     } else if (this.type == BookCardType.book_card_in_grid){
       return Card(
         key: UniqueKey(),
-        color: Colors.black,
-        margin: EdgeInsets.all(10),
+        color: Colors.transparent,
+        margin: EdgeInsets.all((2.43 * SizeConfig.imageSizeMultiplier)),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(7.0),
+          borderRadius: BorderRadius.circular(1.45 * SizeConfig.imageSizeMultiplier),
         ),
-        elevation: 10,
+        elevation: (2.43 * SizeConfig.imageSizeMultiplier),
         child: Stack(
             children: <Widget>[
               Padding(
-                padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                padding: EdgeInsets.all(0),
                 child: Align(
                   alignment: Alignment.center,
                   child: InkWell(
@@ -160,7 +162,7 @@ class BookCard extends StatelessWidget {
                           .push(MaterialPageRoute(builder: (context) => BookPage("title", this.book, _getBooks())));
                     },
                     child: Image.network(
-                      this.book.picture, fit: BoxFit.fill, height: 200,
+                      this.book.picture, fit: BoxFit.fill, height: (29.28 * SizeConfig.heightMultiplier),
                     ),
                   ),
                 ),
@@ -173,7 +175,7 @@ class BookCard extends StatelessWidget {
                 child:  Center(
                   child: LinearPercentIndicator(
                     //width: double.infinity,
-                    lineHeight: 5.0,
+                    lineHeight: (0.73 * SizeConfig.heightMultiplier), //
                     percent: !this.book.finished ? this.book.progress : 1.0,
                     progressColor: !this.book.finished ? Colors.lightGreen : Colors.deepPurple,
                   ),
@@ -233,13 +235,13 @@ class BookCard extends StatelessWidget {
         },
         child: Card(
           key: UniqueKey(),
-          margin: EdgeInsets.all(10),
+          margin: EdgeInsets.all((2.43 * SizeConfig.imageSizeMultiplier)), // 10
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(7.0),
+            borderRadius: BorderRadius.circular((1.7 * SizeConfig.imageSizeMultiplier)),
           ),
-          elevation: 10,
+          elevation: (2.43 * SizeConfig.imageSizeMultiplier), // 10
           child: Container(
-              width: 120,
+              width: (29.19 * SizeConfig.widthMultiplier), // 120
               color: kPrimaryLightColor,
               child: Center(
                   child: Column(
@@ -249,13 +251,14 @@ class BookCard extends StatelessWidget {
                       Icon(
                         icon,
                         color: kPrimaryDarkColor,
-                        size: 50,
+                        size: (12.16 * SizeConfig.imageSizeMultiplier),
                       ),
 
                       Text(
                         text,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
+                          fontSize: (2.04 * SizeConfig.textMultiplier), // 14
                           color: kPrimaryDarkColor,
                           fontWeight: FontWeight.bold,
                         ),

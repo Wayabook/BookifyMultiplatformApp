@@ -12,6 +12,8 @@ import 'package:flutter/material.dart';
 import 'package:bookifyapp/Models/User.dart';
 import 'package:provider/provider.dart';
 
+import '../../SizeConfig.dart';
+
 
 
 class BooskelfGridList extends StatefulWidget {
@@ -60,8 +62,8 @@ class _BooskelfGridList extends State<BooskelfGridList>
               physics: NeverScrollableScrollPhysics(), // to disable GridView's scrolling
               shrinkWrap: true,
               crossAxisCount: 3,
-              mainAxisSpacing: 10.0,
-              crossAxisSpacing: 10.0,
+              mainAxisSpacing: (2.43 * SizeConfig.widthMultiplier), // 10
+              crossAxisSpacing: (1.47 * SizeConfig.heightMultiplier),
               childAspectRatio:  (MediaQuery.of(context).size.width / 4) / (MediaQuery.of(context).size.height / 4),
               children: List.generate(widget.user.lectures[key].length, (index) {
                 return BookCard(widget.user.lectures[key][index], BookCardType.book_card_in_grid);

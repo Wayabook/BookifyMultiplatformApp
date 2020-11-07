@@ -4,6 +4,8 @@ import 'package:bookifyapp/LayoutWidgets/Buttons/small_button_underlined.dart';
 import 'package:bookifyapp/Models/User.dart';
 import 'package:flutter/material.dart';
 
+import '../../SizeConfig.dart';
+
 class ListTitle extends StatelessWidget{
 
   User user;
@@ -22,7 +24,7 @@ class ListTitle extends StatelessWidget{
         this.buttonType = ButtonType.view_all,
         this.user,
         this.onListTitleButtonTapped,
-        this.fontSize = 30,
+        this.fontSize = 0,
         this.barAndTitleColor = kPrimaryLightColor,
         this.withPadding = true,
       });
@@ -30,22 +32,29 @@ class ListTitle extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
+    if(this.fontSize == 0)
+      this.fontSize = 4.39 * SizeConfig.textMultiplier; // 30
     double width = MediaQuery.of(context).size.width;
     return Container(
       child: Column(
         children: <Widget>[
           Container(
             margin: withPadding ?
-            EdgeInsets.fromLTRB(10, 10, 2, 0) :
-            EdgeInsets.fromLTRB(0, 0, 0, 0),
+            EdgeInsets.fromLTRB(
+                (2.43 * SizeConfig.widthMultiplier),
+                (1.47 * SizeConfig.heightMultiplier),
+                (0.29 * SizeConfig.heightMultiplier),
+                0) :
+            EdgeInsets.all(0.0),
             child: withButton ? _getRowWithButton(context) : _getTitle(),
           ),
 
           Padding(
-            padding: withPadding ?
-            EdgeInsets.fromLTRB(15, 10, 15, 10) :
-            EdgeInsets.fromLTRB(0, 0, 0, 0),
-            child: Container(color: this.barAndTitleColor, height: 2, width: width),
+            padding: withPadding ? EdgeInsets.symmetric(
+                horizontal: (3.64 * SizeConfig.widthMultiplier),
+                vertical: (1.46 * SizeConfig.heightMultiplier)) :
+            EdgeInsets.all(0.0),
+            child: Container(color: this.barAndTitleColor, height: (0.29 * SizeConfig.heightMultiplier), width: width),
           ),
         ],
       ),
@@ -76,7 +85,12 @@ class ListTitle extends StatelessWidget{
           child:  Align(
             alignment: Alignment.bottomRight,
             child:  Padding(
-              padding: EdgeInsets.fromLTRB(0, 0, 15, 0),
+              padding: EdgeInsets.fromLTRB(
+                  0,
+                  0,
+                  (3.64 * SizeConfig.widthMultiplier),
+                  0
+              ),
               child: (this.buttonType == ButtonType.edit_list || this.buttonType == ButtonType.copy_list) ?
               _getEditListButton(context) : _getViewAllButton(context),
             )
@@ -105,7 +119,7 @@ class ListTitle extends StatelessWidget{
           Flexible(
             flex: 5,
             child: Padding(
-              padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+              padding: EdgeInsets.symmetric(horizontal: (2.43 * SizeConfig.widthMultiplier)),
               child:  _getEditOrCopyButton(context),
             ),
           ) ,

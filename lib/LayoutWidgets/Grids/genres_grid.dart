@@ -1,5 +1,5 @@
 import 'package:bookifyapp/Design/constants.dart';
-import 'package:bookifyapp/LayoutWidgets/Cards/genre_container.dart';
+import 'package:bookifyapp/LayoutWidgets/Cards/Genre/genre_container.dart';
 import 'package:bookifyapp/Models/Genre.dart';
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/Models/User.dart';
@@ -55,8 +55,8 @@ class _GenresGrid extends State<GenresGrid> with TickerProviderStateMixin{
         key: UniqueKey(),
         shrinkWrap: true,
         crossAxisCount: 3,
-        mainAxisSpacing: (2.43 * SizeConfig.widthMultiplier),
-        crossAxisSpacing: (1.47 * SizeConfig.heightMultiplier),
+        mainAxisSpacing: (2.43 * SizeConfig.widthMultiplier), // 10
+        crossAxisSpacing: (1.47 * SizeConfig.heightMultiplier), // 10
         children: List.generate(widget.genres.length, (index) {
           return Container(
               width: (MediaQuery.of(context).size.width / 3),

@@ -1,6 +1,6 @@
 import 'package:bookifyapp/Design/constants.dart';
 import 'package:bookifyapp/Enums/profile_type.dart';
-import 'package:bookifyapp/Pages/profile_page.dart';
+import 'package:bookifyapp/Pages/Profile/profile_page.dart';
 import 'package:bookifyapp/Pages/reading_page.dart';
 import 'package:bookifyapp/SizeConfig.dart';
 import 'package:custom_navigator/custom_navigation.dart';

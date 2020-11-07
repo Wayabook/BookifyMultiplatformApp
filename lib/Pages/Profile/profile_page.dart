@@ -8,7 +8,8 @@ import 'package:bookifyapp/LayoutWidgets/Dialogs/recommendation_dialog.dart';
 import 'package:bookifyapp/LayoutWidgets/Lists/list_title.dart';
 import 'package:bookifyapp/Models/Recommendation.dart';
 import 'package:bookifyapp/Pages/friends_page.dart';
-import 'package:bookifyapp/Pages/genres_page.dart';
+import 'package:bookifyapp/Pages/GenrePages/genres_page.dart';
+import 'package:bookifyapp/SizeConfig.dart';
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/LayoutWidgets/arc_banner_image.dart';
 import 'package:bookifyapp/LayoutWidgets/Profile/profile_info.dart';
@@ -24,7 +25,7 @@ import 'dart:math';
 
 import 'package:provider/provider.dart';
 
-import 'bookshelf_page.dart';
+import '../bookshelf_page.dart';
 
 
 class ProfilePage extends StatefulWidget {
@@ -253,14 +254,23 @@ class _ProfilePage extends State<ProfilePage> implements TitleButtonInterface{
 
   _getHorizontalLineSeparator(){
     return Padding(
-      padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
-      child: Container(color: kPrimaryLightColor, height: 2, width: width),
+      padding: EdgeInsets.all((2.43 * SizeConfig.widthMultiplier)),
+      child: Container(
+          color: kPrimaryLightColor,
+          height: (0.29 * SizeConfig.heightMultiplier),
+          width: width
+      ),
     );
   }
 
   _getGenresTitle(){
     return Container(
-      margin: EdgeInsets.fromLTRB(10, 10, 2, 0),
+      margin: EdgeInsets.fromLTRB(
+          (2.43 * SizeConfig.widthMultiplier), //10
+          (1.46 * SizeConfig.heightMultiplier), // 10
+          (0.48 * SizeConfig.widthMultiplier), // 2
+          0
+      ),
       child:  Align(
           alignment: Alignment.topLeft,
           child: widget.profileType  == ProfileType.user_profile ? ListTitle(
@@ -278,7 +288,12 @@ class _ProfilePage extends State<ProfilePage> implements TitleButtonInterface{
 
   _getBookshelfTitle(){
     return Container(
-      margin: EdgeInsets.fromLTRB(10, 10, 2, 0),
+      margin: EdgeInsets.fromLTRB(
+          (2.43 * SizeConfig.widthMultiplier), // 10
+          (1.46 * SizeConfig.heightMultiplier), // 10
+          (0.48 * SizeConfig.widthMultiplier), // 2
+          0
+      ),
       child:  Align(
           alignment: Alignment.topLeft,
           child: ListTitle(
