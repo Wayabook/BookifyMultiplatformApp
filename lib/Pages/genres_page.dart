@@ -1,6 +1,7 @@
 import 'package:bookifyapp/Design/constants.dart';
 import 'package:bookifyapp/LayoutWidgets/Grids/genres_grid.dart';
 import 'package:bookifyapp/Models/Genre.dart';
+import 'package:bookifyapp/SizeConfig.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/Models/User.dart';
@@ -16,18 +17,28 @@ class GenresPage extends StatelessWidget {
       backgroundColor: kPrimaryDarkColor,
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.fromLTRB(5, 10, 5, 10),
+          padding: EdgeInsets.fromLTRB(
+              (1.21 * SizeConfig.widthMultiplier),
+              (1.46 * SizeConfig.heightMultiplier),
+              (1.21 * SizeConfig.widthMultiplier),
+              (1.46 * SizeConfig.heightMultiplier)
+          ),
           child: Column(
             children: [
               Padding(
-                padding: EdgeInsets.fromLTRB(5, 0, 5, 10),
+                padding: EdgeInsets.fromLTRB(
+                    (1.21 * SizeConfig.widthMultiplier),
+                    0,
+                    (1.21 * SizeConfig.widthMultiplier),
+                    (1.46 * SizeConfig.heightMultiplier)
+                ),
                 child: Text(
                   "Select or unselect your genres of interest.",
                   textAlign: TextAlign.left,
-                  overflow: TextOverflow.ellipsis,
+                  overflow: TextOverflow.clip,
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: 20,
+                    fontSize: (2.92 * SizeConfig.textMultiplier),
                     color: kPrimaryLightColor
                   )
                 ),

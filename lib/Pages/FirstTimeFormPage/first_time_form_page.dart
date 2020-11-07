@@ -119,7 +119,10 @@ class _FirstTimeFormPage extends State<FirstTimeFormPage> with TickerProviderSta
                         pagination: SwiperPagination(
                           margin: new EdgeInsets.all((1.21 * SizeConfig.widthMultiplier)),
                           builder: new DotSwiperPaginationBuilder(
-                          color: Colors.grey, activeColor: Colors.blue),
+                              color: Colors.grey,
+                              activeColor: Colors.blue,
+                              size: 3.64 * SizeConfig.imageSizeMultiplier
+                          ),
                         ),
                         itemBuilder: (BuildContext context, int index) {
                           String title = "";
@@ -175,29 +178,36 @@ class _FirstTimeFormPage extends State<FirstTimeFormPage> with TickerProviderSta
             Positioned(
               right: (1.47 * SizeConfig.heightMultiplier),
               bottom: (2.2 * SizeConfig.heightMultiplier),
-              child: FloatingActionButton(
-                heroTag: UniqueKey(),
-                backgroundColor: _floatingActionButtonColor,
-                child: RotationTransition(
-                  turns: animation,
-                  child: Icon(
-                    _icon,
-                    color:kPrimaryDarkColor
+              child: Container(
+                width: (12.16 * SizeConfig.imageSizeMultiplier),
+                height: (12.16 * SizeConfig.imageSizeMultiplier),
+                child: FittedBox(
+                  child: FloatingActionButton(
+                    heroTag: UniqueKey(),
+                    backgroundColor: _floatingActionButtonColor,
+                    child: RotationTransition(
+                      turns: animation,
+                      child: Icon(
+                        _icon,
+                        color:kPrimaryDarkColor,
+                        //size: (5.83 * SizeConfig.imageSizeMultiplier),
+                      ),
+                    ),
+                    onPressed: () {
+                      if(_swiperIndex != 3){
+                        _swiperIndex += 1;
+                        _swiperController.move(_swiperIndex);
+                        if(_swiperIndex  == 3){
+                          setState(() {
+                            animationController.forward();
+                          });
+                        }
+                      } else {
+                        _goToMainTabPage(context);
+                      }
+                    },
                   ),
-                ),
-                onPressed: () {
-                  if(_swiperIndex != 3){
-                    _swiperIndex += 1;
-                    _swiperController.move(_swiperIndex);
-                    if(_swiperIndex  == 3){
-                      setState(() {
-                        animationController.forward();
-                      });
-                    }
-                  } else {
-                    _goToMainTabPage(context);
-                  }
-                },
+                )
               )
             ),
           ],

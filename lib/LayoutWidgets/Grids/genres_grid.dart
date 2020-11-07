@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:bookifyapp/Models/User.dart';
 import 'package:provider/provider.dart';
 
+import '../../SizeConfig.dart';
+
 
 
 class GenresGrid extends StatefulWidget {
@@ -53,14 +55,14 @@ class _GenresGrid extends State<GenresGrid> with TickerProviderStateMixin{
         key: UniqueKey(),
         shrinkWrap: true,
         crossAxisCount: 3,
-        mainAxisSpacing: 10.0,
-        crossAxisSpacing: 10.0,
+        mainAxisSpacing: (2.43 * SizeConfig.widthMultiplier),
+        crossAxisSpacing: (1.47 * SizeConfig.heightMultiplier),
         children: List.generate(widget.genres.length, (index) {
           return Container(
               width: (MediaQuery.of(context).size.width / 3),
               height: (MediaQuery.of(context).size.height / 4),
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular((4.86 * SizeConfig.imageSizeMultiplier)),
                 color: genresOfInterest.contains(widget.genres[index]) ? kGreenLightColor : kSecondaryLightColor,
               ),
               child:  GestureDetector(
@@ -68,8 +70,13 @@ class _GenresGrid extends State<GenresGrid> with TickerProviderStateMixin{
                     _setGenresList(index);
                   },
                   child: Padding(
-                    padding: EdgeInsets.all(genresOfInterest.contains(widget.genres[index]) ? 4 : 2),
-                    child: GenreContainer(widget.genres[index], width: (MediaQuery.of(context).size.width / 3) -10 , height: (MediaQuery.of(context).size.height / 4) - 10, ),
+                    padding: EdgeInsets.all(
+                        genresOfInterest.contains(widget.genres[index]) ? (0.97 * SizeConfig.imageSizeMultiplier) : (0.48 * SizeConfig.imageSizeMultiplier)
+                    ),
+                    child: GenreContainer(
+                      widget.genres[index], width: (MediaQuery.of(context).size.width / 3) - (2.43 * SizeConfig.widthMultiplier),
+                      height: (MediaQuery.of(context).size.height / 4) - (1.47 * SizeConfig.heightMultiplier),
+                    ),
                   )
               )
           );

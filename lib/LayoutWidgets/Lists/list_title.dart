@@ -35,12 +35,16 @@ class ListTitle extends StatelessWidget{
       child: Column(
         children: <Widget>[
           Container(
-            margin: withPadding ? EdgeInsets.fromLTRB(10, 10, 2, 0) : EdgeInsets.fromLTRB(0, 0, 0, 0),
+            margin: withPadding ?
+            EdgeInsets.fromLTRB(10, 10, 2, 0) :
+            EdgeInsets.fromLTRB(0, 0, 0, 0),
             child: withButton ? _getRowWithButton(context) : _getTitle(),
           ),
 
           Padding(
-            padding: withPadding ? EdgeInsets.fromLTRB(15, 10, 15, 10) : EdgeInsets.fromLTRB(0, 0, 0, 0),
+            padding: withPadding ?
+            EdgeInsets.fromLTRB(15, 10, 15, 10) :
+            EdgeInsets.fromLTRB(0, 0, 0, 0),
             child: Container(color: this.barAndTitleColor, height: 2, width: width),
           ),
         ],

@@ -1,5 +1,5 @@
 import 'package:bookifyapp/Design/constants.dart';
-import 'package:bookifyapp/Pages/FirstTimeForm/first_time_form_page.dart';
+import 'package:bookifyapp/Pages/FirstTimeFormPage/first_time_form_page.dart';
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/Pages/LoginPages/Login/login_page.dart';
 import 'package:bookifyapp/Pages/LoginPages/Signup/background.dart';

@@ -2,6 +2,7 @@ import 'package:bookifyapp/Design/constants.dart';
 import 'package:bookifyapp/Enums/button_type.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/genre_container.dart';
 import 'package:bookifyapp/Models/Genre.dart';
+import 'package:bookifyapp/SizeConfig.dart';
 import 'package:bordered_text/bordered_text.dart';
 import 'package:flutter/material.dart';
 
@@ -23,16 +24,20 @@ class GenreCard extends StatelessWidget {
           onAddGenrePressed(ButtonType.edit_genres_list, context);
         },
         child: Card(
-          margin: EdgeInsets.all(10),
+          margin: EdgeInsets.all((1.46 * SizeConfig.heightMultiplier)),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20.0),
+            borderRadius: BorderRadius.circular(
+                (4.86 * SizeConfig.imageSizeMultiplier)
+            ),
           ),
-          elevation: 10,
+          elevation: (1.46 * SizeConfig.heightMultiplier),
           child: Container(
-              width: 110,
+              width: (26.76 * SizeConfig.widthMultiplier),
               //height: double.infinity,
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular(
+                      (4.86 * SizeConfig.imageSizeMultiplier)
+                  ),
                   color: kPrimaryLightColor
               ),
               child: Center(
@@ -43,7 +48,7 @@ class GenreCard extends StatelessWidget {
                       Icon(
                         Icons.add,
                         color: kPrimaryDarkColor,
-                        size: 50,
+                        size: (12.16 * SizeConfig.imageSizeMultiplier),
                       ),
 
                       Text("Add Genre",
@@ -62,16 +67,18 @@ class GenreCard extends StatelessWidget {
     } else {
       return Card(
           color: kPrimaryDarkColor,
-          margin: EdgeInsets.all(10),
+          margin: EdgeInsets.all((1.46 * SizeConfig.heightMultiplier)),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20.0),
+            borderRadius: BorderRadius.circular(
+                (4.86 * SizeConfig.imageSizeMultiplier)
+            ),
           ),
-          elevation: 10,
+          elevation: (1.46 * SizeConfig.heightMultiplier),
           child: Row(
             children: <Widget>[
               Container(
-                  width: 50,
-                  height: 100,
+                  width: (12.16 * SizeConfig.widthMultiplier),
+                  height: (53.52 * SizeConfig.widthMultiplier),
                   child: FittedBox(
                     fit: BoxFit.contain,
                     child: BorderedText(

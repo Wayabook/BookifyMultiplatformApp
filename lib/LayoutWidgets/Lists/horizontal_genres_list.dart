@@ -1,6 +1,7 @@
 import 'package:bookifyapp/Design/constants.dart';
 import 'package:bookifyapp/Enums/button_type.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/genre_card.dart';
+import 'package:bookifyapp/SizeConfig.dart';
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/Models/Genre.dart';
 import 'package:bookifyapp/Enums/list_type.dart';
@@ -33,7 +34,12 @@ class HorizontalGenresList extends StatelessWidget {
     _createListItems();
     return Container(
       child: Card(
-        margin: EdgeInsets.fromLTRB(5, 0, 5, 10),
+        margin: EdgeInsets.fromLTRB(
+            (1.21 * SizeConfig.widthMultiplier),
+            0,
+            (1.21 * SizeConfig.widthMultiplier),
+            (1.46 * SizeConfig.heightMultiplier)
+        ),
         color: kPrimaryDarkColor,
         child: _createListView(),
       ),
@@ -43,7 +49,7 @@ class HorizontalGenresList extends StatelessWidget {
 
   _createListView(){
     return Container(
-      height: 100,
+      height: (14.64 * SizeConfig.heightMultiplier),
       width: double.infinity,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
