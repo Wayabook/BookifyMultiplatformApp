@@ -76,7 +76,7 @@ class _ProfilePage extends State<ProfilePage> implements TitleButtonInterface{
   Widget build(BuildContext context) {
     this.context = context;
     width = MediaQuery.of(context).size.width;
-    widthPerChild = (width - 30 - (10 * 2)) / 3;
+    widthPerChild = (width - (7.29 * SizeConfig.widthMultiplier) - (4.86 * SizeConfig.widthMultiplier)) / (0.72 * SizeConfig.widthMultiplier);
 
     return Scaffold(
       backgroundColor: kPrimaryDarkColor,
@@ -104,13 +104,13 @@ class _ProfilePage extends State<ProfilePage> implements TitleButtonInterface{
     return Stack(
       children: [
         Padding(
-          padding: const EdgeInsets.only(bottom: 120.0),
+          padding: EdgeInsets.only(bottom: (17.56 * SizeConfig.heightMultiplier)), // 120
           child: ArcBannerImage(randomBackgroundImage),
         ),
         Positioned(
           bottom: 0.0,
-          left: 16.0,
-          right: 16.0,
+          left: (2.34 * SizeConfig.heightMultiplier), // 16
+          right: (2.34 * SizeConfig.heightMultiplier), // 16
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
@@ -127,7 +127,8 @@ class _ProfilePage extends State<ProfilePage> implements TitleButtonInterface{
                             child: Icon(
                               Icons.security,
                               color: kPrimaryLightColor,
-                              size: 30,
+                              size: (7.29 * SizeConfig.imageSizeMultiplier), // 30
+
                             ),
                           ),
                           Align(
@@ -135,7 +136,7 @@ class _ProfilePage extends State<ProfilePage> implements TitleButtonInterface{
                             child:Text(
                               "BADGETS",
                               style: TextStyle(
-                                  fontSize: 12,
+                                  fontSize: (1.75 * SizeConfig.textMultiplier), // 12
                                   fontWeight: FontWeight.bold,
                                   color: kPrimaryLightColor),
                             ),
@@ -147,10 +148,6 @@ class _ProfilePage extends State<ProfilePage> implements TitleButtonInterface{
                             context: context,
                             builder: (BuildContext context) => RecommendationDialog(Recommendation.getMockRecommendation()),
                         );
-                        /*Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => BadgetsPage()),
-                        );*/
                       },
                     )
                 ),
@@ -171,7 +168,7 @@ class _ProfilePage extends State<ProfilePage> implements TitleButtonInterface{
                             child: Icon(
                               Icons.people,
                               color: kPrimaryLightColor,
-                              size: 30,
+                              size:  (7.29 * SizeConfig.imageSizeMultiplier), // 30
                             ),
                           ),
                           Align(
@@ -179,7 +176,7 @@ class _ProfilePage extends State<ProfilePage> implements TitleButtonInterface{
                             child:Text(
                               "FRIENDS",
                               style: TextStyle(
-                                  fontSize: 12,
+                                  fontSize: (1.75 * SizeConfig.textMultiplier), // 12
                                   fontWeight: FontWeight.bold,
                                   color: kPrimaryLightColor),
                             ),
@@ -204,7 +201,12 @@ class _ProfilePage extends State<ProfilePage> implements TitleButtonInterface{
 
   _getFriendButtonContainer(){
     return Padding(
-        padding: EdgeInsets.fromLTRB(10, 0, 15, 10),
+        padding: EdgeInsets.fromLTRB(
+            (2.43 * SizeConfig.widthMultiplier), // 10
+            0,
+            (3.64 * SizeConfig.widthMultiplier), // 15
+            (1.46 * SizeConfig.heightMultiplier) // 10
+        ),
         child: _getFriendButton()
     );
   }
@@ -222,20 +224,30 @@ class _ProfilePage extends State<ProfilePage> implements TitleButtonInterface{
               Icons.book,
               widget.user.booksRead.toString(),
               widthPerChild,
-              105,
+              (16.83 * SizeConfig.heightMultiplier), //height = 115
               kPrimaryLightColor),
 
-          Container(color: kPrimaryLightColor, height: 105, width: 2,),
+          Container(
+            color: kPrimaryLightColor,
+            height: (16.83 * SizeConfig.heightMultiplier), //height = 115
+            width: (0.48 * SizeConfig.widthMultiplier), //2
+          ),
 
           InfoRow.withIcon(
               RowType.icon_image,
               "CHAPS READ",
               Icons.collections_bookmark,
               widget.user.chaptersRead.toString(),
-              widthPerChild, 105,
+              widthPerChild,
+              (16.83 * SizeConfig.heightMultiplier), //height = 115
               kPrimaryLightColor),
 
-          Container(color: kPrimaryLightColor, height: 105, width: 2,),
+          Container(
+            color:
+            kPrimaryLightColor,
+            height: (16.83 * SizeConfig.heightMultiplier), //height = 115
+            width: (0.48 * SizeConfig.widthMultiplier), //2
+          ),
 
           InfoRow.withIcon(
               RowType.icon_image,
@@ -243,7 +255,7 @@ class _ProfilePage extends State<ProfilePage> implements TitleButtonInterface{
               Icons.description,
               widget.user.pagesRead.toString(),
               widthPerChild,
-              105,
+              (16.83 * SizeConfig.heightMultiplier), //height = 115
               kPrimaryLightColor),
 
 
@@ -254,13 +266,29 @@ class _ProfilePage extends State<ProfilePage> implements TitleButtonInterface{
 
   _getHorizontalLineSeparator(){
     return Padding(
-      padding: EdgeInsets.all((2.43 * SizeConfig.widthMultiplier)),
+      padding: EdgeInsets.symmetric(
+          horizontal: (3.64 * SizeConfig.widthMultiplier),//15
+          vertical: (1.46 * SizeConfig.heightMultiplier)// 10
+      ),
       child: Container(
           color: kPrimaryLightColor,
           height: (0.29 * SizeConfig.heightMultiplier),
-          width: width
+          //width: width
       ),
     );
+
+    /*return Container(
+        margin:  EdgeInsets.fromLTRB(
+            (2.43 * SizeConfig.widthMultiplier), // 10
+            (1.47 * SizeConfig.heightMultiplier), // 10
+            (0.29 * SizeConfig.heightMultiplier),
+            0
+        ),
+        color: kPrimaryLightColor,
+        height: (0.29 * SizeConfig.heightMultiplier),
+        //width: double.infinity,
+        //width: width -  (2.43 * SizeConfig.widthMultiplier) - (0.48 * SizeConfig.widthMultiplier)
+    );*/
   }
 
   _getGenresTitle(){
@@ -351,54 +379,78 @@ class _ProfilePage extends State<ProfilePage> implements TitleButtonInterface{
         children: [
           Align(
             alignment: Alignment.center,
-            child:  RaisedButton(
-              onPressed: () async {
-                if(widget.isFriend){
-                  int result = await showDialog(
-                    context: context,
-                    builder: (BuildContext context) => DialogWithAcceptAndCancelOptions(
-                        "Delete Friend",
-                        "Are you sure you want to delete friend?",
-                        TextStyle(color: Colors.red,),
-                        TextStyle(color: Colors.blue,)
-                    ),
-                  );
-                  if(result == DialogWithAcceptAndCancelOptions.ACCEPT_TAP){
+            child:  ButtonTheme(
+              height: (5.27 * SizeConfig.heightMultiplier),
+              minWidth: (21.41 * SizeConfig.widthMultiplier),
+              child: RaisedButton(
+                onPressed: () async {
+                  if(widget.isFriend){
+                    int result = await showDialog(
+                      context: context,
+                      builder: (BuildContext context) => DialogWithAcceptAndCancelOptions(
+                          "Delete Friend",
+                          "Are you sure you want to delete friend?",
+                          TextStyle(color: Colors.red,),
+                          TextStyle(color: Colors.blue,)
+                      ),
+                    );
+                    if(result == DialogWithAcceptAndCancelOptions.ACCEPT_TAP){
+                      User user = Provider.of<User>(context, listen: false);
+                      user.removeFriend(widget.user);
+                      setState(() {
+                        widget.isFriend = !widget.isFriend;
+                      });
+                    }
+                  } else {
                     User user = Provider.of<User>(context, listen: false);
-                    user.removeFriend(widget.user);
+                    user.addFriend(widget.user);
                     setState(() {
                       widget.isFriend = !widget.isFriend;
                     });
                   }
-                } else {
-                  User user = Provider.of<User>(context, listen: false);
-                  user.addFriend(widget.user);
-                  setState(() {
-                    widget.isFriend = !widget.isFriend;
-                  });
-                }
 
-              },
-              textColor: kPrimaryLightColor,
-              color: widget.isFriend ? Colors.lightGreen[500] : Colors.blueGrey[300],
-              child: Text(
-                widget.isFriend ? "Friend" : "Add Friend",
-                style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
+                },
+                textColor: kPrimaryLightColor,
+                color: widget.isFriend ? Colors.lightGreen[500] : Colors.blueGrey[300],
+                child: Text(
+                  widget.isFriend ? "Friend" : "Add Friend",
+                  style: TextStyle(
+                    fontSize: (2.05 * SizeConfig.textMultiplier), // 14
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
-            ),
+            )
           ),
 
           Padding(
-            padding: EdgeInsets.fromLTRB(0, 7, 0, 0),
-            child: Container(color: kPrimaryLightColor, height: 2, width: width),
+            padding: EdgeInsets.fromLTRB(0, (1.02 * SizeConfig.heightMultiplier), 0, 0),
+            child: Container(
+                margin: EdgeInsets.fromLTRB(
+                    (2.43 * SizeConfig.widthMultiplier), // 10
+                    0,
+                    (0.48 * SizeConfig.widthMultiplier), // 2
+                    0
+                ),
+                color: kPrimaryLightColor,
+                height: (0.29 * SizeConfig.heightMultiplier), // 2
+                width: width
+            )
           )
         ],
       );
     } else {
-      return Container(color: kPrimaryLightColor, height: 2, width: width);
+      return Container(
+          margin: EdgeInsets.fromLTRB(
+              (2.43 * SizeConfig.widthMultiplier), // 10
+              0,
+              (0.48 * SizeConfig.widthMultiplier), // 2
+              0
+          ),
+          color: kPrimaryLightColor,
+          height: (0.29 * SizeConfig.heightMultiplier), // 2
+          width: width
+      );
     }
   }
 }

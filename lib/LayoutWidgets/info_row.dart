@@ -1,3 +1,4 @@
+import 'package:bookifyapp/SizeConfig.dart';
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/Enums/row_type.dart';
 
@@ -35,7 +36,7 @@ class InfoRow extends StatelessWidget {
 
     if (this.rowType == RowType.image) {
       return Padding(
-        padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+        padding: EdgeInsets.all(0),
         child: Center(
           child: Container(
             height: this.height,
@@ -46,12 +47,13 @@ class InfoRow extends StatelessWidget {
                 Align(
                   alignment: Alignment.center,
                   child: Padding(
-                    padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
+                    padding: EdgeInsets.all((1.21 * SizeConfig.widthMultiplier)), // 5
                     child: Container(
                       child: Text(
                         this.title,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
+                          fontSize: (2.05 * SizeConfig.textMultiplier), // 14
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -63,20 +65,21 @@ class InfoRow extends StatelessWidget {
                   alignment: Alignment.center,
                   child: Image.asset(
                     this.content,
-                    height: 50,
-                    width: 50,
+                    height: (7.32 * SizeConfig.heightMultiplier), // 50
+                    width: (12.16 * SizeConfig.widthMultiplier), // 50
                   ),
                 ),
 
                 Align(
                   alignment: Alignment.center,
                   child: Padding(
-                    padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
+                    padding: EdgeInsets.all((1.21 * SizeConfig.widthMultiplier)), // 5
                     child: Container(
                       child: Text(
                         this.subTitle,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
+                          fontSize: (2.05 * SizeConfig.textMultiplier), // 14
                           color: Colors.grey[500],
                         ),
                       ),
@@ -90,7 +93,7 @@ class InfoRow extends StatelessWidget {
       );
     } else if (this.rowType == RowType.icon_image){
       return Padding(
-        padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+        padding: EdgeInsets.all(0),
         child: Center(
           child: Container(
             height: this.height,
@@ -101,12 +104,13 @@ class InfoRow extends StatelessWidget {
                 Align(
                   alignment: Alignment.center,
                   child: Padding(
-                    padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
+                    padding: EdgeInsets.all((1.21 * SizeConfig.widthMultiplier)), // 5
                     child: Container(
                       child: Text(
                         this.title,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
+                          fontSize: (2.05 * SizeConfig.textMultiplier), // 14
                           fontWeight: FontWeight.bold,
                           color: this.color
                         ),
@@ -120,21 +124,26 @@ class InfoRow extends StatelessWidget {
                   child: Icon(
                     this.icon,
                     color: color,
-                    size: 50,
+                    size: (12.16 * SizeConfig.widthMultiplier), // 50
                   ),
                 ),
 
                 Align(
                   alignment: Alignment.center,
                   child: Padding(
-                    padding: EdgeInsets.fromLTRB(5, 2, 5, 0),
+                    padding: EdgeInsets.fromLTRB(
+                        (1.2 * SizeConfig.widthMultiplier), // 5
+                        (0.2 * SizeConfig.heightMultiplier), // 2
+                        (1.2 * SizeConfig.widthMultiplier), // 5
+                        0
+                    ),
                     child: Container(
                       child: Text(
                         this.subTitle,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
                           color: color,
-                          fontSize: 20
+                          fontSize: (2.9 * SizeConfig.textMultiplier) // 20
                         ),
                       ),
                     ),
@@ -147,7 +156,7 @@ class InfoRow extends StatelessWidget {
       );
     } else {
       return Padding(
-        padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+        padding: EdgeInsets.all(0),
         child: Center(
           child: Container(
             height: this.height,
@@ -158,12 +167,13 @@ class InfoRow extends StatelessWidget {
                 Align(
                   alignment: Alignment.topCenter,
                   child: Padding(
-                    padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
+                    padding: EdgeInsets.all((1.21 * SizeConfig.widthMultiplier)), //5
                     child: Container(
                       child: Text(
                         this.title,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
+                          fontSize: (2.05 * SizeConfig.textMultiplier), // 14
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -174,13 +184,13 @@ class InfoRow extends StatelessWidget {
                 Align(
                   alignment: Alignment.center,
                   child: Padding(
-                    padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
+                    padding: EdgeInsets.all((1.21 * SizeConfig.widthMultiplier)), // 5
                     child: Text(
                       this.content,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: 32
+                        fontSize: (4.68 * SizeConfig.textMultiplier) // 32
                       ),
                     ),
                   ),
@@ -189,12 +199,13 @@ class InfoRow extends StatelessWidget {
                 Align(
                   alignment: Alignment.bottomCenter,
                   child: Padding(
-                    padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
+                    padding: EdgeInsets.all((1.21 * SizeConfig.widthMultiplier)), // 5
                     child: Container(
                       child: Text(
                         this.subTitle,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
+                          fontSize: (2.05 * SizeConfig.textMultiplier), // 14
                           color: Colors.grey[500],
                         ),
                       ),

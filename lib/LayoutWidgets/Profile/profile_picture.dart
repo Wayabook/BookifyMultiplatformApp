@@ -1,19 +1,31 @@
 import 'package:bookifyapp/Design/constants.dart';
+import 'package:bookifyapp/SizeConfig.dart';
 import 'package:flutter/material.dart';
 
 class ProfilePicture extends StatelessWidget {
 
-  final double circleRadius;
-  final double circleBorderWidth;
+  double circleRadius;
+  double circleBorderWidth;
+  bool withoutEdges;
 
   final String image_url;
 
   ProfilePicture(this.image_url, {this.circleRadius = 120.0, this.circleBorderWidth = 5.0});
 
+  _initializeDimensions(){
+    withoutEdges = this.circleRadius == 120.0;
+    if(this.circleRadius == 120.0)
+      this.circleRadius = 29.19 * SizeConfig.imageSizeMultiplier;
+    if(this.circleBorderWidth == 5.0)
+      this.circleBorderWidth = 1.21 * SizeConfig.imageSizeMultiplier;
+
+  }
+
   @override
   Widget build(BuildContext context) {
+    _initializeDimensions();
     return Padding(
-      padding: this.circleRadius == 120.0 ? EdgeInsets.all(0) : EdgeInsets.all(3),
+      padding: withoutEdges ? EdgeInsets.all(0) : EdgeInsets.all(0.72 * SizeConfig.widthMultiplier), // 3
       child: Container(
         width: circleRadius,
         height: circleRadius,

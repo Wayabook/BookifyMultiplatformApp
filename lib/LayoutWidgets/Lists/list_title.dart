@@ -41,8 +41,8 @@ class ListTitle extends StatelessWidget{
           Container(
             margin: withPadding ?
             EdgeInsets.fromLTRB(
-                (2.43 * SizeConfig.widthMultiplier),
-                (1.47 * SizeConfig.heightMultiplier),
+                (2.43 * SizeConfig.widthMultiplier), // 10
+                (1.47 * SizeConfig.heightMultiplier), // 10
                 (0.29 * SizeConfig.heightMultiplier),
                 0) :
             EdgeInsets.all(0.0),
@@ -54,7 +54,11 @@ class ListTitle extends StatelessWidget{
                 horizontal: (3.64 * SizeConfig.widthMultiplier),
                 vertical: (1.46 * SizeConfig.heightMultiplier)) :
             EdgeInsets.all(0.0),
-            child: Container(color: this.barAndTitleColor, height: (0.29 * SizeConfig.heightMultiplier), width: width),
+            child: Container(
+                color: this.barAndTitleColor,
+                height: (0.29 * SizeConfig.heightMultiplier), // 2
+                width: width
+            ),
           ),
         ],
       ),
