@@ -1,11 +1,12 @@
 import 'package:bookifyapp/Design/constants.dart';
+import 'package:bookifyapp/SizeConfig.dart';
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/Models/Book.dart';
 
 class BookCover extends StatelessWidget {
   static const POSTER_RATIO = 0.7;
   final Book book;
-  final double height;
+  double height;
   final bool showInfo;
   final bool showTitle;
   final String chapterTitle;
@@ -18,9 +19,15 @@ class BookCover extends StatelessWidget {
         this.chapterTitle = "",
       });
 
+  _initializeDimensions(){
+    if(this.height == 100.0)
+      this.height = (14.64 * SizeConfig.heightMultiplier);
+  }
+
   @override
   Widget build(BuildContext context) {
     var width = POSTER_RATIO * height;
+    _initializeDimensions();
 
     if(showInfo){
       return Column(
@@ -32,12 +39,12 @@ class BookCover extends StatelessWidget {
             height: height,
             child: Card(
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(7.0),
+                borderRadius: BorderRadius.circular((1.7 * SizeConfig.imageSizeMultiplier)), //7
               ),
-              elevation: 10,
+              elevation: (2.43 * SizeConfig.widthMultiplier), //10
               child: Material(
-                  borderRadius: BorderRadius.circular(4.0),
-                  elevation: 2.0,
+                  borderRadius: BorderRadius.circular((0.97 * SizeConfig.imageSizeMultiplier)), //4
+                  elevation: (0.48 * SizeConfig.imageSizeMultiplier), //2
                   child: Center(
                     child: Image.network(
                       this.book.picture,
@@ -64,12 +71,12 @@ class BookCover extends StatelessWidget {
         children: <Widget>[
           Card(
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(7.0),
+              borderRadius: BorderRadius.circular((1.7 * SizeConfig.imageSizeMultiplier)), //7
             ),
-            elevation: 10,
+            elevation: (2.43 * SizeConfig.widthMultiplier), //10
             child: Material(
-                borderRadius: BorderRadius.circular(4.0),
-                elevation: 2.0,
+                borderRadius: BorderRadius.circular((0.97 * SizeConfig.imageSizeMultiplier)),// 4
+                elevation: (0.48 * SizeConfig.imageSizeMultiplier), //2
                 child: Center(
                   child: Image.network(
                     this.book.picture,
@@ -99,6 +106,7 @@ class BookCover extends StatelessWidget {
         maxLines: 1,
         textAlign: TextAlign.center,
         style: TextStyle(
+          fontSize: (2.05 * SizeConfig.textMultiplier), //14
           fontWeight: FontWeight.bold,
         ),
       ),
@@ -115,6 +123,7 @@ class BookCover extends StatelessWidget {
         maxLines: 1,
         textAlign: TextAlign.center,
         style: TextStyle(
+          fontSize: (2.05 * SizeConfig.textMultiplier), //14
           color: kPrimaryDarkColor,
         ),
       ),

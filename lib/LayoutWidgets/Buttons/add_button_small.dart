@@ -72,7 +72,7 @@ class _AddButtonSmall extends State<AddButtonSmall>{
         ),
         child: Icon(
             iconData,
-            size: (5.83 * SizeConfig.imageSizeMultiplier),
+            size: (5.83 * SizeConfig.imageSizeMultiplier), //24
             color: Colors.black),
       ),
     );

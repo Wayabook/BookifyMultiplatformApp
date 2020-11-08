@@ -7,7 +7,7 @@ import 'package:bookifyapp/Models/Book.dart';
 import 'package:bookifyapp/LayoutWidgets/Lists/horizontal_book_list.dart';
 import 'package:bookifyapp/Enums/list_type.dart';
 
-import '../SizeConfig.dart';
+import '../../SizeConfig.dart';
 
 
 

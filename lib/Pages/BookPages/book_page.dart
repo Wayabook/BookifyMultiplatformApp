@@ -1,5 +1,6 @@
 import 'package:bookifyapp/Design/constants.dart';
 import 'package:bookifyapp/LayoutWidgets/Buttons/small_button_underlined.dart';
+import 'package:bookifyapp/LayoutWidgets/Lists/list_title.dart';
 import 'package:bookifyapp/Models/Book.dart';
 import 'package:bookifyapp/Pages/chapters_page.dart';
 import 'package:flutter/material.dart';
@@ -14,9 +15,10 @@ import 'package:bookifyapp/Enums/list_type.dart';
 import 'package:bookifyapp/LayoutWidgets/friends_preview.dart';
 import 'package:bookifyapp/LayoutWidgets/Dialogs/book_shops_dialog.dart';
 import 'package:provider/provider.dart';
-import '../InfoToast.dart';
-import '../Models/User.dart';
-import 'comment_page.dart';
+import '../../InfoToast.dart';
+import '../../Models/User.dart';
+import '../../SizeConfig.dart';
+import '../comment_page.dart';
 
 
 class BookPage extends StatefulWidget {
@@ -98,19 +100,19 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
       key: UniqueKey(),
       children: [
         Padding(
-          padding: const EdgeInsets.only(bottom: 140.0),
+          padding: EdgeInsets.only(bottom: (21.94 * SizeConfig.heightMultiplier)), //140
           child: ArcBannerImage(this.book.picture),
         ),
 
         Positioned(
-          bottom: 30.0,
-          left: 16.0,
-          right: 16.0,
+          bottom: (7.29 * SizeConfig.widthMultiplier), // 30
+          left: (3.89 * SizeConfig.widthMultiplier), //16
+          right: (3.89 * SizeConfig.widthMultiplier), //16,
           child: Align(
             alignment: Alignment.center,
             child:  BookCover(
               book,
-              height: 180.0,
+              height: (26.35 * SizeConfig.heightMultiplier), // 180
             ),
           )
         ),
@@ -127,7 +129,12 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
         children: <Widget>[
 
           Padding(
-            padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
+            padding: EdgeInsets.fromLTRB(
+                0,
+                0,
+                (2.43 * SizeConfig.widthMultiplier), //10
+                0
+            ),
             child: RaisedButton(
               onPressed: () {
                 setState(() {
@@ -147,21 +154,27 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
               },
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(25.0),
+                    topLeft: Radius.circular((6.08 * SizeConfig.imageSizeMultiplier)), //25
                   )
               ),
               color: addIconBackgroundColor,
-              child: IconButton(
-                icon: Icon(
+              child:  SizedBox(
+                height: (7 * SizeConfig.heightMultiplier),
+                width: (15 * SizeConfig.widthMultiplier),
+                child:  IconButton(
+                  iconSize: (5.83 * SizeConfig.imageSizeMultiplier), //24
+                  icon: Icon(
                     addIcon,
-                    color: addIconColor
+                    color: addIconColor,
+                    //size: (5.83 * SizeConfig.imageSizeMultiplier), //24
+                  ),
                 ),
               ),
             ),
           ),
 
           Padding(
-            padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
+            padding: EdgeInsets.fromLTRB(0, 0, (2.43 * SizeConfig.widthMultiplier), 0), //10
             child: RaisedButton(
               onPressed: () {
                 showDialog(
@@ -170,17 +183,23 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
                 );
               },
               color: kPrimaryDarkColor,
-              child: IconButton(
-                icon: Icon(
+              child: SizedBox(
+                height: (7 * SizeConfig.heightMultiplier),
+                width: (15 * SizeConfig.widthMultiplier),
+                child: IconButton(
+                  iconSize: (5.83 * SizeConfig.imageSizeMultiplier), //24
+                  icon: Icon(
                     Icons.shop_two,
-                    color: kPrimaryLightColor
+                    color: kPrimaryLightColor,
+                    //size: (5.83 * SizeConfig.imageSizeMultiplier), //24
+                  ),
                 ),
               ),
             ),
           ),
 
           Padding(
-            padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
+            padding: EdgeInsets.fromLTRB(0, 0, (2.43 * SizeConfig.widthMultiplier), 0), //10
             child: RaisedButton(
               onPressed: () {
                 showDialog(
@@ -190,14 +209,20 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
               },
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.only(
-                    topRight: Radius.circular(25.0),
+                    topRight: Radius.circular((6.08 * SizeConfig.imageSizeMultiplier)), //25
                   )
               ),
               color: kPrimaryDarkColor,
-              child: IconButton(
-                icon:Icon(
+              child: SizedBox(
+                height: (7 * SizeConfig.heightMultiplier),
+                width: (15 * SizeConfig.widthMultiplier),
+                child: IconButton(
+                  iconSize: (5.83 * SizeConfig.imageSizeMultiplier), //24
+                  icon:Icon(
                     Icons.list,
-                    color: kPrimaryLightColor
+                    color: kPrimaryLightColor,
+                    //size: (5.83 * SizeConfig.imageSizeMultiplier), //24
+                  ),
                 ),
               ),
             ),
@@ -217,15 +242,43 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
         crossAxisAlignment: CrossAxisAlignment.center, //Center Row contents vertically,
         children: <Widget>[
 
-          InfoRow(RowType.image,  "GENDER", "images/genre1.png",  "Romance", widthPerChild, 105),
+          InfoRow(
+              RowType.image,
+              "GENDER",
+              "images/genre1.png",
+              "Romance",
+              widthPerChild,
+              (16.83 * SizeConfig.heightMultiplier)), //115
 
-          Container(color: kPrimaryDarkColor, height: 105, width: 2,),
+          Container(
+            color: kPrimaryDarkColor,
+            height: (16.83 * SizeConfig.heightMultiplier),
+            width: (0.48 * SizeConfig.widthMultiplier), //2
+          ), //2
 
-          InfoRow(RowType.text,  "PUBLICATION", "2017",  "Year", widthPerChild, 105),
+          InfoRow(
+              RowType.text,
+              "PUBLICATION",
+              "2017",
+              "Year",
+              widthPerChild,
+              (16.83 * SizeConfig.heightMultiplier)
+          ), //115
 
-          Container(color: kPrimaryDarkColor, height: 105, width: 2,),
+          Container(
+            color: kPrimaryDarkColor,
+            height: (16.83 * SizeConfig.heightMultiplier),
+            width: (0.48 * SizeConfig.widthMultiplier), //2
+          ),
 
-          InfoRow(RowType.text,  "EXTENSION", "128",  "Pages", widthPerChild, 105),
+          InfoRow(
+              RowType.text,
+              "EXTENSION",
+              "128",
+              "Pages",
+              widthPerChild,
+              (16.83 * SizeConfig.heightMultiplier)
+          ), //115
 
 
         ],
@@ -236,8 +289,15 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
   _getPaddingContainer(width){
     return Padding(
       key: UniqueKey(),
-      padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
-      child: Container(color: kPrimaryDarkColor, height: 2, width: width),
+      padding: EdgeInsets.symmetric(
+          horizontal: (3.64 * SizeConfig.widthMultiplier),//15
+          vertical: (1.46 * SizeConfig.heightMultiplier)// 10
+      ),
+      child: Container(
+          color: kPrimaryDarkColor,
+          height: (0.48 * SizeConfig.widthMultiplier), //2
+          width: width
+      ),
     );
   }
 
@@ -249,19 +309,29 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
         Container(
           //color: Colors.black,
             width: double.infinity,
-            margin: EdgeInsets.fromLTRB(5, 2, 5, 0),
+            margin: EdgeInsets.fromLTRB(
+                (1.21 * SizeConfig.widthMultiplier), //5
+                (0.29 * SizeConfig.heightMultiplier), //2
+                (1.21 * SizeConfig.widthMultiplier), //5
+                0
+            ),
             child:  Row(
               children: <Widget>[
                 Text(
                   'Summary:',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                      fontSize: (4.37 * SizeConfig.textMultiplier), // 18
+                      fontWeight: FontWeight.bold),
                   textAlign: TextAlign.left,
                 ),
 
                 Expanded(
                   child: Text(
                     '4/5',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                        fontSize: (4.37 * SizeConfig.textMultiplier), // 18
+                        fontWeight: FontWeight.bold
+                    ),
                     textAlign: TextAlign.right,
                   ),
                 )
@@ -269,16 +339,19 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
             )
         ),
 
-        SizedBox(height: 8.0),
+        SizedBox(height: (1.29 * SizeConfig.heightMultiplier)), // 8
 
         SummaryTextWidget(
           text: this.book.summary,
         ),
 
-        SizedBox(height: 8.0),
+        SizedBox(height: (1.29 * SizeConfig.heightMultiplier)), // 8
 
         Padding(
-          padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
+          padding: EdgeInsets.symmetric(
+              vertical: 0,
+              horizontal: (1.21 * SizeConfig.widthMultiplier), //5
+          ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -287,7 +360,7 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
                 alignment: Alignment.bottomCenter,
                 child: Icon(
                   Icons.comment,
-                  size: 25,
+                  size: (6.08 * SizeConfig.imageSizeMultiplier), //25
                 ),
               ),
               Align(
@@ -297,6 +370,7 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     color: Colors.black,
+                    fontSize: (2.05 * SizeConfig.textMultiplier), //14
                   ),
                 ),
               ),
@@ -324,13 +398,17 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
       key: UniqueKey(),
       children: <Widget>[
         Container(
-          margin: EdgeInsets.fromLTRB(5, 2, 2, 2),
+          /*margin: EdgeInsets.fromLTRB(
+            (1.21 * SizeConfig.widthMultiplier), //5
+            (0.29 * SizeConfig.heightMultiplier), // 2
+            (0.48 * SizeConfig.widthMultiplier), //2
+            (0.29 * SizeConfig.heightMultiplier), // 2
+          ),*/
           child:  Align(
             alignment: Alignment.topLeft,
-            child: Text(
+            child: ListTitle(
               "More books of" + "Author X:",
-              overflow: TextOverflow.ellipsis,
-              style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+              barAndTitleColor: Colors.black,
             ),
           ),
         ),
@@ -348,14 +426,23 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
       key: UniqueKey(),
       children: <Widget>[
         Container(
-          margin: EdgeInsets.fromLTRB(5, 2, 2, 2),
+          /*margin: EdgeInsets.fromLTRB(
+            (1.21 * SizeConfig.widthMultiplier), //5
+            (0.29 * SizeConfig.heightMultiplier), // 2
+            (0.48 * SizeConfig.widthMultiplier), //2
+            (0.29 * SizeConfig.heightMultiplier), // 2
+          ),*/
           child:  Align(
             alignment: Alignment.topLeft,
-            child: Text(
+            child: ListTitle(
+                "More of X Genre:",
+                barAndTitleColor: Colors.black,
+              ),
+            /*child: Text(
               "More of X Genre:",
               overflow: TextOverflow.ellipsis,
               style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-            ),
+            ),*/
           ),
         ),
 
@@ -368,7 +455,7 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
   }
 
   _initializeItems(width){
-    double widthPerChild = (width - 30 - (10 * 2)) / 3;
+    double widthPerChild = (width - (7.29 * SizeConfig.widthMultiplier) - (4.86 * SizeConfig.widthMultiplier)) / 3;
     items = new List();
     items.add(_getBookCoverStack(width));
     items.add(_getBookTopRelatedButtons());
@@ -405,7 +492,12 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
       children: [
         Container(
           width: double.infinity,
-          margin: EdgeInsets.fromLTRB(5, 2, 5, 0),
+          margin: EdgeInsets.fromLTRB(
+              (1.21 * SizeConfig.widthMultiplier), //5
+              (0.29 * SizeConfig.heightMultiplier), //2
+              (1.21 * SizeConfig.widthMultiplier), //5
+              0
+          ),
           child:  Text(
             isARecommendation ? 'Recommended by' : 'Added by:',
             style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
@@ -413,7 +505,7 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
           ),
         ),
 
-        SizedBox(height: 8.0),
+        SizedBox(height: (1.29 * SizeConfig.heightMultiplier)), // 8
 
         FriendsPreview(isARecommendation ? user.getBookRecommenders(book) : book.friends_reading)
       ],

@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:bookifyapp/Models/User.dart';
 import 'package:provider/provider.dart';
 
-import 'discover_page.dart';
+import 'DiscoverPage/discover_page.dart';
 
 
 class MainTabPage extends StatefulWidget {
