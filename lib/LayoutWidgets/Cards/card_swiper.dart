@@ -5,6 +5,8 @@ import 'package:flutter_page_indicator/flutter_page_indicator.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:bookifyapp/Pages/book_page.dart';
 
+import '../../SizeConfig.dart';
+
 class CardSwiper extends StatelessWidget {
   final List<Book> books;
 
@@ -16,11 +18,9 @@ class CardSwiper extends StatelessWidget {
     return new Scaffold(
         backgroundColor: kPrimaryDarkColor,
         body: new Swiper(
-          //containerHeight: 25.0,
           itemBuilder: (BuildContext context, int index) {
             return _getSwiperCardContent(index, context);
           },
-
           indicatorLayout: PageIndicatorLayout.COLOR,
           autoplay: false,
           itemCount: books.length,
@@ -35,9 +35,9 @@ class CardSwiper extends StatelessWidget {
   _getSwiperCardContent(int index, BuildContext context){
     return Card(
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(7.0),
+        borderRadius: BorderRadius.circular((1.73 * SizeConfig.imageSizeMultiplier)),
       ),
-      elevation: 10,
+      elevation: (1.46 * SizeConfig.heightMultiplier), // 10
       color: kPrimaryLightColor,
         child: GestureDetector(
           onTap: () {
@@ -57,14 +57,19 @@ class CardSwiper extends StatelessWidget {
               ),
 
               Flexible(
-                child: Align(
-                  alignment: Alignment.center,
-                  child: Container(
-                    child: Text(
-                      this.books[index].title,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
+                child: Center(
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: Container(
+                      child: Text(
+                        this.books[index].title,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: (2.05 * SizeConfig.textMultiplier), //14
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ),
@@ -79,6 +84,7 @@ class CardSwiper extends StatelessWidget {
                   child: Text(
                     this.books[index].author,
                     style: TextStyle(
+                      fontSize: (2.05 * SizeConfig.textMultiplier), //14
                       color: kPrimaryDarkColor,
                     ),
                   ),

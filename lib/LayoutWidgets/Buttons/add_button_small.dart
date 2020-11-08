@@ -2,6 +2,7 @@ import 'package:bookifyapp/Design/constants.dart';
 import 'package:bookifyapp/InfoToast.dart';
 import 'package:bookifyapp/Models/Book.dart';
 import 'package:bookifyapp/Models/User.dart';
+import 'package:bookifyapp/SizeConfig.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -59,15 +60,19 @@ class _AddButtonSmall extends State<AddButtonSmall>{
         });
       },
       child: Container(
-        height: 30,
-        width: 30,
+        height: (4.39 * SizeConfig.heightMultiplier), //30
+        width: (7.29 * SizeConfig.widthMultiplier), //30
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(7)),
-          border: Border.all(color: Colors.black),
+          borderRadius: BorderRadius.all(Radius.circular((1.7 * SizeConfig.imageSizeMultiplier))), // 7
+          border: Border.all(
+              color: Colors.black,
+              width: (0.24 * SizeConfig.widthMultiplier)
+          ),
           color: kPrimaryLightColor,
         ),
         child: Icon(
             iconData,
+            size: (5.83 * SizeConfig.imageSizeMultiplier),
             color: Colors.black),
       ),
     );

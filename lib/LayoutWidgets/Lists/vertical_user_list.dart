@@ -3,7 +3,7 @@ import 'package:bookifyapp/Enums/profile_type.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/user_preview_card.dart';
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/Models/User.dart';
-import 'package:bookifyapp/Pages/Profile/profile_page.dart';
+import 'package:bookifyapp/Pages/ProfilePages/profile_page.dart';
 import 'package:provider/provider.dart';
 
 

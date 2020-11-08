@@ -1,7 +1,8 @@
 import 'package:bookifyapp/Design/constants.dart';
+import 'package:bookifyapp/SizeConfig.dart';
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/Models/Book.dart';
-import 'package:bookifyapp/LayoutWidgets/card_swiper.dart';
+import 'package:bookifyapp/LayoutWidgets/Cards/card_swiper.dart';
 
 
 class CarouselCard extends StatelessWidget {
@@ -13,13 +14,18 @@ class CarouselCard extends StatelessWidget {
  Widget build(BuildContext context) {
 
    return Container(
-     height: 300,
+     height: (43.92 * SizeConfig.heightMultiplier),
      child: Center(
          child: Card(
            color: kPrimaryDarkColor,
            child: InkWell(
                child: Padding(
-                 padding: const EdgeInsets.fromLTRB(10, 20, 10, 20),
+                 padding: EdgeInsets.fromLTRB(
+                     (2.43 * SizeConfig.widthMultiplier), // 10
+                     (2.92 * SizeConfig.heightMultiplier), // 20
+                     (2.43 * SizeConfig.widthMultiplier), // 10
+                     (2.92 * SizeConfig.heightMultiplier), // 20
+                 ),
                  child: CardSwiper(this.books),
                )
            ),

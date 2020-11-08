@@ -7,7 +7,7 @@ import 'package:bookifyapp/LayoutWidgets/Dialogs/dialog_with_accept_and_cancel_o
 import 'package:bookifyapp/LayoutWidgets/Dialogs/recommendation_dialog.dart';
 import 'package:bookifyapp/LayoutWidgets/Lists/list_title.dart';
 import 'package:bookifyapp/Models/Recommendation.dart';
-import 'package:bookifyapp/Pages/friends_page.dart';
+import 'package:bookifyapp/Pages/ProfilePages/friends_page.dart';
 import 'package:bookifyapp/Pages/GenrePages/genres_page.dart';
 import 'package:bookifyapp/SizeConfig.dart';
 import 'package:flutter/material.dart';
