@@ -18,6 +18,8 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:provider/provider.dart';
 
+import '../../SizeConfig.dart';
+
 class AddFeedbackDialog extends StatefulWidget{
 
   Lecture book;
@@ -99,13 +101,17 @@ class _AddFeedbackDialog
 
   _getReactionsGrid(){
     return Container(
-        height: 190,
+        height: (31.09 * SizeConfig.heightMultiplier), //190
         child: GridView.count(
-            padding:EdgeInsets.fromLTRB(0, 10, 0, 0),
+            padding:EdgeInsets.fromLTRB(
+                0,
+                (1.46 * SizeConfig.heightMultiplier), // 10
+                0,
+                0
+            ),
             scrollDirection: Axis.vertical,
             shrinkWrap: true,
             crossAxisCount: 4,
-            //childAspectRatio: ((width - 20) / 4) / (110),
             children: List.generate(widget.book.getCurrentChapterReactions().length, (index) {
               return ReactionCard(widget.book.getCurrentChapterReactions()[index]);
             },)
@@ -124,7 +130,7 @@ class _AddFeedbackDialog
             alignment: Alignment.center,
             child: Icon(
               Icons.comment,
-              size: 25,
+              size: (6.08 * SizeConfig.imageSizeMultiplier) //25
             ),
           ),
           _getTitleSection(mainComments.length.toString()  + " comentarios"),
@@ -135,10 +141,15 @@ class _AddFeedbackDialog
 
   _getRatingBar(){
     return Card(
-      margin: EdgeInsets.fromLTRB(0, 5, 0, 5),
+      margin: EdgeInsets.fromLTRB(
+          0,
+          (1.21 * SizeConfig.widthMultiplier), //5
+          0,
+          (1.21 * SizeConfig.widthMultiplier), //5
+      ),
       color: kPrimaryDarkColor,
       child: Container(
-          height: 50,
+          height: (7.32 * SizeConfig.heightMultiplier), // 50
           child: Align(
             alignment: Alignment.center,
             child: RatingBar(
@@ -147,7 +158,7 @@ class _AddFeedbackDialog
               direction: Axis.horizontal,
               allowHalfRating: false,
               itemCount: 5,
-              itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
+              itemPadding: EdgeInsets.symmetric(horizontal: (0.97 * SizeConfig.imageSizeMultiplier)), //4
               itemBuilder: (context, _) => Icon(
                 Icons.star,
                 color: Colors.amber,
@@ -184,6 +195,7 @@ class _AddFeedbackDialog
         overflow: TextOverflow.ellipsis,
         style: TextStyle(
           color: kPrimaryDarkColor,
+          fontSize: (2.05 * SizeConfig.textMultiplier), //14
         ),
       ),
     );
@@ -210,21 +222,21 @@ class _AddFeedbackDialog
               children: <Widget>[
 
                 Positioned(
-                    top: 140,
+                    top: (21.94 * SizeConfig.heightMultiplier), //140
                     child: Container(
                         width: width,
-                        height: height-140,
+                        height: height -  (21.94 * SizeConfig.heightMultiplier),
                         color: _backgroundColor,
                         child:  Align(
                           alignment: Alignment.topLeft,
                           child: IconButton(
                             onPressed: (){
-                              //widget.callAnimation();
                               Navigator.pop(context);
                             },
                             icon: Icon(
                                 Icons.keyboard_arrow_down,
-                                color: Colors.black
+                                color: Colors.black,
+                                size: (5.83 * SizeConfig.imageSizeMultiplier), //24
                             ),
                           ),
                         )
@@ -232,13 +244,13 @@ class _AddFeedbackDialog
                 ),
 
                 Positioned(
-                    top: 150,
-                    right: 10,
+                    top: (24.54 * SizeConfig.heightMultiplier), //150
+                    right: (2.43 * SizeConfig.widthMultiplier), //10
                     child: Align(
                       alignment: Alignment.topRight,
                       child: Container(
                           width: width,
-                          height: height-140,
+                          height: height - (21.94 * SizeConfig.heightMultiplier), //140
                           //color: _backgroundColor,
                           child:  Align(
                             alignment: Alignment.topRight,
@@ -268,7 +280,7 @@ class _AddFeedbackDialog
                                   child: Icon(
                                     Icons.beenhere,
                                     color: readButtonColor,
-                                    size: 50,
+                                    size:  (12.16 * SizeConfig.imageSizeMultiplier), //50
                                   ),
                                 )
                               ),
@@ -278,19 +290,39 @@ class _AddFeedbackDialog
                     )
                 ),
 
-                Center(
+                Align(
+                  alignment: Alignment.topCenter,
                   child: BookCover(
                     widget.book,
                     showInfo: false,
-                    height: 180,
+                    height: (29.45 * SizeConfig.heightMultiplier), //180
                     showTitle: false,
                     chapterTitle: chapterTitle,
+                    transparent: true,
                   ),
                 ),
 
+                /*Center(
+                  child: BookCover(
+                    widget.book,
+                    showInfo: false,
+                    height: (29.45 * SizeConfig.heightMultiplier), //180
+                    showTitle: false,
+                    chapterTitle: chapterTitle,
+                    transparent: true,
+                  ),
+                ),*7
+
+                 */
+
                 Padding(
-                  padding: EdgeInsets.fromLTRB(7, 210, 7, 10),
-                  child: Container(color: kPrimaryDarkColor, height: 2, width: width),
+                  padding: EdgeInsets.fromLTRB(
+                      (1.7 * SizeConfig.imageSizeMultiplier), //7
+                      (34.36 * SizeConfig.heightMultiplier), //210
+                      (1.7 * SizeConfig.imageSizeMultiplier), //7
+                      (2.43 * SizeConfig.widthMultiplier), //10
+                  ),
+                  child: Container(color: kPrimaryDarkColor, height: (0.48 * SizeConfig.widthMultiplier), width: width),
                 ),
 
                 AnimatedOpacity(
@@ -302,11 +334,16 @@ class _AddFeedbackDialog
                     maintainAnimation: false,
                     maintainState: false,
                     child: Padding(
-                      padding: EdgeInsets.fromLTRB(7, 220, 7, 0),
+                      padding: EdgeInsets.fromLTRB(
+                          (1.7 * SizeConfig.imageSizeMultiplier), //7
+                          (36.01 * SizeConfig.heightMultiplier), //220
+                          (1.7 * SizeConfig.imageSizeMultiplier), //7
+                          0
+                      ),
                       child:  ListView.builder(
                           controller: scrollController,
                           shrinkWrap: true,
-                          padding: const EdgeInsets.all(8),
+                          padding: EdgeInsets.all((1.29 * SizeConfig.heightMultiplier)), //8
                           itemCount: widgets.length,
                           itemBuilder: (BuildContext context, int index) {
                             return widgets[index];
@@ -327,8 +364,8 @@ class _AddFeedbackDialog
                 ),
 
                 Positioned(
-                    bottom: 5,
-                    right: 10,
+                    bottom: (1.21 * SizeConfig.widthMultiplier), //5
+                    right: (2.43 * SizeConfig.imageSizeMultiplier), //10
                     child: AnimatedOpacity(
                         opacity: visible ? 1.0 : 0.0,
                         duration: Duration(milliseconds: 500),
@@ -338,8 +375,8 @@ class _AddFeedbackDialog
                           maintainAnimation: false,
                           maintainState: false,
                           child: Container(
-                            height: 40,
-                            width: 40,
+                            height: (6.54 * SizeConfig.heightMultiplier), //40
+                            width: (9.73 * SizeConfig.widthMultiplier), //40
                             child: FittedBox(
                               child: FloatingActionButton(
                                 heroTag: UniqueKey(),
@@ -349,7 +386,9 @@ class _AddFeedbackDialog
                                 backgroundColor: Colors.yellow,
                                 child: Icon(
                                   Icons.add,
-                                  color: kPrimaryDarkColor,),
+                                  color: kPrimaryDarkColor,
+                                  size: (5.83 * SizeConfig.imageSizeMultiplier), //24
+                                ),
                               ),
                             ),
                           ),

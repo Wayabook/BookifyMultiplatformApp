@@ -10,6 +10,7 @@ class BookCover extends StatelessWidget {
   final bool showInfo;
   final bool showTitle;
   final String chapterTitle;
+  bool transparent;
 
   BookCover(
       this.book, {
@@ -17,6 +18,7 @@ class BookCover extends StatelessWidget {
         this.showInfo = true,
         this.showTitle = true,
         this.chapterTitle = "",
+        this.transparent = false,
       });
 
   _initializeDimensions(){
@@ -67,32 +69,27 @@ class BookCover extends StatelessWidget {
         ],
       );
     } else {
-      return Column(
-        children: <Widget>[
-          Card(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular((1.7 * SizeConfig.imageSizeMultiplier)), //7
+      return Container(
+        color: Colors.transparent,
+        width: width,
+        height: height,
+        child: Column(
+          children: <Widget>[
+            Center(
+              child: Image.network(
+                this.book.picture,
+                fit: BoxFit.cover,
+                width: width,
+                height: height - (2.05 * SizeConfig.textMultiplier) - (0.81 * SizeConfig.heightMultiplier),
+              ),
             ),
-            elevation: (2.43 * SizeConfig.widthMultiplier), //10
-            child: Material(
-                borderRadius: BorderRadius.circular((0.97 * SizeConfig.imageSizeMultiplier)),// 4
-                elevation: (0.48 * SizeConfig.imageSizeMultiplier), //2
-                child: Center(
-                  child: Image.network(
-                    this.book.picture,
-                    fit: BoxFit.cover,
-                    width: width,
-                    height: height,
-                  ),
-                )
-            ),
-          ),
 
-         Center(
-           child:  _getTitle(),
-         )
+            Center(
+              child:  _getTitle(),
+            )
 
-        ],
+          ],
+        ),
       );
     }
   }
