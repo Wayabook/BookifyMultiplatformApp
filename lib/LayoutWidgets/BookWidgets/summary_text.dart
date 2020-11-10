@@ -1,4 +1,5 @@
 import 'package:bookifyapp/Design/constants.dart';
+import 'package:bookifyapp/SizeConfig.dart';
 import 'package:flutter/material.dart';
 
 class SummaryTextWidget extends StatefulWidget {
@@ -40,7 +41,11 @@ class _SummaryTextWidgetState extends State<SummaryTextWidget> {
           : new Column(
         children: <Widget>[
           new Text(
-              flag ? (firstHalf + "...") : (firstHalf + secondHalf), textAlign: TextAlign.justify
+              flag ? (firstHalf + "...") : (firstHalf + secondHalf),
+              textAlign: TextAlign.justify,
+              style: TextStyle(
+                fontSize: (2.05 * SizeConfig.textMultiplier), //14
+              ),
           ),
           new InkWell(
             child: new Row(
@@ -48,12 +53,15 @@ class _SummaryTextWidgetState extends State<SummaryTextWidget> {
               children: <Widget>[
                 new Text(
                   flag ? "show more" : "show less",
-                  style: new TextStyle(color: Colors.blue),
+                  style: new TextStyle(
+                      color: Colors.blue,
+                      fontSize: (2.94 * SizeConfig.textMultiplier), //18
+                  ),
                 ),
 
                 Icon(
                   flag ? Icons.keyboard_arrow_down : Icons.keyboard_arrow_up,
-                  size: 18.0,
+                  size: (2.94 * SizeConfig.textMultiplier), //18
                   color: Colors.blue,
                 ),
               ],

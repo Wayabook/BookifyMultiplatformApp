@@ -500,7 +500,10 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
           ),
           child:  Text(
             isARecommendation ? 'Recommended by' : 'Added by:',
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            style: TextStyle(
+                fontSize: (4.37 * SizeConfig.textMultiplier), // 18
+                fontWeight: FontWeight.bold)
+            ,
             textAlign: TextAlign.left,
           ),
         ),
