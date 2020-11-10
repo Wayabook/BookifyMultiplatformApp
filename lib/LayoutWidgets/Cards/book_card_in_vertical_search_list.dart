@@ -1,11 +1,10 @@
 
-
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bookifyapp/Design/constants.dart';
 import 'package:bookifyapp/Enums/list_type.dart';
 import 'package:bookifyapp/Models/Book.dart';
 import 'package:bookifyapp/Models/User.dart';
-import 'package:bookifyapp/Pages/BookPages/book_page.dart';
+import 'package:bookifyapp/Pages/BookPage/book_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';

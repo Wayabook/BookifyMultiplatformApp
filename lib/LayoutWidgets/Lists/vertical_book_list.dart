@@ -10,6 +10,8 @@ import 'package:bookifyapp/Enums/button_type.dart';
 import 'package:bookifyapp/LayoutWidgets/Lists/list_title.dart';
 import 'package:provider/provider.dart';
 
+import '../../SizeConfig.dart';
+
 
 class VerticalBookList/*<T extends Book>*/ extends StatefulWidget {
 
@@ -114,9 +116,10 @@ class _VerticalBookList extends State<VerticalBookList>
             itemBuilder: (BuildContext context, int index) {
               return Container(
                 width: width,
-                height: (index == 0) || (index == this.readingBooks.length + 1) ? 80 : 160 ,
+                height: (index == 0) || (index == this.readingBooks.length + 1) ?
+                (13.09 * SizeConfig.heightMultiplier) : (26.18 * SizeConfig.heightMultiplier),
                 key: UniqueKey(),
-                padding: EdgeInsets.all(0),
+                //padding: EdgeInsets.all(0),
                 child: items[index],
               );
             },

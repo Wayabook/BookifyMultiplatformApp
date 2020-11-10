@@ -3,6 +3,7 @@ import 'package:bookifyapp/InfoToast.dart';
 import 'package:bookifyapp/LayoutWidgets/Dialogs/add_feedback_dialog.dart';
 import 'package:bookifyapp/Models/Lecture.dart';
 import 'package:bookifyapp/Models/User.dart';
+import 'package:bookifyapp/SizeConfig.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:auto_size_text/auto_size_text.dart';
@@ -37,9 +38,9 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> {
   Lecture book;
   Card card;
   bool showEndLectureFrame = false;
-  double initialHeight = 10.0;
-  double initialWidth = 10.0;
-  double buttonSize = 50.0;
+  //double initialHeight = 10.0;
+  //double initialWidth = 10.0;
+  double buttonSize; // = 50.0;
   Widget content;
   bool visible;
   int animationControllerDuration;
@@ -65,6 +66,7 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> {
   void initState(){
 
     buttonColor = kPrimaryDarkColor;
+    buttonSize = (12.16 * SizeConfig.imageSizeMultiplier); //50
 
     animationControllerDuration = 1500;
     widget._visible = true;
@@ -82,17 +84,13 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> {
         user.increaseChapter(widget.book);
         setState(() {
           if(this.book.finished){
-            buttonSize = 75.0;
+            buttonSize = (18.24 * SizeConfig.imageSizeMultiplier); // 75
             widget._visible = false;
             bookCompletedProcess();
           } else {
             this.buttonColor = kPrimaryDarkColor;
           }
         });
-        /*if(this.book.finished){
-          await wait(1);
-          bookCompletedProcess();
-        }*/
       }
     });
 
@@ -126,8 +124,11 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> {
       });
     }
     return Card(
-        elevation: 10,
-        margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
+        elevation: (2.43 * SizeConfig.widthMultiplier), //10
+        margin: new EdgeInsets.symmetric(
+            horizontal: (2.43 * SizeConfig.widthMultiplier), //10
+            vertical: (0.98 * SizeConfig.heightMultiplier) //
+        ),
         child:  GestureDetector(
           key: UniqueKey(),
           onTap: () async {
@@ -156,7 +157,7 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> {
               Colors.blue,
             ],
             child: Container(
-              height: 160,
+              height: (26.18 * SizeConfig.heightMultiplier), // 160
               decoration: BoxDecoration(
                 color: kPrimaryDarkColor,
               ),
@@ -176,7 +177,7 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> {
         child: Icon(
           Icons.beenhere,
           color: !this.book.finished ? buttonColor : Colors.lightGreen,
-          size: !this.book.finished ? buttonSize : 75.0,
+          size: !this.book.finished ? buttonSize : (18.24 * SizeConfig.imageSizeMultiplier), // 75
         ),
       ),
       onPressed: () {
@@ -192,10 +193,13 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> {
     return Container(
         decoration: BoxDecoration(
             color: kPrimaryLightColor,
-            borderRadius:  BorderRadius.circular(7.0)
-        ),//Color.fromRGBO(64, 75, 96, .9),
+            borderRadius:  BorderRadius.circular((1.7 * SizeConfig.imageSizeMultiplier)) //7
+        ),
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 5.0, vertical: 10.0),
+          padding: EdgeInsets.symmetric(
+              horizontal: (1.21 * SizeConfig.widthMultiplier), //5
+              vertical: (2.43 * SizeConfig.widthMultiplier), //10
+          ),
           child: Row(
             children: <Widget>[
               Flexible(
@@ -205,9 +209,9 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> {
                     Flexible(
                       flex: 9,
                       child: Container(
-                          width: 90,
+                          width: (21.89 * SizeConfig.widthMultiplier), //90
                           //padding: EdgeInsets.only(right: 12.0),
-                          padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                          //padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
                           decoration: new BoxDecoration(
                               border: new Border(
                                   right: new BorderSide(width: 1.0, color: kPrimaryDarkColor),
@@ -219,7 +223,7 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> {
 
                           child: Container(
                               color: Colors.black,
-                              height: 150,
+                              height: (24.54 * SizeConfig.heightMultiplier), //150
                               width: double.infinity,
                               child: FittedBox(
                                 fit: BoxFit.fill,
@@ -235,7 +239,7 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> {
                         flex: 1,
                         child: Center(
                           child: LinearPercentIndicator(
-                            lineHeight: 5.0,
+                            lineHeight: (0.81 * SizeConfig.heightMultiplier), //5
                             percent: !this.book.finished ? this.book.progress : 1.0,
                             progressColor: !this.book.finished ? Colors.lightGreen : Colors.deepPurple,
                           ),
@@ -248,10 +252,10 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> {
               Flexible(
                 flex: 5,
                 child: Padding(
-                  padding: EdgeInsets.all(12.0),
+                  padding: EdgeInsets.all((1.75 * SizeConfig.heightMultiplier)), //12
                   child: Container(
                     //color: Colors.black,
-                    height: 150,
+                    height: (24.54 * SizeConfig.heightMultiplier), //150
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -272,6 +276,7 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> {
                                     overflow: TextOverflow.ellipsis,
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold,
+                                      fontSize: 2.05 * SizeConfig.textMultiplier //14
                                     ),
                                     textAlign: TextAlign.center,
                                   ),
@@ -295,6 +300,7 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> {
                                 overflow: TextOverflow.ellipsis,
                                 style: TextStyle(
                                   color: Colors.grey[500],
+                                    fontSize: 2.05 * SizeConfig.textMultiplier //14
                                 ),
                                 textAlign: TextAlign.center,
                               ),
@@ -324,7 +330,7 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> {
                                          child: Icon(
                                            Icons.bookmark,
                                            color: kPrimaryDarkColor,
-                                           size: 20,
+                                           size: (2.92 * SizeConfig.heightMultiplier), //20
                                          ),
                                        ),
 
@@ -333,7 +339,10 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> {
                                          child: AutoSizeText(
                                            this.book.current_chapter_title,
                                            overflow: TextOverflow.ellipsis,
-                                           style: TextStyle( fontWeight: FontWeight.bold,),
+                                           style: TextStyle(
+                                             fontWeight: FontWeight.bold,
+                                             fontSize: (2.05 * SizeConfig.textMultiplier) //14
+                                           ),
                                            maxLines: 1,
                                          ),
                                        ),
@@ -351,6 +360,7 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> {
                                              style: TextStyle(
                                                color: Colors.grey[500],
                                                fontWeight: FontWeight.bold,
+                                                 fontSize: (2.05 * SizeConfig.textMultiplier) //14
                                              ),
                                              maxLines: 1,
                                              textAlign: TextAlign.left,
@@ -375,8 +385,8 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> {
                   child: Align(
                       alignment: Alignment.center,
                       child: SizedBox(
-                        height: 75,
-                        width: 75,
+                        height: (18.24 * SizeConfig.imageSizeMultiplier), //75
+                        width: (18.24 * SizeConfig.imageSizeMultiplier), //75
                         child: floatingActionButton
                       )
                   )
