@@ -8,8 +8,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:like_button/like_button.dart';
 
-class MainCommentCard extends StatelessWidget implements RemoveCommentInterface {
+import '../../../SizeConfig.dart';
 
+class MainCommentCard extends StatelessWidget implements RemoveCommentInterface {
   bool fromDialog;
   bool seeAllComments;
   String chapterTitle;
@@ -60,11 +61,18 @@ class MainCommentCard extends StatelessWidget implements RemoveCommentInterface 
 
   _getCard(){
     return Card(
-        elevation: 10,
+        elevation: (2.43 * SizeConfig.widthMultiplier), //10
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-              UserPreviewCard(mainComment.author, height: 50, fontSize: 15, card: false, fromDialog: fromDialog, removeComment: removeComment),
+              UserPreviewCard(
+                  mainComment.author,
+                  height: (7.32 * SizeConfig.heightMultiplier), // 50
+                  fontSize: (3.64 * SizeConfig.widthMultiplier),//15
+                  card: false,
+                  fromDialog: fromDialog,
+                  removeComment: removeComment
+              ),
 
               SummaryTextWidget(
                 text: mainComment.comment,
@@ -72,14 +80,28 @@ class MainCommentCard extends StatelessWidget implements RemoveCommentInterface 
               ),
 
               Padding(
-                padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
-                child: Container(color: kPrimaryLightColor, height: 0.5, width: double.infinity),
+                padding: EdgeInsets.fromLTRB(
+                    (3.64 * SizeConfig.widthMultiplier),//15
+                    0,
+                    (3.64 * SizeConfig.widthMultiplier),//15
+                    0
+                ),
+                child: Container(
+                    color: kPrimaryLightColor,
+                    height: (0.081 * SizeConfig.heightMultiplier), //0.5
+                    width: double.infinity
+                ),
               ),
 
               Container(
                 color: kPrimaryDarkColor,
                 child:  Padding(
-                  padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
+                  padding: EdgeInsets.fromLTRB(
+                      (3.64 * SizeConfig.widthMultiplier),//15
+                      0,
+                      (3.64 * SizeConfig.widthMultiplier),//15
+                      0
+                  ),
                   child: Row(
                     children: <Widget>[
                       Flexible(
@@ -89,7 +111,7 @@ class MainCommentCard extends StatelessWidget implements RemoveCommentInterface 
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: <Widget>[
                             LikeButton(
-                              size: 30,
+                              size: (4.39 * SizeConfig.heightMultiplier), //30
                               likeCount: mainComment.likes,
                               countBuilder: (int count, bool isLiked, String text) {
                                 final ColorSwatch<int> color =
@@ -122,7 +144,7 @@ class MainCommentCard extends StatelessWidget implements RemoveCommentInterface 
                               child: Icon(
                                 Icons.insert_comment,
                                 color: Colors.grey,
-                                size: 30,
+                                size: (4.39 * SizeConfig.heightMultiplier), //30
                               ),
                             ),
 
@@ -133,7 +155,7 @@ class MainCommentCard extends StatelessWidget implements RemoveCommentInterface 
                                 overflow: TextOverflow.ellipsis,
                                 style: TextStyle(
                                   color: Colors.grey,
-                                  fontSize: 10,
+                                  fontSize: (2.43 * SizeConfig.imageSizeMultiplier), //10
                                 ),
                               ),
                             ),
@@ -153,7 +175,7 @@ class MainCommentCard extends StatelessWidget implements RemoveCommentInterface 
                               child: Icon(
                                 Icons.share,
                                 color: Colors.grey,
-                                size: 30,
+                                size: (4.39 * SizeConfig.heightMultiplier), //30
                               ),
                             ),
                           ],
@@ -165,8 +187,17 @@ class MainCommentCard extends StatelessWidget implements RemoveCommentInterface 
               ),
 
               Padding(
-                padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
-                child: Container(color: kPrimaryLightColor, height: 0.5, width: double.infinity),
+                padding: EdgeInsets.fromLTRB(
+                    (3.64 * SizeConfig.widthMultiplier),//15
+                    0,
+                    (3.64 * SizeConfig.widthMultiplier),//15
+                    0
+                ),
+                child: Container(
+                    color: kPrimaryLightColor,
+                    height: (0.081 * SizeConfig.heightMultiplier), //0.5
+                    width: double.infinity
+                ),
               ),
             ],
           ),

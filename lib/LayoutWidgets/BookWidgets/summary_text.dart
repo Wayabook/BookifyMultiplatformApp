@@ -34,10 +34,17 @@ class _SummaryTextWidgetState extends State<SummaryTextWidget> {
   @override
   Widget build(BuildContext context) {
     return new Container(
-      //color: widget.backgroundColor,
-      padding: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
+      color: widget.backgroundColor,
+      padding: new EdgeInsets.symmetric(
+          horizontal: 10.0,
+          vertical: 10.0
+      ),
       child: secondHalf.isEmpty
-          ? new SizedBox(width: double.infinity, child: Text(firstHalf, textAlign: TextAlign.left),)
+          ? new SizedBox(width: double.infinity, child: Text(
+          firstHalf,
+          textAlign: TextAlign.left,
+          style: TextStyle(fontSize: (2.05 * SizeConfig.textMultiplier),)
+      ),)
           : new Column(
         children: <Widget>[
           new Text(

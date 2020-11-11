@@ -2,8 +2,8 @@ import 'dart:async';
 import 'package:bookifyapp/Design/constants.dart';
 import 'package:bookifyapp/InfoToast.dart';
 import 'package:bookifyapp/Interfaces/RemoveCommentInterface.dart';
-import 'package:bookifyapp/LayoutWidgets/Cards/main_comment_card.dart';
-import 'package:bookifyapp/LayoutWidgets/Cards/reaction_card.dart';
+import 'package:bookifyapp/LayoutWidgets/Cards/Comment/main_comment_card.dart';
+import 'package:bookifyapp/LayoutWidgets/Cards/Reaction/reaction_card.dart';
 import 'package:bookifyapp/Models/Chapter.dart';
 import 'package:bookifyapp/Models/Comment.dart';
 import 'package:bookifyapp/Models/Lecture.dart';
@@ -107,7 +107,7 @@ class _AddFeedbackDialog
                 0,
                 (1.46 * SizeConfig.heightMultiplier), // 10
                 0,
-                0
+               (1.46 * SizeConfig.heightMultiplier), // 10
             ),
             scrollDirection: Axis.vertical,
             shrinkWrap: true,
@@ -149,10 +149,11 @@ class _AddFeedbackDialog
       ),
       color: kPrimaryDarkColor,
       child: Container(
-          height: (7.32 * SizeConfig.heightMultiplier), // 50
+          height: (9.81 * SizeConfig.heightMultiplier), // 50
           child: Align(
             alignment: Alignment.center,
             child: RatingBar(
+              itemSize: (12.16 * SizeConfig.imageSizeMultiplier), //50
               initialRating: 3,
               minRating: 1,
               direction: Axis.horizontal,
@@ -249,45 +250,40 @@ class _AddFeedbackDialog
                     child: Align(
                       alignment: Alignment.topRight,
                       child: Container(
-                          width: width,
-                          height: height - (21.94 * SizeConfig.heightMultiplier), //140
-                          //color: _backgroundColor,
-                          child:  Align(
-                            alignment: Alignment.topRight,
-                            child: AnimatedOpacity(
-                              opacity: !widget.book.finished ? 1.0 : 0.0,
-                              duration: Duration(milliseconds: 500),
+                          width: (12.16 * SizeConfig.imageSizeMultiplier),
+                          height: (12.16 * SizeConfig.imageSizeMultiplier),
+                          child: FittedBox(
                               child: FloatingActionButton(
-                                heroTag: UniqueKey(),
-                                onPressed: () async {
-                                  setState(() {
-                                    if(!widget.book.finished){
-                                      readButtonColor = Colors.lightGreen;
-                                    }
-                                  });
-                                  await animationController.forward();
-                                  setState(() {
-                                    if(!widget.book.finished){
-                                      visible = true;
-                                      var user = Provider.of<User>(context, listen: false);
-                                      user.increaseChapter(widget.book);
-                                    }
-                                  });
-                                },
-                                backgroundColor: kPrimaryLightColor,
-                                child: RotationTransition(
-                                  turns: animation,
-                                  child: Icon(
-                                    Icons.beenhere,
-                                    color: readButtonColor,
-                                    size:  (12.16 * SizeConfig.imageSizeMultiplier), //50
-                                  ),
-                                )
+                                  heroTag: UniqueKey(),
+                                  onPressed: () async {
+                                    setState(() {
+                                      if(!widget.book.finished){
+                                        readButtonColor = Colors.lightGreen;
+                                      }
+                                    });
+                                    await animationController.forward();
+                                    setState(() {
+                                      if(!widget.book.finished){
+                                        visible = true;
+                                        var user = Provider.of<User>(context, listen: false);
+                                        user.increaseChapter(widget.book);
+                                      }
+                                    });
+                                  },
+                                  backgroundColor: kPrimaryLightColor,
+                                  child: RotationTransition(
+                                    turns: animation,
+                                    child: Icon(
+                                      Icons.beenhere,
+                                      color: readButtonColor,
+                                      size: SizeConfig.imageSizeMultiplier > 5.5 ?
+                                      (5.83 * SizeConfig.imageSizeMultiplier) : (12.16 * SizeConfig.imageSizeMultiplier), //24
+                                    ),
+                                  )
                               ),
-                            ),
-                          )
-                      ),
-                    )
+                          ),
+                        )
+                      )
                 ),
 
                 Align(
@@ -301,19 +297,6 @@ class _AddFeedbackDialog
                     transparent: true,
                   ),
                 ),
-
-                /*Center(
-                  child: BookCover(
-                    widget.book,
-                    showInfo: false,
-                    height: (29.45 * SizeConfig.heightMultiplier), //180
-                    showTitle: false,
-                    chapterTitle: chapterTitle,
-                    transparent: true,
-                  ),
-                ),*7
-
-                 */
 
                 Padding(
                   padding: EdgeInsets.fromLTRB(
@@ -387,7 +370,7 @@ class _AddFeedbackDialog
                                 child: Icon(
                                   Icons.add,
                                   color: kPrimaryDarkColor,
-                                  size: (5.83 * SizeConfig.imageSizeMultiplier), //24
+                                  //size: (5.83 * SizeConfig.imageSizeMultiplier), //24
                                 ),
                               ),
                             ),

@@ -3,6 +3,8 @@ import 'package:bookifyapp/Models/Reaction.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../../../SizeConfig.dart';
+
 class ReactionCard extends StatefulWidget {
   Reaction reaction;
   ReactionCard(this.reaction);
@@ -33,7 +35,7 @@ class _ReactionCard extends State<ReactionCard> {
   _getBorder(enabled){
     var width = 0.0;
     if(enabled)
-      width = 2.0;
+      width = (0.48 * SizeConfig.imageSizeMultiplier); //2
     
     return Border(
       top: BorderSide(color: kPrimaryLightColor, width: width),
@@ -52,17 +54,17 @@ class _ReactionCard extends State<ReactionCard> {
           onTap: changeText,
           child:  Card(
               color: kPrimaryDarkColor,
-              margin: EdgeInsets.all(10),
+              margin: EdgeInsets.all((2.43 * SizeConfig.widthMultiplier)), //10
               shape: tapped ? _getBorder(true) : _getBorder(false),
-              elevation: 10,
+              elevation: (2.43 * SizeConfig.widthMultiplier), //10
               child: Column(
                 children: <Widget>[
                   Flexible(
                     flex: 8,
                     child: Image.asset(
                       widget.reaction.image,
-                      height: 45,
-                      width: 45,
+                      height: (7.36 * SizeConfig.heightMultiplier), //45
+                      width: (7.36 * SizeConfig.heightMultiplier), //45
                     ),
                   ),
 
@@ -73,7 +75,7 @@ class _ReactionCard extends State<ReactionCard> {
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                         color: kPrimaryLightColor,
-                        fontSize: 8,
+                        fontSize: (1.29 * SizeConfig.heightMultiplier), //8
                       ),
                     ),
                   )
