@@ -6,6 +6,8 @@ import 'package:bookifyapp/LayoutWidgets/Lists/vertical_user_list.dart';
 import 'package:bookifyapp/Models/Book.dart';
 import 'package:bookifyapp/Models/User.dart';
 
+import '../SizeConfig.dart';
+
 
 class SearchBookOrPerson extends StatefulWidget {
 
@@ -117,10 +119,8 @@ class _SearchBookOrPerson extends State<SearchBookOrPerson> with SingleTickerPro
       bottom: TabBar(
           controller: _tabController,
           tabs: [
-            Tab( text: "Book"),
-            Tab(text: "Person")
-
-
+            Tab(child: Text("Book", style: TextStyle(fontSize: (2.05 * SizeConfig.textMultiplier)),)),
+            Tab(child: Text("Person", style: TextStyle(fontSize: (2.05 * SizeConfig.textMultiplier)),))
           ]
       ),
       title: appBarTitle,

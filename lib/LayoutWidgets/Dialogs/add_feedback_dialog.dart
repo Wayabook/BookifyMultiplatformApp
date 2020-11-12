@@ -230,16 +230,24 @@ class _AddFeedbackDialog
                         color: _backgroundColor,
                         child:  Align(
                           alignment: Alignment.topLeft,
-                          child: IconButton(
-                            onPressed: (){
-                              Navigator.pop(context);
-                            },
-                            icon: Icon(
+                          child: Padding(
+                            padding: EdgeInsets.fromLTRB(
+                              0,
+                              ((12.16 * SizeConfig.imageSizeMultiplier) / 2), //150,
+                              0,
+                              0
+                            ),
+                            child: IconButton(
+                              onPressed: (){
+                                Navigator.pop(context);
+                              },
+                              icon: Icon(
                                 Icons.keyboard_arrow_down,
                                 color: Colors.black,
                                 size: (5.83 * SizeConfig.imageSizeMultiplier), //24
+                              ),
                             ),
-                          ),
+                          )
                         )
                     )
                 ),

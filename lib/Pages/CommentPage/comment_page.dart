@@ -239,9 +239,7 @@ class _CommentPage
              title: Text(widget.subCommentsPage ?  widget.chapterTitle : 'Add Comment...')
          ),
        );
-     } /*else {
-
-     }*/
+     }
    } else {
      if(widget.book != null){
        return Scaffold(

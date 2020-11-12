@@ -10,6 +10,8 @@ import 'package:bookifyapp/Models/Book.dart';
 import 'package:bookifyapp/LayoutWidgets/Lists/list_title.dart';
 import 'package:provider/provider.dart';
 
+import '../../SizeConfig.dart';
+
 
 class VerticalBookListSearch extends StatefulWidget {
 
@@ -103,7 +105,7 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
         widget.books[index],
         widget.type,
         backgroundColor: widget.backgroundColor,
-        cardHeight: 140,
+        cardHeight: (21.94 * SizeConfig.heightMultiplier), //140
         addOrRemoveBookFromTemporalCustomList: addOrRemoveBookFromTemporalCustomList,
       );
     } else if(widget.type == ListType.send_recommendation_form){
@@ -111,7 +113,6 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
         widget.books[index],
         widget.type,
         backgroundColor: widget.backgroundColor,
-        //cardHeight: 140,
         addOrRemoveBookFromTemporalCustomList: addOrRemoveBookFromTemporalCustomList,
       );
     } else {
@@ -124,7 +125,10 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
     return FlatButton(
       child: Text(
           "Accept",
-          style: TextStyle(color: Colors.blue,)
+          style: TextStyle(
+            color: Colors.blue,
+            fontSize: (2.05 * SizeConfig.textMultiplier), //14
+          )
       ),
       onPressed: () async {
         if(widget.type == ListType.received_recommendation_form || widget.type == ListType.send_recommendation_form){
@@ -161,7 +165,10 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
     return FlatButton(
       child: Text(
           "Cancel",
-          style: TextStyle(color: Colors.red,)
+          style: TextStyle(
+            color: Colors.red,
+            fontSize: (2.05 * SizeConfig.textMultiplier), //14
+          )
       ),
       onPressed: () {
         if(widget.type == ListType.received_recommendation_form || widget.type == ListType.send_recommendation_form){
