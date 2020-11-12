@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../../SizeConfig.dart';
+
 
 class DialogWithAcceptAndCancelOptions extends StatelessWidget{
 
@@ -44,8 +46,19 @@ class DialogWithAcceptAndCancelOptions extends StatelessWidget{
     );
 
     AlertDialog alert = AlertDialog(
-      title: Text(this.title, overflow: TextOverflow.ellipsis,),
-      content: Text(this.description),
+      title: Text(
+        this.title,
+        overflow: TextOverflow.ellipsis,
+        style: TextStyle(
+          fontSize: (2.05 * SizeConfig.textMultiplier), //14
+        ),
+      ),
+      content: Text(
+        this.description,
+        style: TextStyle(
+          fontSize: (2.05 * SizeConfig.textMultiplier), //14
+        ),
+      ),
       actions: [
         continueButton,
         cancelButton,

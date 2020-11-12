@@ -53,7 +53,7 @@ class _BookCardInVerticalSearchList extends State<BookCardInVerticalSearchList>{
     super.initState();
 
     if(widget.cardHeight == 160)
-      widget.cardHeight = (26.18 * SizeConfig.heightMultiplier); //160
+      widget.cardHeight = (23.42 * SizeConfig.heightMultiplier); //160
 
     user = Provider.of<User>(context, listen: false);
     if (widget.type == ListType.first_time_form ||
@@ -88,7 +88,7 @@ class _BookCardInVerticalSearchList extends State<BookCardInVerticalSearchList>{
       elevation: (2.43 * SizeConfig.widthMultiplier), //10
       margin: new EdgeInsets.symmetric(
           horizontal: (2.43 * SizeConfig.widthMultiplier), //10
-          vertical: (0.98 * SizeConfig.heightMultiplier) //6
+          vertical: (0.87 * SizeConfig.heightMultiplier) //6
       ),
       child:  Container(
         height: widget.cardHeight,

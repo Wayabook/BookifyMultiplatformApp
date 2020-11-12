@@ -2,6 +2,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../../SizeConfig.dart';
+
 class DialogWithInputText extends StatelessWidget{
 
   static const int ACCEPT_TAP = 0;
@@ -24,7 +26,12 @@ class DialogWithInputText extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     alertDialog = new AlertDialog(
-      title: Text(this.title),
+      title: Text(
+        this.title,
+        style: TextStyle(
+          fontSize: (2.05 * SizeConfig.textMultiplier), //14
+        ),
+      ),
       content: new Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -34,13 +41,16 @@ class DialogWithInputText extends StatelessWidget{
             decoration: InputDecoration(
                 filled: true,
                 enabledBorder:  OutlineInputBorder(
-                  borderSide:  BorderSide(color: Colors.greenAccent, width: 2.0),
+                  borderSide:  BorderSide(color: Colors.greenAccent, width: (0.48 * SizeConfig.widthMultiplier)), //2
                 ),
-                errorBorder: const OutlineInputBorder(
-                  borderSide: const BorderSide(color: Colors.red, width: 2.0),
+                errorBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.red, width: (0.48 * SizeConfig.widthMultiplier)), //2
                 ),
                 labelText:  this.entryTextDescription,
                 errorText: validateListTitle(inputController.text),
+            ),
+            style: TextStyle(
+              fontSize: (2.05 * SizeConfig.textMultiplier), //14
             ),
             controller: inputController,
           ),
@@ -50,7 +60,10 @@ class DialogWithInputText extends StatelessWidget{
         FlatButton(
           child: Text(
               "Accept",
-              style: TextStyle(color: Colors.blue,)
+              style: TextStyle(
+                color: Colors.blue,
+                fontSize: (2.05 * SizeConfig.textMultiplier), //14
+              )
           ),
           onPressed: () async {
               String listTitle = "";
@@ -65,7 +78,10 @@ class DialogWithInputText extends StatelessWidget{
         FlatButton(
           child: Text(
               "Cancel",
-              style: TextStyle(color: Colors.red,)
+              style: TextStyle(
+                color: Colors.red,
+                fontSize: (2.05 * SizeConfig.textMultiplier), //14
+              )
           ),
           onPressed: () {
             Navigator.of(context).pop(CANCEL_TAP);
@@ -90,7 +106,10 @@ class DialogWithInputText extends StatelessWidget{
     return new RichText(
       text: new TextSpan(
         text: this.description,
-        style: const TextStyle(color: Colors.black87),
+        style: TextStyle(
+          color: Colors.black87,
+          fontSize: (2.05 * SizeConfig.textMultiplier), //14
+        ),
       ),
     );
   }

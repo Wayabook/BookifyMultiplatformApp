@@ -6,6 +6,7 @@ import 'package:bookifyapp/LayoutWidgets/Profile/profile_info.dart';
 import 'package:bookifyapp/Models/Lecture.dart';
 import 'package:bookifyapp/Models/Recommendation.dart';
 import 'package:bookifyapp/Models/User.dart';
+import 'package:bookifyapp/SizeConfig.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/Models/Book.dart';
@@ -96,10 +97,10 @@ class _RecommendationDialog
     return Stack(
       children: <Widget>[
         Positioned(
-            top: 70,
+            top: (10.24 * SizeConfig.heightMultiplier), //70
             child: Container(
                 width: width,
-                height: height - 70,
+                height: height - (10.24 * SizeConfig.heightMultiplier), //70
                 color: _backgroundColor,
                 child:  Align(
                   alignment: Alignment.topLeft,
@@ -108,8 +109,9 @@ class _RecommendationDialog
                       Navigator.pop(context);
                     },
                     icon: Icon(
-                        Icons.keyboard_arrow_down,
-                        color: Colors.black
+                      Icons.keyboard_arrow_down,
+                      color: Colors.black,
+                      size: (5.83 * SizeConfig.imageSizeMultiplier),
                     ),
                   ),
                 )
@@ -119,17 +121,26 @@ class _RecommendationDialog
         ProfileInfo(widget._recommendations[0].recommendedBy, nameColor: kPrimaryDarkColor,),
 
         Padding(
-          padding: EdgeInsets.fromLTRB(7, 140, 7, 10),
-          child: Container(color: kPrimaryDarkColor, height: 2, width: width),
+          padding: EdgeInsets.fromLTRB(
+              (1.7 * SizeConfig.imageSizeMultiplier), //7
+              (20.49 * SizeConfig.heightMultiplier), //140
+              (1.7 * SizeConfig.imageSizeMultiplier), //7
+              (2.43 * SizeConfig.widthMultiplier), //10
+          ),
+          child: Container(
+              color: kPrimaryDarkColor,
+              height: (0.29 * SizeConfig.heightMultiplier), //2
+              width: width
+          ),
         ),
 
         Positioned(
-            top: 150,
-            left: 7,
-            right: 7,
+            top: (24.54 * SizeConfig.heightMultiplier), //150
+            left: (1.7 * SizeConfig.imageSizeMultiplier), //7
+            right: (1.7 * SizeConfig.imageSizeMultiplier), //7
             child: Container(
               width: width,
-              height: 50,
+              height: (12.16 * SizeConfig.imageSizeMultiplier), //50
               child: Align(
                 alignment: Alignment.center,
                 child:  Text(
@@ -138,7 +149,7 @@ class _RecommendationDialog
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: kPrimaryDarkColor,
-                    fontSize: 20,
+                    fontSize: (2.92 * SizeConfig.heightMultiplier), //20
                   ),
                 ),
               ),
@@ -146,12 +157,12 @@ class _RecommendationDialog
         ),
 
         Positioned(
-            top: 180,
-            left: 7,
-            right: 7,
+            top: (29.45 * SizeConfig.heightMultiplier), //180
+            left: (1.7 * SizeConfig.imageSizeMultiplier), //7
+            right: (1.7 * SizeConfig.imageSizeMultiplier), //7
             child: Container(
               width: width,
-              height: 50,
+              height: (12.16 * SizeConfig.imageSizeMultiplier),//50
               child: Align(
                 alignment: Alignment.center,
                 child:  Text(
@@ -160,7 +171,7 @@ class _RecommendationDialog
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       color: Colors.black,
-                      fontSize: 12,
+                      fontSize: (1.75 * SizeConfig.heightMultiplier), //12
                       fontStyle: FontStyle.italic
                   ),
                 ),
@@ -169,7 +180,12 @@ class _RecommendationDialog
         ),
 
         Padding(
-            padding: EdgeInsets.fromLTRB(0, 240, 0, 0),
+            padding: EdgeInsets.fromLTRB(
+                0,
+                (35.13 * SizeConfig.heightMultiplier), //240
+                0,
+                0
+            ),
             child: VerticalBookListSearch(
               Recommendation.getRecommendedBooksFromRecommendations(widget._recommendations),
               ListType.received_recommendation_form,
@@ -188,11 +204,11 @@ class _RecommendationDialog
       alignment: Alignment.center,
       children: <Widget>[
         Positioned(
-            top: 50,
-            left: 10,
+            top: (7.32 * SizeConfig.heightMultiplier), // 50
+            left: (2.43 * SizeConfig.widthMultiplier), //10
             child: Container(
                 width: width,
-                height: 160,
+                height: (23.42 * SizeConfig.heightMultiplier), //160
                 color: _backgroundColor,
             )
         ),
@@ -204,18 +220,18 @@ class _RecommendationDialog
             child: Icon(
               Icons.card_giftcard,
               color: kPrimaryDarkColor,
-              size: 100,
+              size: (14.64 * SizeConfig.heightMultiplier), //100
             ),
           ),
         ),
 
         Positioned(
-            top: 100,
-            left: 10,
-            right: 10,
+            top: (14.64 * SizeConfig.heightMultiplier), //100
+            left: (2.43 * SizeConfig.widthMultiplier), //10
+            right: (2.43 * SizeConfig.widthMultiplier), //10
             child: Container(
               width: width,
-              height: 50,
+              height: (12.16 * SizeConfig.imageSizeMultiplier), //50
               color: kPrimaryLightColor,
               child: Align(
                 alignment: Alignment.center,
@@ -230,7 +246,7 @@ class _RecommendationDialog
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: kPrimaryDarkColor,
-                    fontSize: 20,
+                    fontSize: (2.92 * SizeConfig.heightMultiplier), //20
                   ),
                 ),
               ),
@@ -238,9 +254,9 @@ class _RecommendationDialog
         ),
 
         Positioned(
-          top: 150,
-          left: 10,
-          right: 10,
+          top: (24.54 * SizeConfig.heightMultiplier), //150
+          left: (2.43 * SizeConfig.widthMultiplier), //10
+          right: (2.43 * SizeConfig.widthMultiplier), //10
           child: Row(
             children: <Widget>[
               Expanded(
@@ -264,7 +280,10 @@ class _RecommendationDialog
     return FlatButton(
         child: Text(
             "Accept",
-            style: TextStyle(color: Colors.blue,)
+            style: TextStyle(
+              color: Colors.blue,
+              fontSize: (2.05 * SizeConfig.textMultiplier), //14
+            )
         ),
         onPressed: () async {
           Navigator.pop(context);
@@ -276,7 +295,10 @@ class _RecommendationDialog
     return FlatButton(
       child: Text(
           "Cancel",
-          style: TextStyle(color: Colors.red,)
+          style: TextStyle(
+            color: Colors.red,
+            fontSize: (2.05 * SizeConfig.textMultiplier), //14
+          )
       ),
       onPressed: () {
         Navigator.pop(context);
