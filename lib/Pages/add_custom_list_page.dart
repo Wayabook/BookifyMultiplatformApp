@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:bookifyapp/LayoutWidgets/Lists/vertical_book_list_search.dart';
 import 'package:bookifyapp/Models/Book.dart';
 
+import '../SizeConfig.dart';
+
 class AddCustomListPage extends StatefulWidget {
 
   List<Book> bookshelf;
@@ -40,7 +42,7 @@ class _AddCustomListPage extends State<AddCustomListPage> {
   FocusNode _focusNode;
 
   String filter = "";
-  Icon actionIcon = new Icon(Icons.search);
+  Icon actionIcon = new Icon(Icons.search, size: (5.83 * SizeConfig.imageSizeMultiplier),);
   String searchTitle = "Search...";
   TextField appBarTitle;
 
@@ -81,6 +83,7 @@ class _AddCustomListPage extends State<AddCustomListPage> {
       ),
       style: new TextStyle(
         color: kPrimaryLightColor,
+        fontSize: (2.05 * SizeConfig.textMultiplier), //14
       ),
       cursorColor: kPrimaryLightColor,
       onTap: (){
@@ -93,10 +96,10 @@ class _AddCustomListPage extends State<AddCustomListPage> {
   _checkInuptTextState(fromButton){
     setState(() {
       if (this.actionIcon.icon == Icons.search) {
-        this.actionIcon = new Icon(Icons.close);
+        this.actionIcon = new Icon(Icons.close, size: (5.83 * SizeConfig.imageSizeMultiplier),);
         _focusNode.requestFocus();
       } else {
-        this.actionIcon = new Icon(Icons.search);
+        this.actionIcon = new Icon(Icons.search, size: (5.83 * SizeConfig.imageSizeMultiplier),);
         _bookshelf = widget.bookshelf;
         _focusNode.unfocus();
         controller.clear();

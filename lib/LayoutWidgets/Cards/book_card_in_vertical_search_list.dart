@@ -52,9 +52,6 @@ class _BookCardInVerticalSearchList extends State<BookCardInVerticalSearchList>{
   void initState() {
     super.initState();
 
-    if(widget.cardHeight == 160)
-      widget.cardHeight = (23.42 * SizeConfig.heightMultiplier); //160
-
     user = Provider.of<User>(context, listen: false);
     if (widget.type == ListType.first_time_form ||
         widget.type == ListType.received_recommendation_form ||
@@ -84,6 +81,10 @@ class _BookCardInVerticalSearchList extends State<BookCardInVerticalSearchList>{
 
   @override
   Widget build(BuildContext context) {
+
+    if(widget.cardHeight == 160)
+      widget.cardHeight = (23.42 * SizeConfig.heightMultiplier); //160
+
     return Card(
       elevation: (2.43 * SizeConfig.widthMultiplier), //10
       margin: new EdgeInsets.symmetric(

@@ -140,8 +140,8 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
               builder: (BuildContext context) => DialogWithAcceptAndCancelOptions(
                   "Delete List",
                   "Any book selected. Are you sure you want to delete list?",
-                  TextStyle(color: Colors.red,),
-                  TextStyle(color: Colors.blue,)
+                  TextStyle(color: Colors.red, fontSize: (1.75 * SizeConfig.heightMultiplier)),
+                  TextStyle(color: Colors.blue, fontSize: (1.75 * SizeConfig.heightMultiplier))
               ),
             );
             if(result == DialogWithAcceptAndCancelOptions.ACCEPT_TAP){
@@ -206,7 +206,7 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
             alignment: Alignment.bottomCenter,
             child: Container(
               color: kPrimaryLightColor,
-              height: 50,
+              height: (12.16 * SizeConfig.imageSizeMultiplier),
               width: MediaQuery
                   .of(context)
                   .size
@@ -236,7 +236,7 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
           itemCount: widget.books.length + 1,
           itemBuilder: (BuildContext context, int index) {
             if (index == 0)
-              return ListTitle(widget.title, fontSize: 22,);
+              return ListTitle(widget.title, fontSize: (3.21 * SizeConfig.textMultiplier),);
             return _makeCard(index - 1);
           },
         ),
