@@ -3,7 +3,7 @@ import 'package:bookifyapp/Interfaces/RemoveCommentInterface.dart';
 import 'package:bookifyapp/LayoutWidgets/BookWidgets/summary_text.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/user_preview_card.dart';
 import 'package:bookifyapp/Models/MainComment.dart';
-import 'package:bookifyapp/Pages/comment_page.dart';
+import 'package:bookifyapp/Pages/CommentPage/comment_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:like_button/like_button.dart';
@@ -123,7 +123,11 @@ class MainCommentCard extends StatelessWidget implements RemoveCommentInterface 
                                         ? (count / 1000).toStringAsFixed(1) +
                                         'k'
                                         : text,
-                                    style: TextStyle(color: color),
+                                    overflow: TextOverflow.ellipsis,
+                                    style: TextStyle(
+                                        color: color,
+                                        fontSize: (2.05 * SizeConfig.textMultiplier), //14
+                                    ),
                                   );
                                 }
                                 return result;
@@ -151,11 +155,11 @@ class MainCommentCard extends StatelessWidget implements RemoveCommentInterface 
                             Align(
                               alignment: Alignment.center,
                               child: Text(
-                                mainComment.answers.length.toString() + " respuestas",
+                                mainComment.answers.length.toString(), /*+ " respuestas",*/
                                 overflow: TextOverflow.ellipsis,
                                 style: TextStyle(
                                   color: Colors.grey,
-                                  fontSize: (2.43 * SizeConfig.imageSizeMultiplier), //10
+                                  fontSize: (2.05 * SizeConfig.textMultiplier), //14
                                 ),
                               ),
                             ),

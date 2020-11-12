@@ -9,7 +9,7 @@ import 'package:bookifyapp/Models/Comment.dart';
 import 'package:bookifyapp/Models/Lecture.dart';
 import 'package:bookifyapp/Models/MainComment.dart';
 import 'package:bookifyapp/Models/User.dart';
-import 'package:bookifyapp/Pages/comment_page.dart';
+import 'package:bookifyapp/Pages/CommentPage/comment_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/LayoutWidgets/BookWidgets/book_cover.dart';

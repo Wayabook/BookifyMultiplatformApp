@@ -13,7 +13,8 @@ import 'package:flutter/painting.dart';
 import 'package:bookifyapp/Models/Comment.dart';
 import 'package:provider/provider.dart';
 
-import '../InfoToast.dart';
+import '../../InfoToast.dart';
+import '../../SizeConfig.dart';
 
   class CommentPage extends StatefulWidget {
 
@@ -149,10 +150,12 @@ class _CommentPage
     textField = TextField(
       controller: textEditingController,
       decoration: InputDecoration(
-          contentPadding: EdgeInsets.fromLTRB(5, 0, 0, 0),
-          //border: InputBorder,
+          contentPadding: EdgeInsets.fromLTRB((1.21 * SizeConfig.widthMultiplier), 0, 0, 0),
           hintText: widget.subCommentsPage ? 'Add Comment...' : widget.chapterTitle,
           floatingLabelBehavior: FloatingLabelBehavior.never,
+      ),
+      style: TextStyle(
+        fontSize: (2.05 * SizeConfig.textMultiplier), //14
       ),
       maxLines: null,
       expands: widget.subCommentsPage ? false : true,
@@ -173,7 +176,7 @@ class _CommentPage
     return ListView.builder(
         controller: scrollController,
         shrinkWrap: true,
-        padding: const EdgeInsets.all(8),
+        padding: EdgeInsets.all((1.29 * SizeConfig.heightMultiplier)), //8
         itemCount: this.comments.length,
         itemBuilder: (BuildContext context, int index) {
           return this.comments[index];
@@ -207,7 +210,7 @@ class _CommentPage
                         child: Icon(
                           Icons.send,
                           color: Colors.yellow,
-                          size: 30,
+                          size: (4.39 * SizeConfig.heightMultiplier), //30
                         ),
                         onTap: _addComment,
                       )
@@ -249,7 +252,7 @@ class _CommentPage
            child: ListView.builder(
                controller: scrollController,
                shrinkWrap: true,
-               padding: const EdgeInsets.all(8),
+               padding: EdgeInsets.all((1.29 * SizeConfig.heightMultiplier)), //8
                itemCount: this.comments.length,
                itemBuilder: (BuildContext context, int index) {
                  return this.comments[index];
@@ -290,7 +293,7 @@ class _CommentPage
                            child: AutoSizeText(
                              "PUBLICAR",
                              style: TextStyle(
-                               fontSize: 30.0,
+                               fontSize: (4.39 * SizeConfig.heightMultiplier), //30
                                fontWeight: FontWeight.bold,
                                color: publishTextColor,
                              ),

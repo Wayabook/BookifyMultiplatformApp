@@ -18,7 +18,7 @@ import 'package:provider/provider.dart';
 import '../../InfoToast.dart';
 import '../../Models/User.dart';
 import '../../SizeConfig.dart';
-import '../comment_page.dart';
+import '../CommentPage/comment_page.dart';
 
 
 class BookPage extends StatefulWidget {
