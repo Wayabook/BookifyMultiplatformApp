@@ -123,7 +123,7 @@ class _RecommendationDialog
         Padding(
           padding: EdgeInsets.fromLTRB(
               (1.7 * SizeConfig.imageSizeMultiplier), //7
-              (20.49 * SizeConfig.heightMultiplier), //140
+              (24.89 * SizeConfig.heightMultiplier), //170
               (1.7 * SizeConfig.imageSizeMultiplier), //7
               (2.43 * SizeConfig.widthMultiplier), //10
           ),

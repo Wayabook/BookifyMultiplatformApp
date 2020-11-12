@@ -9,6 +9,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../SizeConfig.dart';
+
 class UserPreviewCard extends StatelessWidget {
 
   User user;
@@ -40,13 +42,15 @@ class UserPreviewCard extends StatelessWidget {
   _makeListTile(BuildContext context) {
     return Container(
         decoration: BoxDecoration(
-            borderRadius:  card ? BorderRadius.circular(7.0) : BorderRadius.circular(0.0)
+            borderRadius:  card ? BorderRadius.circular((1.02 * SizeConfig.imageSizeMultiplier)) // 7
+                : BorderRadius.circular(0.0)
         ),
         child: _getRow(context),
     );
   }
 
   _getRow(BuildContext context){
+
     if(card){
       return Row(
         children: <Widget>[
@@ -61,12 +65,14 @@ class UserPreviewCard extends StatelessWidget {
           Flexible(
             flex: 6,
             child: Padding(
-              padding: EdgeInsets.all(15.0),
+              padding: EdgeInsets.all((3.64 * SizeConfig.widthMultiplier)), //15
               child: Column(
                 children: [
                   Container(
                     child: Padding(
-                      padding: EdgeInsets.fromLTRB(0, 0, 0, 15),
+                      padding: EdgeInsets.fromLTRB(0, 0, 0,
+                          SizeConfig.textMultiplier <= 6.83 ? (3.64 * SizeConfig.widthMultiplier) : (1.21 * SizeConfig.widthMultiplier)
+                      ), //15
                       child: Align(
                         alignment: Alignment.centerLeft,
                         child: AutoSizeText(
@@ -82,7 +88,7 @@ class UserPreviewCard extends StatelessWidget {
                   ),
 
                   Padding(
-                    padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                    padding: EdgeInsets.all(0),
                     child: Align(
                       alignment: Alignment.centerLeft,
                       child: GestureDetector(
@@ -122,10 +128,8 @@ class UserPreviewCard extends StatelessWidget {
                 Flexible(
                   flex: 6,
                   child: Padding(
-                    padding: EdgeInsets.all(12.0),
+                    padding: EdgeInsets.all((1.75 * SizeConfig.heightMultiplier)), //12
                     child: Container(
-                      //color: Colors.black,
-                      //height: 150,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -159,7 +163,8 @@ class UserPreviewCard extends StatelessWidget {
                   },
                   icon: Icon(
                       Icons.close,
-                      color: Colors.black
+                      color: Colors.black,
+                      size: (5.83 * SizeConfig.imageSizeMultiplier), //24
                   ),
                 ),
               ),
@@ -173,7 +178,7 @@ class UserPreviewCard extends StatelessWidget {
   _showDeleteAlertDialog(BuildContext context){
     Widget cancelButton = FlatButton(
       //color: Colors.redAccent,
-      child: Text("Cancel"),
+      child: Text("Cancel", style: TextStyle(fontSize: (2.05 * SizeConfig.textMultiplier)),),//14
       onPressed:  () {
         Navigator.pop(context);
       },
@@ -181,7 +186,7 @@ class UserPreviewCard extends StatelessWidget {
     Widget acceptButton = FlatButton(
       child: Text(
         "Accept",
-        style: TextStyle(color: Colors.red),
+        style: TextStyle(color: Colors.red, fontSize: (2.05 * SizeConfig.textMultiplier)), //14
       ),
       onPressed:  () {
         this.removeComment(0);
@@ -190,8 +195,8 @@ class UserPreviewCard extends StatelessWidget {
     );
 
     AlertDialog alert = AlertDialog(
-      title: Text("Delete Comment"),
-      content: Text("Are you sure you want to delete this comment?"),
+      title: Text("Delete Comment", style: TextStyle(fontSize: (2.05 * SizeConfig.textMultiplier))), //14
+      content: Text("Are you sure you want to delete this comment?", style: TextStyle(fontSize: (2.05 * SizeConfig.textMultiplier))),//14
       actions: [
         cancelButton,
         acceptButton
@@ -209,10 +214,23 @@ class UserPreviewCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    if(this.height == 100)
+      this.height = (14.64 * SizeConfig.heightMultiplier); //100
+
+    if(this.fontSize == 30)
+      this.fontSize = (4.39 * SizeConfig.heightMultiplier); //30
+
+    if(this.padding == 10)
+      this.padding = (1.55 * SizeConfig.widthMultiplier); //10
+
     if (card) {
       return  Card(
-        elevation: 10,
-        margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
+        elevation: (2.43 * SizeConfig.widthMultiplier), //10
+        margin: new EdgeInsets.symmetric(
+            horizontal: (2.43 * SizeConfig.widthMultiplier), //10
+            vertical: (0.87 * SizeConfig.heightMultiplier) //6
+        ),
         child:  Container(
           height: this.height,
           decoration: BoxDecoration(

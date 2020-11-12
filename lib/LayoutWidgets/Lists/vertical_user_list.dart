@@ -1,6 +1,7 @@
 import 'package:bookifyapp/Design/constants.dart';
 import 'package:bookifyapp/Enums/profile_type.dart';
-import 'package:bookifyapp/LayoutWidgets/Cards/user_preview_card.dart';
+import 'package:bookifyapp/LayoutWidgets/Profile/user_preview_card.dart';
+import 'package:bookifyapp/SizeConfig.dart';
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/Models/User.dart';
 import 'package:bookifyapp/Pages/ProfilePages/profile_page.dart';
@@ -39,7 +40,12 @@ class _VerticalUserList extends State<VerticalUserList> with TickerProviderState
               ProfileType.friend_profile,
               isFriend: user.isFriend(widget.users[index]))));
       },
-      child: UserPreviewCard(widget.users[index], padding: 5, fontSize: 26, /*isFriend: user.isFriend(widget.users[index]),*/),
+      child: UserPreviewCard(
+        widget.users[index],
+        padding: (1.21 * SizeConfig.widthMultiplier), //5
+        fontSize: (3.8 * SizeConfig.textMultiplier), //26
+        /*isFriend: user.isFriend(widget.users[index]),*/
+      ),
     );
   }
 
