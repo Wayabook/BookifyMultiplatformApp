@@ -12,7 +12,7 @@ import 'package:provider/provider.dart';
 
 import '../../../InfoToast.dart';
 import '../../../SizeConfig.dart';
-import '../../friends_preview.dart';
+import '../../Profile/friends_preview.dart';
 
 class BookCardInVerticalSearchList extends StatefulWidget{
 

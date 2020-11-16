@@ -6,7 +6,7 @@ import 'package:bookifyapp/Interfaces/TitleButtonInterface.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/Book/book_card.dart';
 import 'package:bookifyapp/LayoutWidgets/Dialogs/dialog_with_accept_and_cancel_options.dart';
 import 'package:bookifyapp/LayoutWidgets/Dialogs/dialog_with_input_text.dart';
-import 'package:bookifyapp/LayoutWidgets/Lists/list_title.dart';
+import 'package:bookifyapp/LayoutWidgets/Lists/Title/list_title.dart';
 import 'package:bookifyapp/Pages/add_custom_list_page.dart';
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/Models/User.dart';

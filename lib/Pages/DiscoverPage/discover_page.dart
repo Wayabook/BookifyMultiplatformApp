@@ -1,5 +1,5 @@
 import 'package:bookifyapp/Design/constants.dart';
-import 'package:bookifyapp/LayoutWidgets/Lists/list_title.dart';
+import 'package:bookifyapp/LayoutWidgets/Lists/Title/list_title.dart';
 import 'package:bookifyapp/LayoutWidgets/Carousels/carousel_card.dart';
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/Pages/SearchPage/search_page.dart';

@@ -3,7 +3,7 @@ import 'package:bookifyapp/Enums/list_type.dart';
 import 'package:bookifyapp/InfoToast.dart';
 import 'package:bookifyapp/LayoutWidgets/Buttons/small_button_underlined.dart';
 import 'package:bookifyapp/LayoutWidgets/Grids/genres_grid.dart';
-import 'package:bookifyapp/LayoutWidgets/Lists/list_title.dart';
+import 'package:bookifyapp/LayoutWidgets/Lists/Title/list_title.dart';
 import 'package:bookifyapp/Models/Book.dart';
 import 'package:bookifyapp/Models/Genre.dart';
 import 'package:bookifyapp/Pages/add_custom_list_page.dart';

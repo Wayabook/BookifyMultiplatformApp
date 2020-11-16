@@ -7,7 +7,7 @@ import 'package:bookifyapp/Models/Lecture.dart';
 import 'package:bookifyapp/Models/User.dart';
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/Models/Book.dart';
-import 'package:bookifyapp/LayoutWidgets/Lists/list_title.dart';
+import 'package:bookifyapp/LayoutWidgets/Lists/Title/list_title.dart';
 import 'package:provider/provider.dart';
 
 import '../../SizeConfig.dart';

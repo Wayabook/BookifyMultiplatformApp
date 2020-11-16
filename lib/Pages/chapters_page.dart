@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:bookifyapp/Models/Book.dart';
-import 'package:bookifyapp/LayoutWidgets/Lists/list_title.dart';
+import 'package:bookifyapp/LayoutWidgets/Lists/Title/list_title.dart';
 
 import '../SizeConfig.dart';
 

@@ -4,7 +4,7 @@ import 'package:bookifyapp/LayoutWidgets/Buttons/small_button_underlined.dart';
 import 'package:bookifyapp/Models/User.dart';
 import 'package:flutter/material.dart';
 
-import '../../SizeConfig.dart';
+import '../../../SizeConfig.dart';
 
 class ListTitle extends StatelessWidget{
 
