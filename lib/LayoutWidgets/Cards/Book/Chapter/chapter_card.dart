@@ -4,6 +4,8 @@ import 'package:bookifyapp/Pages/CommentPage/comment_page.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 
+import '../../../../SizeConfig.dart';
+
 class ChapterCard extends StatelessWidget {
 
   Book book;
@@ -13,10 +15,10 @@ class ChapterCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 10,
-      margin: new EdgeInsets.fromLTRB(0, 0, 0, 0),
+      elevation: (2.43 * SizeConfig.widthMultiplier), //10
+      margin: new EdgeInsets.all(0),
       child:  Container(
-        height: 100,
+        height: (14.64 * SizeConfig.heightMultiplier), //100
         child: _makeListTile(context),
       ),
     );
@@ -26,10 +28,13 @@ class ChapterCard extends StatelessWidget {
     return Container(
         decoration: BoxDecoration(
             color: kPrimaryLightColor,
-            borderRadius:  BorderRadius.circular(7.0)
+            borderRadius:  BorderRadius.circular((1.7 * SizeConfig.imageSizeMultiplier)), //7
         ),
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 5.0, vertical: 10.0),
+          padding: EdgeInsets.symmetric(
+              horizontal: (1.21 * SizeConfig.widthMultiplier), //5
+              vertical: (2.43 * SizeConfig.widthMultiplier), //10
+          ),
           child: Container(
             //color: Colors.black,
             //height: 150,
@@ -41,7 +46,7 @@ class ChapterCard extends StatelessWidget {
                   alignment: Alignment.center,
                   child:  AutoSizeText(
                     this.book.chapters[this.chapter].title,
-                    style: TextStyle( fontWeight: FontWeight.bold, color: Colors.black, fontSize: 32,),
+                    style: TextStyle( fontWeight: FontWeight.bold, color: Colors.black, fontSize: (4.68 * SizeConfig.textMultiplier),), //32
                     maxLines: 1,
                   ),
                 ),
@@ -53,6 +58,7 @@ class ChapterCard extends StatelessWidget {
                         icon: Icon(
                           Icons.arrow_forward_ios,
                           color: kPrimaryDarkColor,
+                          size: (5.83 * SizeConfig.imageSizeMultiplier), //24
                         ),
                         onPressed: (){
                           Navigator.of(context)

@@ -10,9 +10,9 @@ import 'package:flutter/material.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:provider/provider.dart';
 
-import '../../InfoToast.dart';
-import '../../SizeConfig.dart';
-import '../friends_preview.dart';
+import '../../../InfoToast.dart';
+import '../../../SizeConfig.dart';
+import '../../friends_preview.dart';
 
 class BookCardInVerticalSearchList extends StatefulWidget{
 

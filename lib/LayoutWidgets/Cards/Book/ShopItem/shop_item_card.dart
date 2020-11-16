@@ -5,6 +5,8 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bookifyapp/LayoutWidgets/Profile/profile_picture.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../../../SizeConfig.dart';
+
 class ShopItemCard extends StatelessWidget {
 
   Item item;
@@ -13,10 +15,10 @@ class ShopItemCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 10,
-      margin: new EdgeInsets.fromLTRB(0, 0, 0, 0),
+      elevation: (2.43 * SizeConfig.widthMultiplier), //10
+      margin: new EdgeInsets.all(0),
       child:  Container(
-        height: 100,
+        height: (14.64 * SizeConfig.heightMultiplier), //100
         child: _makeListTile(),
       ),
     );
@@ -26,10 +28,13 @@ class ShopItemCard extends StatelessWidget {
     return Container(
         decoration: BoxDecoration(
             color: kPrimaryLightColor,
-            borderRadius:  BorderRadius.circular(7.0)
+            borderRadius:  BorderRadius.circular((1.7 * SizeConfig.imageSizeMultiplier)) //7
         ),
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 5.0, vertical: 10.0),
+          padding: EdgeInsets.symmetric(
+            horizontal: (1.21 * SizeConfig.widthMultiplier), //5
+            vertical: (2.43 * SizeConfig.widthMultiplier), //10
+          ),
           child: Row(
             children: <Widget>[
               Flexible(
@@ -40,7 +45,7 @@ class ShopItemCard extends StatelessWidget {
               Flexible(
                 flex: 7,
                 child: Padding(
-                  padding: EdgeInsets.all(12.0),
+                  padding: EdgeInsets.all((1.75 * SizeConfig.heightMultiplier)), //12
                   child: Container(
                     //color: Colors.black,
                     //height: 150,
@@ -52,7 +57,7 @@ class ShopItemCard extends StatelessWidget {
                           alignment: Alignment.center,
                           child:  AutoSizeText(
                             item.price.toString(),
-                            style: TextStyle( fontWeight: FontWeight.bold, color: Colors.black, fontSize: 30,),
+                            style: TextStyle( fontWeight: FontWeight.bold, color: Colors.black, fontSize: (4.39 * SizeConfig.textMultiplier),), //30
                             maxLines: 1,
                           ),
                         ),
@@ -61,7 +66,7 @@ class ShopItemCard extends StatelessWidget {
                           alignment: Alignment.center,
                           child:  AutoSizeText(
                             item.symbol,
-                            style: TextStyle( fontWeight: FontWeight.bold, color: Colors.black, fontSize: 30,),
+                            style: TextStyle( fontWeight: FontWeight.bold, color: Colors.black, fontSize: (4.39 * SizeConfig.textMultiplier),), //30
                             maxLines: 1,
                           ),
                         ),
@@ -73,6 +78,7 @@ class ShopItemCard extends StatelessWidget {
                               icon: Icon(
                                 Icons.arrow_forward_ios,
                                 color: kPrimaryDarkColor,
+                                size: (5.83 * SizeConfig.imageSizeMultiplier), //24
                               ),
                               onPressed: (){
                                 launch(item.shop_link);

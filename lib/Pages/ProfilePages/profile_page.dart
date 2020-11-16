@@ -18,7 +18,7 @@ import 'package:bookifyapp/LayoutWidgets/info_row.dart';
 import 'package:bookifyapp/Enums/row_type.dart';
 import 'package:bookifyapp/LayoutWidgets/Lists/horizontal_genres_list.dart';
 import 'package:bookifyapp/Enums/book_card_type.dart';
-import 'package:bookifyapp/LayoutWidgets/Cards/book_card.dart';
+import 'package:bookifyapp/LayoutWidgets/Cards/Book/book_card.dart';
 import 'package:bookifyapp/Models/User.dart';
 import 'package:bookifyapp/Enums/profile_type.dart';
 import 'dart:math';

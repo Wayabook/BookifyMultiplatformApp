@@ -1,7 +1,7 @@
 import 'package:bookifyapp/Design/constants.dart';
 import 'package:bookifyapp/Enums/list_type.dart';
 import 'package:bookifyapp/InfoToast.dart';
-import 'package:bookifyapp/LayoutWidgets/Cards/book_card_in_vertical_search_list.dart';
+import 'package:bookifyapp/LayoutWidgets/Cards/Book/book_card_in_vertical_search_list.dart';
 import 'package:bookifyapp/LayoutWidgets/Dialogs/dialog_with_accept_and_cancel_options.dart';
 import 'package:bookifyapp/Models/Lecture.dart';
 import 'package:bookifyapp/Models/User.dart';

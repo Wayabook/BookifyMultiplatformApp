@@ -16,7 +16,7 @@ import 'package:bookifyapp/LayoutWidgets/Dialogs/dialog_with_input_text.dart';
 import 'package:bookifyapp/Models/User.dart';
 import 'package:provider/provider.dart';
 
-import '../../SizeConfig.dart';
+import '../../../SizeConfig.dart';
 
 
 class BookCard extends StatelessWidget {

@@ -1,6 +1,6 @@
 import 'package:bookifyapp/Design/constants.dart';
 import 'package:bookifyapp/Interfaces/TitleButtonInterface.dart';
-import 'package:bookifyapp/LayoutWidgets/Cards/book_card_in_vertical_list.dart';
+import 'package:bookifyapp/LayoutWidgets/Cards/Book/book_card_in_vertical_list.dart';
 import 'package:bookifyapp/Models/Lecture.dart';
 import 'package:bookifyapp/Models/User.dart';
 import 'package:bookifyapp/Pages/bookshelf_page.dart';
