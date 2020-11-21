@@ -8,7 +8,7 @@ void main(){
     final shop = Shop.withoutIds("ShopName", "ShopLogoUrl");
     final item  = Item.withoutId(shop, "ShopLink", 1, "Symbol", "ISBN", "EAN");
     test('Get Item Link', (){
-      expect(item.shop_link, "ShopLink");
+      expect(item.shop_link, "ShopLinks");
     });
 
     test('Get Item Price', (){
