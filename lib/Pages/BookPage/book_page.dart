@@ -245,8 +245,8 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
           InfoRow(
               RowType.image,
               "GENDER",
-              "images/genre1.png",
-              "Romance",
+              "images/" + book.mainGenre.picture,
+              book.mainGenre.name,
               widthPerChild,
               (16.83 * SizeConfig.heightMultiplier)), //115
 

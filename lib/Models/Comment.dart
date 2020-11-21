@@ -21,6 +21,26 @@ class Comment {
     List<Item> items = new List();
     List<Genre> genres = new List();
 
+    Genre genre1 = Genre("1", "Genre1", "genre1.png");
+    Genre genre2 = Genre("2", "Genre2", "genre2.png");
+    Genre genre3 = Genre("3", "Genre3", "genre3.png");
+    Genre genre4 = Genre("4", "Genre4", "genre4.png");
+    Genre genre5 = Genre("5", "Genre5", "genre5.png");
+    Genre genre6 = Genre("6", "Genre6", "genre6.png");
+    Genre genre7 = Genre("7", "Genre7", "genre7.png");
+    Genre genre8 = Genre("8", "Genre8", "genre8.png");
+    Genre genre9 = Genre("9", "Genre9", "genre9.png");
+
+    genres.add(genre1);
+    genres.add(genre2);
+    genres.add(genre3);
+    genres.add(genre4);
+    genres.add(genre5);
+    genres.add(genre6);
+    genres.add(genre7);
+    genres.add(genre8);
+    genres.add(genre9);
+
     chapters.add(new Chapter(1, "Capitulo 1 :  Inicio"));
     chapters.add(new Chapter(2, "Capitulo 2 :  Post Inicio"));
     chapters.add(new Chapter(3, "Capitulo 3 :  Pre Final"));
@@ -71,6 +91,7 @@ class Comment {
         "Elisabeth Benavent",
         "https://imagessl3.casadellibro.com/a/l/t0/73/9788490628973.jpg",
         description,
+        genre1,
         shopItems,
         chapters : chapters
     );
@@ -80,6 +101,7 @@ class Comment {
         "Coque Mesa",
         "https://imagessl9.casadellibro.com/a/l/t5/59/9788408228059.jpg",
         description,
+        genre2,
         shopItems,
         chapters: chapters
     );
@@ -89,6 +111,7 @@ class Comment {
         "Maxim Huerta",
         "https://imagessl2.casadellibro.com/a/l/t5/92/9788408221692.jpg",
         description,
+        genre3,
         shopItems,
         chapters: chapters
     );
@@ -98,6 +121,7 @@ class Comment {
         "Woody Allen",
         "https://imagessl0.casadellibro.com/a/l/t5/50/9788491819950.jpg",
         description,
+        genre4,
         shopItems,
         chapters: chapters
     );
@@ -112,25 +136,6 @@ class Comment {
     lectures.add(book3.toLecture());
     lectures.add(book4.toLecture());
 
-    Genre genre1 = Genre("1", "Genre1", "genre1.png");
-    Genre genre2 = Genre("2", "Genre2", "genre2.png");
-    Genre genre3 = Genre("3", "Genre3", "genre3.png");
-    Genre genre4 = Genre("4", "Genre4", "genre4.png");
-    Genre genre5 = Genre("5", "Genre5", "genre5.png");
-    Genre genre6 = Genre("6", "Genre6", "genre6.png");
-    Genre genre7 = Genre("7", "Genre7", "genre7.png");
-    Genre genre8 = Genre("8", "Genre8", "genre8.png");
-    Genre genre9 = Genre("9", "Genre9", "genre9.png");
-
-    genres.add(genre1);
-    genres.add(genre2);
-    genres.add(genre3);
-    genres.add(genre4);
-    genres.add(genre5);
-    genres.add(genre6);
-    genres.add(genre7);
-    genres.add(genre8);
-    genres.add(genre9);
 
 
     Map<String, List<Lecture>> userLectures =

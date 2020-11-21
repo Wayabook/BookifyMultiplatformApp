@@ -7,7 +7,7 @@ void main(){
 
       final shop =Shop.withoutIds("ShopName", "ShopLogoUrl");
 
-      expect(shop.name, "ShoppName");
+      expect(shop.name, "ShopName");
     });
 
     test('Get Shop Logo Url', (){

@@ -3,6 +3,8 @@ import 'package:bookifyapp/Models/Lecture.dart';
 import 'package:bookifyapp/Models/User.dart';
 import 'package:bookifyapp/Models/Item.dart';
 
+import 'Genre.dart';
+
 class Book {
   String _title;
   String _author;
@@ -18,6 +20,7 @@ class Book {
   List<Chapter> chapters;
   List<User> friends_reading;
   Map<String, List<Item>> _shops_items;
+  Genre _mainGenre;
 
   Book(
       this._title,
@@ -45,8 +48,7 @@ class Book {
       this._author,
       this._coverImage,
       this._summary,
-      /*this._isbn,
-      this._ean,*/
+      this._mainGenre,
       this._shops_items,
       {
         this.editorial="SUMA",
@@ -122,6 +124,8 @@ class Book {
     _summary = summary;
   }
 
+  Genre get mainGenre => _mainGenre;
+
   int get year => _year;
 
   set year(int year) {
@@ -172,6 +176,7 @@ class Book {
     List<Book> books = new List();
     List<Item> items = Item.getMockItems();
     List<Chapter> chapters = Chapter.getMockChapters();
+    List<Genre> genres = Genre.getMockGenres();
     //List<User> friends = User.getMockAlterantiveUsers();
 
     Map<String, List<Item>> shopItems = {
@@ -207,6 +212,7 @@ class Book {
         "Elisabeth Benavent",
         "https://imagessl3.casadellibro.com/a/l/t0/73/9788490628973.jpg",
         description,
+        genres[0],
         shopItems,
         chapters : chapters,
         //friends_reading: friends,
@@ -217,6 +223,7 @@ class Book {
         "Coque Mesa",
         "https://imagessl9.casadellibro.com/a/l/t5/59/9788408228059.jpg",
         description,
+        genres[1],
         shopItems,
         chapters: chapters,
         //friends_reading: friends,
@@ -227,6 +234,7 @@ class Book {
         "Maxim Huerta",
         "https://imagessl2.casadellibro.com/a/l/t5/92/9788408221692.jpg",
         description,
+        genres[2],
         shopItems,
         chapters: chapters,
         //friends_reading: friends,
@@ -237,6 +245,7 @@ class Book {
         "Woody Allen",
         "https://imagessl0.casadellibro.com/a/l/t5/50/9788491819950.jpg",
         description,
+        genres[3],
         shopItems,
         chapters: chapters,
         //friends_reading: friends,
