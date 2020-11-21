@@ -1,6 +1,7 @@
 import 'package:bookifyapp/Models/Shop.dart';
 
 class Item{
+
   String _id;
   double _price;
   String _symbol;
@@ -21,39 +22,39 @@ class Item{
 
   double get price => _price;
 
-  set price(double price) {
+  /*set price(double price) {
     _price = price;
-  }
+  }*/
 
   String get symbol => _symbol;
 
-  set symbol(String symbol) {
+  /*set symbol(String symbol) {
     _symbol = symbol;
-  }
+  }*/
 
   String get shop_link => _shop_link;
 
-  set shop_link(String shop_link) {
+  /*set shop_link(String shop_link) {
     _shop_link = shop_link;
-  }
+  }*/
 
   Shop get shop => _shop;
 
-  set shop(Shop shop) {
+  /*set shop(Shop shop) {
     _shop = shop;
-  }
+  }*/
 
   String get isbn => _isbn;
 
-  set isbn(String id) {
+  /*set isbn(String id) {
     _isbn = id;
-  }
+  }*/
 
   String get ean => _ean;
 
-  set ean(String ean) {
+  /*set ean(String ean) {
     _ean = ean;
-  }
+  }*/
 
   static List<Item> getMockItems(){
     List<Shop> shops = Shop.getMockShops();
