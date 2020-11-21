@@ -1,9 +1,17 @@
 class Reaction {
-  String name;
-  String image;
-  int percentage;
+  String _name;
+  String _reactionIcon;
+  int _percentage;
 
-  Reaction(this.name, this.image, this.percentage);
+  Reaction(this._name, this._reactionIcon, this._percentage);
+
+  String get name => _name;
+
+  String get reactionIcon => _reactionIcon;
+
+  int get percentage => _percentage;
+
+
 
   static List<Reaction> getMockReactions(){
     List<Reaction> reactions = new List();

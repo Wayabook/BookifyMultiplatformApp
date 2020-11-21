@@ -62,7 +62,7 @@ class _ReactionCard extends State<ReactionCard> {
                   Flexible(
                     flex: 8,
                     child: Image.asset(
-                      widget.reaction.image,
+                      widget.reaction.reactionIcon,
                       height: (7.36 * SizeConfig.heightMultiplier), //45
                       width: (7.36 * SizeConfig.heightMultiplier), //45
                     ),
