@@ -1,5 +1,7 @@
 # bookifyapp
 
+[![Build Status - Travis][0]][1]
+
 A virtual Bookshelf for world wide lectors.
 
 ## Getting Started
