@@ -35,6 +35,10 @@ class BookCard extends StatelessWidget {
     return _getCard();
   }
 
+  _getBookCard(){
+
+  }
+
   _getCard(){
     if(this.type == BookCardType.add_option){
       return Card(
@@ -149,7 +153,7 @@ class BookCard extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(1.45 * SizeConfig.imageSizeMultiplier),
         ),
-        elevation: (2.43 * SizeConfig.imageSizeMultiplier),
+        elevation: (2.43 * SizeConfig.imageSizeMultiplier), // 10
         child: Stack(
             children: <Widget>[
               Padding(
