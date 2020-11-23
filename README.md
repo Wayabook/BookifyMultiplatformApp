@@ -1,6 +1,6 @@
 # bookifyapp
 
-[![Build Status - Travis][0]][1]
+[![Build Status](https://travis-ci.org/Wayabook/BookifyMultiplatformApp.svg?branch=master)](https://travis-ci.org/Wayabook/BookifyMultiplatformApp)
 
 A virtual Bookshelf for world wide lectors.
 

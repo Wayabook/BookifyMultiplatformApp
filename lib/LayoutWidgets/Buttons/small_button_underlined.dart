@@ -22,13 +22,16 @@ class SmallButtonUnderlined extends StatelessWidget {
     if(this.fontSize == 15)
       this.fontSize = (2.19 * SizeConfig.textMultiplier);
 
-    return Text(
-      text,
-      style: TextStyle(
-        fontSize: this.fontSize,
-        fontWeight: FontWeight.bold,
-        color: this.textColor,
-        decoration: TextDecoration.underline,
+    return Directionality(
+      textDirection: TextDirection.ltr,
+      child: Text(
+        text,
+        style: TextStyle(
+          fontSize: this.fontSize,
+          fontWeight: FontWeight.bold,
+          color: this.textColor,
+          decoration: TextDecoration.underline,
+        ),
       ),
     );
   }

@@ -45,6 +45,7 @@ class Comment {
   + User author;
   + int likes;
   + String comment;
+  + List<User> likedBy;
 }
 
 class Genre {

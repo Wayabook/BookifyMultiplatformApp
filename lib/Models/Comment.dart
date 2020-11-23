@@ -10,8 +10,16 @@ class Comment {
   User author;
   int likes;
   String comment;
+  List<User> likedBy;
 
-  Comment(this.author, this.comment, {this.likes = 0});
+  Comment(
+      this.author,
+      this.comment,
+      {
+        this.likes = 0,
+        this.likedBy = const [],
+      });
+
 
   static List<Comment> getMockComments(){
 
