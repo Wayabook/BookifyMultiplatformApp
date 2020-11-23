@@ -16,18 +16,34 @@ import 'package:bookifyapp/LayoutWidgets/Dialogs/dialog_with_input_text.dart';
 import 'package:bookifyapp/Models/User.dart';
 import 'package:provider/provider.dart';
 
+import '../../../InfoToast.dart';
 import '../../../SizeConfig.dart';
 
 
-class BookCard extends StatelessWidget {
+class BookCard extends StatefulWidget {
 
   BuildContext context;
   BookCardType type;
   Lecture book;
   User user;
 
-  BookCard(this.book, this.type);
+  BookCard(this.book, this.type, {this.user});
+
   BookCard.option(this.type, {this.user});
+
+  @override
+  _BookCard createState() => _BookCard(this.book, this.type, user: this.user);
+}
+
+class _BookCard extends State<BookCard>{
+
+  BuildContext context;
+  BookCardType type;
+  Lecture book;
+  User user;
+  AddButtonSmall _addButtonSmall;
+
+  _BookCard(this.book, this.type, {this.user});
 
   @override
   Widget build(BuildContext context) {
@@ -35,8 +51,17 @@ class BookCard extends StatelessWidget {
     return _getCard();
   }
 
-  _getBookCard(){
-
+  @override
+  void initState() {
+    /*setState(() {
+      _friends = widget.friends;
+    });*/
+    super.initState();
+    if(this.type == BookCardType.add_option)
+      _addButtonSmall = AddButtonSmall((this.user.isInPendingList(this.book.toLecture()) ||
+          this.user.isInReadingList(this.book.toLecture())) ? Icons.check: Icons.add);
+    /*cardIcon = (this.user.isInPendingList(this.book.toLecture()) ||
+        this.user.isInReadingList(this.book.toLecture())) ? Icons.check: Icons.add;*/
   }
 
   _getCard(){
@@ -68,7 +93,22 @@ class BookCard extends StatelessWidget {
               Positioned(
                 top: 0,
                 right: 0,
-                child: AddButtonSmall(this.book),
+                child: GestureDetector(
+                  onTap: () {
+                    if(!this.user.isInReadingList(this.book.toLecture())){
+                      if(!this.user.isInPendingList(this.book.toLecture())){
+                        setState(() {
+                          var user = Provider.of<User>(context, listen: false);
+                          user.addLectureToPendingList(this.book.toLecture());
+
+                          _addButtonSmall = AddButtonSmall(Icons.check);
+                          InfoToast.showBookAddedCorrectlyToast(widget.book.title);
+                        });
+                      }
+                    }
+                  },
+                  child: _addButtonSmall,
+                ),
               )
             ]
         ),

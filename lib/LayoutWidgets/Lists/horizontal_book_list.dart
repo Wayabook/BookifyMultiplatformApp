@@ -48,7 +48,7 @@ class HorizontalBookList extends StatelessWidget {
           {
             if(index < books.length){
               if (this.type == ListType.discover_option) {
-                return BookCard(this.books[index], BookCardType.add_option);
+                return BookCard(this.books[index], BookCardType.add_option, user: this.user);
               } else {
                 return BookCard(this.books[index], BookCardType.without_add_option_and_progress_bar);
               }
@@ -60,7 +60,7 @@ class HorizontalBookList extends StatelessWidget {
               }
             }
           } else {
-            return BookCard(this.books[index], BookCardType.add_option);
+            return BookCard(this.books[index], BookCardType.add_option, user: this.user);
           }
         },
       ),

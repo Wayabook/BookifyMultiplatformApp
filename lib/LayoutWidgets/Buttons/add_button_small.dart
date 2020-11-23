@@ -8,8 +8,14 @@ import 'package:provider/provider.dart';
 
 class AddButtonSmall extends StatefulWidget {
 
-  Book book;
-  AddButtonSmall(this.book);
+  //Book book;
+  IconData _iconData;
+  _AddButtonSmall _addButtonSmall = _AddButtonSmall();
+  AddButtonSmall(this._iconData);
+
+  /*setIcon(IconData iconData) {
+    _addButtonSmall.setIcon(iconData);
+  }*/
 
   @override
   _AddButtonSmall createState() => _AddButtonSmall();
@@ -24,7 +30,8 @@ class _AddButtonSmall extends State<AddButtonSmall>{
   @override
   void initState() {
     super.initState();
-    var user = Provider.of<User>(context, listen: false);
+    this.iconData = widget._iconData;
+    /*var user = Provider.of<User>(context, listen: false);
     isInPendingList = user.isInPendingList(widget.book.toLecture());
     isInReadingList = user.isInReadingList(widget.book.toLecture());
 
@@ -32,7 +39,7 @@ class _AddButtonSmall extends State<AddButtonSmall>{
       iconData = Icons.check;
     } else {
       iconData = Icons.add;
-    }
+    }*/
   }
 
   @override
@@ -40,41 +47,28 @@ class _AddButtonSmall extends State<AddButtonSmall>{
     return _getAddButton();
   }
 
+  /*setIcon(IconData iconData){
+    setState(() {
+      this.iconData = iconData;
+    });
+  }*/
+
   _getAddButton(){
-
-    return GestureDetector(
-      onTap: (){
-        setState(() {
-          if(!isInReadingList){
-            if(!isInPendingList){
-              setState(() {
-                isInPendingList = true;
-                var user = Provider.of<User>(context, listen: false);
-                user.addLectureToPendingList(widget.book.toLecture());
-
-                iconData = Icons.check;
-                InfoToast.showBookAddedCorrectlyToast(widget.book.title);
-              });
-            }
-          }
-        });
-      },
-      child: Container(
-        height: (4.39 * SizeConfig.heightMultiplier), //30
-        width: (7.29 * SizeConfig.widthMultiplier), //30
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular((1.7 * SizeConfig.imageSizeMultiplier))), // 7
-          border: Border.all(
-              color: Colors.black,
-              width: (0.24 * SizeConfig.widthMultiplier)
-          ),
-          color: kPrimaryLightColor,
+    return  Container(
+      height: (4.39 * SizeConfig.heightMultiplier), //30
+      width: (7.29 * SizeConfig.widthMultiplier), //30
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.all(Radius.circular((1.7 * SizeConfig.imageSizeMultiplier))), // 7
+        border: Border.all(
+            color: Colors.black,
+            width: (0.24 * SizeConfig.widthMultiplier)
         ),
-        child: Icon(
-            iconData,
-            size: (5.83 * SizeConfig.imageSizeMultiplier), //24
-            color: Colors.black),
+        color: kPrimaryLightColor,
       ),
+      child: Icon(
+          iconData,
+          size: (5.83 * SizeConfig.imageSizeMultiplier), //24
+          color: Colors.black),
     );
   }
 

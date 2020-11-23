@@ -1,11 +1,13 @@
 import 'package:bookifyapp/Design/constants.dart';
 import 'package:bookifyapp/LayoutWidgets/Lists/Title/list_title.dart';
 import 'package:bookifyapp/LayoutWidgets/Carousels/carousel_card.dart';
+import 'package:bookifyapp/Models/User.dart';
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/Pages/SearchPage/search_page.dart';
 import 'package:bookifyapp/Models/Book.dart';
 import 'package:bookifyapp/LayoutWidgets/Lists/horizontal_book_list.dart';
 import 'package:bookifyapp/Enums/list_type.dart';
+import 'package:provider/provider.dart';
 
 import '../../SizeConfig.dart';
 
@@ -90,7 +92,7 @@ class DiscoverPage extends StatelessWidget {
               child: ListTitle(sectionTitle),
             ),
           ),
-          HorizontalBookList(Book.toLectureList(Book.getAppMockBooks()), ListType.discover_option),
+          HorizontalBookList(Book.toLectureList(Book.getAppMockBooks()), ListType.discover_option, user: Provider.of<User>(context, listen: false),),
         ],
       );
     }
