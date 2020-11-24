@@ -96,6 +96,7 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
   }
 
   _getBookCoverStack(width){
+    var aux = this.book.picture;
     return Stack(
       key: UniqueKey(),
       children: [

@@ -5,6 +5,7 @@ class Genre {
   String _picture;
 
   Genre(this._id, this._name, this._picture);
+
   Genre.withoutId(this._name, this._picture);
 
   String get id => _id;

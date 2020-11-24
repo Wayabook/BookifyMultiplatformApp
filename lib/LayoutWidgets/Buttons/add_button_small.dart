@@ -8,14 +8,14 @@ import 'package:provider/provider.dart';
 
 class AddButtonSmall extends StatefulWidget {
 
+  static IconData iconChecked = Icons.check;
+  static IconData iconAdded = Icons.add;
+
+
   //Book book;
   IconData _iconData;
   Function onButtonClicked;
   AddButtonSmall(this._iconData, {this.onButtonClicked});
-
-  /*setIcon(IconData iconData) {
-    _addButtonSmall.setIcon(iconData);
-  }*/
 
   @override
   _AddButtonSmall createState() => _AddButtonSmall();
@@ -48,8 +48,8 @@ class _AddButtonSmall extends State<AddButtonSmall>{
     return  GestureDetector(
       onTap: (){
         setState(() {
-          if (iconData != Icons.check){
-            iconData = Icons.check;
+          if (iconData != AddButtonSmall.iconChecked){
+            iconData = AddButtonSmall.iconChecked;
             if(widget.onButtonClicked != null){
               widget.onButtonClicked();
             }

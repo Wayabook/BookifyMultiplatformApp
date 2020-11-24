@@ -6,7 +6,9 @@ class SummaryTextWidget extends StatefulWidget {
   final String text;
   Color backgroundColor;
 
-  SummaryTextWidget({@required this.text, this.backgroundColor = kPrimaryLightColor});
+  SummaryTextWidget(
+      {@required this.text,
+        this.backgroundColor = kPrimaryLightColor});
 
   @override
   _SummaryTextWidgetState createState() => new _SummaryTextWidgetState();
@@ -21,7 +23,6 @@ class _SummaryTextWidgetState extends State<SummaryTextWidget> {
   @override
   void initState() {
     super.initState();
-
     if (widget.text.length > 50) {
       firstHalf = widget.text.substring(0, 50);
       secondHalf = widget.text.substring(50, widget.text.length);
@@ -36,8 +37,8 @@ class _SummaryTextWidgetState extends State<SummaryTextWidget> {
     return new Container(
       color: widget.backgroundColor,
       padding: new EdgeInsets.symmetric(
-          horizontal: 10.0,
-          vertical: 10.0
+          horizontal: (2.43 * SizeConfig.widthMultiplier), //10
+          vertical: (2.43 * SizeConfig.widthMultiplier), //10
       ),
       child: secondHalf.isEmpty
           ? new SizedBox(width: double.infinity, child: Text(

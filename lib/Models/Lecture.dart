@@ -1,7 +1,9 @@
+import 'package:bookifyapp/LayoutWidgets/Grids/genres_grid.dart';
 import 'package:bookifyapp/Models/Book.dart';
 import 'package:bookifyapp/Models/Chapter.dart';
 import 'package:bookifyapp/Models/Reaction.dart';
 
+import 'Genre.dart';
 import 'Item.dart';
 import 'User.dart';
 
@@ -15,6 +17,7 @@ class Lecture extends Book{
       String author,
       String coverImage,
       String summary,
+      Genre mainGenre,
       int year,
       int extension,
       Map<String, List<Item>> shops_items,
@@ -33,6 +36,7 @@ class Lecture extends Book{
       author,
       coverImage,
       summary,
+      mainGenre,
       year,
       extension,
       /*isbn,
