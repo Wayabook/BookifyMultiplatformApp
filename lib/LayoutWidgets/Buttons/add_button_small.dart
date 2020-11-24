@@ -10,8 +10,8 @@ class AddButtonSmall extends StatefulWidget {
 
   //Book book;
   IconData _iconData;
-  _AddButtonSmall _addButtonSmall = _AddButtonSmall();
-  AddButtonSmall(this._iconData);
+  Function onButtonClicked;
+  AddButtonSmall(this._iconData, {this.onButtonClicked});
 
   /*setIcon(IconData iconData) {
     _addButtonSmall.setIcon(iconData);
@@ -31,15 +31,6 @@ class _AddButtonSmall extends State<AddButtonSmall>{
   void initState() {
     super.initState();
     this.iconData = widget._iconData;
-    /*var user = Provider.of<User>(context, listen: false);
-    isInPendingList = user.isInPendingList(widget.book.toLecture());
-    isInReadingList = user.isInReadingList(widget.book.toLecture());
-
-    if( isInPendingList || isInReadingList){
-      iconData = Icons.check;
-    } else {
-      iconData = Icons.add;
-    }*/
   }
 
   @override
@@ -54,21 +45,33 @@ class _AddButtonSmall extends State<AddButtonSmall>{
   }*/
 
   _getAddButton(){
-    return  Container(
-      height: (4.39 * SizeConfig.heightMultiplier), //30
-      width: (7.29 * SizeConfig.widthMultiplier), //30
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular((1.7 * SizeConfig.imageSizeMultiplier))), // 7
-        border: Border.all(
-            color: Colors.black,
-            width: (0.24 * SizeConfig.widthMultiplier)
+    return  GestureDetector(
+      onTap: (){
+        setState(() {
+          if (iconData != Icons.check){
+            iconData = Icons.check;
+            if(widget.onButtonClicked != null){
+              widget.onButtonClicked();
+            }
+          }
+        });
+      },
+      child: Container(
+        height: (4.39 * SizeConfig.heightMultiplier), //30
+        width: (7.29 * SizeConfig.widthMultiplier), //30
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular((1.7 * SizeConfig.imageSizeMultiplier))), // 7
+          border: Border.all(
+              color: Colors.black,
+              width: (0.24 * SizeConfig.widthMultiplier)
+          ),
+          color: kPrimaryLightColor,
         ),
-        color: kPrimaryLightColor,
+        child: Icon(
+            iconData,
+            size: (5.83 * SizeConfig.imageSizeMultiplier), //24
+            color: Colors.black),
       ),
-      child: Icon(
-          iconData,
-          size: (5.83 * SizeConfig.imageSizeMultiplier), //24
-          color: Colors.black),
     );
   }
 

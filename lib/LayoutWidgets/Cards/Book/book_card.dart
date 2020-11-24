@@ -53,15 +53,7 @@ class _BookCard extends State<BookCard>{
 
   @override
   void initState() {
-    /*setState(() {
-      _friends = widget.friends;
-    });*/
     super.initState();
-    if(this.type == BookCardType.add_option)
-      _addButtonSmall = AddButtonSmall((this.user.isInPendingList(this.book.toLecture()) ||
-          this.user.isInReadingList(this.book.toLecture())) ? Icons.check: Icons.add);
-    /*cardIcon = (this.user.isInPendingList(this.book.toLecture()) ||
-        this.user.isInReadingList(this.book.toLecture())) ? Icons.check: Icons.add;*/
   }
 
   _getCard(){
@@ -93,21 +85,19 @@ class _BookCard extends State<BookCard>{
               Positioned(
                 top: 0,
                 right: 0,
-                child: GestureDetector(
-                  onTap: () {
+                child: AddButtonSmall(
+                  (this.user.isInPendingList(this.book.toLecture()) || this.user.isInReadingList(this.book.toLecture()))
+                      ? Icons.check: Icons.add,
+                  onButtonClicked: (){
                     if(!this.user.isInReadingList(this.book.toLecture())){
                       if(!this.user.isInPendingList(this.book.toLecture())){
                         setState(() {
-                          var user = Provider.of<User>(context, listen: false);
-                          user.addLectureToPendingList(this.book.toLecture());
-
-                          _addButtonSmall = AddButtonSmall(Icons.check);
+                          this.user.addLectureToPendingList(this.book.toLecture());
                           InfoToast.showBookAddedCorrectlyToast(widget.book.title);
                         });
                       }
                     }
                   },
-                  child: _addButtonSmall,
                 ),
               )
             ]
