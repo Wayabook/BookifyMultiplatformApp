@@ -1,38 +1,57 @@
 import 'package:bookifyapp/LayoutWidgets/Buttons/add_button_small.dart';
+import 'package:bookifyapp/SizeConfig.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/mockito.dart';
+import 'package:provider/provider.dart';
+
+class MockSizeConfig extends Mock implements SizeConfig {}
+
+//SizeConfig sizeConfig;
 
 void main(){
-  /*group('Add Button Small Widget Tests', () {
+  setUp(() {
+    //homeRepository = MockHomeRepository();
+    //when(homeRepository.getItems()).thenAnswer((_) => Future.value(response));
+    //sizeConfig.init(new LayoutBuilder(), orientation);
+    SizeConfig().initDefault();
+  });
+
+
+  group('Add Button Small Widget Tests', () {
 
     //final comment = Comment();
 
-    testWidgets('Default Add Button Small Test', (WidgetTester tester) async{
+    testWidgets('Default Add Button Clicked Test', (WidgetTester tester) async{
 
-      final widget = AddButtonSmall(Icons.add);
+      // Creates Add Button Small Widget
+      final widget = AddButtonSmall(AddButtonSmall.iconAdded);
       await tester.pumpWidget(widget);
-
-      
       expect(find.byType(AddButtonSmall), findsOneWidget);
+
+      // Check widget icon and visibility
+      expect(find.byIcon(AddButtonSmall.iconAdded), findsOneWidget);
+      await tester.ensureVisible(find.byType(AddButtonSmall));
+
+      // Taps widget and checks that icon has changed
+      await tester.tap(find.byType(AddButtonSmall));
+      await tester.pump(const Duration(milliseconds: 100));
+      expect(find.byIcon(AddButtonSmall.iconChecked), findsOneWidget);
       
     });
 
-    testWidgets('SmallButtonUnderlined test with custom values', (WidgetTester tester) async{
-      /*await tester.pumpWidget(SmallButtonUnderlined("Small Button", fontSize: 24, textColor: Colors.red,));
+    testWidgets('Add Button Already Clicked Test', (WidgetTester tester) async{
+      final widget = AddButtonSmall(AddButtonSmall.iconChecked);
+      await tester.pumpWidget(widget);
+      expect(find.byType(AddButtonSmall), findsOneWidget);
 
-      final buttonTitle = find.text("Small Button");
-      // Use the `findsOneWidget` matcher provided by flutter_test to
-      // verify that the Text widgets appear exactly once in the widget tree.
-      expect(buttonTitle, findsOneWidget);
+      expect(find.byIcon(AddButtonSmall.iconChecked), findsOneWidget);
+      await tester.ensureVisible(find.byType(AddButtonSmall));
 
-      //Getting text object
-      Text text = tester.firstWidget(buttonTitle);
-      //Validating properties
-      expect(text.style.color, Colors.red);
-      expect(text.style.fontSize, 24);
-      expect(text.style.decoration, TextDecoration.underline);
-      expect(text.style.fontWeight, FontWeight.bold);*/
+      await tester.tap(find.byType(AddButtonSmall));
+      await tester.pump(const Duration(milliseconds: 100));
+      expect(find.byIcon(AddButtonSmall.iconChecked), findsOneWidget);
 
     });
-  });*/
+  });
 }

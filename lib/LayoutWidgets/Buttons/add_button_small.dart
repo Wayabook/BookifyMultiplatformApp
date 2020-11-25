@@ -56,21 +56,24 @@ class _AddButtonSmall extends State<AddButtonSmall>{
           }
         });
       },
-      child: Container(
-        height: (4.39 * SizeConfig.heightMultiplier), //30
-        width: (7.29 * SizeConfig.widthMultiplier), //30
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular((1.7 * SizeConfig.imageSizeMultiplier))), // 7
-          border: Border.all(
-              color: Colors.black,
-              width: (0.24 * SizeConfig.widthMultiplier)
+      child: Directionality(
+        textDirection: TextDirection.ltr,
+        child: Container(
+          height: (4.39 * SizeConfig.heightMultiplier), //30
+          width: (7.29 * SizeConfig.widthMultiplier), //30
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular((1.7 * SizeConfig.imageSizeMultiplier))), // 7
+            border: Border.all(
+                color: Colors.black,
+                width: (0.24 * SizeConfig.widthMultiplier)
+            ),
+            color: kPrimaryLightColor,
           ),
-          color: kPrimaryLightColor,
+          child: Icon(
+              iconData,
+              size: (5.83 * SizeConfig.imageSizeMultiplier), //24
+              color: Colors.black),
         ),
-        child: Icon(
-            iconData,
-            size: (5.83 * SizeConfig.imageSizeMultiplier), //24
-            color: Colors.black),
       ),
     );
   }

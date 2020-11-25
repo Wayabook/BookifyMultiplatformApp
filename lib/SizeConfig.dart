@@ -43,9 +43,15 @@ class SizeConfig {
     print("BlockHeight:" + (_blockHeight.toString()));
     print("TextMultiplier:" + (textMultiplier.toString()));
     print("ImageSizeMultiplier:" + (imageSizeMultiplier.toString()));
+  }
 
+  void initDefault(){
+    _blockWidth = 4.11;
+    _blockHeight = 6.83;
 
-
-
+    textMultiplier = 6.83;
+    imageSizeMultiplier = 4.11;
+    heightMultiplier = 6.83;
+    widthMultiplier = 4.11;
   }
 }

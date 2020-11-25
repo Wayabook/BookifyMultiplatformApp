@@ -399,12 +399,6 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
       key: UniqueKey(),
       children: <Widget>[
         Container(
-          /*margin: EdgeInsets.fromLTRB(
-            (1.21 * SizeConfig.widthMultiplier), //5
-            (0.29 * SizeConfig.heightMultiplier), // 2
-            (0.48 * SizeConfig.widthMultiplier), //2
-            (0.29 * SizeConfig.heightMultiplier), // 2
-          ),*/
           child:  Align(
             alignment: Alignment.topLeft,
             child: ListTitle(
@@ -416,7 +410,7 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
 
         Container(
           key: UniqueKey(),
-          child: HorizontalBookList(Book.toLectureList(auxBooksForPrototype), ListType.normal),
+          child: HorizontalBookList(Book.toLectureList(auxBooksForPrototype), ListType.normal, user: Provider.of<User>(context, listen: false),),
         )
       ],
     );
@@ -427,29 +421,18 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
       key: UniqueKey(),
       children: <Widget>[
         Container(
-          /*margin: EdgeInsets.fromLTRB(
-            (1.21 * SizeConfig.widthMultiplier), //5
-            (0.29 * SizeConfig.heightMultiplier), // 2
-            (0.48 * SizeConfig.widthMultiplier), //2
-            (0.29 * SizeConfig.heightMultiplier), // 2
-          ),*/
           child:  Align(
             alignment: Alignment.topLeft,
             child: ListTitle(
                 "More of X Genre:",
                 barAndTitleColor: Colors.black,
               ),
-            /*child: Text(
-              "More of X Genre:",
-              overflow: TextOverflow.ellipsis,
-              style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-            ),*/
           ),
         ),
 
         Container(
           key: UniqueKey(),
-          child: HorizontalBookList(Book.toLectureList(auxBooksForPrototype), ListType.normal),
+          child: HorizontalBookList(Book.toLectureList(auxBooksForPrototype), ListType.normal, user: Provider.of<User>(context, listen: false),),
         )
       ],
     );
