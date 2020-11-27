@@ -7,5 +7,7 @@ enum BookCardType {
   add_custom_list,
   recommend_book,
   book_card_in_grid,
+  book_card_in_vertical_list,
   settings,
+
 }

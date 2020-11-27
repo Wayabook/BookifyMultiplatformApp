@@ -1,5 +1,7 @@
 import 'package:bookifyapp/Design/constants.dart';
+import 'package:bookifyapp/Enums/book_card_type.dart';
 import 'package:bookifyapp/Interfaces/TitleButtonInterface.dart';
+import 'package:bookifyapp/LayoutWidgets/Cards/Book/book_card.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/Book/book_card_in_vertical_list.dart';
 import 'package:bookifyapp/Models/Lecture.dart';
 import 'package:bookifyapp/Models/User.dart';
@@ -101,7 +103,14 @@ class _VerticalBookList extends State<VerticalBookList>
   }
 
   _makeCard(int index, List<Book> books, ButtonType buttonType) {
-    return BookCardInVerticalList(books[index], buttonType, index, this);
+    //return BookCardInVerticalList(books[index], buttonType, index, this);
+    return BookCard.inVerticalList(
+        books[index],
+        BookCardType.book_card_in_vertical_list,
+        Provider.of<User>(context, listen: false),
+        buttonType,
+        index,
+        this);
   }
 
   _makeBody() {

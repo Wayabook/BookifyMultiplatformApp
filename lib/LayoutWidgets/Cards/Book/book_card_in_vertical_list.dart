@@ -38,8 +38,6 @@ class _BookCardInVerticalList extends State<BookCardInVerticalList> {
   Lecture book;
   Card card;
   bool showEndLectureFrame = false;
-  //double initialHeight = 10.0;
-  //double initialWidth = 10.0;
   double buttonSize; // = 50.0;
   Widget content;
   bool visible;
