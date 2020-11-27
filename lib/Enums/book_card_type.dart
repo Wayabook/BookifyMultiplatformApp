@@ -8,6 +8,7 @@ enum BookCardType {
   recommend_book,
   book_card_in_grid,
   book_card_in_vertical_list,
+  book_card_in_vertical_search_list,
   settings,
 
 }
