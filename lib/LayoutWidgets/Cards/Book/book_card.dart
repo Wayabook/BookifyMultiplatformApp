@@ -2,6 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bookifyapp/Design/constants.dart';
 import 'package:bookifyapp/Enums/button_type.dart';
 import 'package:bookifyapp/Enums/list_type.dart';
+import 'package:bookifyapp/LayoutWidgets/Buttons/book_card_action_button.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/Book/book_card_info.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/Book/option_card.dart';
 import 'package:bookifyapp/LayoutWidgets/Dialogs/add_feedback_dialog.dart';
@@ -43,7 +44,6 @@ class BookCard extends StatefulWidget {
   //Vertical SearchList
   Function(Book book, bool add) addOrRemoveBookFromTemporalCustomList;
   ListType listType;
-  String _addedBy = " personas han guardado este libro";
   String listTitle;
   Color backgroundColor;
   double cardHeight;
@@ -108,7 +108,7 @@ class _BookCard extends State<BookCard>{
     if(type == BookCardType.book_card_in_vertical_list && book.finished){
       setState(() {
         confettiController.play();
-        animationController.forward();
+        //animationController.forward();
       });
     }
     return _getCardWidget(context);
@@ -128,66 +128,9 @@ class _BookCard extends State<BookCard>{
 
     if(widget.cardHeight == 160)
       widget.cardHeight = (23.42 * SizeConfig.heightMultiplier); //160
-
-    user = Provider.of<User>(context, listen: false);
-    if (widget.listType == ListType.first_time_form ||
-        widget.listType == ListType.received_recommendation_form ||
-        widget.listType == ListType.send_recommendation_form
-    ){
-      added = false;
-      iconData = added ? Icons.check : Icons.add;
-      buttonColor = added ? Colors.green : kPrimaryDarkColor;
-    } else if(
-        widget.listType != ListType.add_custom_list &&
-        widget.listType != ListType.edit_custom_list &&
-            widget.listType != ListType.first_time_form) {
-      isInPendingList = user.isInPendingList(widget.book.toLecture());
-      isInReadingList = user.isInReadingList(widget.book.toLecture());
-
-      if (isInPendingList || isInReadingList) {
-        iconData = Icons.check;
-        buttonColor = isInReadingList ? Colors.green : kPrimaryDarkColor;
-      } else {
-        iconData = Icons.add;
-        buttonColor = kPrimaryDarkColor;
-      }
-    } else {
-      added = user.isLectureInList(widget.book.toLecture(), widget.listTitle);
-      iconData = added ? Icons.check : Icons.add;
-      buttonColor = added ? Colors.green : kPrimaryDarkColor;
-    }
   }
 
   _initializeWidgetsInVerticalList(){
-    buttonColor = kPrimaryDarkColor;
-    buttonSize = (12.16 * SizeConfig.imageSizeMultiplier); //50
-
-    animationControllerDuration = 1500;
-    this._visible = true;
-    animationController = AnimationController(
-        duration: Duration(milliseconds: animationControllerDuration),
-        vsync: widget.tickerProvider
-    );
-
-    animation = CurvedAnimation(
-      parent: animationController,
-      curve: Curves.elasticIn,
-    )..addStatusListener((status) async {
-      if(status == AnimationStatus.completed){
-        //var user = Provider.of<User>(context, listen: false);
-        this.user.increaseChapter(widget.book);
-        setState(() {
-          if(this.book.finished){
-            buttonSize = (18.24 * SizeConfig.imageSizeMultiplier); // 75
-            this._visible = false;
-            bookCompletedProcess();
-          } else {
-            this.buttonColor = kPrimaryDarkColor;
-          }
-        });
-      }
-    });
-
     confettiController = new ConfettiController(
       duration: new Duration(seconds: 2),
     );
@@ -209,7 +152,7 @@ class _BookCard extends State<BookCard>{
       decoration: BoxDecoration(
         color: widget.backgroundColor,
       ),
-      child: _makeListTile(context),
+      child: _getVerticaListTile(),
     ) :
     GestureDetector(
         key: UniqueKey(),
@@ -238,7 +181,7 @@ class _BookCard extends State<BookCard>{
             decoration: BoxDecoration(
               color: kPrimaryDarkColor,
             ),
-            child: _makeListTile(context),
+            child: _getVerticaListTile(),
           ),
         )
     );
@@ -246,8 +189,6 @@ class _BookCard extends State<BookCard>{
 
   @override
   void dispose() {
-    if(type == BookCardType.book_card_in_vertical_list)
-      animationController.dispose();
     super.dispose();
   }
 
@@ -534,112 +475,19 @@ class _BookCard extends State<BookCard>{
   }
 
   _getThirdRowItem(){
-    FloatingActionButton floatingActionButton;
-    if(widget.type == BookCardType.book_card_in_vertical_list) {
-      floatingActionButton = new FloatingActionButton(
-        heroTag: UniqueKey(),
-        backgroundColor: kPrimaryLightColor,
-        child: RotationTransition(
-          turns: animation,
-          child: Icon(
-            Icons.beenhere,
-            color: !this.book.finished ? buttonColor : Colors.lightGreen,
-            size: !this.book.finished ? buttonSize : (18.24 * SizeConfig.imageSizeMultiplier), // 75
-          ),
-        ),
-        onPressed: () {
-          setState(() {
-            buttonColor = Colors.lightGreen;
-          });
-          setState(() {
-            animationController.forward();
-          });
-        },
-      );
-    } else if (widget.listType == ListType.normal || widget.listType == ListType.preview_friends) {
-        floatingActionButton = _getFloatingActionButton(book);
-    } else if (
-        widget.listType == ListType.add_custom_list ||
-        widget.listType == ListType.edit_custom_list ||
-        widget.listType == ListType.first_time_form ||
-        widget.listType == ListType.received_recommendation_form ||
-        widget.listType == ListType.send_recommendation_form
-    ) {
-      floatingActionButton = FloatingActionButton(
-        heroTag: UniqueKey(),
-        backgroundColor: kPrimaryLightColor,
-        child: Icon(
-          iconData,
-          color: buttonColor,
-          size: (12.16 * SizeConfig.imageSizeMultiplier), //50
-        ),
-        onPressed: () {
-          setState(() {
-            added = !added;
-            if(added){
-              iconData = Icons.check;
-              buttonColor = Colors.green;
-            } else {
-              iconData = Icons.add;
-              buttonColor = kPrimaryDarkColor;
-            }
-            widget.addOrRemoveBookFromTemporalCustomList(widget.book, added);
-          });
-        },
-      );
-    }
-
-    return Align(
-        alignment: Alignment.center,
-        child: SizedBox(
-            height: (18.24 * SizeConfig.imageSizeMultiplier), //75
-            width: (18.24 * SizeConfig.imageSizeMultiplier), //75
-            child: floatingActionButton
-        )
-    );
-  }
-
-  _getFloatingActionButton(Book book) {
-    List<String> heroes = (book.title + book.author + book.chapters.length.toString()).split(' ');
-    heroes.shuffle();
-    return FloatingActionButton(
-      heroTag: heroes.join(','),
-      backgroundColor: kPrimaryLightColor,
-      child: Icon(
-        iconData,
-        color: buttonColor,
-        size: (12.16 * SizeConfig.imageSizeMultiplier), //50
-      ),
-      onPressed: () {
-        setState(() {
-          if(!isInReadingList){
-            if(!isInPendingList){
-              setState(() {
-                var user = Provider.of<User>(context, listen: false);
-                user.addLectureToPendingList(widget.book.toLecture());
-
-                iconData = Icons.check;
-                buttonColor = Colors.green;
-                InfoToast.showBookAddedCorrectlyToast(widget.book.title);
-              });
-            } else {
-              var user = Provider.of<User>(context, listen: false);
-              user.removeLectureFromPendingList(widget.book.toLecture());
-
-              iconData = Icons.add;
-              InfoToast.showBookRemovedCorrectlyToast(widget.book.title);
-            }
-            isInPendingList = !isInPendingList;
-          }
-        });
-      },
+    return BookCardActionButton(
+        widget.book,
+        widget.type,
+        widget.listType,
+        widget.tickerProvider,
+        widget.listTitle,
+        addOrRemoveBookFromTemporalCustomList: widget.addOrRemoveBookFromTemporalCustomList,
     );
   }
 
   _getFriendsPreview(){
     if(widget.book.friends_reading != null  &&
         widget.book.friends_reading.length > 0){
-
       return Stack(
         children: <Widget>[
           Padding(
@@ -724,11 +572,6 @@ class _BookCard extends State<BookCard>{
     }
   }
 
-  _makeListTile(BuildContext context)   {
-    return _getVerticaListTile();
-    //return this.type == BookCardType.book_card_in_vertical_list ?
-    //_getVerticalListTile() : _getVerticalSearchListTile();
-  }
 
   List<Book> _getBooks(){
     return Book.getAppMockBooks();
