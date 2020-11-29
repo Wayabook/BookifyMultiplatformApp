@@ -96,7 +96,6 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
   }
 
   _getBookCoverStack(width){
-    var aux = this.book.picture;
     return Stack(
       key: UniqueKey(),
       children: [
@@ -344,6 +343,7 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
 
         SummaryTextWidget(
           text: this.book.summary,
+          backgroundColor: kPrimaryLightColor,
         ),
 
         SizedBox(height: (1.29 * SizeConfig.heightMultiplier)), // 8
@@ -361,6 +361,7 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
                 alignment: Alignment.bottomCenter,
                 child: Icon(
                   Icons.comment,
+                  color: Colors.white,
                   size: (6.08 * SizeConfig.imageSizeMultiplier), //25
                 ),
               ),
@@ -463,7 +464,10 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
       scrollDirection: Axis.vertical,
       itemCount: items.length,
       itemBuilder: (BuildContext context, int index) {
-        return items[index];
+        return Container(
+          color: kPrimaryLightColor,
+          child:  items[index],
+        );
       },
     );
   }

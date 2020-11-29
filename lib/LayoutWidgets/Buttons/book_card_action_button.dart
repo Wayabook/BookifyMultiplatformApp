@@ -1,6 +1,7 @@
 import 'package:bookifyapp/Design/constants.dart';
 import 'package:bookifyapp/Enums/book_card_type.dart';
 import 'package:bookifyapp/Enums/list_type.dart';
+import 'package:bookifyapp/LayoutWidgets/Cards/Book/book_card.dart';
 import 'package:bookifyapp/Models/Book.dart';
 import 'package:bookifyapp/Models/Lecture.dart';
 import 'package:bookifyapp/Models/User.dart';
@@ -21,7 +22,9 @@ class BookCardActionButton extends StatefulWidget {
   final BookCardType type;
   final TickerProvider tickerProvider;
   final String listTitle;
-  final Function(Book book, bool add) addOrRemoveBookFromTemporalCustomList;
+  final Function(ListType listType, Lecture book, {bool added}) onBookCardActionButtonPressed;
+  final Function(BuildContext context) onBookCompletedProcess;
+  final BookCard bookCard;
 
   BookCardActionButton(
       this.book,
@@ -29,7 +32,10 @@ class BookCardActionButton extends StatefulWidget {
       this.listType,
       this.tickerProvider,
       this.listTitle,
-      {this.addOrRemoveBookFromTemporalCustomList}
+      {
+        this.bookCard,
+        this.onBookCardActionButtonPressed,
+        this.onBookCompletedProcess}
   );
 
 
@@ -64,6 +70,7 @@ class _BookCardActionButton extends State<BookCardActionButton>{
 
   @override
   Widget build(BuildContext context) {
+
     return Align(
         alignment: Alignment.center,
         child: SizedBox(
@@ -106,19 +113,20 @@ class _BookCardActionButton extends State<BookCardActionButton>{
               if(!isInReadingList){
                 if(!isInPendingList){
                   setState(() {
-                    var user = Provider.of<User>(context, listen: false);
-                    user.addLectureToPendingList(widget.book.toLecture());
+                    widget.onBookCardActionButtonPressed(widget.listType, widget.book);
+                    //var user = Provider.of<User>(context, listen: false);
+                    //user.addLectureToPendingList(widget.book.toLecture());
 
                     iconData = Icons.check;
                     buttonColor = Colors.green;
-                    InfoToast.showBookAddedCorrectlyToast(widget.book.title);
+                    //InfoToast.showBookAddedCorrectlyToast(widget.book.title);
                   });
                 } else {
-                  var user = Provider.of<User>(context, listen: false);
-                  user.removeLectureFromPendingList(widget.book.toLecture());
+                  //var user = Provider.of<User>(context, listen: false);
+                  //user.removeLectureFromPendingList(widget.book.toLecture());
 
                   iconData = Icons.add;
-                  InfoToast.showBookRemovedCorrectlyToast(widget.book.title);
+                  //InfoToast.showBookRemovedCorrectlyToast(widget.book.title);
                 }
                 isInPendingList = !isInPendingList;
               }
@@ -140,7 +148,8 @@ class _BookCardActionButton extends State<BookCardActionButton>{
                 iconData = Icons.add;
                 buttonColor = kPrimaryDarkColor;
               }
-              widget.addOrRemoveBookFromTemporalCustomList(widget.book, added);
+              widget.onBookCardActionButtonPressed(widget.listType, widget.book, added: added);
+              //widget.addOrRemoveBookFromTemporalCustomList(widget.book, added);
             });
 
           }
@@ -196,28 +205,36 @@ class _BookCardActionButton extends State<BookCardActionButton>{
       curve: Curves.elasticIn,
     )..addStatusListener((status) async {
       if(status == AnimationStatus.completed){
-        var user = Provider.of<User>(context, listen: false);
-        user.increaseChapter(widget.book);
         setState(() {
+          var user = Provider.of<User>(context, listen: false);
+          user.increaseChapter(widget.book);
           if(widget.book.finished){
             buttonSize = (18.24 * SizeConfig.imageSizeMultiplier); // 75
             this._visible = false;
-            bookCompletedProcess();
           } else {
             this.buttonColor = kPrimaryDarkColor;
           }
         });
+        if(widget.book.finished)
+          bookCompletedProcess();
       }
     });
   }
 
   void bookCompletedProcess(){
-    //widget.changeLecturePositionContent(widget.position, widget.book);
-    setState(() {
+    widget.onBookCardActionButtonPressed(widget.listType, widget.book);
+    var user = Provider.of<User>(context, listen: false);
+    user.moveLectureFromReadingListToReadList(widget.book);
+    InfoToast.showFinishedCongratulationsMessage(widget.book.title);
+    /*setState(() {
       var user = Provider.of<User>(context, listen: false);
       user.moveLectureFromReadingListToReadList(widget.book);
       InfoToast.showFinishedCongratulationsMessage(widget.book.title);
-    });
+    });*/
+  }
+
+  Future wait(seconds) {
+    return new Future.delayed(Duration(seconds: seconds), () => "1");
   }
 
   @override
