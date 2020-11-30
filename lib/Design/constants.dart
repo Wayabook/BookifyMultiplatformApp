@@ -6,5 +6,7 @@ const kPrimaryLightColor = Colors.white;
 const kSecondaryLightColor =  Colors.white38;
 const kGreenLightColor = Colors.lightGreen;
 
+const smallUnderlinedButtonColor = Colors.blue;
+
 //const kPrimaryDarkColor = Color.fromRGBO(232, 181, 136, 1);
 //const kPrimaryLightColor = Color.fromRGBO(241, 225, 211, 1);

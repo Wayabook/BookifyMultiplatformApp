@@ -1,3 +1,4 @@
+import 'package:bookifyapp/Design/constants.dart';
 import 'package:bookifyapp/SizeConfig.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +14,7 @@ class SmallButtonUnderlined extends StatelessWidget {
       this.text,
       {
         this.fontSize = 15,
-        this.textColor = Colors.blue
+        this.textColor = smallUnderlinedButtonColor
       }
   );
 

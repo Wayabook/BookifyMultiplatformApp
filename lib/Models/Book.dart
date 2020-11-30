@@ -30,8 +30,6 @@ class Book {
       this._mainGenre,
       this._year,
       this._extension,
-      /*this._isbn,
-      this._ean,*/
       this._shops_items,
       this.editorial,
       this.language,
@@ -139,18 +137,6 @@ class Book {
   set extension(int extension) {
     _extension = extension;
   }
-
-  /*String get isbn => _isbn;
-
-  set isbn(String id) {
-    _isbn = id;
-  }
-
-  String get ean => _ean;
-
-  set ean(String ean) {
-    _ean = ean;
-  }*/
 
   int get addedByNumberOfPeople => addedBy;
 

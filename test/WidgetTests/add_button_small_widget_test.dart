@@ -1,9 +1,7 @@
 import 'package:bookifyapp/LayoutWidgets/Buttons/add_button_small.dart';
 import 'package:bookifyapp/SizeConfig.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:provider/provider.dart';
 
 class MockSizeConfig extends Mock implements SizeConfig {}
 

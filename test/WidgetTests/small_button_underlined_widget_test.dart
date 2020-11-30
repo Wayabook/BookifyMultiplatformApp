@@ -1,3 +1,4 @@
+import 'package:bookifyapp/Design/constants.dart';
 import 'package:bookifyapp/LayoutWidgets/Buttons/small_button_underlined.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -19,7 +20,7 @@ void main(){
       //Getting text object
       Text text = tester.firstWidget(buttonTitle);
       //Validating properties
-      expect(text.style.color, Colors.blue);
+      expect(text.style.color, smallUnderlinedButtonColor);
       expect(text.style.fontSize, 16);
       expect(text.style.decoration, TextDecoration.underline);
       expect(text.style.fontWeight, FontWeight.bold);
