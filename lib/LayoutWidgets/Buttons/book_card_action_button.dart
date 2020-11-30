@@ -23,8 +23,7 @@ class BookCardActionButton extends StatefulWidget {
   final TickerProvider tickerProvider;
   final String listTitle;
   final Function(ListType listType, Lecture book, {bool added}) onBookCardActionButtonPressed;
-  final Function(BuildContext context) onBookCompletedProcess;
-  final BookCard bookCard;
+  final Function() onBookCompletedProcess;
 
   BookCardActionButton(
       this.book,
@@ -33,9 +32,9 @@ class BookCardActionButton extends StatefulWidget {
       this.tickerProvider,
       this.listTitle,
       {
-        this.bookCard,
         this.onBookCardActionButtonPressed,
-        this.onBookCompletedProcess}
+        this.onBookCompletedProcess,
+      }
   );
 
 
@@ -54,6 +53,7 @@ class _BookCardActionButton extends State<BookCardActionButton>{
   User user;
   Color buttonColor;
   double buttonSize; // = 50.0;
+  ConfettiController _confettiController;
 
   // Rotation controller
   int animationControllerDuration;
@@ -88,7 +88,7 @@ class _BookCardActionButton extends State<BookCardActionButton>{
       child: (widget.type == BookCardType.book_card_in_vertical_list) ?
       RotationTransition(
         turns: animation,
-        child: Icon(
+        child:  Icon(
           Icons.beenhere,
           color: !widget.book.finished ? buttonColor : Colors.lightGreen,
           size: !widget.book.finished ? buttonSize : (18.24 * SizeConfig.imageSizeMultiplier), // 75
@@ -99,14 +99,24 @@ class _BookCardActionButton extends State<BookCardActionButton>{
         color: buttonColor,
         size: (12.16 * SizeConfig.imageSizeMultiplier), //50
       ),
-      onPressed: (){
+      onPressed: () async {
         if((widget.type == BookCardType.book_card_in_vertical_list)) {
           setState(() {
             buttonColor = Colors.lightGreen;
           });
+          await animationController.forward();
           setState(() {
-            animationController.forward();
+            var user = Provider.of<User>(context, listen: false);
+            user.increaseChapter(widget.book);
+            if(widget.book.finished){
+              buttonSize = (18.24 * SizeConfig.imageSizeMultiplier); // 75
+              this._visible = false;
+            } else {
+              this.buttonColor = kPrimaryDarkColor;
+            }
           });
+          if(widget.book.finished)
+            bookCompletedProcess();
         } else {
           if (widget.listType == ListType.normal || widget.listType == ListType.preview_friends) {
             setState(() {
@@ -114,19 +124,11 @@ class _BookCardActionButton extends State<BookCardActionButton>{
                 if(!isInPendingList){
                   setState(() {
                     widget.onBookCardActionButtonPressed(widget.listType, widget.book);
-                    //var user = Provider.of<User>(context, listen: false);
-                    //user.addLectureToPendingList(widget.book.toLecture());
-
                     iconData = Icons.check;
                     buttonColor = Colors.green;
-                    //InfoToast.showBookAddedCorrectlyToast(widget.book.title);
                   });
                 } else {
-                  //var user = Provider.of<User>(context, listen: false);
-                  //user.removeLectureFromPendingList(widget.book.toLecture());
-
                   iconData = Icons.add;
-                  //InfoToast.showBookRemovedCorrectlyToast(widget.book.title);
                 }
                 isInPendingList = !isInPendingList;
               }
@@ -149,7 +151,6 @@ class _BookCardActionButton extends State<BookCardActionButton>{
                 buttonColor = kPrimaryDarkColor;
               }
               widget.onBookCardActionButtonPressed(widget.listType, widget.book, added: added);
-              //widget.addOrRemoveBookFromTemporalCustomList(widget.book, added);
             });
 
           }
@@ -203,7 +204,7 @@ class _BookCardActionButton extends State<BookCardActionButton>{
     animation = CurvedAnimation(
       parent: animationController,
       curve: Curves.elasticIn,
-    )..addStatusListener((status) async {
+    );/*..addStatusListener((status) async {
       if(status == AnimationStatus.completed){
         setState(() {
           var user = Provider.of<User>(context, listen: false);
@@ -218,19 +219,24 @@ class _BookCardActionButton extends State<BookCardActionButton>{
         if(widget.book.finished)
           bookCompletedProcess();
       }
-    });
+    });*/
+
+    if(widget.type == BookCardType.book_card_in_vertical_list){
+      _confettiController = new ConfettiController(
+        duration: new Duration(seconds: 2),
+      );
+    }
   }
 
-  void bookCompletedProcess(){
-    widget.onBookCardActionButtonPressed(widget.listType, widget.book);
-    var user = Provider.of<User>(context, listen: false);
+  bookCompletedProcess() {
+    //_confettiController.play();
+    //await wait(1.5);
+
+    /*var user = Provider.of<User>(context, listen: false);
     user.moveLectureFromReadingListToReadList(widget.book);
-    InfoToast.showFinishedCongratulationsMessage(widget.book.title);
-    /*setState(() {
-      var user = Provider.of<User>(context, listen: false);
-      user.moveLectureFromReadingListToReadList(widget.book);
-      InfoToast.showFinishedCongratulationsMessage(widget.book.title);
-    });*/
+    InfoToast.showFinishedCongratulationsMessage(widget.book.title);*/
+    widget.onBookCompletedProcess();
+
   }
 
   Future wait(seconds) {

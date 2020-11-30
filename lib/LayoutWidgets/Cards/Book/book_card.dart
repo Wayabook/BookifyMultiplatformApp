@@ -65,10 +65,6 @@ class BookCard extends StatefulWidget {
     this.cardHeight = 160
   });
 
-  onBookCompletedProcess(){
-    bookCard._onBookCompletedProcess();
-  }
-
   @override
   _BookCard createState() => bookCard;
 }
@@ -112,7 +108,6 @@ class _BookCard extends State<BookCard>{
     if(widget.type == BookCardType.book_card_in_vertical_list && widget.book.finished){
       setState(() {
         confettiController.play();
-        //animationController.forward();
       });
     }
     return _getCardWidget(context);
@@ -149,7 +144,7 @@ class _BookCard extends State<BookCard>{
     });
   }*/
 
-  _getVerticalListCardWidget(BuildContext context){
+  _getVerticalListCardWidget(BuildContext ctx){
     return widget.type == BookCardType.book_card_in_vertical_search_list ?
     Container(
       height: widget.cardHeight,
@@ -165,6 +160,9 @@ class _BookCard extends State<BookCard>{
             context: context,
             builder: (BuildContext context) => AddFeedbackDialog(widget.book),
           );
+          if(widget.book.finished){
+            bookCompletedProcess();
+          }
         },
         child: Builder(
           builder: (BuildContext context){
@@ -489,20 +487,19 @@ class _BookCard extends State<BookCard>{
         widget.listType,
         widget.tickerProvider,
         widget.listTitle,
-        bookCard: widget,
+        //bookCard: widget,
         onBookCardActionButtonPressed: _onBookCardActionButtonPressed,
-        //onBookCompletedProcess: _onBookCompletedProcess,
+        onBookCompletedProcess: bookCompletedProcess,
     );
   }
 
-  _onBookCompletedProcess() async {
-    if(widget.type == BookCardType.book_card_in_vertical_list && widget.book.finished){
-      confettiController.play();
-      await wait(1.5);
-    }
+  bookCompletedProcess(){
+    //confettiController.play();
+    setState(() {
+      widget.user.moveLectureFromReadingListToReadList(widget.book);
+      InfoToast.showFinishedCongratulationsMessage(widget.book.title);
+    });
   }
-
-
 
   _onBookCardActionButtonPressed(ListType listType, Lecture book, {added: false}) async {
     if (listType == ListType.normal ||
@@ -513,16 +510,11 @@ class _BookCard extends State<BookCard>{
             setState(() {
               var user = Provider.of<User>(context, listen: false);
               user.addLectureToPendingList(book.toLecture());
-
-              //iconData = Icons.check;
-              //buttonColor = Colors.green;
               InfoToast.showBookAddedCorrectlyToast(book.title);
             });
           } else {
             var user = Provider.of<User>(context, listen: false);
             user.removeLectureFromPendingList(book.toLecture());
-
-            //iconData = Icons.add;
             InfoToast.showBookRemovedCorrectlyToast(book.title);
           }
           isInPendingList = !isInPendingList;
@@ -537,31 +529,9 @@ class _BookCard extends State<BookCard>{
     ) {
 
       setState(() {
-        /*added = !added;
-        if(added){
-          iconData = Icons.check;
-          buttonColor = Colors.green;
-        } else {
-          iconData = Icons.add;
-          buttonColor = kPrimaryDarkColor;
-        }*/
         widget.addOrRemoveBookFromTemporalCustomList(book, added);
       });
-
-    } /*else if ((widget.type == BookCardType.book_card_in_vertical_list)) {
-      /*setState(() async {
-        confettiController.play();
-        await wait(1.5);
-      });*/
-      if(widget.type == BookCardType.book_card_in_vertical_list && book.finished){
-        setState(() {
-          confettiController.play();
-          //animationController.forward();
-          //animationController.forward();
-        });
-        await wait(2);
-      }
-    }*/
+    }
   }
 
   _getFriendsPreview(){

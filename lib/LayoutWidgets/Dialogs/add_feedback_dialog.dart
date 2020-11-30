@@ -23,7 +23,7 @@ import '../../SizeConfig.dart';
 class AddFeedbackDialog extends StatefulWidget{
 
   Lecture book;
-  Function() callAnimation;
+
   AddFeedbackDialog(this.book);
 
   @override
@@ -275,7 +275,9 @@ class _AddFeedbackDialog
                                         visible = true;
                                         var user = Provider.of<User>(context, listen: false);
                                         user.increaseChapter(widget.book);
-                                      }
+                                      }/* else {
+                                        widget.onBookCompletedProcess(this.context, widget.book);
+                                      }*/
                                     });
                                   },
                                   backgroundColor: kPrimaryLightColor,
