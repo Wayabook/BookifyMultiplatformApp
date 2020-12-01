@@ -3,7 +3,9 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main(){
   group('Reaction Tests', () {
+
     final reaction = Reaction("Reaction", "ReactionIcon", 60);
+
     test('Get Reaction Name', (){
       expect(reaction.name, "Reaction");
     });

@@ -448,7 +448,7 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
     items.add(_getBookInfoRow(widthPerChild));
     items.add(_getPaddingContainer(width));
     User user = Provider.of<User>(context, listen: false);
-    if((book.friends_reading != null && book.friends_reading.length > 0) || user.isBookRecommended(book))
+    if((book.friendsReading != null && book.friendsReading.length > 0) || user.isBookRecommended(book))
       items.add(_getFriendsPreview(user.isBookRecommended(book)));
     items.add(_getDescriptionSummary());
     items.add(_getAuthorRelatedBooks());
@@ -498,7 +498,7 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
 
         SizedBox(height: (1.29 * SizeConfig.heightMultiplier)), // 8
 
-        FriendsPreview(isARecommendation ? user.getBookRecommenders(book) : book.friends_reading)
+        FriendsPreview(isARecommendation ? user.getBookRecommenders(book) : book.friendsReading)
       ],
     );
   }

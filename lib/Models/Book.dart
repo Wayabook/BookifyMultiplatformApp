@@ -18,8 +18,8 @@ class Book {
   double avgRating;
   bool isNew;
   List<Chapter> chapters;
-  List<User> friends_reading;
-  Map<String, List<Item>> _shops_items;
+  List<User> friendsReading;
+  Map<String, List<Item>> _shopsItems;
   Genre _mainGenre;
 
   Book(
@@ -30,7 +30,7 @@ class Book {
       this._mainGenre,
       this._year,
       this._extension,
-      this._shops_items,
+      this._shopsItems,
       this.editorial,
       this.language,
       {
@@ -38,7 +38,7 @@ class Book {
         this.isNew = false,
         this.addedBy = 2049,
         this.chapters = const [],
-        this.friends_reading = const [],
+        this.friendsReading = const [],
       }
     );
 
@@ -48,12 +48,12 @@ class Book {
       this._coverImage,
       this._summary,
       this._mainGenre,
-      this._shops_items,
+      this._shopsItems,
       {
         this.editorial="SUMA",
         this.language="CASTELLANO",
         this.chapters = const [],
-        this.friends_reading = const[],
+        this.friendsReading = const[],
         this.addedBy = 100
       });
 
@@ -73,7 +73,7 @@ class Book {
         avgRating: this.avgRating,
         isNew: this.isNew,
         chapters: this.chapters,
-        friends_reading: this.friends_reading,
+        friendsReading: this.friendsReading,
         currentChapter: currentChapter
     );
   }
@@ -94,10 +94,10 @@ class Book {
     return comments;
   }
 
-  Map<String, List<Item>> get shops_items => _shops_items;
+  Map<String, List<Item>> get shops_items => _shopsItems;
 
   set shops_items(Map<String, List<Item>> fr) {
-    _shops_items = fr;
+    _shopsItems = fr;
   }
 
   String get title => _title;
@@ -248,10 +248,10 @@ class Book {
 
   static List<Book> getAppMockBooks(){
     List<Book> books = Book.getUserMockBooks();
-    books[0].friends_reading = User.getMockAlterantiveUsers().sublist(0, 1);
-    books[1].friends_reading = User.getMockAlterantiveUsers().sublist(0, 2);
-    books[2].friends_reading = User.getMockAlterantiveUsers().sublist(0, 3);
-    books[3].friends_reading = User.getMockAlterantiveUsers().sublist(0, 1);
+    books[0].friendsReading = User.getMockAlterantiveUsers().sublist(0, 1);
+    books[1].friendsReading = User.getMockAlterantiveUsers().sublist(0, 2);
+    books[2].friendsReading = User.getMockAlterantiveUsers().sublist(0, 3);
+    books[3].friendsReading = User.getMockAlterantiveUsers().sublist(0, 1);
     return books;
   }
 

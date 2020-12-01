@@ -28,7 +28,7 @@ class Lecture extends Book{
         double avgRating,
         bool isNew = false,
         List<Chapter> chapters = const [],
-        List<User> friends_reading = const [],
+        List<User> friendsReading = const [],
         this.currentChapter = 0,
         this.read = false,
       }) : super(
@@ -48,8 +48,8 @@ class Lecture extends Book{
       isNew: isNew,
       chapters:
       chapters,
-      friends_reading:
-      friends_reading);
+      friendsReading:
+      friendsReading);
 
   List<Reaction> getCurrentChapterReactions(){
     return this.chapters[this.currentChapter].reactions;

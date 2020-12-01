@@ -535,8 +535,8 @@ class _BookCard extends State<BookCard>{
   }
 
   _getFriendsPreview(){
-    if(widget.book.friends_reading != null  &&
-        widget.book.friends_reading.length > 0){
+    if(widget.book.friendsReading != null  &&
+        widget.book.friendsReading.length > 0){
       return Stack(
         children: <Widget>[
           Padding(
@@ -585,7 +585,7 @@ class _BookCard extends State<BookCard>{
           Positioned(
               child: Align(
                 alignment: FractionalOffset.bottomLeft,
-                child: FriendsPreview(widget.book.friends_reading),
+                child: FriendsPreview(widget.book.friendsReading),
               )
           ),
         ],
