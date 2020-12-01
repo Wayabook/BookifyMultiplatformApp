@@ -22,8 +22,10 @@ class BookCardActionButton extends StatefulWidget {
   final BookCardType type;
   final TickerProvider tickerProvider;
   final String listTitle;
-  final Function(ListType listType, Lecture book, {bool added, bool isInPendingList, bool isInReadingList}) onBookCardActionButtonPressed;
+  final Function(ListType listType, Lecture book,
+                {bool added, bool isInPendingList, bool isInReadingList, BookCardType type}) onBookCardActionButtonPressed;
   final Function() onBookCompletedProcess;
+  final bool added;
 
   BookCardActionButton(
       this.book,
@@ -34,6 +36,7 @@ class BookCardActionButton extends StatefulWidget {
       {
         this.onBookCardActionButtonPressed,
         this.onBookCompletedProcess,
+        this.added,
       }
   );
 
@@ -44,15 +47,8 @@ class BookCardActionButton extends StatefulWidget {
 
 class _BookCardActionButton extends State<BookCardActionButton>{
 
-  /**
-   * Missing:
-   * Initialize user
-   * Call functions from parent widgets.
-   * */
-
-  User user;
   Color buttonColor;
-  double buttonSize; // = 50.0;
+  double buttonSize;
   ConfettiController _confettiController;
 
   // Rotation controller
@@ -106,8 +102,7 @@ class _BookCardActionButton extends State<BookCardActionButton>{
           });
           await animationController.forward();
           setState(() {
-            var user = Provider.of<User>(context, listen: false);
-            user.increaseChapter(widget.book);
+            widget.onBookCardActionButtonPressed(widget.listType, widget.book, type: widget.type);
             if(widget.book.finished){
               buttonSize = (18.24 * SizeConfig.imageSizeMultiplier); // 75
               this._visible = false;
@@ -129,6 +124,7 @@ class _BookCardActionButton extends State<BookCardActionButton>{
                   });
                 } else {
                   iconData = Icons.add;
+                  buttonColor = kPrimaryDarkColor;
                 }
                 isInPendingList = !isInPendingList;
               }
@@ -143,13 +139,7 @@ class _BookCardActionButton extends State<BookCardActionButton>{
 
             setState(() {
               added = !added;
-              if(added){
-                iconData = Icons.check;
-                buttonColor = Colors.green;
-              } else {
-                iconData = Icons.add;
-                buttonColor = kPrimaryDarkColor;
-              }
+              _changeAddedState();
               widget.onBookCardActionButtonPressed(widget.listType, widget.book, added: added);
             });
 
@@ -159,35 +149,41 @@ class _BookCardActionButton extends State<BookCardActionButton>{
     );
   }
 
+  _changeAddedState(){
+    iconData = added ? Icons.check : Icons.add;
+    buttonColor = added ? Colors.green : kPrimaryDarkColor;
+  }
+
   _initializeWidgetsInSearchVerticalList(){
 
-    user = Provider.of<User>(context, listen: false);
+    User user = Provider.of<User>(context, listen: false);
     if (widget.listType == ListType.first_time_form ||
         widget.listType == ListType.received_recommendation_form ||
         widget.listType == ListType.send_recommendation_form
     ){
       added = false;
-      iconData = added ? Icons.check : Icons.add;
-      buttonColor = added ? Colors.green : kPrimaryDarkColor;
+      _changeAddedState();
     } else if(
-    widget.listType != ListType.add_custom_list &&
+        widget.listType != ListType.add_custom_list &&
         widget.listType != ListType.edit_custom_list &&
         widget.listType != ListType.first_time_form) {
+
       isInPendingList = user.isInPendingList(widget.book.toLecture());
       isInReadingList = user.isInReadingList(widget.book.toLecture());
 
       if (isInPendingList || isInReadingList) {
         iconData = Icons.check;
-        buttonColor = isInReadingList ? Colors.green : kPrimaryDarkColor;
+        buttonColor = Colors.green;
       } else {
         iconData = Icons.add;
         buttonColor = kPrimaryDarkColor;
       }
     } else {
+      // Fix if is in edit list bug, all should appear as added.
       added = user.isLectureInList(widget.book.toLecture(), widget.listTitle);
       iconData = added ? Icons.check : Icons.add;
       buttonColor = added ? Colors.green : kPrimaryDarkColor;
-    }
+    } // Edit Custom list ?
   }
 
   _initializeWidgetsInVerticalList(){
@@ -229,14 +225,7 @@ class _BookCardActionButton extends State<BookCardActionButton>{
   }
 
   bookCompletedProcess() {
-    //_confettiController.play();
-    //await wait(1.5);
-
-    /*var user = Provider.of<User>(context, listen: false);
-    user.moveLectureFromReadingListToReadList(widget.book);
-    InfoToast.showFinishedCongratulationsMessage(widget.book.title);*/
     widget.onBookCompletedProcess();
-
   }
 
   Future wait(seconds) {

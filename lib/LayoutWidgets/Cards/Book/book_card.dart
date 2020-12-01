@@ -487,49 +487,49 @@ class _BookCard extends State<BookCard>{
         widget.listType,
         widget.tickerProvider,
         widget.listTitle,
-        //bookCard: widget,
         onBookCardActionButtonPressed: _onBookCardActionButtonPressed,
         onBookCompletedProcess: bookCompletedProcess,
     );
   }
 
   bookCompletedProcess(){
-    //confettiController.play();
     setState(() {
       widget.user.moveLectureFromReadingListToReadList(widget.book);
       InfoToast.showFinishedCongratulationsMessage(widget.book.title);
     });
   }
 
-  _onBookCardActionButtonPressed(ListType listType, Lecture book, {added: false, isInPendingList, isInReadingList,}) async {
+  _onBookCardActionButtonPressed(ListType listType, Lecture book, {bool added: false, bool isInPendingList, bool isInReadingList, BookCardType type}) async {
     if (listType == ListType.normal ||
         listType == ListType.preview_friends) {
       setState(() {
         if(!isInReadingList){
           if(!isInPendingList){
             setState(() {
-              var user = Provider.of<User>(context, listen: false);
-              user.addLectureToPendingList(book.toLecture());
+              widget.user.addLectureToPendingList(book);
               InfoToast.showBookAddedCorrectlyToast(book.title);
             });
           } else {
-            var user = Provider.of<User>(context, listen: false);
-            user.removeLectureFromPendingList(book.toLecture());
+            widget.user.removeLectureFromPendingList(book);
             InfoToast.showBookRemovedCorrectlyToast(book.title);
           }
           isInPendingList = !isInPendingList;
         }
       });
     } else if (
-        widget.listType == ListType.add_custom_list ||
-        widget.listType == ListType.edit_custom_list ||
-        widget.listType == ListType.first_time_form ||
-        widget.listType == ListType.received_recommendation_form ||
-        widget.listType == ListType.send_recommendation_form
+        listType == ListType.add_custom_list ||
+        listType == ListType.edit_custom_list ||
+        listType == ListType.first_time_form ||
+        listType == ListType.received_recommendation_form ||
+        listType == ListType.send_recommendation_form
     ) {
 
       setState(() {
         widget.addOrRemoveBookFromTemporalCustomList(book, added);
+      });
+    } else if (widget.type == BookCardType.book_card_in_vertical_list) {
+      setState(() {
+        widget.user.increaseChapter(book);
       });
     }
   }

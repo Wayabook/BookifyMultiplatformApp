@@ -11,8 +11,6 @@ class AddButtonSmall extends StatefulWidget {
   static IconData iconChecked = Icons.check;
   static IconData iconAdded = Icons.add;
 
-
-  //Book book;
   IconData _iconData;
   Function onButtonClicked;
   AddButtonSmall(this._iconData, {this.onButtonClicked});
@@ -38,12 +36,6 @@ class _AddButtonSmall extends State<AddButtonSmall>{
     return _getAddButton();
   }
 
-  /*setIcon(IconData iconData){
-    setState(() {
-      this.iconData = iconData;
-    });
-  }*/
-
   _getAddButton(){
     return  GestureDetector(
       onTap: (){
@@ -64,7 +56,7 @@ class _AddButtonSmall extends State<AddButtonSmall>{
           decoration: BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular((1.7 * SizeConfig.imageSizeMultiplier))), // 7
             border: Border.all(
-                color: Colors.black,
+                color: addButtonIconColor,
                 width: (0.24 * SizeConfig.widthMultiplier)
             ),
             color: kPrimaryLightColor,
@@ -72,7 +64,7 @@ class _AddButtonSmall extends State<AddButtonSmall>{
           child: Icon(
               iconData,
               size: (5.83 * SizeConfig.imageSizeMultiplier), //24
-              color: Colors.black),
+              color: addButtonIconColor),
         ),
       ),
     );
