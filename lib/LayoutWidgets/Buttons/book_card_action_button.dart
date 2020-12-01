@@ -22,7 +22,7 @@ class BookCardActionButton extends StatefulWidget {
   final BookCardType type;
   final TickerProvider tickerProvider;
   final String listTitle;
-  final Function(ListType listType, Lecture book, {bool added}) onBookCardActionButtonPressed;
+  final Function(ListType listType, Lecture book, {bool added, bool isInPendingList, bool isInReadingList}) onBookCardActionButtonPressed;
   final Function() onBookCompletedProcess;
 
   BookCardActionButton(
@@ -123,7 +123,7 @@ class _BookCardActionButton extends State<BookCardActionButton>{
               if(!isInReadingList){
                 if(!isInPendingList){
                   setState(() {
-                    widget.onBookCardActionButtonPressed(widget.listType, widget.book);
+                    widget.onBookCardActionButtonPressed(widget.listType, widget.book, isInReadingList: isInReadingList, isInPendingList: isInPendingList);
                     iconData = Icons.check;
                     buttonColor = Colors.green;
                   });

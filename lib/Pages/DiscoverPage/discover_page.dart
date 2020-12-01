@@ -45,7 +45,7 @@ class DiscoverPage extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => SearchPage()),
+                  MaterialPageRoute(builder: (context) => SearchPage(Book.getUserMockBooks(), User.getMockAlterantiveUsers())),
                 );
               },
               icon: Icon(Icons.search)

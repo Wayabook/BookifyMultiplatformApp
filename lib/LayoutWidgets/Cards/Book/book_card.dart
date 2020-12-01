@@ -320,7 +320,7 @@ class _BookCard extends State<BookCard>{
     if(widget.type == BookCardType.disover){
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => SearchPage()),
+        MaterialPageRoute(builder: (context) => SearchPage(Book.getUserMockBooks(), User.getMockAlterantiveUsers())),
       );
     } else if (widget.type == BookCardType.view_all){
       Navigator.push(
@@ -501,7 +501,7 @@ class _BookCard extends State<BookCard>{
     });
   }
 
-  _onBookCardActionButtonPressed(ListType listType, Lecture book, {added: false}) async {
+  _onBookCardActionButtonPressed(ListType listType, Lecture book, {added: false, isInPendingList, isInReadingList,}) async {
     if (listType == ListType.normal ||
         listType == ListType.preview_friends) {
       setState(() {
