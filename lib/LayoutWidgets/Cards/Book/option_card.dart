@@ -19,7 +19,6 @@ class OptionCard extends StatelessWidget {
   IconData _icon;
   String _optionText;
   BookCardType _type;
-  //Function _onCardPressed;
 
   OptionCard(this._type);
 

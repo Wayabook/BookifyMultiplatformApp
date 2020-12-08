@@ -489,7 +489,27 @@ class _BookCard extends State<BookCard>{
         widget.listTitle,
         onBookCardActionButtonPressed: _onBookCardActionButtonPressed,
         onBookCompletedProcess: bookCompletedProcess,
+        added: _isBookAdded(),
     );
+  }
+
+
+
+  _isBookAdded() {
+    if (widget.listType == ListType.first_time_form ||
+        widget.listType == ListType.received_recommendation_form ||
+        widget.listType == ListType.send_recommendation_form
+    ) {
+      return false;
+    } else if(widget.listType == ListType.add_custom_list ||
+        widget.listType == ListType.edit_custom_list ||
+        widget.listType == ListType.first_time_form){
+      return widget.user.isLectureInList(widget.book.toLecture(), widget.listTitle);
+    } else {
+      isInPendingList = widget.user.isInPendingList(widget.book.toLecture());
+      isInReadingList = widget.user.isInReadingList(widget.book.toLecture());
+      return isInPendingList || isInReadingList;
+    }
   }
 
   bookCompletedProcess(){
@@ -499,9 +519,12 @@ class _BookCard extends State<BookCard>{
     });
   }
 
-  _onBookCardActionButtonPressed(ListType listType, Lecture book, {bool added: false, bool isInPendingList, bool isInReadingList, BookCardType type}) async {
+  _onBookCardActionButtonPressed(ListType listType, Lecture book, {bool added: false, BookCardType type}) async {
     if (listType == ListType.normal ||
         listType == ListType.preview_friends) {
+
+      isInPendingList = widget.user.isInPendingList(widget.book.toLecture());
+      isInReadingList = widget.user.isInReadingList(widget.book.toLecture());
       setState(() {
         if(!isInReadingList){
           if(!isInPendingList){

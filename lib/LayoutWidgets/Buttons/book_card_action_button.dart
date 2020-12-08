@@ -23,7 +23,7 @@ class BookCardActionButton extends StatefulWidget {
   final TickerProvider tickerProvider;
   final String listTitle;
   final Function(ListType listType, Lecture book,
-                {bool added, bool isInPendingList, bool isInReadingList, BookCardType type}) onBookCardActionButtonPressed;
+                {bool added, BookCardType type}) onBookCardActionButtonPressed;
   final Function() onBookCompletedProcess;
   final bool added;
 
@@ -113,77 +113,25 @@ class _BookCardActionButton extends State<BookCardActionButton>{
           if(widget.book.finished)
             bookCompletedProcess();
         } else {
-          if (widget.listType == ListType.normal || widget.listType == ListType.preview_friends) {
-            setState(() {
-              if(!isInReadingList){
-                if(!isInPendingList){
-                  setState(() {
-                    widget.onBookCardActionButtonPressed(widget.listType, widget.book, isInReadingList: isInReadingList, isInPendingList: isInPendingList);
-                    iconData = Icons.check;
-                    buttonColor = Colors.green;
-                  });
-                } else {
-                  iconData = Icons.add;
-                  buttonColor = kPrimaryDarkColor;
-                }
-                isInPendingList = !isInPendingList;
-              }
-            });
-          } else if (
-            widget.listType == ListType.add_custom_list ||
-            widget.listType == ListType.edit_custom_list ||
-            widget.listType == ListType.first_time_form ||
-            widget.listType == ListType.received_recommendation_form ||
-            widget.listType == ListType.send_recommendation_form
-            ) {
-
-            setState(() {
-              added = !added;
-              _changeAddedState();
-              widget.onBookCardActionButtonPressed(widget.listType, widget.book, added: added);
-            });
-
-          }
+          setState(() {
+            _changeAddedState(setState: true);
+            widget.onBookCardActionButtonPressed(widget.listType, widget.book, added: added);
+          });
         }
       },
     );
   }
 
-  _changeAddedState(){
+  _changeAddedState({setState = false}){
+    if(setState)
+      added = !added;
     iconData = added ? Icons.check : Icons.add;
     buttonColor = added ? Colors.green : kPrimaryDarkColor;
   }
 
   _initializeWidgetsInSearchVerticalList(){
-
-    User user = Provider.of<User>(context, listen: false);
-    if (widget.listType == ListType.first_time_form ||
-        widget.listType == ListType.received_recommendation_form ||
-        widget.listType == ListType.send_recommendation_form
-    ){
-      added = false;
-      _changeAddedState();
-    } else if(
-        widget.listType != ListType.add_custom_list &&
-        widget.listType != ListType.edit_custom_list &&
-        widget.listType != ListType.first_time_form) {
-
-      isInPendingList = user.isInPendingList(widget.book.toLecture());
-      isInReadingList = user.isInReadingList(widget.book.toLecture());
-
-      if (isInPendingList || isInReadingList) {
-        iconData = Icons.check;
-        buttonColor = Colors.green;
-      } else {
-        iconData = Icons.add;
-        buttonColor = kPrimaryDarkColor;
-      }
-    } else {
-      // Fix if is in edit list bug, all should appear as added.
-      added = user.isLectureInList(widget.book.toLecture(), widget.listTitle);
-      iconData = added ? Icons.check : Icons.add;
-      buttonColor = added ? Colors.green : kPrimaryDarkColor;
-    } // Edit Custom list ?
+    added = widget.added;
+    _changeAddedState();
   }
 
   _initializeWidgetsInVerticalList(){
