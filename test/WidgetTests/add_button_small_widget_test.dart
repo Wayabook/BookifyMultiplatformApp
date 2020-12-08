@@ -9,9 +9,6 @@ class MockSizeConfig extends Mock implements SizeConfig {}
 
 void main(){
   setUp(() {
-    //homeRepository = MockHomeRepository();
-    //when(homeRepository.getItems()).thenAnswer((_) => Future.value(response));
-    //sizeConfig.init(new LayoutBuilder(), orientation);
     SizeConfig().initDefault();
   });
 

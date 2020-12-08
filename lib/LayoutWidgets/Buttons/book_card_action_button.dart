@@ -14,9 +14,12 @@ import '../../InfoToast.dart';
 
 class BookCardActionButton extends StatefulWidget {
 
-  //Lecture book;
-  //BookCardType type;
-  //BookCardInfo(this.book, this.type);
+  static const IconData ICON_CHECK = Icons.check;
+  static const IconData ICON_ADD = Icons.add;
+  static const IconData ICON_BEEN_HERE = Icons.beenhere;
+
+
+
   final Lecture book;
   final ListType listType;
   final BookCardType type;
@@ -69,10 +72,13 @@ class _BookCardActionButton extends State<BookCardActionButton>{
 
     return Align(
         alignment: Alignment.center,
-        child: SizedBox(
-            height: (18.24 * SizeConfig.imageSizeMultiplier), //75
-            width: (18.24 * SizeConfig.imageSizeMultiplier), //75
-            child: _buildFloatingActionButton()
+        child: Directionality(
+          textDirection: TextDirection.ltr,
+          child: SizedBox(
+              height: (18.24 * SizeConfig.imageSizeMultiplier), //75
+              width: (18.24 * SizeConfig.imageSizeMultiplier), //75
+              child: _buildFloatingActionButton()
+          ),
         )
     );
   }
@@ -85,8 +91,8 @@ class _BookCardActionButton extends State<BookCardActionButton>{
       RotationTransition(
         turns: animation,
         child:  Icon(
-          Icons.beenhere,
-          color: !widget.book.finished ? buttonColor : Colors.lightGreen,
+          BookCardActionButton.ICON_BEEN_HERE,
+          color: !widget.book.finished ? buttonColor : bookCardActionButtonColor2,
           size: !widget.book.finished ? buttonSize : (18.24 * SizeConfig.imageSizeMultiplier), // 75
         ),
       ) :
@@ -98,7 +104,7 @@ class _BookCardActionButton extends State<BookCardActionButton>{
       onPressed: () async {
         if((widget.type == BookCardType.book_card_in_vertical_list)) {
           setState(() {
-            buttonColor = Colors.lightGreen;
+            buttonColor = bookCardActionButtonColor2;
           });
           await animationController.forward();
           setState(() {
@@ -125,8 +131,8 @@ class _BookCardActionButton extends State<BookCardActionButton>{
   _changeAddedState({setState = false}){
     if(setState)
       added = !added;
-    iconData = added ? Icons.check : Icons.add;
-    buttonColor = added ? Colors.green : kPrimaryDarkColor;
+    iconData = added ? BookCardActionButton.ICON_CHECK : BookCardActionButton.ICON_ADD;
+    buttonColor = added ? bookCardActionButtonColor : kPrimaryDarkColor;
   }
 
   _initializeWidgetsInSearchVerticalList(){
