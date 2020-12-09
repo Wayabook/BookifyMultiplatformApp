@@ -1,17 +1,32 @@
+import 'package:bookifyapp/Design/constants.dart';
 import 'package:bookifyapp/Enums/book_card_type.dart';
 import 'package:bookifyapp/Enums/list_type.dart';
 import 'package:bookifyapp/LayoutWidgets/Buttons/book_card_action_button.dart';
 import 'package:bookifyapp/Models/Book.dart';
 import 'package:bookifyapp/Models/Lecture.dart';
 import 'package:bookifyapp/SizeConfig.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
 class MockSizeConfig extends Mock implements SizeConfig {}
+class MockTickerProvider extends Mock implements TickerProvider {}
 class MockBook extends Mock implements Book {}
-class MockLecture extends Mock implements Lecture {}
+class MockLecture extends Mock implements Lecture {
+
+  bool read;
+  MockLecture({this.read = false});
+
+  bool get finished =>  read;
+
+}
 
 void main(){
+
+  MockLecture mockLecture = new MockLecture();
+  MockLecture mockLectureFinished = new MockLecture(read: true);
+  MockTickerProvider mockTickerProvider = new MockTickerProvider();
+
   setUp(() {
     SizeConfig().initDefault();
   });
@@ -19,13 +34,12 @@ void main(){
 
   group('Book Card Action Button Widget Tests', () {
 
-    //final comment = Comment();
-
     testWidgets('Book Card Ation Button In Search List Clicked Test', (WidgetTester tester) async{
       int value = 0;
+
       // Creates BookCardActionButton Widget
       final widget = BookCardActionButton(
-          new MockLecture(),
+          mockLecture,
           BookCardType.book_card_in_vertical_search_list,
           ListType.add_custom_list,
           null,
@@ -59,7 +73,7 @@ void main(){
       int value = 1;
       // Creates BookCardActionButton Widget
       final widget = BookCardActionButton(
-        new MockLecture(),
+        mockLecture,
         BookCardType.book_card_in_vertical_search_list,
         ListType.add_custom_list,
         null,
@@ -87,5 +101,54 @@ void main(){
       expect(value, 0);
 
     });
+
+    testWidgets('Book Card Ation Button In Vertical List Clicked Test', (WidgetTester tester) async{
+      int value = 0;
+
+      // Creates BookCardActionButton Widget
+      final widget = BookCardActionButton(
+        mockLecture,
+        BookCardType.book_card_in_vertical_list,
+        ListType.add_custom_list,
+        new MockTickerProvider(),
+        "Add custom List",
+        onBookCompletedProcess: () {
+          value += 1;
+        },
+        onBookCardActionButtonPressed: (ListType listType, Lecture book,
+            {bool added, BookCardType type}) {},
+        added: true,
+      );
+
+      await tester.pumpWidget(widget);
+      expect(find.byType(BookCardActionButton), findsOneWidget);
+
+      // Check widget icon and visibility
+      final iconButton = find.byIcon(BookCardActionButton.ICON_BEEN_HERE);
+      expect(iconButton, findsOneWidget);
+      await tester.ensureVisible(find.byType(BookCardActionButton));
+
+      Icon icon = tester.firstWidget(iconButton);
+      expect(icon.color, kPrimaryDarkColor);
+      expect(icon.size, (12.16 * SizeConfig.imageSizeMultiplier));
+
+      // Taps widget and checks that icon has changed and value modified.
+      await tester.tap(find.byType(BookCardActionButton));
+      await tester.pump(const Duration(milliseconds: 750));
+
+      // Tests visibility, size and color during duration
+      await tester.ensureVisible(find.byType(BookCardActionButton));
+      expect(find.byIcon(BookCardActionButton.ICON_BEEN_HERE), findsOneWidget);
+
+      icon = tester.firstWidget(iconButton);
+      expect(icon.color, bookCardActionButtonColor2);
+      expect(icon.size, (18.24 * SizeConfig.imageSizeMultiplier));
+      expect(value, 0);
+
+      //  (12.16 * SizeConfig.imageSizeMultiplier) Before tap
+      //  (18.24 * SizeConfig.imageSizeMultiplier) After tap
+
+    });
   });
+
 }

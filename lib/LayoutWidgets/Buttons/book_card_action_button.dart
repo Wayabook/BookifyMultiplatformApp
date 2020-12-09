@@ -198,8 +198,6 @@ class _BookCardActionButton extends State<BookCardActionButton>{
 
   @override
   void dispose() {
-    if(widget.type == BookCardType.book_card_in_vertical_list)
-      animationController.dispose();
     super.dispose();
   }
 }
