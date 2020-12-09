@@ -10,7 +10,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
 class MockSizeConfig extends Mock implements SizeConfig {}
-class MockTickerProvider extends Mock implements TickerProvider {}
 class MockBook extends Mock implements Book {}
 class MockLecture extends Mock implements Lecture {
 
@@ -19,13 +18,14 @@ class MockLecture extends Mock implements Lecture {
 
   bool get finished =>  read;
 
+  set finished(bool finished) => read;
+
 }
 
 void main(){
 
   MockLecture mockLecture = new MockLecture();
-  MockLecture mockLectureFinished = new MockLecture(read: true);
-  MockTickerProvider mockTickerProvider = new MockTickerProvider();
+
 
   setUp(() {
     SizeConfig().initDefault();
@@ -102,7 +102,7 @@ void main(){
 
     });
 
-    testWidgets('Book Card Ation Button In Vertical List Clicked Test', (WidgetTester tester) async{
+    testWidgets('Book Card Action Button In Vertical List Clicked Rotation Test', (WidgetTester tester) async{
       int value = 0;
 
       // Creates BookCardActionButton Widget
@@ -110,7 +110,8 @@ void main(){
         mockLecture,
         BookCardType.book_card_in_vertical_list,
         ListType.add_custom_list,
-        new MockTickerProvider(),
+        //new MockTickerProvider(),
+        TestVSync(),
         "Add custom List",
         onBookCompletedProcess: () {
           value += 1;
@@ -133,8 +134,8 @@ void main(){
       expect(icon.size, (12.16 * SizeConfig.imageSizeMultiplier));
 
       // Taps widget and checks that icon has changed and value modified.
-      await tester.tap(find.byType(BookCardActionButton));
-      await tester.pump(const Duration(milliseconds: 750));
+      await tester.tap(iconButton);
+      await tester.pump(const Duration(milliseconds: 100));
 
       // Tests visibility, size and color during duration
       await tester.ensureVisible(find.byType(BookCardActionButton));
@@ -142,13 +143,80 @@ void main(){
 
       icon = tester.firstWidget(iconButton);
       expect(icon.color, bookCardActionButtonColor2);
-      expect(icon.size, (18.24 * SizeConfig.imageSizeMultiplier));
+      expect(icon.size, (12.16 * SizeConfig.imageSizeMultiplier));
+      expect(value, 0);
+
+      await tester.pump(const Duration(milliseconds: 2000));
+      expect(find.byIcon(BookCardActionButton.ICON_BEEN_HERE), findsOneWidget);
+      icon = tester.firstWidget(iconButton);
+      expect(icon.color, kPrimaryDarkColor);
+      expect(icon.size, (12.16 * SizeConfig.imageSizeMultiplier));
       expect(value, 0);
 
       //  (12.16 * SizeConfig.imageSizeMultiplier) Before tap
       //  (18.24 * SizeConfig.imageSizeMultiplier) After tap
 
     });
+
+    testWidgets('Book Card Action Button In Vertical List Clicked Book Finished Test', (WidgetTester tester) async{
+      int value = 0;
+
+      // Creates BookCardActionButton Widget
+      final widget = BookCardActionButton(
+        mockLecture,
+        BookCardType.book_card_in_vertical_list,
+        ListType.add_custom_list,
+        //new MockTickerProvider(),
+        TestVSync(),
+        "Add custom List",
+        onBookCompletedProcess: () {
+          value += 1;
+        },
+        onBookCardActionButtonPressed: (ListType listType, Lecture book,
+            {bool added, BookCardType type}) {
+          mockLecture.read = true;
+        },
+        added: true,
+      );
+
+      await tester.pumpWidget(widget);
+      expect(find.byType(BookCardActionButton), findsOneWidget);
+
+      // Check widget icon and visibility
+      final iconButton = find.byIcon(BookCardActionButton.ICON_BEEN_HERE);
+      expect(iconButton, findsOneWidget);
+      await tester.ensureVisible(find.byType(BookCardActionButton));
+
+      Icon icon = tester.firstWidget(iconButton);
+      expect(icon.color, kPrimaryDarkColor);
+      expect(icon.size, (12.16 * SizeConfig.imageSizeMultiplier));
+
+      // Taps widget and checks that icon has changed and value modified.
+      await tester.tap(iconButton);
+      await tester.pump(const Duration(milliseconds: 100));
+
+      // Tests visibility, size and color during duration
+      await tester.ensureVisible(find.byType(BookCardActionButton));
+      expect(find.byIcon(BookCardActionButton.ICON_BEEN_HERE), findsOneWidget);
+
+      icon = tester.firstWidget(iconButton);
+      expect(icon.color, bookCardActionButtonColor2);
+      expect(icon.size, (12.16 * SizeConfig.imageSizeMultiplier));
+      expect(value, 0);
+
+      await tester.pump(const Duration(milliseconds: 2000));
+      expect(find.byIcon(BookCardActionButton.ICON_BEEN_HERE), findsOneWidget);
+      icon = tester.firstWidget(iconButton);
+      expect(icon.color, bookCardActionButtonColor2);
+      expect(icon.size, (18.24 * SizeConfig.imageSizeMultiplier));
+      expect(value, 1);
+
+      //  (12.16 * SizeConfig.imageSizeMultiplier) Before tap
+      //  (18.24 * SizeConfig.imageSizeMultiplier) After tap
+
+    });
+
+
   });
 
 }
