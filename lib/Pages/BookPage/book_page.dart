@@ -1,4 +1,6 @@
 import 'package:bookifyapp/Design/constants.dart';
+import 'package:bookifyapp/Design/info_text.dart';
+import 'package:bookifyapp/Design/size_constants.dart';
 import 'package:bookifyapp/LayoutWidgets/Buttons/small_button_underlined.dart';
 import 'package:bookifyapp/LayoutWidgets/Lists/Title/list_title.dart';
 import 'package:bookifyapp/Models/Book.dart';
@@ -481,22 +483,22 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
         Container(
           width: double.infinity,
           margin: EdgeInsets.fromLTRB(
-              (1.21 * SizeConfig.widthMultiplier), //5
-              (0.29 * SizeConfig.heightMultiplier), //2
-              (1.21 * SizeConfig.widthMultiplier), //5
-              0
+              (PADDING_FACTOR_5 * SizeConfig.widthMultiplier), //5
+              (CONTAINER_FACTOR_2 * SizeConfig.widthMultiplier), //2
+              (PADDING_FACTOR_5 * SizeConfig.widthMultiplier), //5
+              (PADDING_FACTOR_0)
           ),
           child:  Text(
-            isARecommendation ? 'Recommended by' : 'Added by:',
+            isARecommendation ? RECOMMENDED_BY : ADDED_BY,
             style: TextStyle(
-                fontSize: (4.37 * SizeConfig.textMultiplier), // 18
+                fontSize: (TEXT_FACTOR_30 * SizeConfig.textMultiplier), //30
                 fontWeight: FontWeight.bold)
             ,
             textAlign: TextAlign.left,
           ),
         ),
 
-        SizedBox(height: (1.29 * SizeConfig.heightMultiplier)), // 8
+        SizedBox(height: (PADDING_FACTOR_8 * SizeConfig.heightMultiplier)), // 8
 
         FriendsPreview(isARecommendation ? user.getBookRecommenders(book) : book.friendsReading)
       ],

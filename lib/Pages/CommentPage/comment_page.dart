@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bookifyapp/Design/constants.dart';
+import 'package:bookifyapp/Design/info_text.dart';
+import 'package:bookifyapp/Design/size_constants.dart';
 import 'package:bookifyapp/Interfaces/RemoveCommentInterface.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/Comment/main_comment_card.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/Comment/sub_comment_card.dart';
@@ -150,12 +152,17 @@ class _CommentPage
     textField = TextField(
       controller: textEditingController,
       decoration: InputDecoration(
-          contentPadding: EdgeInsets.fromLTRB((1.21 * SizeConfig.widthMultiplier), 0, 0, 0),
-          hintText: widget.subCommentsPage ? 'Add Comment...' : widget.chapterTitle,
+          contentPadding: EdgeInsets.fromLTRB(
+            (PADDING_FACTOR_5 * SizeConfig.widthMultiplier),
+            (PADDING_FACTOR_0),
+            (PADDING_FACTOR_0),
+            (PADDING_FACTOR_0),
+          ),
+          hintText: widget.subCommentsPage ? ADD_COMMENT : widget.chapterTitle,
           floatingLabelBehavior: FloatingLabelBehavior.never,
       ),
       style: TextStyle(
-        fontSize: (2.05 * SizeConfig.textMultiplier), //14
+        fontSize: (TEXT_FACTOR_14 * SizeConfig.textMultiplier), //14
       ),
       maxLines: null,
       expands: widget.subCommentsPage ? false : true,
@@ -176,7 +183,7 @@ class _CommentPage
     return ListView.builder(
         controller: scrollController,
         shrinkWrap: true,
-        padding: EdgeInsets.all((1.29 * SizeConfig.heightMultiplier)), //8
+        padding: EdgeInsets.all((PADDING_FACTOR_8 * SizeConfig.heightMultiplier)), //8
         itemCount: this.comments.length,
         itemBuilder: (BuildContext context, int index) {
           return this.comments[index];
@@ -196,7 +203,6 @@ class _CommentPage
             flex: 0,
             child: Card(
               color: kPrimaryDarkColor,
-              //margin: EdgeInsets.fromLTRB(0, 0, 0, 3),
               child: Row(
                 children: [
                   Flexible(
@@ -210,7 +216,7 @@ class _CommentPage
                         child: Icon(
                           Icons.send,
                           color: Colors.yellow,
-                          size: (4.39 * SizeConfig.heightMultiplier), //30
+                          size: (PADDING_FACTOR_30 * SizeConfig.heightMultiplier), //30
                         ),
                         onTap: _addComment,
                       )
@@ -236,7 +242,7 @@ class _CommentPage
          ),
          appBar: AppBar(
              backgroundColor: kPrimaryDarkColor,
-             title: Text(widget.subCommentsPage ?  widget.chapterTitle : 'Add Comment...')
+             title: Text(widget.subCommentsPage ?  widget.chapterTitle : ADD_COMMENT)
          ),
        );
      }
@@ -250,7 +256,7 @@ class _CommentPage
            child: ListView.builder(
                controller: scrollController,
                shrinkWrap: true,
-               padding: EdgeInsets.all((1.29 * SizeConfig.heightMultiplier)), //8
+               padding: EdgeInsets.all((PADDING_FACTOR_8 * SizeConfig.heightMultiplier)), //8
                itemCount: this.comments.length,
                itemBuilder: (BuildContext context, int index) {
                  return this.comments[index];
@@ -289,9 +295,9 @@ class _CommentPage
                          color: publishContainerColor,
                          child: Center(
                            child: AutoSizeText(
-                             "PUBLICAR",
+                             PUBLISH_COMMENT,
                              style: TextStyle(
-                               fontSize: (4.39 * SizeConfig.heightMultiplier), //30
+                               fontSize: (PADDING_FACTOR_30 * SizeConfig.heightMultiplier), //30
                                fontWeight: FontWeight.bold,
                                color: publishTextColor,
                              ),
@@ -308,7 +314,7 @@ class _CommentPage
          ),
          appBar: AppBar(
              backgroundColor: kPrimaryDarkColor,
-             title: Text("Add comment")
+             title: Text(ADD_COMMENT_2)
          ),
        );
      }

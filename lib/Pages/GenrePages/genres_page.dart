@@ -1,4 +1,6 @@
 import 'package:bookifyapp/Design/constants.dart';
+import 'package:bookifyapp/Design/info_text.dart';
+import 'package:bookifyapp/Design/size_constants.dart';
 import 'package:bookifyapp/LayoutWidgets/Grids/genres_grid.dart';
 import 'package:bookifyapp/Models/Genre.dart';
 import 'package:bookifyapp/Design/SizeConfig.dart';
@@ -18,27 +20,27 @@ class GenresPage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.fromLTRB(
-              (1.21 * SizeConfig.widthMultiplier),
-              (1.46 * SizeConfig.heightMultiplier),
-              (1.21 * SizeConfig.widthMultiplier),
-              (1.46 * SizeConfig.heightMultiplier)
+              (PADDING_FACTOR_5 * SizeConfig.widthMultiplier), //5
+              (PADDING_FACTOR_10 *  SizeConfig.widthMultiplier), //10
+              (PADDING_FACTOR_5 * SizeConfig.widthMultiplier), //5
+              (PADDING_FACTOR_10 *  SizeConfig.widthMultiplier), //10
           ),
           child: Column(
             children: [
               Padding(
                 padding: EdgeInsets.fromLTRB(
-                    (1.21 * SizeConfig.widthMultiplier),
-                    0,
-                    (1.21 * SizeConfig.widthMultiplier),
-                    (1.46 * SizeConfig.heightMultiplier)
+                  (PADDING_FACTOR_5 * SizeConfig.widthMultiplier), //5
+                  (PADDING_FACTOR_0),
+                  (PADDING_FACTOR_5 * SizeConfig.widthMultiplier), //5
+                  (PADDING_FACTOR_10 *  SizeConfig.widthMultiplier), //10
                 ),
                 child: Text(
-                  "Select or unselect your genres of interest.",
+                  SELECT_GENRE,
                   textAlign: TextAlign.left,
                   overflow: TextOverflow.clip,
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: (2.92 * SizeConfig.textMultiplier),
+                    fontSize: (TEXT_FACTOR_20 * SizeConfig.textMultiplier),
                     color: kPrimaryLightColor
                   )
                 ),
@@ -50,7 +52,7 @@ class GenresPage extends StatelessWidget {
       ),
       appBar: AppBar(
         backgroundColor: kPrimaryDarkColor,
-        title: Text("Genres"),
+        title: Text(GENRES_TITLE),
       ),
     );
   }

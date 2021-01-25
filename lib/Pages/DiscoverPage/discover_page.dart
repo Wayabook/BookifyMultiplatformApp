@@ -1,4 +1,6 @@
 import 'package:bookifyapp/Design/constants.dart';
+import 'package:bookifyapp/Design/info_text.dart';
+import 'package:bookifyapp/Design/size_constants.dart';
 import 'package:bookifyapp/LayoutWidgets/Lists/Title/list_title.dart';
 import 'package:bookifyapp/LayoutWidgets/Carousels/carousel_card.dart';
 import 'package:bookifyapp/Models/User.dart';
@@ -16,8 +18,6 @@ import '../../Design/SizeConfig.dart';
 class DiscoverPage extends StatelessWidget {
 
   final Color color;
-  static const TextStyle optionStyle =
-  TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   List<String> sectionsTitles = ["Latest Additions","Top Rated","More of  Novel Genre","More of Romance Genre"];
 
   DiscoverPage(this.color);
@@ -38,7 +38,7 @@ class DiscoverPage extends StatelessWidget {
 
       appBar: AppBar(
         backgroundColor: kPrimaryDarkColor,
-        title: Text("Search book..."),
+        title: Text(SEARCH_BOOK),
         actions: <Widget>[
           IconButton(
               onPressed: () {
@@ -61,10 +61,10 @@ class DiscoverPage extends StatelessWidget {
         children: <Widget>[
           Container(
             margin: EdgeInsets.fromLTRB(
-                (1.21 * SizeConfig.widthMultiplier), //5
-                (0.29 * SizeConfig.heightMultiplier), // 2
-                (0.48 * SizeConfig.widthMultiplier), //2
-                (0.29 * SizeConfig.heightMultiplier), // 2
+              (PADDING_FACTOR_5 * SizeConfig.widthMultiplier), //5
+              (CONTAINER_FACTOR_2 * SizeConfig.widthMultiplier), //2
+              (CONTAINER_FACTOR_2 * SizeConfig.widthMultiplier), //2
+              (CONTAINER_FACTOR_2 * SizeConfig.widthMultiplier), //2
             ),
             child:  Align(
               alignment: Alignment.topLeft,
@@ -81,17 +81,21 @@ class DiscoverPage extends StatelessWidget {
         children: <Widget>[
           Container(
             margin: EdgeInsets.fromLTRB(
-                (1.21 * SizeConfig.widthMultiplier), //5
-                (0.29 * SizeConfig.heightMultiplier), // 2
-                (0.48 * SizeConfig.widthMultiplier), //2
-                (0.29 * SizeConfig.heightMultiplier), // 2
+              (PADDING_FACTOR_5 * SizeConfig.widthMultiplier), //5
+              (CONTAINER_FACTOR_2 * SizeConfig.widthMultiplier), //2
+              (CONTAINER_FACTOR_2 * SizeConfig.widthMultiplier), //2
+              (CONTAINER_FACTOR_2 * SizeConfig.widthMultiplier), //2
             ),
             child:  Align(
               alignment: Alignment.topLeft,
               child: ListTitle(sectionTitle),
             ),
           ),
-          HorizontalBookList(Book.toLectureList(Book.getAppMockBooks()), ListType.discover_option, user: Provider.of<User>(context, listen: false),),
+          HorizontalBookList(
+            Book.toLectureList(Book.getAppMockBooks()),
+            ListType.discover_option,
+            user: Provider.of<User>(context, listen: false),
+          ),
         ],
       );
     }

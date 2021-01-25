@@ -1,4 +1,5 @@
 import 'package:bookifyapp/Design/constants.dart';
+import 'package:bookifyapp/Design/info_text.dart';
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/LayoutWidgets/Lists/vertical_user_list.dart';
 import 'package:bookifyapp/Models/User.dart';
@@ -87,7 +88,7 @@ class _FriendsPage extends State<FriendsPage> {
                 this.appBarTitle = new TextField(
                   controller: controller,
                   decoration: new InputDecoration(
-                    hintText: "Search by name...",
+                    hintText: SEARCH_BY_NAME + "...",
                     hintStyle: new TextStyle(color: kPrimaryLightColor),
                   ),
                   style: new TextStyle(
@@ -99,7 +100,7 @@ class _FriendsPage extends State<FriendsPage> {
               } else {
                 this.actionIcon = new Icon(Icons.search);
                 this.appBarTitle = new Text(
-                    "Search friends by name",
+                    SEARCH_BY_NAME,
                     overflow: TextOverflow.ellipsis,
                 );
                 _friends = widget.friends;

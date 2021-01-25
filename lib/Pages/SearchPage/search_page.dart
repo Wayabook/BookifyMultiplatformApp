@@ -1,4 +1,6 @@
 import 'package:bookifyapp/Design/constants.dart';
+import 'package:bookifyapp/Design/info_text.dart';
+import 'package:bookifyapp/Design/size_constants.dart';
 import 'package:bookifyapp/Enums/list_type.dart';
 import 'package:bookifyapp/LayoutWidgets/Lists/vertical_book_list_search.dart';
 import 'package:bookifyapp/LayoutWidgets/Lists/vertical_user_list.dart';
@@ -121,8 +123,8 @@ class _SearchPage extends State<SearchPage> with SingleTickerProviderStateMixin 
       bottom: TabBar(
           controller: _tabController,
           tabs: [
-            Tab(child: Text("Book", style: TextStyle(fontSize: (2.05 * SizeConfig.textMultiplier)),)),
-            Tab(child: Text("Person", style: TextStyle(fontSize: (2.05 * SizeConfig.textMultiplier)),))
+            Tab(child: Text(BOOK_TITLE, style: TextStyle(fontSize: (TEXT_FACTOR_14 * SizeConfig.textMultiplier)),)),
+            Tab(child: Text(PERSON_TITLE, style: TextStyle(fontSize: (TEXT_FACTOR_14 * SizeConfig.textMultiplier)),))
           ]
       ),
       title: appBarTitle,

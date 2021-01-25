@@ -1,3 +1,4 @@
+import 'package:bookifyapp/Design/info_text.dart';
 import 'package:bookifyapp/Models/User.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +15,7 @@ class ReadingPage extends StatelessWidget {
     return Scaffold(
       body: Consumer<User>(
           builder: (context, user, child) =>
-              VerticalBookList(user.lectures["Reading"], user.lectures["Pending"])),
+              VerticalBookList(user.lectures[READING_LIST], user.lectures[PENDING_LIST])),
     );
   }
 }

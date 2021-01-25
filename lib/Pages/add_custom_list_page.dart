@@ -1,4 +1,6 @@
 import 'package:bookifyapp/Design/constants.dart';
+import 'package:bookifyapp/Design/info_text.dart';
+import 'package:bookifyapp/Design/size_constants.dart';
 import 'package:bookifyapp/Enums/list_type.dart';
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/LayoutWidgets/Lists/vertical_book_list_search.dart';
@@ -42,7 +44,10 @@ class _AddCustomListPage extends State<AddCustomListPage> {
   FocusNode _focusNode;
 
   String filter = "";
-  Icon actionIcon = new Icon(Icons.search, size: (5.83 * SizeConfig.imageSizeMultiplier),);
+  Icon actionIcon = new Icon(
+    Icons.search,
+    size: (ICON_FACTOR_24 * SizeConfig.imageSizeMultiplier),
+  );
   String searchTitle = "Search...";
   TextField appBarTitle;
 
@@ -83,7 +88,7 @@ class _AddCustomListPage extends State<AddCustomListPage> {
       ),
       style: new TextStyle(
         color: kPrimaryLightColor,
-        fontSize: (2.05 * SizeConfig.textMultiplier), //14
+        fontSize: (TEXT_FACTOR_14 * SizeConfig.textMultiplier), //14
       ),
       cursorColor: kPrimaryLightColor,
       onTap: (){
@@ -96,10 +101,16 @@ class _AddCustomListPage extends State<AddCustomListPage> {
   _checkInuptTextState(fromButton){
     setState(() {
       if (this.actionIcon.icon == Icons.search) {
-        this.actionIcon = new Icon(Icons.close, size: (5.83 * SizeConfig.imageSizeMultiplier),);
+        this.actionIcon = new Icon(
+          Icons.close,
+          size: (ICON_FACTOR_24 * SizeConfig.imageSizeMultiplier),
+        );
         _focusNode.requestFocus();
       } else {
-        this.actionIcon = new Icon(Icons.search, size: (5.83 * SizeConfig.imageSizeMultiplier),);
+        this.actionIcon = new Icon(
+          Icons.search,
+          size: (ICON_FACTOR_24 * SizeConfig.imageSizeMultiplier),
+        );
         _bookshelf = widget.bookshelf;
         _focusNode.unfocus();
         controller.clear();
@@ -131,7 +142,7 @@ class _AddCustomListPage extends State<AddCustomListPage> {
       return VerticalBookListSearch(
         _bookshelf,
         widget.listType,
-        title: 'Recommend',
+        title: RECOMMEND,
         backgroundColor: kPrimaryDarkColor,
         onAcceptButtonTapped: onRecommendationsAccepted,
         onCancelButtonTapped: onRecommendationCanceled,

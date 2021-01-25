@@ -1,4 +1,6 @@
 import 'package:bookifyapp/Design/constants.dart';
+import 'package:bookifyapp/Design/info_text.dart';
+import 'package:bookifyapp/Design/size_constants.dart';
 import 'package:bookifyapp/Enums/list_type.dart';
 import 'package:bookifyapp/InfoToast.dart';
 import 'package:bookifyapp/LayoutWidgets/Buttons/small_button_underlined.dart';
@@ -23,6 +25,8 @@ class FirstTimeFormPage extends StatefulWidget{
 
 class _FirstTimeFormPage extends State<FirstTimeFormPage> with TickerProviderStateMixin{
 
+  static const int ANIMATION_DURATION = 1500;
+
   SwiperController _swiperController = new SwiperController();
   int _swiperIndex = 0;
   IconData _icon = Icons.arrow_forward_ios;
@@ -32,6 +36,20 @@ class _FirstTimeFormPage extends State<FirstTimeFormPage> with TickerProviderSta
   AnimationController animationController;
   int animationControllerDuration;
   Animation<double> animation;
+
+  List<String> _titles = [
+    "Elija Generos de su Interes:",
+    "Seleccione Libros Leidos:",
+    "Seleccione Libros Interesantes:",
+    "Seleccione Lecturas en Curso:",
+  ];
+
+  List<String> _lectureLists = [
+    '',
+    'Read',
+    'Pending',
+    'Reading',
+  ];
 
   _goToMainTabPage(BuildContext context){
     InfoToast.showInterestsSavedCorrectly();
@@ -49,7 +67,7 @@ class _FirstTimeFormPage extends State<FirstTimeFormPage> with TickerProviderSta
   void initState() {
     super.initState();
 
-    animationControllerDuration = 1500;
+    animationControllerDuration = ANIMATION_DURATION;
     animationController = AnimationController(
         duration: Duration(milliseconds: animationControllerDuration),
         vsync: this
@@ -77,10 +95,10 @@ class _FirstTimeFormPage extends State<FirstTimeFormPage> with TickerProviderSta
           children: [
             Padding(
               padding: EdgeInsets.fromLTRB(
-                  (1.21 * SizeConfig.widthMultiplier),
-                  (5.8 * SizeConfig.heightMultiplier),
-                  (1.21 * SizeConfig.widthMultiplier),
-                  (1.47 * SizeConfig.heightMultiplier),
+                  (PADDING_FACTOR_5 * SizeConfig.widthMultiplier),
+                  (PADDING_FACTOR_40 * SizeConfig.heightMultiplier),
+                  (PADDING_FACTOR_5 * SizeConfig.widthMultiplier),
+                  (PADDING_FACTOR_10 * SizeConfig.widthMultiplier),
               ),
               child: Container(
                   color: kPrimaryLightColor,
@@ -90,7 +108,7 @@ class _FirstTimeFormPage extends State<FirstTimeFormPage> with TickerProviderSta
                       onTap: (){
                         _goToMainTabPage(context);
                       },
-                      child: SmallButtonUnderlined("Skip", textColor: kPrimaryDarkColor,),
+                      child: SmallButtonUnderlined(SKIP_OPTION, textColor: kPrimaryDarkColor,),
                     ),
                   ),
               ),
@@ -99,10 +117,10 @@ class _FirstTimeFormPage extends State<FirstTimeFormPage> with TickerProviderSta
 
             Padding(
               padding: EdgeInsets.fromLTRB(
-                  (2.43 * SizeConfig.widthMultiplier),
-                  (8.8 * SizeConfig.heightMultiplier),
-                  (2.43 * SizeConfig.widthMultiplier),
-                  (4.4 * SizeConfig.heightMultiplier)
+                  (PADDING_FACTOR_10 * SizeConfig.widthMultiplier),
+                  (PADDING_FACTOR_60 * SizeConfig.heightMultiplier),
+                  (PADDING_FACTOR_10 * SizeConfig.widthMultiplier),
+                  (PADDING_FACTOR_30 * SizeConfig.heightMultiplier)
               ),
               child: Container(
                 height: MediaQuery.of(context).size.height - (13.23 * SizeConfig.heightMultiplier),
@@ -117,7 +135,7 @@ class _FirstTimeFormPage extends State<FirstTimeFormPage> with TickerProviderSta
                         containerWidth: double.infinity,
                         itemCount: 4,
                         pagination: SwiperPagination(
-                          margin: new EdgeInsets.all((1.21 * SizeConfig.widthMultiplier)),
+                          margin: new EdgeInsets.all((PADDING_FACTOR_5 * SizeConfig.widthMultiplier)),
                           builder: new DotSwiperPaginationBuilder(
                               color: Colors.grey,
                               activeColor: Colors.blue,
@@ -125,22 +143,8 @@ class _FirstTimeFormPage extends State<FirstTimeFormPage> with TickerProviderSta
                           ),
                         ),
                         itemBuilder: (BuildContext context, int index) {
-                          String title = "";
-                          String lectureList = "";
-                          if(index == 1){
-                            title = "Seleccione Libros Leidos:";
-                            lectureList = 'Read';
-                          } else if (index == 2) {
-                            title = "Seleccione Libros Interesantes:";
-                            lectureList = 'Pending';
-                          } else if (index == 3) {
-                            title = "Seleccione Lecturas en Curso:";
-                            lectureList = 'Reading';
-                          } else {
-                            title = "Elija Generos de su Interes:";
-                          }
-
-
+                          String title = _titles[index];
+                          String lectureList = _lectureLists[index];
                           if(index >= 1 && index <= 3){
                             return AddCustomListPage(
                               Book.getUserMockBooks(),
@@ -153,13 +157,13 @@ class _FirstTimeFormPage extends State<FirstTimeFormPage> with TickerProviderSta
                             return Center(
                               child: Column(
                                 children: [
-                                  ListTitle(title, fontSize: (3.23 * SizeConfig.textMultiplier),),
+                                  ListTitle(title, fontSize: (TEXT_FACTOR_22 * SizeConfig.textMultiplier),),
                                   Padding(
                                       padding: EdgeInsets.fromLTRB(
-                                          (2.43 * SizeConfig.widthMultiplier),
-                                          0,
-                                          (2.43 * SizeConfig.widthMultiplier),
-                                          0
+                                          (PADDING_FACTOR_10 * SizeConfig.widthMultiplier),
+                                          (PADDING_FACTOR_0),
+                                          (PADDING_FACTOR_10 * SizeConfig.widthMultiplier),
+                                          (PADDING_FACTOR_0)
                                       ),
                                       child: GenresGrid(Genre.getMockGenres(),
                                       )
@@ -176,11 +180,11 @@ class _FirstTimeFormPage extends State<FirstTimeFormPage> with TickerProviderSta
             ),
 
             Positioned(
-              right: (1.47 * SizeConfig.heightMultiplier),
-              bottom: (2.2 * SizeConfig.heightMultiplier),
+              right: (PADDING_FACTOR_10 * SizeConfig.widthMultiplier),
+              bottom: (PADDING_FACTOR_15 * SizeConfig.widthMultiplier),
               child: Container(
-                width: (12.16 * SizeConfig.imageSizeMultiplier),
-                height: (12.16 * SizeConfig.imageSizeMultiplier),
+                width: (TEXT_FACTOR_50 * SizeConfig.imageSizeMultiplier),
+                height: (TEXT_FACTOR_50 * SizeConfig.imageSizeMultiplier),
                 child: FittedBox(
                   child: FloatingActionButton(
                     heroTag: UniqueKey(),

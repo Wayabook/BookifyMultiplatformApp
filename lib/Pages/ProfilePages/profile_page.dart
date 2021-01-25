@@ -1,4 +1,6 @@
 import 'package:bookifyapp/Design/constants.dart';
+import 'package:bookifyapp/Design/info_text.dart';
+import 'package:bookifyapp/Design/size_constants.dart';
 import 'package:bookifyapp/Enums/button_type.dart';
 import 'package:bookifyapp/Enums/list_type.dart';
 import 'package:bookifyapp/InfoToast.dart';
@@ -29,8 +31,6 @@ import '../bookshelf_page.dart';
 
 
 class ProfilePage extends StatefulWidget {
-  static const TextStyle optionStyle =
-  TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
 
   User user;
   ProfileType profileType;
@@ -76,7 +76,9 @@ class _ProfilePage extends State<ProfilePage> implements TitleButtonInterface{
   Widget build(BuildContext context) {
     this.context = context;
     width = MediaQuery.of(context).size.width;
-    widthPerChild = (width - (7.29 * SizeConfig.widthMultiplier) - (4.86 * SizeConfig.widthMultiplier)) / (0.72 * SizeConfig.widthMultiplier);
+    widthPerChild =
+        (width - (7.29 * SizeConfig.widthMultiplier)
+            - (4.86 * SizeConfig.widthMultiplier)) / (0.72 * SizeConfig.widthMultiplier);
 
     return Scaffold(
       backgroundColor: kPrimaryDarkColor,
@@ -104,13 +106,13 @@ class _ProfilePage extends State<ProfilePage> implements TitleButtonInterface{
     return Stack(
       children: [
         Padding(
-          padding: EdgeInsets.only(bottom: (17.56 * SizeConfig.heightMultiplier)), // 120
+          padding: EdgeInsets.only(bottom: (PADDING_FACTOR_120 * SizeConfig.heightMultiplier)), // 120
           child: ArcBannerImage(randomBackgroundImage),
         ),
         Positioned(
-          bottom: 0.0,
-          left: (2.34 * SizeConfig.heightMultiplier), // 16
-          right: (2.34 * SizeConfig.heightMultiplier), // 16
+          bottom: PADDING_FACTOR_0,
+          left: (PADDING_FACTOR_16* SizeConfig.widthMultiplier), // 16
+          right: (PADDING_FACTOR_16 * SizeConfig.widthMultiplier), // 16
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
@@ -127,16 +129,16 @@ class _ProfilePage extends State<ProfilePage> implements TitleButtonInterface{
                             child: Icon(
                               Icons.security,
                               color: kPrimaryLightColor,
-                              size: (7.29 * SizeConfig.imageSizeMultiplier), // 30
+                              size: (ICON_FACTOR_30 * SizeConfig.imageSizeMultiplier), // 30
 
                             ),
                           ),
                           Align(
                             alignment: Alignment.center,
                             child:Text(
-                              "BADGETS",
+                              BADGETS_TITLE,
                               style: TextStyle(
-                                  fontSize: (1.75 * SizeConfig.textMultiplier), // 12
+                                  fontSize: (TEXT_FACTOR_12 * SizeConfig.textMultiplier), // 12
                                   fontWeight: FontWeight.bold,
                                   color: kPrimaryLightColor),
                             ),
@@ -168,15 +170,15 @@ class _ProfilePage extends State<ProfilePage> implements TitleButtonInterface{
                             child: Icon(
                               Icons.people,
                               color: kPrimaryLightColor,
-                              size:  (7.29 * SizeConfig.imageSizeMultiplier), // 30
+                              size:  (ICON_FACTOR_30 * SizeConfig.imageSizeMultiplier), // 30
                             ),
                           ),
                           Align(
                             alignment: Alignment.center,
                             child:Text(
-                              "FRIENDS",
+                              FRIENDS_TITLE,
                               style: TextStyle(
-                                  fontSize: (1.75 * SizeConfig.textMultiplier), // 12
+                                  fontSize: (TEXT_FACTOR_12 * SizeConfig.textMultiplier), // 12
                                   fontWeight: FontWeight.bold,
                                   color: kPrimaryLightColor),
                             ),
@@ -202,10 +204,10 @@ class _ProfilePage extends State<ProfilePage> implements TitleButtonInterface{
   _getFriendButtonContainer(){
     return Padding(
         padding: EdgeInsets.fromLTRB(
-            (2.43 * SizeConfig.widthMultiplier), // 10
-            0,
-            (3.64 * SizeConfig.widthMultiplier), // 15
-            (1.46 * SizeConfig.heightMultiplier) // 10
+            (PADDING_FACTOR_10 * SizeConfig.widthMultiplier), // 10
+            (PADDING_FACTOR_0), // 0
+            (PADDING_FACTOR_15 * SizeConfig.widthMultiplier), // 15
+            (PADDING_FACTOR_10 * SizeConfig.widthMultiplier) // 10
         ),
         child: _getFriendButton()
     );
@@ -220,42 +222,42 @@ class _ProfilePage extends State<ProfilePage> implements TitleButtonInterface{
 
           InfoRow.withIcon(
               RowType.icon_image,
-              "BOOKS READ",
+              BOOKS_READ_TITLE,
               Icons.book,
               widget.user.booksRead.toString(),
               widthPerChild,
-              (16.83 * SizeConfig.heightMultiplier), //height = 115
+              (CONTAINER_FACTOR_115* SizeConfig.heightMultiplier), //height = 115
               kPrimaryLightColor),
 
           Container(
             color: kPrimaryLightColor,
-            height: (16.83 * SizeConfig.heightMultiplier), //height = 115
-            width: (0.48 * SizeConfig.widthMultiplier), //2
+            height: (CONTAINER_FACTOR_115 * SizeConfig.heightMultiplier), //height = 115
+            width: (CONTAINER_FACTOR_2 * SizeConfig.widthMultiplier), //2
           ),
 
           InfoRow.withIcon(
               RowType.icon_image,
-              "CHAPS READ",
+              CHAPS_READ_TITLE,
               Icons.collections_bookmark,
               widget.user.chaptersRead.toString(),
               widthPerChild,
-              (16.83 * SizeConfig.heightMultiplier), //height = 115
+              (CONTAINER_FACTOR_115 * SizeConfig.heightMultiplier), //height = 115
               kPrimaryLightColor),
 
           Container(
             color:
             kPrimaryLightColor,
-            height: (16.83 * SizeConfig.heightMultiplier), //height = 115
-            width: (0.48 * SizeConfig.widthMultiplier), //2
+            height: (CONTAINER_FACTOR_115 * SizeConfig.heightMultiplier), //height = 115
+            width: (CONTAINER_FACTOR_2 * SizeConfig.widthMultiplier), //2
           ),
 
           InfoRow.withIcon(
               RowType.icon_image,
-              "PAGES READ",
+              PAGES_READ_TITLE,
               Icons.description,
               widget.user.pagesRead.toString(),
               widthPerChild,
-              (16.83 * SizeConfig.heightMultiplier), //height = 115
+              (CONTAINER_FACTOR_115 * SizeConfig.heightMultiplier), //height = 115
               kPrimaryLightColor),
 
 
@@ -276,38 +278,25 @@ class _ProfilePage extends State<ProfilePage> implements TitleButtonInterface{
           //width: width
       ),
     );
-
-    /*return Container(
-        margin:  EdgeInsets.fromLTRB(
-            (2.43 * SizeConfig.widthMultiplier), // 10
-            (1.47 * SizeConfig.heightMultiplier), // 10
-            (0.29 * SizeConfig.heightMultiplier),
-            0
-        ),
-        color: kPrimaryLightColor,
-        height: (0.29 * SizeConfig.heightMultiplier),
-        //width: double.infinity,
-        //width: width -  (2.43 * SizeConfig.widthMultiplier) - (0.48 * SizeConfig.widthMultiplier)
-    );*/
   }
 
   _getGenresTitle(){
     return Container(
       margin: EdgeInsets.fromLTRB(
-          (2.43 * SizeConfig.widthMultiplier), //10
-          (1.46 * SizeConfig.heightMultiplier), // 10
-          (0.48 * SizeConfig.widthMultiplier), // 2
-          0
+          (PADDING_FACTOR_10 * SizeConfig.widthMultiplier), //10
+          (PADDING_FACTOR_10 * SizeConfig.widthMultiplier), //10
+          (CONTAINER_FACTOR_2 * SizeConfig.widthMultiplier), //2
+          (PADDING_FACTOR_0)
       ),
       child:  Align(
           alignment: Alignment.topLeft,
           child: widget.profileType  == ProfileType.user_profile ? ListTitle(
-            "Genres of Interest",
+            GENRES_OF_INTEREST,
             withButton: true,
             user: widget.user,
             buttonType: ButtonType.edit_genres_list,
             onListTitleButtonTapped: onTitleButtonPressed,
-          ) : ListTitle("Genres of Interest")
+          ) : ListTitle(GENRES_OF_INTEREST)
 
 
       ),
@@ -317,15 +306,15 @@ class _ProfilePage extends State<ProfilePage> implements TitleButtonInterface{
   _getBookshelfTitle(){
     return Container(
       margin: EdgeInsets.fromLTRB(
-          (2.43 * SizeConfig.widthMultiplier), // 10
-          (1.46 * SizeConfig.heightMultiplier), // 10
-          (0.48 * SizeConfig.widthMultiplier), // 2
-          0
+          (PADDING_FACTOR_10 * SizeConfig.widthMultiplier), //10
+          (PADDING_FACTOR_10 * SizeConfig.widthMultiplier), //10
+          (CONTAINER_FACTOR_2 * SizeConfig.widthMultiplier), //2
+          (PADDING_FACTOR_0)
       ),
       child:  Align(
           alignment: Alignment.topLeft,
           child: ListTitle(
-            "Bookshelf",
+            BOOKSHELF_TITLE,
             withButton: true,
             user: widget.user,
             onListTitleButtonTapped: onTitleButtonPressed,
@@ -380,16 +369,16 @@ class _ProfilePage extends State<ProfilePage> implements TitleButtonInterface{
           Align(
             alignment: Alignment.center,
             child:  ButtonTheme(
-              height: (5.27 * SizeConfig.heightMultiplier),
-              minWidth: (21.41 * SizeConfig.widthMultiplier),
+              height: (CONTAINER_FACTOR_35 * SizeConfig.heightMultiplier),
+              minWidth: (CONTAINER_FACTOR_90 * SizeConfig.widthMultiplier),
               child: RaisedButton(
                 onPressed: () async {
                   if(widget.isFriend){
                     int result = await showDialog(
                       context: context,
                       builder: (BuildContext context) => DialogWithAcceptAndCancelOptions(
-                          "Delete Friend",
-                          "Are you sure you want to delete friend?",
+                          DELETE_FRIEND,
+                          DELETE_FRIEND_CONFIRMATION,
                           TextStyle(color: Colors.red,),
                           TextStyle(color: Colors.blue,)
                       ),
@@ -413,9 +402,9 @@ class _ProfilePage extends State<ProfilePage> implements TitleButtonInterface{
                 textColor: kPrimaryLightColor,
                 color: widget.isFriend ? Colors.lightGreen[500] : Colors.blueGrey[300],
                 child: Text(
-                  widget.isFriend ? "Friend" : "Add Friend",
+                  widget.isFriend ? FRIEND: ADD_FRIEND,
                   style: TextStyle(
-                    fontSize: (2.05 * SizeConfig.textMultiplier), // 14
+                    fontSize: (TEXT_FACTOR_14 * SizeConfig.textMultiplier), // 14
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -424,16 +413,21 @@ class _ProfilePage extends State<ProfilePage> implements TitleButtonInterface{
           ),
 
           Padding(
-            padding: EdgeInsets.fromLTRB(0, (1.02 * SizeConfig.heightMultiplier), 0, 0),
+            padding: EdgeInsets.fromLTRB(
+                (PADDING_FACTOR_0),
+                (PADDING_FACTOR_7 * SizeConfig.heightMultiplier),
+                (PADDING_FACTOR_0),
+                (PADDING_FACTOR_0)
+            ),
             child: Container(
                 margin: EdgeInsets.fromLTRB(
-                    (2.43 * SizeConfig.widthMultiplier), // 10
-                    0,
-                    (0.48 * SizeConfig.widthMultiplier), // 2
-                    0
+                    (PADDING_FACTOR_10 * SizeConfig.widthMultiplier), //10
+                    (PADDING_FACTOR_0),
+                    (CONTAINER_FACTOR_2 * SizeConfig.widthMultiplier), //2
+                    (PADDING_FACTOR_0)
                 ),
                 color: kPrimaryLightColor,
-                height: (0.29 * SizeConfig.heightMultiplier), // 2
+                height: (CONTAINER_FACTOR_2 * SizeConfig.widthMultiplier), //2
                 width: width
             )
           )
@@ -442,13 +436,13 @@ class _ProfilePage extends State<ProfilePage> implements TitleButtonInterface{
     } else {
       return Container(
           margin: EdgeInsets.fromLTRB(
-              (2.43 * SizeConfig.widthMultiplier), // 10
-              0,
-              (0.48 * SizeConfig.widthMultiplier), // 2
-              0
+              (PADDING_FACTOR_10 * SizeConfig.widthMultiplier), //10
+              (PADDING_FACTOR_0),
+              (CONTAINER_FACTOR_2 * SizeConfig.widthMultiplier), //2
+              (PADDING_FACTOR_0)
           ),
           color: kPrimaryLightColor,
-          height: (0.29 * SizeConfig.heightMultiplier), // 2
+          height: (CONTAINER_FACTOR_2 * SizeConfig.widthMultiplier), //2
           width: width
       );
     }
