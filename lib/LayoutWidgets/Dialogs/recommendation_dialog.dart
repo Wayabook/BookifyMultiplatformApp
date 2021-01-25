@@ -6,7 +6,7 @@ import 'package:bookifyapp/LayoutWidgets/Profile/profile_info.dart';
 import 'package:bookifyapp/Models/Lecture.dart';
 import 'package:bookifyapp/Models/Recommendation.dart';
 import 'package:bookifyapp/Models/User.dart';
-import 'package:bookifyapp/SizeConfig.dart';
+import 'package:bookifyapp/Design/SizeConfig.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/Models/Book.dart';

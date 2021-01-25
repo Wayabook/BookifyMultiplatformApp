@@ -4,7 +4,7 @@ import 'package:bookifyapp/Enums/list_type.dart';
 import 'package:bookifyapp/LayoutWidgets/Buttons/book_card_action_button.dart';
 import 'package:bookifyapp/Models/Book.dart';
 import 'package:bookifyapp/Models/Lecture.dart';
-import 'package:bookifyapp/SizeConfig.dart';
+import 'package:bookifyapp/Design/SizeConfig.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';

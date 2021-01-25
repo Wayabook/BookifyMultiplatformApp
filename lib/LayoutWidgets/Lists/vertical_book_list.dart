@@ -11,7 +11,7 @@ import 'package:bookifyapp/Enums/button_type.dart';
 import 'package:bookifyapp/LayoutWidgets/Lists/Title/list_title.dart';
 import 'package:provider/provider.dart';
 
-import '../../SizeConfig.dart';
+import '../../Design/SizeConfig.dart';
 
 
 class VerticalBookList/*<T extends Book>*/ extends StatefulWidget {

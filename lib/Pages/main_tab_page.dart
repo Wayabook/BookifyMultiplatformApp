@@ -1,8 +1,9 @@
 import 'package:bookifyapp/Design/constants.dart';
+import 'package:bookifyapp/Design/info_text.dart';
 import 'package:bookifyapp/Enums/profile_type.dart';
 import 'package:bookifyapp/Pages/ProfilePages/profile_page.dart';
 import 'package:bookifyapp/Pages/ReadingPage/reading_page.dart';
-import 'package:bookifyapp/SizeConfig.dart';
+import 'package:bookifyapp/Design/SizeConfig.dart';
 import 'package:custom_navigator/custom_navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/Models/User.dart';
@@ -24,15 +25,15 @@ class _MainTabPage extends State<MainTabPage> {
   final _items = [
     BottomNavigationBarItem(
       icon: Icon(Icons.local_library),
-      title: Text('Reading'),
+      title: Text(READING_OPTION),
     ),
     BottomNavigationBarItem(
       icon: Icon(Icons.search),
-      title: Text('Discover'),
+      title: Text(DISCOVER_OPTION),
     ),
     BottomNavigationBarItem(
       icon: Icon(Icons.account_circle),
-      title: Text('Profile'),
+      title: Text(PROFILE_OPTION),
     ),
 
   ];
@@ -41,12 +42,6 @@ class _MainTabPage extends State<MainTabPage> {
   void initState(){
 
     super.initState();
-  }
-
-  changeCurrentIndex(int position){
-    /*setState(() {
-      _currentIndex = position;
-    });*/
   }
 
   @override
@@ -74,7 +69,7 @@ class _MainTabPage extends State<MainTabPage> {
   _getPages(){
     return [
       ReadingPage(),
-      DiscoverPage(kPrimaryLightColor, "Discover Page"),
+      DiscoverPage(kPrimaryLightColor),
       ProfilePage(Provider.of<User>(context, listen: false), ProfileType.user_profile),
     ];
   }

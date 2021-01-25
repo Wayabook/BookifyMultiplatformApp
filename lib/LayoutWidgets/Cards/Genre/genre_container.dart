@@ -1,6 +1,6 @@
 import 'package:bookifyapp/Design/constants.dart';
 import 'package:bookifyapp/Models/Genre.dart';
-import 'package:bookifyapp/SizeConfig.dart';
+import 'package:bookifyapp/Design/SizeConfig.dart';
 import 'package:flutter/material.dart';
 
 class GenreContainer extends StatelessWidget {

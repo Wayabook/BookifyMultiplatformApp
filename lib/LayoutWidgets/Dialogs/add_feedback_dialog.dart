@@ -18,7 +18,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:provider/provider.dart';
 
-import '../../SizeConfig.dart';
+import '../../Design/SizeConfig.dart';
 
 class AddFeedbackDialog extends StatefulWidget{
 
@@ -121,7 +121,7 @@ class _AddFeedbackDialog
 
   _getCommentsTitle(){
     return Padding(
-      padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+      padding: EdgeInsets.all(0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,

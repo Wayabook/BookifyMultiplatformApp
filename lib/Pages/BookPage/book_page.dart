@@ -17,7 +17,7 @@ import 'package:bookifyapp/LayoutWidgets/Dialogs/book_shops_dialog.dart';
 import 'package:provider/provider.dart';
 import '../../InfoToast.dart';
 import '../../Models/User.dart';
-import '../../SizeConfig.dart';
+import '../../Design/SizeConfig.dart';
 import '../CommentPage/comment_page.dart';
 
 

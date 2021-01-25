@@ -1,4 +1,5 @@
 import 'package:bookifyapp/Design/constants.dart';
+import 'package:bookifyapp/Design/info_text.dart';
 import 'package:bookifyapp/LayoutWidgets/Grids/bookself_list_grid.dart';
 import 'package:bookifyapp/Models/Lecture.dart';
 import 'package:flutter/cupertino.dart';
@@ -25,11 +26,11 @@ class BookshelfPage extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: kPrimaryDarkColor,
-      body: BooskelfGridList(user, scrollToLastPosition: scrollToLastPosition),//_getListView(),
+      body: BooskelfGridList(user, scrollToLastPosition: scrollToLastPosition),
       appBar: AppBar(
         backgroundColor: kPrimaryDarkColor,
         title: Text(
-            "Bookshelf (" + user.lectures.length.toString() + " lists)",
+            "Bookshelf " + "(" + user.lectures.length.toString() + BOOKSHELF_LIST + ")",
             overflow: TextOverflow.ellipsis,
         ),
       ),
@@ -37,9 +38,9 @@ class BookshelfPage extends StatelessWidget {
   }
 
   _addReadListToLastPosition(){
-    List<Lecture> read = user.lectures['Read'];
-    user.lectures.remove('Read');
-    user.lectures['Read'] = read;
+    List<Lecture> read = user.lectures[READ_LIST];
+    user.lectures.remove(READ_LIST);
+    user.lectures[READ_LIST] = read;
   }
 
 }

@@ -8,7 +8,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:like_button/like_button.dart';
 
-import '../../../SizeConfig.dart';
+import '../../../Design/SizeConfig.dart';
 
 class MainCommentCard extends StatelessWidget implements RemoveCommentInterface {
   bool fromDialog;

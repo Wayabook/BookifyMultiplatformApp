@@ -9,7 +9,7 @@ import 'package:bookifyapp/LayoutWidgets/Lists/Title/list_title.dart';
 import 'package:bookifyapp/Models/Recommendation.dart';
 import 'package:bookifyapp/Pages/ProfilePages/friends_page.dart';
 import 'package:bookifyapp/Pages/GenrePages/genres_page.dart';
-import 'package:bookifyapp/SizeConfig.dart';
+import 'package:bookifyapp/Design/SizeConfig.dart';
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/LayoutWidgets/Profile/arc_banner_image.dart';
 import 'package:bookifyapp/LayoutWidgets/Profile/profile_info.dart';

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:bookifyapp/LayoutWidgets/Lists/vertical_book_list_search.dart';
 import 'package:bookifyapp/Models/Book.dart';
 
-import '../SizeConfig.dart';
+import '../Design/SizeConfig.dart';
 
 class AddCustomListPage extends StatefulWidget {
 

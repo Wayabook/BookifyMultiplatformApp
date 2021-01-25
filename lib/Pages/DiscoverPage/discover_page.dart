@@ -9,19 +9,18 @@ import 'package:bookifyapp/LayoutWidgets/Lists/horizontal_book_list.dart';
 import 'package:bookifyapp/Enums/list_type.dart';
 import 'package:provider/provider.dart';
 
-import '../../SizeConfig.dart';
+import '../../Design/SizeConfig.dart';
 
 
 
 class DiscoverPage extends StatelessWidget {
 
   final Color color;
-  final String text;
   static const TextStyle optionStyle =
   TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   List<String> sectionsTitles = ["Latest Additions","Top Rated","More of  Novel Genre","More of Romance Genre"];
 
-  DiscoverPage(this.color, this.text);
+  DiscoverPage(this.color);
 
   @override
   Widget build(BuildContext context) {

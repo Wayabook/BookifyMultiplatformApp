@@ -4,7 +4,7 @@ import 'package:bookifyapp/Pages/CommentPage/comment_page.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 
-import '../../../../SizeConfig.dart';
+import '../../../../Design/SizeConfig.dart';
 
 class ChapterCard extends StatelessWidget {
 

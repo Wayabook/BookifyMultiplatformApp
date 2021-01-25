@@ -1,5 +1,5 @@
 import 'package:bookifyapp/LayoutWidgets/Buttons/add_button_small.dart';
-import 'package:bookifyapp/SizeConfig.dart';
+import 'package:bookifyapp/Design/SizeConfig.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 

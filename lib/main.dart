@@ -13,7 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:bookifyapp/Models/User.dart';
 import 'package:provider/provider.dart';
 
-import 'SizeConfig.dart';
+import 'Design/SizeConfig.dart';
 
 
 void main() => runApp(MyApp());
@@ -61,34 +61,5 @@ class MyApp extends StatelessWidget {
         );
       },
     );
-
-    return MultiProvider(
-      providers: [
-        // In this sample app, CatalogModel never changes, so a simple Provider
-        // is sufficient.
-        //Provider(create: (context) => User.getMockUser()),
-
-        ChangeNotifierProvider<User>(create: (context) => User.getMockUser())
-
-        // CartModel is implemented as a ChangeNotifier, which calls for the use
-        // of ChangeNotifierProvider. Moreover, CartModel depends
-        // on CatalogModel, so a ProxyProvider is needed.
-        /*ChangeNotifierProxyProvider<CatalogModel, CartModel>(
-          create: (context) => CartModel(),
-          update: (context, catalog, cart) {
-            cart.catalog = catalog;
-            return cart;
-          },
-        ),*/
-      ],
-      child: MaterialApp(
-        home: WelcomePage(),
-      )
-    );
-
-    /*return MaterialApp(
-      title: _title,
-      home: MyStatefulWidget(),
-    );*/
   }
 }

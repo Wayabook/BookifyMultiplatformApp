@@ -2,7 +2,7 @@ import 'package:bookifyapp/Design/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/Models/User.dart';
 
-import '../../SizeConfig.dart';
+import '../../Design/SizeConfig.dart';
 
 
 class FriendsPreview extends StatelessWidget {

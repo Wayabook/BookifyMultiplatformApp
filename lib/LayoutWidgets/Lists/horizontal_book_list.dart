@@ -6,7 +6,7 @@ import 'package:bookifyapp/Enums/list_type.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/Book/book_card.dart';
 import 'package:bookifyapp/Enums/book_card_type.dart';
 
-import '../../SizeConfig.dart';
+import '../../Design/SizeConfig.dart';
 
 class HorizontalBookList extends StatelessWidget {
 

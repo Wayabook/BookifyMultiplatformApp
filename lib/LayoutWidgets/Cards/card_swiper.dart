@@ -5,7 +5,7 @@ import 'package:bookifyapp/Models/Book.dart';
 import 'package:flutter_page_indicator/flutter_page_indicator.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 
-import '../../SizeConfig.dart';
+import '../../Design/SizeConfig.dart';
 
 class CardSwiper extends StatelessWidget {
   final List<Book> books;

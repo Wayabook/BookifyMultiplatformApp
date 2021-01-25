@@ -14,7 +14,7 @@ import 'package:bookifyapp/Models/Comment.dart';
 import 'package:provider/provider.dart';
 
 import '../../InfoToast.dart';
-import '../../SizeConfig.dart';
+import '../../Design/SizeConfig.dart';
 
   class CommentPage extends StatefulWidget {
 

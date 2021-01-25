@@ -5,7 +5,7 @@ import 'package:bookifyapp/Enums/book_card_type.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../../SizeConfig.dart';
+import '../../../Design/SizeConfig.dart';
 
 class OptionCard extends StatelessWidget {
 

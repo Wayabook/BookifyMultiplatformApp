@@ -7,7 +7,7 @@ import 'package:bookifyapp/Models/Lecture.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../../SizeConfig.dart';
+import '../../../Design/SizeConfig.dart';
 
 // ignore: must_be_immutable
 class BookCardInfo extends StatefulWidget {

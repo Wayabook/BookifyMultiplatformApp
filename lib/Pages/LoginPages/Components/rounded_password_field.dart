@@ -2,7 +2,7 @@ import 'package:bookifyapp/Design/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/Pages/LoginPages/Components/text_field_container.dart';
 
-import '../../../SizeConfig.dart';
+import '../../../Design/SizeConfig.dart';
 
 
 class RoundedPasswordField extends StatelessWidget {

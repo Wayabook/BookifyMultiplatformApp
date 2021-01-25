@@ -1,4 +1,6 @@
 import 'package:bookifyapp/Design/constants.dart';
+import 'package:bookifyapp/Design/info_text.dart';
+import 'package:bookifyapp/Design/size_constants.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/Book/Chapter/chapter_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -6,7 +8,7 @@ import 'package:flutter/painting.dart';
 import 'package:bookifyapp/Models/Book.dart';
 import 'package:bookifyapp/LayoutWidgets/Lists/Title/list_title.dart';
 
-import '../SizeConfig.dart';
+import '../Design/SizeConfig.dart';
 
 class ChaptersPage extends StatelessWidget {
 
@@ -23,7 +25,7 @@ class ChaptersPage extends StatelessWidget {
           child: Column(
             children: [
 
-              ListTitle("Index"),
+              ListTitle(INDEX_TITLE),
 
               ListView.builder(
                 scrollDirection: Axis.vertical,
@@ -31,16 +33,14 @@ class ChaptersPage extends StatelessWidget {
                 itemCount: book.chapters.length,
                 itemBuilder: (BuildContext context, int index) {
                   return Padding(
-                    padding: EdgeInsets.fromLTRB(
-                        (3.64 * SizeConfig.widthMultiplier),//15
-                        (2.43 * SizeConfig.widthMultiplier), //10
-                        (3.64 * SizeConfig.widthMultiplier),//15
-                        (2.43 * SizeConfig.widthMultiplier), //10
+                    padding: EdgeInsets.symmetric(
+                        horizontal: (PADDING_FACTOR_15 * SizeConfig.widthMultiplier),
+                        vertical: (PADDING_FACTOR_10 * SizeConfig.widthMultiplier),
                     ),
                     child: Container(
-                      height: (14.64 * SizeConfig.heightMultiplier), //100
+                      height: (CONTAINER_FACTOR_100 * SizeConfig.heightMultiplier),
                       key: UniqueKey(),
-                      padding: EdgeInsets.all(0),
+                      padding: EdgeInsets.all(PADDING_FACTOR_0),
                       child: ChapterCard(this.book, index),
                     ),
                   );

@@ -7,7 +7,7 @@ import 'package:bookifyapp/Models/Book.dart';
 import 'package:bookifyapp/LayoutWidgets/BookWidgets/book_cover.dart';
 import 'package:flutter/painting.dart';
 
-import '../../SizeConfig.dart';
+import '../../Design/SizeConfig.dart';
 
 
 class BookShopsDialog<T extends TickerProviderStateMixin> extends StatefulWidget {

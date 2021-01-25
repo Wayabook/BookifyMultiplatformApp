@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../SizeConfig.dart';
+import '../../../Design/SizeConfig.dart';
 
 class AlreadyHaveAnAccountCheck extends StatelessWidget {
 

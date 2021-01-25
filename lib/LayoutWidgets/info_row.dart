@@ -1,4 +1,4 @@
-import 'package:bookifyapp/SizeConfig.dart';
+import 'package:bookifyapp/Design/SizeConfig.dart';
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/Enums/row_type.dart';
 

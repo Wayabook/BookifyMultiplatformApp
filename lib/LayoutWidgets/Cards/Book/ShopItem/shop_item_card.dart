@@ -5,7 +5,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bookifyapp/LayoutWidgets/Profile/profile_picture.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../../../SizeConfig.dart';
+import '../../../../Design/SizeConfig.dart';
 
 class ShopItemCard extends StatelessWidget {
 
