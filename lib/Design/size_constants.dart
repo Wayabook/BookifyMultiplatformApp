@@ -22,6 +22,7 @@ const double PADDING_FACTOR_120 = 17.56; //120
 
 /*** Icons */
 const double ICON_FACTOR_24 = 5.83; //24
+const double ICON_FACTOR_25 = 6.08; //25
 const double ICON_FACTOR_30 = 7.29; //30
 
 /*** Container */
@@ -30,14 +31,18 @@ const double CONTAINER_FACTOR_35 = 5.27; //35
 const double CONTAINER_FACTOR_90 = 21.41; //90
 const double CONTAINER_FACTOR_100 = 14.64; //100
 const double CONTAINER_FACTOR_115 = 16.83; //115
+const double CONTAINER_FACTOR_140 = 21.94; //140
+const double CONTAINER_FACTOR_180 = 26.35; //180
 
 
 /*** Text */
 const double TEXT_FACTOR_12 = 1.75; //12
 const double TEXT_FACTOR_14 = 2.05; //14
+const double TEXT_FACTOR_18 = 4.37; //18
 const double TEXT_FACTOR_20 = 2.92; //20
 const double TEXT_FACTOR_22 = 3.23; //22
 const double TEXT_FACTOR_30 = 4.37; //30
+const double TEXT_FACTOR_32 = 4.68; //32
 const double TEXT_FACTOR_50 = 12.16; //50
 
 

@@ -1,4 +1,5 @@
 import 'package:bookifyapp/Design/SizeConfig.dart';
+import 'package:bookifyapp/Design/size_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/Enums/row_type.dart';
 
@@ -36,13 +37,13 @@ class InfoRow extends StatelessWidget {
     return Align(
       alignment: Alignment.center,
       child: Padding(
-        padding: EdgeInsets.all((1.21 * SizeConfig.widthMultiplier)), // 5
+        padding: EdgeInsets.all((PADDING_FACTOR_5 * SizeConfig.widthMultiplier)), // 5
         child: Container(
           child: Text(
             this.title,
             overflow: TextOverflow.ellipsis,
             style: TextStyle(
-              fontSize: (2.05 * SizeConfig.textMultiplier), // 14
+              fontSize: (TEXT_FACTOR_14 * SizeConfig.textMultiplier), // 14
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -57,8 +58,8 @@ class InfoRow extends StatelessWidget {
         alignment: Alignment.center,
         child: Image.asset(
           this.content,
-          height: (7.32 * SizeConfig.heightMultiplier), // 50
-          width: (12.16 * SizeConfig.widthMultiplier), // 50
+          height: (TEXT_FACTOR_50 * SizeConfig.widthMultiplier), //50
+          width: (TEXT_FACTOR_50 * SizeConfig.widthMultiplier), //50
         ),
       );
     } else  if (this.rowType == RowType.icon_image) {
@@ -67,20 +68,20 @@ class InfoRow extends StatelessWidget {
         child: Icon(
           this.icon,
           color: color,
-          size: (12.16 * SizeConfig.widthMultiplier), // 50
+          size: (TEXT_FACTOR_50 * SizeConfig.widthMultiplier), //50
         ),
       );
     } else {
       return Align(
         alignment: Alignment.center,
         child: Padding(
-          padding: EdgeInsets.all((1.21 * SizeConfig.widthMultiplier)), // 5
+          padding: EdgeInsets.all((PADDING_FACTOR_5 * SizeConfig.widthMultiplier)), //5
           child: Text(
             this.content,
             overflow: TextOverflow.ellipsis,
             style: TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: (4.68 * SizeConfig.textMultiplier) // 32
+                fontSize: (TEXT_FACTOR_32 * SizeConfig.textMultiplier) //32
             ),
           ),
         ),
@@ -94,10 +95,10 @@ class InfoRow extends StatelessWidget {
         alignment: Alignment.bottomCenter,
         child: Padding(
           padding: EdgeInsets.fromLTRB(
-              (1.2 * SizeConfig.widthMultiplier), // 5
-              (0.2 * SizeConfig.heightMultiplier), // 2
-              (1.2 * SizeConfig.widthMultiplier), // 5
-              0
+              (PADDING_FACTOR_5 * SizeConfig.widthMultiplier), //5
+              (0.2 * SizeConfig.heightMultiplier), //2
+              (PADDING_FACTOR_5 * SizeConfig.widthMultiplier), //5
+              (PADDING_FACTOR_0)
           ),
           child: Container(
             child: Text(
@@ -105,7 +106,7 @@ class InfoRow extends StatelessWidget {
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
                   color: color,
-                  fontSize: (2.9 * SizeConfig.textMultiplier) // 20
+                  fontSize: (TEXT_FACTOR_20 * SizeConfig.textMultiplier) //20
               ),
             ),
           ),
@@ -115,13 +116,13 @@ class InfoRow extends StatelessWidget {
       return  Align(
         alignment: Alignment.bottomCenter,
         child: Padding(
-          padding: EdgeInsets.all((1.21 * SizeConfig.widthMultiplier)), // 5
+          padding: EdgeInsets.all((PADDING_FACTOR_5 * SizeConfig.widthMultiplier)), // 5
           child: Container(
             child: Text(
               this.subTitle != null ?  this.subTitle : "0",
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
-                fontSize: (2.05 * SizeConfig.textMultiplier), // 14
+                fontSize: (TEXT_FACTOR_14 * SizeConfig.textMultiplier), //14
                 color: Colors.grey[500],
               ),
             ),
@@ -134,7 +135,7 @@ class InfoRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(0),
+      padding: EdgeInsets.all(PADDING_FACTOR_0),
       child: Center(
         child: Container(
           height: this.height,

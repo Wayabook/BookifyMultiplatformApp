@@ -40,6 +40,10 @@ class BookPage extends StatefulWidget {
 
 class _BookPage extends State<BookPage> with TickerProviderStateMixin{
 
+  static const ICON_HEIGHT_MULTIPLIER = 7;
+  static const ICON_WIDTH_MULTIPLIER = 15;
+
+
   final String title;
   final Book book;
   final List<Book> auxBooksForPrototype;
@@ -102,19 +106,19 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
       key: UniqueKey(),
       children: [
         Padding(
-          padding: EdgeInsets.only(bottom: (21.94 * SizeConfig.heightMultiplier)), //140
+          padding: EdgeInsets.only(bottom: (CONTAINER_FACTOR_140 * SizeConfig.heightMultiplier)), //140
           child: ArcBannerImage(this.book.picture),
         ),
 
         Positioned(
-          bottom: (7.29 * SizeConfig.widthMultiplier), // 30
-          left: (3.89 * SizeConfig.widthMultiplier), //16
-          right: (3.89 * SizeConfig.widthMultiplier), //16,
+          bottom: (PADDING_FACTOR_30 * SizeConfig.heightMultiplier), //30
+          left: (PADDING_FACTOR_16 * SizeConfig.widthMultiplier), //16
+          right: (PADDING_FACTOR_16 * SizeConfig.widthMultiplier), //16,
           child: Align(
             alignment: Alignment.center,
             child:  BookCover(
               book,
-              height: (26.35 * SizeConfig.heightMultiplier), // 180
+              height: (CONTAINER_FACTOR_180 * SizeConfig.heightMultiplier), // 180
             ),
           )
         ),
@@ -132,10 +136,10 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
 
           Padding(
             padding: EdgeInsets.fromLTRB(
-                0,
-                0,
-                (2.43 * SizeConfig.widthMultiplier), //10
-                0
+                (PADDING_FACTOR_0),
+                (PADDING_FACTOR_0),
+                (PADDING_FACTOR_10* SizeConfig.widthMultiplier), //10
+                (PADDING_FACTOR_0)
             ),
             child: RaisedButton(
               onPressed: () {
@@ -156,15 +160,15 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
               },
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular((6.08 * SizeConfig.imageSizeMultiplier)), //25
+                    topLeft: Radius.circular((ICON_FACTOR_25 * SizeConfig.imageSizeMultiplier)), //25
                   )
               ),
               color: addIconBackgroundColor,
               child:  SizedBox(
-                height: (7 * SizeConfig.heightMultiplier),
-                width: (15 * SizeConfig.widthMultiplier),
+                height: (ICON_HEIGHT_MULTIPLIER * SizeConfig.heightMultiplier),
+                width: (ICON_WIDTH_MULTIPLIER * SizeConfig.widthMultiplier),
                 child:  IconButton(
-                  iconSize: (5.83 * SizeConfig.imageSizeMultiplier), //24
+                  iconSize: (ICON_FACTOR_24 * SizeConfig.imageSizeMultiplier), //24
                   icon: Icon(
                     addIcon,
                     color: addIconColor,
@@ -176,7 +180,12 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
           ),
 
           Padding(
-            padding: EdgeInsets.fromLTRB(0, 0, (2.43 * SizeConfig.widthMultiplier), 0), //10
+            padding: EdgeInsets.fromLTRB(
+                (PADDING_FACTOR_0),
+                (PADDING_FACTOR_0),
+                (PADDING_FACTOR_10* SizeConfig.widthMultiplier), //10
+                (PADDING_FACTOR_0)
+            ),
             child: RaisedButton(
               onPressed: () {
                 showDialog(
@@ -186,10 +195,10 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
               },
               color: kPrimaryDarkColor,
               child: SizedBox(
-                height: (7 * SizeConfig.heightMultiplier),
-                width: (15 * SizeConfig.widthMultiplier),
+                height: (ICON_HEIGHT_MULTIPLIER * SizeConfig.heightMultiplier),
+                width: (ICON_WIDTH_MULTIPLIER * SizeConfig.widthMultiplier),
                 child: IconButton(
-                  iconSize: (5.83 * SizeConfig.imageSizeMultiplier), //24
+                  iconSize: (ICON_FACTOR_24 * SizeConfig.imageSizeMultiplier), //24
                   icon: Icon(
                     Icons.shop_two,
                     color: kPrimaryLightColor,
@@ -201,7 +210,12 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
           ),
 
           Padding(
-            padding: EdgeInsets.fromLTRB(0, 0, (2.43 * SizeConfig.widthMultiplier), 0), //10
+            padding: EdgeInsets.fromLTRB(
+                (PADDING_FACTOR_0),
+                (PADDING_FACTOR_0),
+                (PADDING_FACTOR_10* SizeConfig.widthMultiplier), //10
+                (PADDING_FACTOR_0)
+            ), //10
             child: RaisedButton(
               onPressed: () {
                 showDialog(
@@ -211,15 +225,15 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
               },
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.only(
-                    topRight: Radius.circular((6.08 * SizeConfig.imageSizeMultiplier)), //25
+                    topRight: Radius.circular((ICON_FACTOR_25 * SizeConfig.imageSizeMultiplier)), //25
                   )
               ),
               color: kPrimaryDarkColor,
               child: SizedBox(
-                height: (7 * SizeConfig.heightMultiplier),
-                width: (15 * SizeConfig.widthMultiplier),
+                height: (ICON_HEIGHT_MULTIPLIER * SizeConfig.heightMultiplier),
+                width: (ICON_WIDTH_MULTIPLIER * SizeConfig.widthMultiplier),
                 child: IconButton(
-                  iconSize: (5.83 * SizeConfig.imageSizeMultiplier), //24
+                  iconSize: (ICON_FACTOR_24 * SizeConfig.imageSizeMultiplier), //24
                   icon:Icon(
                     Icons.list,
                     color: kPrimaryLightColor,
@@ -250,13 +264,13 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
               "images/" + book.mainGenre.picture,
               book.mainGenre.name,
               widthPerChild,
-              (16.83 * SizeConfig.heightMultiplier)), //115
+              (CONTAINER_FACTOR_115 * SizeConfig.heightMultiplier)), //115
 
           Container(
             color: kPrimaryDarkColor,
-            height: (16.83 * SizeConfig.heightMultiplier),
-            width: (0.48 * SizeConfig.widthMultiplier), //2
-          ), //2
+            height: (CONTAINER_FACTOR_115 * SizeConfig.heightMultiplier), //115
+            width: (CONTAINER_FACTOR_2 * SizeConfig.widthMultiplier), //2
+          ),
 
           InfoRow(
               RowType.text,
@@ -264,13 +278,13 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
               "2017",
               "Year",
               widthPerChild,
-              (16.83 * SizeConfig.heightMultiplier)
+              (CONTAINER_FACTOR_115 * SizeConfig.heightMultiplier)
           ), //115
 
           Container(
             color: kPrimaryDarkColor,
-            height: (16.83 * SizeConfig.heightMultiplier),
-            width: (0.48 * SizeConfig.widthMultiplier), //2
+            height: (CONTAINER_FACTOR_115 * SizeConfig.heightMultiplier),
+            width: (CONTAINER_FACTOR_2 * SizeConfig.widthMultiplier), //2
           ),
 
           InfoRow(
@@ -279,8 +293,8 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
               "128",
               "Pages",
               widthPerChild,
-              (16.83 * SizeConfig.heightMultiplier)
-          ), //115
+              (CONTAINER_FACTOR_115 * SizeConfig.heightMultiplier) //115
+          ),
 
 
         ],
@@ -292,12 +306,12 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
     return Padding(
       key: UniqueKey(),
       padding: EdgeInsets.symmetric(
-          horizontal: (3.64 * SizeConfig.widthMultiplier),//15
-          vertical: (1.46 * SizeConfig.heightMultiplier)// 10
+          horizontal: (PADDING_FACTOR_15 * SizeConfig.widthMultiplier),//15
+          vertical: (PADDING_FACTOR_10 * SizeConfig.widthMultiplier)// 10
       ),
       child: Container(
           color: kPrimaryDarkColor,
-          height: (0.48 * SizeConfig.widthMultiplier), //2
+          height: (CONTAINER_FACTOR_2 * SizeConfig.widthMultiplier), //2
           width: width
       ),
     );
@@ -309,20 +323,19 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          //color: Colors.black,
             width: double.infinity,
             margin: EdgeInsets.fromLTRB(
-                (1.21 * SizeConfig.widthMultiplier), //5
-                (0.29 * SizeConfig.heightMultiplier), //2
-                (1.21 * SizeConfig.widthMultiplier), //5
-                0
+                (PADDING_FACTOR_5 * SizeConfig.widthMultiplier), //5
+                (CONTAINER_FACTOR_2 * SizeConfig.heightMultiplier), //2
+                (PADDING_FACTOR_5 * SizeConfig.widthMultiplier), //5
+                (PADDING_FACTOR_0)
             ),
             child:  Row(
               children: <Widget>[
                 Text(
                   'Summary:',
                   style: TextStyle(
-                      fontSize: (4.37 * SizeConfig.textMultiplier), // 18
+                      fontSize: (TEXT_FACTOR_18 * SizeConfig.textMultiplier), // 18
                       fontWeight: FontWeight.bold),
                   textAlign: TextAlign.left,
                 ),
@@ -331,7 +344,7 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
                   child: Text(
                     '4/5',
                     style: TextStyle(
-                        fontSize: (4.37 * SizeConfig.textMultiplier), // 18
+                        fontSize: (TEXT_FACTOR_18 * SizeConfig.textMultiplier), // 18
                         fontWeight: FontWeight.bold
                     ),
                     textAlign: TextAlign.right,
@@ -341,19 +354,19 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
             )
         ),
 
-        SizedBox(height: (1.29 * SizeConfig.heightMultiplier)), // 8
+        SizedBox(height: (PADDING_FACTOR_8 * SizeConfig.heightMultiplier)), // 8
 
         SummaryTextWidget(
           text: this.book.summary,
           backgroundColor: kPrimaryLightColor,
         ),
 
-        SizedBox(height: (1.29 * SizeConfig.heightMultiplier)), // 8
+        SizedBox(height: (PADDING_FACTOR_8 * SizeConfig.heightMultiplier)), // 8
 
         Padding(
           padding: EdgeInsets.symmetric(
-              vertical: 0,
-              horizontal: (1.21 * SizeConfig.widthMultiplier), //5
+              vertical: PADDING_FACTOR_0,
+              horizontal: (PADDING_FACTOR_5 * SizeConfig.widthMultiplier), //5
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -364,7 +377,7 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
                 child: Icon(
                   Icons.comment,
                   color: Colors.white,
-                  size: (6.08 * SizeConfig.imageSizeMultiplier), //25
+                  size: (ICON_FACTOR_25 * SizeConfig.imageSizeMultiplier), //25
                 ),
               ),
               Align(
@@ -374,7 +387,7 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     color: Colors.black,
-                    fontSize: (2.05 * SizeConfig.textMultiplier), //14
+                    fontSize: (TEXT_FACTOR_14 * SizeConfig.textMultiplier), //14
                   ),
                 ),
               ),
@@ -382,7 +395,7 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin{
                 child: Align(
                     alignment: Alignment.bottomRight,
                     child: GestureDetector(
-                      child: SmallButtonUnderlined("View All"),
+                      child: SmallButtonUnderlined(VIEW_ALL),
                       onTap: () async {
                         await Navigator.of(context)
                             .push(MaterialPageRoute(builder: (context) => CommentPage.showingAllBookComments(this.book, inactiveAddCommentOption: true,)));
