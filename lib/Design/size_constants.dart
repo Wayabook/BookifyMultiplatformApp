@@ -5,13 +5,13 @@
  * heightMultiplier = TextMultiplier
  */
 
-
 /*** Padding*/
 const double PADDING_FACTOR_0 = 0;
 const double PADDING_FACTOR_7 = 1.02; //7
 const double PADDING_FACTOR_5 = 1.21; //5
 const double PADDING_FACTOR_8 = 1.29; //8
 const double PADDING_FACTOR_10 = 2.43; //10
+const double PADDING_FACTOR_20 = 2.92; //20
 const double PADDING_FACTOR_15 = 3.64; //15
 const double PADDING_FACTOR_16 = 3.89; //16
 const double PADDING_FACTOR_30 = 4.4; //30
@@ -43,7 +43,6 @@ const double CONTAINER_FACTOR_180 = 26.35; //180
 const double CONTAINER_FACTOR_200 = 29.28; //200
 const double CONTAINER_FACTOR_500 = 121.65; //500
 
-
 /*** Text */
 const double TEXT_FACTOR_12 = 1.75; //12
 const double TEXT_FACTOR_14 = 2.05; //14
@@ -53,5 +52,3 @@ const double TEXT_FACTOR_22 = 3.23; //22
 const double TEXT_FACTOR_30 = 4.37; //30
 const double TEXT_FACTOR_32 = 4.68; //32
 const double TEXT_FACTOR_50 = 12.16; //50
-
-

@@ -1,4 +1,5 @@
 import 'package:bookifyapp/Design/constants.dart';
+import 'package:bookifyapp/Design/size_constants.dart';
 import 'package:bookifyapp/InfoToast.dart';
 import 'package:bookifyapp/Models/Book.dart';
 import 'package:bookifyapp/Models/User.dart';
@@ -7,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class AddButtonSmall extends StatefulWidget {
-
   static IconData iconChecked = Icons.check;
   static IconData iconAdded = Icons.add;
 
@@ -17,10 +17,13 @@ class AddButtonSmall extends StatefulWidget {
 
   @override
   _AddButtonSmall createState() => _AddButtonSmall();
-
-
 }
-class _AddButtonSmall extends State<AddButtonSmall>{
+
+class _AddButtonSmall extends State<AddButtonSmall> {
+  static const double HEIGHT_MULTIPLIER = 4.39;
+  static const double WIDTH_MULTIPLIER = 7.29;
+  static const double BORDER_MULTIPLIER = 1.7;
+  static const double BORDER_WIDTH_MULTIPLIER = 0.24;
 
   IconData iconData;
   bool isInPendingList, isInReadingList;
@@ -36,13 +39,13 @@ class _AddButtonSmall extends State<AddButtonSmall>{
     return _getAddButton();
   }
 
-  _getAddButton(){
-    return  GestureDetector(
-      onTap: (){
+  _getAddButton() {
+    return GestureDetector(
+      onTap: () {
         setState(() {
-          if (iconData != AddButtonSmall.iconChecked){
+          if (iconData != AddButtonSmall.iconChecked) {
             iconData = AddButtonSmall.iconChecked;
-            if(widget.onButtonClicked != null){
+            if (widget.onButtonClicked != null) {
               widget.onButtonClicked();
             }
           }
@@ -51,23 +54,21 @@ class _AddButtonSmall extends State<AddButtonSmall>{
       child: Directionality(
         textDirection: TextDirection.ltr,
         child: Container(
-          height: (4.39 * SizeConfig.heightMultiplier), //30
-          width: (7.29 * SizeConfig.widthMultiplier), //30
+          height: (HEIGHT_MULTIPLIER * SizeConfig.heightMultiplier), //30
+          width: (WIDTH_MULTIPLIER * SizeConfig.widthMultiplier), //30
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular((1.7 * SizeConfig.imageSizeMultiplier))), // 7
+            borderRadius: BorderRadius.all(Radius.circular(
+                (BORDER_MULTIPLIER * SizeConfig.imageSizeMultiplier))), // 7
             border: Border.all(
                 color: addButtonIconColor,
-                width: (0.24 * SizeConfig.widthMultiplier)
-            ),
+                width: (BORDER_WIDTH_MULTIPLIER * SizeConfig.widthMultiplier)),
             color: kPrimaryLightColor,
           ),
-          child: Icon(
-              iconData,
-              size: (5.83 * SizeConfig.imageSizeMultiplier), //24
+          child: Icon(iconData,
+              size: (ICON_FACTOR_24 * SizeConfig.imageSizeMultiplier), //24
               color: addButtonIconColor),
         ),
       ),
     );
   }
-
 }

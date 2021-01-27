@@ -5,23 +5,21 @@ import 'package:flutter/material.dart';
 import 'package:bookifyapp/Design/SizeConfig.dart';
 
 class SmallButtonUnderlined extends StatelessWidget {
+  static const double DEFAULT_FONT_SIZE = 15;
+  static const double FONT_SIZE_FACTOR = 2.19;
 
   String text;
   double fontSize;
   Color textColor;
 
-  SmallButtonUnderlined(
-      this.text,
-      {
-        this.fontSize = 15,
-        this.textColor = smallUnderlinedButtonColor
-      }
-  );
+  SmallButtonUnderlined(this.text,
+      {this.fontSize = DEFAULT_FONT_SIZE,
+      this.textColor = smallUnderlinedButtonColor});
 
   @override
   Widget build(BuildContext context) {
-    if(this.fontSize == 15)
-      this.fontSize = (2.19 * SizeConfig.textMultiplier);
+    if (this.fontSize == DEFAULT_FONT_SIZE)
+      this.fontSize = (FONT_SIZE_FACTOR * SizeConfig.textMultiplier);
 
     return Directionality(
       textDirection: TextDirection.ltr,
@@ -36,6 +34,4 @@ class SmallButtonUnderlined extends StatelessWidget {
       ),
     );
   }
-
-
 }
