@@ -1,4 +1,5 @@
 import 'package:bookifyapp/Design/constants.dart';
+import 'package:bookifyapp/Design/info_text.dart';
 import 'package:bookifyapp/Enums/book_card_type.dart';
 import 'package:bookifyapp/Interfaces/TitleButtonInterface.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/Book/book_card.dart';
@@ -55,8 +56,8 @@ class _VerticalBookList extends State<VerticalBookList>
 
   void updateLists(){
     var user = Provider.of<User>(context, listen: false);
-    widget.readingBooks = user.getLectureListByName("Reading");
-    widget.pendingBooks = user.getLectureListByName("Pending");
+    widget.readingBooks = user.getLectureListByName(READING_LIST);
+    widget.pendingBooks = user.getLectureListByName(PENDING_LIST);
   }
 
   void updateUILists(){
@@ -102,7 +103,6 @@ class _VerticalBookList extends State<VerticalBookList>
   }
 
   _makeCard(int index, List<Book> books, ButtonType buttonType) {
-    //return BookCardInVerticalList(books[index], buttonType, index, this);
     return BookCard.inVerticalList(
         books[index],
         BookCardType.book_card_in_vertical_list,

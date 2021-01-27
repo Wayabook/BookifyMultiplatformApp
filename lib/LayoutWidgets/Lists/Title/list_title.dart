@@ -1,4 +1,5 @@
 import 'package:bookifyapp/Design/constants.dart';
+import 'package:bookifyapp/Design/size_constants.dart';
 import 'package:bookifyapp/Enums/button_type.dart';
 import 'package:bookifyapp/LayoutWidgets/Buttons/small_button_underlined.dart';
 import 'package:bookifyapp/Models/User.dart';
@@ -8,6 +9,7 @@ import '../../../Design/SizeConfig.dart';
 
 class ListTitle extends StatelessWidget{
 
+  static const double DEFAULT_FONT_SIZE = 0;
   User user;
   bool withButton;
   final String title;
@@ -24,7 +26,7 @@ class ListTitle extends StatelessWidget{
         this.buttonType = ButtonType.view_all,
         this.user,
         this.onListTitleButtonTapped,
-        this.fontSize = 0,
+        this.fontSize = DEFAULT_FONT_SIZE,
         this.barAndTitleColor = kPrimaryLightColor,
         this.withPadding = true,
       });
@@ -32,8 +34,8 @@ class ListTitle extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    if(this.fontSize == 0)
-      this.fontSize = 4.39 * SizeConfig.textMultiplier; // 30
+    if(this.fontSize == DEFAULT_FONT_SIZE)
+      this.fontSize = PADDING_FACTOR_30 * SizeConfig.textMultiplier; //30
     double width = MediaQuery.of(context).size.width;
     return Container(
       child: Column(
@@ -41,17 +43,17 @@ class ListTitle extends StatelessWidget{
           Container(
             margin: withPadding ?
             EdgeInsets.fromLTRB(
-                (2.43 * SizeConfig.widthMultiplier), // 10
-                (1.47 * SizeConfig.heightMultiplier), // 10
+                (PADDING_FACTOR_10 * SizeConfig.widthMultiplier), //10
+                (PADDING_FACTOR_10 * SizeConfig.widthMultiplier), //10
                 (0.29 * SizeConfig.heightMultiplier),
-                0) :
-            EdgeInsets.all(0.0),
+                PADDING_FACTOR_0) :
+            EdgeInsets.all(PADDING_FACTOR_0),
             child: withButton ? _getRowWithButton(context) : _getTitle(),
           ),
 
           Padding(
             padding: withPadding ? EdgeInsets.symmetric(
-                horizontal: (3.64 * SizeConfig.widthMultiplier),
+                horizontal: (PADDING_FACTOR_15 * SizeConfig.widthMultiplier), //15
                 vertical: (1.46 * SizeConfig.heightMultiplier)) :
             EdgeInsets.all(0.0),
             child: Container(
@@ -90,10 +92,10 @@ class ListTitle extends StatelessWidget{
             alignment: Alignment.bottomRight,
             child:  Padding(
               padding: EdgeInsets.fromLTRB(
-                  0,
-                  0,
-                  (3.64 * SizeConfig.widthMultiplier),
-                  0
+                  (PADDING_FACTOR_0),
+                  (PADDING_FACTOR_0),
+                  (PADDING_FACTOR_15 * SizeConfig.widthMultiplier),
+                  (PADDING_FACTOR_0)
               ),
               child: (this.buttonType == ButtonType.edit_list || this.buttonType == ButtonType.copy_list) ?
               _getEditListButton(context) : _getViewAllButton(context),
@@ -123,7 +125,7 @@ class ListTitle extends StatelessWidget{
           Flexible(
             flex: 5,
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: (2.43 * SizeConfig.widthMultiplier)),
+              padding: EdgeInsets.symmetric(horizontal: (PADDING_FACTOR_10 * SizeConfig.widthMultiplier)),
               child:  _getEditOrCopyButton(context),
             ),
           ) ,

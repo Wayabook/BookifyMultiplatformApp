@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:bookifyapp/Models/User.dart';
 import 'package:bookifyapp/Pages/ProfilePages/profile_page.dart';
 import 'package:provider/provider.dart';
-
+import 'package:bookifyapp/Design/size_constants.dart';
 
 
 class VerticalUserList extends StatefulWidget {
@@ -42,7 +42,7 @@ class _VerticalUserList extends State<VerticalUserList> with TickerProviderState
       },
       child: UserPreviewCard(
         widget.users[index],
-        padding: (1.21 * SizeConfig.widthMultiplier), //5
+        padding: (PADDING_FACTOR_5 * SizeConfig.widthMultiplier), //5
         fontSize: (3.8 * SizeConfig.textMultiplier), //26
         /*isFriend: user.isFriend(widget.users[index]),*/
       ),

@@ -1,4 +1,6 @@
+import 'package:bookifyapp/Design/SizeConfig.dart';
 import 'package:bookifyapp/Design/constants.dart';
+import 'package:bookifyapp/Design/size_constants.dart';
 import 'package:flutter/material.dart';
 
 class EditableListTitle extends StatelessWidget{
@@ -18,12 +20,20 @@ class EditableListTitle extends StatelessWidget{
       child: Column(
         children: <Widget>[
           Container(
-            margin: EdgeInsets.fromLTRB(10, 10, 2, 0),
+            margin: EdgeInsets.fromLTRB(
+                (PADDING_FACTOR_10 * SizeConfig.heightMultiplier),
+                (PADDING_FACTOR_10 * SizeConfig.heightMultiplier),
+                (CONTAINER_FACTOR_2 * SizeConfig.widthMultiplier),
+                (PADDING_FACTOR_0)
+            ),
             child: _getTextField(),
           ),
 
           Padding(
-            padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
+            padding: EdgeInsets.symmetric(
+              horizontal: (PADDING_FACTOR_15 * SizeConfig.widthMultiplier),
+              vertical: (PADDING_FACTOR_10 * SizeConfig.heightMultiplier),
+            ),
             child: Container(color: kPrimaryLightColor, height: 2, width: width),
           ),
         ],
@@ -35,7 +45,12 @@ class EditableListTitle extends StatelessWidget{
     TextField textField = TextField(
       controller: textEditingController,
       decoration: InputDecoration(
-        contentPadding: EdgeInsets.fromLTRB(5, 0, 0, 0),
+        contentPadding: EdgeInsets.fromLTRB(
+            (PADDING_FACTOR_5 * SizeConfig.widthMultiplier), //5
+            (PADDING_FACTOR_0),
+            (PADDING_FACTOR_0),
+            (PADDING_FACTOR_0)
+        ),
         hintText: this.title,
         floatingLabelBehavior: FloatingLabelBehavior.never,
       ),

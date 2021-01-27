@@ -1,4 +1,5 @@
 import 'package:bookifyapp/Design/constants.dart';
+import 'package:bookifyapp/Design/size_constants.dart';
 import 'package:bookifyapp/Models/Lecture.dart';
 import 'package:bookifyapp/Models/User.dart';
 import 'package:flutter/material.dart';
@@ -23,9 +24,9 @@ class HorizontalBookList extends StatelessWidget {
     return Container(
       child: Card(
         margin: EdgeInsets.fromLTRB(
-            (2.43 * SizeConfig.widthMultiplier),
-            0,
-            (2.43 * SizeConfig.widthMultiplier),
+            (PADDING_FACTOR_10 * SizeConfig.widthMultiplier),
+            (PADDING_FACTOR_0),
+            (PADDING_FACTOR_10 * SizeConfig.widthMultiplier),
             (1.46 * SizeConfig.heightMultiplier),
         ),
         color: kPrimaryDarkColor,
@@ -38,8 +39,8 @@ class HorizontalBookList extends StatelessWidget {
   _createListView(){
 
     return Container(
-      height: (29.28 * SizeConfig.heightMultiplier), // 200
-      width: (121.65 * SizeConfig.widthMultiplier), // 500
+      height: (CONTAINER_FACTOR_200* SizeConfig.heightMultiplier), // 200
+      width: (CONTAINER_FACTOR_500 * SizeConfig.widthMultiplier), // 500
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: (this.type == ListType.discover_option || this.type == ListType.view_all) ? books.length + 1: books.length,

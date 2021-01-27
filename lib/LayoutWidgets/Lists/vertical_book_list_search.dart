@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:bookifyapp/Models/Book.dart';
 import 'package:bookifyapp/LayoutWidgets/Lists/Title/list_title.dart';
 import 'package:provider/provider.dart';
+import 'package:bookifyapp/Design/size_constants.dart';
 
 import '../../Design/SizeConfig.dart';
 
@@ -109,7 +110,7 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
         widget.type,
         Provider.of<User>(context, listen: false),
         backgroundColor: widget.backgroundColor,
-        cardHeight: (21.94 * SizeConfig.heightMultiplier), //140
+        cardHeight: (CONTAINER_FACTOR_140 * SizeConfig.heightMultiplier), //140
         addOrRemoveBookFromTemporalCustomList:
         (widget.type == ListType.first_time_form) ?
         addOrRemoveBookFromPendingOrReadingList : addOrRemoveBookFromTemporalCustomList,
@@ -132,7 +133,6 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
         widget.type,
         Provider.of<User>(context, listen: false),
       );
-      //return BookCardInVerticalSearchList(widget.books[index], widget.type);
     }
 
   }
@@ -156,8 +156,8 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
               builder: (BuildContext context) => DialogWithAcceptAndCancelOptions(
                   "Delete List",
                   "Any book selected. Are you sure you want to delete list?",
-                  TextStyle(color: Colors.red, fontSize: (1.75 * SizeConfig.heightMultiplier)),
-                  TextStyle(color: Colors.blue, fontSize: (1.75 * SizeConfig.heightMultiplier))
+                  TextStyle(color: Colors.red, fontSize: (TEXT_FACTOR_12 * SizeConfig.heightMultiplier)),
+                  TextStyle(color: Colors.blue, fontSize: (TEXT_FACTOR_12 * SizeConfig.heightMultiplier))
               ),
             );
             if(result == DialogWithAcceptAndCancelOptions.ACCEPT_TAP){
@@ -183,7 +183,7 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
           "Cancel",
           style: TextStyle(
             color: Colors.red,
-            fontSize: (2.05 * SizeConfig.textMultiplier), //14
+            fontSize: (TEXT_FACTOR_14 * SizeConfig.textMultiplier), //14
           )
       ),
       onPressed: () {
@@ -222,7 +222,7 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
             alignment: Alignment.bottomCenter,
             child: Container(
               color: kPrimaryLightColor,
-              height: (12.16 * SizeConfig.imageSizeMultiplier),
+              height: (TEXT_FACTOR_50 * SizeConfig.imageSizeMultiplier),
               width: MediaQuery
                   .of(context)
                   .size

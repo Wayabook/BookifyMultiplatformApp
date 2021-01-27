@@ -1,6 +1,8 @@
 
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bookifyapp/Design/constants.dart';
+import 'package:bookifyapp/Design/size_constants.dart';
+import 'package:bookifyapp/Design/info_text.dart';
 import 'package:bookifyapp/LayoutWidgets/Buttons/small_button_underlined.dart';
 import 'package:bookifyapp/LayoutWidgets/Profile/profile_picture.dart';
 import 'package:bookifyapp/Models/User.dart';
@@ -12,6 +14,11 @@ import 'package:provider/provider.dart';
 import '../../Design/SizeConfig.dart';
 
 class UserPreviewCard extends StatelessWidget {
+
+  static const double DEFAULT_HEIGHT = 100;
+  static const double DEFAULT_FONT_SIZE = 30;
+  static const double DEFAULT_PADDING = 10;
+  static const int DEFAULT_MAX_LINES = 1;
 
   User user;
   double height;
@@ -29,21 +36,20 @@ class UserPreviewCard extends StatelessWidget {
   UserPreviewCard(
       this.user,
       {
-        this.height = 100,
-        this.fontSize = 30,
-        this.padding = 10,
+        this.height = DEFAULT_HEIGHT,
+        this.fontSize = DEFAULT_FONT_SIZE,
+        this.padding = DEFAULT_PADDING,
         this.card = true,
         this.isAuthor = false,
         this.fromDialog = true,
-        //this.isFriend = false,
         this.removeComment
       });
 
   _makeListTile(BuildContext context) {
     return Container(
         decoration: BoxDecoration(
-            borderRadius:  card ? BorderRadius.circular((1.02 * SizeConfig.imageSizeMultiplier)) // 7
-                : BorderRadius.circular(0.0)
+            borderRadius:  card ? BorderRadius.circular((PADDING_FACTOR_7 * SizeConfig.imageSizeMultiplier)) //7
+                : BorderRadius.circular(PADDING_FACTOR_0)
         ),
         child: _getRow(context),
     );
@@ -65,13 +71,17 @@ class UserPreviewCard extends StatelessWidget {
           Flexible(
             flex: 6,
             child: Padding(
-              padding: EdgeInsets.all((3.64 * SizeConfig.widthMultiplier)), //15
+              padding: EdgeInsets.all((PADDING_FACTOR_15 * SizeConfig.widthMultiplier)), //15
               child: Column(
                 children: [
                   Container(
                     child: Padding(
-                      padding: EdgeInsets.fromLTRB(0, 0, 0,
-                          SizeConfig.textMultiplier <= 6.83 ? (3.64 * SizeConfig.widthMultiplier) : (1.21 * SizeConfig.widthMultiplier)
+                      padding: EdgeInsets.fromLTRB(
+                          PADDING_FACTOR_0,
+                          PADDING_FACTOR_0,
+                          PADDING_FACTOR_0,
+                          SizeConfig.textMultiplier <= 6.83 ?
+                          (PADDING_FACTOR_15 * SizeConfig.widthMultiplier) : (PADDING_FACTOR_5 * SizeConfig.widthMultiplier)
                       ), //15
                       child: Align(
                         alignment: Alignment.centerLeft,
@@ -81,14 +91,14 @@ class UserPreviewCard extends StatelessWidget {
                             fontWeight: FontWeight.bold,
                             color: kPrimaryLightColor,
                             fontSize: this.fontSize,),
-                          maxLines: 1,
+                          maxLines: DEFAULT_MAX_LINES,
                         ),
                       ),
                     )
                   ),
 
                   Padding(
-                    padding: EdgeInsets.all(0),
+                    padding: EdgeInsets.all(PADDING_FACTOR_0),
                     child: Align(
                       alignment: Alignment.centerLeft,
                       child: GestureDetector(
@@ -98,7 +108,7 @@ class UserPreviewCard extends StatelessWidget {
                             MaterialPageRoute(builder: (context) => BookshelfPage(this.user)),
                           );
                         },
-                        child: SmallButtonUnderlined("View Bookshelf")
+                        child: SmallButtonUnderlined(VIEW_BOOKSHELF)
                       )
                     ),
                   )
@@ -121,14 +131,14 @@ class UserPreviewCard extends StatelessWidget {
                   child: ProfilePicture(
                     user.profilePictureUrl,
                     circleRadius: this.height,
-                    circleBorderWidth: 0.0,
+                    circleBorderWidth: PADDING_FACTOR_0,
                   ),
                 ),
 
                 Flexible(
                   flex: 6,
                   child: Padding(
-                    padding: EdgeInsets.all((1.75 * SizeConfig.heightMultiplier)), //12
+                    padding: EdgeInsets.all((TEXT_FACTOR_12 * SizeConfig.heightMultiplier)), //12
                     child: Container(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -137,7 +147,7 @@ class UserPreviewCard extends StatelessWidget {
                           AutoSizeText(
                             user.name,
                             style: TextStyle( fontWeight: FontWeight.bold, color: Colors.black, fontSize: this.fontSize,),
-                            maxLines: 1,
+                            maxLines: DEFAULT_MAX_LINES,
                           ),
                         ],
                       ),
@@ -164,7 +174,7 @@ class UserPreviewCard extends StatelessWidget {
                   icon: Icon(
                       Icons.close,
                       color: Colors.black,
-                      size: (5.83 * SizeConfig.imageSizeMultiplier), //24
+                      size: (ICON_FACTOR_24 * SizeConfig.imageSizeMultiplier), //24
                   ),
                 ),
               ),
@@ -178,7 +188,7 @@ class UserPreviewCard extends StatelessWidget {
   _showDeleteAlertDialog(BuildContext context){
     Widget cancelButton = FlatButton(
       //color: Colors.redAccent,
-      child: Text("Cancel", style: TextStyle(fontSize: (2.05 * SizeConfig.textMultiplier)),),//14
+      child: Text("Cancel", style: TextStyle(fontSize: (TEXT_FACTOR_14 * SizeConfig.textMultiplier)),),//14
       onPressed:  () {
         Navigator.pop(context);
       },
@@ -186,7 +196,7 @@ class UserPreviewCard extends StatelessWidget {
     Widget acceptButton = FlatButton(
       child: Text(
         "Accept",
-        style: TextStyle(color: Colors.red, fontSize: (2.05 * SizeConfig.textMultiplier)), //14
+        style: TextStyle(color: Colors.red, fontSize: (TEXT_FACTOR_14 * SizeConfig.textMultiplier)), //14
       ),
       onPressed:  () {
         this.removeComment(0);
@@ -195,8 +205,8 @@ class UserPreviewCard extends StatelessWidget {
     );
 
     AlertDialog alert = AlertDialog(
-      title: Text("Delete Comment", style: TextStyle(fontSize: (2.05 * SizeConfig.textMultiplier))), //14
-      content: Text("Are you sure you want to delete this comment?", style: TextStyle(fontSize: (2.05 * SizeConfig.textMultiplier))),//14
+      title: Text("Delete Comment", style: TextStyle(fontSize: (TEXT_FACTOR_14 * SizeConfig.textMultiplier))), //14
+      content: Text("Are you sure you want to delete this comment?", style: TextStyle(fontSize: (TEXT_FACTOR_14 * SizeConfig.textMultiplier))),//14
       actions: [
         cancelButton,
         acceptButton
@@ -215,20 +225,20 @@ class UserPreviewCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    if(this.height == 100)
-      this.height = (14.64 * SizeConfig.heightMultiplier); //100
+    if(this.height == DEFAULT_HEIGHT)
+      this.height = (CONTAINER_FACTOR_100 * SizeConfig.heightMultiplier); //100
 
-    if(this.fontSize == 30)
-      this.fontSize = (4.39 * SizeConfig.heightMultiplier); //30
+    if(this.fontSize == DEFAULT_FONT_SIZE)
+      this.fontSize = (PADDING_FACTOR_30 * SizeConfig.heightMultiplier); //30
 
-    if(this.padding == 10)
+    if(this.padding == DEFAULT_PADDING)
       this.padding = (1.55 * SizeConfig.widthMultiplier); //10
 
     if (card) {
       return  Card(
-        elevation: (2.43 * SizeConfig.widthMultiplier), //10
+        elevation: (PADDING_FACTOR_10 * SizeConfig.widthMultiplier), //10
         margin: new EdgeInsets.symmetric(
-            horizontal: (2.43 * SizeConfig.widthMultiplier), //10
+            horizontal: (PADDING_FACTOR_10 * SizeConfig.widthMultiplier), //10
             vertical: (0.87 * SizeConfig.heightMultiplier) //6
         ),
         child:  Container(

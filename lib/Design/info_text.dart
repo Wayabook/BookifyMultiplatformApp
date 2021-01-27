@@ -41,4 +41,5 @@ const String PUBLISH_COMMENT = "PUBLICAR";
 const String RECOMMENDED_BY = 'Recommended by';
 const String ADDED_BY = 'Added by:';
 const String VIEW_ALL ="View All";
+const String VIEW_BOOKSHELF = "View Bookshelf";
 

@@ -1,4 +1,5 @@
 import 'package:bookifyapp/Design/constants.dart';
+import 'package:bookifyapp/Design/size_constants.dart';
 import 'package:bookifyapp/Enums/list_type.dart';
 import 'package:bookifyapp/InfoToast.dart';
 import 'package:bookifyapp/LayoutWidgets/Lists/vertical_book_list_search.dart';
@@ -97,10 +98,10 @@ class _RecommendationDialog
     return Stack(
       children: <Widget>[
         Positioned(
-            top: (10.24 * SizeConfig.heightMultiplier), //70
+            top: (CONTAINER_FACTOR_70 * SizeConfig.heightMultiplier), //70
             child: Container(
                 width: width,
-                height: height - (10.24 * SizeConfig.heightMultiplier), //70
+                height: height - (CONTAINER_FACTOR_70 * SizeConfig.heightMultiplier), //70
                 color: _backgroundColor,
                 child:  Align(
                   alignment: Alignment.topLeft,
@@ -123,9 +124,9 @@ class _RecommendationDialog
         Padding(
           padding: EdgeInsets.fromLTRB(
               (1.7 * SizeConfig.imageSizeMultiplier), //7
-              (24.89 * SizeConfig.heightMultiplier), //170
+              (CONTAINER_FACTOR_170 * SizeConfig.heightMultiplier), //170
               (1.7 * SizeConfig.imageSizeMultiplier), //7
-              (2.43 * SizeConfig.widthMultiplier), //10
+              (PADDING_FACTOR_10 * SizeConfig.widthMultiplier), //10
           ),
           child: Container(
               color: kPrimaryDarkColor,
@@ -135,12 +136,12 @@ class _RecommendationDialog
         ),
 
         Positioned(
-            top: (24.54 * SizeConfig.heightMultiplier), //150
+            top: (CONTAINER_FACTOR_150 * SizeConfig.heightMultiplier), //150
             left: (1.7 * SizeConfig.imageSizeMultiplier), //7
             right: (1.7 * SizeConfig.imageSizeMultiplier), //7
             child: Container(
               width: width,
-              height: (12.16 * SizeConfig.imageSizeMultiplier), //50
+              height: (TEXT_FACTOR_50 * SizeConfig.imageSizeMultiplier), //50
               child: Align(
                 alignment: Alignment.center,
                 child:  Text(
@@ -149,7 +150,7 @@ class _RecommendationDialog
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: kPrimaryDarkColor,
-                    fontSize: (2.92 * SizeConfig.heightMultiplier), //20
+                    fontSize: (TEXT_FACTOR_20 * SizeConfig.heightMultiplier), //20
                   ),
                 ),
               ),
@@ -162,7 +163,7 @@ class _RecommendationDialog
             right: (1.7 * SizeConfig.imageSizeMultiplier), //7
             child: Container(
               width: width,
-              height: (12.16 * SizeConfig.imageSizeMultiplier),//50
+              height: (TEXT_FACTOR_50 * SizeConfig.imageSizeMultiplier),//50
               child: Align(
                 alignment: Alignment.center,
                 child:  Text(
@@ -171,7 +172,7 @@ class _RecommendationDialog
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       color: Colors.black,
-                      fontSize: (1.75 * SizeConfig.heightMultiplier), //12
+                      fontSize: (TEXT_FACTOR_12 * SizeConfig.heightMultiplier), //12
                       fontStyle: FontStyle.italic
                   ),
                 ),
@@ -181,10 +182,10 @@ class _RecommendationDialog
 
         Padding(
             padding: EdgeInsets.fromLTRB(
-                0,
+                PADDING_FACTOR_0,
                 (35.13 * SizeConfig.heightMultiplier), //240
-                0,
-                0
+                PADDING_FACTOR_0,
+                PADDING_FACTOR_0
             ),
             child: VerticalBookListSearch(
               Recommendation.getRecommendedBooksFromRecommendations(widget._recommendations),

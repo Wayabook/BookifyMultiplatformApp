@@ -1,3 +1,4 @@
+import 'package:bookifyapp/Design/size_constants.dart';
 import 'package:bookifyapp/Enums/book_card_type.dart';
 import 'package:bookifyapp/Enums/button_type.dart';
 import 'package:bookifyapp/Enums/list_type.dart';
@@ -62,7 +63,7 @@ class _BooskelfGridList extends State<BooskelfGridList>
               physics: NeverScrollableScrollPhysics(), // to disable GridView's scrolling
               shrinkWrap: true,
               crossAxisCount: 3,
-              mainAxisSpacing: (2.43 * SizeConfig.widthMultiplier), // 10
+              mainAxisSpacing: (PADDING_FACTOR_10 * SizeConfig.widthMultiplier), // 10
               crossAxisSpacing: (1.47 * SizeConfig.heightMultiplier),
               childAspectRatio:  (MediaQuery.of(context).size.width / 4) / (MediaQuery.of(context).size.height / 4),
               children: List.generate(widget.user.lectures[key].length, (index) {

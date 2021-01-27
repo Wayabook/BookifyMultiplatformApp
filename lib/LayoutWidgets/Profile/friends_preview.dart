@@ -1,4 +1,5 @@
 import 'package:bookifyapp/Design/constants.dart';
+import 'package:bookifyapp/Design/size_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/Models/User.dart';
 
@@ -15,8 +16,8 @@ class FriendsPreview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: (19.46 * SizeConfig.widthMultiplier), //80
-      height: (7.36 * SizeConfig.heightMultiplier), //45
+      width: (PADDING_FACTOR_80 * SizeConfig.widthMultiplier), //80
+      height: (PADDING_FACTOR_45 * SizeConfig.heightMultiplier), //45
       child: _getFriendsPreview(),
     );
   }
@@ -25,9 +26,9 @@ class FriendsPreview extends StatelessWidget {
   _getCircleAvatarsWithImage(String url){
     return CircleAvatar(
       backgroundColor: kPrimaryDarkColor,
-      radius: (4.37 * SizeConfig.textMultiplier), // 18
+      radius: (TEXT_FACTOR_18 * SizeConfig.textMultiplier), //18
       child: CircleAvatar(
-        radius: (4.37 * SizeConfig.textMultiplier), // 18
+        radius: (TEXT_FACTOR_18 * SizeConfig.textMultiplier), //18
         backgroundColor: kPrimaryLightColor,
         backgroundImage: NetworkImage(url), // Provide your custom image
       ),
@@ -37,20 +38,19 @@ class FriendsPreview extends StatelessWidget {
   _getCircleAvatarsWithNumber(String num){
     return CircleAvatar(
       backgroundColor: kPrimaryDarkColor,
-      radius: (4.37 * SizeConfig.textMultiplier), // 18
+      radius: (TEXT_FACTOR_18 * SizeConfig.textMultiplier), //18
       child: CircleAvatar(
-        radius:  (4.37 * SizeConfig.textMultiplier), // 18
+        radius:  (TEXT_FACTOR_18 * SizeConfig.textMultiplier), //18
         backgroundColor: kPrimaryLightColor,
         child: Text(
           "+" + num,
           style: TextStyle(
-            fontSize:  (4.37 * SizeConfig.textMultiplier), // 18
+            fontSize:  (TEXT_FACTOR_18 * SizeConfig.textMultiplier), //18
           ),
         ), // Provide your custom image
       ),
     );
   }
-
 
   _getFriendsPreview(){
     var num = friendsReading.length > 2 ? friendsReading.length - 2 : -1;
@@ -75,14 +75,24 @@ class FriendsPreview extends StatelessWidget {
           Align(
               alignment: Alignment.center,
               child: Padding(
-                  padding: EdgeInsets.fromLTRB((3.64 * SizeConfig.widthMultiplier), 0, 0, 0),
+                  padding: EdgeInsets.fromLTRB(
+                      (PADDING_FACTOR_15 * SizeConfig.widthMultiplier), //15
+                      (PADDING_FACTOR_0),
+                      (PADDING_FACTOR_0),
+                      (PADDING_FACTOR_0),
+                  ),
                   child: circle2
               )
           ),
           Align(
               alignment: Alignment.centerRight,
               child: Padding(
-                  padding: EdgeInsets.fromLTRB((8.75 * SizeConfig.widthMultiplier), 0, 0, 0),
+                  padding: EdgeInsets.fromLTRB(
+                      (PADDING_FACTOR_35 * SizeConfig.widthMultiplier), //30
+                      (PADDING_FACTOR_0),
+                      (PADDING_FACTOR_0),
+                      (PADDING_FACTOR_0),
+                  ),
                   child: circle3
               )
           ),
