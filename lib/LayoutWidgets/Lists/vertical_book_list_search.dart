@@ -14,10 +14,10 @@ import 'package:bookifyapp/Design/size_constants.dart';
 
 import '../../Design/SizeConfig.dart';
 
-
 class VerticalBookListSearch extends StatefulWidget {
-
-  VerticalBookListSearch(this.books, this.type, {
+  VerticalBookListSearch(
+    this.books,
+    this.type, {
     this.title,
     this.specificLectureTitle,
     this.backgroundColor = kPrimaryDarkColor,
@@ -40,28 +40,29 @@ class VerticalBookListSearch extends StatefulWidget {
 }
 
 class _VerticalBookListSearch extends State<VerticalBookListSearch> {
-
   List<Lecture> customBooksList;
 
   @override
   void initState() {
     super.initState();
-    if(widget.type != ListType.first_time_form &&
+    if (widget.type != ListType.first_time_form &&
         widget.type != ListType.received_recommendation_form &&
-        widget.type != ListType.send_recommendation_form
-    ){
+        widget.type != ListType.send_recommendation_form) {
       User user = Provider.of<User>(context, listen: false);
-      customBooksList = user.hasLectureList(widget.title) ? user.getLectureListByName(widget.title) : new List();
+      customBooksList = user.hasLectureList(widget.title)
+          ? user.getLectureListByName(widget.title)
+          : new List();
     } else {
       customBooksList = new List();
     }
   }
 
-  addOrRemoveBookFromTemporalCustomList(Book book, bool add){
-    if(widget.type == ListType.received_recommendation_form || widget.type == ListType.send_recommendation_form){
+  addOrRemoveBookFromTemporalCustomList(Book book, bool add) {
+    if (widget.type == ListType.received_recommendation_form ||
+        widget.type == ListType.send_recommendation_form) {
       widget.addOrRemoveBook(book, add);
     } else {
-      if(add){
+      if (add) {
         customBooksList.add(book);
       } else {
         customBooksList.remove(book);
@@ -69,12 +70,14 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
     }
   }
 
-  addOrRemoveBookFromPendingOrReadingList(Book book, bool add){
+  addOrRemoveBookFromPendingOrReadingList(Book book, bool add) {
     User user = Provider.of<User>(context, listen: false);
-    if(add){
-      user.addLectureToLectureListByKey(book.toLecture(), widget.specificLectureTitle);
+    if (add) {
+      user.addLectureToLectureListByKey(
+          book.toLecture(), widget.specificLectureTitle);
     } else {
-      user.removeLectureFromLectureListByKey(book.toLecture(), widget.specificLectureTitle);
+      user.removeLectureFromLectureListByKey(
+          book.toLecture(), widget.specificLectureTitle);
     }
   }
 
@@ -87,23 +90,21 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
   }
 
   _makeCard(int index) {
-    if
-    (
-        widget.type == ListType.add_custom_list ||
+    if (widget.type == ListType.add_custom_list ||
         widget.type == ListType.edit_custom_list ||
-        widget.type == ListType.first_time_form
-    ) {
+        widget.type == ListType.first_time_form) {
       return BookCard.inVerticalSearchList(
-          widget.books[index].toLecture(),
-          BookCardType.book_card_in_vertical_search_list,
-          widget.type,
-          Provider.of<User>(context, listen: false),
-          addOrRemoveBookFromTemporalCustomList:
-          (widget.type == ListType.first_time_form) ?
-          addOrRemoveBookFromPendingOrReadingList : addOrRemoveBookFromTemporalCustomList,
-          listTitle: widget.title,
+        widget.books[index].toLecture(),
+        BookCardType.book_card_in_vertical_search_list,
+        widget.type,
+        Provider.of<User>(context, listen: false),
+        addOrRemoveBookFromTemporalCustomList:
+            (widget.type == ListType.first_time_form)
+                ? addOrRemoveBookFromPendingOrReadingList
+                : addOrRemoveBookFromTemporalCustomList,
+        listTitle: widget.title,
       );
-    } else if(widget.type == ListType.received_recommendation_form) {
+    } else if (widget.type == ListType.received_recommendation_form) {
       return BookCard.inVerticalSearchList(
         widget.books[index].toLecture(),
         BookCardType.book_card_in_vertical_search_list,
@@ -112,10 +113,11 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
         backgroundColor: widget.backgroundColor,
         cardHeight: (CONTAINER_FACTOR_140 * SizeConfig.heightMultiplier), //140
         addOrRemoveBookFromTemporalCustomList:
-        (widget.type == ListType.first_time_form) ?
-        addOrRemoveBookFromPendingOrReadingList : addOrRemoveBookFromTemporalCustomList,
+            (widget.type == ListType.first_time_form)
+                ? addOrRemoveBookFromPendingOrReadingList
+                : addOrRemoveBookFromTemporalCustomList,
       );
-    } else if(widget.type == ListType.send_recommendation_form){
+    } else if (widget.type == ListType.send_recommendation_form) {
       return BookCard.inVerticalSearchList(
         widget.books[index].toLecture(),
         BookCardType.book_card_in_vertical_search_list,
@@ -123,8 +125,9 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
         Provider.of<User>(context, listen: false),
         backgroundColor: widget.backgroundColor,
         addOrRemoveBookFromTemporalCustomList:
-        (widget.type == ListType.first_time_form) ?
-        addOrRemoveBookFromPendingOrReadingList : addOrRemoveBookFromTemporalCustomList,
+            (widget.type == ListType.first_time_form)
+                ? addOrRemoveBookFromPendingOrReadingList
+                : addOrRemoveBookFromTemporalCustomList,
       );
     } else {
       return BookCard.inVerticalSearchList(
@@ -134,60 +137,62 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
         Provider.of<User>(context, listen: false),
       );
     }
-
   }
 
-  _getAcceptButton(){
+  _getAcceptButton() {
     return FlatButton(
-      child: Text(
-          "Accept",
-          style: TextStyle(
-            color: Colors.blue,
-            fontSize: (2.05 * SizeConfig.textMultiplier), //14
-          )
-      ),
-      onPressed: () async {
-        if(widget.type == ListType.received_recommendation_form || widget.type == ListType.send_recommendation_form){
-          widget.onAcceptButtonTapped();
-        } else {
-          if(customBooksList.length == 0){
-            int result = await showDialog(
-              context: context,
-              builder: (BuildContext context) => DialogWithAcceptAndCancelOptions(
-                  "Delete List",
-                  "Any book selected. Are you sure you want to delete list?",
-                  TextStyle(color: Colors.red, fontSize: (TEXT_FACTOR_12 * SizeConfig.heightMultiplier)),
-                  TextStyle(color: Colors.blue, fontSize: (TEXT_FACTOR_12 * SizeConfig.heightMultiplier))
-              ),
-            );
-            if(result == DialogWithAcceptAndCancelOptions.ACCEPT_TAP){
-              User user = Provider.of<User>(context, listen: false);
-              user.removeLectureListByName(widget.title);
-              InfoToast.showListRemovedCorrecltyFromBookshelf(widget.title);
-            }
+        child: Text("Accept",
+            style: TextStyle(
+              color: Colors.blue,
+              fontSize: (TEXT_FACTOR_14 * SizeConfig.textMultiplier), //14
+            )),
+        onPressed: () async {
+          if (widget.type == ListType.received_recommendation_form ||
+              widget.type == ListType.send_recommendation_form) {
+            widget.onAcceptButtonTapped();
           } else {
-            setState(() {
-              User user = Provider.of<User>(context, listen: false);
-              user.addCustomLectureList(widget.title, customBooksList);
-            });
+            if (customBooksList.length == 0) {
+              int result = await showDialog(
+                context: context,
+                builder: (BuildContext context) =>
+                    DialogWithAcceptAndCancelOptions(
+                        "Delete List",
+                        "Any book selected. Are you sure you want to delete list?",
+                        TextStyle(
+                            color: Colors.red,
+                            fontSize:
+                                (TEXT_FACTOR_12 * SizeConfig.heightMultiplier)),
+                        TextStyle(
+                            color: Colors.blue,
+                            fontSize: (TEXT_FACTOR_12 *
+                                SizeConfig.heightMultiplier))),
+              );
+              if (result == DialogWithAcceptAndCancelOptions.ACCEPT_TAP) {
+                User user = Provider.of<User>(context, listen: false);
+                user.removeLectureListByName(widget.title);
+                InfoToast.showListRemovedCorrecltyFromBookshelf(widget.title);
+              }
+            } else {
+              setState(() {
+                User user = Provider.of<User>(context, listen: false);
+                user.addCustomLectureList(widget.title, customBooksList);
+              });
+            }
+            Navigator.pop(context, 0);
           }
-          Navigator.pop(context, 0);
-        }
-      }
-    );
+        });
   }
 
-  _getCancelButton(){
+  _getCancelButton() {
     return FlatButton(
-      child: Text(
-          "Cancel",
+      child: Text("Cancel",
           style: TextStyle(
             color: Colors.red,
             fontSize: (TEXT_FACTOR_14 * SizeConfig.textMultiplier), //14
-          )
-      ),
+          )),
       onPressed: () {
-        if(widget.type == ListType.received_recommendation_form || widget.type == ListType.send_recommendation_form){
+        if (widget.type == ListType.received_recommendation_form ||
+            widget.type == ListType.send_recommendation_form) {
           widget.onCancelButtonTapped();
         } else {
           Navigator.pop(context);
@@ -200,8 +205,7 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
     if (widget.type == ListType.add_custom_list ||
         widget.type == ListType.edit_custom_list ||
         widget.type == ListType.received_recommendation_form ||
-        widget.type == ListType.send_recommendation_form
-    ) {
+        widget.type == ListType.send_recommendation_form) {
       return Stack(
         children: <Widget>[
           Container(
@@ -209,34 +213,29 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
             child: ListView.builder(
               scrollDirection: Axis.vertical,
               shrinkWrap: true,
-              itemCount: (widget.type == ListType.received_recommendation_form) ? widget.books.length : widget.books.length + 1,
+              itemCount: (widget.type == ListType.received_recommendation_form)
+                  ? widget.books.length
+                  : widget.books.length + 1,
               itemBuilder: (BuildContext context, int index) {
-                if (widget.type != ListType.received_recommendation_form && index == 0)
-                  return ListTitle(widget.title);
-                return _makeCard((widget.type == ListType.received_recommendation_form) ? index : index - 1);
+                if (widget.type != ListType.received_recommendation_form &&
+                    index == 0) return ListTitle(widget.title);
+                return _makeCard(
+                    (widget.type == ListType.received_recommendation_form)
+                        ? index
+                        : index - 1);
               },
             ),
           ),
-
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
               color: kPrimaryLightColor,
               height: (TEXT_FACTOR_50 * SizeConfig.imageSizeMultiplier),
-              width: MediaQuery
-                  .of(context)
-                  .size
-                  .width,
+              width: MediaQuery.of(context).size.width,
               child: Row(
                 children: <Widget>[
-                  Expanded(
-                      flex: 5,
-                      child: _getAcceptButton()
-                  ),
-                  Expanded(
-                      flex: 5,
-                      child: _getCancelButton()
-                  )
+                  Expanded(flex: 5, child: _getAcceptButton()),
+                  Expanded(flex: 5, child: _getCancelButton())
                 ],
               ),
             ),
@@ -252,7 +251,10 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
           itemCount: widget.books.length + 1,
           itemBuilder: (BuildContext context, int index) {
             if (index == 0)
-              return ListTitle(widget.title, fontSize: (3.21 * SizeConfig.textMultiplier),);
+              return ListTitle(
+                widget.title,
+                fontSize: (3.21 * SizeConfig.textMultiplier),
+              );
             return _makeCard(index - 1);
           },
         ),

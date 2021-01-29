@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:bookifyapp/Design/constants.dart';
+import 'package:bookifyapp/Design/size_constants.dart';
 import 'package:bookifyapp/InfoToast.dart';
 import 'package:bookifyapp/Interfaces/RemoveCommentInterface.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/Comment/main_comment_card.dart';
@@ -20,8 +21,7 @@ import 'package:provider/provider.dart';
 
 import '../../Design/SizeConfig.dart';
 
-class AddFeedbackDialog extends StatefulWidget{
-
+class AddFeedbackDialog extends StatefulWidget {
   Lecture book;
 
   AddFeedbackDialog(this.book);
@@ -30,10 +30,10 @@ class AddFeedbackDialog extends StatefulWidget{
   _AddFeedbackDialog createState() => _AddFeedbackDialog();
 }
 
-class _AddFeedbackDialog
-    extends State<AddFeedbackDialog> with SingleTickerProviderStateMixin
-    implements RemoveCommentInterface{
-
+class _AddFeedbackDialog extends State<AddFeedbackDialog>
+    with SingleTickerProviderStateMixin
+    implements RemoveCommentInterface {
+  static const int DEFAULT_MILISECONDS = 1500;
 
   Dialog alertDialog;
   double width;
@@ -50,21 +50,17 @@ class _AddFeedbackDialog
   Animation<double> animation;
   Color _backgroundColor;
 
-
   final TextEditingController inputController = TextEditingController();
 
   @override
-  void initState(){
-
+  void initState() {
     super.initState();
 
     scrollController = new ScrollController();
     _backgroundColor = kPrimaryLightColor;
 
     animationController = AnimationController(
-        duration: Duration(milliseconds: 1500),
-        vsync:this
-    );
+        duration: Duration(milliseconds: DEFAULT_MILISECONDS), vsync: this);
 
     animation = CurvedAnimation(
       parent: animationController,
@@ -75,16 +71,15 @@ class _AddFeedbackDialog
     currentChapter = widget.book.chapters[currentChapterNumber];
     chapterTitle = currentChapter.title;
 
-    for(int i=0; i < currentChapter.comments.length; i++){
-      mainComments.add(
-          MainCommentCard(
-              currentChapter.comments[i],
-              fromDialog: true,
-              chapterTitle: this.currentChapter.title,
-              chapterNumber: this.currentChapterNumber,
-              removeCommentFunction: removeComment,
-              positionKey: (i + 5),
-          ));
+    for (int i = 0; i < currentChapter.comments.length; i++) {
+      mainComments.add(MainCommentCard(
+        currentChapter.comments[i],
+        fromDialog: true,
+        chapterTitle: this.currentChapter.title,
+        chapterNumber: this.currentChapterNumber,
+        removeCommentFunction: removeComment,
+        positionKey: (i + 5),
+      ));
     }
 
     widgets = new List();
@@ -99,53 +94,50 @@ class _AddFeedbackDialog
     visible = widget.book.finished ? true : false;
   }
 
-  _getReactionsGrid(){
+  _getReactionsGrid() {
     return Container(
         height: (31.09 * SizeConfig.heightMultiplier), //190
         child: GridView.count(
-            padding:EdgeInsets.fromLTRB(
-                0,
-                (1.46 * SizeConfig.heightMultiplier), // 10
-                0,
-               (1.46 * SizeConfig.heightMultiplier), // 10
+            padding: EdgeInsets.symmetric(
+              horizontal: PADDING_FACTOR_0,
+              vertical: (1.46 * SizeConfig.heightMultiplier), // 10
             ),
             scrollDirection: Axis.vertical,
             shrinkWrap: true,
             crossAxisCount: 4,
-            children: List.generate(widget.book.getCurrentChapterReactions().length, (index) {
-              return ReactionCard(widget.book.getCurrentChapterReactions()[index]);
-            },)
-        )
-    );
+            children: List.generate(
+              widget.book.getCurrentChapterReactions().length,
+              (index) {
+                return ReactionCard(
+                    widget.book.getCurrentChapterReactions()[index]);
+              },
+            )));
   }
 
-  _getCommentsTitle(){
+  _getCommentsTitle() {
     return Padding(
-      padding: EdgeInsets.all(0),
+      padding: EdgeInsets.all(PADDING_FACTOR_0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           Align(
             alignment: Alignment.center,
-            child: Icon(
-              Icons.comment,
-              size: (6.08 * SizeConfig.imageSizeMultiplier) //25
-            ),
+            child: Icon(Icons.comment,
+                size: (6.08 * SizeConfig.imageSizeMultiplier) //25
+                ),
           ),
-          _getTitleSection(mainComments.length.toString()  + " comentarios"),
+          _getTitleSection(mainComments.length.toString() + " comentarios"),
         ],
       ),
     );
   }
 
-  _getRatingBar(){
+  _getRatingBar() {
     return Card(
-      margin: EdgeInsets.fromLTRB(
-          0,
-          (1.21 * SizeConfig.widthMultiplier), //5
-          0,
-          (1.21 * SizeConfig.widthMultiplier), //5
+      margin: EdgeInsets.symmetric(
+        horizontal: PADDING_FACTOR_0,
+        vertical: (PADDING_FACTOR_5 * SizeConfig.widthMultiplier), //5
       ),
       color: kPrimaryDarkColor,
       child: Container(
@@ -153,13 +145,14 @@ class _AddFeedbackDialog
           child: Align(
             alignment: Alignment.center,
             child: RatingBar(
-              itemSize: (12.16 * SizeConfig.imageSizeMultiplier), //50
+              itemSize: (TEXT_FACTOR_50 * SizeConfig.imageSizeMultiplier), //50
               initialRating: 3,
               minRating: 1,
               direction: Axis.horizontal,
               allowHalfRating: false,
               itemCount: 5,
-              itemPadding: EdgeInsets.symmetric(horizontal: (0.97 * SizeConfig.imageSizeMultiplier)), //4
+              itemPadding: EdgeInsets.symmetric(
+                  horizontal: (0.97 * SizeConfig.imageSizeMultiplier)), //4
               itemBuilder: (context, _) => Icon(
                 Icons.star,
                 color: Colors.amber,
@@ -167,36 +160,34 @@ class _AddFeedbackDialog
               onRatingUpdate: (rating) {
                 print(rating);
                 setState(() {
-                  if(rating == 1){
-                    _backgroundColor  = Colors.red[200];
+                  if (rating == 1) {
+                    _backgroundColor = Colors.red[200];
                   } else if (rating == 2) {
-                    _backgroundColor  = Colors.deepOrange[100];
+                    _backgroundColor = Colors.deepOrange[100];
                   } else if (rating == 3) {
-                    _backgroundColor  = Colors.yellow[100];
+                    _backgroundColor = Colors.yellow[100];
                   } else if (rating == 4) {
-                    _backgroundColor  = Colors.cyan[100];
+                    _backgroundColor = Colors.cyan[100];
                   } else {
-                    _backgroundColor  = Colors.green[300];
+                    _backgroundColor = Colors.green[300];
                   }
-
                 });
               },
             ),
-          )
-      ),
+          )),
       //child: _createListView(),
     );
   }
 
-  _getTitleSection(String title){
-   return Align(
+  _getTitleSection(String title) {
+    return Align(
       alignment: Alignment.center,
       child: Text(
         title,
         overflow: TextOverflow.ellipsis,
         style: TextStyle(
           color: kPrimaryDarkColor,
-          fontSize: (2.05 * SizeConfig.textMultiplier), //14
+          fontSize: (TEXT_FACTOR_14 * SizeConfig.textMultiplier), //14
         ),
       ),
     );
@@ -210,219 +201,208 @@ class _AddFeedbackDialog
 
   @override
   Widget build(BuildContext context) {
-
     width = MediaQuery.of(context).size.width;
     height = MediaQuery.of(context).size.height;
 
     alertDialog = new Dialog(
         backgroundColor: Colors.transparent,
         child: Container(
-            height: height,
-            width: width,
-            child: Stack(
-              children: <Widget>[
-
-                Positioned(
-                    top: (21.94 * SizeConfig.heightMultiplier), //140
-                    child: Container(
-                        width: width,
-                        height: height -  (21.94 * SizeConfig.heightMultiplier),
-                        color: _backgroundColor,
-                        child:  Align(
+          height: height,
+          width: width,
+          child: Stack(
+            children: <Widget>[
+              Positioned(
+                  top: (21.94 * SizeConfig.heightMultiplier), //140
+                  child: Container(
+                      width: width,
+                      height: height - (21.94 * SizeConfig.heightMultiplier),
+                      color: _backgroundColor,
+                      child: Align(
                           alignment: Alignment.topLeft,
                           child: Padding(
                             padding: EdgeInsets.fromLTRB(
-                              0,
-                              ((12.16 * SizeConfig.imageSizeMultiplier) / 2), //150,
-                              0,
-                              0
-                            ),
+                                0,
+                                ((12.16 * SizeConfig.imageSizeMultiplier) /
+                                    2), //150,
+                                0,
+                                0),
                             child: IconButton(
-                              onPressed: (){
+                              onPressed: () {
                                 Navigator.pop(context);
                               },
                               icon: Icon(
                                 Icons.keyboard_arrow_down,
                                 color: Colors.black,
-                                size: (5.83 * SizeConfig.imageSizeMultiplier), //24
+                                size: (5.83 *
+                                    SizeConfig.imageSizeMultiplier), //24
                               ),
                             ),
-                          )
-                        )
-                    )
-                ),
-
-                Positioned(
-                    top: (24.54 * SizeConfig.heightMultiplier), //150
-                    right: (2.43 * SizeConfig.widthMultiplier), //10
-                    child: Align(
+                          )))),
+              Positioned(
+                  top: (24.54 * SizeConfig.heightMultiplier), //150
+                  right: (2.43 * SizeConfig.widthMultiplier), //10
+                  child: Align(
                       alignment: Alignment.topRight,
                       child: Container(
-                          width: (12.16 * SizeConfig.imageSizeMultiplier),
-                          height: (12.16 * SizeConfig.imageSizeMultiplier),
-                          child: FittedBox(
-                              child: FloatingActionButton(
-                                  heroTag: UniqueKey(),
-                                  onPressed: () async {
-                                    setState(() {
-                                      if(!widget.book.finished){
-                                        readButtonColor = Colors.lightGreen;
-                                      }
-                                    });
-                                    await animationController.forward();
-                                    setState(() {
-                                      if(!widget.book.finished){
-                                        visible = true;
-                                        var user = Provider.of<User>(context, listen: false);
-                                        user.increaseChapter(widget.book);
-                                      }/* else {
+                        width: (12.16 * SizeConfig.imageSizeMultiplier),
+                        height: (12.16 * SizeConfig.imageSizeMultiplier),
+                        child: FittedBox(
+                          child: FloatingActionButton(
+                              heroTag: UniqueKey(),
+                              onPressed: () async {
+                                setState(() {
+                                  if (!widget.book.finished) {
+                                    readButtonColor = Colors.lightGreen;
+                                  }
+                                });
+                                await animationController.forward();
+                                setState(() {
+                                  if (!widget.book.finished) {
+                                    visible = true;
+                                    var user = Provider.of<User>(context,
+                                        listen: false);
+                                    user.increaseChapter(widget.book);
+                                  }
+                                  /* else {
                                         widget.onBookCompletedProcess(this.context, widget.book);
                                       }*/
-                                    });
-                                  },
-                                  backgroundColor: kPrimaryLightColor,
-                                  child: RotationTransition(
-                                    turns: animation,
-                                    child: Icon(
-                                      Icons.beenhere,
-                                      color: readButtonColor,
-                                      size: SizeConfig.imageSizeMultiplier > 5.5 ?
-                                      (5.83 * SizeConfig.imageSizeMultiplier) : (12.16 * SizeConfig.imageSizeMultiplier), //24
-                                    ),
-                                  )
-                              ),
-                          ),
-                        )
-                      )
-                ),
-
-                Align(
-                  alignment: Alignment.topCenter,
-                  child: BookCover(
-                    widget.book,
-                    showInfo: false,
-                    height: (29.45 * SizeConfig.heightMultiplier), //180
-                    showTitle: false,
-                    chapterTitle: chapterTitle,
-                    transparent: true,
-                  ),
-                ),
-
-                Padding(
-                  padding: EdgeInsets.fromLTRB(
-                      (1.7 * SizeConfig.imageSizeMultiplier), //7
-                      (34.36 * SizeConfig.heightMultiplier), //210
-                      (1.7 * SizeConfig.imageSizeMultiplier), //7
-                      (2.43 * SizeConfig.widthMultiplier), //10
-                  ),
-                  child: Container(color: kPrimaryDarkColor, height: (0.48 * SizeConfig.widthMultiplier), width: width),
-                ),
-
-                AnimatedOpacity(
-                  opacity: visible ? 1.0 : 0.0,
-                  duration: Duration(milliseconds: 500),
-                  child:  Visibility(
-                    visible: visible,
-                    maintainSize: false,
-                    maintainAnimation: false,
-                    maintainState: false,
-                    child: Padding(
-                      padding: EdgeInsets.fromLTRB(
-                          (1.7 * SizeConfig.imageSizeMultiplier), //7
-                          (36.01 * SizeConfig.heightMultiplier), //220
-                          (1.7 * SizeConfig.imageSizeMultiplier), //7
-                          0
-                      ),
-                      child:  ListView.builder(
-                          controller: scrollController,
-                          shrinkWrap: true,
-                          padding: EdgeInsets.all((1.29 * SizeConfig.heightMultiplier)), //8
-                          itemCount: widgets.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            return widgets[index];
-                          }
-                      ),
-                    ),
-                  ),
-                ),
-
-                Center(
-                  child: Visibility(
-                    visible: !visible,
-                    maintainSize: false,
-                    maintainAnimation: false,
-                    maintainState: false,
-                    child:  _getTitleSection("To give feedback and see comments. Mark as read first"),
-                  ),
-                ),
-
-                Positioned(
-                    bottom: (1.21 * SizeConfig.widthMultiplier), //5
-                    right: (2.43 * SizeConfig.imageSizeMultiplier), //10
-                    child: AnimatedOpacity(
-                        opacity: visible ? 1.0 : 0.0,
-                        duration: Duration(milliseconds: 500),
-                        child:  Visibility(
-                          visible: visible,
-                          maintainSize: false,
-                          maintainAnimation: false,
-                          maintainState: false,
-                          child: Container(
-                            height: (6.54 * SizeConfig.heightMultiplier), //40
-                            width: (9.73 * SizeConfig.widthMultiplier), //40
-                            child: FittedBox(
-                              child: FloatingActionButton(
-                                heroTag: UniqueKey(),
-                                onPressed: (){
-                                  _navigateToCommentsPage(context);
-                                },
-                                backgroundColor: Colors.yellow,
+                                });
+                              },
+                              backgroundColor: kPrimaryLightColor,
+                              child: RotationTransition(
+                                turns: animation,
                                 child: Icon(
-                                  Icons.add,
-                                  color: kPrimaryDarkColor,
-                                  //size: (5.83 * SizeConfig.imageSizeMultiplier), //24
+                                  Icons.beenhere,
+                                  color: readButtonColor,
+                                  size: SizeConfig.imageSizeMultiplier > 5.5
+                                      ? (5.83 * SizeConfig.imageSizeMultiplier)
+                                      : (12.16 *
+                                          SizeConfig.imageSizeMultiplier), //24
                                 ),
-                              ),
+                              )),
+                        ),
+                      ))),
+              Align(
+                alignment: Alignment.topCenter,
+                child: BookCover(
+                  widget.book,
+                  showInfo: false,
+                  height: (29.45 * SizeConfig.heightMultiplier), //180
+                  showTitle: false,
+                  chapterTitle: chapterTitle,
+                  transparent: true,
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.fromLTRB(
+                  (1.7 * SizeConfig.imageSizeMultiplier), //7
+                  (34.36 * SizeConfig.heightMultiplier), //210
+                  (1.7 * SizeConfig.imageSizeMultiplier), //7
+                  (2.43 * SizeConfig.widthMultiplier), //10
+                ),
+                child: Container(
+                    color: kPrimaryDarkColor,
+                    height: (0.48 * SizeConfig.widthMultiplier),
+                    width: width),
+              ),
+              AnimatedOpacity(
+                opacity: visible ? 1.0 : 0.0,
+                duration: Duration(milliseconds: 500),
+                child: Visibility(
+                  visible: visible,
+                  maintainSize: false,
+                  maintainAnimation: false,
+                  maintainState: false,
+                  child: Padding(
+                    padding: EdgeInsets.fromLTRB(
+                        (1.7 * SizeConfig.imageSizeMultiplier), //7
+                        (36.01 * SizeConfig.heightMultiplier), //220
+                        (1.7 * SizeConfig.imageSizeMultiplier), //7
+                        0),
+                    child: ListView.builder(
+                        controller: scrollController,
+                        shrinkWrap: true,
+                        padding: EdgeInsets.all(
+                            (1.29 * SizeConfig.heightMultiplier)), //8
+                        itemCount: widgets.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return widgets[index];
+                        }),
+                  ),
+                ),
+              ),
+              Center(
+                child: Visibility(
+                  visible: !visible,
+                  maintainSize: false,
+                  maintainAnimation: false,
+                  maintainState: false,
+                  child: _getTitleSection(
+                      "To give feedback and see comments. Mark as read first"),
+                ),
+              ),
+              Positioned(
+                bottom: (1.21 * SizeConfig.widthMultiplier), //5
+                right: (2.43 * SizeConfig.imageSizeMultiplier), //10
+                child: AnimatedOpacity(
+                    opacity: visible ? 1.0 : 0.0,
+                    duration: Duration(milliseconds: 500),
+                    child: Visibility(
+                      visible: visible,
+                      maintainSize: false,
+                      maintainAnimation: false,
+                      maintainState: false,
+                      child: Container(
+                        height: (6.54 * SizeConfig.heightMultiplier), //40
+                        width: (9.73 * SizeConfig.widthMultiplier), //40
+                        child: FittedBox(
+                          child: FloatingActionButton(
+                            heroTag: UniqueKey(),
+                            onPressed: () {
+                              _navigateToCommentsPage(context);
+                            },
+                            backgroundColor: Colors.yellow,
+                            child: Icon(
+                              Icons.add,
+                              color: kPrimaryDarkColor,
+                              //size: (5.83 * SizeConfig.imageSizeMultiplier), //24
                             ),
                           ),
-                        )
-                    ),
-                ),
-
-              ],
-            ),
-        )
-    );
+                        ),
+                      ),
+                    )),
+              ),
+            ],
+          ),
+        ));
 
     return alertDialog;
   }
 
   _navigateToCommentsPage(BuildContext context) async {
-
-    final String result = await Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => CommentPage(
-      null,
-      subCommentsPage: false,
-      chapterTitle: this.currentChapter.title,
-      chapterNumber: this.currentChapterNumber,
-    )));
-
-
-    if(result != null){
-      if(result.length > 0){
-        setState(() {
-          var user = Provider.of<User>(context, listen: false);
-          MainComment mainComment = new MainComment(user, result, answers: Comment.getMockComments());
-          this.currentChapter.addComment(mainComment);
-
-
-          widgets.add(MainCommentCard(
-              mainComment,
-              fromDialog: true,
+    final String result = await Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) => CommentPage(
+              null,
+              subCommentsPage: false,
               chapterTitle: this.currentChapter.title,
               chapterNumber: this.currentChapterNumber,
-              removeCommentFunction: removeComment,
-              positionKey: widgets.length,
+            )));
+
+    if (result != null) {
+      if (result.length > 0) {
+        setState(() {
+          var user = Provider.of<User>(context, listen: false);
+          MainComment mainComment =
+              new MainComment(user, result, answers: Comment.getMockComments());
+          this.currentChapter.addComment(mainComment);
+
+          widgets.add(MainCommentCard(
+            mainComment,
+            fromDialog: true,
+            chapterTitle: this.currentChapter.title,
+            chapterNumber: this.currentChapterNumber,
+            removeCommentFunction: removeComment,
+            positionKey: widgets.length,
           ));
           _scrollToLastPosition();
         });
@@ -431,17 +411,17 @@ class _AddFeedbackDialog
   }
 
   @override
-  void removeComment(int key){
+  void removeComment(int key) {
     setState(() {
-     widgets.removeAt(key);
-     InfoToast.showCommentRemovedCorrectly(true);
+      widgets.removeAt(key);
+      InfoToast.showCommentRemovedCorrectly(true);
     });
   }
 
-  _scrollToLastPosition(){
+  _scrollToLastPosition() {
     Timer(
       Duration(seconds: 1),
-          () => scrollController.jumpTo(scrollController.position.maxScrollExtent),
+      () => scrollController.jumpTo(scrollController.position.maxScrollExtent),
     );
   }
 }

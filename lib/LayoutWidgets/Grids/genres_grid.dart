@@ -8,19 +8,25 @@ import 'package:provider/provider.dart';
 
 import '../../Design/SizeConfig.dart';
 
-
-
 class GenresGrid extends StatefulWidget {
-
   List<Genre> genres;
 
-  GenresGrid(this.genres,);
+  GenresGrid(
+    this.genres,
+  );
 
   @override
   _GenresGrid createState() => _GenresGrid();
 }
 
-class _GenresGrid extends State<GenresGrid> with TickerProviderStateMixin{
+class _GenresGrid extends State<GenresGrid> with TickerProviderStateMixin {
+  static const int EMPTY = 0;
+  static const int WIDTH_FACTOR = 3;
+  static const int HEIGHT_FACTOR = 4;
+  static const int CROSS_AXIS_COUNT = 3;
+  static const double PADDING_FACTOR = 0.97;
+  static const double GENRES_CONTAINER_FACTOR = 1.47;
+  static const double BORDER_RADIUS_FACTOR = 4.86;
 
   User user;
   bool showEditButton;
@@ -30,16 +36,16 @@ class _GenresGrid extends State<GenresGrid> with TickerProviderStateMixin{
   initState() {
     genresOfInterest = new List();
     user = Provider.of<User>(context, listen: false);
-    if(user.interestedGenres.length > 0)
+    if (user.interestedGenres.length > EMPTY)
       genresOfInterest.addAll(user.interestedGenres);
     super.initState();
   }
 
-  _setGenresList(index){
+  _setGenresList(index) {
     // Sets genres grid UI and user variable
     setState(() {
       Genre genre = widget.genres[index];
-      if(genresOfInterest.contains(widget.genres[index])){
+      if (genresOfInterest.contains(widget.genres[index])) {
         genresOfInterest.remove(genre);
         user.removeGenreFromInterestedGenres(genre);
       } else {
@@ -47,7 +53,6 @@ class _GenresGrid extends State<GenresGrid> with TickerProviderStateMixin{
         user.addGenreToInterestedGenres(genre);
       }
     });
-
   }
 
   @override
@@ -55,34 +60,42 @@ class _GenresGrid extends State<GenresGrid> with TickerProviderStateMixin{
     return GridView.count(
         key: UniqueKey(),
         shrinkWrap: true,
-        crossAxisCount: 3,
+        crossAxisCount: CROSS_AXIS_COUNT,
         mainAxisSpacing: (PADDING_FACTOR_10 * SizeConfig.widthMultiplier), // 10
-        crossAxisSpacing: (PADDING_FACTOR_10 * SizeConfig.widthMultiplier), // 10
+        crossAxisSpacing:
+            (PADDING_FACTOR_10 * SizeConfig.widthMultiplier), // 10
         children: List.generate(widget.genres.length, (index) {
           return Container(
-              width: (MediaQuery.of(context).size.width / 3),
-              height: (MediaQuery.of(context).size.height / 4),
+              width: (MediaQuery.of(context).size.width / WIDTH_FACTOR),
+              height: (MediaQuery.of(context).size.height / HEIGHT_FACTOR),
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular((4.86 * SizeConfig.imageSizeMultiplier)),
-                color: genresOfInterest.contains(widget.genres[index]) ? kGreenLightColor : kSecondaryLightColor,
+                borderRadius: BorderRadius.circular(
+                    (BORDER_RADIUS_FACTOR * SizeConfig.imageSizeMultiplier)),
+                color: genresOfInterest.contains(widget.genres[index])
+                    ? kGreenLightColor
+                    : kSecondaryLightColor,
               ),
-              child:  GestureDetector(
-                  onTap: (){
+              child: GestureDetector(
+                  onTap: () {
                     _setGenresList(index);
                   },
                   child: Padding(
                     padding: EdgeInsets.all(
-                        genresOfInterest.contains(widget.genres[index]) ? (0.97 * SizeConfig.imageSizeMultiplier) : (0.48 * SizeConfig.imageSizeMultiplier)
-                    ),
+                        genresOfInterest.contains(widget.genres[index])
+                            ? (PADDING_FACTOR * SizeConfig.imageSizeMultiplier)
+                            : (CONTAINER_FACTOR_2 *
+                                SizeConfig.imageSizeMultiplier)),
                     child: GenreContainer(
-                      widget.genres[index], width: (MediaQuery.of(context).size.width / 3) - (2.43 * SizeConfig.widthMultiplier),
-                      height: (MediaQuery.of(context).size.height / 4) - (1.47 * SizeConfig.heightMultiplier),
+                      widget.genres[index],
+                      width: (MediaQuery.of(context).size.width /
+                              WIDTH_FACTOR) -
+                          (PADDING_FACTOR_10 * SizeConfig.widthMultiplier), //10
+                      height:
+                          (MediaQuery.of(context).size.height / HEIGHT_FACTOR) -
+                              (GENRES_CONTAINER_FACTOR *
+                                  SizeConfig.heightMultiplier),
                     ),
-                  )
-              )
-          );
-        })
-    );
+                  )));
+        }));
   }
-
 }

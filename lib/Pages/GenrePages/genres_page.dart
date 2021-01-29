@@ -8,7 +8,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/Models/User.dart';
 
-
 class GenresPage extends StatelessWidget {
   User user;
   GenresPage(this.user);
@@ -20,10 +19,10 @@ class GenresPage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.fromLTRB(
-              (PADDING_FACTOR_5 * SizeConfig.widthMultiplier), //5
-              (PADDING_FACTOR_10 *  SizeConfig.widthMultiplier), //10
-              (PADDING_FACTOR_5 * SizeConfig.widthMultiplier), //5
-              (PADDING_FACTOR_10 *  SizeConfig.widthMultiplier), //10
+            (PADDING_FACTOR_5 * SizeConfig.widthMultiplier), //5
+            (PADDING_FACTOR_10 * SizeConfig.widthMultiplier), //10
+            (PADDING_FACTOR_5 * SizeConfig.widthMultiplier), //5
+            (PADDING_FACTOR_10 * SizeConfig.widthMultiplier), //10
           ),
           child: Column(
             children: [
@@ -32,18 +31,15 @@ class GenresPage extends StatelessWidget {
                   (PADDING_FACTOR_5 * SizeConfig.widthMultiplier), //5
                   (PADDING_FACTOR_0),
                   (PADDING_FACTOR_5 * SizeConfig.widthMultiplier), //5
-                  (PADDING_FACTOR_10 *  SizeConfig.widthMultiplier), //10
+                  (PADDING_FACTOR_10 * SizeConfig.widthMultiplier), //10
                 ),
-                child: Text(
-                  SELECT_GENRE,
-                  textAlign: TextAlign.left,
-                  overflow: TextOverflow.clip,
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: (TEXT_FACTOR_20 * SizeConfig.textMultiplier),
-                    color: kPrimaryLightColor
-                  )
-                ),
+                child: Text(SELECT_GENRE,
+                    textAlign: TextAlign.left,
+                    overflow: TextOverflow.clip,
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: (TEXT_FACTOR_20 * SizeConfig.textMultiplier),
+                        color: kPrimaryLightColor)),
               ),
               GenresGrid(Genre.getMockGenres())
             ],

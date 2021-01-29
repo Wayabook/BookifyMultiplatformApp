@@ -11,9 +11,7 @@ import 'package:bookifyapp/LayoutWidgets/Lists/Title/list_title.dart';
 import '../Design/SizeConfig.dart';
 
 class ChaptersPage extends StatelessWidget {
-
   Book book;
-
   ChaptersPage(this.book);
 
   @override
@@ -24,9 +22,7 @@ class ChaptersPage extends StatelessWidget {
           color: kPrimaryDarkColor,
           child: Column(
             children: [
-
               ListTitle(INDEX_TITLE),
-
               ListView.builder(
                 scrollDirection: Axis.vertical,
                 shrinkWrap: true,
@@ -34,11 +30,14 @@ class ChaptersPage extends StatelessWidget {
                 itemBuilder: (BuildContext context, int index) {
                   return Padding(
                     padding: EdgeInsets.symmetric(
-                        horizontal: (PADDING_FACTOR_15 * SizeConfig.widthMultiplier),
-                        vertical: (PADDING_FACTOR_10 * SizeConfig.widthMultiplier),
+                      horizontal:
+                          (PADDING_FACTOR_15 * SizeConfig.widthMultiplier),
+                      vertical:
+                          (PADDING_FACTOR_10 * SizeConfig.widthMultiplier),
                     ),
                     child: Container(
-                      height: (CONTAINER_FACTOR_100 * SizeConfig.heightMultiplier),
+                      height:
+                          (CONTAINER_FACTOR_100 * SizeConfig.heightMultiplier),
                       key: UniqueKey(),
                       padding: EdgeInsets.all(PADDING_FACTOR_0),
                       child: ChapterCard(this.book, index),

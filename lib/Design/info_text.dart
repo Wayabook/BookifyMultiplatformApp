@@ -2,6 +2,7 @@
 const String READ_LIST = "Read";
 const String READING_LIST = "Reading";
 const String PENDING_LIST = "Pending";
+const String RECOMMENDED_LIST = "Recommended";
 
 /*** BOTTOM TAP BAR OPTIONS ***/
 
@@ -43,3 +44,5 @@ const String VIEW_ALL = "View All";
 const String VIEW_BOOKSHELF = "View Bookshelf";
 const String SHOW_MORE = "show more";
 const String SHOW_LESS = "show less";
+const String CANCEL_OPTION = "Cancel";
+const String ACCEPT_OPTION = "Accept";

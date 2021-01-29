@@ -14,6 +14,7 @@ import 'package:bookifyapp/Models/Book.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
+import 'package:bookifyapp/Design/info_text.dart';
 
 class RecommendationDialog extends StatefulWidget {
   List<Recommendation> _recommendations;
@@ -31,6 +32,8 @@ class RecommendationDialog extends StatefulWidget {
 }
 
 class _RecommendationDialog extends State<RecommendationDialog> {
+  static const double PADDING_FACTOR_7 = 1.7;
+
   Dialog alertDialog;
   double width;
   double height;
@@ -77,9 +80,9 @@ class _RecommendationDialog extends State<RecommendationDialog> {
     User user = Provider.of<User>(context, listen: false);
     setState(() {
       user.addListOfLecturesToLectureListByKey(
-          recommendationsAccepted, 'Recommended');
+          recommendationsAccepted, RECOMMENDED_LIST);
       user.addListOfLecturesToLectureListByKey(
-          recommendationsAccepted, 'Pending');
+          recommendationsAccepted, PENDING_LIST);
       user.addNewRecommendationsReceived(
           Recommendation.getRecommendationListFromBook(
               keepingRecommendations, user));
@@ -111,7 +114,8 @@ class _RecommendationDialog extends State<RecommendationDialog> {
                     icon: Icon(
                       Icons.keyboard_arrow_down,
                       color: Colors.black,
-                      size: (5.83 * SizeConfig.imageSizeMultiplier),
+                      size:
+                          (PADDING_FACTOR_40 * SizeConfig.imageSizeMultiplier),
                     ),
                   ),
                 ))),
@@ -121,9 +125,9 @@ class _RecommendationDialog extends State<RecommendationDialog> {
         ),
         Padding(
           padding: EdgeInsets.fromLTRB(
-            (1.7 * SizeConfig.imageSizeMultiplier), //7
+            (PADDING_FACTOR_7 * SizeConfig.imageSizeMultiplier), //7
             (CONTAINER_FACTOR_170 * SizeConfig.heightMultiplier), //170
-            (1.7 * SizeConfig.imageSizeMultiplier), //7
+            (PADDING_FACTOR_7 * SizeConfig.imageSizeMultiplier), //7
             (PADDING_FACTOR_10 * SizeConfig.widthMultiplier), //10
           ),
           child: Container(
@@ -133,8 +137,8 @@ class _RecommendationDialog extends State<RecommendationDialog> {
         ),
         Positioned(
             top: (CONTAINER_FACTOR_150 * SizeConfig.heightMultiplier), //150
-            left: (1.7 * SizeConfig.imageSizeMultiplier), //7
-            right: (1.7 * SizeConfig.imageSizeMultiplier), //7
+            left: (PADDING_FACTOR_7 * SizeConfig.imageSizeMultiplier), //7
+            right: (PADDING_FACTOR_7 * SizeConfig.imageSizeMultiplier), //7
             child: Container(
               width: width,
               height: (TEXT_FACTOR_50 * SizeConfig.imageSizeMultiplier), //50
@@ -156,8 +160,8 @@ class _RecommendationDialog extends State<RecommendationDialog> {
             )),
         Positioned(
             top: (29.45 * SizeConfig.heightMultiplier), //180
-            left: (1.7 * SizeConfig.imageSizeMultiplier), //7
-            right: (1.7 * SizeConfig.imageSizeMultiplier), //7
+            left: (PADDING_FACTOR_7 * SizeConfig.imageSizeMultiplier), //7
+            right: (PADDING_FACTOR_7 * SizeConfig.imageSizeMultiplier), //7
             child: Container(
               width: width,
               height: (TEXT_FACTOR_50 * SizeConfig.imageSizeMultiplier), //50
@@ -200,7 +204,7 @@ class _RecommendationDialog extends State<RecommendationDialog> {
       children: <Widget>[
         Positioned(
             top: (7.32 * SizeConfig.heightMultiplier), // 50
-            left: (2.43 * SizeConfig.widthMultiplier), //10
+            left: (PADDING_FACTOR_10 * SizeConfig.widthMultiplier), //10
             child: Container(
               width: width,
               height: (23.42 * SizeConfig.heightMultiplier), //160
@@ -213,14 +217,14 @@ class _RecommendationDialog extends State<RecommendationDialog> {
             child: Icon(
               Icons.card_giftcard,
               color: kPrimaryDarkColor,
-              size: (14.64 * SizeConfig.heightMultiplier), //100
+              size: (CONTAINER_FACTOR_100 * SizeConfig.heightMultiplier), //100
             ),
           ),
         ),
         Positioned(
-            top: (14.64 * SizeConfig.heightMultiplier), //100
-            left: (2.43 * SizeConfig.widthMultiplier), //10
-            right: (2.43 * SizeConfig.widthMultiplier), //10
+            top: (CONTAINER_FACTOR_100 * SizeConfig.heightMultiplier), //100
+            left: (PADDING_FACTOR_10 * SizeConfig.widthMultiplier), //10
+            right: (PADDING_FACTOR_10 * SizeConfig.widthMultiplier), //10
             child: Container(
               width: width,
               height: (12.16 * SizeConfig.imageSizeMultiplier), //50
@@ -238,15 +242,16 @@ class _RecommendationDialog extends State<RecommendationDialog> {
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: kPrimaryDarkColor,
-                    fontSize: (2.92 * SizeConfig.heightMultiplier), //20
+                    fontSize:
+                        (PADDING_FACTOR_20 * SizeConfig.heightMultiplier), //20
                   ),
                 ),
               ),
             )),
         Positioned(
-          top: (24.54 * SizeConfig.heightMultiplier), //150
-          left: (2.43 * SizeConfig.widthMultiplier), //10
-          right: (2.43 * SizeConfig.widthMultiplier), //10
+          top: (CONTAINER_FACTOR_150 * SizeConfig.heightMultiplier), //150
+          left: (PADDING_FACTOR_10 * SizeConfig.widthMultiplier), //10
+          right: (PADDING_FACTOR_10 * SizeConfig.widthMultiplier), //10
           child: Row(
             children: <Widget>[
               Expanded(flex: 5, child: _getAcceptButton()),
@@ -260,10 +265,10 @@ class _RecommendationDialog extends State<RecommendationDialog> {
 
   _getAcceptButton() {
     return FlatButton(
-        child: Text("Accept",
+        child: Text(ACCEPT_OPTION,
             style: TextStyle(
               color: Colors.blue,
-              fontSize: (2.05 * SizeConfig.textMultiplier), //14
+              fontSize: (TEXT_FACTOR_14 * SizeConfig.textMultiplier), //14
             )),
         onPressed: () async {
           Navigator.pop(context);
@@ -272,18 +277,13 @@ class _RecommendationDialog extends State<RecommendationDialog> {
 
   _getCancelButton() {
     return FlatButton(
-      child: Text("Cancel",
+      child: Text(CANCEL_OPTION,
           style: TextStyle(
             color: Colors.red,
-            fontSize: (2.05 * SizeConfig.textMultiplier), //14
+            fontSize: (TEXT_FACTOR_14 * SizeConfig.textMultiplier), //14
           )),
       onPressed: () {
         Navigator.pop(context);
-        /*if(widget.type == ListType.received_recommendation_form || widget.type == ListType.send_recommendation_form){
-          widget.onCancelButtonTapped();
-        } else {
-          Navigator.pop(context);
-        }**/
       },
     );
   }

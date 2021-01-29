@@ -14,21 +14,20 @@ import 'package:provider/provider.dart';
 
 import '../../Design/SizeConfig.dart';
 
-
 class VerticalBookList/*<T extends Book>*/ extends StatefulWidget {
-
   VerticalBookList(this.readingBooks, this.pendingBooks); // : super(key: key);
 
   List<Lecture> readingBooks;
   List<Lecture> pendingBooks;
 
   @override
-  _VerticalBookList createState() => _VerticalBookList(this.readingBooks, this.pendingBooks);
+  _VerticalBookList createState() =>
+      _VerticalBookList(this.readingBooks, this.pendingBooks);
 }
 
 class _VerticalBookList extends State<VerticalBookList>
-    with TickerProviderStateMixin implements TitleButtonInterface{
-
+    with TickerProviderStateMixin
+    implements TitleButtonInterface {
   int positionToChange;
   List<Widget> items;
   List<Lecture> readingBooks;
@@ -36,33 +35,33 @@ class _VerticalBookList extends State<VerticalBookList>
 
   _VerticalBookList(this.readingBooks, this.pendingBooks);
 
-
   @override
-  void initState(){
+  void initState() {
     super.initState();
     updateLists();
     updateUILists();
   }
-
 
   Future wait(seconds) {
     return new Future.delayed(Duration(seconds: seconds), () => "1");
   }
 
   @override
-  void didChangeDependencies(){
+  void didChangeDependencies() {
     super.didChangeDependencies();
   }
 
-  void updateLists(){
+  void updateLists() {
     var user = Provider.of<User>(context, listen: false);
     widget.readingBooks = user.getLectureListByName(READING_LIST);
     widget.pendingBooks = user.getLectureListByName(PENDING_LIST);
   }
 
-  void updateUILists(){
+  void updateUILists() {
     items = new List();
-    for(int index = 0; index < widget.readingBooks.length + widget.pendingBooks.length + 2; index++){
+    for (int index = 0;
+        index < widget.readingBooks.length + widget.pendingBooks.length + 2;
+        index++) {
       if (index == 0) {
         items.add(ListTitle(
           "Reading:",
@@ -75,24 +74,27 @@ class _VerticalBookList extends State<VerticalBookList>
       } else if (index == widget.readingBooks.length + 1) {
         items.add(ListTitle('Pending:'));
       } else {
-        items.add(_makeCard(index - 2 - widget.readingBooks.length, widget.pendingBooks, ButtonType.read));
+        items.add(_makeCard(index - 2 - widget.readingBooks.length,
+            widget.pendingBooks, ButtonType.read));
       }
     }
   }
 
   @override
-  onTitleButtonPressed(ButtonType buttonType, BuildContext context, {String title}){
-    if(buttonType == ButtonType.view_all){
+  onTitleButtonPressed(ButtonType buttonType, BuildContext context,
+      {String title}) {
+    if (buttonType == ButtonType.view_all) {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => BookshelfPage(Provider.of<User>(context, listen: false))),
+        MaterialPageRoute(
+            builder: (context) =>
+                BookshelfPage(Provider.of<User>(context, listen: false))),
       );
     }
   }
 
   @override
   Widget build(BuildContext context) {
-
     updateLists();
     updateUILists();
 
@@ -124,8 +126,9 @@ class _VerticalBookList extends State<VerticalBookList>
             itemBuilder: (BuildContext context, int index) {
               return Container(
                 width: width,
-                height: (index == 0) || (index == this.readingBooks.length + 1) ?
-                (13.09 * SizeConfig.heightMultiplier) : (26.18 * SizeConfig.heightMultiplier),
+                height: (index == 0) || (index == this.readingBooks.length + 1)
+                    ? (13.09 * SizeConfig.heightMultiplier)
+                    : (26.18 * SizeConfig.heightMultiplier),
                 key: UniqueKey(),
                 //padding: EdgeInsets.all(0),
                 child: items[index],
@@ -133,7 +136,6 @@ class _VerticalBookList extends State<VerticalBookList>
             },
           );
         },
-
       ),
     );
   }

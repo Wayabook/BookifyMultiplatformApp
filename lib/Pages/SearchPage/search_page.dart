@@ -10,23 +10,18 @@ import 'package:bookifyapp/Models/User.dart';
 
 import '../../Design/SizeConfig.dart';
 
-
 class SearchPage extends StatefulWidget {
-
   List<Book> books;
   List<User> users;
 
-  //final String title;
-  //SearchPage();
   SearchPage(this.books, this.users);
 
   @override
   _SearchPage createState() => _SearchPage();
-
 }
 
-class _SearchPage extends State<SearchPage> with SingleTickerProviderStateMixin {
-
+class _SearchPage extends State<SearchPage>
+    with SingleTickerProviderStateMixin {
   List<Book> _filteredList = [];
 
   List<User> _personsList = [];
@@ -39,7 +34,6 @@ class _SearchPage extends State<SearchPage> with SingleTickerProviderStateMixin 
   String persons = "";
   Icon actionIcon = new Icon(Icons.search);
   Widget appBarTitle = new Text("Search...");
-
 
   void _handleTabIndex() {
     setState(() {});
@@ -79,15 +73,15 @@ class _SearchPage extends State<SearchPage> with SingleTickerProviderStateMixin 
     super.initState();
   }
 
-
   @override
   Widget build(BuildContext context) {
-
     if ((filter.isNotEmpty)) {
       List<Book> tmpList = new List<Book>();
       for (int i = 0; i < _filteredList.length; i++) {
-        if (_filteredList[i].title.toLowerCase().contains(
-            filter.toLowerCase())) {
+        if (_filteredList[i]
+            .title
+            .toLowerCase()
+            .contains(filter.toLowerCase())) {
           tmpList.add(_filteredList[i]);
         }
       }
@@ -97,36 +91,40 @@ class _SearchPage extends State<SearchPage> with SingleTickerProviderStateMixin 
     if ((persons.isNotEmpty)) {
       List<User> _tmpList2 = new List<User>();
       for (int i = 0; i < _personsList.length; i++) {
-        if (_personsList[i].name.toLowerCase().contains(
-            persons.toLowerCase())) {
+        if (_personsList[i]
+            .name
+            .toLowerCase()
+            .contains(persons.toLowerCase())) {
           _tmpList2.add(_personsList[i]);
         }
       }
       _personsList = _tmpList2;
     }
 
-    final appBody = TabBarView(
-        controller: _tabController,
-        children: [
-          Container(
-              child: VerticalBookListSearch(_filteredList, ListType.preview_friends)
-          ),
-
-          Container(
-              child: VerticalUserList(_personsList)
-          ),
-        ]);
+    final appBody = TabBarView(controller: _tabController, children: [
+      Container(
+          child:
+              VerticalBookListSearch(_filteredList, ListType.preview_friends)),
+      Container(child: VerticalUserList(_personsList)),
+    ]);
 
     final appTopAppBar = AppBar(
       backgroundColor: kPrimaryDarkColor,
       elevation: 0.1,
-      bottom: TabBar(
-          controller: _tabController,
-          tabs: [
-            Tab(child: Text(BOOK_TITLE, style: TextStyle(fontSize: (TEXT_FACTOR_14 * SizeConfig.textMultiplier)),)),
-            Tab(child: Text(PERSON_TITLE, style: TextStyle(fontSize: (TEXT_FACTOR_14 * SizeConfig.textMultiplier)),))
-          ]
-      ),
+      bottom: TabBar(controller: _tabController, tabs: [
+        Tab(
+            child: Text(
+          BOOK_TITLE,
+          style:
+              TextStyle(fontSize: (TEXT_FACTOR_14 * SizeConfig.textMultiplier)),
+        )),
+        Tab(
+            child: Text(
+          PERSON_TITLE,
+          style:
+              TextStyle(fontSize: (TEXT_FACTOR_14 * SizeConfig.textMultiplier)),
+        ))
+      ]),
       title: appBarTitle,
       actions: <Widget>[
         new IconButton(
@@ -149,7 +147,8 @@ class _SearchPage extends State<SearchPage> with SingleTickerProviderStateMixin 
                 );
               } else {
                 this.actionIcon = new Icon(Icons.search);
-                this.appBarTitle = new Text(_tabController.index == 0 ? "Cities" : "Persons");
+                this.appBarTitle =
+                    new Text(_tabController.index == 0 ? "Cities" : "Persons");
                 _filteredList = widget.books;
                 _personsList = widget.users;
                 controller.clear();
@@ -160,10 +159,9 @@ class _SearchPage extends State<SearchPage> with SingleTickerProviderStateMixin 
       ],
     );
 
-    return
-      Scaffold(
-        appBar: appTopAppBar,
-        body: appBody,
-      );
+    return Scaffold(
+      appBar: appTopAppBar,
+      body: appBody,
+    );
   }
 }

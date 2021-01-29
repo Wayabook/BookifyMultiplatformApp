@@ -8,9 +8,7 @@ import 'package:bookifyapp/Pages/ProfilePages/profile_page.dart';
 import 'package:provider/provider.dart';
 import 'package:bookifyapp/Design/size_constants.dart';
 
-
 class VerticalUserList extends StatefulWidget {
-
   VerticalUserList(this.users);
 
   final List<User> users;
@@ -19,7 +17,9 @@ class VerticalUserList extends StatefulWidget {
   _VerticalUserList createState() => _VerticalUserList();
 }
 
-class _VerticalUserList extends State<VerticalUserList> with TickerProviderStateMixin{
+class _VerticalUserList extends State<VerticalUserList>
+    with TickerProviderStateMixin {
+  static const double DEFAULT_FONT_SIZE_FACTOR = 3.8;
 
   @override
   Widget build(BuildContext context) {
@@ -31,20 +31,19 @@ class _VerticalUserList extends State<VerticalUserList> with TickerProviderState
 
   _makeCard(int index) {
     User user = Provider.of<User>(context, listen: false);
-    return  GestureDetector(
+    return GestureDetector(
       onTap: () {
         Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => ProfilePage(
-              widget.users[index],
-              ProfileType.friend_profile,
-              isFriend: user.isFriend(widget.users[index]))));
+            context,
+            MaterialPageRoute(
+                builder: (context) => ProfilePage(
+                    widget.users[index], ProfileType.friend_profile,
+                    isFriend: user.isFriend(widget.users[index]))));
       },
       child: UserPreviewCard(
         widget.users[index],
         padding: (PADDING_FACTOR_5 * SizeConfig.widthMultiplier), //5
-        fontSize: (3.8 * SizeConfig.textMultiplier), //26
-        /*isFriend: user.isFriend(widget.users[index]),*/
+        fontSize: (DEFAULT_FONT_SIZE_FACTOR * SizeConfig.textMultiplier), //26
       ),
     );
   }

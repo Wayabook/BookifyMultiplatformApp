@@ -4,10 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:bookifyapp/LayoutWidgets/Lists/vertical_user_list.dart';
 import 'package:bookifyapp/Models/User.dart';
 
-
 class FriendsPage extends StatefulWidget {
-
-
   FriendsPage(this.friends);
 
   List<User> friends;
@@ -17,7 +14,6 @@ class FriendsPage extends StatefulWidget {
 }
 
 class _FriendsPage extends State<FriendsPage> {
-
   List<User> _friends = [];
 
   TextEditingController controller = new TextEditingController();
@@ -55,24 +51,19 @@ class _FriendsPage extends State<FriendsPage> {
     super.initState();
   }
 
-
   @override
   Widget build(BuildContext context) {
-
     if ((filter.isNotEmpty)) {
       List<User> tmpList = new List<User>();
       for (int i = 0; i < _friends.length; i++) {
-        if (_friends[i].name.toLowerCase().contains(
-            filter.toLowerCase())) {
+        if (_friends[i].name.toLowerCase().contains(filter.toLowerCase())) {
           tmpList.add(_friends[i]);
         }
       }
       _friends = tmpList;
     }
 
-    final appBody = Container(
-        child: VerticalUserList(_friends)
-    );
+    final appBody = Container(child: VerticalUserList(_friends));
 
     final appTopAppBar = AppBar(
       backgroundColor: kPrimaryDarkColor,
@@ -100,8 +91,8 @@ class _FriendsPage extends State<FriendsPage> {
               } else {
                 this.actionIcon = new Icon(Icons.search);
                 this.appBarTitle = new Text(
-                    SEARCH_BY_NAME,
-                    overflow: TextOverflow.ellipsis,
+                  SEARCH_BY_NAME,
+                  overflow: TextOverflow.ellipsis,
                 );
                 _friends = widget.friends;
                 controller.clear();
@@ -112,10 +103,9 @@ class _FriendsPage extends State<FriendsPage> {
       ],
     );
 
-    return
-      Scaffold(
-        appBar: appTopAppBar,
-        body: appBody,
-      );
+    return Scaffold(
+      appBar: appTopAppBar,
+      body: appBody,
+    );
   }
 }

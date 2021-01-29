@@ -1,22 +1,18 @@
-
+import 'package:bookifyapp/Design/info_text.dart';
+import 'package:bookifyapp/Design/size_constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../Design/SizeConfig.dart';
 
-class DialogWithInputText extends StatelessWidget{
-
+class DialogWithInputText extends StatelessWidget {
   static const int ACCEPT_TAP = 0;
   static const int CANCEL_TAP = 1;
   String title;
   String description;
   String entryTextDescription;
 
-  DialogWithInputText(
-      this.title,
-      this.description,
-      this.entryTextDescription
-  );
+  DialogWithInputText(this.title, this.description, this.entryTextDescription);
 
   AlertDialog alertDialog;
   bool _firstTime = true;
@@ -29,7 +25,7 @@ class DialogWithInputText extends StatelessWidget{
       title: Text(
         this.title,
         style: TextStyle(
-          fontSize: (2.05 * SizeConfig.textMultiplier), //14
+          fontSize: (TEXT_FACTOR_14 * SizeConfig.textMultiplier), //14
         ),
       ),
       content: new Column(
@@ -39,18 +35,24 @@ class DialogWithInputText extends StatelessWidget{
           _buildAboutText(),
           TextField(
             decoration: InputDecoration(
-                filled: true,
-                enabledBorder:  OutlineInputBorder(
-                  borderSide:  BorderSide(color: Colors.greenAccent, width: (0.48 * SizeConfig.widthMultiplier)), //2
-                ),
-                errorBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.red, width: (0.48 * SizeConfig.widthMultiplier)), //2
-                ),
-                labelText:  this.entryTextDescription,
-                errorText: validateListTitle(inputController.text),
+              filled: true,
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(
+                    color: Colors.greenAccent,
+                    width:
+                        (CONTAINER_FACTOR_2 * SizeConfig.widthMultiplier)), //2
+              ),
+              errorBorder: OutlineInputBorder(
+                borderSide: BorderSide(
+                    color: Colors.red,
+                    width:
+                        (CONTAINER_FACTOR_2 * SizeConfig.widthMultiplier)), //2
+              ),
+              labelText: this.entryTextDescription,
+              errorText: validateListTitle(inputController.text),
             ),
             style: TextStyle(
-              fontSize: (2.05 * SizeConfig.textMultiplier), //14
+              fontSize: (TEXT_FACTOR_14 * SizeConfig.textMultiplier), //14
             ),
             controller: inputController,
           ),
@@ -58,31 +60,28 @@ class DialogWithInputText extends StatelessWidget{
       ),
       actions: <Widget>[
         FlatButton(
-          child: Text(
-              "Accept",
+          child: Text(ACCEPT_OPTION,
               style: TextStyle(
                 color: Colors.blue,
-                fontSize: (2.05 * SizeConfig.textMultiplier), //14
-              )
-          ),
+                fontSize: (TEXT_FACTOR_14 * SizeConfig.textMultiplier), //14
+              )),
           onPressed: () async {
-              String listTitle = "";
-              if (inputController.text.isNotEmpty && inputController.text.toString() != this.entryTextDescription) {
-                listTitle = inputController.text.toString();
-              } else {
-                listTitle = "Custom list";
-              }
-              Navigator.of(context).pop(listTitle);
+            String listTitle = "";
+            if (inputController.text.isNotEmpty &&
+                inputController.text.toString() != this.entryTextDescription) {
+              listTitle = inputController.text.toString();
+            } else {
+              listTitle = "Custom list";
+            }
+            Navigator.of(context).pop(listTitle);
           },
         ),
         FlatButton(
-          child: Text(
-              "Cancel",
+          child: Text(CANCEL_OPTION,
               style: TextStyle(
                 color: Colors.red,
-                fontSize: (2.05 * SizeConfig.textMultiplier), //14
-              )
-          ),
+                fontSize: (TEXT_FACTOR_14 * SizeConfig.textMultiplier), //14
+              )),
           onPressed: () {
             Navigator.of(context).pop(CANCEL_TAP);
           },
@@ -93,14 +92,12 @@ class DialogWithInputText extends StatelessWidget{
   }
 
   String validateListTitle(String value) {
-    if ((value.length == 0) &&  !_firstTime && value != "List Title") {
+    if ((value.length == 0) && !_firstTime && value != "List Title") {
       return "List Title must be introduced";
     }
     _firstTime = false;
     return null;
   }
-
-
 
   Widget _buildAboutText() {
     return new RichText(
@@ -108,7 +105,7 @@ class DialogWithInputText extends StatelessWidget{
         text: this.description,
         style: TextStyle(
           color: Colors.black87,
-          fontSize: (2.05 * SizeConfig.textMultiplier), //14
+          fontSize: (TEXT_FACTOR_14 * SizeConfig.textMultiplier), //14
         ),
       ),
     );

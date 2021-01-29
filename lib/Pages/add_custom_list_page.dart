@@ -9,7 +9,6 @@ import 'package:bookifyapp/Models/Book.dart';
 import '../Design/SizeConfig.dart';
 
 class AddCustomListPage extends StatefulWidget {
-
   List<Book> bookshelf;
   String listTitle;
   ListType listType;
@@ -19,24 +18,17 @@ class AddCustomListPage extends StatefulWidget {
   Function(List<Book> recommendedBooks) sendRecommendedBooks;
   _AddCustomListPage _addCustomListPage = new _AddCustomListPage();
 
-  AddCustomListPage(
-      this.bookshelf,
-      this.listTitle,
-      this.listType,
-      {
-        this.showListTitleAndButtons = false,
-        this.removeBackButton = true,
-        this.specificUserBookList = ";;;",
-        this.sendRecommendedBooks
-      }
-  );
+  AddCustomListPage(this.bookshelf, this.listTitle, this.listType,
+      {this.showListTitleAndButtons = false,
+      this.removeBackButton = true,
+      this.specificUserBookList = ";;;",
+      this.sendRecommendedBooks});
 
   @override
   _AddCustomListPage createState() => _addCustomListPage;
 }
 
 class _AddCustomListPage extends State<AddCustomListPage> {
-
   List<Book> _bookshelf = [];
   List<Book> recommendedBooks;
 
@@ -91,14 +83,14 @@ class _AddCustomListPage extends State<AddCustomListPage> {
         fontSize: (TEXT_FACTOR_14 * SizeConfig.textMultiplier), //14
       ),
       cursorColor: kPrimaryLightColor,
-      onTap: (){
+      onTap: () {
         _checkInuptTextState(false);
       },
     );
     super.initState();
   }
 
-  _checkInuptTextState(fromButton){
+  _checkInuptTextState(fromButton) {
     setState(() {
       if (this.actionIcon.icon == Icons.search) {
         this.actionIcon = new Icon(
@@ -115,30 +107,29 @@ class _AddCustomListPage extends State<AddCustomListPage> {
         _focusNode.unfocus();
         controller.clear();
       }
-      if(fromButton)
-        searchTitle = "Search...";
+      if (fromButton) searchTitle = "Search...";
     });
   }
 
-  void addOrDeleteRecommendation(Book recommendedBook, bool add){
-    if(add && !recommendedBooks.contains(recommendedBook)){
+  void addOrDeleteRecommendation(Book recommendedBook, bool add) {
+    if (add && !recommendedBooks.contains(recommendedBook)) {
       recommendedBooks.add(recommendedBook);
-    } else if (!add &&  recommendedBooks.contains(recommendedBook)) {
+    } else if (!add && recommendedBooks.contains(recommendedBook)) {
       recommendedBooks.remove(recommendedBook);
     }
   }
 
-  void onRecommendationCanceled(){
+  void onRecommendationCanceled() {
     Navigator.pop(context);
   }
 
-  void onRecommendationsAccepted(){
+  void onRecommendationsAccepted() {
     widget.sendRecommendedBooks(this.recommendedBooks);
     onRecommendationCanceled();
   }
 
-  _getVerticalBookListSearch(){
-    if(widget.listType == ListType.send_recommendation_form){
+  _getVerticalBookListSearch() {
+    if (widget.listType == ListType.send_recommendation_form) {
       return VerticalBookListSearch(
         _bookshelf,
         widget.listType,
@@ -158,24 +149,19 @@ class _AddCustomListPage extends State<AddCustomListPage> {
     }
   }
 
-
   @override
   Widget build(BuildContext context) {
-
     if ((filter.isNotEmpty)) {
       List<Book> tmpList = new List<Book>();
       for (int i = 0; i < _bookshelf.length; i++) {
-        if (_bookshelf[i].title.toLowerCase().contains(
-            filter.toLowerCase())) {
+        if (_bookshelf[i].title.toLowerCase().contains(filter.toLowerCase())) {
           tmpList.add(_bookshelf[i]);
         }
       }
       _bookshelf = tmpList;
     }
 
-    final appBody = Container(
-      child: _getVerticalBookListSearch()
-    );
+    final appBody = Container(child: _getVerticalBookListSearch());
 
     final appTopAppBar = AppBar(
       automaticallyImplyLeading: widget.removeBackButton,
@@ -192,10 +178,9 @@ class _AddCustomListPage extends State<AddCustomListPage> {
       ],
     );
 
-    return
-      Scaffold(
-        appBar: appTopAppBar,
-        body: appBody,
-      );
+    return Scaffold(
+      appBar: appTopAppBar,
+      body: appBody,
+    );
   }
 }

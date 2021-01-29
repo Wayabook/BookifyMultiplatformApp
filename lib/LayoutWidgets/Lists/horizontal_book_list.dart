@@ -10,7 +10,7 @@ import 'package:bookifyapp/Enums/book_card_type.dart';
 import '../../Design/SizeConfig.dart';
 
 class HorizontalBookList extends StatelessWidget {
-
+  static const double DEFAULT_PADDING_FACTOR = 1.46;
   List<Lecture> books;
   BuildContext context;
   ListType type;
@@ -24,10 +24,10 @@ class HorizontalBookList extends StatelessWidget {
     return Container(
       child: Card(
         margin: EdgeInsets.fromLTRB(
-            (PADDING_FACTOR_10 * SizeConfig.widthMultiplier),
-            (PADDING_FACTOR_0),
-            (PADDING_FACTOR_10 * SizeConfig.widthMultiplier),
-            (1.46 * SizeConfig.heightMultiplier),
+          (PADDING_FACTOR_10 * SizeConfig.widthMultiplier),
+          (PADDING_FACTOR_0),
+          (PADDING_FACTOR_10 * SizeConfig.widthMultiplier),
+          (DEFAULT_PADDING_FACTOR * SizeConfig.heightMultiplier),
         ),
         color: kPrimaryDarkColor,
         child: _createListView(),
@@ -35,23 +35,27 @@ class HorizontalBookList extends StatelessWidget {
     );
   }
 
-
-  _createListView(){
-
+  _createListView() {
     return Container(
-      height: (CONTAINER_FACTOR_200* SizeConfig.heightMultiplier), // 200
+      height: (CONTAINER_FACTOR_200 * SizeConfig.heightMultiplier), // 200
       width: (CONTAINER_FACTOR_500 * SizeConfig.widthMultiplier), // 500
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: (this.type == ListType.discover_option || this.type == ListType.view_all) ? books.length + 1: books.length,
+        itemCount: (this.type == ListType.discover_option ||
+                this.type == ListType.view_all)
+            ? books.length + 1
+            : books.length,
         itemBuilder: (BuildContext context, int index) {
-          if(this.type == ListType.discover_option || this.type == ListType.view_all)
-          {
-            if(index < books.length){
+          if (this.type == ListType.discover_option ||
+              this.type == ListType.view_all) {
+            if (index < books.length) {
               if (this.type == ListType.discover_option) {
-                return BookCard(this.books[index], BookCardType.add_option, user: this.user);
+                return BookCard(this.books[index], BookCardType.add_option,
+                    user: this.user);
               } else {
-                return BookCard(this.books[index], BookCardType.without_add_option_and_progress_bar, user: this.user);
+                return BookCard(this.books[index],
+                    BookCardType.without_add_option_and_progress_bar,
+                    user: this.user);
               }
             } else {
               if (this.type == ListType.discover_option) {
@@ -61,11 +65,11 @@ class HorizontalBookList extends StatelessWidget {
               }
             }
           } else {
-            return BookCard(this.books[index], BookCardType.add_option, user: this.user);
+            return BookCard(this.books[index], BookCardType.add_option,
+                user: this.user);
           }
         },
       ),
     );
   }
 }
-

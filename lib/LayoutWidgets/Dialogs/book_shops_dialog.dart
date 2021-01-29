@@ -1,4 +1,5 @@
 import 'package:bookifyapp/Design/constants.dart';
+import 'package:bookifyapp/Design/size_constants.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/Book/ShopItem/shop_item_card.dart';
 import 'package:bookifyapp/Models/Item.dart';
 import 'package:flutter/cupertino.dart';
@@ -9,9 +10,8 @@ import 'package:flutter/painting.dart';
 
 import '../../Design/SizeConfig.dart';
 
-
-class BookShopsDialog<T extends TickerProviderStateMixin> extends StatefulWidget {
-
+class BookShopsDialog<T extends TickerProviderStateMixin>
+    extends StatefulWidget {
   Book book;
   T page;
 
@@ -23,8 +23,7 @@ class BookShopsDialog<T extends TickerProviderStateMixin> extends StatefulWidget
   _BookShopsDialog createState() => _BookShopsDialog();
 }
 
-class _BookShopsDialog extends State<BookShopsDialog>{
-
+class _BookShopsDialog extends State<BookShopsDialog> {
   double width;
   double height;
   Dialog alertDialog;
@@ -35,34 +34,31 @@ class _BookShopsDialog extends State<BookShopsDialog>{
     width = MediaQuery.of(context).size.width;
     height = MediaQuery.of(context).size.height;
 
-
     alertDialog = new Dialog(
-      backgroundColor: Colors.transparent,
-      child: Container(
-        height: height,
-        width: width,
-        child: _getCardContent(context)
-      )
-    );
+        backgroundColor: Colors.transparent,
+        child: Container(
+            height: height, width: width, child: _getCardContent(context)));
     return alertDialog;
   }
 
-  _getCardOptionBar(){
+  _getCardOptionBar() {
     List<Tab> tabs = new List();
     List<Widget> tabBarViews = new List();
     var index = 0;
-    for(String key in widget.book.shops_items.keys){
+    for (String key in widget.book.shops_items.keys) {
       tabs.add(new Tab(
         child: Text(
           key,
-          style: TextStyle(fontSize: (2.05 * SizeConfig.textMultiplier)),
+          style:
+              TextStyle(fontSize: (TEXT_FACTOR_14 * SizeConfig.textMultiplier)),
           overflow: TextOverflow.ellipsis,
         ),
       ));
       tabBarViews.add(_get_book_info(index));
     }
 
-    var _controller = new TabController(length: tabs.length, vsync: widget.page);
+    var _controller =
+        new TabController(length: tabs.length, vsync: widget.page);
     final tab = new TabBar(
       tabs: tabs,
       controller: _controller,
@@ -71,58 +67,49 @@ class _BookShopsDialog extends State<BookShopsDialog>{
     );
 
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: tab.preferredSize,
-        child: Card(
-          elevation: (2.43 * SizeConfig.widthMultiplier), //10
-          color: kPrimaryLightColor,
-          child: tab,
+        appBar: PreferredSize(
+          preferredSize: tab.preferredSize,
+          child: Card(
+            elevation: (PADDING_FACTOR_10 * SizeConfig.widthMultiplier), //10
+            color: kPrimaryLightColor,
+            child: tab,
+          ),
         ),
-      ),
-      body: Padding(
-        padding: EdgeInsets.fromLTRB(
-            (3.64 * SizeConfig.widthMultiplier),//15
-            0,
-            (3.64 * SizeConfig.widthMultiplier),//15
-            0
-        ),
-        child: TabBarView(
-            controller: _controller,
-            children: tabBarViews
-        ),
-      )
-    );
+        body: Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: (PADDING_FACTOR_15 * SizeConfig.widthMultiplier), //15,
+            vertical: PADDING_FACTOR_0,
+          ),
+          child: TabBarView(controller: _controller, children: tabBarViews),
+        ));
   }
 
-
-  _getCardContent(BuildContext context){
-
+  _getCardContent(BuildContext context) {
     return Container(
       //color: Colors.black,
       child: Stack(
         children: <Widget>[
           Positioned(
-              top: (21.94 * SizeConfig.heightMultiplier), //140
+              top: (CONTAINER_FACTOR_140 * SizeConfig.heightMultiplier), //140
               child: Container(
                   width: width,
-                  height: height - (21.94 * SizeConfig.heightMultiplier),
+                  height: height -
+                      (CONTAINER_FACTOR_140 * SizeConfig.heightMultiplier),
                   color: kPrimaryLightColor,
-                  child:  Align(
+                  child: Align(
                     alignment: Alignment.topLeft,
                     child: IconButton(
-                      onPressed: (){
+                      onPressed: () {
                         Navigator.pop(context);
                       },
                       icon: Icon(
-                          Icons.keyboard_arrow_down,
-                          color: Colors.black,
-                          size: (5.83 * SizeConfig.imageSizeMultiplier), //24
+                        Icons.keyboard_arrow_down,
+                        color: Colors.black,
+                        size: (ICON_FACTOR_24 *
+                            SizeConfig.imageSizeMultiplier), //24
                       ),
                     ),
-                  )
-              )
-          ),
-
+                  ))),
           Positioned(
             top: 0,
             left: (width / 2) - ((29.45 * SizeConfig.heightMultiplier) / 2),
@@ -132,65 +119,60 @@ class _BookShopsDialog extends State<BookShopsDialog>{
               height: (29.45 * SizeConfig.heightMultiplier), //180
             ),
           ),
-
           Padding(
             padding: EdgeInsets.fromLTRB(
-                (3.64 * SizeConfig.widthMultiplier), //15
-                (34.36 * SizeConfig.heightMultiplier), //210
-                (3.64 * SizeConfig.widthMultiplier), //15
-                (2.43 * SizeConfig.widthMultiplier), //10
+              (3.64 * SizeConfig.widthMultiplier), //15
+              (34.36 * SizeConfig.heightMultiplier), //210
+              (3.64 * SizeConfig.widthMultiplier), //15
+              (PADDING_FACTOR_10 * SizeConfig.widthMultiplier), //10
             ),
-            child: Container(color: kPrimaryDarkColor, height: (0.48 * SizeConfig.widthMultiplier), width: width), //2
+            child: Container(
+                color: kPrimaryDarkColor,
+                height: (0.48 * SizeConfig.widthMultiplier),
+                width: width), //2
           ),
-
           Padding(
-            padding: EdgeInsets.fromLTRB(
-                0,
-                (36.01 * SizeConfig.heightMultiplier), //220
-                0,
-                0),
-            child: _getCardOptionBar()
-          )
+              padding: EdgeInsets.fromLTRB(
+                  PADDING_FACTOR_0,
+                  (36.01 * SizeConfig.heightMultiplier), //220
+                  PADDING_FACTOR_0,
+                  PADDING_FACTOR_0),
+              child: _getCardOptionBar())
         ],
       ),
     );
   }
 
-  List<Widget> get_book_data_sheet(String cover_type, Item item){
+  List<Widget> get_book_data_sheet(String cover_type, Item item) {
     List<Widget> bookDataSheet = [
-
-      Padding(
-          padding: EdgeInsets.fromLTRB(
-              0,
-              (1.21 * SizeConfig.widthMultiplier), //5
-              0,
-              (1.21 * SizeConfig.widthMultiplier), //5
-          ),
-          child: Container(
-            height: (2.92 * SizeConfig.heightMultiplier), //20
-            width: width,
-            //color: Colors.black,
-            child: Text(
-              'Ficha Tecnica:',
-              style: TextStyle(
-                  fontSize: (2.94 * SizeConfig.textMultiplier), //18
-                  fontWeight: FontWeight.bold),
-              textAlign: TextAlign.left,
-            ),
-          ),
-      ),
-
       Padding(
         padding: EdgeInsets.symmetric(
-          vertical: (1.21 * SizeConfig.widthMultiplier), //5
-          horizontal: 0
+          horizontal: PADDING_FACTOR_0,
+          vertical: (PADDING_FACTOR_5 * SizeConfig.widthMultiplier),
         ),
+        child: Container(
+          height: (PADDING_FACTOR_20 * SizeConfig.heightMultiplier), //20
+          width: width,
+          //color: Colors.black,
+          child: Text(
+            'Ficha Tecnica:',
+            style: TextStyle(
+                fontSize: (2.94 * SizeConfig.textMultiplier), //18
+                fontWeight: FontWeight.bold),
+            textAlign: TextAlign.left,
+          ),
+        ),
+      ),
+      Padding(
+        padding: EdgeInsets.symmetric(
+            vertical: (PADDING_FACTOR_5 * SizeConfig.widthMultiplier), //5
+            horizontal: PADDING_FACTOR_0),
         child: Row(
           children: <Widget>[
             Text(
               'Editorial:',
               style: TextStyle(
-                  fontSize: (2.05 * SizeConfig.textMultiplier), //14
+                  fontSize: (TEXT_FACTOR_14 * SizeConfig.textMultiplier), //14
                   fontWeight: FontWeight.bold),
               textAlign: TextAlign.left,
             ),
@@ -198,52 +180,49 @@ class _BookShopsDialog extends State<BookShopsDialog>{
               widget.book.editorial,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
-                  fontSize: (2.05 * SizeConfig.textMultiplier), //14
+                fontSize: (TEXT_FACTOR_14 * SizeConfig.textMultiplier), //14
               ),
               textAlign: TextAlign.left,
             ),
           ],
         ),
       ),
-
       Padding(
         padding: EdgeInsets.symmetric(
-          horizontal: 0,
-          vertical: (1.21 * SizeConfig.widthMultiplier), //5
+          horizontal: PADDING_FACTOR_0,
+          vertical: (PADDING_FACTOR_5 * SizeConfig.widthMultiplier), //5
         ),
         child: Row(
           children: <Widget>[
             Text(
               'EAN:',
               style: TextStyle(
-                  fontSize: (2.05 * SizeConfig.textMultiplier), //14
-                  fontWeight: FontWeight.bold
-              ),
+                  fontSize: (TEXT_FACTOR_14 * SizeConfig.textMultiplier), //14
+                  fontWeight: FontWeight.bold),
               textAlign: TextAlign.left,
             ),
             Text(
               item.ean,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
-                  fontSize: (2.05 * SizeConfig.textMultiplier), //14
+                fontSize: (TEXT_FACTOR_14 * SizeConfig.textMultiplier), //14
               ),
               textAlign: TextAlign.left,
             ),
           ],
         ),
       ),
-
       Padding(
         padding: EdgeInsets.symmetric(
-          horizontal: 0,
-          vertical:  (1.21 * SizeConfig.widthMultiplier), //5
+          horizontal: PADDING_FACTOR_0,
+          vertical: (PADDING_FACTOR_5 * SizeConfig.widthMultiplier), //5
         ),
         child: Row(
           children: <Widget>[
             Text(
               'IBAN:',
               style: TextStyle(
-                  fontSize: (2.05 * SizeConfig.textMultiplier), //14
+                  fontSize: (TEXT_FACTOR_14 * SizeConfig.textMultiplier), //14
                   fontWeight: FontWeight.bold),
               textAlign: TextAlign.left,
             ),
@@ -251,25 +230,24 @@ class _BookShopsDialog extends State<BookShopsDialog>{
               item.isbn,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
-                  fontSize: (2.05 * SizeConfig.textMultiplier), //14
+                fontSize: (TEXT_FACTOR_14 * SizeConfig.textMultiplier), //14
               ),
               textAlign: TextAlign.left,
             ),
           ],
         ),
       ),
-
       Padding(
           padding: EdgeInsets.symmetric(
-            horizontal: 0,
-            vertical: (1.21 * SizeConfig.widthMultiplier), //5
+            horizontal: PADDING_FACTOR_0,
+            vertical: (PADDING_FACTOR_5 * SizeConfig.widthMultiplier), //5
           ),
           child: Row(
             children: <Widget>[
               Text(
                 'Idioma:',
                 style: TextStyle(
-                    fontSize: (2.05 * SizeConfig.textMultiplier), //14
+                    fontSize: (TEXT_FACTOR_14 * SizeConfig.textMultiplier), //14
                     fontWeight: FontWeight.bold),
                 textAlign: TextAlign.left,
               ),
@@ -277,62 +255,61 @@ class _BookShopsDialog extends State<BookShopsDialog>{
                 widget.book.language,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
-                    fontSize: (2.05 * SizeConfig.textMultiplier), //14
+                  fontSize: (TEXT_FACTOR_14 * SizeConfig.textMultiplier), //14
                 ),
                 textAlign: TextAlign.left,
               ),
             ],
-          )
-      ),
+          )),
     ];
 
     return bookDataSheet;
   }
 
-  _get_book_info(int index){
+  _get_book_info(int index) {
     var aux = widget.book.shops_items.entries.toList();
     String cover_type = aux[index].key;
-    List<Item> items  = aux[index].value;
+    List<Item> items = aux[index].value;
 
     List<Widget> infoItems = <Widget>[
       Padding(
           padding: EdgeInsets.fromLTRB(
-              0,
-              (1.21 * SizeConfig.widthMultiplier), //5
-              0,
-              0
-          ),
-          child: Column(
-            children: get_book_data_sheet(cover_type, items[0])
-          )
-      ),
-
+              PADDING_FACTOR_0,
+              (PADDING_FACTOR_5 * SizeConfig.widthMultiplier), //5
+              PADDING_FACTOR_0,
+              PADDING_FACTOR_0),
+          child: Column(children: get_book_data_sheet(cover_type, items[0]))),
       Padding(
         padding: EdgeInsets.symmetric(
-          horizontal: 0,
-          vertical: (2.43 * SizeConfig.widthMultiplier), //10
+          horizontal: PADDING_FACTOR_0,
+          vertical: (PADDING_FACTOR_10 * SizeConfig.widthMultiplier), //10
         ),
-        child: Container(color: kPrimaryDarkColor, height: (0.48 * SizeConfig.widthMultiplier), width: width), //2
+        child: Container(
+            color: kPrimaryDarkColor,
+            height: (CONTAINER_FACTOR_2 * SizeConfig.widthMultiplier),
+            width: width), //2
       ),
     ];
 
-    for(Item item in items){
+    for (Item item in items) {
       infoItems.add(ShopItemCard(item));
-      infoItems.add(
-          Padding(
-            padding: EdgeInsets.fromLTRB(0, (0.48 * SizeConfig.widthMultiplier), 0, 0),
-            child: Container(color: kPrimaryLightColor, height: (0.48 * SizeConfig.widthMultiplier), width: width),
-          )
-      );
+      infoItems.add(Padding(
+        padding: EdgeInsets.fromLTRB(
+            PADDING_FACTOR_0,
+            (CONTAINER_FACTOR_2 * SizeConfig.widthMultiplier),
+            PADDING_FACTOR_0,
+            PADDING_FACTOR_0),
+        child: Container(
+            color: kPrimaryLightColor,
+            height: (CONTAINER_FACTOR_2 * SizeConfig.widthMultiplier),
+            width: width),
+      ));
     }
 
-    return ListView.builder
-      (
+    return ListView.builder(
         itemCount: infoItems.length,
         itemBuilder: (BuildContext ctxt, int index) {
           return infoItems[index];
-        }
-    );
+        });
   }
-
 }

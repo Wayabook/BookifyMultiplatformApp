@@ -15,14 +15,11 @@ import 'package:provider/provider.dart';
 
 import '../../Design/SizeConfig.dart';
 
-
-
 class BooskelfGridList extends StatefulWidget {
-
   User user;
   bool scrollToLastPosition;
 
-  BooskelfGridList(this.user,  { this.scrollToLastPosition = false });
+  BooskelfGridList(this.user, {this.scrollToLastPosition = false});
 
   @override
   _BooskelfGridList createState() => _BooskelfGridList();
@@ -30,7 +27,11 @@ class BooskelfGridList extends StatefulWidget {
 
 class _BooskelfGridList extends State<BooskelfGridList>
     with TickerProviderStateMixin
-    implements TitleButtonInterface{
+    implements TitleButtonInterface {
+  static const int DOUBLE_FACTOR = 2;
+  static const int HEIGHT_FACTOR = 4;
+  static const int CROSS_AXIS_COUNT = 3;
+  static const double GENRES_CONTAINER_FACTOR = 1.47;
 
   bool showEditButton;
 
@@ -43,81 +44,92 @@ class _BooskelfGridList extends State<BooskelfGridList>
 
   @override
   Widget build(BuildContext context) {
-
     double width = MediaQuery.of(context).size.width;
     List<String> keys = widget.user.lectures.keys.toList();
-    return ListView.builder
-      (
-        controller: widget.scrollToLastPosition ?
-        ScrollController(initialScrollOffset: (MediaQuery.of(context).size.height / 4) * (widget.user.lectures.keys.length * 2)) : ScrollController(),
-        itemCount: widget.user.lectures.keys.length * 2,
+    return ListView.builder(
+        controller: widget.scrollToLastPosition
+            ? ScrollController(
+                initialScrollOffset:
+                    (MediaQuery.of(context).size.height / HEIGHT_FACTOR) *
+                        (widget.user.lectures.keys.length * DOUBLE_FACTOR))
+            : ScrollController(),
+        itemCount: widget.user.lectures.keys.length * DOUBLE_FACTOR,
         itemBuilder: (BuildContext ctxt, int index) {
-          if (index % 2 == 0){
-            String key = keys[index == 0 ? index : (index~/2)];
-            return _makeHeader(key, width, User.uneditableLists().contains(key));
+          if (index % DOUBLE_FACTOR == 0) {
+            String key = keys[index == 0 ? index : (index ~/ DOUBLE_FACTOR)];
+            return _makeHeader(
+                key, width, User.uneditableLists().contains(key));
           } else {
             var auxIndex = index;
-            var key = keys[((auxIndex-1)~/2)];
+            var key = keys[((auxIndex - 1) ~/ DOUBLE_FACTOR)];
             return GridView.count(
               key: UniqueKey(),
-              physics: NeverScrollableScrollPhysics(), // to disable GridView's scrolling
+              physics:
+                  NeverScrollableScrollPhysics(), // to disable GridView's scrolling
               shrinkWrap: true,
-              crossAxisCount: 3,
-              mainAxisSpacing: (PADDING_FACTOR_10 * SizeConfig.widthMultiplier), // 10
-              crossAxisSpacing: (1.47 * SizeConfig.heightMultiplier),
-              childAspectRatio:  (MediaQuery.of(context).size.width / 4) / (MediaQuery.of(context).size.height / 4),
-              children: List.generate(widget.user.lectures[key].length, (index) {
-                return BookCard(widget.user.lectures[key][index], BookCardType.book_card_in_grid);
+              crossAxisCount: CROSS_AXIS_COUNT,
+              mainAxisSpacing:
+                  (PADDING_FACTOR_10 * SizeConfig.widthMultiplier), // 10
+              crossAxisSpacing:
+                  (GENRES_CONTAINER_FACTOR * SizeConfig.heightMultiplier),
+              childAspectRatio:
+                  (MediaQuery.of(context).size.width / HEIGHT_FACTOR) /
+                      (MediaQuery.of(context).size.height / HEIGHT_FACTOR),
+              children:
+                  List.generate(widget.user.lectures[key].length, (index) {
+                return BookCard(widget.user.lectures[key][index],
+                    BookCardType.book_card_in_grid);
               }),
             );
           }
-        }
-    );
+        });
   }
 
   @override
-  void onTitleButtonPressed(ButtonType buttonType, BuildContext context, {String title}) {
+  void onTitleButtonPressed(ButtonType buttonType, BuildContext context,
+      {String title}) {
     // TODO: implement onTitleButtonPressed
-    if(buttonType == ButtonType.view_all) {
+    if (buttonType == ButtonType.view_all) {
       _viewAllPressed(context, title);
     } else if (buttonType == ButtonType.edit_list) {
       _goToEditListPage(title);
     } else if (buttonType == ButtonType.copy_list) {
       _copyList(title);
       //this.goToPageFromParent(title);
-    } else if (buttonType == ButtonType.delete_list){
+    } else if (buttonType == ButtonType.delete_list) {
       _deleteList(title);
     }
   }
 
   _viewAllPressed(BuildContext context, String title) async {
-    await Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) =>
-        AddCustomListPage(Provider
-            .of<User>(context, listen: false)
-            .bookshelf, title, ListType.edit_custom_list)));
+    await Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) => AddCustomListPage(
+            Provider.of<User>(context, listen: false).bookshelf,
+            title,
+            ListType.edit_custom_list)));
   }
 
   _goToEditListPage(String title) async {
-    await Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) =>
-        AddCustomListPage(Provider
-            .of<User>(context, listen: false)
-            .bookshelf, title, ListType.edit_custom_list)));
+    await Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) => AddCustomListPage(
+            Provider.of<User>(context, listen: false).bookshelf,
+            title,
+            ListType.edit_custom_list)));
   }
 
   _copyList(String title) async {
     var newTitle = await showDialog(
       context: context,
       builder: (BuildContext context) => DialogWithInputText(
-          'Copy Friends List',
-          'Are you sure you want to copy this list?\n\n',
-          title,
+        'Copy Friends List',
+        'Are you sure you want to copy this list?\n\n',
+        title,
       ),
     );
-    if(newTitle != DialogWithInputText.CANCEL_TAP){
+    if (newTitle != DialogWithInputText.CANCEL_TAP) {
       User user = Provider.of<User>(context, listen: false);
-      user.addCustomLectureList(newTitle, widget.user.getLectureListByName(title));
+      user.addCustomLectureList(
+          newTitle, widget.user.getLectureListByName(title));
       InfoToast.showListCopiedCorrecltyToBookshelf(newTitle);
     }
   }
@@ -128,11 +140,14 @@ class _BooskelfGridList extends State<BooskelfGridList>
       builder: (BuildContext context) => DialogWithAcceptAndCancelOptions(
           "Delete List",
           "Are you sure you want to delete list?",
-          TextStyle(color: Colors.red,),
-          TextStyle(color: Colors.blue,)
-      ),
+          TextStyle(
+            color: Colors.red,
+          ),
+          TextStyle(
+            color: Colors.blue,
+          )),
     );
-    if(result == DialogWithAcceptAndCancelOptions.ACCEPT_TAP){
+    if (result == DialogWithAcceptAndCancelOptions.ACCEPT_TAP) {
       setState(() {
         User user = Provider.of<User>(context, listen: false);
         user.removeLectureListByName(title);
@@ -142,9 +157,8 @@ class _BooskelfGridList extends State<BooskelfGridList>
   }
 
   _makeHeader(String title, width, [reading]) {
-    if (reading)
-      return ListTitle(title);
-    if(!showEditButton)
+    if (reading) return ListTitle(title);
+    if (!showEditButton)
       return ListTitle(
         title,
         withButton: true,
@@ -158,5 +172,4 @@ class _BooskelfGridList extends State<BooskelfGridList>
       onListTitleButtonTapped: onTitleButtonPressed,
     );
   }
-
 }

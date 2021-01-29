@@ -13,29 +13,28 @@ import 'package:provider/provider.dart';
 
 import '../../Design/SizeConfig.dart';
 
-
-
 class DiscoverPage extends StatelessWidget {
-
   final Color color;
-  List<String> sectionsTitles = ["Latest Additions","Top Rated","More of  Novel Genre","More of Romance Genre"];
+  List<String> sectionsTitles = [
+    "Latest Additions",
+    "Top Rated",
+    "More of  Novel Genre",
+    "More of Romance Genre"
+  ];
 
   DiscoverPage(this.color);
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       body: Container(
         color: kPrimaryDarkColor,
         child: ListView.builder(
-          itemBuilder: (context, index) => _buildSection(context, index),
-          itemCount: sectionsTitles.length,
-          scrollDirection: Axis.vertical,
-          shrinkWrap: true
-        ),
+            itemBuilder: (context, index) => _buildSection(context, index),
+            itemCount: sectionsTitles.length,
+            scrollDirection: Axis.vertical,
+            shrinkWrap: true),
       ),
-
       appBar: AppBar(
         backgroundColor: kPrimaryDarkColor,
         title: Text(SEARCH_BOOK),
@@ -44,11 +43,12 @@ class DiscoverPage extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => SearchPage(Book.getUserMockBooks(), User.getMockAlterantiveUsers())),
+                  MaterialPageRoute(
+                      builder: (context) => SearchPage(Book.getUserMockBooks(),
+                          User.getMockAlterantiveUsers())),
                 );
               },
-              icon: Icon(Icons.search)
-          )
+              icon: Icon(Icons.search))
         ],
       ),
     );
@@ -66,16 +66,14 @@ class DiscoverPage extends StatelessWidget {
               (CONTAINER_FACTOR_2 * SizeConfig.widthMultiplier), //2
               (CONTAINER_FACTOR_2 * SizeConfig.widthMultiplier), //2
             ),
-            child:  Align(
+            child: Align(
               alignment: Alignment.topLeft,
               child: ListTitle(sectionTitle),
             ),
           ),
-
           CarouselCard(Book.getAppMockBooks()),
         ],
       );
-
     } else {
       return Column(
         children: <Widget>[
@@ -86,7 +84,7 @@ class DiscoverPage extends StatelessWidget {
               (CONTAINER_FACTOR_2 * SizeConfig.widthMultiplier), //2
               (CONTAINER_FACTOR_2 * SizeConfig.widthMultiplier), //2
             ),
-            child:  Align(
+            child: Align(
               alignment: Alignment.topLeft,
               child: ListTitle(sectionTitle),
             ),

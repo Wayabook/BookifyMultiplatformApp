@@ -15,12 +15,10 @@ import 'package:provider/provider.dart';
 
 import 'Design/SizeConfig.dart';
 
-
 void main() => runApp(MyApp());
 
 /// This Widget is the main application widget.
 class MyApp extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
@@ -34,7 +32,8 @@ class MyApp extends StatelessWidget {
                   // is sufficient.
                   //Provider(create: (context) => User.getMockUser()),
 
-                  ChangeNotifierProvider<User>(create: (context) => User.getMockUser())
+                  ChangeNotifierProvider<User>(
+                      create: (context) => User.getMockUser())
 
                   // CartModel is implemented as a ChangeNotifier, which calls for the use
                   // of ChangeNotifierProvider. Moreover, CartModel depends
@@ -49,8 +48,7 @@ class MyApp extends StatelessWidget {
                 ],
                 child: MaterialApp(
                   home: WelcomePage(),
-                )
-            );
+                ));
             /*return MaterialApp(
               debugShowCheckedModeBanner: false,
               title: 'Learning Platform Application',

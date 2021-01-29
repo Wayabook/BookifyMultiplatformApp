@@ -11,9 +11,7 @@ import 'package:provider/provider.dart';
 
 import 'DiscoverPage/discover_page.dart';
 
-
 class MainTabPage extends StatefulWidget {
-
   MainTabPage({Key key}) : super(key: key);
 
   @override
@@ -21,7 +19,6 @@ class MainTabPage extends StatefulWidget {
 }
 
 class _MainTabPage extends State<MainTabPage> {
-
   final _items = [
     BottomNavigationBarItem(
       icon: Icon(Icons.local_library),
@@ -35,12 +32,10 @@ class _MainTabPage extends State<MainTabPage> {
       icon: Icon(Icons.account_circle),
       title: Text(PROFILE_OPTION),
     ),
-
   ];
 
   @override
-  void initState(){
-
+  void initState() {
     super.initState();
   }
 
@@ -64,14 +59,12 @@ class _MainTabPage extends State<MainTabPage> {
     );
   }
 
-
-
-  _getPages(){
+  _getPages() {
     return [
       ReadingPage(),
       DiscoverPage(kPrimaryLightColor),
-      ProfilePage(Provider.of<User>(context, listen: false), ProfileType.user_profile),
+      ProfilePage(
+          Provider.of<User>(context, listen: false), ProfileType.user_profile),
     ];
   }
-
 }

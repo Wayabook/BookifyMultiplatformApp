@@ -18,8 +18,7 @@ import 'package:provider/provider.dart';
 import '../../InfoToast.dart';
 import '../../Design/SizeConfig.dart';
 
-  class CommentPage extends StatefulWidget {
-
+class CommentPage extends StatefulWidget {
   bool subCommentsPage;
   bool inactiveAddCommentOption;
   MainComment mainComment;
@@ -29,34 +28,29 @@ import '../../Design/SizeConfig.dart';
   bool showAllCommentsOfChapter;
 
   CommentPage(
-      this.mainComment,
-      {
-        this.chapterNumber,
-        this.subCommentsPage = true,
-        this.inactiveAddCommentOption = false,
-        this.chapterTitle = "",
-        this.showAllCommentsOfChapter = false,
-      }
-  );
+    this.mainComment, {
+    this.chapterNumber,
+    this.subCommentsPage = true,
+    this.inactiveAddCommentOption = false,
+    this.chapterTitle = "",
+    this.showAllCommentsOfChapter = false,
+  });
 
-  CommentPage.showingAllBookComments(this.book,
-  {
+  CommentPage.showingAllBookComments(
+    this.book, {
     this.chapterNumber,
     this.subCommentsPage = true,
     this.chapterTitle = "",
     this.showAllCommentsOfChapter = false,
     this.inactiveAddCommentOption = false,
-  }
-  );
+  });
 
   @override
   _CommentPage createState() => _CommentPage();
 }
 
-class _CommentPage
-    extends State<CommentPage>
-    implements RemoveCommentInterface{
-
+class _CommentPage extends State<CommentPage>
+    implements RemoveCommentInterface {
   List<Widget> comments;
   List<SubCommentCard> subComments;
   MainCommentCard mainCommentCard;
@@ -70,15 +64,13 @@ class _CommentPage
 
   @override
   void initState() {
-
     scrollController = new ScrollController();
     textEditingController = new TextEditingController();
     comments = new List();
     subComments = new List();
 
-    if(widget.mainComment != null){
-      if(widget.subCommentsPage){
-
+    if (widget.mainComment != null) {
+      if (widget.subCommentsPage) {
         mainCommentCard = MainCommentCard(
           widget.mainComment,
           chapterTitle: widget.chapterTitle,
@@ -89,26 +81,24 @@ class _CommentPage
         );
         comments.add(mainCommentCard);
 
-        for(int i=0; i < widget.mainComment.answers.length; i++){
-          Comment comment  = widget.mainComment.answers[i];
-          subComments.add(
-              SubCommentCard(
-                comment,
-                textEditingController: this.textEditingController,
-                removeCommentFunction: removeComment,
-                positionKey: (i + 1),
-              )
-          );
+        for (int i = 0; i < widget.mainComment.answers.length; i++) {
+          Comment comment = widget.mainComment.answers[i];
+          subComments.add(SubCommentCard(
+            comment,
+            textEditingController: this.textEditingController,
+            removeCommentFunction: removeComment,
+            positionKey: (i + 1),
+          ));
         }
         comments.addAll(subComments);
       }
     } else {
       int position = 0;
       int chapterNumber = 0;
-      if(widget.book != null){
-        if(widget.showAllCommentsOfChapter){
+      if (widget.book != null) {
+        if (widget.showAllCommentsOfChapter) {
           Chapter chapter = widget.book.chapters[widget.chapterNumber];
-          for(Comment comment in chapter.comments){
+          for (Comment comment in chapter.comments) {
             comments.add(MainCommentCard(
               comment,
               fromDialog: true,
@@ -122,8 +112,8 @@ class _CommentPage
             chapterNumber += 1;
           }
         } else {
-          for(Chapter chapter in widget.book.chapters){
-            for(Comment comment in chapter.comments){
+          for (Chapter chapter in widget.book.chapters) {
+            for (Comment comment in chapter.comments) {
               comments.add(MainCommentCard(
                 comment,
                 fromDialog: true,
@@ -148,18 +138,18 @@ class _CommentPage
     super.initState();
   }
 
-  _getTextField(){
+  _getTextField() {
     textField = TextField(
       controller: textEditingController,
       decoration: InputDecoration(
-          contentPadding: EdgeInsets.fromLTRB(
-            (PADDING_FACTOR_5 * SizeConfig.widthMultiplier),
-            (PADDING_FACTOR_0),
-            (PADDING_FACTOR_0),
-            (PADDING_FACTOR_0),
-          ),
-          hintText: widget.subCommentsPage ? ADD_COMMENT : widget.chapterTitle,
-          floatingLabelBehavior: FloatingLabelBehavior.never,
+        contentPadding: EdgeInsets.fromLTRB(
+          (PADDING_FACTOR_5 * SizeConfig.widthMultiplier),
+          (PADDING_FACTOR_0),
+          (PADDING_FACTOR_0),
+          (PADDING_FACTOR_0),
+        ),
+        hintText: widget.subCommentsPage ? ADD_COMMENT : widget.chapterTitle,
+        floatingLabelBehavior: FloatingLabelBehavior.never,
       ),
       style: TextStyle(
         fontSize: (TEXT_FACTOR_14 * SizeConfig.textMultiplier), //14
@@ -167,9 +157,9 @@ class _CommentPage
       maxLines: null,
       expands: widget.subCommentsPage ? false : true,
       keyboardType: TextInputType.multiline,
-      onChanged: (value){
+      onChanged: (value) {
         newComment = value;
-        if(!widget.subCommentsPage){
+        if (!widget.subCommentsPage) {
           setState(() {
             publishContainerColor = Colors.yellow;
             publishTextColor = Colors.black;
@@ -179,26 +169,25 @@ class _CommentPage
     );
   }
 
-  _getSubcommentsListView(){
+  _getSubcommentsListView() {
     return ListView.builder(
         controller: scrollController,
         shrinkWrap: true,
-        padding: EdgeInsets.all((PADDING_FACTOR_8 * SizeConfig.heightMultiplier)), //8
+        padding: EdgeInsets.all(
+            (PADDING_FACTOR_8 * SizeConfig.heightMultiplier)), //8
         itemCount: this.comments.length,
         itemBuilder: (BuildContext context, int index) {
           return this.comments[index];
-        }
-    );
+        });
   }
 
-  _getColumnWithListViewAndAddCommentOption(){
+  _getColumnWithListViewAndAddCommentOption() {
     return Column(
       children: [
         Flexible(
           flex: 9,
           child: _getSubcommentsListView(),
         ),
-
         Flexible(
             flex: 0,
             child: Card(
@@ -209,120 +198,117 @@ class _CommentPage
                     flex: 9,
                     child: textField,
                   ),
-
                   Flexible(
                       flex: 1,
                       child: GestureDetector(
                         child: Icon(
                           Icons.send,
                           color: Colors.yellow,
-                          size: (PADDING_FACTOR_30 * SizeConfig.heightMultiplier), //30
+                          size: (PADDING_FACTOR_30 *
+                              SizeConfig.heightMultiplier), //30
                         ),
                         onTap: _addComment,
-                      )
-                  ),
+                      )),
                 ],
               ),
-            )
-        ),
+            )),
       ],
     );
   }
 
   @override
   Widget build(BuildContext context) {
-   if(widget.mainComment != null){
-     if(widget.subCommentsPage){
-       return Scaffold(
-         body: Container(
-           color: kPrimaryDarkColor,
-           height: MediaQuery.of(context).size.height,
-           width: MediaQuery.of(context).size.width,
-           child: widget.inactiveAddCommentOption ? _getSubcommentsListView() : _getColumnWithListViewAndAddCommentOption(),
-         ),
-         appBar: AppBar(
-             backgroundColor: kPrimaryDarkColor,
-             title: Text(widget.subCommentsPage ?  widget.chapterTitle : ADD_COMMENT)
-         ),
-       );
-     }
-   } else {
-     if(widget.book != null){
-       return Scaffold(
-         body: Container(
-           color: kPrimaryDarkColor,
-           height: MediaQuery.of(context).size.height,
-           width: MediaQuery.of(context).size.width,
-           child: ListView.builder(
-               controller: scrollController,
-               shrinkWrap: true,
-               padding: EdgeInsets.all((PADDING_FACTOR_8 * SizeConfig.heightMultiplier)), //8
-               itemCount: this.comments.length,
-               itemBuilder: (BuildContext context, int index) {
-                 return this.comments[index];
-               }
-           ),
-         ),
-         appBar: AppBar(
-             backgroundColor: kPrimaryDarkColor,
-             title: Text((
-               !widget.showAllCommentsOfChapter && widget.book != null) ? widget.book.title : widget.chapterTitle,
-               overflow: TextOverflow.ellipsis,
-             )
-         ),
-       );
-     } else {
-       return Scaffold(
-         body: Container(
-           height: MediaQuery.of(context).size.height,
-           width: MediaQuery.of(context).size.width,
-           color: kPrimaryDarkColor,
-           child: Column(
-             children: [
-               Flexible(
-                 flex: 9,
-                 child: Container(
-                   child: textField,
-                 ),
-               ),
-
-               Flexible(
-                   flex: 1,
-                   child: GestureDetector(
-                     child: Container(
-                         height: double.infinity,
-                         width: double.infinity,
-                         color: publishContainerColor,
-                         child: Center(
-                           child: AutoSizeText(
-                             PUBLISH_COMMENT,
-                             style: TextStyle(
-                               fontSize: (PADDING_FACTOR_30 * SizeConfig.heightMultiplier), //30
-                               fontWeight: FontWeight.bold,
-                               color: publishTextColor,
-                             ),
-                           ),
-                         )
-                     ),
-                     onTap: (){
-                       Navigator.pop(context, newComment);
-                     },
-                   )
-               ),
-             ],
-           ),
-         ),
-         appBar: AppBar(
-             backgroundColor: kPrimaryDarkColor,
-             title: Text(ADD_COMMENT_2)
-         ),
-       );
-     }
-   }
+    if (widget.mainComment != null) {
+      if (widget.subCommentsPage) {
+        return Scaffold(
+          body: Container(
+            color: kPrimaryDarkColor,
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
+            child: widget.inactiveAddCommentOption
+                ? _getSubcommentsListView()
+                : _getColumnWithListViewAndAddCommentOption(),
+          ),
+          appBar: AppBar(
+              backgroundColor: kPrimaryDarkColor,
+              title: Text(
+                  widget.subCommentsPage ? widget.chapterTitle : ADD_COMMENT)),
+        );
+      }
+    } else {
+      if (widget.book != null) {
+        return Scaffold(
+          body: Container(
+            color: kPrimaryDarkColor,
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
+            child: ListView.builder(
+                controller: scrollController,
+                shrinkWrap: true,
+                padding: EdgeInsets.all(
+                    (PADDING_FACTOR_8 * SizeConfig.heightMultiplier)), //8
+                itemCount: this.comments.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return this.comments[index];
+                }),
+          ),
+          appBar: AppBar(
+              backgroundColor: kPrimaryDarkColor,
+              title: Text(
+                (!widget.showAllCommentsOfChapter && widget.book != null)
+                    ? widget.book.title
+                    : widget.chapterTitle,
+                overflow: TextOverflow.ellipsis,
+              )),
+        );
+      } else {
+        return Scaffold(
+          body: Container(
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
+            color: kPrimaryDarkColor,
+            child: Column(
+              children: [
+                Flexible(
+                  flex: 9,
+                  child: Container(
+                    child: textField,
+                  ),
+                ),
+                Flexible(
+                    flex: 1,
+                    child: GestureDetector(
+                      child: Container(
+                          height: double.infinity,
+                          width: double.infinity,
+                          color: publishContainerColor,
+                          child: Center(
+                            child: AutoSizeText(
+                              PUBLISH_COMMENT,
+                              style: TextStyle(
+                                fontSize: (PADDING_FACTOR_30 *
+                                    SizeConfig.heightMultiplier), //30
+                                fontWeight: FontWeight.bold,
+                                color: publishTextColor,
+                              ),
+                            ),
+                          )),
+                      onTap: () {
+                        Navigator.pop(context, newComment);
+                      },
+                    )),
+              ],
+            ),
+          ),
+          appBar: AppBar(
+              backgroundColor: kPrimaryDarkColor, title: Text(ADD_COMMENT_2)),
+        );
+      }
+    }
   }
 
-  void removeComment(int key){
-    if(key != 0){
+  void removeComment(int key) {
+    if (key != 0) {
       setState(() {
         comments.removeAt(key);
         InfoToast.showCommentRemovedCorrectly(false);
@@ -330,8 +316,7 @@ class _CommentPage
     }
   }
 
-
-  _addComment(){
+  _addComment() {
     FocusScope.of(context).requestFocus(FocusNode());
     var user = Provider.of<User>(context, listen: false);
     SubCommentCard subCommentCard = SubCommentCard(
@@ -343,13 +328,12 @@ class _CommentPage
       this.comments.add(subCommentCard);
     });
     _scrollToLastPosition();
-
   }
 
-  _scrollToLastPosition(){
+  _scrollToLastPosition() {
     Timer(
       Duration(seconds: 1),
-          () => scrollController.jumpTo(scrollController.position.maxScrollExtent),
+      () => scrollController.jumpTo(scrollController.position.maxScrollExtent),
     );
   }
 }
