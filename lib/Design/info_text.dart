@@ -21,6 +21,8 @@ const String BOOKS_READ_TITLE = "BOOKS READ";
 const String CHAPS_READ_TITLE = "CHAPS READ";
 const String PAGES_READ_TITLE = "PAGES READ";
 const String GENRES_TITLE = "Genres";
+const String SECTION_1_TITLE = "¿Como estuvo?";
+const String SECTION_2_TITLE = "¿Como te sentiste?";
 
 /*** NORMAL TEXT */
 const String BOOKSHELF_LIST = " lists";
@@ -46,3 +48,6 @@ const String SHOW_MORE = "show more";
 const String SHOW_LESS = "show less";
 const String CANCEL_OPTION = "Cancel";
 const String ACCEPT_OPTION = "Accept";
+const String COMMENTS_OPTION = " comentarios";
+const String ADD_FEEDBACK_INDICATOR =
+    "To give feedback and see comments. Mark as read first";

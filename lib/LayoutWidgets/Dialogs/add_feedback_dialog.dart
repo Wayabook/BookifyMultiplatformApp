@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:bookifyapp/Design/constants.dart';
+import 'package:bookifyapp/Design/info_text.dart';
 import 'package:bookifyapp/Design/size_constants.dart';
 import 'package:bookifyapp/InfoToast.dart';
 import 'package:bookifyapp/Interfaces/RemoveCommentInterface.dart';
@@ -33,7 +34,20 @@ class AddFeedbackDialog extends StatefulWidget {
 class _AddFeedbackDialog extends State<AddFeedbackDialog>
     with SingleTickerProviderStateMixin
     implements RemoveCommentInterface {
-  static const int DEFAULT_MILISECONDS = 1500;
+  static const double DEFAULT_PADDING = 1.46;
+  static const double DEFAULT_PADDING_LARGE = 9.81;
+
+  static const int DEFAULT_MILLISECONDS = 1500;
+  static const int SHORT_DURATION = 500;
+
+  static const int DEFAULT_SECONDS = 1;
+  static const double VISIBLE = 1.0;
+  static const double INVISIBLE = 0.0;
+
+  static const int POSITION_KEY = 5;
+  static const int CROSS_AXIS_COUNT = 4;
+  static const double INITIAL_RATING = 3;
+  static const double MIN_RATING = 1;
 
   Dialog alertDialog;
   double width;
@@ -50,6 +64,14 @@ class _AddFeedbackDialog extends State<AddFeedbackDialog>
   Animation<double> animation;
   Color _backgroundColor;
 
+  List<Color> _ratingColors = [
+    Colors.red[200],
+    Colors.deepOrange[100],
+    Colors.yellow[100],
+    Colors.cyan[100],
+    Colors.green[300]
+  ];
+
   final TextEditingController inputController = TextEditingController();
 
   @override
@@ -60,7 +82,7 @@ class _AddFeedbackDialog extends State<AddFeedbackDialog>
     _backgroundColor = kPrimaryLightColor;
 
     animationController = AnimationController(
-        duration: Duration(milliseconds: DEFAULT_MILISECONDS), vsync: this);
+        duration: Duration(milliseconds: DEFAULT_MILLISECONDS), vsync: this);
 
     animation = CurvedAnimation(
       parent: animationController,
@@ -78,14 +100,14 @@ class _AddFeedbackDialog extends State<AddFeedbackDialog>
         chapterTitle: this.currentChapter.title,
         chapterNumber: this.currentChapterNumber,
         removeCommentFunction: removeComment,
-        positionKey: (i + 5),
+        positionKey: (i + POSITION_KEY),
       ));
     }
 
     widgets = new List();
-    widgets.add(_getTitleSection("¿Como estuvo?"));
+    widgets.add(_getTitleSection(SECTION_1_TITLE));
     widgets.add(_getRatingBar());
-    widgets.add(_getTitleSection("¿Como te sentiste?"));
+    widgets.add(_getTitleSection(SECTION_2_TITLE));
     widgets.add(_getReactionsGrid());
     widgets.add(_getCommentsTitle());
     widgets.addAll(mainComments);
@@ -96,15 +118,15 @@ class _AddFeedbackDialog extends State<AddFeedbackDialog>
 
   _getReactionsGrid() {
     return Container(
-        height: (31.09 * SizeConfig.heightMultiplier), //190
+        height: (CONTAINER_FACTOR_190 * SizeConfig.heightMultiplier), //190
         child: GridView.count(
             padding: EdgeInsets.symmetric(
               horizontal: PADDING_FACTOR_0,
-              vertical: (1.46 * SizeConfig.heightMultiplier), // 10
+              vertical: (DEFAULT_PADDING * SizeConfig.heightMultiplier), // 10
             ),
             scrollDirection: Axis.vertical,
             shrinkWrap: true,
-            crossAxisCount: 4,
+            crossAxisCount: CROSS_AXIS_COUNT,
             children: List.generate(
               widget.book.getCurrentChapterReactions().length,
               (index) {
@@ -124,10 +146,10 @@ class _AddFeedbackDialog extends State<AddFeedbackDialog>
           Align(
             alignment: Alignment.center,
             child: Icon(Icons.comment,
-                size: (6.08 * SizeConfig.imageSizeMultiplier) //25
+                size: (ICON_FACTOR_25 * SizeConfig.imageSizeMultiplier) //25
                 ),
           ),
-          _getTitleSection(mainComments.length.toString() + " comentarios"),
+          _getTitleSection(mainComments.length.toString() + COMMENTS_OPTION),
         ],
       ),
     );
@@ -141,16 +163,16 @@ class _AddFeedbackDialog extends State<AddFeedbackDialog>
       ),
       color: kPrimaryDarkColor,
       child: Container(
-          height: (9.81 * SizeConfig.heightMultiplier), // 50
+          height: (DEFAULT_PADDING_LARGE * SizeConfig.heightMultiplier), // 50
           child: Align(
             alignment: Alignment.center,
             child: RatingBar(
               itemSize: (TEXT_FACTOR_50 * SizeConfig.imageSizeMultiplier), //50
-              initialRating: 3,
-              minRating: 1,
+              initialRating: INITIAL_RATING,
+              minRating: MIN_RATING,
               direction: Axis.horizontal,
               allowHalfRating: false,
-              itemCount: 5,
+              itemCount: POSITION_KEY,
               itemPadding: EdgeInsets.symmetric(
                   horizontal: (0.97 * SizeConfig.imageSizeMultiplier)), //4
               itemBuilder: (context, _) => Icon(
@@ -160,17 +182,7 @@ class _AddFeedbackDialog extends State<AddFeedbackDialog>
               onRatingUpdate: (rating) {
                 print(rating);
                 setState(() {
-                  if (rating == 1) {
-                    _backgroundColor = Colors.red[200];
-                  } else if (rating == 2) {
-                    _backgroundColor = Colors.deepOrange[100];
-                  } else if (rating == 3) {
-                    _backgroundColor = Colors.yellow[100];
-                  } else if (rating == 4) {
-                    _backgroundColor = Colors.cyan[100];
-                  } else {
-                    _backgroundColor = Colors.green[300];
-                  }
+                  _backgroundColor = _ratingColors[rating.toInt() - 1];
                 });
               },
             ),
@@ -212,20 +224,23 @@ class _AddFeedbackDialog extends State<AddFeedbackDialog>
           child: Stack(
             children: <Widget>[
               Positioned(
-                  top: (21.94 * SizeConfig.heightMultiplier), //140
+                  top: (CONTAINER_FACTOR_140 *
+                      SizeConfig.heightMultiplier), //140
                   child: Container(
                       width: width,
-                      height: height - (21.94 * SizeConfig.heightMultiplier),
+                      height: height -
+                          (CONTAINER_FACTOR_140 * SizeConfig.heightMultiplier),
                       color: _backgroundColor,
                       child: Align(
                           alignment: Alignment.topLeft,
                           child: Padding(
                             padding: EdgeInsets.fromLTRB(
-                                0,
-                                ((12.16 * SizeConfig.imageSizeMultiplier) /
+                                (PADDING_FACTOR_0),
+                                ((TEXT_FACTOR_50 *
+                                        SizeConfig.imageSizeMultiplier) /
                                     2), //150,
-                                0,
-                                0),
+                                (PADDING_FACTOR_0),
+                                (PADDING_FACTOR_0)),
                             child: IconButton(
                               onPressed: () {
                                 Navigator.pop(context);
@@ -233,19 +248,22 @@ class _AddFeedbackDialog extends State<AddFeedbackDialog>
                               icon: Icon(
                                 Icons.keyboard_arrow_down,
                                 color: Colors.black,
-                                size: (5.83 *
+                                size: (ICON_FACTOR_24 *
                                     SizeConfig.imageSizeMultiplier), //24
                               ),
                             ),
                           )))),
               Positioned(
-                  top: (24.54 * SizeConfig.heightMultiplier), //150
-                  right: (2.43 * SizeConfig.widthMultiplier), //10
+                  top: (CONTAINER_FACTOR_150 *
+                      SizeConfig.heightMultiplier), //150
+                  right: (PADDING_FACTOR_10 * SizeConfig.widthMultiplier), //10
                   child: Align(
                       alignment: Alignment.topRight,
                       child: Container(
-                        width: (12.16 * SizeConfig.imageSizeMultiplier),
-                        height: (12.16 * SizeConfig.imageSizeMultiplier),
+                        width:
+                            (TEXT_FACTOR_50 * SizeConfig.imageSizeMultiplier),
+                        height:
+                            (TEXT_FACTOR_50 * SizeConfig.imageSizeMultiplier),
                         child: FittedBox(
                           child: FloatingActionButton(
                               heroTag: UniqueKey(),
@@ -263,9 +281,6 @@ class _AddFeedbackDialog extends State<AddFeedbackDialog>
                                         listen: false);
                                     user.increaseChapter(widget.book);
                                   }
-                                  /* else {
-                                        widget.onBookCompletedProcess(this.context, widget.book);
-                                      }*/
                                 });
                               },
                               backgroundColor: kPrimaryLightColor,
@@ -275,8 +290,9 @@ class _AddFeedbackDialog extends State<AddFeedbackDialog>
                                   Icons.beenhere,
                                   color: readButtonColor,
                                   size: SizeConfig.imageSizeMultiplier > 5.5
-                                      ? (5.83 * SizeConfig.imageSizeMultiplier)
-                                      : (12.16 *
+                                      ? (ICON_FACTOR_24 *
+                                          SizeConfig.imageSizeMultiplier)
+                                      : (TEXT_FACTOR_50 *
                                           SizeConfig.imageSizeMultiplier), //24
                                 ),
                               )),
@@ -298,7 +314,7 @@ class _AddFeedbackDialog extends State<AddFeedbackDialog>
                   (1.7 * SizeConfig.imageSizeMultiplier), //7
                   (34.36 * SizeConfig.heightMultiplier), //210
                   (1.7 * SizeConfig.imageSizeMultiplier), //7
-                  (2.43 * SizeConfig.widthMultiplier), //10
+                  (PADDING_FACTOR_10 * SizeConfig.widthMultiplier), //10
                 ),
                 child: Container(
                     color: kPrimaryDarkColor,
@@ -306,8 +322,8 @@ class _AddFeedbackDialog extends State<AddFeedbackDialog>
                     width: width),
               ),
               AnimatedOpacity(
-                opacity: visible ? 1.0 : 0.0,
-                duration: Duration(milliseconds: 500),
+                opacity: visible ? VISIBLE : INVISIBLE,
+                duration: Duration(milliseconds: SHORT_DURATION),
                 child: Visibility(
                   visible: visible,
                   maintainSize: false,
@@ -318,12 +334,12 @@ class _AddFeedbackDialog extends State<AddFeedbackDialog>
                         (1.7 * SizeConfig.imageSizeMultiplier), //7
                         (36.01 * SizeConfig.heightMultiplier), //220
                         (1.7 * SizeConfig.imageSizeMultiplier), //7
-                        0),
+                        PADDING_FACTOR_0),
                     child: ListView.builder(
                         controller: scrollController,
                         shrinkWrap: true,
-                        padding: EdgeInsets.all(
-                            (1.29 * SizeConfig.heightMultiplier)), //8
+                        padding: EdgeInsets.all((PADDING_FACTOR_8 *
+                            SizeConfig.heightMultiplier)), //8
                         itemCount: widgets.length,
                         itemBuilder: (BuildContext context, int index) {
                           return widgets[index];
@@ -337,16 +353,16 @@ class _AddFeedbackDialog extends State<AddFeedbackDialog>
                   maintainSize: false,
                   maintainAnimation: false,
                   maintainState: false,
-                  child: _getTitleSection(
-                      "To give feedback and see comments. Mark as read first"),
+                  child: _getTitleSection(ADD_FEEDBACK_INDICATOR),
                 ),
               ),
               Positioned(
-                bottom: (1.21 * SizeConfig.widthMultiplier), //5
-                right: (2.43 * SizeConfig.imageSizeMultiplier), //10
+                bottom: (PADDING_FACTOR_5 * SizeConfig.widthMultiplier), //5
+                right:
+                    (PADDING_FACTOR_10 * SizeConfig.imageSizeMultiplier), //10
                 child: AnimatedOpacity(
-                    opacity: visible ? 1.0 : 0.0,
-                    duration: Duration(milliseconds: 500),
+                    opacity: visible ? VISIBLE : INVISIBLE,
+                    duration: Duration(milliseconds: SHORT_DURATION),
                     child: Visibility(
                       visible: visible,
                       maintainSize: false,
@@ -389,7 +405,7 @@ class _AddFeedbackDialog extends State<AddFeedbackDialog>
             )));
 
     if (result != null) {
-      if (result.length > 0) {
+      if (result.length > PADDING_FACTOR_0) {
         setState(() {
           var user = Provider.of<User>(context, listen: false);
           MainComment mainComment =
@@ -420,7 +436,7 @@ class _AddFeedbackDialog extends State<AddFeedbackDialog>
 
   _scrollToLastPosition() {
     Timer(
-      Duration(seconds: 1),
+      Duration(seconds: DEFAULT_SECONDS),
       () => scrollController.jumpTo(scrollController.position.maxScrollExtent),
     );
   }

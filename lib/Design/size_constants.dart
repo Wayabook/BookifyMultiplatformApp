@@ -40,6 +40,7 @@ const double CONTAINER_FACTOR_150 = 24.54; //150
 const double CONTAINER_FACTOR_170 = 24.89; //170
 const double CONTAINER_FACTOR_175 = 25.62; //175
 const double CONTAINER_FACTOR_180 = 26.35; //180
+const double CONTAINER_FACTOR_190 = 31.09; //190
 const double CONTAINER_FACTOR_200 = 29.28; //200
 const double CONTAINER_FACTOR_500 = 121.65; //500
 
