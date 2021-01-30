@@ -1,5 +1,6 @@
 import 'package:bookifyapp/Design/constants.dart';
 import 'package:bookifyapp/Design/size_constants.dart';
+import 'package:bookifyapp/LayoutWidgets/Cards/Book/book_card_factory.dart';
 import 'package:bookifyapp/Models/Lecture.dart';
 import 'package:bookifyapp/Models/User.dart';
 import 'package:flutter/material.dart';
@@ -50,12 +51,16 @@ class HorizontalBookList extends StatelessWidget {
               this.type == ListType.view_all) {
             if (index < books.length) {
               if (this.type == ListType.discover_option) {
-                return BookCard(this.books[index], BookCardType.add_option,
-                    user: this.user);
+                return BookCardFactory(
+                        BookCardType.add_option, this.books[index],
+                        user: this.user)
+                    .build(context: context);
               } else {
-                return BookCard(this.books[index],
-                    BookCardType.without_add_option_and_progress_bar,
-                    user: this.user);
+                return BookCardFactory(
+                        BookCardType.without_add_option_and_progress_bar,
+                        this.books[index],
+                        user: this.user)
+                    .build(context: context);
               }
             } else {
               if (this.type == ListType.discover_option) {
@@ -65,8 +70,9 @@ class HorizontalBookList extends StatelessWidget {
               }
             }
           } else {
-            return BookCard(this.books[index], BookCardType.add_option,
-                user: this.user);
+            return BookCardFactory(BookCardType.add_option, this.books[index],
+                    user: this.user)
+                .build(context: context);
           }
         },
       ),

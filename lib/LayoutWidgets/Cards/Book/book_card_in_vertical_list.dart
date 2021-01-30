@@ -1,35 +1,34 @@
-import 'package:auto_size_text/auto_size_text.dart';
+import 'package:bookifyapp/Design/SizeConfig.dart';
 import 'package:bookifyapp/Design/constants.dart';
+import 'package:bookifyapp/Design/size_constants.dart';
+import 'package:bookifyapp/Enums/book_card_type.dart';
 import 'package:bookifyapp/Enums/button_type.dart';
 import 'package:bookifyapp/Enums/list_type.dart';
+import 'package:bookifyapp/LayoutWidgets/Buttons/add_button_small.dart';
 import 'package:bookifyapp/LayoutWidgets/Buttons/book_card_action_button.dart';
-import 'package:bookifyapp/LayoutWidgets/Cards/Book/BookCardInfo/book_card_info.dart';
-import 'package:bookifyapp/LayoutWidgets/Cards/Book/OptionCard/option_card.dart';
+import 'package:bookifyapp/LayoutWidgets/Cards/Book/book_card_factory.dart';
 import 'package:bookifyapp/LayoutWidgets/Dialogs/add_feedback_dialog.dart';
+import 'package:bookifyapp/LayoutWidgets/Dialogs/dialog_with_input_text.dart';
 import 'package:bookifyapp/LayoutWidgets/Dialogs/recommendation_dialog.dart';
 import 'package:bookifyapp/LayoutWidgets/Profile/friends_preview.dart';
+import 'package:bookifyapp/Models/Book.dart';
 import 'package:bookifyapp/Models/Lecture.dart';
 import 'package:bookifyapp/Models/Recommendation.dart';
+import 'package:bookifyapp/Models/User.dart';
 import 'package:bookifyapp/Pages/BookPage/book_page.dart';
+import 'package:bookifyapp/Pages/SearchPage/search_page.dart';
 import 'package:bookifyapp/Pages/add_custom_list_page.dart';
+import 'package:bookifyapp/Pages/bookshelf_page.dart';
 import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
-import 'package:bookifyapp/Models/Book.dart';
-import 'package:bookifyapp/LayoutWidgets/Buttons/add_button_small.dart';
-import 'package:bookifyapp/Enums/book_card_type.dart';
-import 'package:bookifyapp/Pages/SearchPage/search_page.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
-import 'package:bookifyapp/Pages/bookshelf_page.dart';
-import 'package:bookifyapp/LayoutWidgets/Dialogs/dialog_with_input_text.dart';
-import 'package:bookifyapp/Models/User.dart';
 import 'package:provider/provider.dart';
 
 import '../../../InfoToast.dart';
-import '../../../Design/SizeConfig.dart';
+import 'BookCardInfo/book_card_info.dart';
+import 'OptionCard/option_card.dart';
 
-class BookCard extends StatefulWidget {
-  //Book Card in Grid and HorizontalLists
-  BuildContext context;
+class BookCardInVerticalList extends StatefulWidget implements BookCardFactory {
   BookCardType type;
   Lecture book;
   User user;
@@ -43,26 +42,31 @@ class BookCard extends StatefulWidget {
   Function(Book book, bool add) addOrRemoveBookFromTemporalCustomList;
   ListType listType;
   String listTitle;
-  Color backgroundColor;
-  double cardHeight;
+
   _BookCard bookCard = _BookCard();
 
-  BookCard(this.book, this.type, {this.user});
-
-  BookCard.option(this.type, {this.user});
-  BookCard.inVerticalList(this.book, this.type, this.user, this.buttonType,
+  BookCardInVerticalList(this.book, this.type, this.user, this.buttonType,
       this.position, this.tickerProvider);
-  BookCard.inVerticalSearchList(this.book, this.type, this.listType, this.user,
-      {this.addOrRemoveBookFromTemporalCustomList,
-      this.listTitle = "",
-      this.backgroundColor = kPrimaryDarkColor,
-      this.cardHeight = 160});
+
+  @override
+  Widget build({
+    BuildContext context,
+  }) {
+    return this;
+  }
+
+  @override
+  void initState() {}
 
   @override
   _BookCard createState() => bookCard;
 }
 
-class _BookCard extends State<BookCard> {
+class _BookCard extends State<BookCardInVerticalList> {
+  static const double DEFAULT_PADDING_FACTOR = 0.24;
+  static const double DEFAULT_BORDER_RADIUS_FACTOR = 1.7;
+  static const double DEFAULT_LINE_HEIGHT_FACTOR = 0.73;
+  static const double BOOK_COMPLETED_INDICATOR = 1.0;
   //BuildContext context;
 
   Card card;
@@ -104,17 +108,8 @@ class _BookCard extends State<BookCard> {
 
   @override
   void initState() {
-    if (widget.type == BookCardType.book_card_in_vertical_list) {
-      _initializeWidgetsInVerticalList();
-    } else if (widget.type == BookCardType.book_card_in_vertical_search_list) {
-      _initializeWidgetsInSearchVerticalList();
-    }
+    _initializeWidgetsInVerticalList();
     super.initState();
-  }
-
-  _initializeWidgetsInSearchVerticalList() {
-    if (widget.cardHeight == 160)
-      widget.cardHeight = (23.42 * SizeConfig.heightMultiplier); //160
   }
 
   _initializeWidgetsInVerticalList() {
@@ -133,52 +128,43 @@ class _BookCard extends State<BookCard> {
   }*/
 
   _getVerticalListCardWidget(BuildContext ctx) {
-    return widget.type == BookCardType.book_card_in_vertical_search_list
-        ? Container(
-            height: widget.cardHeight,
-            decoration: BoxDecoration(
-              color: widget.backgroundColor,
-            ),
-            child: _getVerticaListTile(),
-          )
-        : GestureDetector(
-            key: UniqueKey(),
-            onTap: () async {
-              await showDialog(
-                context: context,
-                builder: (BuildContext context) =>
-                    AddFeedbackDialog(widget.book),
-              );
-              if (widget.book.finished) {
-                bookCompletedProcess();
-              }
-            },
-            child: Builder(
-              builder: (BuildContext context) {
-                return ConfettiWidget(
-                  blastDirectionality: BlastDirectionality.explosive,
-                  confettiController: confettiController,
-                  particleDrag: 0.05,
-                  emissionFrequency: 0.05,
-                  numberOfParticles: 25,
-                  gravity: 0.05,
-                  shouldLoop: false,
-                  colors: [
-                    Colors.green,
-                    Colors.red,
-                    Colors.yellow,
-                    Colors.blue,
-                  ],
-                  child: Container(
-                    height: (26.18 * SizeConfig.heightMultiplier), // 160
-                    decoration: BoxDecoration(
-                      color: kPrimaryDarkColor,
-                    ),
-                    child: _getVerticaListTile(),
-                  ),
-                );
-              },
-            ));
+    return GestureDetector(
+        key: UniqueKey(),
+        onTap: () async {
+          await showDialog(
+            context: context,
+            builder: (BuildContext context) => AddFeedbackDialog(widget.book),
+          );
+          if (widget.book.finished) {
+            bookCompletedProcess();
+          }
+        },
+        child: Builder(
+          builder: (BuildContext context) {
+            return ConfettiWidget(
+              blastDirectionality: BlastDirectionality.explosive,
+              confettiController: confettiController,
+              particleDrag: 0.05,
+              emissionFrequency: 0.05,
+              numberOfParticles: 25,
+              gravity: 0.05,
+              shouldLoop: false,
+              colors: [
+                Colors.green,
+                Colors.red,
+                Colors.yellow,
+                Colors.blue,
+              ],
+              child: Container(
+                height: (26.18 * SizeConfig.heightMultiplier), // 160
+                decoration: BoxDecoration(
+                  color: kPrimaryDarkColor,
+                ),
+                child: _getVerticaListTile(),
+              ),
+            );
+          },
+        ));
   }
 
   @override
@@ -187,130 +173,16 @@ class _BookCard extends State<BookCard> {
   }
 
   _getCardWidget(BuildContext context) {
-    return (widget.type == BookCardType.book_card_in_vertical_list ||
-            widget.type == BookCardType.book_card_in_vertical_search_list)
-        ? Card(
-            elevation: (2.43 * SizeConfig.widthMultiplier), //10
-            margin: new EdgeInsets.symmetric(
-                horizontal: (2.43 * SizeConfig.widthMultiplier), //10
-                vertical: widget.type == BookCardType.book_card_in_vertical_list
-                    ? (0.98 * SizeConfig.heightMultiplier)
-                    : //10
-                    (0.87 * SizeConfig.heightMultiplier) //6
-                ),
-            child: _getVerticalListCardWidget(context))
-        : Card(
-            key: UniqueKey(),
-            color: Colors.transparent,
-            margin:
-                EdgeInsets.all((2.43 * SizeConfig.imageSizeMultiplier)), // 10
-            shape: RoundedRectangleBorder(
-              borderRadius:
-                  BorderRadius.circular((1.7 * SizeConfig.imageSizeMultiplier)),
+    return Card(
+        elevation: (2.43 * SizeConfig.widthMultiplier), //10
+        margin: new EdgeInsets.symmetric(
+            horizontal: (2.43 * SizeConfig.widthMultiplier), //10
+            vertical: widget.type == BookCardType.book_card_in_vertical_list
+                ? (0.98 * SizeConfig.heightMultiplier)
+                : //10
+                (0.87 * SizeConfig.heightMultiplier) //6
             ),
-            elevation: (2.43 * SizeConfig.imageSizeMultiplier), // 10
-            child: (widget.type == BookCardType.add_option ||
-                    widget.type ==
-                        BookCardType.without_add_option_and_progress_bar ||
-                    widget.type == BookCardType.book_card_in_grid)
-                ? Stack(children: _getStackWidgets())
-                : _getOptionCard());
-  }
-
-  _getStackWidgets() {
-    return <Widget>[
-      _getStackTopPart(),
-      _getStackBottomPart(),
-    ];
-  }
-
-  _getStackBottomPart() {
-    if (widget.type == BookCardType.add_option) {
-      return Positioned(
-        top: 0,
-        right: 0,
-        child: AddButtonSmall(
-          (widget.user.isInPendingList(widget.book.toLecture()) ||
-                  widget.user.isInReadingList(widget.book.toLecture()))
-              ? AddButtonSmall.iconChecked
-              : AddButtonSmall.iconAdded,
-          onButtonClicked: () {
-            if (!widget.user.isInReadingList(widget.book.toLecture())) {
-              if (!widget.user.isInPendingList(widget.book.toLecture())) {
-                setState(() {
-                  widget.user.addLectureToPendingList(widget.book.toLecture());
-                  InfoToast.showBookAddedCorrectlyToast(widget.book.title);
-                });
-              }
-            }
-          },
-        ),
-      );
-    } else if (widget.type ==
-            BookCardType.without_add_option_and_progress_bar ||
-        widget.type == BookCardType.book_card_in_grid) {
-      return Positioned(
-        bottom: (0.24 * SizeConfig.imageSizeMultiplier), // 1
-        right: (0.24 * SizeConfig.imageSizeMultiplier),
-        left: (0.24 * SizeConfig.imageSizeMultiplier),
-        child: Center(
-          child: LinearPercentIndicator(
-            lineHeight: (0.73 * SizeConfig.heightMultiplier), // 5
-            percent: !widget.book.finished ? widget.book.progress : 1.0,
-            progressColor:
-                !widget.book.finished ? Colors.lightGreen : Colors.deepPurple,
-          ),
-        ),
-      );
-    }
-  }
-
-  _getStackTopPart() {
-    if (widget.type == BookCardType.book_card_in_grid) {
-      return Padding(
-        padding: EdgeInsets.all(0),
-        child: Align(
-          alignment: Alignment.center,
-          child: InkWell(
-            onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) =>
-                      BookPage("title", widget.book, _getBooks())));
-            },
-            child: Image.network(
-              widget.book.picture,
-              fit: BoxFit.fill,
-              height: (29.28 * SizeConfig.heightMultiplier),
-            ),
-          ),
-        ),
-      );
-    } else if (widget.type == BookCardType.add_option ||
-        widget.type == BookCardType.without_add_option ||
-        widget.type == BookCardType.without_add_option_and_progress_bar) {
-      return Padding(
-        padding: EdgeInsets.all(0),
-        child: Align(
-          alignment: Alignment.center,
-          child: InkWell(
-            onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) =>
-                      BookPage("title", widget.book, _getBooks())));
-            },
-            child: Image.network(widget.book.picture),
-          ),
-        ),
-      );
-    }
-  }
-
-  _getOptionCard() {
-    return GestureDetector(
-        onTap: () async {
-          onOptionCardPressed();
-        },
-        child: OptionCard(widget.type));
+        child: _getVerticalListCardWidget(context));
   }
 
   onOptionCardPressed() async {
