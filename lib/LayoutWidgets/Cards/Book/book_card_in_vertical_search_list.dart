@@ -152,131 +152,6 @@ class _BookCard extends State<BookCardInVerticalSearchList> {
         child: _getVerticalListCardWidget(context));
   }
 
-  _getStackWidgets() {
-    return <Widget>[
-      _getStackTopPart(),
-      _getStackBottomPart(),
-    ];
-  }
-
-  _getStackBottomPart() {
-    if (widget.type == BookCardType.add_option) {
-      return Positioned(
-        top: 0,
-        right: 0,
-        child: AddButtonSmall(
-          (widget.user.isInPendingList(widget.book.toLecture()) ||
-                  widget.user.isInReadingList(widget.book.toLecture()))
-              ? AddButtonSmall.iconChecked
-              : AddButtonSmall.iconAdded,
-          onButtonClicked: () {
-            if (!widget.user.isInReadingList(widget.book.toLecture())) {
-              if (!widget.user.isInPendingList(widget.book.toLecture())) {
-                setState(() {
-                  widget.user.addLectureToPendingList(widget.book.toLecture());
-                  InfoToast.showBookAddedCorrectlyToast(widget.book.title);
-                });
-              }
-            }
-          },
-        ),
-      );
-    } else if (widget.type ==
-            BookCardType.without_add_option_and_progress_bar ||
-        widget.type == BookCardType.book_card_in_grid) {
-      return Positioned(
-        bottom: (0.24 * SizeConfig.imageSizeMultiplier), // 1
-        right: (0.24 * SizeConfig.imageSizeMultiplier),
-        left: (0.24 * SizeConfig.imageSizeMultiplier),
-        child: Center(
-          child: LinearPercentIndicator(
-            lineHeight: (0.73 * SizeConfig.heightMultiplier), // 5
-            percent: !widget.book.finished ? widget.book.progress : 1.0,
-            progressColor:
-                !widget.book.finished ? Colors.lightGreen : Colors.deepPurple,
-          ),
-        ),
-      );
-    }
-  }
-
-  _getStackTopPart() {
-    if (widget.type == BookCardType.book_card_in_grid) {
-      return Padding(
-        padding: EdgeInsets.all(0),
-        child: Align(
-          alignment: Alignment.center,
-          child: InkWell(
-            onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) =>
-                      BookPage("title", widget.book, _getBooks())));
-            },
-            child: Image.network(
-              widget.book.picture,
-              fit: BoxFit.fill,
-              height: (29.28 * SizeConfig.heightMultiplier),
-            ),
-          ),
-        ),
-      );
-    } else if (widget.type == BookCardType.add_option ||
-        widget.type == BookCardType.without_add_option ||
-        widget.type == BookCardType.without_add_option_and_progress_bar) {
-      return Padding(
-        padding: EdgeInsets.all(0),
-        child: Align(
-          alignment: Alignment.center,
-          child: InkWell(
-            onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) =>
-                      BookPage("title", widget.book, _getBooks())));
-            },
-            child: Image.network(widget.book.picture),
-          ),
-        ),
-      );
-    }
-  }
-
-  _getOptionCard() {
-    return GestureDetector(
-        onTap: () async {
-          onOptionCardPressed();
-        },
-        child: OptionCard(widget.type));
-  }
-
-  onOptionCardPressed() async {
-    if (widget.type == BookCardType.disover) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) => SearchPage(
-                Book.getUserMockBooks(), User.getMockAlterantiveUsers())),
-      );
-    } else if (widget.type == BookCardType.view_all) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => BookshelfPage(widget.user)),
-      );
-    } else if (widget.type == BookCardType.add_custom_list) {
-      var result = await showDialog(
-        context: context,
-        builder: (BuildContext context) => DialogWithInputText(
-            'Add List Title:',
-            'Add a custom list of books from your Bookshelf, and share it with your friends.\n\n',
-            'List Title'),
-      );
-      if (result != DialogWithInputText.CANCEL_TAP) {
-        await _pushAddCustomListPage(result);
-      }
-    } else if (widget.type == BookCardType.recommend_book) {
-      _pushRecommendBooksPage();
-    }
-  }
-
   sendRecommendedBooks(List<Book> recommendedBooks) async {
     List<Recommendation> recommendations = new List();
     User recommender = Provider.of<User>(context, listen: false);
@@ -296,33 +171,6 @@ class _BookCard extends State<BookCardInVerticalSearchList> {
      * Missing
      * This part will be implemented in futher steps.
      * */
-  }
-
-  _pushRecommendBooksPage() async {
-    await Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => AddCustomListPage(
-              widget.user.bookshelf,
-              "Recommendation",
-              ListType.send_recommendation_form,
-              sendRecommendedBooks: sendRecommendedBooks,
-            )));
-  }
-
-  _pushAddCustomListPage(String listTitle) async {
-    final result = await Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => AddCustomListPage(
-            widget.user.bookshelf, listTitle, ListType.add_custom_list)));
-    if (result == 0) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) => BookshelfPage(
-                  Provider.of<User>(context, listen: false),
-                  scrollToLastPosition: true,
-                )),
-      );
-      //Navigator.pop(context);
-    }
   }
 
   _getVerticaListTile() {
@@ -479,10 +327,6 @@ class _BookCard extends State<BookCardInVerticalSearchList> {
       setState(() {
         widget.addOrRemoveBookFromTemporalCustomList(book, added);
       });
-    } else if (widget.type == BookCardType.book_card_in_vertical_list) {
-      setState(() {
-        widget.user.increaseChapter(book);
-      });
     }
   }
 
@@ -500,8 +344,6 @@ class _BookCard extends State<BookCardInVerticalSearchList> {
             ),
             child: Container(
                 width: (21.89 * SizeConfig.widthMultiplier), //90,
-                //padding: EdgeInsets.only(right: 12.0),
-                //padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
                 decoration: new BoxDecoration(
                     border: new Border(
                         right: new BorderSide(

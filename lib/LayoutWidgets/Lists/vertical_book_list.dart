@@ -3,6 +3,7 @@ import 'package:bookifyapp/Design/info_text.dart';
 import 'package:bookifyapp/Enums/book_card_type.dart';
 import 'package:bookifyapp/Interfaces/TitleButtonInterface.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/Book/book_card.dart';
+import 'package:bookifyapp/LayoutWidgets/Cards/Book/book_card_factory.dart';
 import 'package:bookifyapp/Models/Lecture.dart';
 import 'package:bookifyapp/Models/User.dart';
 import 'package:bookifyapp/Pages/bookshelf_page.dart';
@@ -105,13 +106,13 @@ class _VerticalBookList extends State<VerticalBookList>
   }
 
   _makeCard(int index, List<Book> books, ButtonType buttonType) {
-    return BookCard.inVerticalList(
-        books[index],
-        BookCardType.book_card_in_vertical_list,
-        Provider.of<User>(context, listen: false),
-        buttonType,
-        index,
-        this);
+    return BookCardFactory(
+            BookCardType.book_card_in_vertical_list, books[index],
+            user: Provider.of<User>(context, listen: false),
+            buttonType: buttonType,
+            position: index,
+            tickerProvider: this)
+        .build(context: context);
   }
 
   _makeBody() {

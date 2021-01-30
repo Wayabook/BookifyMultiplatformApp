@@ -63,11 +63,12 @@ class HorizontalBookList extends StatelessWidget {
                     .build(context: context);
               }
             } else {
-              if (this.type == ListType.discover_option) {
-                return BookCard.option(BookCardType.disover);
-              } else {
-                return BookCard.option(BookCardType.view_all, user: this.user);
-              }
+              return (this.type == ListType.discover_option)
+                  ? BookCardFactory(BookCardType.disover, null)
+                      .build(context: context)
+                  : BookCardFactory(BookCardType.view_all, null,
+                          user: this.user)
+                      .build(context: context);
             }
           } else {
             return BookCardFactory(BookCardType.add_option, this.books[index],

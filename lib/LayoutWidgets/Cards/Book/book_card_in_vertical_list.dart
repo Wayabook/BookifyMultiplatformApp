@@ -391,36 +391,9 @@ class _BookCard extends State<BookCardInVerticalList> {
 
   _onBookCardActionButtonPressed(ListType listType, Lecture book,
       {bool added: false, BookCardType type}) async {
-    if (listType == ListType.normal || listType == ListType.preview_friends) {
-      isInPendingList = widget.user.isInPendingList(widget.book.toLecture());
-      isInReadingList = widget.user.isInReadingList(widget.book.toLecture());
-      setState(() {
-        if (!isInReadingList) {
-          if (!isInPendingList) {
-            setState(() {
-              widget.user.addLectureToPendingList(book);
-              InfoToast.showBookAddedCorrectlyToast(book.title);
-            });
-          } else {
-            widget.user.removeLectureFromPendingList(book);
-            InfoToast.showBookRemovedCorrectlyToast(book.title);
-          }
-          isInPendingList = !isInPendingList;
-        }
-      });
-    } else if (listType == ListType.add_custom_list ||
-        listType == ListType.edit_custom_list ||
-        listType == ListType.first_time_form ||
-        listType == ListType.received_recommendation_form ||
-        listType == ListType.send_recommendation_form) {
-      setState(() {
-        widget.addOrRemoveBookFromTemporalCustomList(book, added);
-      });
-    } else if (widget.type == BookCardType.book_card_in_vertical_list) {
-      setState(() {
-        widget.user.increaseChapter(book);
-      });
-    }
+    setState(() {
+      widget.user.increaseChapter(book);
+    });
   }
 
   _getFriendsPreview() {

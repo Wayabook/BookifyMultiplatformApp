@@ -3,6 +3,8 @@ import 'package:bookifyapp/Enums/book_card_type.dart';
 import 'package:bookifyapp/Enums/list_type.dart';
 import 'package:bookifyapp/InfoToast.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/Book/book_card.dart';
+import 'package:bookifyapp/LayoutWidgets/Cards/Book/book_card_factory.dart';
+import 'package:bookifyapp/LayoutWidgets/Cards/Book/book_card_in_vertical_search_list.dart';
 import 'package:bookifyapp/LayoutWidgets/Dialogs/dialog_with_accept_and_cancel_options.dart';
 import 'package:bookifyapp/Models/Lecture.dart';
 import 'package:bookifyapp/Models/User.dart';
@@ -93,49 +95,49 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
     if (widget.type == ListType.add_custom_list ||
         widget.type == ListType.edit_custom_list ||
         widget.type == ListType.first_time_form) {
-      return BookCard.inVerticalSearchList(
-        widget.books[index].toLecture(),
+      return BookCardFactory(
         BookCardType.book_card_in_vertical_search_list,
-        widget.type,
-        Provider.of<User>(context, listen: false),
+        widget.books[index].toLecture(),
+        listType: widget.type,
+        user: Provider.of<User>(context, listen: false),
         addOrRemoveBookFromTemporalCustomList:
             (widget.type == ListType.first_time_form)
                 ? addOrRemoveBookFromPendingOrReadingList
                 : addOrRemoveBookFromTemporalCustomList,
         listTitle: widget.title,
-      );
+      ).build(context: context);
     } else if (widget.type == ListType.received_recommendation_form) {
-      return BookCard.inVerticalSearchList(
-        widget.books[index].toLecture(),
+      return BookCardFactory(
         BookCardType.book_card_in_vertical_search_list,
-        widget.type,
-        Provider.of<User>(context, listen: false),
+        widget.books[index].toLecture(),
+        listType: widget.type,
+        user: Provider.of<User>(context, listen: false),
         backgroundColor: widget.backgroundColor,
         cardHeight: (CONTAINER_FACTOR_140 * SizeConfig.heightMultiplier), //140
         addOrRemoveBookFromTemporalCustomList:
             (widget.type == ListType.first_time_form)
                 ? addOrRemoveBookFromPendingOrReadingList
                 : addOrRemoveBookFromTemporalCustomList,
-      );
+      ).build(context: context);
     } else if (widget.type == ListType.send_recommendation_form) {
-      return BookCard.inVerticalSearchList(
-        widget.books[index].toLecture(),
+      return BookCardFactory(
         BookCardType.book_card_in_vertical_search_list,
-        widget.type,
-        Provider.of<User>(context, listen: false),
+        widget.books[index].toLecture(),
+        listType: widget.type,
+        user: Provider.of<User>(context, listen: false),
         backgroundColor: widget.backgroundColor,
         addOrRemoveBookFromTemporalCustomList:
             (widget.type == ListType.first_time_form)
                 ? addOrRemoveBookFromPendingOrReadingList
                 : addOrRemoveBookFromTemporalCustomList,
-      );
+      ).build(context: context);
     } else {
-      return BookCard.inVerticalSearchList(
-        widget.books[index].toLecture(),
+      return BookCardFactory(
         BookCardType.book_card_in_vertical_search_list,
-        widget.type,
-        Provider.of<User>(context, listen: false),
-      );
+        widget.books[index].toLecture(),
+        listType: widget.type,
+        user: Provider.of<User>(context, listen: false),
+      ).build(context: context);
     }
   }
 
