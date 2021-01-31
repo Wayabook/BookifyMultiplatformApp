@@ -1,14 +1,10 @@
 import 'package:bookifyapp/Design/SizeConfig.dart';
 import 'package:bookifyapp/Design/constants.dart';
-import 'package:bookifyapp/Design/size_constants.dart';
 import 'package:bookifyapp/Enums/book_card_type.dart';
 import 'package:bookifyapp/Enums/button_type.dart';
 import 'package:bookifyapp/Enums/list_type.dart';
-import 'package:bookifyapp/LayoutWidgets/Buttons/add_button_small.dart';
 import 'package:bookifyapp/LayoutWidgets/Buttons/book_card_action_button.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/Book/book_card_factory.dart';
-import 'package:bookifyapp/LayoutWidgets/Dialogs/add_feedback_dialog.dart';
-import 'package:bookifyapp/LayoutWidgets/Dialogs/dialog_with_input_text.dart';
 import 'package:bookifyapp/LayoutWidgets/Dialogs/recommendation_dialog.dart';
 import 'package:bookifyapp/LayoutWidgets/Profile/friends_preview.dart';
 import 'package:bookifyapp/Models/Book.dart';
@@ -16,9 +12,6 @@ import 'package:bookifyapp/Models/Lecture.dart';
 import 'package:bookifyapp/Models/Recommendation.dart';
 import 'package:bookifyapp/Models/User.dart';
 import 'package:bookifyapp/Pages/BookPage/book_page.dart';
-import 'package:bookifyapp/Pages/SearchPage/search_page.dart';
-import 'package:bookifyapp/Pages/add_custom_list_page.dart';
-import 'package:bookifyapp/Pages/bookshelf_page.dart';
 import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
@@ -28,8 +21,7 @@ import '../../../InfoToast.dart';
 import 'BookCardInfo/book_card_info.dart';
 import 'OptionCard/option_card.dart';
 
-class BookCardInVerticalSearchList extends StatefulWidget
-    implements BookCardFactory {
+class BookCardInVerticalSearchList extends StatefulWidget with BookCardFactory {
   BuildContext context;
   BookCardType type;
   Lecture book;
@@ -63,7 +55,9 @@ class BookCardInVerticalSearchList extends StatefulWidget
   }
 
   @override
-  void initState() {}
+  bookCompletedProcess() {
+    bookCard.bookCompletedProcess();
+  }
 
   @override
   _BookCard createState() => bookCard;
@@ -96,21 +90,17 @@ class _BookCard extends State<BookCardInVerticalSearchList> {
   //User user;
   IconData iconData;
   //Color buttonColor;
-  bool isInPendingList;
-  bool isInReadingList;
+  //bool isInPendingList;
+  //bool isInReadingList;
   bool added;
 
   _BookCard();
 
   @override
   Widget build(BuildContext context) {
-    /*if (widget.type == BookCardType.book_card_in_vertical_list &&
-        widget.book.finished) {
-      setState(() {
-        confettiController.play();
-      });
-    }*/
-    return _getCardWidget(context);
+    //return _getCardWidget(context);
+    return widget.getCardWidget(
+        widget.type, _getVerticalListCardWidget(context));
   }
 
   @override
@@ -139,40 +129,6 @@ class _BookCard extends State<BookCardInVerticalSearchList> {
     super.dispose();
   }
 
-  _getCardWidget(BuildContext context) {
-    return Card(
-        elevation: (2.43 * SizeConfig.widthMultiplier), //10
-        margin: new EdgeInsets.symmetric(
-            horizontal: (2.43 * SizeConfig.widthMultiplier), //10
-            vertical: widget.type == BookCardType.book_card_in_vertical_list
-                ? (0.98 * SizeConfig.heightMultiplier)
-                : //10
-                (0.87 * SizeConfig.heightMultiplier) //6
-            ),
-        child: _getVerticalListCardWidget(context));
-  }
-
-  sendRecommendedBooks(List<Book> recommendedBooks) async {
-    List<Recommendation> recommendations = new List();
-    User recommender = Provider.of<User>(context, listen: false);
-    for (Book book in recommendedBooks) {
-      recommendations.add(new Recommendation(recommender, book));
-    }
-    // show popup and on accept send it to user.
-    await showDialog(
-      context: context,
-      builder: (BuildContext context) => RecommendationDialog(
-        Recommendation.getMockRecommendation(),
-        type: ListType.send_recommendation_form,
-        sendToUser: widget.user,
-      ),
-    );
-    /**
-     * Missing
-     * This part will be implemented in futher steps.
-     * */
-  }
-
   _getVerticaListTile() {
     return Container(
         decoration: BoxDecoration(
@@ -189,108 +145,31 @@ class _BookCard extends State<BookCardInVerticalSearchList> {
             children: <Widget>[
               Flexible(
                 flex: 3,
-                child: _getFirstRowItem(),
+                child: widget.getFirstRowItem(
+                    widget.type, widget.listType, widget.book, () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) =>
+                          BookPage("title", widget.book, _getBooks())));
+                }),
               ),
               Flexible(
                 flex: 5,
-                child: _getSecondRowItem(),
+                child: widget.getSecondRowItem(widget.book, widget.type),
               ),
               Flexible(
                 flex: 2,
-                child: _getThirdRowItem(),
+                child: widget.getThirdRowItem(
+                    widget.book,
+                    widget.type,
+                    widget.user,
+                    widget.listType,
+                    widget.tickerProvider,
+                    widget.listTitle,
+                    _onBookCardActionButtonPressed),
               ),
             ],
           ),
         ));
-  }
-
-  _getFirstRowItem() {
-    return (widget.type == BookCardType.book_card_in_vertical_list ||
-            widget.listType == ListType.normal)
-        ? Column(
-            children: <Widget>[
-              Flexible(
-                flex: 9,
-                child: Container(
-                  width: (21.89 * SizeConfig.widthMultiplier), //90
-                  decoration: new BoxDecoration(
-                      border: new Border(
-                          right: new BorderSide(
-                              width: 1.0, color: kPrimaryDarkColor),
-                          left: new BorderSide(
-                              width: .075, color: kPrimaryDarkColor),
-                          bottom: new BorderSide(
-                              width: .075, color: kPrimaryDarkColor),
-                          top: new BorderSide(
-                              width: .075, color: kPrimaryDarkColor))),
-
-                  child: Container(
-                      color: Colors.black,
-                      height: (24.54 * SizeConfig.heightMultiplier), //150
-                      width: double.infinity,
-                      child: FittedBox(
-                          fit: BoxFit.fill,
-                          child: GestureDetector(
-                            onTap: () {},
-                            child: Image.network(
-                              widget.book.picture,
-                            ),
-                          ))),
-                ),
-              ),
-              Flexible(
-                  flex: 1,
-                  child: Center(
-                    child: LinearPercentIndicator(
-                      //width: //150.0,
-                      lineHeight: (1.21 * SizeConfig.widthMultiplier), //5
-                      percent: widget.book.progress,
-                      progressColor: Colors.lightGreen,
-                    ),
-                  ))
-            ],
-          )
-        : _getFriendsPreview();
-  }
-
-  _getSecondRowItem() {
-    return Padding(
-      padding: EdgeInsets.all((1.75 * SizeConfig.heightMultiplier)), //12
-      child: Container(
-        height: (24.54 * SizeConfig.heightMultiplier), //150
-        child: BookCardInfo(widget.book, widget.type),
-      ),
-    );
-  }
-
-  _getThirdRowItem() {
-    return BookCardActionButton(
-      widget.book,
-      widget.type,
-      widget.listType,
-      widget.tickerProvider,
-      widget.listTitle,
-      onBookCardActionButtonPressed: _onBookCardActionButtonPressed,
-      onBookCompletedProcess: bookCompletedProcess,
-      added: _isBookAdded(),
-    );
-  }
-
-  _isBookAdded() {
-    if (widget.listType == ListType.first_time_form ||
-        widget.listType == ListType.received_recommendation_form ||
-        widget.listType == ListType.send_recommendation_form) {
-      return false;
-    } else if (widget.listType == ListType.add_custom_list ||
-        widget.listType == ListType.edit_custom_list ||
-        widget.listType == ListType.first_time_form) {
-      return widget.user
-          .isLectureInList(widget.book.toLecture(), widget.listTitle);
-    } else {
-      isInPendingList = widget.user.isInPendingList(widget.book.toLecture());
-      isInReadingList = widget.user.isInReadingList(widget.book.toLecture());
-      return isInPendingList || isInReadingList;
-    }
   }
 
   bookCompletedProcess() {
@@ -303,11 +182,13 @@ class _BookCard extends State<BookCardInVerticalSearchList> {
   _onBookCardActionButtonPressed(ListType listType, Lecture book,
       {bool added: false, BookCardType type}) async {
     if (listType == ListType.normal || listType == ListType.preview_friends) {
-      isInPendingList = widget.user.isInPendingList(widget.book.toLecture());
-      isInReadingList = widget.user.isInReadingList(widget.book.toLecture());
+      widget.isInPendingList =
+          widget.user.isInPendingList(widget.book.toLecture());
+      widget.isInReadingList =
+          widget.user.isInReadingList(widget.book.toLecture());
       setState(() {
-        if (!isInReadingList) {
-          if (!isInPendingList) {
+        if (!widget.isInReadingList) {
+          if (!widget.isInPendingList) {
             setState(() {
               widget.user.addLectureToPendingList(book);
               InfoToast.showBookAddedCorrectlyToast(book.title);
@@ -316,7 +197,7 @@ class _BookCard extends State<BookCardInVerticalSearchList> {
             widget.user.removeLectureFromPendingList(book);
             InfoToast.showBookRemovedCorrectlyToast(book.title);
           }
-          isInPendingList = !isInPendingList;
+          widget.isInPendingList = !widget.isInPendingList;
         }
       });
     } else if (listType == ListType.add_custom_list ||
@@ -327,80 +208,6 @@ class _BookCard extends State<BookCardInVerticalSearchList> {
       setState(() {
         widget.addOrRemoveBookFromTemporalCustomList(book, added);
       });
-    }
-  }
-
-  _getFriendsPreview() {
-    if (widget.book.friendsReading != null &&
-        widget.book.friendsReading.length > 0) {
-      return Stack(
-        children: <Widget>[
-          Padding(
-            padding: EdgeInsets.fromLTRB(
-              0,
-              0,
-              0,
-              (2.43 * SizeConfig.widthMultiplier), //10
-            ),
-            child: Container(
-                width: (21.89 * SizeConfig.widthMultiplier), //90,
-                decoration: new BoxDecoration(
-                    border: new Border(
-                        right: new BorderSide(
-                            width: 1.0, color: kPrimaryDarkColor),
-                        left: new BorderSide(
-                            width: .075, color: kPrimaryDarkColor),
-                        bottom: new BorderSide(
-                            width: .075, color: kPrimaryDarkColor),
-                        top: new BorderSide(
-                            width: .075, color: kPrimaryDarkColor))),
-                child: Container(
-                    color: Colors.black,
-                    height: (24.54 * SizeConfig.heightMultiplier), //150
-                    width: double.infinity,
-                    child: FittedBox(
-                        fit: BoxFit.fill,
-                        child: GestureDetector(
-                          onTap: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => BookPage(
-                                    "title", widget.book, _getBooks())));
-                          },
-                          child: Image.network(
-                            widget.book.picture,
-                          ),
-                        )))),
-          ),
-          Positioned(
-              child: Align(
-            alignment: FractionalOffset.bottomLeft,
-            child: FriendsPreview(widget.book.friendsReading),
-          )),
-        ],
-      );
-    } else {
-      return Padding(
-        padding: EdgeInsets.fromLTRB(
-            0, 0, 0, (2.43 * SizeConfig.widthMultiplier)), //10
-        child: Container(
-            width: (21.89 * SizeConfig.widthMultiplier), //90,
-            decoration: new BoxDecoration(
-                border: new Border(
-                    right: new BorderSide(width: 1.0, color: kPrimaryDarkColor),
-                    left: new BorderSide(width: .075, color: kPrimaryDarkColor),
-                    bottom:
-                        new BorderSide(width: .075, color: kPrimaryDarkColor),
-                    top:
-                        new BorderSide(width: .075, color: kPrimaryDarkColor))),
-            child: Container(
-                color: Colors.black,
-                height: (24.54 * SizeConfig.heightMultiplier), //150
-                width: double.infinity,
-                child: FittedBox(
-                  fit: BoxFit.fill,
-                  child: Image.network(widget.book.picture),
-                ))),
-      );
     }
   }
 

@@ -27,7 +27,7 @@ import '../../../InfoToast.dart';
 import 'BookCardInfo/book_card_info.dart';
 import 'OptionCard/option_card.dart';
 
-class BokCard extends StatefulWidget implements BookCardFactory {
+class BokCard extends StatefulWidget with BookCardFactory {
   BookCardType type;
   Lecture book;
   User user;
@@ -44,7 +44,9 @@ class BokCard extends StatefulWidget implements BookCardFactory {
   }
 
   @override
-  void initState() {}
+  bookCompletedProcess() {
+    /*** Doesn't need implementation in this case. */
+  }
 
   @override
   _BookCard createState() => bookCard;
@@ -264,16 +266,15 @@ class _BookCard extends State<BokCard> {
                   scrollToLastPosition: true,
                 )),
       );
-      //Navigator.pop(context);
     }
   }
 
-  bookCompletedProcess() {
+  /*bookCompletedProcess() {
     setState(() {
       widget.user.moveLectureFromReadingListToReadList(widget.book);
       InfoToast.showFinishedCongratulationsMessage(widget.book.title);
     });
-  }
+  }*/
 
   List<Book> _getBooks() {
     return Book.getAppMockBooks();

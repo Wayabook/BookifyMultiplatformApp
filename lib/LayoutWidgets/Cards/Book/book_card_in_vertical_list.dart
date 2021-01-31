@@ -28,7 +28,7 @@ import '../../../InfoToast.dart';
 import 'BookCardInfo/book_card_info.dart';
 import 'OptionCard/option_card.dart';
 
-class BookCardInVerticalList extends StatefulWidget implements BookCardFactory {
+class BookCardInVerticalList extends StatefulWidget with BookCardFactory {
   BookCardType type;
   Lecture book;
   User user;
@@ -56,7 +56,9 @@ class BookCardInVerticalList extends StatefulWidget implements BookCardFactory {
   }
 
   @override
-  void initState() {}
+  bookCompletedProcess() {
+    bookCard.bookCompletedProcess();
+  }
 
   @override
   _BookCard createState() => bookCard;
@@ -103,7 +105,9 @@ class _BookCard extends State<BookCardInVerticalList> {
         confettiController.play();
       });
     }
-    return _getCardWidget(context);
+    //return _getCardWidget(context);
+    return widget.getCardWidget(
+        widget.type, _getVerticalListCardWidget(context));
   }
 
   @override
@@ -172,96 +176,6 @@ class _BookCard extends State<BookCardInVerticalList> {
     super.dispose();
   }
 
-  _getCardWidget(BuildContext context) {
-    return Card(
-        elevation: (2.43 * SizeConfig.widthMultiplier), //10
-        margin: new EdgeInsets.symmetric(
-            horizontal: (2.43 * SizeConfig.widthMultiplier), //10
-            vertical: widget.type == BookCardType.book_card_in_vertical_list
-                ? (0.98 * SizeConfig.heightMultiplier)
-                : //10
-                (0.87 * SizeConfig.heightMultiplier) //6
-            ),
-        child: _getVerticalListCardWidget(context));
-  }
-
-  onOptionCardPressed() async {
-    if (widget.type == BookCardType.disover) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) => SearchPage(
-                Book.getUserMockBooks(), User.getMockAlterantiveUsers())),
-      );
-    } else if (widget.type == BookCardType.view_all) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => BookshelfPage(widget.user)),
-      );
-    } else if (widget.type == BookCardType.add_custom_list) {
-      var result = await showDialog(
-        context: context,
-        builder: (BuildContext context) => DialogWithInputText(
-            'Add List Title:',
-            'Add a custom list of books from your Bookshelf, and share it with your friends.\n\n',
-            'List Title'),
-      );
-      if (result != DialogWithInputText.CANCEL_TAP) {
-        await _pushAddCustomListPage(result);
-      }
-    } else if (widget.type == BookCardType.recommend_book) {
-      _pushRecommendBooksPage();
-    }
-  }
-
-  sendRecommendedBooks(List<Book> recommendedBooks) async {
-    List<Recommendation> recommendations = new List();
-    User recommender = Provider.of<User>(context, listen: false);
-    for (Book book in recommendedBooks) {
-      recommendations.add(new Recommendation(recommender, book));
-    }
-    // show popup and on accept send it to user.
-    await showDialog(
-      context: context,
-      builder: (BuildContext context) => RecommendationDialog(
-        Recommendation.getMockRecommendation(),
-        type: ListType.send_recommendation_form,
-        sendToUser: widget.user,
-      ),
-    );
-    /**
-     * Missing
-     * This part will be implemented in futher steps.
-     * */
-  }
-
-  _pushRecommendBooksPage() async {
-    await Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => AddCustomListPage(
-              widget.user.bookshelf,
-              "Recommendation",
-              ListType.send_recommendation_form,
-              sendRecommendedBooks: sendRecommendedBooks,
-            )));
-  }
-
-  _pushAddCustomListPage(String listTitle) async {
-    final result = await Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => AddCustomListPage(
-            widget.user.bookshelf, listTitle, ListType.add_custom_list)));
-    if (result == 0) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) => BookshelfPage(
-                  Provider.of<User>(context, listen: false),
-                  scrollToLastPosition: true,
-                )),
-      );
-      //Navigator.pop(context);
-    }
-  }
-
   _getVerticaListTile() {
     return Container(
         decoration: BoxDecoration(
@@ -278,108 +192,32 @@ class _BookCard extends State<BookCardInVerticalList> {
             children: <Widget>[
               Flexible(
                 flex: 3,
-                child: _getFirstRowItem(),
+                child: widget.getFirstRowItem(
+                    widget.type, widget.listType, widget.book, () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) =>
+                          BookPage("title", widget.book, _getBooks())));
+                }),
               ),
               Flexible(
                 flex: 5,
-                child: _getSecondRowItem(),
+                child: widget.getSecondRowItem(
+                    widget.book, widget.type), //_getSecondRowItem(),
               ),
               Flexible(
                 flex: 2,
-                child: _getThirdRowItem(),
+                child: widget.getThirdRowItem(
+                    widget.book,
+                    widget.type,
+                    widget.user,
+                    widget.listType,
+                    widget.tickerProvider,
+                    widget.listTitle,
+                    _onBookCardActionButtonPressed),
               ),
             ],
           ),
         ));
-  }
-
-  _getFirstRowItem() {
-    return (widget.type == BookCardType.book_card_in_vertical_list ||
-            widget.listType == ListType.normal)
-        ? Column(
-            children: <Widget>[
-              Flexible(
-                flex: 9,
-                child: Container(
-                  width: (21.89 * SizeConfig.widthMultiplier), //90
-                  decoration: new BoxDecoration(
-                      border: new Border(
-                          right: new BorderSide(
-                              width: 1.0, color: kPrimaryDarkColor),
-                          left: new BorderSide(
-                              width: .075, color: kPrimaryDarkColor),
-                          bottom: new BorderSide(
-                              width: .075, color: kPrimaryDarkColor),
-                          top: new BorderSide(
-                              width: .075, color: kPrimaryDarkColor))),
-
-                  child: Container(
-                      color: Colors.black,
-                      height: (24.54 * SizeConfig.heightMultiplier), //150
-                      width: double.infinity,
-                      child: FittedBox(
-                          fit: BoxFit.fill,
-                          child: GestureDetector(
-                            onTap: () {},
-                            child: Image.network(
-                              widget.book.picture,
-                            ),
-                          ))),
-                ),
-              ),
-              Flexible(
-                  flex: 1,
-                  child: Center(
-                    child: LinearPercentIndicator(
-                      //width: //150.0,
-                      lineHeight: (1.21 * SizeConfig.widthMultiplier), //5
-                      percent: widget.book.progress,
-                      progressColor: Colors.lightGreen,
-                    ),
-                  ))
-            ],
-          )
-        : _getFriendsPreview();
-  }
-
-  _getSecondRowItem() {
-    return Padding(
-      padding: EdgeInsets.all((1.75 * SizeConfig.heightMultiplier)), //12
-      child: Container(
-        height: (24.54 * SizeConfig.heightMultiplier), //150
-        child: BookCardInfo(widget.book, widget.type),
-      ),
-    );
-  }
-
-  _getThirdRowItem() {
-    return BookCardActionButton(
-      widget.book,
-      widget.type,
-      widget.listType,
-      widget.tickerProvider,
-      widget.listTitle,
-      onBookCardActionButtonPressed: _onBookCardActionButtonPressed,
-      onBookCompletedProcess: bookCompletedProcess,
-      added: _isBookAdded(),
-    );
-  }
-
-  _isBookAdded() {
-    if (widget.listType == ListType.first_time_form ||
-        widget.listType == ListType.received_recommendation_form ||
-        widget.listType == ListType.send_recommendation_form) {
-      return false;
-    } else if (widget.listType == ListType.add_custom_list ||
-        widget.listType == ListType.edit_custom_list ||
-        widget.listType == ListType.first_time_form) {
-      return widget.user
-          .isLectureInList(widget.book.toLecture(), widget.listTitle);
-    } else {
-      isInPendingList = widget.user.isInPendingList(widget.book.toLecture());
-      isInReadingList = widget.user.isInReadingList(widget.book.toLecture());
-      return isInPendingList || isInReadingList;
-    }
   }
 
   bookCompletedProcess() {
@@ -394,82 +232,6 @@ class _BookCard extends State<BookCardInVerticalList> {
     setState(() {
       widget.user.increaseChapter(book);
     });
-  }
-
-  _getFriendsPreview() {
-    if (widget.book.friendsReading != null &&
-        widget.book.friendsReading.length > 0) {
-      return Stack(
-        children: <Widget>[
-          Padding(
-            padding: EdgeInsets.fromLTRB(
-              0,
-              0,
-              0,
-              (2.43 * SizeConfig.widthMultiplier), //10
-            ),
-            child: Container(
-                width: (21.89 * SizeConfig.widthMultiplier), //90,
-                //padding: EdgeInsets.only(right: 12.0),
-                //padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                decoration: new BoxDecoration(
-                    border: new Border(
-                        right: new BorderSide(
-                            width: 1.0, color: kPrimaryDarkColor),
-                        left: new BorderSide(
-                            width: .075, color: kPrimaryDarkColor),
-                        bottom: new BorderSide(
-                            width: .075, color: kPrimaryDarkColor),
-                        top: new BorderSide(
-                            width: .075, color: kPrimaryDarkColor))),
-                child: Container(
-                    color: Colors.black,
-                    height: (24.54 * SizeConfig.heightMultiplier), //150
-                    width: double.infinity,
-                    child: FittedBox(
-                        fit: BoxFit.fill,
-                        child: GestureDetector(
-                          onTap: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => BookPage(
-                                    "title", widget.book, _getBooks())));
-                          },
-                          child: Image.network(
-                            widget.book.picture,
-                          ),
-                        )))),
-          ),
-          Positioned(
-              child: Align(
-            alignment: FractionalOffset.bottomLeft,
-            child: FriendsPreview(widget.book.friendsReading),
-          )),
-        ],
-      );
-    } else {
-      return Padding(
-        padding: EdgeInsets.fromLTRB(
-            0, 0, 0, (2.43 * SizeConfig.widthMultiplier)), //10
-        child: Container(
-            width: (21.89 * SizeConfig.widthMultiplier), //90,
-            decoration: new BoxDecoration(
-                border: new Border(
-                    right: new BorderSide(width: 1.0, color: kPrimaryDarkColor),
-                    left: new BorderSide(width: .075, color: kPrimaryDarkColor),
-                    bottom:
-                        new BorderSide(width: .075, color: kPrimaryDarkColor),
-                    top:
-                        new BorderSide(width: .075, color: kPrimaryDarkColor))),
-            child: Container(
-                color: Colors.black,
-                height: (24.54 * SizeConfig.heightMultiplier), //150
-                width: double.infinity,
-                child: FittedBox(
-                  fit: BoxFit.fill,
-                  child: Image.network(widget.book.picture),
-                ))),
-      );
-    }
   }
 
   List<Book> _getBooks() {
