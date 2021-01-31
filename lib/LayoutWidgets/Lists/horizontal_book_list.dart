@@ -5,7 +5,6 @@ import 'package:bookifyapp/Models/Lecture.dart';
 import 'package:bookifyapp/Models/User.dart';
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/Enums/list_type.dart';
-import 'package:bookifyapp/LayoutWidgets/Cards/Book/book_card.dart';
 import 'package:bookifyapp/Enums/book_card_type.dart';
 
 import '../../Design/SizeConfig.dart';

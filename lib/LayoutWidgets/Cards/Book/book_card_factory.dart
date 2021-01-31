@@ -5,7 +5,7 @@ import 'package:bookifyapp/Enums/book_card_type.dart';
 import 'package:bookifyapp/Enums/button_type.dart';
 import 'package:bookifyapp/Enums/list_type.dart';
 import 'package:bookifyapp/LayoutWidgets/Buttons/book_card_action_button.dart';
-import 'package:bookifyapp/LayoutWidgets/Cards/Book/bok_card.dart';
+import 'package:bookifyapp/LayoutWidgets/Cards/Book/book_card.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/Book/book_card_in_vertical_list.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/Book/book_card_in_vertical_search_list.dart';
 import 'package:bookifyapp/LayoutWidgets/Profile/friends_preview.dart';
@@ -60,7 +60,7 @@ abstract class BookCardFactory {
           cardHeight: cardHeight,
         );
       default:
-        return BokCard(book, bookCardType, user: user);
+        return BookCard(book, bookCardType, user: user);
     }
   }
 

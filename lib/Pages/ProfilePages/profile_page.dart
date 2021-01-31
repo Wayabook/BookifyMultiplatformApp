@@ -5,6 +5,7 @@ import 'package:bookifyapp/Enums/button_type.dart';
 import 'package:bookifyapp/Enums/list_type.dart';
 import 'package:bookifyapp/InfoToast.dart';
 import 'package:bookifyapp/Interfaces/TitleButtonInterface.dart';
+import 'package:bookifyapp/LayoutWidgets/Cards/Book/book_card_factory.dart';
 import 'package:bookifyapp/LayoutWidgets/Dialogs/dialog_with_accept_and_cancel_options.dart';
 import 'package:bookifyapp/LayoutWidgets/Dialogs/recommendation_dialog.dart';
 import 'package:bookifyapp/LayoutWidgets/Lists/Title/list_title.dart';
@@ -20,7 +21,6 @@ import 'package:bookifyapp/LayoutWidgets/info_row.dart';
 import 'package:bookifyapp/Enums/row_type.dart';
 import 'package:bookifyapp/LayoutWidgets/Lists/horizontal_genres_list.dart';
 import 'package:bookifyapp/Enums/book_card_type.dart';
-import 'package:bookifyapp/LayoutWidgets/Cards/Book/book_card.dart';
 import 'package:bookifyapp/Models/User.dart';
 import 'package:bookifyapp/Enums/profile_type.dart';
 import 'dart:math';
@@ -67,12 +67,13 @@ class _ProfilePage extends State<ProfilePage> implements TitleButtonInterface {
       ListType.view_all,
       user: widget.user,
     ));
-    items.add(BookCard.option(
-      widget.profileType == ProfileType.user_profile
-          ? BookCardType.add_custom_list
-          : BookCardType.recommend_book,
-      user: widget.user,
-    ));
+    items.add(BookCardFactory(
+            widget.profileType == ProfileType.user_profile
+                ? BookCardType.add_custom_list
+                : BookCardType.recommend_book,
+            null,
+            user: widget.user)
+        .build(context: context));
   }
 
   @override

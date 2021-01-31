@@ -4,7 +4,7 @@ import 'package:bookifyapp/Enums/button_type.dart';
 import 'package:bookifyapp/Enums/list_type.dart';
 import 'package:bookifyapp/InfoToast.dart';
 import 'package:bookifyapp/Interfaces/TitleButtonInterface.dart';
-import 'package:bookifyapp/LayoutWidgets/Cards/Book/book_card.dart';
+import 'package:bookifyapp/LayoutWidgets/Cards/Book/book_card_factory.dart';
 import 'package:bookifyapp/LayoutWidgets/Dialogs/dialog_with_accept_and_cancel_options.dart';
 import 'package:bookifyapp/LayoutWidgets/Dialogs/dialog_with_input_text.dart';
 import 'package:bookifyapp/LayoutWidgets/Lists/Title/list_title.dart';
@@ -77,8 +77,9 @@ class _BooskelfGridList extends State<BooskelfGridList>
                       (MediaQuery.of(context).size.height / HEIGHT_FACTOR),
               children:
                   List.generate(widget.user.lectures[key].length, (index) {
-                return BookCard(widget.user.lectures[key][index],
-                    BookCardType.book_card_in_grid);
+                return BookCardFactory(BookCardType.book_card_in_grid,
+                        widget.user.lectures[key][index])
+                    .build(context: context);
               }),
             );
           }

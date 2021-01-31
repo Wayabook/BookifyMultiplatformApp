@@ -2,7 +2,6 @@ import 'package:bookifyapp/Design/constants.dart';
 import 'package:bookifyapp/Design/size_constants.dart';
 import 'package:bookifyapp/Enums/book_card_type.dart';
 import 'package:bookifyapp/Enums/list_type.dart';
-import 'package:bookifyapp/LayoutWidgets/Cards/Book/book_card.dart';
 import 'package:bookifyapp/Models/Book.dart';
 import 'package:bookifyapp/Models/Lecture.dart';
 import 'package:bookifyapp/Models/User.dart';
