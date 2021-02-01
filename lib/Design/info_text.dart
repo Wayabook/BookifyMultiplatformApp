@@ -38,6 +38,7 @@ const String SELECT_GENRE = "Select or unselect your genres of interest.";
 const String SKIP_OPTION = "Skip";
 const String SEARCH_BOOK = "Search book...";
 const String ADD_COMMENT = 'Add Comment...';
+const String ADD_GENRE = "Add Genre";
 const String ADD_COMMENT_2 = 'Add Comment...';
 const String PUBLISH_COMMENT = "PUBLICAR";
 const String RECOMMENDED_BY = 'Recommended by';

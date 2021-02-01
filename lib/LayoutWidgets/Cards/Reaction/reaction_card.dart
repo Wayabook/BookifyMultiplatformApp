@@ -1,4 +1,5 @@
 import 'package:bookifyapp/Design/constants.dart';
+import 'package:bookifyapp/Design/size_constants.dart';
 import 'package:bookifyapp/Models/Reaction.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -14,14 +15,15 @@ class ReactionCard extends StatefulWidget {
 }
 
 class _ReactionCard extends State<ReactionCard> {
+  static const String PERCENTAGE_SYMBOL = "%";
   bool tapped = false;
   String text = "";
 
   void changeText() {
     setState(() {
-      if(tapped == false){
+      if (tapped == false) {
         tapped = true;
-        text = widget.reaction.percentage.toString() + "%";
+        text = widget.reaction.percentage.toString() + PERCENTAGE_SYMBOL;
       }
     });
   }
@@ -31,12 +33,11 @@ class _ReactionCard extends State<ReactionCard> {
     super.initState();
     text = widget.reaction.name;
   }
-  
-  _getBorder(enabled){
-    var width = 0.0;
-    if(enabled)
-      width = (0.48 * SizeConfig.imageSizeMultiplier); //2
-    
+
+  _getBorder(enabled) {
+    var width =
+        enabled ? (CONTAINER_FACTOR_2 * SizeConfig.imageSizeMultiplier) : 0; //2
+
     return Border(
       top: BorderSide(color: kPrimaryLightColor, width: width),
       bottom: BorderSide(color: kPrimaryLightColor, width: width),
@@ -52,22 +53,24 @@ class _ReactionCard extends State<ReactionCard> {
         width: double.infinity,
         child: GestureDetector(
           onTap: changeText,
-          child:  Card(
+          child: Card(
               color: kPrimaryDarkColor,
-              margin: EdgeInsets.all((2.43 * SizeConfig.widthMultiplier)), //10
+              margin: EdgeInsets.all(
+                  (PADDING_FACTOR_10 * SizeConfig.widthMultiplier)), //10
               shape: tapped ? _getBorder(true) : _getBorder(false),
-              elevation: (2.43 * SizeConfig.widthMultiplier), //10
+              elevation: (PADDING_FACTOR_10 * SizeConfig.widthMultiplier), //10
               child: Column(
                 children: <Widget>[
                   Flexible(
                     flex: 8,
                     child: Image.asset(
                       widget.reaction.reactionIcon,
-                      height: (7.36 * SizeConfig.heightMultiplier), //45
-                      width: (7.36 * SizeConfig.heightMultiplier), //45
+                      height: (PADDING_FACTOR_45 *
+                          SizeConfig.heightMultiplier), //45
+                      width: (PADDING_FACTOR_45 *
+                          SizeConfig.heightMultiplier), //45
                     ),
                   ),
-
                   Flexible(
                     flex: 2,
                     child: Text(
@@ -75,14 +78,13 @@ class _ReactionCard extends State<ReactionCard> {
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                         color: kPrimaryLightColor,
-                        fontSize: (1.29 * SizeConfig.heightMultiplier), //8
+                        fontSize: (PADDING_FACTOR_8 *
+                            SizeConfig.heightMultiplier), //8
                       ),
                     ),
                   )
                 ],
-              )
-          ),
-        )
-    );
+              )),
+        ));
   }
 }

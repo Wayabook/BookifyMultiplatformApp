@@ -46,36 +46,32 @@ class HorizontalBookList extends StatelessWidget {
             ? books.length + 1
             : books.length,
         itemBuilder: (BuildContext context, int index) {
-          if (this.type == ListType.discover_option ||
-              this.type == ListType.view_all) {
-            if (index < books.length) {
-              if (this.type == ListType.discover_option) {
-                return BookCardFactory(
-                        BookCardType.add_option, this.books[index],
-                        user: this.user)
-                    .build(context: context);
-              } else {
-                return BookCardFactory(
-                        BookCardType.without_add_option_and_progress_bar,
-                        this.books[index],
-                        user: this.user)
-                    .build(context: context);
-              }
-            } else {
-              return (this.type == ListType.discover_option)
-                  ? BookCardFactory(BookCardType.disover, null)
-                      .build(context: context)
-                  : BookCardFactory(BookCardType.view_all, null,
-                          user: this.user)
-                      .build(context: context);
-            }
-          } else {
-            return BookCardFactory(BookCardType.add_option, this.books[index],
-                    user: this.user)
-                .build(context: context);
-          }
+          return _getBookCardFactory(index);
         },
       ),
     );
+  }
+
+  _getBookCardFactory(index) {
+    if (this.type != ListType.discover_option &&
+        this.type != ListType.view_all) {
+      return BookCardFactory(BookCardType.add_option, this.books[index],
+              user: this.user)
+          .build(context: context);
+    } else if (index == books.length) {
+      return (this.type == ListType.discover_option)
+          ? BookCardFactory(BookCardType.disover, null).build(context: context)
+          : BookCardFactory(BookCardType.view_all, null, user: this.user)
+              .build(context: context);
+    } else if (this.type == ListType.discover_option) {
+      return BookCardFactory(BookCardType.add_option, this.books[index],
+              user: this.user)
+          .build(context: context);
+    } else {
+      return BookCardFactory(BookCardType.without_add_option_and_progress_bar,
+              this.books[index],
+              user: this.user)
+          .build(context: context);
+    }
   }
 }

@@ -6,13 +6,14 @@ import 'package:bookifyapp/Models/Book.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/card_swiper.dart';
 
 class CarouselCard extends StatelessWidget {
+  static const double DEFAULT_HEIGHT_FACTOR = 43.92;
   List<Book> books;
   CarouselCard(this.books);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: (43.92 * SizeConfig.heightMultiplier),
+      height: (DEFAULT_HEIGHT_FACTOR * SizeConfig.heightMultiplier),
       child: Center(
         child: Card(
           color: kPrimaryDarkColor,

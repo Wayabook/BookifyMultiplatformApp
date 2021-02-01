@@ -10,6 +10,7 @@ import '../../../Design/SizeConfig.dart';
 class ListTitle extends StatelessWidget {
   static const double DEFAULT_PADDING_FACTOR = 1.46;
   static const double DEFAULT_FONT_SIZE = 0;
+  static const double DEFAULT_HEIGHT_FACTOR = 0.29;
   User user;
   bool withButton;
   final String title;
@@ -45,7 +46,7 @@ class ListTitle extends StatelessWidget {
                 ? EdgeInsets.fromLTRB(
                     (PADDING_FACTOR_10 * SizeConfig.widthMultiplier), //10
                     (PADDING_FACTOR_10 * SizeConfig.widthMultiplier), //10
-                    (0.29 * SizeConfig.heightMultiplier),
+                    (DEFAULT_HEIGHT_FACTOR * SizeConfig.heightMultiplier),
                     PADDING_FACTOR_0)
                 : EdgeInsets.all(PADDING_FACTOR_0),
             child: withButton ? _getRowWithButton(context) : _getTitle(),
@@ -57,10 +58,11 @@ class ListTitle extends StatelessWidget {
                         (PADDING_FACTOR_15 * SizeConfig.widthMultiplier), //15
                     vertical:
                         (DEFAULT_PADDING_FACTOR * SizeConfig.heightMultiplier))
-                : EdgeInsets.all(0.0),
+                : EdgeInsets.all(PADDING_FACTOR_0),
             child: Container(
                 color: this.barAndTitleColor,
-                height: (0.29 * SizeConfig.heightMultiplier), // 2
+                height:
+                    (DEFAULT_HEIGHT_FACTOR * SizeConfig.heightMultiplier), // 2
                 width: width),
           ),
         ],
