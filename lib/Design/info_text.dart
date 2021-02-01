@@ -49,5 +49,6 @@ const String SHOW_LESS = "show less";
 const String CANCEL_OPTION = "Cancel";
 const String ACCEPT_OPTION = "Accept";
 const String COMMENTS_OPTION = " comentarios";
+const String ANSWER_OPTION = "Responder";
 const String ADD_FEEDBACK_INDICATOR =
     "To give feedback and see comments. Mark as read first";

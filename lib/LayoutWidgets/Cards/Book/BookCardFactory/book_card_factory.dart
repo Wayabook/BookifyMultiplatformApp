@@ -5,9 +5,9 @@ import 'package:bookifyapp/Enums/book_card_type.dart';
 import 'package:bookifyapp/Enums/button_type.dart';
 import 'package:bookifyapp/Enums/list_type.dart';
 import 'package:bookifyapp/LayoutWidgets/Buttons/book_card_action_button.dart';
-import 'package:bookifyapp/LayoutWidgets/Cards/Book/book_card.dart';
-import 'package:bookifyapp/LayoutWidgets/Cards/Book/book_card_in_vertical_list.dart';
-import 'package:bookifyapp/LayoutWidgets/Cards/Book/book_card_in_vertical_search_list.dart';
+import 'package:bookifyapp/LayoutWidgets/Cards/Book/BookCardFactory/book_card.dart';
+import 'package:bookifyapp/LayoutWidgets/Cards/Book/BookCardFactory/book_card_in_vertical_list.dart';
+import 'package:bookifyapp/LayoutWidgets/Cards/Book/BookCardFactory/book_card_in_vertical_search_list.dart';
 import 'package:bookifyapp/LayoutWidgets/Profile/friends_preview.dart';
 import 'package:bookifyapp/Models/Book.dart';
 import 'package:bookifyapp/Models/Lecture.dart';
@@ -15,7 +15,7 @@ import 'package:bookifyapp/Models/User.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
-import 'BookCardInfo/book_card_info.dart';
+import '../BookCardInfo/book_card_info.dart';
 
 abstract class BookCardFactory {
   bool isInPendingList;

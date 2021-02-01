@@ -4,21 +4,21 @@ import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bookifyapp/LayoutWidgets/Profile/profile_picture.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:bookifyapp/Design/size_constants.dart';
 
 import '../../../../Design/SizeConfig.dart';
 
 class ShopItemCard extends StatelessWidget {
-
   Item item;
   ShopItemCard(this.item); // : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: (2.43 * SizeConfig.widthMultiplier), //10
-      margin: new EdgeInsets.all(0),
-      child:  Container(
-        height: (14.64 * SizeConfig.heightMultiplier), //100
+      elevation: (PADDING_FACTOR_10 * SizeConfig.widthMultiplier), //10
+      margin: new EdgeInsets.all(PADDING_FACTOR_0),
+      child: Container(
+        height: (CONTAINER_FACTOR_100 * SizeConfig.heightMultiplier), //100
         child: _makeListTile(),
       ),
     );
@@ -28,12 +28,13 @@ class ShopItemCard extends StatelessWidget {
     return Container(
         decoration: BoxDecoration(
             color: kPrimaryLightColor,
-            borderRadius:  BorderRadius.circular((1.7 * SizeConfig.imageSizeMultiplier)) //7
-        ),
+            borderRadius: BorderRadius.circular(
+                (BORDER_RADIUS_FACTOR_7 * SizeConfig.imageSizeMultiplier)) //7
+            ),
         child: Padding(
           padding: EdgeInsets.symmetric(
-            horizontal: (1.21 * SizeConfig.widthMultiplier), //5
-            vertical: (2.43 * SizeConfig.widthMultiplier), //10
+            horizontal: (PADDING_FACTOR_5 * SizeConfig.widthMultiplier), //5
+            vertical: (PADDING_FACTOR_10 * SizeConfig.widthMultiplier), //10
           ),
           child: Row(
             children: <Widget>[
@@ -41,11 +42,11 @@ class ShopItemCard extends StatelessWidget {
                 flex: 3,
                 child: ProfilePicture(item.shop.logo_url),
               ),
-
               Flexible(
                 flex: 7,
                 child: Padding(
-                  padding: EdgeInsets.all((1.75 * SizeConfig.heightMultiplier)), //12
+                  padding: EdgeInsets.all(
+                      (TEXT_FACTOR_12 * SizeConfig.heightMultiplier)), //12
                   child: Container(
                     //color: Colors.black,
                     //height: 150,
@@ -55,46 +56,52 @@ class ShopItemCard extends StatelessWidget {
                       children: <Widget>[
                         Align(
                           alignment: Alignment.center,
-                          child:  AutoSizeText(
+                          child: AutoSizeText(
                             item.price.toString(),
-                            style: TextStyle( fontWeight: FontWeight.bold, color: Colors.black, fontSize: (4.39 * SizeConfig.textMultiplier),), //30
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                              fontSize: (TEXT_FACTOR_30_H *
+                                  SizeConfig.textMultiplier),
+                            ), //30
                             maxLines: 1,
                           ),
                         ),
-
                         Align(
                           alignment: Alignment.center,
-                          child:  AutoSizeText(
+                          child: AutoSizeText(
                             item.symbol,
-                            style: TextStyle( fontWeight: FontWeight.bold, color: Colors.black, fontSize: (4.39 * SizeConfig.textMultiplier),), //30
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                              fontSize: (TEXT_FACTOR_30_H *
+                                  SizeConfig.textMultiplier),
+                            ), //30
                             maxLines: 1,
                           ),
                         ),
-
                         Expanded(
                           child: Align(
-                            alignment: Alignment.centerRight,
-                            child: IconButton(
-                              icon: Icon(
-                                Icons.arrow_forward_ios,
-                                color: kPrimaryDarkColor,
-                                size: (5.83 * SizeConfig.imageSizeMultiplier), //24
-                              ),
-                              onPressed: (){
-                                launch(item.shop_link);
-                              },
-                            )
-                          ),
+                              alignment: Alignment.centerRight,
+                              child: IconButton(
+                                icon: Icon(
+                                  Icons.arrow_forward_ios,
+                                  color: kPrimaryDarkColor,
+                                  size: (ICON_FACTOR_24 *
+                                      SizeConfig.imageSizeMultiplier), //24
+                                ),
+                                onPressed: () {
+                                  launch(item.shop_link);
+                                },
+                              )),
                         )
                       ],
                     ),
-
                   ),
                 ),
               ),
             ],
           ),
-        )
-    );
+        ));
   }
 }

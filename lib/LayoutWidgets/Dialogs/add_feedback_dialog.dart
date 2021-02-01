@@ -408,8 +408,11 @@ class _AddFeedbackDialog extends State<AddFeedbackDialog>
       if (result.length > PADDING_FACTOR_0) {
         setState(() {
           var user = Provider.of<User>(context, listen: false);
-          MainComment mainComment =
-              new MainComment(user, result, answers: Comment.getMockComments());
+          MainComment mainComment = new MainComment(
+            user,
+            result,
+            answers: Comment.getMockComments(),
+          );
           this.currentChapter.addComment(mainComment);
 
           widgets.add(MainCommentCard(

@@ -34,7 +34,7 @@ class OptionCard extends StatelessWidget {
       ),
       elevation: (PADDING_FACTOR_10 * SizeConfig.imageSizeMultiplier), // 10
       child: Container(
-          width: (29.19 * SizeConfig.widthMultiplier), // 120
+          width: (CONTAINER_FACTOR_120 * SizeConfig.widthMultiplier), // 120
           color: kPrimaryLightColor,
           child: Center(
               child: Column(

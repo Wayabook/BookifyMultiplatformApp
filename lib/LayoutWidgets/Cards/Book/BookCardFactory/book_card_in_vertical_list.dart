@@ -6,7 +6,7 @@ import 'package:bookifyapp/Enums/button_type.dart';
 import 'package:bookifyapp/Enums/list_type.dart';
 import 'package:bookifyapp/LayoutWidgets/Buttons/add_button_small.dart';
 import 'package:bookifyapp/LayoutWidgets/Buttons/book_card_action_button.dart';
-import 'package:bookifyapp/LayoutWidgets/Cards/Book/book_card_factory.dart';
+import 'package:bookifyapp/LayoutWidgets/Cards/Book/BookCardFactory/book_card_factory.dart';
 import 'package:bookifyapp/LayoutWidgets/Dialogs/add_feedback_dialog.dart';
 import 'package:bookifyapp/LayoutWidgets/Dialogs/dialog_with_input_text.dart';
 import 'package:bookifyapp/LayoutWidgets/Dialogs/recommendation_dialog.dart';
@@ -24,9 +24,9 @@ import 'package:flutter/material.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:provider/provider.dart';
 
-import '../../../InfoToast.dart';
-import 'BookCardInfo/book_card_info.dart';
-import 'OptionCard/option_card.dart';
+import '../../../../InfoToast.dart';
+import '../BookCardInfo/book_card_info.dart';
+import '../OptionCard/option_card.dart';
 
 class BookCardInVerticalList extends StatefulWidget with BookCardFactory {
   BookCardType type;
