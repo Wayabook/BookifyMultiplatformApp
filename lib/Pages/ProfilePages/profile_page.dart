@@ -5,11 +5,12 @@ import 'package:bookifyapp/Enums/button_type.dart';
 import 'package:bookifyapp/Enums/list_type.dart';
 import 'package:bookifyapp/InfoToast.dart';
 import 'package:bookifyapp/Interfaces/TitleButtonInterface.dart';
+import 'package:bookifyapp/LayoutWidgets/Buttons/friend_button.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/Book/BookCardFactory/book_card_factory.dart';
-import 'package:bookifyapp/LayoutWidgets/Dialogs/dialog_with_accept_and_cancel_options.dart';
 import 'package:bookifyapp/LayoutWidgets/Dialogs/recommendation_dialog.dart';
 import 'package:bookifyapp/LayoutWidgets/Lists/Title/list_title.dart';
 import 'package:bookifyapp/Models/Recommendation.dart';
+import 'package:bookifyapp/Pages/ProfilePages/Components/LectureInfoRow.dart';
 import 'package:bookifyapp/Pages/ProfilePages/friends_page.dart';
 import 'package:bookifyapp/Pages/GenrePages/genres_page.dart';
 import 'package:bookifyapp/Design/SizeConfig.dart';
@@ -17,8 +18,6 @@ import 'package:flutter/material.dart';
 import 'package:bookifyapp/LayoutWidgets/Profile/arc_banner_image.dart';
 import 'package:bookifyapp/LayoutWidgets/Profile/profile_info.dart';
 import 'package:bookifyapp/LayoutWidgets/Lists/horizontal_book_list.dart';
-import 'package:bookifyapp/LayoutWidgets/info_row.dart';
-import 'package:bookifyapp/Enums/row_type.dart';
 import 'package:bookifyapp/LayoutWidgets/Lists/horizontal_genres_list.dart';
 import 'package:bookifyapp/Enums/book_card_type.dart';
 import 'package:bookifyapp/Models/User.dart';
@@ -57,7 +56,7 @@ class _ProfilePage extends State<ProfilePage> implements TitleButtonInterface {
     items = new List();
     items.add(_getTopStack());
     items.add(_getFriendButtonContainer());
-    items.add(_getUserLectureNumbers());
+    items.add(LectureInfoRow(widget.user, this.widthPerChild));
     items.add(_getHorizontalLineSeparator());
     items.add(_getGenresTitle());
     items.add(_getGenresHorizontalList());
@@ -222,59 +221,8 @@ class _ProfilePage extends State<ProfilePage> implements TitleButtonInterface {
             (PADDING_FACTOR_15 * SizeConfig.widthMultiplier), // 15
             (PADDING_FACTOR_10 * SizeConfig.widthMultiplier) // 10
             ),
-        child: _getFriendButton());
-  }
-
-  _getUserLectureNumbers() {
-    return Center(
-      child: Row(
-        mainAxisAlignment:
-            MainAxisAlignment.center, //Center Row contents horizontally,
-        crossAxisAlignment:
-            CrossAxisAlignment.center, //Center Row contents vertically,
-        children: <Widget>[
-          InfoRow.withIcon(
-              RowType.icon_image,
-              BOOKS_READ_TITLE,
-              Icons.book,
-              widget.user.booksRead.toString(),
-              widthPerChild,
-              (CONTAINER_FACTOR_115 *
-                  SizeConfig.heightMultiplier), //height = 115
-              kPrimaryLightColor),
-          Container(
-            color: kPrimaryLightColor,
-            height: (CONTAINER_FACTOR_115 *
-                SizeConfig.heightMultiplier), //height = 115
-            width: (CONTAINER_FACTOR_2 * SizeConfig.widthMultiplier), //2
-          ),
-          InfoRow.withIcon(
-              RowType.icon_image,
-              CHAPS_READ_TITLE,
-              Icons.collections_bookmark,
-              widget.user.chaptersRead.toString(),
-              widthPerChild,
-              (CONTAINER_FACTOR_115 *
-                  SizeConfig.heightMultiplier), //height = 115
-              kPrimaryLightColor),
-          Container(
-            color: kPrimaryLightColor,
-            height: (CONTAINER_FACTOR_115 *
-                SizeConfig.heightMultiplier), //height = 115
-            width: (CONTAINER_FACTOR_2 * SizeConfig.widthMultiplier), //2
-          ),
-          InfoRow.withIcon(
-              RowType.icon_image,
-              PAGES_READ_TITLE,
-              Icons.description,
-              widget.user.pagesRead.toString(),
-              widthPerChild,
-              (CONTAINER_FACTOR_115 *
-                  SizeConfig.heightMultiplier), //height = 115
-              kPrimaryLightColor),
-        ],
-      ),
-    );
+        child: FriendButton(
+            widget.user, widget.profileType, widget.isFriend, this.width));
   }
 
   _getHorizontalLineSeparator() {
@@ -286,7 +234,6 @@ class _ProfilePage extends State<ProfilePage> implements TitleButtonInterface {
       child: Container(
         color: kPrimaryLightColor,
         height: (0.29 * SizeConfig.heightMultiplier),
-        //width: width
       ),
     );
   }
@@ -370,90 +317,5 @@ class _ProfilePage extends State<ProfilePage> implements TitleButtonInterface {
     setState(() {
       _updateList();
     });
-  }
-
-  _getFriendButton() {
-    if (widget.profileType == ProfileType.friend_profile) {
-      return Column(
-        children: [
-          Align(
-              alignment: Alignment.center,
-              child: ButtonTheme(
-                height: (CONTAINER_FACTOR_35 * SizeConfig.heightMultiplier),
-                minWidth: (CONTAINER_FACTOR_90 * SizeConfig.widthMultiplier),
-                child: RaisedButton(
-                  onPressed: () async {
-                    if (widget.isFriend) {
-                      int result = await showDialog(
-                        context: context,
-                        builder: (BuildContext context) =>
-                            DialogWithAcceptAndCancelOptions(
-                                DELETE_FRIEND,
-                                DELETE_FRIEND_CONFIRMATION,
-                                TextStyle(
-                                  color: Colors.red,
-                                ),
-                                TextStyle(
-                                  color: Colors.blue,
-                                )),
-                      );
-                      if (result ==
-                          DialogWithAcceptAndCancelOptions.ACCEPT_TAP) {
-                        User user = Provider.of<User>(context, listen: false);
-                        user.removeFriend(widget.user);
-                        setState(() {
-                          widget.isFriend = !widget.isFriend;
-                        });
-                      }
-                    } else {
-                      User user = Provider.of<User>(context, listen: false);
-                      user.addFriend(widget.user);
-                      setState(() {
-                        widget.isFriend = !widget.isFriend;
-                      });
-                    }
-                  },
-                  textColor: kPrimaryLightColor,
-                  color: widget.isFriend
-                      ? Colors.lightGreen[500]
-                      : Colors.blueGrey[300],
-                  child: Text(
-                    widget.isFriend ? FRIEND : ADD_FRIEND,
-                    style: TextStyle(
-                      fontSize:
-                          (TEXT_FACTOR_14 * SizeConfig.textMultiplier), // 14
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              )),
-          Padding(
-              padding: EdgeInsets.fromLTRB(
-                  (PADDING_FACTOR_0),
-                  (PADDING_FACTOR_7 * SizeConfig.heightMultiplier),
-                  (PADDING_FACTOR_0),
-                  (PADDING_FACTOR_0)),
-              child: Container(
-                  margin: EdgeInsets.fromLTRB(
-                      (PADDING_FACTOR_10 * SizeConfig.widthMultiplier), //10
-                      (PADDING_FACTOR_0),
-                      (CONTAINER_FACTOR_2 * SizeConfig.widthMultiplier), //2
-                      (PADDING_FACTOR_0)),
-                  color: kPrimaryLightColor,
-                  height: (CONTAINER_FACTOR_2 * SizeConfig.widthMultiplier), //2
-                  width: width))
-        ],
-      );
-    } else {
-      return Container(
-          margin: EdgeInsets.fromLTRB(
-              (PADDING_FACTOR_10 * SizeConfig.widthMultiplier), //10
-              (PADDING_FACTOR_0),
-              (CONTAINER_FACTOR_2 * SizeConfig.widthMultiplier), //2
-              (PADDING_FACTOR_0)),
-          color: kPrimaryLightColor,
-          height: (CONTAINER_FACTOR_2 * SizeConfig.widthMultiplier), //2
-          width: width);
-    }
   }
 }

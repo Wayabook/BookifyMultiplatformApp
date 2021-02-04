@@ -35,8 +35,9 @@ class _ReactionCard extends State<ReactionCard> {
   }
 
   _getBorder(enabled) {
-    var width =
-        enabled ? (CONTAINER_FACTOR_2 * SizeConfig.imageSizeMultiplier) : 0; //2
+    var width = enabled
+        ? (CONTAINER_FACTOR_2 * SizeConfig.imageSizeMultiplier)
+        : 0.0; //2
 
     return Border(
       top: BorderSide(color: kPrimaryLightColor, width: width),

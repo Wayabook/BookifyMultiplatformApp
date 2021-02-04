@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bookifyapp/Design/constants.dart';
 import 'package:bookifyapp/Design/info_text.dart';
 import 'package:bookifyapp/Design/size_constants.dart';
@@ -10,6 +9,7 @@ import 'package:bookifyapp/Models/Book.dart';
 import 'package:bookifyapp/Models/Chapter.dart';
 import 'package:bookifyapp/Models/MainComment.dart';
 import 'package:bookifyapp/Models/User.dart';
+import 'package:bookifyapp/Pages/CommentPage/Components/add_comment_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:bookifyapp/Models/Comment.dart';
@@ -231,33 +231,32 @@ class _CommentPage extends State<CommentPage>
     );
   }
 
+  _getPageScaffold(scaffoldChild, appBarText) {
+    return Scaffold(
+      body: Container(
+        color: kPrimaryDarkColor,
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+        child: scaffoldChild,
+      ),
+      appBar: AppBar(backgroundColor: kPrimaryDarkColor, title: appBarText),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     if (widget.mainComment != null) {
       if (widget.subCommentsPage) {
-        return Scaffold(
-          body: Container(
-            color: kPrimaryDarkColor,
-            height: MediaQuery.of(context).size.height,
-            width: MediaQuery.of(context).size.width,
-            child: widget.inactiveAddCommentOption
+        return _getPageScaffold(
+            widget.inactiveAddCommentOption
                 ? _getSubcommentsListView()
                 : _getColumnWithListViewAndAddCommentOption(),
-          ),
-          appBar: AppBar(
-              backgroundColor: kPrimaryDarkColor,
-              title: Text(
-                  widget.subCommentsPage ? widget.chapterTitle : ADD_COMMENT)),
-        );
+            Text(widget.subCommentsPage ? widget.chapterTitle : ADD_COMMENT));
       }
     } else {
       if (widget.book != null) {
-        return Scaffold(
-          body: Container(
-            color: kPrimaryDarkColor,
-            height: MediaQuery.of(context).size.height,
-            width: MediaQuery.of(context).size.width,
-            child: ListView.builder(
+        return _getPageScaffold(
+            ListView.builder(
                 controller: scrollController,
                 shrinkWrap: true,
                 padding: EdgeInsets.all(
@@ -266,58 +265,17 @@ class _CommentPage extends State<CommentPage>
                 itemBuilder: (BuildContext context, int index) {
                   return this.comments[index];
                 }),
-          ),
-          appBar: AppBar(
-              backgroundColor: kPrimaryDarkColor,
-              title: Text(
-                (!widget.showAllCommentsOfChapter && widget.book != null)
-                    ? widget.book.title
-                    : widget.chapterTitle,
-                overflow: TextOverflow.ellipsis,
-              )),
-        );
+            Text(
+              (!widget.showAllCommentsOfChapter && widget.book != null)
+                  ? widget.book.title
+                  : widget.chapterTitle,
+              overflow: TextOverflow.ellipsis,
+            ));
       } else {
-        return Scaffold(
-          body: Container(
-            height: MediaQuery.of(context).size.height,
-            width: MediaQuery.of(context).size.width,
-            color: kPrimaryDarkColor,
-            child: Column(
-              children: [
-                Flexible(
-                  flex: 9,
-                  child: Container(
-                    child: textField,
-                  ),
-                ),
-                Flexible(
-                    flex: 1,
-                    child: GestureDetector(
-                      child: Container(
-                          height: double.infinity,
-                          width: double.infinity,
-                          color: publishContainerColor,
-                          child: Center(
-                            child: AutoSizeText(
-                              PUBLISH_COMMENT,
-                              style: TextStyle(
-                                fontSize: (PADDING_FACTOR_30 *
-                                    SizeConfig.heightMultiplier), //30
-                                fontWeight: FontWeight.bold,
-                                color: publishTextColor,
-                              ),
-                            ),
-                          )),
-                      onTap: () {
-                        Navigator.pop(context, newComment);
-                      },
-                    )),
-              ],
-            ),
-          ),
-          appBar: AppBar(
-              backgroundColor: kPrimaryDarkColor, title: Text(ADD_COMMENT_2)),
-        );
+        return _getPageScaffold(
+            AddCommentLayout(this.textField, this.publishContainerColor,
+                this.publishTextColor, this.newComment),
+            Text(ADD_COMMENT_2));
       }
     }
   }
