@@ -51,5 +51,8 @@ const String CANCEL_OPTION = "Cancel";
 const String ACCEPT_OPTION = "Accept";
 const String COMMENTS_OPTION = " comentarios";
 const String ANSWER_OPTION = "Responder";
+const String DELETE_LIST_OPTION = "Delete List";
+const String DELETE_LIST_CONFIRMATION_MESSAGE =
+    "Any book selected. Are you sure you want to delete list?";
 const String ADD_FEEDBACK_INDICATOR =
     "To give feedback and see comments. Mark as read first";

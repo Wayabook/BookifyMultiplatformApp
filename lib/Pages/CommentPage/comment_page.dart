@@ -62,6 +62,69 @@ class _CommentPage extends State<CommentPage>
   Color publishContainerColor;
   Color publishTextColor;
 
+  _createCommentAndSubcommentsContent() {
+    mainCommentCard = MainCommentCard(
+      widget.mainComment,
+      chapterTitle: widget.chapterTitle,
+      chapterNumber: widget.chapterNumber,
+      removeCommentFunction: removeComment,
+      positionKey: 0,
+      seeAllComments: widget.inactiveAddCommentOption,
+    );
+    comments.add(mainCommentCard);
+
+    for (int i = 0; i < widget.mainComment.answers.length; i++) {
+      Comment comment = widget.mainComment.answers[i];
+      subComments.add(SubCommentCard(
+        comment,
+        textEditingController: this.textEditingController,
+        removeCommentFunction: removeComment,
+        positionKey: (i + 1),
+      ));
+    }
+    comments.addAll(subComments);
+  }
+
+  _createChapterCommentsContent() {
+    int position = 0;
+    int chapterNumber = 0;
+    Chapter chapter = widget.book.chapters[widget.chapterNumber];
+    for (Comment comment in chapter.comments) {
+      comments.add(MainCommentCard(
+        comment,
+        fromDialog: true,
+        chapterTitle: chapter.title,
+        chapterNumber: chapterNumber,
+        removeCommentFunction: removeComment,
+        positionKey: position,
+        seeAllComments: widget.inactiveAddCommentOption,
+      ));
+      position += 1;
+      chapterNumber += 1;
+    }
+  }
+
+  _createBookCommentsContent() {
+    int position = 0;
+    int chapterNumber = 0;
+    for (Chapter chapter in widget.book.chapters) {
+      for (Comment comment in chapter.comments) {
+        comments.add(MainCommentCard(
+          comment,
+          fromDialog: true,
+          chapterTitle: chapter.title,
+          chapterNumber: chapterNumber,
+          removeCommentFunction: removeComment,
+          positionKey: position,
+          seeAllComments: widget.inactiveAddCommentOption,
+        ));
+        position += 1;
+        chapterNumber += 1;
+      }
+    }
+    ;
+  }
+
   @override
   void initState() {
     scrollController = new ScrollController();
@@ -71,62 +134,14 @@ class _CommentPage extends State<CommentPage>
 
     if (widget.mainComment != null) {
       if (widget.subCommentsPage) {
-        mainCommentCard = MainCommentCard(
-          widget.mainComment,
-          chapterTitle: widget.chapterTitle,
-          chapterNumber: widget.chapterNumber,
-          removeCommentFunction: removeComment,
-          positionKey: 0,
-          seeAllComments: widget.inactiveAddCommentOption,
-        );
-        comments.add(mainCommentCard);
-
-        for (int i = 0; i < widget.mainComment.answers.length; i++) {
-          Comment comment = widget.mainComment.answers[i];
-          subComments.add(SubCommentCard(
-            comment,
-            textEditingController: this.textEditingController,
-            removeCommentFunction: removeComment,
-            positionKey: (i + 1),
-          ));
-        }
-        comments.addAll(subComments);
+        _createCommentAndSubcommentsContent();
       }
     } else {
-      int position = 0;
-      int chapterNumber = 0;
       if (widget.book != null) {
         if (widget.showAllCommentsOfChapter) {
-          Chapter chapter = widget.book.chapters[widget.chapterNumber];
-          for (Comment comment in chapter.comments) {
-            comments.add(MainCommentCard(
-              comment,
-              fromDialog: true,
-              chapterTitle: chapter.title,
-              chapterNumber: chapterNumber,
-              removeCommentFunction: removeComment,
-              positionKey: position,
-              seeAllComments: widget.inactiveAddCommentOption,
-            ));
-            position += 1;
-            chapterNumber += 1;
-          }
+          _createChapterCommentsContent();
         } else {
-          for (Chapter chapter in widget.book.chapters) {
-            for (Comment comment in chapter.comments) {
-              comments.add(MainCommentCard(
-                comment,
-                fromDialog: true,
-                chapterTitle: chapter.title,
-                chapterNumber: chapterNumber,
-                removeCommentFunction: removeComment,
-                positionKey: position,
-                seeAllComments: widget.inactiveAddCommentOption,
-              ));
-              position += 1;
-              chapterNumber += 1;
-            }
-          }
+          _createBookCommentsContent();
         }
       } else {
         publishContainerColor = Colors.yellow[100];

@@ -1,4 +1,5 @@
 import 'package:bookifyapp/Design/constants.dart';
+import 'package:bookifyapp/Design/info_text.dart';
 import 'package:bookifyapp/Enums/book_card_type.dart';
 import 'package:bookifyapp/Enums/list_type.dart';
 import 'package:bookifyapp/InfoToast.dart';
@@ -92,42 +93,22 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
   _makeCard(int index) {
     if (widget.type == ListType.add_custom_list ||
         widget.type == ListType.edit_custom_list ||
-        widget.type == ListType.first_time_form) {
+        widget.type == ListType.first_time_form ||
+        widget.type == ListType.received_recommendation_form ||
+        widget.type == ListType.send_recommendation_form) {
       return BookCardFactory(
         BookCardType.book_card_in_vertical_search_list,
         widget.books[index].toLecture(),
         listType: widget.type,
         user: Provider.of<User>(context, listen: false),
+        backgroundColor: widget.type == ListType.received_recommendation_form
+            ? widget.backgroundColor
+            : Colors.white,
         addOrRemoveBookFromTemporalCustomList:
             (widget.type == ListType.first_time_form)
                 ? addOrRemoveBookFromPendingOrReadingList
                 : addOrRemoveBookFromTemporalCustomList,
         listTitle: widget.title,
-      ).build(context: context);
-    } else if (widget.type == ListType.received_recommendation_form) {
-      return BookCardFactory(
-        BookCardType.book_card_in_vertical_search_list,
-        widget.books[index].toLecture(),
-        listType: widget.type,
-        user: Provider.of<User>(context, listen: false),
-        backgroundColor: widget.backgroundColor,
-        cardHeight: (CONTAINER_FACTOR_140 * SizeConfig.heightMultiplier), //140
-        addOrRemoveBookFromTemporalCustomList:
-            (widget.type == ListType.first_time_form)
-                ? addOrRemoveBookFromPendingOrReadingList
-                : addOrRemoveBookFromTemporalCustomList,
-      ).build(context: context);
-    } else if (widget.type == ListType.send_recommendation_form) {
-      return BookCardFactory(
-        BookCardType.book_card_in_vertical_search_list,
-        widget.books[index].toLecture(),
-        listType: widget.type,
-        user: Provider.of<User>(context, listen: false),
-        backgroundColor: widget.backgroundColor,
-        addOrRemoveBookFromTemporalCustomList:
-            (widget.type == ListType.first_time_form)
-                ? addOrRemoveBookFromPendingOrReadingList
-                : addOrRemoveBookFromTemporalCustomList,
       ).build(context: context);
     } else {
       return BookCardFactory(
@@ -139,9 +120,36 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
     }
   }
 
+  _onAcceptButtonTapped() async {
+    if (customBooksList.length == 0) {
+      int result = await showDialog(
+        context: context,
+        builder: (BuildContext context) => DialogWithAcceptAndCancelOptions(
+            DELETE_LIST_OPTION,
+            DELETE_LIST_CONFIRMATION_MESSAGE,
+            TextStyle(
+                color: Colors.red,
+                fontSize: (TEXT_FACTOR_12 * SizeConfig.heightMultiplier)),
+            TextStyle(
+                color: Colors.blue,
+                fontSize: (TEXT_FACTOR_12 * SizeConfig.heightMultiplier))),
+      );
+      if (result == DialogWithAcceptAndCancelOptions.ACCEPT_TAP) {
+        User user = Provider.of<User>(context, listen: false);
+        user.removeLectureListByName(widget.title);
+        InfoToast.showListRemovedCorrecltyFromBookshelf(widget.title);
+      }
+    } else {
+      setState(() {
+        User user = Provider.of<User>(context, listen: false);
+        user.addCustomLectureList(widget.title, customBooksList);
+      });
+    }
+  }
+
   _getAcceptButton() {
     return FlatButton(
-        child: Text("Accept",
+        child: Text(ACCEPT_OPTION,
             style: TextStyle(
               color: Colors.blue,
               fontSize: (TEXT_FACTOR_14 * SizeConfig.textMultiplier), //14
@@ -151,33 +159,7 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
               widget.type == ListType.send_recommendation_form) {
             widget.onAcceptButtonTapped();
           } else {
-            if (customBooksList.length == 0) {
-              int result = await showDialog(
-                context: context,
-                builder: (BuildContext context) =>
-                    DialogWithAcceptAndCancelOptions(
-                        "Delete List",
-                        "Any book selected. Are you sure you want to delete list?",
-                        TextStyle(
-                            color: Colors.red,
-                            fontSize:
-                                (TEXT_FACTOR_12 * SizeConfig.heightMultiplier)),
-                        TextStyle(
-                            color: Colors.blue,
-                            fontSize: (TEXT_FACTOR_12 *
-                                SizeConfig.heightMultiplier))),
-              );
-              if (result == DialogWithAcceptAndCancelOptions.ACCEPT_TAP) {
-                User user = Provider.of<User>(context, listen: false);
-                user.removeLectureListByName(widget.title);
-                InfoToast.showListRemovedCorrecltyFromBookshelf(widget.title);
-              }
-            } else {
-              setState(() {
-                User user = Provider.of<User>(context, listen: false);
-                user.addCustomLectureList(widget.title, customBooksList);
-              });
-            }
+            _onAcceptButtonTapped();
             Navigator.pop(context, 0);
           }
         });
@@ -185,7 +167,7 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
 
   _getCancelButton() {
     return FlatButton(
-      child: Text("Cancel",
+      child: Text(CANCEL_OPTION,
           style: TextStyle(
             color: Colors.red,
             fontSize: (TEXT_FACTOR_14 * SizeConfig.textMultiplier), //14
@@ -201,76 +183,93 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
     );
   }
 
-  _makeBody() {
-    if (widget.type == ListType.add_custom_list ||
+  _isEditableList() {
+    return widget.type == ListType.add_custom_list ||
         widget.type == ListType.edit_custom_list ||
         widget.type == ListType.received_recommendation_form ||
-        widget.type == ListType.send_recommendation_form) {
+        widget.type == ListType.send_recommendation_form;
+  }
+
+  _makeBody() {
+    if (_isEditableList()) {
       return Stack(
         children: <Widget>[
-          Container(
-            color: widget.backgroundColor,
-            child: ListView.builder(
-              scrollDirection: Axis.vertical,
-              shrinkWrap: true,
-              itemCount: (widget.type == ListType.received_recommendation_form)
-                  ? widget.books.length
-                  : widget.books.length + 1,
-              itemBuilder: (BuildContext context, int index) {
-                if (widget.type != ListType.received_recommendation_form &&
-                    index == 0) return ListTitle(widget.title);
-                return _makeCard(
-                    (widget.type == ListType.received_recommendation_form)
-                        ? index
-                        : index - 1);
-              },
-            ),
-          ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Container(
-              color: kPrimaryLightColor,
-              height: (TEXT_FACTOR_50 * SizeConfig.imageSizeMultiplier),
-              width: MediaQuery.of(context).size.width,
-              child: Row(
-                children: <Widget>[
-                  Expanded(flex: 5, child: _getAcceptButton()),
-                  Expanded(flex: 5, child: _getCancelButton())
-                ],
-              ),
-            ),
-          )
+          _getListContainer(_getStackListBuilder()),
+          _getOptionsRow(),
         ],
       );
     } else if (widget.type == ListType.first_time_form) {
-      return Container(
-        color: widget.backgroundColor,
-        child: ListView.builder(
-          scrollDirection: Axis.vertical,
-          shrinkWrap: true,
-          itemCount: widget.books.length + 1,
-          itemBuilder: (BuildContext context, int index) {
-            if (index == 0)
-              return ListTitle(
-                widget.title,
-                fontSize: (3.21 * SizeConfig.textMultiplier),
-              );
-            return _makeCard(index - 1);
-          },
-        ),
-      );
+      return _getListContainer(_getListBuilderWithTitle());
     } else {
-      return Container(
-        color: widget.backgroundColor,
-        child: ListView.builder(
-          scrollDirection: Axis.vertical,
-          shrinkWrap: true,
-          itemCount: widget.books.length,
-          itemBuilder: (BuildContext context, int index) {
-            return _makeCard(index);
-          },
-        ),
-      );
+      return _getListContainer(_getNormalListBuilder());
     }
+  }
+
+  _getOptionsRow() {
+    return Align(
+      alignment: Alignment.bottomCenter,
+      child: Container(
+        color: kPrimaryLightColor,
+        height: (TEXT_FACTOR_50 * SizeConfig.imageSizeMultiplier),
+        width: MediaQuery.of(context).size.width,
+        child: Row(
+          children: <Widget>[
+            Expanded(flex: 5, child: _getAcceptButton()),
+            Expanded(flex: 5, child: _getCancelButton())
+          ],
+        ),
+      ),
+    );
+  }
+
+  _getStackListBuilder() {
+    return ListView.builder(
+      scrollDirection: Axis.vertical,
+      shrinkWrap: true,
+      itemCount: (widget.type == ListType.received_recommendation_form)
+          ? widget.books.length
+          : widget.books.length + 1,
+      itemBuilder: (BuildContext context, int index) {
+        if (widget.type != ListType.received_recommendation_form && index == 0)
+          return ListTitle(widget.title);
+        return _makeCard((widget.type == ListType.received_recommendation_form)
+            ? index
+            : index - 1);
+      },
+    );
+  }
+
+  _getListBuilderWithTitle() {
+    return ListView.builder(
+      scrollDirection: Axis.vertical,
+      shrinkWrap: true,
+      itemCount: widget.books.length + 1,
+      itemBuilder: (BuildContext context, int index) {
+        if (index == 0)
+          return ListTitle(
+            widget.title,
+            fontSize: (3.21 * SizeConfig.textMultiplier),
+          );
+        return _makeCard(index - 1);
+      },
+    );
+  }
+
+  _getNormalListBuilder() {
+    return ListView.builder(
+      scrollDirection: Axis.vertical,
+      shrinkWrap: true,
+      itemCount: widget.books.length,
+      itemBuilder: (BuildContext context, int index) {
+        return _makeCard(index);
+      },
+    );
+  }
+
+  _getListContainer(listBuilder) {
+    return Container(
+      color: widget.backgroundColor,
+      child: listBuilder,
+    );
   }
 }
