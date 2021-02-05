@@ -37,7 +37,10 @@ class DiscoverPage extends StatelessWidget {
       ),
       appBar: AppBar(
         backgroundColor: kPrimaryDarkColor,
-        title: Text(SEARCH_BOOK),
+        iconTheme: IconThemeData(
+          color: kThirdDarkColor, //change your color here
+        ),
+        title: Text(SEARCH_BOOK, style: TextStyle(color: kThirdDarkColor)),
         actions: <Widget>[
           IconButton(
               onPressed: () {
@@ -48,7 +51,10 @@ class DiscoverPage extends StatelessWidget {
                           User.getMockAlterantiveUsers())),
                 );
               },
-              icon: Icon(Icons.search))
+              icon: Icon(
+                Icons.search,
+                color: kThirdDarkColor,
+              ))
         ],
       ),
     );

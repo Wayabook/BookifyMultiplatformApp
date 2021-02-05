@@ -15,17 +15,22 @@ abstract class AbstractComment {
 
   Card getCard(Comment comment, Widget buttonsRow, {isMainComment = true}) {
     return Card(
-        elevation: (2.43 * SizeConfig.widthMultiplier), //10
+        color: kPrimaryDarkColor,
+        elevation: (20 * SizeConfig.widthMultiplier), //10
         child: Column(
           children: <Widget>[
             UserPreviewCard(comment.author,
                 height: (12.16 * SizeConfig.imageSizeMultiplier), //50
                 fontSize: (3.64 * SizeConfig.widthMultiplier), //15
                 card: false,
+                backGroundColor: kPrimaryDarkColor,
                 removeComment: removeComment),
-            SummaryTextWidget(
-              text: comment.comment,
-              backgroundColor: kPrimaryDarkColor,
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 5, vertical: 10),
+              child: SummaryTextWidget(
+                text: comment.comment,
+                backgroundColor: kPrimaryDarkColor,
+              ),
             ),
             Padding(
               padding: EdgeInsets.fromLTRB(
@@ -34,7 +39,7 @@ abstract class AbstractComment {
                   (3.64 * SizeConfig.widthMultiplier), //15
                   0),
               child: Container(
-                  color: kPrimaryLightColor,
+                  color: kPrimaryDarkColor,
                   height: (0.081 * SizeConfig.heightMultiplier), //0.5
                   width: double.infinity),
             ),
@@ -48,11 +53,11 @@ abstract class AbstractComment {
                       0),
                   child: buttonsRow),
             ),
-            isMainComment
+            /*isMainComment
                 ? _getSpace()
                 : Padding(
                     padding: EdgeInsets.all(PADDING_FACTOR_0),
-                  )
+                  )*/
           ],
         ));
   }

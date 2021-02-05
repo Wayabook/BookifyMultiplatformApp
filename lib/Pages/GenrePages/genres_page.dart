@@ -39,7 +39,7 @@ class GenresPage extends StatelessWidget {
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: (TEXT_FACTOR_20 * SizeConfig.textMultiplier),
-                        color: kPrimaryLightColor)),
+                        color: kThirdDarkColor)),
               ),
               GenresGrid(Genre.getMockGenres())
             ],
@@ -48,7 +48,13 @@ class GenresPage extends StatelessWidget {
       ),
       appBar: AppBar(
         backgroundColor: kPrimaryDarkColor,
-        title: Text(GENRES_TITLE),
+        iconTheme: IconThemeData(
+          color: kThirdDarkColor, //change your color here
+        ),
+        title: Text(
+          GENRES_TITLE,
+          style: TextStyle(color: kThirdDarkColor),
+        ),
       ),
     );
   }

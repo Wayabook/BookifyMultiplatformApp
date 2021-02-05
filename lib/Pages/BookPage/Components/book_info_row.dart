@@ -47,7 +47,7 @@ class BookInfoRow extends StatelessWidget {
 
   _getLineSeparator() {
     return Container(
-      color: kPrimaryDarkColor,
+      color: kThirdDarkColor,
       height: (CONTAINER_FACTOR_115 * SizeConfig.heightMultiplier), //115
       width: (CONTAINER_FACTOR_2 * SizeConfig.widthMultiplier), //2
     );

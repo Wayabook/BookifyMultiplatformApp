@@ -30,7 +30,7 @@ class LectureInfoRow extends StatelessWidget {
               widthPerChild,
               (CONTAINER_FACTOR_115 *
                   SizeConfig.heightMultiplier), //height = 115
-              kPrimaryLightColor),
+              kThirdDarkColor),
           _getContainerSeparator(),
           InfoRow.withIcon(
               RowType.icon_image,
@@ -40,7 +40,7 @@ class LectureInfoRow extends StatelessWidget {
               widthPerChild,
               (CONTAINER_FACTOR_115 *
                   SizeConfig.heightMultiplier), //height = 115
-              kPrimaryLightColor),
+              kThirdDarkColor),
           _getContainerSeparator(),
           InfoRow.withIcon(
               RowType.icon_image,
@@ -50,7 +50,7 @@ class LectureInfoRow extends StatelessWidget {
               widthPerChild,
               (CONTAINER_FACTOR_115 *
                   SizeConfig.heightMultiplier), //height = 115
-              kPrimaryLightColor),
+              kThirdDarkColor),
         ],
       ),
     );
@@ -58,7 +58,7 @@ class LectureInfoRow extends StatelessWidget {
 
   _getContainerSeparator() {
     return Container(
-      color: kPrimaryLightColor,
+      color: kThirdDarkColor,
       height:
           (CONTAINER_FACTOR_115 * SizeConfig.heightMultiplier), //height = 115
       width: (CONTAINER_FACTOR_2 * SizeConfig.widthMultiplier), //2

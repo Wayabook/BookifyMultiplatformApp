@@ -69,10 +69,10 @@ class CardSwiper extends StatelessWidget {
                       maxLines: 1,
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        fontSize:
-                            (TEXT_FACTOR_14 * SizeConfig.textMultiplier), //14
-                        fontWeight: FontWeight.bold,
-                      ),
+                          fontSize:
+                              (TEXT_FACTOR_14 * SizeConfig.textMultiplier), //14
+                          fontWeight: FontWeight.bold,
+                          color: kThirdDarkColor),
                     ),
                   ),
                 ),
@@ -86,7 +86,7 @@ class CardSwiper extends StatelessWidget {
                   this.books[index].author,
                   style: TextStyle(
                     fontSize: (TEXT_FACTOR_14 * SizeConfig.textMultiplier), //14
-                    color: kPrimaryDarkColor,
+                    color: kThirdDarkColor,
                   ),
                 ),
               ),

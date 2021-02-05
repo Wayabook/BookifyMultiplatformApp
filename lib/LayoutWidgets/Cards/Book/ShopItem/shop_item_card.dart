@@ -86,7 +86,7 @@ class ShopItemCard extends StatelessWidget {
                               child: IconButton(
                                 icon: Icon(
                                   Icons.arrow_forward_ios,
-                                  color: kPrimaryDarkColor,
+                                  color: kThirdDarkColor,
                                   size: (ICON_FACTOR_24 *
                                       SizeConfig.imageSizeMultiplier), //24
                                 ),

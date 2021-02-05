@@ -29,7 +29,7 @@ class _FirstTimeFormPage extends State<FirstTimeFormPage>
   SwiperController _swiperController = new SwiperController();
   int _swiperIndex = 0;
   IconData _icon = Icons.arrow_forward_ios;
-  Color _floatingActionButtonColor = kPrimaryLightColor;
+  Color _floatingActionButtonColor = kPrimaryDarkColor;
 
   // Rotation controller
   AnimationController animationController;
@@ -77,7 +77,7 @@ class _FirstTimeFormPage extends State<FirstTimeFormPage>
     )..addStatusListener((status) async {
         if (status == AnimationStatus.completed) {
           setState(() {
-            _floatingActionButtonColor = Colors.yellow;
+            _floatingActionButtonColor = kSecondaryDarkColor;
             _icon = Icons.send;
           });
         }
@@ -108,7 +108,7 @@ class _FirstTimeFormPage extends State<FirstTimeFormPage>
                     },
                     child: SmallButtonUnderlined(
                       SKIP_OPTION,
-                      textColor: kPrimaryDarkColor,
+                      textColor: kThirdDarkColor,
                     ),
                   ),
                 ),
@@ -195,7 +195,7 @@ class _FirstTimeFormPage extends State<FirstTimeFormPage>
                           turns: animation,
                           child: Icon(
                             _icon,
-                            color: kPrimaryDarkColor,
+                            color: kThirdDarkColor,
                             //size: (5.83 * SizeConfig.imageSizeMultiplier),
                           ),
                         ),

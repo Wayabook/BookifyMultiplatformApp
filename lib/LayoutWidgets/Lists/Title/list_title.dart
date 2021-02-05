@@ -28,7 +28,7 @@ class ListTitle extends StatelessWidget {
     this.user,
     this.onListTitleButtonTapped,
     this.fontSize = DEFAULT_FONT_SIZE,
-    this.barAndTitleColor = kPrimaryLightColor,
+    this.barAndTitleColor = kThirdDarkColor,
     this.withPadding = true,
   });
 

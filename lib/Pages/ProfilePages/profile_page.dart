@@ -10,7 +10,7 @@ import 'package:bookifyapp/LayoutWidgets/Cards/Book/BookCardFactory/book_card_fa
 import 'package:bookifyapp/LayoutWidgets/Dialogs/recommendation_dialog.dart';
 import 'package:bookifyapp/LayoutWidgets/Lists/Title/list_title.dart';
 import 'package:bookifyapp/Models/Recommendation.dart';
-import 'package:bookifyapp/Pages/ProfilePages/Components/LectureInfoRow.dart';
+import 'package:bookifyapp/Pages/ProfilePages/Components/lecture_info_row.dart';
 import 'package:bookifyapp/Pages/ProfilePages/friends_page.dart';
 import 'package:bookifyapp/Pages/GenrePages/genres_page.dart';
 import 'package:bookifyapp/Design/SizeConfig.dart';
@@ -90,6 +90,9 @@ class _ProfilePage extends State<ProfilePage> implements TitleButtonInterface {
       appBar: widget.profileType == ProfileType.friend_profile
           ? AppBar(
               backgroundColor: kPrimaryDarkColor,
+              iconTheme: IconThemeData(
+                color: kThirdDarkColor, //change your color here
+              ),
             )
           : null,
     );
@@ -128,89 +131,71 @@ class _ProfilePage extends State<ProfilePage> implements TitleButtonInterface {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Flexible(
-                flex: 2,
-                child: Center(
-                    child: GestureDetector(
-                  child: Column(
-                    children: <Widget>[
-                      Align(
-                        alignment: Alignment.center,
-                        child: Icon(
-                          Icons.security,
-                          color: kPrimaryLightColor,
-                          size: (ICON_FACTOR_30 *
-                              SizeConfig.imageSizeMultiplier), // 30
-                        ),
-                      ),
-                      Align(
-                        alignment: Alignment.center,
-                        child: Text(
-                          BADGETS_TITLE,
-                          style: TextStyle(
-                              fontSize: (TEXT_FACTOR_12 *
-                                  SizeConfig.textMultiplier), // 12
-                              fontWeight: FontWeight.bold,
-                              color: kPrimaryLightColor),
-                        ),
-                      ),
-                    ],
-                  ),
-                  onTap: () async {
-                    await showDialog(
-                      context: context,
-                      builder: (BuildContext context) => RecommendationDialog(
-                          Recommendation.getMockRecommendation()),
-                    );
-                  },
-                )),
-              ),
+                  flex: 2,
+                  child: _getOptionButtonContainer(
+                    BADGETS_TITLE,
+                    Icons.security,
+                    () async {
+                      await showDialog(
+                        context: context,
+                        builder: (BuildContext context) => RecommendationDialog(
+                            Recommendation.getMockRecommendation()),
+                      );
+                    },
+                  )),
               Flexible(
                 child: ProfileInfo(widget.user),
                 flex: 6,
               ),
               Flexible(
-                flex: 2,
-                child: Center(
-                    child: GestureDetector(
-                  child: Column(
-                    children: <Widget>[
-                      Align(
-                        alignment: Alignment.center,
-                        child: Icon(
-                          Icons.people,
-                          color: kPrimaryLightColor,
-                          size: (ICON_FACTOR_30 *
-                              SizeConfig.imageSizeMultiplier), // 30
-                        ),
-                      ),
-                      Align(
-                        alignment: Alignment.center,
-                        child: Text(
-                          FRIENDS_TITLE,
-                          style: TextStyle(
-                              fontSize: (TEXT_FACTOR_12 *
-                                  SizeConfig.textMultiplier), // 12
-                              fontWeight: FontWeight.bold,
-                              color: kPrimaryLightColor),
-                        ),
-                      ),
-                    ],
-                  ),
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              FriendsPage(widget.user.friends)),
-                    );
-                  },
-                )),
-              )
+                  flex: 2,
+                  child: _getOptionButtonContainer(
+                    FRIENDS_TITLE,
+                    Icons.people,
+                    () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                FriendsPage(widget.user.friends)),
+                      );
+                    },
+                  ))
             ],
           ),
         ),
       ],
     );
+  }
+
+  _getOptionButtonContainer(text, icon, onTapFunction) {
+    return Center(
+        child: GestureDetector(
+            child: Column(
+              children: <Widget>[
+                Align(
+                  alignment: Alignment.center,
+                  child: Icon(
+                    icon,
+                    color: kThirdDarkColor,
+                    size:
+                        (ICON_FACTOR_30 * SizeConfig.imageSizeMultiplier), // 30
+                  ),
+                ),
+                Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                    text,
+                    style: TextStyle(
+                        fontSize:
+                            (TEXT_FACTOR_12 * SizeConfig.textMultiplier), // 12
+                        fontWeight: FontWeight.bold,
+                        color: kThirdDarkColor),
+                  ),
+                ),
+              ],
+            ),
+            onTap: onTapFunction));
   }
 
   _getFriendButtonContainer() {
@@ -232,7 +217,7 @@ class _ProfilePage extends State<ProfilePage> implements TitleButtonInterface {
           vertical: (1.46 * SizeConfig.heightMultiplier) // 10
           ),
       child: Container(
-        color: kPrimaryLightColor,
+        color: kThirdDarkColor,
         height: (0.29 * SizeConfig.heightMultiplier),
       ),
     );

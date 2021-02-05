@@ -122,7 +122,6 @@ class _CommentPage extends State<CommentPage>
         chapterNumber += 1;
       }
     }
-    ;
   }
 
   @override
@@ -192,7 +191,9 @@ class _CommentPage extends State<CommentPage>
             (PADDING_FACTOR_8 * SizeConfig.heightMultiplier)), //8
         itemCount: this.comments.length,
         itemBuilder: (BuildContext context, int index) {
-          return this.comments[index];
+          return Padding(
+              padding: EdgeInsets.fromLTRB(index != 0 ? 15 : 0, 0, 0, 0),
+              child: this.comments[index]);
         });
   }
 
@@ -207,6 +208,7 @@ class _CommentPage extends State<CommentPage>
             flex: 0,
             child: Card(
               color: kPrimaryDarkColor,
+              elevation: 10,
               child: Row(
                 children: [
                   Flexible(

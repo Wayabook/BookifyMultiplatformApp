@@ -39,6 +39,7 @@ class _AddCustomListPage extends State<AddCustomListPage> {
   Icon actionIcon = new Icon(
     Icons.search,
     size: (ICON_FACTOR_24 * SizeConfig.imageSizeMultiplier),
+    color: kThirdDarkColor,
   );
   String searchTitle = "Search...";
   TextField appBarTitle;
@@ -76,13 +77,13 @@ class _AddCustomListPage extends State<AddCustomListPage> {
       focusNode: _focusNode,
       decoration: new InputDecoration(
         hintText: searchTitle,
-        hintStyle: new TextStyle(color: kPrimaryLightColor),
+        hintStyle: new TextStyle(color: kThirdDarkColor),
       ),
       style: new TextStyle(
-        color: kPrimaryLightColor,
+        color: kThirdDarkColor,
         fontSize: (TEXT_FACTOR_14 * SizeConfig.textMultiplier), //14
       ),
-      cursorColor: kPrimaryLightColor,
+      cursorColor: kThirdDarkColor,
       onTap: () {
         _checkInuptTextState(false);
       },
@@ -96,12 +97,14 @@ class _AddCustomListPage extends State<AddCustomListPage> {
         this.actionIcon = new Icon(
           Icons.close,
           size: (ICON_FACTOR_24 * SizeConfig.imageSizeMultiplier),
+          color: kThirdDarkColor,
         );
         _focusNode.requestFocus();
       } else {
         this.actionIcon = new Icon(
           Icons.search,
           size: (ICON_FACTOR_24 * SizeConfig.imageSizeMultiplier),
+          color: kThirdDarkColor,
         );
         _bookshelf = widget.bookshelf;
         _focusNode.unfocus();
@@ -168,12 +171,16 @@ class _AddCustomListPage extends State<AddCustomListPage> {
       backgroundColor: kPrimaryDarkColor,
       elevation: 0.1,
       title: appBarTitle,
+      iconTheme: IconThemeData(
+        color: Colors.black, //change your color here
+      ),
       actions: <Widget>[
         new IconButton(
           icon: actionIcon,
           onPressed: () {
             _checkInuptTextState(true);
           },
+          color: kThirdDarkColor,
         ),
       ],
     );

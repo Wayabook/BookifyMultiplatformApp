@@ -209,7 +209,7 @@ class _VerticalBookListSearch extends State<VerticalBookListSearch> {
     return Align(
       alignment: Alignment.bottomCenter,
       child: Container(
-        color: kPrimaryLightColor,
+        color: kForthDarkColor,
         height: (TEXT_FACTOR_50 * SizeConfig.imageSizeMultiplier),
         width: MediaQuery.of(context).size.width,
         child: Row(

@@ -21,7 +21,10 @@ class _FriendsPage extends State<FriendsPage> {
   String filter = "";
   String persons = "";
   Icon actionIcon = new Icon(Icons.search);
-  Widget appBarTitle = new Text("Search...");
+  Widget appBarTitle = new Text(
+    "Search...",
+    style: TextStyle(color: kThirdDarkColor),
+  );
 
   @override
   void dispose() {
@@ -69,9 +72,13 @@ class _FriendsPage extends State<FriendsPage> {
       backgroundColor: kPrimaryDarkColor,
       elevation: 0.1,
       title: appBarTitle,
+      iconTheme: IconThemeData(
+        color: kThirdDarkColor, //change your color here
+      ),
       actions: <Widget>[
         new IconButton(
           icon: actionIcon,
+          color: kThirdDarkColor,
           onPressed: () {
             setState(() {
               if (this.actionIcon.icon == Icons.search) {
@@ -80,19 +87,20 @@ class _FriendsPage extends State<FriendsPage> {
                   controller: controller,
                   decoration: new InputDecoration(
                     hintText: SEARCH_BY_NAME + "...",
-                    hintStyle: new TextStyle(color: kPrimaryLightColor),
+                    hintStyle: new TextStyle(color: kThirdDarkColor),
                   ),
                   style: new TextStyle(
-                    color: kPrimaryLightColor,
+                    color: kThirdDarkColor,
                   ),
                   autofocus: true,
-                  cursorColor: kPrimaryLightColor,
+                  cursorColor: kThirdDarkColor,
                 );
               } else {
                 this.actionIcon = new Icon(Icons.search);
                 this.appBarTitle = new Text(
                   SEARCH_BY_NAME,
                   overflow: TextOverflow.ellipsis,
+                  style: TextStyle(color: kThirdDarkColor),
                 );
                 _friends = widget.friends;
                 controller.clear();

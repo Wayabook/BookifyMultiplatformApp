@@ -98,7 +98,7 @@ class _FriendButton extends State<FriendButton> {
                     (PADDING_FACTOR_0),
                     (CONTAINER_FACTOR_2 * SizeConfig.widthMultiplier), //2
                     (PADDING_FACTOR_0)),
-                color: kPrimaryLightColor,
+                color: kThirdDarkColor,
                 height: (CONTAINER_FACTOR_2 * SizeConfig.widthMultiplier), //2
                 width: widget.width))
       ],
@@ -112,7 +112,7 @@ class _FriendButton extends State<FriendButton> {
             (PADDING_FACTOR_0),
             (CONTAINER_FACTOR_2 * SizeConfig.widthMultiplier), //2
             (PADDING_FACTOR_0)),
-        color: kPrimaryLightColor,
+        color: kThirdDarkColor,
         height: (CONTAINER_FACTOR_2 * SizeConfig.widthMultiplier), //2
         width: widget.width);
   }

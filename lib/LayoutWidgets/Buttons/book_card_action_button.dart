@@ -115,7 +115,7 @@ class _BookCardActionButton extends State<BookCardActionButton> {
                   SizeConfig.imageSizeMultiplier); // 75
               this._visible = false;
             } else {
-              this.buttonColor = kPrimaryDarkColor;
+              this.buttonColor = bookCardActionButtonColor2;
             }
           });
           if (widget.book.finished) bookCompletedProcess();
@@ -134,7 +134,8 @@ class _BookCardActionButton extends State<BookCardActionButton> {
     if (setState) added = !added;
     iconData =
         added ? BookCardActionButton.ICON_CHECK : BookCardActionButton.ICON_ADD;
-    buttonColor = added ? bookCardActionButtonColor : kPrimaryDarkColor;
+    buttonColor =
+        added ? bookCardActionButtonColor : bookCardActtionButtonDefaultColor;
   }
 
   _initializeWidgetsInSearchVerticalList() {
@@ -143,7 +144,7 @@ class _BookCardActionButton extends State<BookCardActionButton> {
   }
 
   _initializeWidgetsInVerticalList() {
-    buttonColor = kPrimaryDarkColor;
+    buttonColor = bookCardActtionButtonDefaultColor;
     buttonSize = (TEXT_FACTOR_50 * SizeConfig.imageSizeMultiplier); //50
 
     animationControllerDuration = DEFAULT_ANIMATION_DURATION;

@@ -49,8 +49,9 @@ class _BookShopsDialog extends State<BookShopsDialog> {
       tabs.add(new Tab(
         child: Text(
           key,
-          style:
-              TextStyle(fontSize: (TEXT_FACTOR_14 * SizeConfig.textMultiplier)),
+          style: TextStyle(
+              fontSize: (TEXT_FACTOR_14 * SizeConfig.textMultiplier),
+              color: kThirdDarkColor),
           overflow: TextOverflow.ellipsis,
         ),
       ));
@@ -95,7 +96,7 @@ class _BookShopsDialog extends State<BookShopsDialog> {
                   width: width,
                   height: height -
                       (CONTAINER_FACTOR_140 * SizeConfig.heightMultiplier),
-                  color: kPrimaryLightColor,
+                  color: kPrimaryDarkColor,
                   child: Align(
                     alignment: Alignment.topLeft,
                     child: IconButton(
@@ -104,7 +105,7 @@ class _BookShopsDialog extends State<BookShopsDialog> {
                       },
                       icon: Icon(
                         Icons.keyboard_arrow_down,
-                        color: Colors.black,
+                        color: kThirdDarkColor,
                         size: (ICON_FACTOR_24 *
                             SizeConfig.imageSizeMultiplier), //24
                       ),
@@ -127,7 +128,7 @@ class _BookShopsDialog extends State<BookShopsDialog> {
               (PADDING_FACTOR_10 * SizeConfig.widthMultiplier), //10
             ),
             child: Container(
-                color: kPrimaryDarkColor,
+                color: kThirdDarkColor,
                 height: (0.48 * SizeConfig.widthMultiplier),
                 width: width), //2
           ),
@@ -300,7 +301,7 @@ class _BookShopsDialog extends State<BookShopsDialog> {
             PADDING_FACTOR_0,
             PADDING_FACTOR_0),
         child: Container(
-            color: kPrimaryLightColor,
+            color: kPrimaryDarkColor,
             height: (CONTAINER_FACTOR_2 * SizeConfig.widthMultiplier),
             width: width),
       ));

@@ -52,7 +52,7 @@ class _RecommendationDialog extends State<RecommendationDialog> {
     recommendationsAccepted = new List();
     keepingRecommendations = new List();
     scrollController = new ScrollController();
-    _backgroundColor = kPrimaryLightColor;
+    _backgroundColor = kPrimaryDarkColor;
 
     widgets = new List();
   }
@@ -113,7 +113,7 @@ class _RecommendationDialog extends State<RecommendationDialog> {
                     },
                     icon: Icon(
                       Icons.keyboard_arrow_down,
-                      color: Colors.black,
+                      color: kThirdDarkColor,
                       size:
                           (PADDING_FACTOR_40 * SizeConfig.imageSizeMultiplier),
                     ),
@@ -121,7 +121,7 @@ class _RecommendationDialog extends State<RecommendationDialog> {
                 ))),
         ProfileInfo(
           widget._recommendations[0].recommendedBy,
-          nameColor: kPrimaryDarkColor,
+          nameColor: kThirdDarkColor,
         ),
         Padding(
           padding: EdgeInsets.fromLTRB(
@@ -131,7 +131,7 @@ class _RecommendationDialog extends State<RecommendationDialog> {
             (PADDING_FACTOR_10 * SizeConfig.widthMultiplier), //10
           ),
           child: Container(
-              color: kPrimaryDarkColor,
+              color: kThirdDarkColor,
               height: (0.29 * SizeConfig.heightMultiplier), //2
               width: width),
         ),
@@ -151,7 +151,7 @@ class _RecommendationDialog extends State<RecommendationDialog> {
                   overflow: TextOverflow.clip,
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    color: kPrimaryDarkColor,
+                    color: kThirdDarkColor,
                     fontSize:
                         (TEXT_FACTOR_20 * SizeConfig.heightMultiplier), //20
                   ),
@@ -172,7 +172,7 @@ class _RecommendationDialog extends State<RecommendationDialog> {
                   overflow: TextOverflow.clip,
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                      color: Colors.black,
+                      color: kThirdDarkColor,
                       fontSize:
                           (TEXT_FACTOR_12 * SizeConfig.heightMultiplier), //12
                       fontStyle: FontStyle.italic),
@@ -216,7 +216,7 @@ class _RecommendationDialog extends State<RecommendationDialog> {
             alignment: Alignment.center,
             child: Icon(
               Icons.card_giftcard,
-              color: kPrimaryDarkColor,
+              color: kThirdDarkColor,
               size: (CONTAINER_FACTOR_100 * SizeConfig.heightMultiplier), //100
             ),
           ),
@@ -228,7 +228,7 @@ class _RecommendationDialog extends State<RecommendationDialog> {
             child: Container(
               width: width,
               height: (12.16 * SizeConfig.imageSizeMultiplier), //50
-              color: kPrimaryLightColor,
+              color: kPrimaryDarkColor,
               child: Align(
                 alignment: Alignment.center,
                 child: Text(
@@ -241,7 +241,7 @@ class _RecommendationDialog extends State<RecommendationDialog> {
                   maxLines: 2,
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    color: kPrimaryDarkColor,
+                    color: kThirdDarkColor,
                     fontSize:
                         (PADDING_FACTOR_20 * SizeConfig.heightMultiplier), //20
                   ),

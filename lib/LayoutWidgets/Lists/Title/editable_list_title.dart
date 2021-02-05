@@ -31,8 +31,7 @@ class EditableListTitle extends StatelessWidget {
               horizontal: (PADDING_FACTOR_15 * SizeConfig.widthMultiplier),
               vertical: (PADDING_FACTOR_10 * SizeConfig.heightMultiplier),
             ),
-            child:
-                Container(color: kPrimaryLightColor, height: 2, width: width),
+            child: Container(color: kThirdDarkColor, height: 2, width: width),
           ),
         ],
       ),

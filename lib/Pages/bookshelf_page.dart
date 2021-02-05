@@ -21,6 +21,9 @@ class BookshelfPage extends StatelessWidget {
       body: BooskelfGridList(user, scrollToLastPosition: scrollToLastPosition),
       appBar: AppBar(
         backgroundColor: kPrimaryDarkColor,
+        iconTheme: IconThemeData(
+          color: kThirdDarkColor, //change your color here
+        ),
         title: Text(
           "Bookshelf " +
               "(" +
@@ -28,6 +31,7 @@ class BookshelfPage extends StatelessWidget {
               BOOKSHELF_LIST +
               ")",
           overflow: TextOverflow.ellipsis,
+          style: TextStyle(color: kThirdDarkColor),
         ),
       ),
     );

@@ -112,7 +112,7 @@ class _AddFeedbackDialog extends State<AddFeedbackDialog>
     widgets.add(_getCommentsTitle());
     widgets.addAll(mainComments);
 
-    readButtonColor = kPrimaryDarkColor;
+    readButtonColor = bookCardActtionButtonDefaultColor;
     visible = widget.book.finished ? true : false;
   }
 
@@ -145,9 +145,11 @@ class _AddFeedbackDialog extends State<AddFeedbackDialog>
         children: <Widget>[
           Align(
             alignment: Alignment.center,
-            child: Icon(Icons.comment,
-                size: (ICON_FACTOR_25 * SizeConfig.imageSizeMultiplier) //25
-                ),
+            child: Icon(
+              Icons.comment,
+              size: (ICON_FACTOR_25 * SizeConfig.imageSizeMultiplier), //25
+              color: kThirdDarkColor,
+            ),
           ),
           _getTitleSection(mainComments.length.toString() + COMMENTS_OPTION),
         ],
@@ -161,7 +163,7 @@ class _AddFeedbackDialog extends State<AddFeedbackDialog>
         horizontal: PADDING_FACTOR_0,
         vertical: (PADDING_FACTOR_5 * SizeConfig.widthMultiplier), //5
       ),
-      color: kPrimaryDarkColor,
+      color: kForthDarkColor,
       child: Container(
           height: (DEFAULT_PADDING_LARGE * SizeConfig.heightMultiplier), // 50
           child: Align(
@@ -177,7 +179,7 @@ class _AddFeedbackDialog extends State<AddFeedbackDialog>
                   horizontal: (0.97 * SizeConfig.imageSizeMultiplier)), //4
               itemBuilder: (context, _) => Icon(
                 Icons.star,
-                color: Colors.amber,
+                color: kSecondaryDarkColor,
               ),
               onRatingUpdate: (rating) {
                 print(rating);
@@ -198,7 +200,7 @@ class _AddFeedbackDialog extends State<AddFeedbackDialog>
         title,
         overflow: TextOverflow.ellipsis,
         style: TextStyle(
-          color: kPrimaryDarkColor,
+          color: kThirdDarkColor,
           fontSize: (TEXT_FACTOR_14 * SizeConfig.textMultiplier), //14
         ),
       ),
@@ -317,7 +319,7 @@ class _AddFeedbackDialog extends State<AddFeedbackDialog>
                   (PADDING_FACTOR_10 * SizeConfig.widthMultiplier), //10
                 ),
                 child: Container(
-                    color: kPrimaryDarkColor,
+                    color: kThirdDarkColor,
                     height: (0.48 * SizeConfig.widthMultiplier),
                     width: width),
               ),
@@ -377,7 +379,7 @@ class _AddFeedbackDialog extends State<AddFeedbackDialog>
                             onPressed: () {
                               _navigateToCommentsPage(context);
                             },
-                            backgroundColor: Colors.yellow,
+                            backgroundColor: kSecondaryDarkColor,
                             child: Icon(
                               Icons.add,
                               color: kPrimaryDarkColor,

@@ -33,6 +33,35 @@ class SubCommentCard extends StatelessWidget with AbstractComment {
 
   @override
   Widget build(BuildContext context) {
+    /*return Row(
+      children: [
+        Flexible(
+            flex: 1,
+            child: Row(
+              children: [
+                Flexible(
+                    flex: 1,
+                    child: VerticalDivider(
+                      color: Colors.white,
+                      width: 2,
+                    )),
+                Flexible(
+                  flex: 9,
+                  child: Container(
+                    color: Colors.white,
+                    height: 1,
+                    width: double.infinity,
+                  ),
+                )
+              ],
+            )),
+        Flexible(
+          flex: 10,
+          child:
+              this.getCard(this.comment, getButtonsRow(), isMainComment: false),
+        )
+      ],
+    );*/
     return this.getCard(this.comment, getButtonsRow(), isMainComment: false);
   }
 

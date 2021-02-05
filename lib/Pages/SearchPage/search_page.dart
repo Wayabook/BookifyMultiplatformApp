@@ -32,8 +32,11 @@ class _SearchPage extends State<SearchPage>
 
   String filter = "";
   String persons = "";
-  Icon actionIcon = new Icon(Icons.search);
-  Widget appBarTitle = new Text("Search...");
+  Icon actionIcon = new Icon(Icons.search, color: kThirdDarkColor);
+  Widget appBarTitle = new Text(
+    "Search...",
+    style: TextStyle(color: kThirdDarkColor),
+  );
 
   void _handleTabIndex() {
     setState(() {});
@@ -110,19 +113,24 @@ class _SearchPage extends State<SearchPage>
 
     final appTopAppBar = AppBar(
       backgroundColor: kPrimaryDarkColor,
+      iconTheme: IconThemeData(
+        color: kThirdDarkColor, //change your color here
+      ),
       elevation: 0.1,
       bottom: TabBar(controller: _tabController, tabs: [
         Tab(
             child: Text(
           BOOK_TITLE,
-          style:
-              TextStyle(fontSize: (TEXT_FACTOR_14 * SizeConfig.textMultiplier)),
+          style: TextStyle(
+              fontSize: (TEXT_FACTOR_14 * SizeConfig.textMultiplier),
+              color: kThirdDarkColor),
         )),
         Tab(
             child: Text(
           PERSON_TITLE,
-          style:
-              TextStyle(fontSize: (TEXT_FACTOR_14 * SizeConfig.textMultiplier)),
+          style: TextStyle(
+              fontSize: (TEXT_FACTOR_14 * SizeConfig.textMultiplier),
+              color: kThirdDarkColor),
         ))
       ]),
       title: appBarTitle,
@@ -132,23 +140,28 @@ class _SearchPage extends State<SearchPage>
           onPressed: () {
             setState(() {
               if (this.actionIcon.icon == Icons.search) {
-                this.actionIcon = new Icon(Icons.close);
+                this.actionIcon = new Icon(
+                  Icons.close,
+                  color: kThirdDarkColor,
+                );
                 this.appBarTitle = new TextField(
                   controller: controller,
                   decoration: new InputDecoration(
                     hintText: "Search...",
-                    hintStyle: new TextStyle(color: kPrimaryLightColor),
+                    hintStyle: new TextStyle(color: kThirdDarkColor),
                   ),
                   style: new TextStyle(
-                    color: kPrimaryLightColor,
+                    color: kThirdDarkColor,
                   ),
                   autofocus: true,
-                  cursorColor: kPrimaryLightColor,
+                  cursorColor: kThirdDarkColor,
                 );
               } else {
                 this.actionIcon = new Icon(Icons.search);
-                this.appBarTitle =
-                    new Text(_tabController.index == 0 ? "Cities" : "Persons");
+                this.appBarTitle = new Text(
+                  _tabController.index == 0 ? "Book" : "Persons",
+                  style: TextStyle(color: kThirdDarkColor),
+                );
                 _filteredList = widget.books;
                 _personsList = widget.users;
                 controller.clear();

@@ -64,7 +64,7 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin {
 
     if (isInReadingList) {
       addIcon = Icons.local_library;
-      addIconBackgroundColor = Colors.blueGrey[500];
+      addIconBackgroundColor = kPrimaryDarkColor;
     } else {
       changeAddButtonColors();
     }
@@ -76,7 +76,7 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin {
       addIconColor = Colors.redAccent;
     } else {
       addIcon = Icons.add_circle_outline;
-      addIconColor = kPrimaryLightColor;
+      addIconColor = kThirdDarkColor;
     }
   }
 
@@ -86,13 +86,18 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin {
       key: UniqueKey(),
       body: Container(
         key: UniqueKey(),
+        color: kPrimaryDarkColor,
         child: _buildBookPage(context),
       ),
       appBar: AppBar(
         backgroundColor: kPrimaryDarkColor,
+        iconTheme: IconThemeData(
+          color: Colors.black, //change your color here
+        ),
         title: Text(
           book.title,
           overflow: TextOverflow.ellipsis,
+          style: TextStyle(color: kThirdDarkColor),
         ),
       ),
     );
@@ -197,7 +202,7 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin {
                     (ICON_FACTOR_24 * SizeConfig.imageSizeMultiplier), //24
                 icon: Icon(
                   Icons.shop_two,
-                  color: kPrimaryLightColor,
+                  color: kThirdDarkColor,
                   //size: (5.83 * SizeConfig.imageSizeMultiplier), //24
                 ),
               ),
@@ -224,7 +229,7 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin {
                     (ICON_FACTOR_24 * SizeConfig.imageSizeMultiplier), //24
                 icon: Icon(
                   Icons.list,
-                  color: kPrimaryLightColor,
+                  color: kThirdDarkColor,
                   //size: (5.83 * SizeConfig.imageSizeMultiplier), //24
                 ),
               ),
@@ -243,7 +248,7 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin {
           vertical: (PADDING_FACTOR_10 * SizeConfig.widthMultiplier) // 10
           ),
       child: Container(
-          color: kPrimaryDarkColor,
+          color: kThirdDarkColor,
           height: (CONTAINER_FACTOR_2 * SizeConfig.widthMultiplier), //2
           width: width),
     );
@@ -268,7 +273,8 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin {
                   style: TextStyle(
                       fontSize:
                           (TEXT_FACTOR_18 * SizeConfig.textMultiplier), // 18
-                      fontWeight: FontWeight.bold),
+                      fontWeight: FontWeight.bold,
+                      color: kThirdDarkColor),
                   textAlign: TextAlign.left,
                 ),
                 Expanded(
@@ -277,7 +283,8 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin {
                     style: TextStyle(
                         fontSize:
                             (TEXT_FACTOR_18 * SizeConfig.textMultiplier), // 18
-                        fontWeight: FontWeight.bold),
+                        fontWeight: FontWeight.bold,
+                        color: kThirdDarkColor),
                     textAlign: TextAlign.right,
                   ),
                 )
@@ -288,7 +295,7 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin {
 
         SummaryTextWidget(
           text: this.book.summary,
-          backgroundColor: kPrimaryLightColor,
+          backgroundColor: kPrimaryDarkColor,
         ),
 
         SizedBox(height: (PADDING_FACTOR_8 * SizeConfig.heightMultiplier)), // 8
@@ -306,7 +313,7 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin {
                 alignment: Alignment.bottomCenter,
                 child: Icon(
                   Icons.comment,
-                  color: Colors.white,
+                  color: kThirdDarkColor,
                   size: (ICON_FACTOR_25 * SizeConfig.imageSizeMultiplier), //25
                 ),
               ),
@@ -378,7 +385,7 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin {
       itemCount: items.length,
       itemBuilder: (BuildContext context, int index) {
         return Container(
-          color: kPrimaryLightColor,
+          color: kPrimaryDarkColor,
           child: items[index],
         );
       },

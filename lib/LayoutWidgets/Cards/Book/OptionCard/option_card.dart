@@ -43,7 +43,7 @@ class OptionCard extends StatelessWidget {
             children: <Widget>[
               Icon(
                 this._icon,
-                color: kPrimaryDarkColor,
+                color: kThirdDarkColor,
                 size: (TEXT_FACTOR_50 * SizeConfig.imageSizeMultiplier),
               ),
               Text(
@@ -51,7 +51,7 @@ class OptionCard extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
                   fontSize: (TEXT_FACTOR_14 * SizeConfig.textMultiplier), // 14
-                  color: kPrimaryDarkColor,
+                  color: kThirdDarkColor,
                   fontWeight: FontWeight.bold,
                 ),
               )

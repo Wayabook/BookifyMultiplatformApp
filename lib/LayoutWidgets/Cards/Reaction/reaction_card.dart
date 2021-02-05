@@ -40,10 +40,10 @@ class _ReactionCard extends State<ReactionCard> {
         : 0.0; //2
 
     return Border(
-      top: BorderSide(color: kPrimaryLightColor, width: width),
-      bottom: BorderSide(color: kPrimaryLightColor, width: width),
-      left: BorderSide(color: kPrimaryLightColor, width: width),
-      right: BorderSide(color: kPrimaryLightColor, width: width),
+      top: BorderSide(color: kThirdDarkColor, width: width),
+      bottom: BorderSide(color: kThirdDarkColor, width: width),
+      left: BorderSide(color: kThirdDarkColor, width: width),
+      right: BorderSide(color: kThirdDarkColor, width: width),
     );
   }
 
@@ -78,7 +78,7 @@ class _ReactionCard extends State<ReactionCard> {
                       text,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
-                        color: kPrimaryLightColor,
+                        color: kThirdDarkColor,
                         fontSize: (PADDING_FACTOR_8 *
                             SizeConfig.heightMultiplier), //8
                       ),

@@ -6,7 +6,6 @@ import 'package:bookifyapp/LayoutWidgets/Profile/profile_picture.dart';
 import 'package:bookifyapp/Models/User.dart';
 
 class ProfileInfo extends StatelessWidget {
-
   static const double DEFAULT_HEIGHT = 100.0;
   static const POSTER_RATIO = 0.7;
   double height;
@@ -17,13 +16,13 @@ class ProfileInfo extends StatelessWidget {
   Color nameColor;
 
   ProfileInfo(
-      this.user, {
-        this.height = DEFAULT_HEIGHT,
-        this.nameColor = kPrimaryLightColor,
-      });
+    this.user, {
+    this.height = DEFAULT_HEIGHT,
+    this.nameColor = kThirdDarkColor,
+  });
 
-  _initializeDimensions(){
-    if(this.height == DEFAULT_HEIGHT)
+  _initializeDimensions() {
+    if (this.height == DEFAULT_HEIGHT)
       this.height = CONTAINER_FACTOR_100 * SizeConfig.heightMultiplier;
 
     this.circleRadius = PADDING_FACTOR_120 * SizeConfig.heightMultiplier;
@@ -36,17 +35,15 @@ class ProfileInfo extends StatelessWidget {
     return Column(
       children: <Widget>[
         ProfilePicture(user.profilePictureUrl),
-
         Align(
           alignment: Alignment.center,
           child: Container(
             child: Text(
               user.name,
               style: TextStyle(
-                fontSize: (TEXT_FACTOR_14 * SizeConfig.textMultiplier), // 14
-                fontWeight: FontWeight.bold,
-                color: this.nameColor
-              ),
+                  fontSize: (TEXT_FACTOR_14 * SizeConfig.textMultiplier), // 14
+                  fontWeight: FontWeight.bold,
+                  color: this.nameColor),
             ),
           ),
         ),

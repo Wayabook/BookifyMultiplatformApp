@@ -55,14 +55,14 @@ class GenreCard extends StatelessWidget {
               children: <Widget>[
                 Icon(
                   Icons.add,
-                  color: kPrimaryDarkColor,
+                  color: kThirdDarkColor,
                   size: (TEXT_FACTOR_50 * SizeConfig.imageSizeMultiplier),
                 ),
                 Text(
                   ADD_GENRE,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
-                    color: kPrimaryDarkColor,
+                    color: kThirdDarkColor,
                     fontWeight: FontWeight.bold,
                   ),
                 )
@@ -84,7 +84,7 @@ class GenreCard extends StatelessWidget {
                 child: Text(
                   (index + 1).toString(),
                   style: TextStyle(
-                      color: kPrimaryDarkColor,
+                      color: kThirdDarkColor,
                       decoration: TextDecoration.none,
                       //decorationColor: Colors.,
                       decorationThickness: 1),
