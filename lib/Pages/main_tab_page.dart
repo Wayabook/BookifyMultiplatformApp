@@ -19,20 +19,7 @@ class MainTabPage extends StatefulWidget {
 }
 
 class _MainTabPage extends State<MainTabPage> {
-  final _items = [
-    BottomNavigationBarItem(
-      icon: Icon(Icons.local_library),
-      title: Text(READING_OPTION),
-    ),
-    BottomNavigationBarItem(
-      icon: Icon(Icons.search),
-      title: Text(DISCOVER_OPTION),
-    ),
-    BottomNavigationBarItem(
-      icon: Icon(Icons.account_circle),
-      title: Text(PROFILE_OPTION),
-    ),
-  ];
+  int index = 0;
 
   @override
   void initState() {
@@ -47,7 +34,41 @@ class _MainTabPage extends State<MainTabPage> {
     return CustomScaffold(
       scaffold: Scaffold(
         bottomNavigationBar: BottomNavigationBar(
-          items: _items,
+          items: [
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.local_library,
+                color: index == 0 ? kSecondaryDarkColor : kThirdDarkColor,
+              ),
+              title: Text(
+                READING_OPTION,
+                style: TextStyle(
+                    color: index == 0 ? kSecondaryDarkColor : kThirdDarkColor),
+              ),
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.search,
+                color: index == 1 ? kSecondaryDarkColor : kThirdDarkColor,
+              ),
+              title: Text(
+                DISCOVER_OPTION,
+                style: TextStyle(
+                    color: index == 1 ? kSecondaryDarkColor : kThirdDarkColor),
+              ),
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.account_circle,
+                color: index == 2 ? kSecondaryDarkColor : kThirdDarkColor,
+              ),
+              title: Text(
+                PROFILE_OPTION,
+                style: TextStyle(
+                    color: index == 2 ? kSecondaryDarkColor : kThirdDarkColor),
+              ),
+            ),
+          ],
           backgroundColor: Colors.white54,
           iconSize: (4.4 * SizeConfig.heightMultiplier),
         ),
@@ -55,7 +76,11 @@ class _MainTabPage extends State<MainTabPage> {
 
       children: _getPages(),
       // Called when one of the [items] is tapped.
-      onItemTap: (index) {},
+      onItemTap: (index) {
+        setState(() {
+          this.index = index;
+        });
+      },
     );
   }
 

@@ -23,7 +23,6 @@ class Body extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-
             Image.asset(
               "assets/icons/bookify_icon.png",
               height: size.height * 0.45,
@@ -37,7 +36,7 @@ class Body extends StatelessWidget {
             ),
             RoundedButton(
               text: "LOGIN",
-              color: kPrimaryDarkColor,
+              color: kThirdDarkColor,
               press: () {
                 Navigator.push(
                   context,

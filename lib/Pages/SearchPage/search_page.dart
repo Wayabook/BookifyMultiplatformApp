@@ -104,12 +104,15 @@ class _SearchPage extends State<SearchPage>
       _personsList = _tmpList2;
     }
 
-    final appBody = TabBarView(controller: _tabController, children: [
-      Container(
-          child:
-              VerticalBookListSearch(_filteredList, ListType.preview_friends)),
-      Container(child: VerticalUserList(_personsList)),
-    ]);
+    final appBody = TabBarView(
+      controller: _tabController,
+      children: [
+        Container(
+            child: VerticalBookListSearch(
+                _filteredList, ListType.preview_friends)),
+        Container(child: VerticalUserList(_personsList)),
+      ],
+    );
 
     final appTopAppBar = AppBar(
       backgroundColor: kPrimaryDarkColor,
@@ -117,22 +120,25 @@ class _SearchPage extends State<SearchPage>
         color: kThirdDarkColor, //change your color here
       ),
       elevation: 0.1,
-      bottom: TabBar(controller: _tabController, tabs: [
-        Tab(
-            child: Text(
-          BOOK_TITLE,
-          style: TextStyle(
-              fontSize: (TEXT_FACTOR_14 * SizeConfig.textMultiplier),
-              color: kThirdDarkColor),
-        )),
-        Tab(
-            child: Text(
-          PERSON_TITLE,
-          style: TextStyle(
-              fontSize: (TEXT_FACTOR_14 * SizeConfig.textMultiplier),
-              color: kThirdDarkColor),
-        ))
-      ]),
+      bottom: TabBar(
+          controller: _tabController,
+          indicatorColor: kSecondaryDarkColor,
+          tabs: [
+            Tab(
+                child: Text(
+              BOOK_TITLE,
+              style: TextStyle(
+                  fontSize: (TEXT_FACTOR_14 * SizeConfig.textMultiplier),
+                  color: kThirdDarkColor),
+            )),
+            Tab(
+                child: Text(
+              PERSON_TITLE,
+              style: TextStyle(
+                  fontSize: (TEXT_FACTOR_14 * SizeConfig.textMultiplier),
+                  color: kThirdDarkColor),
+            ))
+          ]),
       title: appBarTitle,
       actions: <Widget>[
         new IconButton(

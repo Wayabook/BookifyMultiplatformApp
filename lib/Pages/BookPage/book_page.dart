@@ -56,7 +56,7 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    addIconBackgroundColor = kPrimaryDarkColor;
+    addIconBackgroundColor = kForthDarkColor;
 
     var user = Provider.of<User>(context, listen: false);
     isInPendingList = user.isInPendingList(book.toLecture());
@@ -64,7 +64,8 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin {
 
     if (isInReadingList) {
       addIcon = Icons.local_library;
-      addIconBackgroundColor = kPrimaryDarkColor;
+      addIconBackgroundColor = kForthDarkColor;
+      addIconColor = kThirdDarkColor;
     } else {
       changeAddButtonColors();
     }
@@ -193,7 +194,7 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin {
                     BookShopsDialog(this.book, this),
               );
             },
-            color: kPrimaryDarkColor,
+            color: kForthDarkColor,
             child: SizedBox(
               height: (ICON_HEIGHT_MULTIPLIER * SizeConfig.heightMultiplier),
               width: (ICON_WIDTH_MULTIPLIER * SizeConfig.widthMultiplier),
@@ -220,7 +221,7 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin {
               topRight: Radius.circular(
                   (ICON_FACTOR_25 * SizeConfig.imageSizeMultiplier)), //25
             )),
-            color: kPrimaryDarkColor,
+            color: kForthDarkColor,
             child: SizedBox(
               height: (ICON_HEIGHT_MULTIPLIER * SizeConfig.heightMultiplier),
               width: (ICON_WIDTH_MULTIPLIER * SizeConfig.widthMultiplier),

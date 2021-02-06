@@ -166,7 +166,8 @@ class _CommentPage extends State<CommentPage>
         floatingLabelBehavior: FloatingLabelBehavior.never,
       ),
       style: TextStyle(
-        fontSize: (TEXT_FACTOR_14 * SizeConfig.textMultiplier), //14
+        fontSize: (TEXT_FACTOR_14 * SizeConfig.textMultiplier),
+        color: kThirdDarkColor, //14
       ),
       maxLines: null,
       expands: widget.subCommentsPage ? false : true,
@@ -220,7 +221,7 @@ class _CommentPage extends State<CommentPage>
                       child: GestureDetector(
                         child: Icon(
                           Icons.send,
-                          color: Colors.yellow,
+                          color: kSecondaryDarkColor,
                           size: (PADDING_FACTOR_30 *
                               SizeConfig.heightMultiplier), //30
                         ),
@@ -241,7 +242,12 @@ class _CommentPage extends State<CommentPage>
         width: MediaQuery.of(context).size.width,
         child: scaffoldChild,
       ),
-      appBar: AppBar(backgroundColor: kPrimaryDarkColor, title: appBarText),
+      appBar: AppBar(
+          iconTheme: IconThemeData(
+            color: kThirdDarkColor, //change your color here
+          ),
+          backgroundColor: kPrimaryDarkColor,
+          title: appBarText),
     );
   }
 
@@ -253,7 +259,10 @@ class _CommentPage extends State<CommentPage>
             widget.inactiveAddCommentOption
                 ? _getSubcommentsListView()
                 : _getColumnWithListViewAndAddCommentOption(),
-            Text(widget.subCommentsPage ? widget.chapterTitle : ADD_COMMENT));
+            Text(
+              widget.subCommentsPage ? widget.chapterTitle : ADD_COMMENT,
+              style: TextStyle(color: kThirdDarkColor),
+            ));
       }
     } else {
       if (widget.book != null) {
@@ -272,12 +281,16 @@ class _CommentPage extends State<CommentPage>
                   ? widget.book.title
                   : widget.chapterTitle,
               overflow: TextOverflow.ellipsis,
+              style: TextStyle(color: kThirdDarkColor),
             ));
       } else {
         return _getPageScaffold(
             AddCommentLayout(this.textField, this.publishContainerColor,
                 this.publishTextColor, this.newComment),
-            Text(ADD_COMMENT_2));
+            Text(
+              ADD_COMMENT_2,
+              style: TextStyle(color: kThirdDarkColor),
+            ));
       }
     }
   }

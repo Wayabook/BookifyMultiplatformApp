@@ -7,7 +7,6 @@ import 'package:bookifyapp/Pages/LoginPages/Components/rounded_button.dart';
 import 'package:bookifyapp/Pages/LoginPages/Login/login_page.dart';
 
 class Body extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -22,21 +21,17 @@ class Body extends StatelessWidget {
               style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 2.65 * SizeConfig.textMultiplier,
-              ),
+                  color: kThirdDarkColor),
             ),
-
             SizedBox(height: size.height * 0.05),
-
             Image.asset(
               "assets/icons/bookify_icon.png",
               height: size.height * 0.45,
             ),
-
             SizedBox(height: size.height * 0.05),
-
             RoundedButton(
               text: "LOGIN",
-              color: kPrimaryDarkColor,
+              color: kThirdDarkColor,
               press: () {
                 Navigator.push(
                   context,
@@ -48,7 +43,6 @@ class Body extends StatelessWidget {
                 );
               },
             ),
-
             RoundedButton(
               text: "SIGN UP",
               color: kSecondaryDarkColor,
