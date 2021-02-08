@@ -10,46 +10,43 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
 class MockSizeConfig extends Mock implements SizeConfig {}
-class MockBook extends Mock implements Book {}
-class MockLecture extends Mock implements Lecture {
 
+class MockBook extends Mock implements Book {}
+
+class MockLecture extends Mock implements Lecture {
   bool read;
   MockLecture({this.read = false});
 
-  bool get finished =>  read;
+  bool get finished => read;
 
   set finished(bool finished) => read;
-
 }
 
-void main(){
-
+void main() {
   MockLecture mockLecture = new MockLecture();
-
 
   setUp(() {
     SizeConfig().initDefault();
   });
 
-
   group('Book Card Action Button Widget Tests', () {
-
-    testWidgets('Book Card Ation Button In Search List Clicked Test', (WidgetTester tester) async{
+    testWidgets('Book Card Ation Button In Search List Clicked Test',
+        (WidgetTester tester) async {
       int value = 0;
 
       // Creates BookCardActionButton Widget
       final widget = BookCardActionButton(
-          mockLecture,
-          BookCardType.book_card_in_vertical_search_list,
-          ListType.add_custom_list,
-          null,
-          "Add custom List",
-          onBookCompletedProcess: () {},
-          onBookCardActionButtonPressed: (ListType listType, Lecture book,
-              {bool added, BookCardType type}) {
-            value += 1;
-          },
-          added: false,
+        mockLecture,
+        BookCardType.book_card_in_vertical_search_list,
+        ListType.add_custom_list,
+        null,
+        "Add custom List",
+        onBookCompletedProcess: () {},
+        onBookCardActionButtonPressed: (ListType listType, Lecture book,
+            {bool added, BookCardType type}) {
+          value += 1;
+        },
+        added: false,
       );
 
       await tester.pumpWidget(widget);
@@ -65,11 +62,10 @@ void main(){
       await tester.ensureVisible(find.byType(BookCardActionButton));
       expect(find.byIcon(BookCardActionButton.ICON_CHECK), findsOneWidget);
       expect(value, 1);
-
-
     });
 
-    testWidgets('Book Card Ation Button In Search List Already Clicked Test', (WidgetTester tester) async{
+    testWidgets('Book Card Ation Button In Search List Already Clicked Test',
+        (WidgetTester tester) async {
       int value = 1;
       // Creates BookCardActionButton Widget
       final widget = BookCardActionButton(
@@ -99,10 +95,11 @@ void main(){
       await tester.ensureVisible(find.byType(BookCardActionButton));
       expect(find.byIcon(BookCardActionButton.ICON_ADD), findsOneWidget);
       expect(value, 0);
-
     });
 
-    testWidgets('Book Card Action Button In Vertical List Clicked Rotation Test', (WidgetTester tester) async{
+    testWidgets(
+        'Book Card Action Button In Vertical List Clicked Rotation Test',
+        (WidgetTester tester) async {
       int value = 0;
 
       // Creates BookCardActionButton Widget
@@ -130,7 +127,7 @@ void main(){
       await tester.ensureVisible(find.byType(BookCardActionButton));
 
       Icon icon = tester.firstWidget(iconButton);
-      expect(icon.color, kPrimaryDarkColor);
+      expect(icon.color, bookCardActtionButtonDefaultColor);
       expect(icon.size, (12.16 * SizeConfig.imageSizeMultiplier));
 
       // Taps widget and checks that icon has changed and value modified.
@@ -149,16 +146,18 @@ void main(){
       await tester.pump(const Duration(milliseconds: 2000));
       expect(find.byIcon(BookCardActionButton.ICON_BEEN_HERE), findsOneWidget);
       icon = tester.firstWidget(iconButton);
-      expect(icon.color, kPrimaryDarkColor);
+      Color aux = icon.color;
+      expect(icon.color, bookCardActionButtonColor2);
       expect(icon.size, (12.16 * SizeConfig.imageSizeMultiplier));
       expect(value, 0);
 
       //  (12.16 * SizeConfig.imageSizeMultiplier) Before tap
       //  (18.24 * SizeConfig.imageSizeMultiplier) After tap
-
     });
 
-    testWidgets('Book Card Action Button In Vertical List Clicked Book Finished Test', (WidgetTester tester) async{
+    testWidgets(
+        'Book Card Action Button In Vertical List Clicked Book Finished Test',
+        (WidgetTester tester) async {
       int value = 0;
 
       // Creates BookCardActionButton Widget
@@ -188,7 +187,7 @@ void main(){
       await tester.ensureVisible(find.byType(BookCardActionButton));
 
       Icon icon = tester.firstWidget(iconButton);
-      expect(icon.color, kPrimaryDarkColor);
+      expect(icon.color, bookCardActtionButtonDefaultColor);
       expect(icon.size, (12.16 * SizeConfig.imageSizeMultiplier));
 
       // Taps widget and checks that icon has changed and value modified.
@@ -213,10 +212,6 @@ void main(){
 
       //  (12.16 * SizeConfig.imageSizeMultiplier) Before tap
       //  (18.24 * SizeConfig.imageSizeMultiplier) After tap
-
     });
-
-
   });
-
 }
