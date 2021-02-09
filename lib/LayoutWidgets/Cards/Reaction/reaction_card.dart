@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import '../../../Design/SizeConfig.dart';
 
 class ReactionCard extends StatefulWidget {
+  static const String PERCENTAGE_SYMBOL = "%";
   Reaction reaction;
   ReactionCard(this.reaction);
 
@@ -15,7 +16,6 @@ class ReactionCard extends StatefulWidget {
 }
 
 class _ReactionCard extends State<ReactionCard> {
-  static const String PERCENTAGE_SYMBOL = "%";
   bool tapped = false;
   String text = "";
 
@@ -23,7 +23,8 @@ class _ReactionCard extends State<ReactionCard> {
     setState(() {
       if (tapped == false) {
         tapped = true;
-        text = widget.reaction.percentage.toString() + PERCENTAGE_SYMBOL;
+        text = widget.reaction.percentage.toString() +
+            ReactionCard.PERCENTAGE_SYMBOL;
       }
     });
   }
@@ -40,10 +41,10 @@ class _ReactionCard extends State<ReactionCard> {
         : 0.0; //2
 
     return Border(
-      top: BorderSide(color: kThirdDarkColor, width: width),
-      bottom: BorderSide(color: kThirdDarkColor, width: width),
-      left: BorderSide(color: kThirdDarkColor, width: width),
-      right: BorderSide(color: kThirdDarkColor, width: width),
+      top: BorderSide(color: kSecondaryDarkColor, width: width),
+      bottom: BorderSide(color: kSecondaryDarkColor, width: width),
+      left: BorderSide(color: kSecondaryDarkColor, width: width),
+      right: BorderSide(color: kSecondaryDarkColor, width: width),
     );
   }
 
@@ -54,38 +55,42 @@ class _ReactionCard extends State<ReactionCard> {
         width: double.infinity,
         child: GestureDetector(
           onTap: changeText,
-          child: Card(
-              color: kPrimaryDarkColor,
-              margin: EdgeInsets.all(
-                  (PADDING_FACTOR_10 * SizeConfig.widthMultiplier)), //10
-              shape: tapped ? _getBorder(true) : _getBorder(false),
-              elevation: (PADDING_FACTOR_10 * SizeConfig.widthMultiplier), //10
-              child: Column(
-                children: <Widget>[
-                  Flexible(
-                    flex: 8,
-                    child: Image.asset(
-                      widget.reaction.reactionIcon,
-                      height: (PADDING_FACTOR_45 *
-                          SizeConfig.heightMultiplier), //45
-                      width: (PADDING_FACTOR_45 *
-                          SizeConfig.heightMultiplier), //45
-                    ),
-                  ),
-                  Flexible(
-                    flex: 2,
-                    child: Text(
-                      text,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                        color: kThirdDarkColor,
-                        fontSize: (PADDING_FACTOR_8 *
-                            SizeConfig.heightMultiplier), //8
+          child: Directionality(
+            textDirection: TextDirection.ltr,
+            child: Card(
+                color: kPrimaryDarkColor,
+                margin: EdgeInsets.all(
+                    (PADDING_FACTOR_10 * SizeConfig.widthMultiplier)), //10
+                shape: tapped ? _getBorder(true) : _getBorder(false),
+                elevation:
+                    (PADDING_FACTOR_10 * SizeConfig.widthMultiplier), //10
+                child: Column(
+                  children: <Widget>[
+                    Flexible(
+                      flex: 8,
+                      child: Image.asset(
+                        widget.reaction.reactionIcon,
+                        height: (PADDING_FACTOR_45 *
+                            SizeConfig.heightMultiplier), //45
+                        width: (PADDING_FACTOR_45 *
+                            SizeConfig.heightMultiplier), //45
                       ),
                     ),
-                  )
-                ],
-              )),
+                    Flexible(
+                      flex: 2,
+                      child: Text(
+                        text,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          color: kThirdDarkColor,
+                          fontSize: (PADDING_FACTOR_8 *
+                              SizeConfig.heightMultiplier), //8
+                        ),
+                      ),
+                    )
+                  ],
+                )),
+          ),
         ));
   }
 }
