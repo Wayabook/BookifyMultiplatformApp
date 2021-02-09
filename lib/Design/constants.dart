@@ -3,15 +3,21 @@ import 'package:flutter/material.dart';
 //const kPrimaryDarkColor = Colors.blueGrey;
 //Color kSecondaryDarkColor = Colors.grey[350];
 
-// Light mode
-const kPrimaryLightColor = Colors.white;
-const kGreenLightColor = Colors.lightGreen;
-
-const smallUnderlinedButtonColor = Colors.blue;
+/*const smallUnderlinedButtonColor = Colors.blue;
 const addButtonIconColor = Colors.black;
 const bookCardActtionButtonDefaultColor = Colors.blueGrey;
 const bookCardActionButtonColor = Colors.green;
-const bookCardActionButtonColor2 = Colors.lightGreen;
+const bookCardActionButtonColor2 = Colors.lightGreen;*/
+
+// Light mode
+const kPrimaryLightColor = Colors.white;
+const kGreenLightColor = Color.fromRGBO(255, 160, 18, 1);
+
+const smallUnderlinedButtonColor = Colors.blue;
+const addButtonIconColor = Color.fromRGBO(48, 48, 48, 1);
+const bookCardActtionButtonDefaultColor = Color.fromRGBO(48, 48, 48, 1);
+const bookCardActionButtonColor = Color.fromRGBO(255, 160, 18, 1);
+const bookCardActionButtonColor2 = Color.fromRGBO(255, 160, 18, 1);
 
 const kPrimaryDarkColor = Color.fromRGBO(242, 244, 243, 1);
 const kSecondaryDarkColor = Color.fromRGBO(255, 160, 18, 1);

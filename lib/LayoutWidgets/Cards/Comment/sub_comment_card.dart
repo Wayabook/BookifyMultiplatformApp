@@ -33,35 +33,6 @@ class SubCommentCard extends StatelessWidget with AbstractComment {
 
   @override
   Widget build(BuildContext context) {
-    /*return Row(
-      children: [
-        Flexible(
-            flex: 1,
-            child: Row(
-              children: [
-                Flexible(
-                    flex: 1,
-                    child: VerticalDivider(
-                      color: Colors.white,
-                      width: 2,
-                    )),
-                Flexible(
-                  flex: 9,
-                  child: Container(
-                    color: Colors.white,
-                    height: 1,
-                    width: double.infinity,
-                  ),
-                )
-              ],
-            )),
-        Flexible(
-          flex: 10,
-          child:
-              this.getCard(this.comment, getButtonsRow(), isMainComment: false),
-        )
-      ],
-    );*/
     return this.getCard(this.comment, getButtonsRow(), isMainComment: false);
   }
 
@@ -73,12 +44,7 @@ class SubCommentCard extends StatelessWidget with AbstractComment {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              LikeButton(
-                size: (TEXT_FACTOR_30_H * SizeConfig.heightMultiplier), //30
-                likeCount: this.comment.likes,
-              ),
-            ],
+            children: <Widget>[getLikeButton(this.comment.likes)],
           ),
         ),
         Flexible(
@@ -94,7 +60,7 @@ class SubCommentCard extends StatelessWidget with AbstractComment {
                   ANSWER_OPTION,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
-                    color: Colors.grey,
+                    color: kThirdDarkColor,
                     fontSize: (TEXT_FACTOR_14 * SizeConfig.textMultiplier), //14
                   ),
                 ),

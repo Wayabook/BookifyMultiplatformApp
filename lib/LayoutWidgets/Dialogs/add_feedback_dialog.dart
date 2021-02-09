@@ -272,7 +272,8 @@ class _AddFeedbackDialog extends State<AddFeedbackDialog>
                               onPressed: () async {
                                 setState(() {
                                   if (!widget.book.finished) {
-                                    readButtonColor = Colors.lightGreen;
+                                    readButtonColor =
+                                        bookCardActionButtonColor2;
                                   }
                                 });
                                 await animationController.forward();

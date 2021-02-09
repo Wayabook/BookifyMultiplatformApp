@@ -7,53 +7,82 @@ import 'Lecture.dart';
 import 'Shop.dart';
 import 'User.dart';
 
-class MainComment extends Comment{
+class MainComment extends Comment {
   List<Comment> answers;
 
   MainComment(
-      User author,
-      String comment,
-      {
-        this.answers: const [],
-        int likes: 0,
-      }
-  ) : super (author, comment, likes: likes);
+    User author,
+    String comment, {
+    this.answers: const [],
+    int likes: 0,
+  }) : super(author, comment, likes: likes);
 
-  static List<MainComment> getMockMainComments(){
-
+  static List<MainComment> getMockMainComments() {
     List<Chapter> chapters = new List();
     List<Book> books = new List();
     List<Lecture> lectures = new List();
     List<Item> items = new List();
     List<Genre> genres = Genre.getMockGenres();
 
-
-
     chapters.add(new Chapter(1, "Capitulo 1 :  Inicio"));
     chapters.add(new Chapter(2, "Capitulo 2 :  Post Inicio"));
     chapters.add(new Chapter(3, "Capitulo 3 :  Pre Final"));
     chapters.add(new Chapter(4, "Capitulo 4 :  Final"));
 
-    Shop shop1 = new Shop.withoutIds("Casa del Libro", "https://i.pinimg.com/280x280_RS/77/56/01/77560124a4abb4053f4f95c9153ef565.jpg");
-    Shop shop2 = new Shop.withoutIds("Fnac", "https://upload.wikimedia.org/wikipedia/commons/2/2e/Fnac_Logo.svg");
-    Shop shop3 = new Shop.withoutIds("El corte ingles", "https://pbs.twimg.com/profile_images/1214523397239115781/wuA5BVB4_400x400.jpg");
-    Shop shop4 = new Shop.withoutIds("Taugus Books", "https://imagessl.casadellibro.com/t19/i/logo.png");
-    Shop shop5 = new Shop.withoutIds("Me gusta leer", "https://tienda.megustaleer.com/img/tienda-megustaleer-logo-1585260247.jpg");
+    Shop shop1 = new Shop.withoutIds("Casa del Libro",
+        "https://i.pinimg.com/280x280_RS/77/56/01/77560124a4abb4053f4f95c9153ef565.jpg");
+    Shop shop2 = new Shop.withoutIds("Fnac",
+        "https://upload.wikimedia.org/wikipedia/commons/2/2e/Fnac_Logo.svg");
+    Shop shop3 = new Shop.withoutIds("El corte ingles",
+        "https://pbs.twimg.com/profile_images/1214523397239115781/wuA5BVB4_400x400.jpg");
+    Shop shop4 = new Shop.withoutIds(
+        "Taugus Books", "https://imagessl.casadellibro.com/t19/i/logo.png");
+    Shop shop5 = new Shop.withoutIds("Me gusta leer",
+        "https://tienda.megustaleer.com/img/tienda-megustaleer-logo-1585260247.jpg");
 
-    items.add(new Item.withoutId(shop1, "https://www.casadellibro.com/libro-en-busca-del-chico-irrompible/9788408228059/11405104", 16.05, "€", "1", "2"));
-    items.add(new Item.withoutId(shop2, "https://www.fnac.es/a7456973/En-busca-del-chico-irrompible#st=el+chico+irr&ct=En+todo+Fnac&t=p", 16.05, "€", "1", "2"));
-    items.add(new Item.withoutId(shop3, "https://www.elcorteingles.es/libros/A35120735-en-busca-del-chico-irrompible-tapa-dura-9788408228059/", 16.05, "€", "1", "2"));
-    items.add(new Item.withoutId(shop4, "https://www.tagusbooks.com/ebook-en-busca-del-chico-irrompible-ebook/9788408230663/11537354", 16.05, "€", "1", "2"));
-    items.add(new Item.withoutId(shop5, "https://tienda.megustaleer.com/libros/2519-dulce-chico-indecente-9788490708248.html", 16.05, "€", "1", "2"));
+    items.add(new Item.withoutId(
+        shop1,
+        "https://www.casadellibro.com/libro-en-busca-del-chico-irrompible/9788408228059/11405104",
+        16.05,
+        "€",
+        "1",
+        "2"));
+    items.add(new Item.withoutId(
+        shop2,
+        "https://www.fnac.es/a7456973/En-busca-del-chico-irrompible#st=el+chico+irr&ct=En+todo+Fnac&t=p",
+        16.05,
+        "€",
+        "1",
+        "2"));
+    items.add(new Item.withoutId(
+        shop3,
+        "https://www.elcorteingles.es/libros/A35120735-en-busca-del-chico-irrompible-tapa-dura-9788408228059/",
+        16.05,
+        "€",
+        "1",
+        "2"));
+    items.add(new Item.withoutId(
+        shop4,
+        "https://www.tagusbooks.com/ebook-en-busca-del-chico-irrompible-ebook/9788408230663/11537354",
+        16.05,
+        "€",
+        "1",
+        "2"));
+    items.add(new Item.withoutId(
+        shop5,
+        "https://tienda.megustaleer.com/libros/2519-dulce-chico-indecente-9788490708248.html",
+        16.05,
+        "€",
+        "1",
+        "2"));
 
     Map<String, List<Item>> shopItems = {
       'Tapa Blanda': items,
-      'Tapa Dura' : items,
+      'Tapa Dura': items,
       'Tapa Ebook': items,
     };
 
-    String description =
-    """
+    String description = """
     Engánchate al fenómenoValeria de @BetaCoqueta, una saga altamente divertida, emotiva y sensual.
     
     ¡Te vas a enamorar!
@@ -81,8 +110,7 @@ class MainComment extends Comment{
         description,
         genres[0],
         shopItems,
-        chapters : chapters
-    );
+        chapters: chapters);
 
     Book book2 = new Book.withSummary(
         "En busca del chico irrompible",
@@ -91,8 +119,7 @@ class MainComment extends Comment{
         description,
         genres[1],
         shopItems,
-        chapters: chapters
-    );
+        chapters: chapters);
 
     Book book3 = new Book.withSummary(
         "Con el amor bastaba",
@@ -101,8 +128,7 @@ class MainComment extends Comment{
         description,
         genres[2],
         shopItems,
-        chapters: chapters
-    );
+        chapters: chapters);
 
     Book book4 = new Book.withSummary(
         "A próposito de nada",
@@ -111,8 +137,7 @@ class MainComment extends Comment{
         description,
         genres[3],
         shopItems,
-        chapters: chapters
-    );
+        chapters: chapters);
 
     books.add(book1);
     books.add(book2);
@@ -124,22 +149,16 @@ class MainComment extends Comment{
     lectures.add(book3.toLecture());
     lectures.add(book4.toLecture());
 
+    Map<String, List<Lecture>> userLectures = {
+      'Reading': lectures.sublist(0, 1),
+      'Pending': lectures.sublist(2, 3),
+      'Read': lectures,
+      'Recommended': lectures,
+      'Custom List 1': lectures
+    };
 
-
-
-    Map<String, List<Lecture>> userLectures =
-    {'Reading': lectures.sublist(0, 1), 'Pending': lectures.sublist(2, 3), 'Read': lectures, 'Recommended': lectures, 'Custom List 1': lectures};
-
-    User user1= new User(
-        "1",
-        "John Cobra",
-        genres,
-        userLectures,
-        21,
-        198,
-        345,
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Noizy_and_Chris_Brown.jpg/220px-Noizy_and_Chris_Brown.jpg"
-    );
+    User user1 = new User("1", "John Cobra", genres, userLectures, 21, 198, 345,
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Noizy_and_Chris_Brown.jpg/220px-Noizy_and_Chris_Brown.jpg");
 
     User user2 = new User(
         "2",
@@ -149,8 +168,7 @@ class MainComment extends Comment{
         21,
         198,
         345,
-        "https://www.hotfootdesign.co.uk/wp-content/uploads/2016/05/d5jA8OZv.jpg"
-    );
+        "https://www.hotfootdesign.co.uk/wp-content/uploads/2016/05/d5jA8OZv.jpg");
 
     User user3 = new User(
         "3",
@@ -160,8 +178,7 @@ class MainComment extends Comment{
         21,
         198,
         345,
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/TechCrunch_Disrupt_2019_%2848834434641%29_%28cropped%29.jpg/220px-TechCrunch_Disrupt_2019_%2848834434641%29_%28cropped%29.jpg"
-    );
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/TechCrunch_Disrupt_2019_%2848834434641%29_%28cropped%29.jpg/220px-TechCrunch_Disrupt_2019_%2848834434641%29_%28cropped%29.jpg");
 
     User user4 = new User(
         "4",
@@ -171,8 +188,7 @@ class MainComment extends Comment{
         21,
         198,
         345,
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Cajal-Restored.jpg/220px-Cajal-Restored.jpg"
-    );
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Cajal-Restored.jpg/220px-Cajal-Restored.jpg");
 
     User user5 = new User(
         "5",
@@ -182,15 +198,24 @@ class MainComment extends Comment{
         21,
         198,
         345,
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Donald_Trump_official_portrait.jpg/220px-Donald_Trump_official_portrait.jpg"
-    );
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Donald_Trump_official_portrait.jpg/220px-Donald_Trump_official_portrait.jpg");
 
     List<MainComment> mockSubComments = new List();
-    mockSubComments.add(new MainComment(user1, "Comentario principal. Muy buen libro", likes: 100, answers: Comment.getMockComments()));
-    mockSubComments.add(new MainComment(user2, "Comentario principal. Muy buen libro 1", likes: 1000, answers: Comment.getMockComments()));
-    mockSubComments.add(new MainComment(user3, "Comentario principal. Muy buen libro 2", likes: 10000, answers: Comment.getMockComments()));
-    mockSubComments.add(new MainComment(user4, "Comentario principal. Muy buen libro 3", likes: 100000, answers: Comment.getMockComments()));
-    mockSubComments.add(new MainComment(user5, "Comentario principal. Muy buen libro 4", likes: 10000000, answers: Comment.getMockComments()));
+    mockSubComments.add(new MainComment(
+        user1, "Comentario principal. Muy buen libro",
+        likes: 10, answers: Comment.getMockComments()));
+    mockSubComments.add(new MainComment(
+        user2, "Comentario principal. Muy buen libro 1",
+        likes: 10, answers: Comment.getMockComments()));
+    mockSubComments.add(new MainComment(
+        user3, "Comentario principal. Muy buen libro 2",
+        likes: 10, answers: Comment.getMockComments()));
+    mockSubComments.add(new MainComment(
+        user4, "Comentario principal. Muy buen libro 3",
+        likes: 10, answers: Comment.getMockComments()));
+    mockSubComments.add(new MainComment(
+        user5, "Comentario principal. Muy buen libro 4",
+        likes: 10, answers: Comment.getMockComments()));
     return mockSubComments;
   }
 }

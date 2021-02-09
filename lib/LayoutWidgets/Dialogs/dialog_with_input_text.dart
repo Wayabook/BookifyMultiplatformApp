@@ -1,3 +1,4 @@
+import 'package:bookifyapp/Design/constants.dart';
 import 'package:bookifyapp/Design/info_text.dart';
 import 'package:bookifyapp/Design/size_constants.dart';
 import 'package:flutter/cupertino.dart';
@@ -36,9 +37,11 @@ class DialogWithInputText extends StatelessWidget {
           TextField(
             decoration: InputDecoration(
               filled: true,
+              //hintStyle: TextStyle(color: kThirdDarkColor),
+              labelStyle: TextStyle(color: kThirdDarkColor),
               enabledBorder: OutlineInputBorder(
                 borderSide: BorderSide(
-                    color: Colors.greenAccent,
+                    color: kSecondaryDarkColor,
                     width:
                         (CONTAINER_FACTOR_2 * SizeConfig.widthMultiplier)), //2
               ),
@@ -48,12 +51,17 @@ class DialogWithInputText extends StatelessWidget {
                     width:
                         (CONTAINER_FACTOR_2 * SizeConfig.widthMultiplier)), //2
               ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(
+                    color: kSecondaryDarkColor,
+                    width: (CONTAINER_FACTOR_2 * SizeConfig.widthMultiplier)),
+              ),
               labelText: this.entryTextDescription,
               errorText: validateListTitle(inputController.text),
             ),
             style: TextStyle(
-              fontSize: (TEXT_FACTOR_14 * SizeConfig.textMultiplier), //14
-            ),
+                fontSize: (TEXT_FACTOR_14 * SizeConfig.textMultiplier), //14
+                color: kThirdDarkColor),
             controller: inputController,
           ),
         ],

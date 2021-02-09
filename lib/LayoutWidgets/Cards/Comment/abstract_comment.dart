@@ -5,6 +5,7 @@ import 'package:bookifyapp/LayoutWidgets/BookWidgets/summary_text.dart';
 import 'package:bookifyapp/LayoutWidgets/Profile/user_preview_card.dart';
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/Models/Comment.dart';
+import 'package:like_button/like_button.dart';
 
 abstract class AbstractComment {
   int positionKey;
@@ -60,6 +61,38 @@ abstract class AbstractComment {
                   )*/
           ],
         ));
+  }
+
+  Widget getLikeButton(int likes) {
+    return LikeButton(
+      size: (4.39 * SizeConfig.heightMultiplier), //30
+      likeCount: likes,
+      bubblesColor: BubblesColor(
+        dotPrimaryColor: kSecondaryDarkColor,
+        dotSecondaryColor: kSecondaryDarkColor,
+      ),
+      likeBuilder: (bool isLiked) {
+        return Icon(
+          Icons.favorite,
+          color: isLiked ? kSecondaryDarkColor : kThirdDarkColor,
+          size: (4.39 * SizeConfig.heightMultiplier), //30
+        );
+      },
+      countBuilder: (int count, bool isLiked, String text) {
+        Widget result;
+        if (count > 0) {
+          result = Text(
+            count >= 1000 ? (count / 1000).toStringAsFixed(1) + 'k' : text,
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(
+              color: kThirdDarkColor,
+              fontSize: (2.05 * SizeConfig.textMultiplier), //14
+            ),
+          );
+        }
+        return result;
+      },
+    );
   }
 
   _getSpace() {

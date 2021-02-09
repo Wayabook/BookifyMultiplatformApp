@@ -137,8 +137,8 @@ class _FirstTimeFormPage extends State<FirstTimeFormPage>
                           margin: new EdgeInsets.all(
                               (PADDING_FACTOR_5 * SizeConfig.widthMultiplier)),
                           builder: new DotSwiperPaginationBuilder(
-                              color: Colors.grey,
-                              activeColor: Colors.blue,
+                              color: kThirdDarkColor,
+                              activeColor: kSecondaryDarkColor,
                               size: 3.64 * SizeConfig.imageSizeMultiplier),
                         ),
                         itemBuilder: (BuildContext context, int index) {

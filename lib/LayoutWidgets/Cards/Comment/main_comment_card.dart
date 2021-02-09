@@ -75,49 +75,28 @@ class MainCommentCard extends StatelessWidget with AbstractComment {
   Row getButtonsRow() {
     return Row(
       children: <Widget>[
-        _rowItemStructure(<Widget>[
-          LikeButton(
-            size: (4.39 * SizeConfig.heightMultiplier), //30
-            likeCount: mainComment.likes,
-            countBuilder: (int count, bool isLiked, String text) {
-              final ColorSwatch<int> color =
-                  isLiked ? Colors.pinkAccent : Colors.grey;
-              Widget result;
-              if (count > 0) {
-                result = Text(
-                  count >= 1000
-                      ? (count / 1000).toStringAsFixed(1) + 'k'
-                      : text,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                    color: color,
-                    fontSize: (2.05 * SizeConfig.textMultiplier), //14
-                  ),
-                );
-              }
-              return result;
-            },
-          ),
-        ]),
+        _rowItemStructure(<Widget>[getLikeButton(mainComment.likes)]),
         _rowItemStructure(<Widget>[
           Align(
             alignment: Alignment.center,
             child: Icon(
               Icons.insert_comment,
-              color: Colors.grey,
+              color: kThirdDarkColor,
               size: (4.39 * SizeConfig.heightMultiplier), //30
             ),
           ),
           Align(
             alignment: Alignment.center,
-            child: Text(
-              mainComment.answers.length.toString(),
-              overflow: TextOverflow.ellipsis,
-              style: TextStyle(
-                color: Colors.grey,
-                fontSize: (2.05 * SizeConfig.textMultiplier), //14
-              ),
-            ),
+            child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 5, vertical: 0),
+                child: Text(
+                  mainComment.answers.length.toString(),
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    color: kThirdDarkColor,
+                    fontSize: (2.05 * SizeConfig.textMultiplier), //14
+                  ),
+                )),
           ),
         ]),
         _rowItemStructure(<Widget>[
@@ -125,7 +104,7 @@ class MainCommentCard extends StatelessWidget with AbstractComment {
             alignment: Alignment.center,
             child: Icon(
               Icons.share,
-              color: Colors.grey,
+              color: kThirdDarkColor,
               size: (4.39 * SizeConfig.heightMultiplier), //30
             ),
           ),

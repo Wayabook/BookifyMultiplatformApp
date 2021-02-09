@@ -5,22 +5,10 @@ import 'package:bookifyapp/Enums/book_card_type.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/Book/OptionCard/option_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-//SizeConfig sizeConfig;
 
 void main() {
   setUp(() {
     SizeConfig().initDefault();
-
-    /*switch (this._type) {
-      case BookCardType.recommend_book:
-        this._icon = Icons.card_giftcard;
-        this._optionText = OptionCard.recommend_book_text;
-        break;
-      case BookCardType.settings:
-        this._icon = Icons.settings;
-        this._optionText = OptionCard.settings_text;
-        break;
-    }*/
   });
 
   group('Option Card Widget Tests', () {
