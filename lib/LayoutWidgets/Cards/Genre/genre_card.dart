@@ -91,7 +91,11 @@ class GenreCard extends StatelessWidget {
                 ),
               ),
             )),
-        GenreContainer(this.genre)
+        GenreContainer(
+          this.genre,
+          false,
+          containerWidth: (CONTAINER_FACTOR_80 * SizeConfig.widthMultiplier),
+        )
       ],
     ));
   }

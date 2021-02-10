@@ -1,7 +1,7 @@
 import 'package:bookifyapp/Design/constants.dart';
 import 'package:bookifyapp/Interfaces/RemoveCommentInterface.dart';
 import 'package:bookifyapp/LayoutWidgets/BookWidgets/summary_text.dart';
-import 'package:bookifyapp/LayoutWidgets/Cards/Comment/abstract_comment.dart';
+import 'package:bookifyapp/LayoutWidgets/Abstracts/abstract_comment.dart';
 import 'package:bookifyapp/LayoutWidgets/Profile/user_preview_card.dart';
 import 'package:bookifyapp/Models/MainComment.dart';
 import 'package:bookifyapp/Pages/CommentPage/comment_page.dart';

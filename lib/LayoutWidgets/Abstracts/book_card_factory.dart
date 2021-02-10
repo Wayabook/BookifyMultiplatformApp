@@ -15,7 +15,7 @@ import 'package:bookifyapp/Models/User.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
-import '../BookCardInfo/book_card_info.dart';
+import '../Cards/Book/BookCardInfo/book_card_info.dart';
 
 abstract class BookCardFactory {
   bool isInPendingList;

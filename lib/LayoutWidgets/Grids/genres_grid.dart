@@ -26,7 +26,6 @@ class _GenresGrid extends State<GenresGrid> with TickerProviderStateMixin {
   static const int CROSS_AXIS_COUNT = 3;
   static const double PADDING_FACTOR = 0.97;
   static const double GENRES_CONTAINER_FACTOR = 1.47;
-  static const double BORDER_RADIUS_FACTOR = 4.86;
 
   User user;
   bool showEditButton;
@@ -57,6 +56,9 @@ class _GenresGrid extends State<GenresGrid> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    var containerWidth = (MediaQuery.of(context).size.width / WIDTH_FACTOR);
+    var conainerHeight = (MediaQuery.of(context).size.height / HEIGHT_FACTOR);
+
     return GridView.count(
         key: UniqueKey(),
         shrinkWrap: true,
@@ -65,37 +67,20 @@ class _GenresGrid extends State<GenresGrid> with TickerProviderStateMixin {
         crossAxisSpacing:
             (PADDING_FACTOR_10 * SizeConfig.widthMultiplier), // 10
         children: List.generate(widget.genres.length, (index) {
-          return Container(
-              width: (MediaQuery.of(context).size.width / WIDTH_FACTOR),
-              height: (MediaQuery.of(context).size.height / HEIGHT_FACTOR),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(
-                    (BORDER_RADIUS_FACTOR * SizeConfig.imageSizeMultiplier)),
-                color: genresOfInterest.contains(widget.genres[index])
-                    ? kGreenLightColor
-                    : kSecondaryLightColor,
-              ),
-              child: GestureDetector(
-                  onTap: () {
-                    _setGenresList(index);
-                  },
-                  child: Padding(
-                    padding: EdgeInsets.all(
-                        genresOfInterest.contains(widget.genres[index])
-                            ? (PADDING_FACTOR * SizeConfig.imageSizeMultiplier)
-                            : (CONTAINER_FACTOR_2 *
-                                SizeConfig.imageSizeMultiplier)),
-                    child: GenreContainer(
-                      widget.genres[index],
-                      width: (MediaQuery.of(context).size.width /
-                              WIDTH_FACTOR) -
-                          (PADDING_FACTOR_10 * SizeConfig.widthMultiplier), //10
-                      height:
-                          (MediaQuery.of(context).size.height / HEIGHT_FACTOR) -
-                              (GENRES_CONTAINER_FACTOR *
-                                  SizeConfig.heightMultiplier),
-                    ),
-                  )));
+          return GestureDetector(
+              onTap: () {
+                _setGenresList(index);
+              },
+              child: GenreContainer(
+                widget.genres[index],
+                genresOfInterest.contains(widget.genres[index]),
+                width: (MediaQuery.of(context).size.width / WIDTH_FACTOR) -
+                    (PADDING_FACTOR_10 * SizeConfig.widthMultiplier), //10
+                height: (MediaQuery.of(context).size.height / HEIGHT_FACTOR) -
+                    (GENRES_CONTAINER_FACTOR * SizeConfig.heightMultiplier),
+                containerWidth: containerWidth,
+                containerHeight: conainerHeight,
+              ));
         }));
   }
 }

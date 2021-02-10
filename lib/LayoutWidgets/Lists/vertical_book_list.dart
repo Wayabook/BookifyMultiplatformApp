@@ -2,7 +2,7 @@ import 'package:bookifyapp/Design/constants.dart';
 import 'package:bookifyapp/Design/info_text.dart';
 import 'package:bookifyapp/Enums/book_card_type.dart';
 import 'package:bookifyapp/Interfaces/TitleButtonInterface.dart';
-import 'package:bookifyapp/LayoutWidgets/Cards/Book/BookCardFactory/book_card_factory.dart';
+import 'package:bookifyapp/LayoutWidgets/Abstracts/book_card_factory.dart';
 import 'package:bookifyapp/Models/Lecture.dart';
 import 'package:bookifyapp/Models/User.dart';
 import 'package:bookifyapp/Pages/bookshelf_page.dart';

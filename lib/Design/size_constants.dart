@@ -35,6 +35,7 @@ const double CONTAINER_FACTOR_2 = 0.48; //2
 const double CONTAINER_FACTOR_3 = 0.72; //3
 const double CONTAINER_FACTOR_35 = 5.27; //35
 const double CONTAINER_FACTOR_70 = 10.24; //70
+const double CONTAINER_FACTOR_80 = 19.46; //80
 const double CONTAINER_FACTOR_90 = 21.41; //90
 const double CONTAINER_FACTOR_100 = 14.64; //100
 const double CONTAINER_FACTOR_115 = 16.83; //115
@@ -58,3 +59,6 @@ const double TEXT_FACTOR_30 = 4.37; //30
 const double TEXT_FACTOR_30_H = 4.39; //30
 const double TEXT_FACTOR_32 = 4.68; //32
 const double TEXT_FACTOR_50 = 12.16; //50
+
+const double BORDER_RADIUS_FACTOR = 4.86;
+const double BORDER_RADIUS_FACTOR_2 = 2.43;

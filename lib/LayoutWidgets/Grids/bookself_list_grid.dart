@@ -4,7 +4,7 @@ import 'package:bookifyapp/Enums/button_type.dart';
 import 'package:bookifyapp/Enums/list_type.dart';
 import 'package:bookifyapp/InfoToast.dart';
 import 'package:bookifyapp/Interfaces/TitleButtonInterface.dart';
-import 'package:bookifyapp/LayoutWidgets/Cards/Book/BookCardFactory/book_card_factory.dart';
+import 'package:bookifyapp/LayoutWidgets/Abstracts/book_card_factory.dart';
 import 'package:bookifyapp/LayoutWidgets/Dialogs/dialog_with_accept_and_cancel_options.dart';
 import 'package:bookifyapp/LayoutWidgets/Dialogs/dialog_with_input_text.dart';
 import 'package:bookifyapp/LayoutWidgets/Lists/Title/list_title.dart';

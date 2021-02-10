@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:like_button/like_button.dart';
 
 import '../../../Design/SizeConfig.dart';
-import 'abstract_comment.dart';
+import '../../Abstracts/abstract_comment.dart';
 
 class SubCommentCard extends StatelessWidget with AbstractComment {
   static const String AT_SYMBOL = '@';

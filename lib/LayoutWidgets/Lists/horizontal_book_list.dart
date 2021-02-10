@@ -1,6 +1,6 @@
 import 'package:bookifyapp/Design/constants.dart';
 import 'package:bookifyapp/Design/size_constants.dart';
-import 'package:bookifyapp/LayoutWidgets/Cards/Book/BookCardFactory/book_card_factory.dart';
+import 'package:bookifyapp/LayoutWidgets/Abstracts/book_card_factory.dart';
 import 'package:bookifyapp/Models/Lecture.dart';
 import 'package:bookifyapp/Models/User.dart';
 import 'package:flutter/material.dart';
