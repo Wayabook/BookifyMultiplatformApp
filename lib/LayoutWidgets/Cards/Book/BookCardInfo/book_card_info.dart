@@ -118,7 +118,7 @@ class _BookCardInfo extends State<BookCardInfo> {
             flex: 3,
             child: Icon(
               Icons.bookmark,
-              color: kPrimaryDarkColor,
+              color: bookCardActtionButtonDefaultColor,
               size: (PADDING_FACTOR_20 * SizeConfig.heightMultiplier), //20
             ),
           ),

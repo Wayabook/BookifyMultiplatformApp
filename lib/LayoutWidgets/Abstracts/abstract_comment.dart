@@ -54,11 +54,6 @@ abstract class AbstractComment {
                       0),
                   child: buttonsRow),
             ),
-            /*isMainComment
-                ? _getSpace()
-                : Padding(
-                    padding: EdgeInsets.all(PADDING_FACTOR_0),
-                  )*/
           ],
         ));
   }

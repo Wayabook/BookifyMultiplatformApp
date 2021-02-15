@@ -49,54 +49,59 @@ class GenreCard extends StatelessWidget {
                         SizeConfig.imageSizeMultiplier)),
                 color: kPrimaryLightColor),
             child: Center(
-                child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                Icon(
-                  Icons.add,
-                  color: kThirdDarkColor,
-                  size: (TEXT_FACTOR_50 * SizeConfig.imageSizeMultiplier),
-                ),
-                Text(
-                  ADD_GENRE,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
+                child: Directionality(
+              textDirection: TextDirection.ltr,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Icon(
+                    Icons.add,
                     color: kThirdDarkColor,
-                    fontWeight: FontWeight.bold,
+                    size: (TEXT_FACTOR_50 * SizeConfig.imageSizeMultiplier),
                   ),
-                )
-              ],
+                  Text(
+                    ADD_GENRE,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      color: kThirdDarkColor,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  )
+                ],
+              ),
             )))));
   }
 
   _getGenreContainerCard() {
-    return _getCard(Row(
-      children: <Widget>[
-        Container(
-            width: (TEXT_FACTOR_50 * SizeConfig.widthMultiplier),
-            height: (DEFAULT_CARD_HEIGHT_FACTOR * SizeConfig.widthMultiplier),
-            child: FittedBox(
-              fit: BoxFit.contain,
-              child: BorderedText(
-                strokeWidth: 1.0,
-                strokeColor: kPrimaryLightColor,
-                child: Text(
-                  (index + 1).toString(),
-                  style: TextStyle(
-                      color: kThirdDarkColor,
-                      decoration: TextDecoration.none,
-                      //decorationColor: Colors.,
-                      decorationThickness: 1),
+    return _getCard(Directionality(
+      textDirection: TextDirection.ltr,
+      child: Row(
+        children: <Widget>[
+          Container(
+              width: (TEXT_FACTOR_50 * SizeConfig.widthMultiplier),
+              height: (DEFAULT_CARD_HEIGHT_FACTOR * SizeConfig.widthMultiplier),
+              child: FittedBox(
+                fit: BoxFit.contain,
+                child: BorderedText(
+                  strokeWidth: 1.0,
+                  strokeColor: kPrimaryLightColor,
+                  child: Text(
+                    (index + 1).toString(),
+                    style: TextStyle(
+                        color: kThirdDarkColor,
+                        decoration: TextDecoration.none,
+                        decorationThickness: 1),
+                  ),
                 ),
-              ),
-            )),
-        GenreContainer(
-          this.genre,
-          false,
-          containerWidth: (CONTAINER_FACTOR_80 * SizeConfig.widthMultiplier),
-        )
-      ],
+              )),
+          GenreContainer(
+            this.genre,
+            false,
+            containerWidth: (CONTAINER_FACTOR_80 * SizeConfig.widthMultiplier),
+          )
+        ],
+      ),
     ));
   }
 
