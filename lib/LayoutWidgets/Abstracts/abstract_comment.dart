@@ -89,18 +89,4 @@ abstract class AbstractComment {
       },
     );
   }
-
-  _getSpace() {
-    return Padding(
-      padding: EdgeInsets.fromLTRB(
-          (3.64 * SizeConfig.widthMultiplier), //15
-          0,
-          (3.64 * SizeConfig.widthMultiplier), //15
-          0),
-      child: Container(
-          color: kPrimaryLightColor,
-          height: (0.081 * SizeConfig.heightMultiplier), //0.5
-          width: double.infinity),
-    );
-  }
 }

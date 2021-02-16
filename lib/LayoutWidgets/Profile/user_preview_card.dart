@@ -48,7 +48,10 @@ class UserPreviewCard extends StatelessWidget {
               ? BorderRadius.circular(
                   (PADDING_FACTOR_7 * SizeConfig.imageSizeMultiplier)) //7
               : BorderRadius.circular(PADDING_FACTOR_0)),
-      child: _getRow(context),
+      child: Directionality(
+        textDirection: TextDirection.ltr,
+        child: _getRow(context),
+      ),
     );
   }
 

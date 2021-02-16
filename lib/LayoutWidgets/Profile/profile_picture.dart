@@ -8,6 +8,7 @@ class ProfilePicture extends StatelessWidget {
       "https://i.pinimg.com/280x280_RS/77/56/01/77560124a4abb4053f4f95c9153ef565.jpg";*/
   static const double DEFAULT_RADIUS = 120.0;
   static const double DEFAULT_BORDER_WIDTH = 5.0;
+  static const String DEFAULT_ASSET_IMAGE = 'assets/icons/bookify_icon.png';
   double circleRadius;
   double circleBorderWidth;
   bool withoutEdges;
@@ -39,19 +40,17 @@ class ProfilePicture extends StatelessWidget {
         height: circleRadius,
         decoration:
             ShapeDecoration(shape: CircleBorder(), color: kPrimaryLightColor),
-        child: Padding(
-          padding: EdgeInsets.all(circleBorderWidth),
-          child: DecoratedBox(
-            decoration: ShapeDecoration(
-                shape: CircleBorder(),
-                image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: this.image_url != null
-                        ? NetworkImage(
-                            this.image_url,
-                          )
-                        : AssetImage('assets/icons/bookify_icon.png'))),
-          ),
+        margin: EdgeInsets.all(circleBorderWidth),
+        child: DecoratedBox(
+          decoration: ShapeDecoration(
+              shape: CircleBorder(),
+              image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: this.image_url != null
+                      ? NetworkImage(
+                          this.image_url,
+                        )
+                      : AssetImage(DEFAULT_ASSET_IMAGE))),
         ),
       ),
     );
