@@ -26,14 +26,11 @@ void main() {
   group('Genre Card Widget Tests', () {
     testWidgets('Normal Genre Container Card Widget Test',
         (WidgetTester tester) async {
-      //final widget = ReactionCard(reaction);
       final widget = GenreCard(MockGenre());
       await WidgetTestFunctions.pumpWidgetTest(tester, widget, GenreCard);
 
       // Check widget image and visibility
-      await tester.pump(const Duration(milliseconds: 3000));
-      expect(find.byType(Image), findsOneWidget);
-      await tester.ensureVisible(find.byType(Image));
+      await WidgetTestFunctions.checkImageAndVisibilityTest(tester, Image);
 
       // Check widget text, visibility and style
       checkBorderedText(tester);
@@ -77,8 +74,7 @@ void main() {
       expect(find.byType(Text), findsOneWidget);
       await tester.ensureVisible(find.byType(Text));
 
-      await tester.tap(find.byType(Icon));
-      await tester.pump(const Duration(milliseconds: 100));
+      await WidgetTestFunctions.tapByType(tester, Icon, duration: 100);
       expect(initialValue, 1);
     });
   });

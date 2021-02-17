@@ -8,6 +8,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../Mocks/mock_lecture.dart';
+import '../../widget_test_functions.dart';
 
 void main() {
   MockLecture mockLecture = new MockLecture();
@@ -36,8 +37,8 @@ void main() {
         added: false,
       );
 
-      await tester.pumpWidget(widget);
-      expect(find.byType(BookCardActionButton), findsOneWidget);
+      await WidgetTestFunctions.pumpWidgetTest(
+          tester, widget, BookCardActionButton);
 
       // Check widget icon and visibility
       expect(find.byIcon(BookCardActionButton.ICON_ADD), findsOneWidget);
@@ -69,8 +70,8 @@ void main() {
         added: true,
       );
 
-      await tester.pumpWidget(widget);
-      expect(find.byType(BookCardActionButton), findsOneWidget);
+      await WidgetTestFunctions.pumpWidgetTest(
+          tester, widget, BookCardActionButton);
 
       // Check widget icon and visibility
       expect(find.byIcon(BookCardActionButton.ICON_CHECK), findsOneWidget);
@@ -105,8 +106,8 @@ void main() {
         added: true,
       );
 
-      await tester.pumpWidget(widget);
-      expect(find.byType(BookCardActionButton), findsOneWidget);
+      await WidgetTestFunctions.pumpWidgetTest(
+          tester, widget, BookCardActionButton);
 
       // Check widget icon and visibility
       final iconButton = find.byIcon(BookCardActionButton.ICON_BEEN_HERE);
@@ -165,8 +166,8 @@ void main() {
         added: true,
       );
 
-      await tester.pumpWidget(widget);
-      expect(find.byType(BookCardActionButton), findsOneWidget);
+      await WidgetTestFunctions.pumpWidgetTest(
+          tester, widget, BookCardActionButton);
 
       // Check widget icon and visibility
       final iconButton = find.byIcon(BookCardActionButton.ICON_BEEN_HERE);
@@ -196,9 +197,6 @@ void main() {
       expect(icon.color, bookCardActionButtonColor2);
       expect(icon.size, (18.24 * SizeConfig.imageSizeMultiplier));
       expect(value, 1);
-
-      //  (12.16 * SizeConfig.imageSizeMultiplier) Before tap
-      //  (18.24 * SizeConfig.imageSizeMultiplier) After tap
     });
   });
 }

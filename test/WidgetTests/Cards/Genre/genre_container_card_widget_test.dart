@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../../Mocks/mock_genre.dart';
+import '../../../widget_test_functions.dart';
 
 void main() {
   setUp(() {
@@ -26,14 +27,10 @@ void main() {
         containerWidth: 100,
         containerHeight: 100,
       );
-      await tester.pumpWidget(widget);
-      expect(find.byType(GenreContainer), findsOneWidget);
-      await tester.ensureVisible(find.byWidget(widget));
+      await WidgetTestFunctions.pumpWidgetTest(tester, widget, GenreContainer);
 
       // Check widget image and visibility
-      await tester.pump(const Duration(milliseconds: 3000));
-      expect(find.byType(Image), findsOneWidget);
-      await tester.ensureVisible(find.byType(Image));
+      await WidgetTestFunctions.checkImageAndVisibilityTest(tester, Image);
 
       // Checks card properties
       final container = find.byType(Container);
@@ -67,14 +64,10 @@ void main() {
         containerWidth: 100,
         containerHeight: 100,
       );
-      await tester.pumpWidget(widget);
-      expect(find.byType(GenreContainer), findsOneWidget);
-      await tester.ensureVisible(find.byWidget(widget));
+      await WidgetTestFunctions.pumpWidgetTest(tester, widget, GenreContainer);
 
       // Check widget image and visibility
-      await tester.pump(const Duration(milliseconds: 3000));
-      expect(find.byType(Image), findsOneWidget);
-      await tester.ensureVisible(find.byType(Image));
+      await WidgetTestFunctions.checkImageAndVisibilityTest(tester, Image);
 
       // Checks card properties
       final container = find.byType(Container);

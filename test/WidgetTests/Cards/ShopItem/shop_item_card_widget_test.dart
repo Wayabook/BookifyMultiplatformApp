@@ -14,6 +14,7 @@ import 'package:mockito/mockito.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../../Mocks/mock_item.dart';
+import '../../../widget_test_functions.dart';
 //SizeConfig sizeConfig;
 
 void main() {
@@ -28,9 +29,7 @@ void main() {
 
     testWidgets('Default Shop Item Card', (WidgetTester tester) async {
       final widget = ShopItemCard(mockItem);
-      await tester.pumpWidget(widget);
-      expect(find.byType(ShopItemCard), findsOneWidget);
-      await tester.ensureVisible(find.byType(ShopItemCard));
+      await WidgetTestFunctions.pumpWidgetTest(tester, widget, ShopItemCard);
 
       // Check widget icon and visibility
       final iconButton = find.byIcon(ShopItemCard.GO_SHOP_ICON);
@@ -43,9 +42,8 @@ void main() {
       expect(icon.size, (ICON_FACTOR_24 * SizeConfig.imageSizeMultiplier));
 
       // Checks price text
-      final textWidget = find.text(mockItem.price.toString());
-      expect(textWidget, findsOneWidget);
-      await tester.ensureVisible(textWidget);
+      final textWidget =
+          await _checkAndGetText(tester, mockItem.price.toString());
 
       //Getting text object
       Text priceText = tester.firstWidget(textWidget);
@@ -56,9 +54,8 @@ void main() {
       expect(priceText.style.fontWeight, FontWeight.bold);
 
       // Checks price text
-      final textWidget2 = find.text(mockItem.symbol.toString());
-      expect(textWidget2, findsOneWidget);
-      await tester.ensureVisible(textWidget2);
+      final textWidget2 =
+          await _checkAndGetText(tester, mockItem.symbol.toString());
 
       //Getting text object
       Text priceSymbolText = tester.firstWidget(textWidget2);
@@ -69,4 +66,11 @@ void main() {
       expect(priceSymbolText.style.fontWeight, FontWeight.bold);
     });
   });
+}
+
+_checkAndGetText(tester, text) async {
+  final textWidget = find.text(text);
+  expect(textWidget, findsOneWidget);
+  await tester.ensureVisible(textWidget);
+  return textWidget;
 }

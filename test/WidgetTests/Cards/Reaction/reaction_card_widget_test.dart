@@ -9,6 +9,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+import '../../../widget_test_functions.dart';
+
 void main() {
   String reactionText = "ANGRY";
   Reaction reaction = new Reaction(reactionText, "images/angry.png", 60);
@@ -21,14 +23,10 @@ void main() {
       // Creates ReactionCard Widget
 
       final widget = ReactionCard(reaction);
-      await tester.pumpWidget(widget);
-      expect(find.byType(ReactionCard), findsOneWidget);
-      await tester.ensureVisible(find.byWidget(widget));
+      await WidgetTestFunctions.pumpWidgetTest(tester, widget, ReactionCard);
 
       // Check widget image and visibility
-      await tester.pump(const Duration(milliseconds: 3000));
-      expect(find.byType(Image), findsOneWidget);
-      await tester.ensureVisible(find.byType(Image));
+      await WidgetTestFunctions.checkImageAndVisibilityTest(tester, Image);
 
       // Checks card properties
       final container = find.byType(Container);
@@ -64,13 +62,10 @@ void main() {
           (BORDER_RADIUS_FACTOR * SizeConfig.imageSizeMultiplier));
 
       final widget = ReactionCard(reaction);
-      await tester.pumpWidget(widget);
-      expect(find.byType(ReactionCard), findsOneWidget);
-      await tester.ensureVisible(find.byWidget(widget));
+      await WidgetTestFunctions.pumpWidgetTest(tester, widget, ReactionCard);
 
       // Taps widget and checks that values have modified
-      await tester.tap(find.byType(ReactionCard));
-      await tester.pump(const Duration(milliseconds: 100));
+      await WidgetTestFunctions.tapByType(tester, ReactionCard, duration: 100);
       await tester.ensureVisible(find.byType(ReactionCard));
 
       final textWidget = find.text(

@@ -6,6 +6,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:image_test_utils/image_test_utils.dart';
 
 import '../../Mocks/mock_user.dart';
+import '../../widget_test_functions.dart';
 
 void main() {
   MockUser user = new MockUser();
@@ -17,18 +18,11 @@ void main() {
   group('Profile Picture Widget Tests', () {
     testWidgets('Null Profile Picture Widget Test',
         (WidgetTester tester) async {
-      /**ProfilePicture(this.image_url,
-                  {this.circleRadius = DEFAULT_RADIUS,
-                    this.circleBorderWidth = DEFAULT_BORDER_WIDTH})*/
       final widget = ProfilePicture(null);
-      await tester.pumpWidget(widget);
-      expect(find.byType(ProfilePicture), findsOneWidget);
-      await tester.ensureVisible(find.byWidget(widget));
+      await WidgetTestFunctions.pumpWidgetTest(tester, widget, ProfilePicture);
 
       // Check widget image and visibility
-      await tester.pump(const Duration(milliseconds: 3000));
-      expect(find.byType(Container), findsOneWidget);
-      await tester.ensureVisible(find.byType(Container));
+      await WidgetTestFunctions.checkImageAndVisibilityTest(tester, Container);
 
       DecoratedBox decoratedBox = tester.firstWidget(find.byType(DecoratedBox));
       Padding padding = decoratedBox.child;
@@ -49,14 +43,12 @@ void main() {
         /// Now we can pump NetworkImages without crashing our tests. Yay!
         final widget = ProfilePicture(
             "https://upload.wikimedia.org/wikipedia/commons/a/a0/Bill_Gates_2018.jpg");
-        await tester.pumpWidget(widget);
-        expect(find.byType(ProfilePicture), findsOneWidget);
-        await tester.ensureVisible(find.byWidget(widget));
+        await WidgetTestFunctions.pumpWidgetTest(
+            tester, widget, ProfilePicture);
 
         // Check widget image and visibility
-        await tester.pump(const Duration(milliseconds: 3000));
-        expect(find.byType(Container), findsOneWidget);
-        await tester.ensureVisible(find.byType(Container));
+        await WidgetTestFunctions.checkImageAndVisibilityTest(
+            tester, Container);
 
         DecoratedBox decoratedBox =
             tester.firstWidget(find.byType(DecoratedBox));
