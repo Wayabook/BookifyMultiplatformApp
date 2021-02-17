@@ -33,7 +33,8 @@ class SubCommentCard extends StatelessWidget with AbstractComment {
 
   @override
   Widget build(BuildContext context) {
-    return this.getCard(this.comment, getButtonsRow(), isMainComment: false);
+    return this
+        .getCard(this.comment, getButtonsRow(), context, isMainComment: false);
   }
 
   Row getButtonsRow() {

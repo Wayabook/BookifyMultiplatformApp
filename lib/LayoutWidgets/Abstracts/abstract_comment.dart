@@ -5,7 +5,10 @@ import 'package:bookifyapp/LayoutWidgets/BookWidgets/summary_text.dart';
 import 'package:bookifyapp/LayoutWidgets/Profile/user_preview_card.dart';
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/Models/Comment.dart';
+import 'package:bookifyapp/Models/User.dart';
+
 import 'package:like_button/like_button.dart';
+import 'package:provider/provider.dart';
 
 abstract class AbstractComment {
   int positionKey;
@@ -14,7 +17,9 @@ abstract class AbstractComment {
   void removeComment(int key);
   Row getButtonsRow();
 
-  Card getCard(Comment comment, Widget buttonsRow, {isMainComment = true}) {
+  Card getCard(Comment comment, Widget buttonsRow, BuildContext context,
+      {isMainComment = true}) {
+    User currentUser = Provider.of<User>(context, listen: false);
     return Card(
         color: kPrimaryDarkColor,
         elevation: (20 * SizeConfig.widthMultiplier), //10
@@ -24,6 +29,7 @@ abstract class AbstractComment {
                 height: (12.16 * SizeConfig.imageSizeMultiplier), //50
                 fontSize: (3.64 * SizeConfig.widthMultiplier), //15
                 card: false,
+                isAuthor: comment.author.isEqual(currentUser),
                 backGroundColor: kPrimaryDarkColor,
                 removeComment: removeComment),
             Padding(

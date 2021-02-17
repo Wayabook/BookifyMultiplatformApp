@@ -258,8 +258,6 @@ class UserPreviewCard extends StatelessWidget {
         ),
       );
     } else {
-      User currentUser = Provider.of<User>(context, listen: false);
-      this.isAuthor = currentUser.isEqual(this.user);
       return Container(
         height: this.height,
         decoration: BoxDecoration(

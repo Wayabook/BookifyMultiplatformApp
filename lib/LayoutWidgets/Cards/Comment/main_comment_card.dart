@@ -41,7 +41,7 @@ class MainCommentCard extends StatelessWidget with AbstractComment {
       onTap: () {
         if (fromDialog || seeAllComments) _pushNewCommentPage(context);
       },
-      child: this.getCard(this.mainComment, getButtonsRow()),
+      child: this.getCard(this.mainComment, getButtonsRow(), context),
     );
   }
 

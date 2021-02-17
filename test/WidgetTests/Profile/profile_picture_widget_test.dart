@@ -24,12 +24,7 @@ void main() {
       // Check widget image and visibility
       await WidgetTestFunctions.checkImageAndVisibilityTest(tester, Container);
 
-      DecoratedBox decoratedBox = tester.firstWidget(find.byType(DecoratedBox));
-      Padding padding = decoratedBox.child;
-      DecoratedBox db = padding.child;
-      ShapeDecoration shapeDecoration = db.decoration;
-      DecorationImage decorationImage = shapeDecoration.image;
-      AssetImage assetImage = decorationImage.image;
+      AssetImage assetImage = _checkStructureAndGetImage(tester);
       expect(assetImage.assetName, ProfilePicture.DEFAULT_ASSET_IMAGE);
     });
 
@@ -50,17 +45,20 @@ void main() {
         await WidgetTestFunctions.checkImageAndVisibilityTest(
             tester, Container);
 
-        DecoratedBox decoratedBox =
-            tester.firstWidget(find.byType(DecoratedBox));
-        Padding padding = decoratedBox.child;
-        DecoratedBox db = padding.child;
-        ShapeDecoration shapeDecoration = db.decoration;
-        DecorationImage decorationImage = shapeDecoration.image;
-        NetworkImage assetImage = decorationImage.image;
+        NetworkImage assetImage = _checkStructureAndGetImage(tester);
         expect(assetImage.url, user.profilePictureUrl);
 
         /// No crashes.
       });
     });
   });
+}
+
+_checkStructureAndGetImage(tester) {
+  DecoratedBox decoratedBox = tester.firstWidget(find.byType(DecoratedBox));
+  Padding padding = decoratedBox.child;
+  DecoratedBox db = padding.child;
+  ShapeDecoration shapeDecoration = db.decoration;
+  DecorationImage decorationImage = shapeDecoration.image;
+  return decorationImage.image;
 }
