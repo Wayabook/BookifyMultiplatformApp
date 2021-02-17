@@ -12,33 +12,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
-class MockGenre extends Mock implements Genre {
-  String picture = "genre2.png";
-  String name = "Mock Genre";
+import '../../../Mocks/mock_genre.dart';
+import '../../../widget_test_functions.dart';
 
-  MockGenre();
-}
+String defaultIndex = "1";
+String modifiedIndex = "3";
 
 void main() {
-  String defaultIndex = "1";
-  String modifiedIndex = "3";
   setUp(() {
     SizeConfig().initDefault();
   });
-
-  /***
-   *  GenreCard(this.genre,
-      {this.addGenreCard = false, this.index = 0, this.onAddGenrePressed});
-   * */
 
   group('Genre Card Widget Tests', () {
     testWidgets('Normal Genre Container Card Widget Test',
         (WidgetTester tester) async {
       //final widget = ReactionCard(reaction);
       final widget = GenreCard(MockGenre());
-      await tester.pumpWidget(widget);
-      expect(find.byType(GenreCard), findsOneWidget);
-      await tester.ensureVisible(find.byWidget(widget));
+      await WidgetTestFunctions.pumpWidgetTest(tester, widget, GenreCard);
 
       // Check widget image and visibility
       await tester.pump(const Duration(milliseconds: 3000));
@@ -46,15 +36,7 @@ void main() {
       await tester.ensureVisible(find.byType(Image));
 
       // Check widget text, visibility and style
-      expect(find.byType(BorderedText), findsOneWidget);
-      BorderedText borderedText = tester.firstWidget(find.byType(BorderedText));
-      expect(borderedText.strokeWidth, 1.0);
-      expect(borderedText.strokeColor, kPrimaryLightColor);
-
-      Text text = borderedText.child;
-      expect(text.data, defaultIndex);
-      expect(text.style.color, kThirdDarkColor);
-      expect(text.style.decorationThickness, 1);
+      checkBorderedText(tester);
 
       //Assures genre container visibility
       expect(find.byType(GenreContainer), findsOneWidget);
@@ -68,16 +50,10 @@ void main() {
         MockGenre(),
         index: 2,
       );
-      await tester.pumpWidget(widget);
-      expect(find.byType(GenreCard), findsOneWidget);
-      await tester.ensureVisible(find.byWidget(widget));
+      await WidgetTestFunctions.pumpWidgetTest(tester, widget, GenreCard);
 
       // Check widget text, visibility and style
-      expect(find.byType(BorderedText), findsOneWidget);
-      BorderedText borderedText = tester.firstWidget(find.byType(BorderedText));
-
-      Text text = borderedText.child;
-      expect(text.data, modifiedIndex);
+      checkBorderedText(tester, checkText: true);
     });
 
     testWidgets('Add Genre Container Card Widget Test',
@@ -93,9 +69,7 @@ void main() {
         },
       );
 
-      await tester.pumpWidget(widget);
-      expect(find.byType(GenreCard), findsOneWidget);
-      await tester.ensureVisible(find.byWidget(widget));
+      await WidgetTestFunctions.pumpWidgetTest(tester, widget, GenreCard);
 
       expect(find.byIcon(Icons.add), findsOneWidget);
       await tester.ensureVisible(find.byType(Icon));
@@ -105,8 +79,24 @@ void main() {
 
       await tester.tap(find.byType(Icon));
       await tester.pump(const Duration(milliseconds: 100));
-
       expect(initialValue, 1);
     });
   });
+}
+
+void checkBorderedText(tester, {checkText = false}) {
+  expect(find.byType(BorderedText), findsOneWidget);
+  BorderedText borderedText = tester.firstWidget(find.byType(BorderedText));
+
+  expect(borderedText.strokeWidth, 1.0);
+  expect(borderedText.strokeColor, kPrimaryLightColor);
+
+  Text text = borderedText.child;
+  if (checkText) {
+    expect(text.data, modifiedIndex);
+  } else {
+    expect(text.data, defaultIndex);
+    expect(text.style.color, kThirdDarkColor);
+    expect(text.style.decorationThickness, 1);
+  }
 }

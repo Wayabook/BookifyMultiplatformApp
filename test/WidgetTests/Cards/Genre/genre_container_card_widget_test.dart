@@ -3,18 +3,11 @@ import 'package:bookifyapp/Design/constants.dart';
 import 'package:bookifyapp/Design/size_constants.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/Genre/genre_container_card.dart';
 import 'package:bookifyapp/Design/SizeConfig.dart';
-import 'package:bookifyapp/Models/Genre.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/mockito.dart';
 
-class MockGenre extends Mock implements Genre {
-  String picture = "genre1.png";
-  String name = "Mock Genre";
-
-  MockGenre();
-}
+import '../../../Mocks/mock_genre.dart';
 
 void main() {
   setUp(() {

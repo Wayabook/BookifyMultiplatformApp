@@ -2,25 +2,12 @@ import 'package:bookifyapp/Design/constants.dart';
 import 'package:bookifyapp/Enums/book_card_type.dart';
 import 'package:bookifyapp/Enums/list_type.dart';
 import 'package:bookifyapp/LayoutWidgets/Buttons/book_card_action_button.dart';
-import 'package:bookifyapp/Models/Book.dart';
 import 'package:bookifyapp/Models/Lecture.dart';
 import 'package:bookifyapp/Design/SizeConfig.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/mockito.dart';
 
-class MockSizeConfig extends Mock implements SizeConfig {}
-
-class MockBook extends Mock implements Book {}
-
-class MockLecture extends Mock implements Lecture {
-  bool read;
-  MockLecture({this.read = false});
-
-  bool get finished => read;
-
-  set finished(bool finished) => read;
-}
+import '../../Mocks/mock_lecture.dart';
 
 void main() {
   MockLecture mockLecture = new MockLecture();

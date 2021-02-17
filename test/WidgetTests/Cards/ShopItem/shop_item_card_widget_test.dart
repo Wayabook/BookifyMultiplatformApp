@@ -12,23 +12,9 @@ import 'package:bookifyapp/Models/Shop.dart';
 import 'package:flutter/material.dart';
 import 'package:mockito/mockito.dart';
 import 'package:flutter_test/flutter_test.dart';
+
+import '../../../Mocks/mock_item.dart';
 //SizeConfig sizeConfig;
-
-class MockItem extends Mock implements Item {
-  double price;
-  String symbol;
-  MockShop shop = MockShop();
-
-  MockItem.withoutId(
-    this.price,
-    this.symbol,
-  );
-}
-
-class MockShop extends Mock implements Shop {
-  String logo_url;
-  MockShop();
-}
 
 void main() {
   MockItem mockItem = new MockItem.withoutId(16.05, "€");

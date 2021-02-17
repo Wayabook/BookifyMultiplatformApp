@@ -37,12 +37,13 @@ dependencies:
   confetti: 0.5.4+1
   explode_view: 1.0.4
   flutter_svg: ^0.19.0
-  mockito: ^4.1.1
+  mockito: ^3.0.0
 
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  image_test_utils: ^1.0.0
 
 
 # For information on the generic Dart part of this file, see the

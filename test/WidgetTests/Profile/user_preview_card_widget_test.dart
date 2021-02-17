@@ -14,12 +14,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
-class MockUser extends Mock implements User {
-  String name = "user";
-  String profilePictureUrl =
-      "https://upload.wikimedia.org/wikipedia/commons/a/a0/Bill_Gates_2018.jpg";
-  MockUser();
-}
+import '../../Mocks/mock_user.dart';
 
 void main() {
   MockUser user = new MockUser();
