@@ -4,6 +4,7 @@ import 'package:bookifyapp/Design/info_text.dart';
 import 'package:bookifyapp/Design/size_constants.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class SummaryTextWidget extends StatefulWidget {
   final String text;
   Color backgroundColor;

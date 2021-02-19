@@ -16,6 +16,7 @@ import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
 import 'package:bookifyapp/Design/info_text.dart';
 
+// ignore: must_be_immutable
 class RecommendationDialog extends StatefulWidget {
   List<Recommendation> _recommendations;
   User sendToUser;

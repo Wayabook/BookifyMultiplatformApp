@@ -6,6 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/Models/User.dart';
 
+// ignore: must_be_immutable
 class BookshelfPage extends StatelessWidget {
   User user;
   bool scrollToLastPosition;

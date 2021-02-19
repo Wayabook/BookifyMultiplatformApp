@@ -3,24 +3,16 @@ import 'package:bookifyapp/Design/constants.dart';
 import 'package:bookifyapp/Enums/book_card_type.dart';
 import 'package:bookifyapp/Enums/button_type.dart';
 import 'package:bookifyapp/Enums/list_type.dart';
-import 'package:bookifyapp/LayoutWidgets/Buttons/book_card_action_button.dart';
 import 'package:bookifyapp/LayoutWidgets/Abstracts/book_card_factory.dart';
-import 'package:bookifyapp/LayoutWidgets/Dialogs/recommendation_dialog.dart';
-import 'package:bookifyapp/LayoutWidgets/Profile/friends_preview.dart';
 import 'package:bookifyapp/Models/Book.dart';
 import 'package:bookifyapp/Models/Lecture.dart';
-import 'package:bookifyapp/Models/Recommendation.dart';
 import 'package:bookifyapp/Models/User.dart';
 import 'package:bookifyapp/Pages/BookPage/book_page.dart';
 import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
-import 'package:percent_indicator/linear_percent_indicator.dart';
-import 'package:provider/provider.dart';
-
 import '../../../../InfoToast.dart';
-import '../BookCardInfo/book_card_info.dart';
-import '../OptionCard/option_card.dart';
 
+// ignore: must_be_immutable
 class BookCardInVerticalSearchList extends StatefulWidget with BookCardFactory {
   BuildContext context;
   BookCardType type;
@@ -64,12 +56,6 @@ class BookCardInVerticalSearchList extends StatefulWidget with BookCardFactory {
 }
 
 class _BookCard extends State<BookCardInVerticalSearchList> {
-  static const double DEFAULT_PADDING_FACTOR = 0.24;
-  static const double DEFAULT_BORDER_RADIUS_FACTOR = 1.7;
-  static const double DEFAULT_LINE_HEIGHT_FACTOR = 0.73;
-  static const double BOOK_COMPLETED_INDICATOR = 1.0;
-  //BuildContext context;
-
   Card card;
   bool showEndLectureFrame = false;
   double buttonSize; // = 50.0;

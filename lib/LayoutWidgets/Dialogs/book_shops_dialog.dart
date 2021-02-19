@@ -10,6 +10,7 @@ import 'package:flutter/painting.dart';
 
 import '../../Design/SizeConfig.dart';
 
+// ignore: must_be_immutable
 class BookShopsDialog<T extends TickerProviderStateMixin>
     extends StatefulWidget {
   Book book;
@@ -45,7 +46,7 @@ class _BookShopsDialog extends State<BookShopsDialog> {
     List<Tab> tabs = new List();
     List<Widget> tabBarViews = new List();
     var index = 0;
-    for (String key in widget.book.shops_items.keys) {
+    for (String key in widget.book.shopsItems.keys) {
       tabs.add(new Tab(
         child: Text(
           key,
@@ -55,7 +56,7 @@ class _BookShopsDialog extends State<BookShopsDialog> {
           overflow: TextOverflow.ellipsis,
         ),
       ));
-      tabBarViews.add(_get_book_info(index));
+      tabBarViews.add(_getBookInfo(index));
     }
 
     var _controller =
@@ -144,7 +145,7 @@ class _BookShopsDialog extends State<BookShopsDialog> {
     );
   }
 
-  List<Widget> get_book_data_sheet(String cover_type, Item item) {
+  List<Widget> getBookDataSheet(String coverType, Item item) {
     List<Widget> bookDataSheet = [
       Padding(
         padding: EdgeInsets.symmetric(
@@ -267,9 +268,9 @@ class _BookShopsDialog extends State<BookShopsDialog> {
     return bookDataSheet;
   }
 
-  _get_book_info(int index) {
-    var aux = widget.book.shops_items.entries.toList();
-    String cover_type = aux[index].key;
+  _getBookInfo(int index) {
+    var aux = widget.book.shopsItems.entries.toList();
+    String coverType = aux[index].key;
     List<Item> items = aux[index].value;
 
     List<Widget> infoItems = <Widget>[
@@ -279,7 +280,7 @@ class _BookShopsDialog extends State<BookShopsDialog> {
               (PADDING_FACTOR_5 * SizeConfig.widthMultiplier), //5
               PADDING_FACTOR_0,
               PADDING_FACTOR_0),
-          child: Column(children: get_book_data_sheet(cover_type, items[0]))),
+          child: Column(children: getBookDataSheet(coverType, items[0]))),
       Padding(
         padding: EdgeInsets.symmetric(
           horizontal: PADDING_FACTOR_0,

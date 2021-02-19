@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:bookifyapp/Design/size_constants.dart';
 import 'package:bookifyapp/Design/info_text.dart';
 
+// ignore: must_be_immutable
 class GenreCard extends StatelessWidget {
   static const double DEFAULT_CARD_MARGIN_FACTOR = 1.46;
   static const double DEFAULT_BORDER_RADIUS_FACTOR = 4.86;

@@ -2,8 +2,8 @@ import 'package:bookifyapp/Design/constants.dart';
 import 'package:bookifyapp/Design/SizeConfig.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:bookifyapp/Design/SizeConfig.dart';
 
+// ignore: must_be_immutable
 class SmallButtonUnderlined extends StatelessWidget {
   static const double DEFAULT_FONT_SIZE = 15;
   static const double FONT_SIZE_FACTOR = 2.19;

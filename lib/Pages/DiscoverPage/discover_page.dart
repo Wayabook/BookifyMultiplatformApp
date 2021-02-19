@@ -13,6 +13,7 @@ import 'package:provider/provider.dart';
 
 import '../../Design/SizeConfig.dart';
 
+// ignore: must_be_immutable
 class DiscoverPage extends StatelessWidget {
   final Color color;
   List<String> sectionsTitles = [

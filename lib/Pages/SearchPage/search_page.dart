@@ -10,6 +10,7 @@ import 'package:bookifyapp/Models/User.dart';
 
 import '../../Design/SizeConfig.dart';
 
+// ignore: must_be_immutable
 class SearchPage extends StatefulWidget {
   List<Book> books;
   List<User> users;

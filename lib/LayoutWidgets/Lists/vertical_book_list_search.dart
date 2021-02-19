@@ -15,6 +15,7 @@ import 'package:bookifyapp/Design/size_constants.dart';
 
 import '../../Design/SizeConfig.dart';
 
+// ignore: must_be_immutable
 class VerticalBookListSearch extends StatefulWidget {
   VerticalBookListSearch(
     this.books,

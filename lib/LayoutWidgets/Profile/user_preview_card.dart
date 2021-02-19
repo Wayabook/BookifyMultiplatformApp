@@ -8,10 +8,9 @@ import 'package:bookifyapp/Models/User.dart';
 import 'package:bookifyapp/Pages/bookshelf_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-
 import '../../Design/SizeConfig.dart';
 
+// ignore: must_be_immutable
 class UserPreviewCard extends StatelessWidget {
   static const double DEFAULT_HEIGHT = 100;
   static const double DEFAULT_FONT_SIZE = 30;

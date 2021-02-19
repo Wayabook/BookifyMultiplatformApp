@@ -7,6 +7,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 
 import '../../../../Design/SizeConfig.dart';
 
+// ignore: must_be_immutable
 class ChapterCard extends StatelessWidget {
   Book book;
   int chapter;

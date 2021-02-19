@@ -5,7 +5,7 @@
  * heightMultiplier = TextMultiplier
  */
 
-/*** Padding*/
+/// Padding
 const double PADDING_FACTOR_0 = 0;
 const double PADDING_FACTOR_7 = 1.02; //7
 const double PADDING_FACTOR_5 = 1.21; //5
@@ -22,15 +22,15 @@ const double PADDING_FACTOR_60 = 8.8; //60
 const double PADDING_FACTOR_80 = 19.46; //80
 const double PADDING_FACTOR_120 = 17.56; //120
 
-/*** Icons */
+/// Icons
 const double ICON_FACTOR_24 = 5.83; //24
 const double ICON_FACTOR_25 = 6.08; //25
 const double ICON_FACTOR_30 = 7.29; //30
 
-/*** Border RADIUS*/
+/// Border RADIUS
 const double BORDER_RADIUS_FACTOR_7 = 1.7; //7
 
-/*** Container */
+/// Container
 const double CONTAINER_FACTOR_2 = 0.48; //2
 const double CONTAINER_FACTOR_3 = 0.72; //3
 const double CONTAINER_FACTOR_35 = 5.27; //35
@@ -49,7 +49,7 @@ const double CONTAINER_FACTOR_190 = 31.09; //190
 const double CONTAINER_FACTOR_200 = 29.28; //200
 const double CONTAINER_FACTOR_500 = 121.65; //500
 
-/*** Text */
+/// Text
 const double TEXT_FACTOR_12 = 1.75; //12
 const double TEXT_FACTOR_14 = 2.05; //14
 const double TEXT_FACTOR_18 = 4.37; //18

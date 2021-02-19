@@ -1,16 +1,16 @@
-/*** USER DEFAULT LISTS ***/
+/// USER DEFAULT LISTS
 const String READ_LIST = "Read";
 const String READING_LIST = "Reading";
 const String PENDING_LIST = "Pending";
 const String RECOMMENDED_LIST = "Recommended";
 
-/*** BOTTOM TAP BAR OPTIONS ***/
+/// BOTTOM TAP BAR OPTIONS
 
 const String READING_OPTION = "Reading";
 const String DISCOVER_OPTION = "Discover";
 const String PROFILE_OPTION = "Profile";
 
-/*** TITLES ***/
+/// TITLES
 const String BOOKSHELF_TITLE = "Bookshelf ";
 const String INDEX_TITLE = "Index";
 const String BOOK_TITLE = "Book";
@@ -24,7 +24,7 @@ const String GENRES_TITLE = "Genres";
 const String SECTION_1_TITLE = "¿Como estuvo?";
 const String SECTION_2_TITLE = "¿Como te sentiste?";
 
-/*** NORMAL TEXT */
+/// NORMAL TEXT
 const String BOOKSHELF_LIST = " lists";
 const String RECOMMEND = "Recommend";
 const String SEARCH_BY_NAME = "Search friends by name";

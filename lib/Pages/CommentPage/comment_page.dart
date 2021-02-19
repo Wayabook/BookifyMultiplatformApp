@@ -18,6 +18,7 @@ import 'package:provider/provider.dart';
 import '../../InfoToast.dart';
 import '../../Design/SizeConfig.dart';
 
+// ignore: must_be_immutable
 class CommentPage extends StatefulWidget {
   bool subCommentsPage;
   bool inactiveAddCommentOption;

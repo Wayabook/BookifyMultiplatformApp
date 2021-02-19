@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:bookifyapp/LayoutWidgets/Profile/profile_picture.dart';
 import 'package:bookifyapp/Models/User.dart';
 
+// ignore: must_be_immutable
 class ProfileInfo extends StatelessWidget {
   static const double DEFAULT_HEIGHT = 100.0;
   static const POSTER_RATIO = 0.7;

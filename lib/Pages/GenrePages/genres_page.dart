@@ -8,6 +8,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/Models/User.dart';
 
+// ignore: must_be_immutable
 class GenresPage extends StatelessWidget {
   User user;
   GenresPage(this.user);

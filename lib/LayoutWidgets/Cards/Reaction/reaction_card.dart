@@ -4,9 +4,9 @@ import 'package:bookifyapp/LayoutWidgets/Abstracts/abstract_markable_card.dart';
 import 'package:bookifyapp/Models/Reaction.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:bookifyapp/Design/size_constants.dart';
 import '../../../Design/SizeConfig.dart';
 
+// ignore: must_be_immutable
 class ReactionCard extends StatefulWidget {
   static const String PERCENTAGE_SYMBOL = "%";
   Reaction reaction;

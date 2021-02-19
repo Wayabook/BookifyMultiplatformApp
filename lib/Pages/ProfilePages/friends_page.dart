@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:bookifyapp/LayoutWidgets/Lists/vertical_user_list.dart';
 import 'package:bookifyapp/Models/User.dart';
 
+// ignore: must_be_immutable
 class FriendsPage extends StatefulWidget {
   FriendsPage(this.friends);
 

@@ -1,21 +1,11 @@
-//    items.add(new Item.withoutId(shop1, "https://www.casadellibro.com/libro-en-busca-del-chico-irrompible/9788408228059/11405104", 16.05, "€", "1", "2"));
-
 import 'package:bookifyapp/Design/SizeConfig.dart';
 import 'package:bookifyapp/Design/constants.dart';
 import 'package:bookifyapp/Design/size_constants.dart';
-import 'package:bookifyapp/Enums/book_card_type.dart';
-import 'package:bookifyapp/LayoutWidgets/Cards/Book/OptionCard/option_card.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/Book/ShopItem/shop_item_card.dart';
-import 'package:bookifyapp/LayoutWidgets/Profile/profile_picture.dart';
-import 'package:bookifyapp/Models/Item.dart';
-import 'package:bookifyapp/Models/Shop.dart';
 import 'package:flutter/material.dart';
-import 'package:mockito/mockito.dart';
 import 'package:flutter_test/flutter_test.dart';
-
 import '../../../Mocks/mock_item.dart';
 import '../../../widget_test_functions.dart';
-//SizeConfig sizeConfig;
 
 void main() {
   MockItem mockItem = new MockItem.withoutId(16.05, "€");

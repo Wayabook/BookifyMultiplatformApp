@@ -170,6 +170,7 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin {
               height: (ICON_HEIGHT_MULTIPLIER * SizeConfig.heightMultiplier),
               width: (ICON_WIDTH_MULTIPLIER * SizeConfig.widthMultiplier),
               child: IconButton(
+                onPressed: () {},
                 iconSize:
                     (ICON_FACTOR_24 * SizeConfig.imageSizeMultiplier), //24
                 icon: Icon(
@@ -193,6 +194,7 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin {
               height: (ICON_HEIGHT_MULTIPLIER * SizeConfig.heightMultiplier),
               width: (ICON_WIDTH_MULTIPLIER * SizeConfig.widthMultiplier),
               child: IconButton(
+                onPressed: () {},
                 iconSize:
                     (ICON_FACTOR_24 * SizeConfig.imageSizeMultiplier), //24
                 icon: Icon(
@@ -220,6 +222,7 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin {
               height: (ICON_HEIGHT_MULTIPLIER * SizeConfig.heightMultiplier),
               width: (ICON_WIDTH_MULTIPLIER * SizeConfig.widthMultiplier),
               child: IconButton(
+                onPressed: () {},
                 iconSize:
                     (ICON_FACTOR_24 * SizeConfig.imageSizeMultiplier), //24
                 icon: Icon(

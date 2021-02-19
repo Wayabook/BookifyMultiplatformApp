@@ -6,6 +6,7 @@ import 'package:bookifyapp/Models/Book.dart';
 import 'package:bookifyapp/Models/User.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class FriendsPreviewColumn extends StatelessWidget {
   User user;
   Book book;

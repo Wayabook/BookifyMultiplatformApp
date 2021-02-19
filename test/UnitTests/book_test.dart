@@ -7,21 +7,21 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
 class MockGenre extends Mock implements Genre {}
+
 class MockItem extends Mock implements Item {}
-class MockUser extends Mock implements User{}
-class MockChapter extends Mock implements Chapter{}
 
+class MockUser extends Mock implements User {}
 
+class MockChapter extends Mock implements Chapter {}
 
-void main(){
+void main() {
   group('Comment Tests', () {
-
     MockGenre mockGenre = new MockGenre();
     List<MockChapter> mockChapters = [new MockChapter(), new MockChapter()];
     List<MockUser> mockUsers = [new MockUser(), new MockUser()];
-    Map<String, List<MockItem>> mockItems = new Map<String, List<MockItem>> ();
+    Map<String, List<MockItem>> mockItems = new Map<String, List<MockItem>>();
 
-    test('Book with default values', (){
+    test('Book with default values', () {
       Book defaultBook = Book(
         "Book Title",
         "Book Author",
@@ -35,14 +35,14 @@ void main(){
         "Language",
       );
 
-      expect(defaultBook.title , "Book Title");
+      expect(defaultBook.title, "Book Title");
       expect(defaultBook.author, "Book Author");
       expect(defaultBook.picture, "Book Cover Image");
       expect(defaultBook.summary, "Book Summary");
       expect(defaultBook.mainGenre, mockGenre);
       expect(defaultBook.year, 1997);
       expect(defaultBook.extension, 203);
-      expect(defaultBook.shops_items, mockItems);
+      expect(defaultBook.shopsItems, mockItems);
       expect(defaultBook.editorial, "Editorial");
       expect(defaultBook.language, "Language");
       expect(defaultBook.avgRating, null);
@@ -50,10 +50,9 @@ void main(){
       expect(defaultBook.addedBy, 2049);
       expect(defaultBook.chapters, []);
       expect(defaultBook.friendsReading, []);
-
     });
 
-    test('Book with non default values', (){
+    test('Book with non default values', () {
       Book defaultBook = Book(
         "Book Title",
         "Book Author",
@@ -72,14 +71,14 @@ void main(){
         friendsReading: mockUsers,
       );
 
-      expect(defaultBook.title , "Book Title");
+      expect(defaultBook.title, "Book Title");
       expect(defaultBook.author, "Book Author");
       expect(defaultBook.picture, "Book Cover Image");
       expect(defaultBook.summary, "Book Summary");
       expect(defaultBook.mainGenre, mockGenre);
       expect(defaultBook.year, 1997);
       expect(defaultBook.extension, 203);
-      expect(defaultBook.shops_items, mockItems);
+      expect(defaultBook.shopsItems, mockItems);
       expect(defaultBook.editorial, "Editorial");
       expect(defaultBook.language, "Language");
       expect(defaultBook.avgRating, 2.5);
@@ -89,7 +88,7 @@ void main(){
       expect(defaultBook.friendsReading, mockUsers);
     });
 
-    test('Comparing same books', (){
+    test('Comparing same books', () {
       Book defaultBook = Book(
         "Book Title",
         "Book Author",
@@ -129,7 +128,7 @@ void main(){
       expect(defaultBook == defaultBook2, true);
     });
 
-    test('Comparing different books', (){
+    test('Comparing different books', () {
       Book defaultBook = Book(
         "Book Title",
         "Book Author",

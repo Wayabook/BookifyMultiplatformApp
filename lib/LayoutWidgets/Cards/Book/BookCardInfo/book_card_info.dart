@@ -71,7 +71,7 @@ class _BookCardInfo extends State<BookCardInfo> {
           Flexible(
             flex: 6,
             child: AutoSizeText(
-              widget.book.current_chapter_title,
+              widget.book.currentChapterTitle,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
                   fontWeight: FontWeight.bold,

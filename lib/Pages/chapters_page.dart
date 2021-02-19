@@ -10,6 +10,7 @@ import 'package:bookifyapp/LayoutWidgets/Lists/Title/list_title.dart';
 
 import '../Design/SizeConfig.dart';
 
+// ignore: must_be_immutable
 class ChaptersPage extends StatelessWidget {
   Book book;
   ChaptersPage(this.book);

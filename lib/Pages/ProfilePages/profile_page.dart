@@ -23,11 +23,9 @@ import 'package:bookifyapp/Enums/book_card_type.dart';
 import 'package:bookifyapp/Models/User.dart';
 import 'package:bookifyapp/Enums/profile_type.dart';
 import 'dart:math';
-
-import 'package:provider/provider.dart';
-
 import '../bookshelf_page.dart';
 
+// ignore: must_be_immutable
 class ProfilePage extends StatefulWidget {
   User user;
   ProfileType profileType;

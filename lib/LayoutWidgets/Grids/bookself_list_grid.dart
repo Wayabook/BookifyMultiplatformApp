@@ -15,6 +15,7 @@ import 'package:provider/provider.dart';
 
 import '../../Design/SizeConfig.dart';
 
+// ignore: must_be_immutable
 class BooskelfGridList extends StatefulWidget {
   User user;
   bool scrollToLastPosition;

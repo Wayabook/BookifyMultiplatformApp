@@ -8,6 +8,7 @@ import 'package:bookifyapp/Models/Book.dart';
 
 import '../Design/SizeConfig.dart';
 
+// ignore: must_be_immutable
 class AddCustomListPage extends StatefulWidget {
   List<Book> bookshelf;
   String listTitle;

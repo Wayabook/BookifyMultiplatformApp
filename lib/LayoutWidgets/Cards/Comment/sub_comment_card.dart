@@ -1,17 +1,13 @@
 import 'package:bookifyapp/Design/constants.dart';
 import 'package:bookifyapp/Design/info_text.dart';
 import 'package:bookifyapp/Design/size_constants.dart';
-import 'package:bookifyapp/Interfaces/RemoveCommentInterface.dart';
-import 'package:bookifyapp/LayoutWidgets/BookWidgets/summary_text.dart';
-import 'package:bookifyapp/LayoutWidgets/Profile/user_preview_card.dart';
 import 'package:bookifyapp/Models/Comment.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:like_button/like_button.dart';
-
 import '../../../Design/SizeConfig.dart';
 import '../../Abstracts/abstract_comment.dart';
 
+// ignore: must_be_immutable
 class SubCommentCard extends StatelessWidget with AbstractComment {
   static const String AT_SYMBOL = '@';
   Comment comment;

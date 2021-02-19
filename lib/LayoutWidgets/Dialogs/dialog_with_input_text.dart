@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 
 import '../../Design/SizeConfig.dart';
 
+// ignore: must_be_immutable
 class DialogWithInputText extends StatelessWidget {
   static const int ACCEPT_TAP = 0;
   static const int CANCEL_TAP = 1;

@@ -23,41 +23,32 @@ class Book {
   Genre _mainGenre;
 
   Book(
-      this._title,
-      this._author,
-      this._coverImage,
-      this._summary,
-      this._mainGenre,
-      this._year,
-      this._extension,
-      this._shopsItems,
-      this.editorial,
-      this.language,
-      {
-        this.avgRating,
-        this.isNew = false,
-        this.addedBy = 2049,
-        this.chapters = const [],
-        this.friendsReading = const [],
-      }
-    );
+    this._title,
+    this._author,
+    this._coverImage,
+    this._summary,
+    this._mainGenre,
+    this._year,
+    this._extension,
+    this._shopsItems,
+    this.editorial,
+    this.language, {
+    this.avgRating,
+    this.isNew = false,
+    this.addedBy = 2049,
+    this.chapters = const [],
+    this.friendsReading = const [],
+  });
 
-  Book.withSummary(
-      this._title,
-      this._author,
-      this._coverImage,
-      this._summary,
-      this._mainGenre,
-      this._shopsItems,
-      {
-        this.editorial="SUMA",
-        this.language="CASTELLANO",
-        this.chapters = const [],
-        this.friendsReading = const[],
-        this.addedBy = 100
-      });
+  Book.withSummary(this._title, this._author, this._coverImage, this._summary,
+      this._mainGenre, this._shopsItems,
+      {this.editorial = "SUMA",
+      this.language = "CASTELLANO",
+      this.chapters = const [],
+      this.friendsReading = const [],
+      this.addedBy = 100});
 
-  Lecture toLecture({int currentChapter = 0}){
+  Lecture toLecture({int currentChapter = 0}) {
     return new Lecture(
         this.title,
         this.author,
@@ -66,7 +57,7 @@ class Book {
         this._mainGenre,
         this.year,
         this.extension,
-        this.shops_items,
+        this.shopsItems,
         this.editorial,
         this.language,
         this.addedBy,
@@ -74,29 +65,26 @@ class Book {
         isNew: this.isNew,
         chapters: this.chapters,
         friendsReading: this.friendsReading,
-        currentChapter: currentChapter
-    );
+        currentChapter: currentChapter);
   }
 
-  static List<Lecture>  toLectureList(List<Book> books){
+  static List<Lecture> toLectureList(List<Book> books) {
     List<Lecture> lectures = new List();
-    for(Book book in books)
-      lectures.add(book.toLecture());
+    for (Book book in books) lectures.add(book.toLecture());
     return lectures;
-
   }
 
-  int getBookTotalNumberOfComments(){
+  int getBookTotalNumberOfComments() {
     int comments = 0;
-    for(Chapter chapter in this.chapters){
+    for (Chapter chapter in this.chapters) {
       comments += chapter.comments.length;
     }
     return comments;
   }
 
-  Map<String, List<Item>> get shops_items => _shopsItems;
+  Map<String, List<Item>> get shopsItems => _shopsItems;
 
-  set shops_items(Map<String, List<Item>> fr) {
+  set shopsItems(Map<String, List<Item>> fr) {
     _shopsItems = fr;
   }
 
@@ -151,16 +139,14 @@ class Book {
   }
 
   @override
-  bool operator ==( other) {
-    if(this.title ==  other.title && this.author == other.author)
-      return true;
+  bool operator ==(other) {
+    if (this.title == other.title && this.author == other.author) return true;
     return false;
     // TODO: implement ==
     //return super this==(other);
   }
 
-  static List<Book> getUserMockBooks(){
-
+  static List<Book> getUserMockBooks() {
     List<Book> books = new List();
     List<Item> items = Item.getMockItems();
     List<Chapter> chapters = Chapter.getMockChapters();
@@ -169,12 +155,11 @@ class Book {
 
     Map<String, List<Item>> shopItems = {
       'Tapa Blanda': items,
-      'Tapa Dura' : items,
+      'Tapa Dura': items,
       'Tapa Ebook': items,
     };
 
-    String description =
-    """
+    String description = """
     Engánchate al fenómenoValeria de @BetaCoqueta, una saga altamente divertida, emotiva y sensual.
     
     ¡Te vas a enamorar!
@@ -196,47 +181,47 @@ class Book {
     """;
 
     Book book1 = new Book.withSummary(
-        "En los Zapatos de Valeria",
-        "Elisabeth Benavent",
-        "https://imagessl3.casadellibro.com/a/l/t0/73/9788490628973.jpg",
-        description,
-        genres[0],
-        shopItems,
-        chapters : chapters,
-        //friends_reading: friends,
+      "En los Zapatos de Valeria",
+      "Elisabeth Benavent",
+      "https://imagessl3.casadellibro.com/a/l/t0/73/9788490628973.jpg",
+      description,
+      genres[0],
+      shopItems,
+      chapters: chapters,
+      //friends_reading: friends,
     );
 
     Book book2 = new Book.withSummary(
-        "En busca del chico irrompible",
-        "Coque Mesa",
-        "https://imagessl9.casadellibro.com/a/l/t5/59/9788408228059.jpg",
-        description,
-        genres[1],
-        shopItems,
-        chapters: chapters,
-        //friends_reading: friends,
+      "En busca del chico irrompible",
+      "Coque Mesa",
+      "https://imagessl9.casadellibro.com/a/l/t5/59/9788408228059.jpg",
+      description,
+      genres[1],
+      shopItems,
+      chapters: chapters,
+      //friends_reading: friends,
     );
 
     Book book3 = new Book.withSummary(
-        "Con el amor bastaba looooooooooooooooooooooooooooooooookasssssssssssssssssssssssoooooooooooooo looooooooooooooooooooooooooooooooookasssssssssssssssssssssssoooooooooooooo",
-        "Maxim Huerta",
-        "https://imagessl2.casadellibro.com/a/l/t5/92/9788408221692.jpg",
-        description,
-        genres[2],
-        shopItems,
-        chapters: chapters,
-        //friends_reading: friends,
+      "Con el amor bastaba looooooooooooooooooooooooooooooooookasssssssssssssssssssssssoooooooooooooo looooooooooooooooooooooooooooooooookasssssssssssssssssssssssoooooooooooooo",
+      "Maxim Huerta",
+      "https://imagessl2.casadellibro.com/a/l/t5/92/9788408221692.jpg",
+      description,
+      genres[2],
+      shopItems,
+      chapters: chapters,
+      //friends_reading: friends,
     );
 
     Book book4 = new Book.withSummary(
-        "A próposito de nada",
-        "Woody Allen",
-        "https://imagessl0.casadellibro.com/a/l/t5/50/9788491819950.jpg",
-        description,
-        genres[3],
-        shopItems,
-        chapters: chapters,
-        //friends_reading: friends,
+      "A próposito de nada",
+      "Woody Allen",
+      "https://imagessl0.casadellibro.com/a/l/t5/50/9788491819950.jpg",
+      description,
+      genres[3],
+      shopItems,
+      chapters: chapters,
+      //friends_reading: friends,
     );
 
     books.add(book1);
@@ -246,7 +231,7 @@ class Book {
     return books;
   }
 
-  static List<Book> getAppMockBooks(){
+  static List<Book> getAppMockBooks() {
     List<Book> books = Book.getUserMockBooks();
     books[0].friendsReading = User.getMockAlterantiveUsers().sublist(0, 1);
     books[1].friendsReading = User.getMockAlterantiveUsers().sublist(0, 2);
@@ -254,9 +239,4 @@ class Book {
     books[3].friendsReading = User.getMockAlterantiveUsers().sublist(0, 1);
     return books;
   }
-
-
-
-
-
 }

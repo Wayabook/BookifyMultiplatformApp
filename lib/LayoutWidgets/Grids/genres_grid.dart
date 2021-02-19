@@ -1,4 +1,3 @@
-import 'package:bookifyapp/Design/constants.dart';
 import 'package:bookifyapp/Design/size_constants.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/Genre/genre_container_card.dart';
 import 'package:bookifyapp/Models/Genre.dart';
@@ -8,6 +7,7 @@ import 'package:provider/provider.dart';
 
 import '../../Design/SizeConfig.dart';
 
+// ignore: must_be_immutable
 class GenresGrid extends StatefulWidget {
   List<Genre> genres;
 
@@ -24,7 +24,6 @@ class _GenresGrid extends State<GenresGrid> with TickerProviderStateMixin {
   static const int WIDTH_FACTOR = 3;
   static const int HEIGHT_FACTOR = 4;
   static const int CROSS_AXIS_COUNT = 3;
-  static const double PADDING_FACTOR = 0.97;
   static const double GENRES_CONTAINER_FACTOR = 1.47;
 
   User user;

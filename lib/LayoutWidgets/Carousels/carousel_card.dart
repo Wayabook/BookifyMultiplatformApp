@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:bookifyapp/Models/Book.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/card_swiper.dart';
 
+// ignore: must_be_immutable
 class CarouselCard extends StatelessWidget {
   static const double DEFAULT_HEIGHT_FACTOR = 43.92;
   List<Book> books;

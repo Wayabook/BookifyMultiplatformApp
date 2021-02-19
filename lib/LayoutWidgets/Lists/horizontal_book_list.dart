@@ -9,6 +9,7 @@ import 'package:bookifyapp/Enums/book_card_type.dart';
 
 import '../../Design/SizeConfig.dart';
 
+// ignore: must_be_immutable
 class HorizontalBookList extends StatelessWidget {
   static const double DEFAULT_PADDING_FACTOR = 1.46;
   List<Lecture> books;

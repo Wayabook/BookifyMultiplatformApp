@@ -1,16 +1,13 @@
 import 'dart:ui';
 import 'package:bookifyapp/Design/constants.dart';
-import 'package:bookifyapp/Design/size_constants.dart';
 import 'package:bookifyapp/Enums/button_type.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/Genre/genre_card.dart';
 import 'package:bookifyapp/LayoutWidgets/Cards/Genre/genre_container_card.dart';
 import 'package:bookifyapp/Design/SizeConfig.dart';
-import 'package:bookifyapp/Models/Genre.dart';
 import 'package:bordered_text/bordered_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/mockito.dart';
 
 import '../../../Mocks/mock_genre.dart';
 import '../../../widget_test_functions.dart';

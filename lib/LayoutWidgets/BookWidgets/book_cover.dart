@@ -4,6 +4,7 @@ import 'package:bookifyapp/Design/size_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/Models/Book.dart';
 
+// ignore: must_be_immutable
 class BookCover extends StatelessWidget {
   static const POSTER_RATIO = 0.7;
   static const double DEFAULT_HEIGHT = 100.0;

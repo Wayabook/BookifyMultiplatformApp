@@ -2,15 +2,10 @@ import 'package:bookifyapp/Design/constants.dart';
 import 'package:bookifyapp/Design/size_constants.dart';
 import 'package:bookifyapp/Enums/book_card_type.dart';
 import 'package:bookifyapp/Enums/list_type.dart';
-import 'package:bookifyapp/Models/Book.dart';
 import 'package:bookifyapp/Models/Lecture.dart';
-import 'package:bookifyapp/Models/User.dart';
 import 'package:bookifyapp/Design/SizeConfig.dart';
 import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-
-import '../../InfoToast.dart';
 
 class BookCardActionButton extends StatefulWidget {
   static const IconData ICON_CHECK = Icons.check;

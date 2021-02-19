@@ -3,6 +3,7 @@ import 'package:bookifyapp/Design/SizeConfig.dart';
 import 'package:bookifyapp/Design/size_constants.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class ProfilePicture extends StatelessWidget {
   /*static const String DEFAULT_IMAGE_URL =
       "https://i.pinimg.com/280x280_RS/77/56/01/77560124a4abb4053f4f95c9153ef565.jpg";*/
@@ -12,9 +13,9 @@ class ProfilePicture extends StatelessWidget {
   double circleRadius;
   double circleBorderWidth;
   bool withoutEdges;
-  String image_url;
+  String imageUrl;
 
-  ProfilePicture(this.image_url,
+  ProfilePicture(this.imageUrl,
       {this.circleRadius = DEFAULT_RADIUS,
       this.circleBorderWidth = DEFAULT_BORDER_WIDTH});
 
@@ -46,9 +47,9 @@ class ProfilePicture extends StatelessWidget {
               shape: CircleBorder(),
               image: DecorationImage(
                   fit: BoxFit.cover,
-                  image: this.image_url != null
+                  image: this.imageUrl != null
                       ? NetworkImage(
-                          this.image_url,
+                          this.imageUrl,
                         )
                       : AssetImage(DEFAULT_ASSET_IMAGE))),
         ),

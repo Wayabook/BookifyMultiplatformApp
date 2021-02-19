@@ -1,16 +1,12 @@
 import 'package:bookifyapp/Design/constants.dart';
-import 'package:bookifyapp/Interfaces/RemoveCommentInterface.dart';
-import 'package:bookifyapp/LayoutWidgets/BookWidgets/summary_text.dart';
 import 'package:bookifyapp/LayoutWidgets/Abstracts/abstract_comment.dart';
-import 'package:bookifyapp/LayoutWidgets/Profile/user_preview_card.dart';
 import 'package:bookifyapp/Models/MainComment.dart';
 import 'package:bookifyapp/Pages/CommentPage/comment_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:like_button/like_button.dart';
-
 import '../../../Design/SizeConfig.dart';
 
+// ignore: must_be_immutable
 class MainCommentCard extends StatelessWidget with AbstractComment {
   bool fromDialog;
   bool seeAllComments;

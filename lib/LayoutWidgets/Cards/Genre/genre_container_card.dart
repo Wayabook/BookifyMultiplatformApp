@@ -5,6 +5,7 @@ import 'package:bookifyapp/Models/Genre.dart';
 import 'package:bookifyapp/Design/SizeConfig.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class GenreContainer extends StatelessWidget with AbstractMarkableCard {
   static const double DEFAULT_WIDTH_FACTOR = 16.17;
   static const double DEFAULT_BORDER_FACTOR = 4.86;

@@ -3,8 +3,8 @@ import 'package:bookifyapp/Design/size_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:bookifyapp/Enums/row_type.dart';
 
+// ignore: must_be_immutable
 class InfoRow extends StatelessWidget {
-
   RowType rowType;
   String title;
   String content;
@@ -14,30 +14,25 @@ class InfoRow extends StatelessWidget {
   IconData icon;
   Color color = Colors.black;
 
-  InfoRow(
-      this.rowType,
-      this.title,
-      this.content,
-      this.subTitle,
-      this.width,
-      this.height
-  );
+  InfoRow(this.rowType, this.title, this.content, this.subTitle, this.width,
+      this.height);
 
   InfoRow.withIcon(
-      this.rowType,
-      this.title,
-      this.icon,
-      this.subTitle,
-      this.width,
-      this.height,
-      this.color,
+    this.rowType,
+    this.title,
+    this.icon,
+    this.subTitle,
+    this.width,
+    this.height,
+    this.color,
   );
 
-  Widget _getTopPart(){
+  Widget _getTopPart() {
     return Align(
       alignment: Alignment.center,
       child: Padding(
-        padding: EdgeInsets.all((PADDING_FACTOR_5 * SizeConfig.widthMultiplier)), // 5
+        padding: EdgeInsets.all(
+            (PADDING_FACTOR_5 * SizeConfig.widthMultiplier)), // 5
         child: Container(
           child: Text(
             this.title,
@@ -62,7 +57,7 @@ class InfoRow extends StatelessWidget {
           width: (TEXT_FACTOR_50 * SizeConfig.widthMultiplier), //50
         ),
       );
-    } else  if (this.rowType == RowType.icon_image) {
+    } else if (this.rowType == RowType.icon_image) {
       return Align(
         alignment: Alignment.center,
         child: Icon(
@@ -75,51 +70,52 @@ class InfoRow extends StatelessWidget {
       return Align(
         alignment: Alignment.center,
         child: Padding(
-          padding: EdgeInsets.all((PADDING_FACTOR_5 * SizeConfig.widthMultiplier)), //5
+          padding: EdgeInsets.all(
+              (PADDING_FACTOR_5 * SizeConfig.widthMultiplier)), //5
           child: Text(
             this.content,
             overflow: TextOverflow.ellipsis,
             style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: (TEXT_FACTOR_32 * SizeConfig.textMultiplier) //32
-            ),
+                ),
           ),
         ),
       );
     }
   }
 
-  Widget _getBottomPart(){
+  Widget _getBottomPart() {
     if (this.rowType == RowType.icon_image) {
-      return  Align(
+      return Align(
         alignment: Alignment.bottomCenter,
         child: Padding(
           padding: EdgeInsets.fromLTRB(
               (PADDING_FACTOR_5 * SizeConfig.widthMultiplier), //5
               (0.2 * SizeConfig.heightMultiplier), //2
               (PADDING_FACTOR_5 * SizeConfig.widthMultiplier), //5
-              (PADDING_FACTOR_0)
-          ),
+              (PADDING_FACTOR_0)),
           child: Container(
             child: Text(
-              this.subTitle != null ?  this.subTitle : "0",
+              this.subTitle != null ? this.subTitle : "0",
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
                   color: color,
                   fontSize: (TEXT_FACTOR_20 * SizeConfig.textMultiplier) //20
-              ),
+                  ),
             ),
           ),
         ),
       );
     } else {
-      return  Align(
+      return Align(
         alignment: Alignment.bottomCenter,
         child: Padding(
-          padding: EdgeInsets.all((PADDING_FACTOR_5 * SizeConfig.widthMultiplier)), // 5
+          padding: EdgeInsets.all(
+              (PADDING_FACTOR_5 * SizeConfig.widthMultiplier)), // 5
           child: Container(
             child: Text(
-              this.subTitle != null ?  this.subTitle : "0",
+              this.subTitle != null ? this.subTitle : "0",
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
                 fontSize: (TEXT_FACTOR_14 * SizeConfig.textMultiplier), //14
@@ -143,9 +139,7 @@ class InfoRow extends StatelessWidget {
           child: Column(
             children: <Widget>[
               _getTopPart(),
-
               _getCenterPart(),
-
               _getBottomPart(),
             ],
           ),

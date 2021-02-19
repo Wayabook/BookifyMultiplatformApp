@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 
 import '../../../Design/SizeConfig.dart';
 
+// ignore: must_be_immutable
 class ListTitle extends StatelessWidget {
   static const double DEFAULT_PADDING_FACTOR = 1.46;
   static const double DEFAULT_FONT_SIZE = 0;

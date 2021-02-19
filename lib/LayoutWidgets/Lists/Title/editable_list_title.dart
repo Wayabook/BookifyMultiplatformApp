@@ -3,6 +3,7 @@ import 'package:bookifyapp/Design/constants.dart';
 import 'package:bookifyapp/Design/size_constants.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class EditableListTitle extends StatelessWidget {
   String title;
   TextEditingController textEditingController = new TextEditingController();

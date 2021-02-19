@@ -134,7 +134,6 @@ void main() {
       await tester.pump(const Duration(milliseconds: 2000));
       expect(find.byIcon(BookCardActionButton.ICON_BEEN_HERE), findsOneWidget);
       icon = tester.firstWidget(iconButton);
-      Color aux = icon.color;
       expect(icon.color, bookCardActionButtonColor2);
       expect(icon.size, (12.16 * SizeConfig.imageSizeMultiplier));
       expect(value, 0);

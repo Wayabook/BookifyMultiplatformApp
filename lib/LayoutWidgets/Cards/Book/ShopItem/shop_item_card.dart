@@ -8,6 +8,7 @@ import 'package:bookifyapp/Design/size_constants.dart';
 
 import '../../../../Design/SizeConfig.dart';
 
+// ignore: must_be_immutable
 class ShopItemCard extends StatelessWidget {
   static const IconData GO_SHOP_ICON = Icons.arrow_forward_ios;
   Item item;
@@ -43,7 +44,7 @@ class ShopItemCard extends StatelessWidget {
                 children: <Widget>[
                   Flexible(
                     flex: 3,
-                    child: ProfilePicture(item.shop.logo_url),
+                    child: ProfilePicture(item.shop.logoUrl),
                   ),
                   Flexible(
                     flex: 7,
@@ -97,7 +98,7 @@ class ShopItemCard extends StatelessWidget {
                                                 .imageSizeMultiplier), //24
                                       ),
                                       onPressed: () {
-                                        launch(item.shop_link);
+                                        launch(item.shopLink);
                                       },
                                     ),
                                   )),

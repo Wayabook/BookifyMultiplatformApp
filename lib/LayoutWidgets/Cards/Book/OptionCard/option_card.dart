@@ -1,11 +1,11 @@
 import 'package:bookifyapp/Design/constants.dart';
 import 'package:bookifyapp/Design/size_constants.dart';
 import 'package:bookifyapp/Enums/book_card_type.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../Design/SizeConfig.dart';
 
+// ignore: must_be_immutable
 class OptionCard extends StatelessWidget {
   static const double BORDER_RADIUS = 1.7;
   static const double DEFAULT_WIDTH = 29.19;

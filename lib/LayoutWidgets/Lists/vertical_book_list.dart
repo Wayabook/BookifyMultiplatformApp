@@ -14,6 +14,7 @@ import 'package:provider/provider.dart';
 
 import '../../Design/SizeConfig.dart';
 
+// ignore: must_be_immutable
 class VerticalBookList/*<T extends Book>*/ extends StatefulWidget {
   VerticalBookList(this.readingBooks, this.pendingBooks); // : super(key: key);
 

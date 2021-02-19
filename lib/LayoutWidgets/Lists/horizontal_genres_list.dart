@@ -7,6 +7,7 @@ import 'package:bookifyapp/Models/Genre.dart';
 import 'package:bookifyapp/Enums/list_type.dart';
 import 'package:bookifyapp/Design/size_constants.dart';
 
+// ignore: must_be_immutable
 class HorizontalGenresList extends StatelessWidget {
   static const double DEFAULT_PADDING_FACTOR = 1.46;
   List<Genre> genres;
