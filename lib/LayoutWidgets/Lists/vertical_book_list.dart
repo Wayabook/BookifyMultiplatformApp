@@ -99,9 +99,12 @@ class _VerticalBookList extends State<VerticalBookList>
     updateLists();
     updateUILists();
 
-    return Scaffold(
-      backgroundColor: kPrimaryDarkColor,
-      body: _makeBody(),
+    return Directionality(
+      textDirection: TextDirection.ltr,
+      child: Scaffold(
+        backgroundColor: kPrimaryDarkColor,
+        body: _makeBody(),
+      ),
     );
   }
 
