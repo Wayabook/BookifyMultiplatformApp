@@ -54,7 +54,8 @@ class _VerticalBookList extends State<VerticalBookList>
 
   void updateLists() {
     var user = Provider.of<User>(context, listen: false);
-    widget.readingBooks = user.getLectureListByName(READING_LIST);
+    var aux = user.getLectureListByName(READING_LIST);
+    widget.readingBooks = aux;
     widget.pendingBooks = user.getLectureListByName(PENDING_LIST);
   }
 

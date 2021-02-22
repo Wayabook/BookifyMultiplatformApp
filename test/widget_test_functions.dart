@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:provider/provider.dart';
 
-import 'WidgetTests/Cards/Comments/main_comment_card_widget_test.dart';
+import 'Mocks/mock_user.dart';
 
 class WidgetTestFunctions {
   static const int DEFAULT_DURATION = 3000;
@@ -31,28 +31,10 @@ class WidgetTestFunctions {
     return MediaQuery(data: MediaQueryData(), child: widget);
   }
 
-  static mockUserProvider(Widget child) {
-    return MultiProvider(
-        providers: [
-          // In this sample app, CatalogModel never changes, so a simple Provider
-          // is sufficient.
-          //Provider(create: (context) => User.getMockUser()),
-
-          ChangeNotifierProvider<User>(create: (context) => new MockUser())
-
-          // CartModel is implemented as a ChangeNotifier, which calls for the use
-          // of ChangeNotifierProvider. Moreover, CartModel depends
-          // on CatalogModel, so a ProxyProvider is needed.
-          /*ChangeNotifierProxyProvider<CatalogModel, CartModel>(
-                    create: (context) => CartModel(),
-                    update: (context, catalog, cart) {
-                      cart.catalog = catalog;
-                      return cart;
-                    },
-                  ),*/
-        ],
-        child: Builder(
-          builder: (_) => child,
-        ));
+  static buildWidgetWithProvider(Widget child, MockUser user) {
+    return ChangeNotifierProvider<User>.value(
+      value: user,
+      child: child,
+    );
   }
 }

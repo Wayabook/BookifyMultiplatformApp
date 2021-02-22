@@ -1,12 +1,9 @@
 import 'package:bookifyapp/Design/SizeConfig.dart';
-import 'package:bookifyapp/LayoutWidgets/Buttons/small_button_underlined.dart';
+import 'package:bookifyapp/LayoutWidgets/Cards/Book/BookCardFactory/book_card_in_vertical_list.dart';
+import 'package:bookifyapp/LayoutWidgets/Lists/Title/list_title.dart';
 import 'package:bookifyapp/LayoutWidgets/Lists/vertical_book_list.dart';
-import 'package:bookifyapp/Models/User.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/mockito.dart';
-import 'package:provider/provider.dart';
-
+import 'package:image_test_utils/image_test_utils.dart';
 import '../../Mocks/mock_lecture.dart';
 import '../../Mocks/mock_user.dart';
 import '../../widget_test_functions.dart';
@@ -17,31 +14,38 @@ void main() {
   });
 
   group('Vertical Book List Widget Tests', () {
-    testWidgets('Null Reading Lists Widget Test', (WidgetTester tester) async {
-      List<MockLecture> readingList = new List<MockLecture>();
-      readingList.add(new MockLecture());
-      readingList.add(new MockLecture());
-      List<MockLecture> pendingList = new List<MockLecture>();
-      pendingList.add(new MockLecture());
-      pendingList.add(new MockLecture());
+    testWidgets('Empty Reading Lists Widget Test', (WidgetTester tester) async {
+      final widget =
+          VerticalBookList(new List<MockLecture>(), new List<MockLecture>());
+      await WidgetTestFunctions.pumpWidgetTest(
+          tester,
+          WidgetTestFunctions.buildWidgetWithMediaQuery(
+              WidgetTestFunctions.buildWidgetWithProvider(
+                  widget, new MockUser())),
+          VerticalBookList);
 
-      final widget = VerticalBookList(readingList, pendingList);
-
-      await tester.pumpWidget(WidgetTestFunctions.buildWidgetWithMediaQuery(
-          ChangeNotifierProvider<User>.value(
-        value: new MockUser(),
-        child: widget,
-      )));
-
-      expect(find.byType(VerticalBookList), findsOneWidget);
-      await tester.ensureVisible(find.byWidget(widget));
-
-      /*await tester.pumpWidget(provider);
-      expect(find.byType(Builder), findsOneWidget);
-      await tester.ensureVisible(find.byWidget(widget));*/
-
-      /*await WidgetTestFunctions.pumpWidgetTest(
-          tester, widget, VerticalBookList);*/
+      /// Expecting 2 ListTitles and 0 BookCards
+      expect(find.byType(ListTitle), findsNWidgets(2));
+      expect(find.byType(BookCardInVerticalList), findsNothing);
     });
+
+    /*testWidgets('1 Item in Reading and Pending Lists Widget Test',
+        (WidgetTester tester) async {
+      provideMockedNetworkImages(() async {
+        MockUser user = new MockUser.withListsContent();
+        final widget = VerticalBookList(
+            MockLecture.lecturesList, MockLecture.lecturesList);
+
+        await tester.pumpWidget(WidgetTestFunctions.buildWidgetWithMediaQuery(
+            WidgetTestFunctions.buildWidgetWithProvider(widget, user)));
+
+        expect(find.byType(VerticalBookList), findsOneWidget);
+        await tester.ensureVisible(find.byWidget(widget));
+
+        /// Expecting 2 ListTitles and 2 BookCards
+        expect(find.byType(ListTitle), findsNWidgets(2));
+        expect(find.byType(BookCardInVerticalList), findsNWidgets(2));
+      });
+    });*/
   });
 }
