@@ -29,6 +29,8 @@ class _BookCardInfo extends State<BookCardInfo> {
   _getTitleContainer() {
     return Center(
       child: Container(
+          child: Directionality(
+        textDirection: TextDirection.ltr,
         child: Text(
           widget.book.title,
           overflow: TextOverflow.ellipsis,
@@ -38,12 +40,14 @@ class _BookCardInfo extends State<BookCardInfo> {
               ),
           textAlign: TextAlign.center,
         ),
-      ),
+      )),
     );
   }
 
   _getAuthorContainer() {
     return Center(
+        child: Directionality(
+      textDirection: TextDirection.ltr,
       child: Text(
         widget.book.author,
         overflow: TextOverflow.ellipsis,
@@ -53,60 +57,64 @@ class _BookCardInfo extends State<BookCardInfo> {
         ),
         textAlign: TextAlign.center,
       ),
-    );
+    ));
   }
 
   _getChaptersInfo() {
     return <Widget>[
-      Row(
-        children: <Widget>[
-          Flexible(
-            flex: 2,
-            child: Icon(
-              Icons.bookmark,
-              color: bookCardActtionButtonDefaultColor,
-              size: (PADDING_FACTOR_20 * SizeConfig.heightMultiplier), //20
+      Directionality(
+        textDirection: TextDirection.ltr,
+        child: Row(
+          children: <Widget>[
+            Flexible(
+              flex: 2,
+              child: Icon(
+                Icons.bookmark,
+                color: bookCardActtionButtonDefaultColor,
+                size: (PADDING_FACTOR_20 * SizeConfig.heightMultiplier), //20
+              ),
             ),
-          ),
-          Flexible(
-            flex: 6,
-            child: AutoSizeText(
-              widget.book.currentChapterTitle,
-              overflow: TextOverflow.ellipsis,
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: (TEXT_FACTOR_14 * SizeConfig.textMultiplier) //14
-                  ),
-              maxLines: 1,
-            ),
-          ),
-          Flexible(
-            flex: 2,
-            child: Visibility(
-              visible:
-                  widget.book.currentChapter != widget.book.chapters.length - 1,
-              maintainSize: false,
-              maintainAnimation: false,
-              maintainState: false,
+            Flexible(
+              flex: 6,
               child: AutoSizeText(
-                "+" +
-                    (widget.book.chapters.length -
-                            widget.book.currentChapter -
-                            1)
-                        .toString(),
-                //overflow: TextOverflow.ellipsis,
+                widget.book.currentChapterTitle,
+                overflow: TextOverflow.ellipsis,
                 style: TextStyle(
-                    color: Colors.grey[500],
                     fontWeight: FontWeight.bold,
                     fontSize: (TEXT_FACTOR_14 * SizeConfig.textMultiplier) //14
                     ),
                 maxLines: 1,
-                textAlign: TextAlign.left,
               ),
             ),
-          )
-        ],
-      ),
+            Flexible(
+              flex: 2,
+              child: Visibility(
+                visible: widget.book.currentChapter !=
+                    widget.book.chapters.length - 1,
+                maintainSize: false,
+                maintainAnimation: false,
+                maintainState: false,
+                child: AutoSizeText(
+                  "+" +
+                      (widget.book.chapters.length -
+                              widget.book.currentChapter -
+                              1)
+                          .toString(),
+                  //overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                      color: Colors.grey[500],
+                      fontWeight: FontWeight.bold,
+                      fontSize:
+                          (TEXT_FACTOR_14 * SizeConfig.textMultiplier) //14
+                      ),
+                  maxLines: 1,
+                  textAlign: TextAlign.left,
+                ),
+              ),
+            )
+          ],
+        ),
+      )
     ];
   }
 

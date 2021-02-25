@@ -21,6 +21,10 @@ class MockUser extends Mock implements User {
     };
   }
 
+  addLecture(String list, Lecture lecture) {
+    this._lectureLists[list].add(lecture);
+  }
+
   MockUser.withListsContent() {
     this._lectureLists = {
       'Reading': MockLecture.lecturesList,
@@ -38,4 +42,16 @@ class MockUser extends Mock implements User {
       return this._lectureLists[listName];
     return new List();
   }
+
+  bool isInReadingList(Lecture lecture) {
+    return this._lectureLists["Reading"].contains(lecture);
+  }
+
+  bool isInPendingList(Lecture lecture) {
+    return this._lectureLists["Pending"].contains(lecture);
+  }
+
+  /*void increaseChapter(Lecture lecture) {
+    //lecture.increaseChapter();
+  }*/
 }

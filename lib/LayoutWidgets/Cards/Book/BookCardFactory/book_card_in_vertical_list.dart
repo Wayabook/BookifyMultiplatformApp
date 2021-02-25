@@ -164,40 +164,42 @@ class _BookCard extends State<BookCardInVerticalList> {
                 (1.7 * SizeConfig.imageSizeMultiplier)) // 7
             ),
         child: Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal: (1.21 * SizeConfig.widthMultiplier), //5
-            vertical: (1.46 * SizeConfig.heightMultiplier), //10
-          ),
-          child: Row(
-            children: <Widget>[
-              Flexible(
-                flex: 3,
-                child: widget.getFirstRowItem(
-                    widget.type, widget.listType, widget.book, () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) =>
-                          BookPage("title", widget.book, _getBooks())));
-                }),
+            padding: EdgeInsets.symmetric(
+              horizontal: (1.21 * SizeConfig.widthMultiplier), //5
+              vertical: (1.46 * SizeConfig.heightMultiplier), //10
+            ),
+            child: Directionality(
+              textDirection: TextDirection.ltr,
+              child: Row(
+                children: <Widget>[
+                  Flexible(
+                    flex: 3,
+                    child: widget.getFirstRowItem(
+                        widget.type, widget.listType, widget.book, () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) =>
+                              BookPage("title", widget.book, _getBooks())));
+                    }),
+                  ),
+                  Flexible(
+                    flex: 5,
+                    child: widget.getSecondRowItem(
+                        widget.book, widget.type), //_getSecondRowItem(),
+                  ),
+                  Flexible(
+                    flex: 2,
+                    child: widget.getThirdRowItem(
+                        widget.book,
+                        widget.type,
+                        widget.user,
+                        widget.listType,
+                        widget.tickerProvider,
+                        widget.listTitle,
+                        _onBookCardActionButtonPressed),
+                  ),
+                ],
               ),
-              Flexible(
-                flex: 5,
-                child: widget.getSecondRowItem(
-                    widget.book, widget.type), //_getSecondRowItem(),
-              ),
-              Flexible(
-                flex: 2,
-                child: widget.getThirdRowItem(
-                    widget.book,
-                    widget.type,
-                    widget.user,
-                    widget.listType,
-                    widget.tickerProvider,
-                    widget.listTitle,
-                    _onBookCardActionButtonPressed),
-              ),
-            ],
-          ),
-        ));
+            )));
   }
 
   bookCompletedProcess() {

@@ -196,6 +196,7 @@ class _BookCardActionButton extends State<BookCardActionButton> {
 
   @override
   void dispose() {
+    animationController.dispose();
     super.dispose();
   }
 }
