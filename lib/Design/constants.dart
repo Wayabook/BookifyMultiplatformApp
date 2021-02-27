@@ -12,6 +12,7 @@ const bookCardActionButtonColor2 = Colors.lightGreen;*/
 // Light mode
 const kPrimaryLightColor = Colors.white;
 const kGreenLightColor = Color.fromRGBO(255, 160, 18, 1);
+const bookCardProgressIndicator = Colors.lightGreen;
 
 const smallUnderlinedButtonColor = Colors.blue;
 const addButtonIconColor = Color.fromRGBO(48, 48, 48, 1);

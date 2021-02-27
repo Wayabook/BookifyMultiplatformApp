@@ -104,11 +104,10 @@ abstract class BookCardFactory {
                   flex: 1,
                   child: Center(
                     child: LinearPercentIndicator(
-                      lineHeight:
-                          (PADDING_FACTOR_5 * SizeConfig.widthMultiplier), //5
-                      percent: book.progress,
-                      progressColor: Colors.lightGreen,
-                    ),
+                        lineHeight:
+                            (PADDING_FACTOR_5 * SizeConfig.widthMultiplier), //5
+                        percent: book.progress,
+                        progressColor: bookCardProgressIndicator),
                   ))
             ],
           )

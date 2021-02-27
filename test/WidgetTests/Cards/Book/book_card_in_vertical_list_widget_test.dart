@@ -1,4 +1,5 @@
 import 'package:bookifyapp/Design/SizeConfig.dart';
+import 'package:bookifyapp/Design/constants.dart';
 import 'package:bookifyapp/Enums/book_card_type.dart';
 import 'package:bookifyapp/Enums/button_type.dart';
 import 'package:bookifyapp/LayoutWidgets/Buttons/book_card_action_button.dart';
@@ -53,6 +54,7 @@ void main() {
       LinearPercentIndicator indicator =
           tester.firstWidget(find.byType(LinearPercentIndicator));
       expect(indicator.percent, 0.0);
+      expect(indicator.progressColor, bookCardProgressIndicator);
     });
   });
 
@@ -63,10 +65,9 @@ void main() {
       MockUser user = new MockUser();
       user.addLecture("Reading", mockLecture);
       // When 'getSound' is called, return 'Woof'
-      when(user.increaseChapter(any)).thenReturn(mockLecture.increaseChapter());
 
       final widget = BookCardInVerticalList(
-          mockLecture,
+          user.lectures["Reading"][0],
           BookCardType.book_card_in_vertical_list,
           user,
           ButtonType.read,
@@ -87,9 +88,17 @@ void main() {
           tester.firstWidget(find.byType(LinearPercentIndicator));
       expect(indicator.percent, 0.0);
 
-      await WidgetTestFunctions.tapByType(tester, BookCardActionButton);
+      /// Para no implementar el metodo de la clase en el mock se implementa a su gusto en cada test
+      when(user.increaseChapter(any))
+          .thenReturn(user.lectures["Reading"][0].increaseChapter());
+
+      await WidgetTestFunctions.tapByType(tester, BookCardActionButton,
+          duration: WidgetTestFunctions.DEFAULT_DURATION * 3);
+      //sleep(const Duration(seconds: 5));
       indicator = tester.firstWidget(find.byType(LinearPercentIndicator));
-      expect(indicator.percent, 25.0);
+      expect(indicator.percent, 0.25);
     });
   });
+
+  /// Check book finished progress bar
 }

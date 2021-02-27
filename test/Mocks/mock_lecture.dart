@@ -35,7 +35,7 @@ class MockLecture extends Mock implements Lecture {
   Map<String, List<Item>> _shopsItems;
   Genre _mainGenre;*/
 
-  MockLecture({this.read = false});
+  MockLecture({this.read = false, this.title = "title"});
 
   bool get finished => read;
 

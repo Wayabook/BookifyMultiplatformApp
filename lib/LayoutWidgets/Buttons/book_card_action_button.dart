@@ -57,6 +57,7 @@ class _BookCardActionButton extends State<BookCardActionButton> {
   bool isInReadingList;
   bool added;
   bool _visible;
+  bool toDispose = false;
 
   @override
   Widget build(BuildContext context) {
@@ -96,33 +97,37 @@ class _BookCardActionButton extends State<BookCardActionButton> {
               color: buttonColor,
               size: (TEXT_FACTOR_50 * SizeConfig.imageSizeMultiplier), //50
             ),
-      onPressed: () async {
-        if ((widget.type == BookCardType.book_card_in_vertical_list)) {
-          setState(() {
-            buttonColor = bookCardActionButtonColor2;
-          });
-          await animationController.forward();
-          setState(() {
-            widget.onBookCardActionButtonPressed(widget.listType, widget.book,
-                type: widget.type);
-            if (widget.book.finished) {
-              buttonSize = (IMAGE_SIZE_MULTIPLIER *
-                  SizeConfig.imageSizeMultiplier); // 75
-              this._visible = false;
-            } else {
-              this.buttonColor = bookCardActionButtonColor2;
-            }
-          });
-          if (widget.book.finished) bookCompletedProcess();
-        } else {
-          setState(() {
-            _changeAddedState(setState: true);
-            widget.onBookCardActionButtonPressed(widget.listType, widget.book,
-                added: added);
-          });
-        }
-      },
+      onPressed: _onButtonPressed,
     );
+  }
+
+  _onButtonPressed() async {
+    toDispose = true;
+    if ((widget.type == BookCardType.book_card_in_vertical_list)) {
+      setState(() {
+        buttonColor = bookCardActionButtonColor2;
+      });
+      await animationController.forward();
+      setState(() {
+        widget.onBookCardActionButtonPressed(widget.listType, widget.book,
+            type: widget.type);
+        if (widget.book.finished) {
+          buttonSize =
+              (IMAGE_SIZE_MULTIPLIER * SizeConfig.imageSizeMultiplier); // 75
+          this._visible = false;
+        } else {
+          this.buttonColor = bookCardActionButtonColor2;
+        }
+      });
+
+      if (widget.book.finished) bookCompletedProcess();
+    } else {
+      setState(() {
+        _changeAddedState(setState: true);
+        widget.onBookCardActionButtonPressed(widget.listType, widget.book,
+            added: added);
+      });
+    }
   }
 
   _changeAddedState({setState = false}) {
@@ -196,7 +201,7 @@ class _BookCardActionButton extends State<BookCardActionButton> {
 
   @override
   void dispose() {
-    animationController.dispose();
+    if (toDispose) animationController?.dispose();
     super.dispose();
   }
 }

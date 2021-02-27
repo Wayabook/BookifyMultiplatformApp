@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 import 'Mocks/mock_user.dart';
 
 class WidgetTestFunctions {
-  static const int DEFAULT_DURATION = 3000;
+  static const int DEFAULT_DURATION = 5000;
 
   static Future<void> pumpWidgetTest(tester, widget, type) async {
     await tester.pumpWidget(widget);
@@ -24,7 +24,7 @@ class WidgetTestFunctions {
 
   static tapByType(tester, type, {duration = DEFAULT_DURATION}) async {
     await tester.tap(find.byType(type));
-    await tester.pump(Duration(milliseconds: duration));
+    await tester.pump(new Duration(milliseconds: duration));
   }
 
   static buildWidgetWithMediaQuery(widget) {
