@@ -37,8 +37,8 @@ class _FirstTimeFormPage extends State<FirstTimeFormPage>
   Animation<double> animation;
 
   List<String> _titles = [
-    "Elija Generos de su Interes:",
-    "Seleccione Libros Leidos:",
+    "Elija Géneros de su Interés:",
+    "Seleccione Libros Leídos:",
     "Seleccione Libros Interesantes:",
     "Seleccione Lecturas en Curso:",
   ];

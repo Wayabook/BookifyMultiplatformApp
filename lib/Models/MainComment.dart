@@ -157,22 +157,22 @@ class MainComment extends Comment {
       'Custom List 1': lectures
     };
 
-    User user1 = new User("1", "John Cobra", genres, userLectures, 21, 198, 345,
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Noizy_and_Chris_Brown.jpg/220px-Noizy_and_Chris_Brown.jpg");
-
-    User user2 = new User(
-        "2",
-        "Usain Ahmad",
+    User user1 = new User(
+        "1",
+        "John Sierra",
         genres,
         userLectures,
         21,
         198,
         345,
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Noizy_and_Chris_Brown.jpg/220px-Noizy_and_Chris_Brown.jpg");
+
+    User user2 = new User("2", "Ahmad Aziz", genres, userLectures, 21, 198, 345,
         "https://www.hotfootdesign.co.uk/wp-content/uploads/2016/05/d5jA8OZv.jpg");
 
     User user3 = new User(
         "3",
-        "Alberto Chicote",
+        "Alberto Díaz",
         genres,
         userLectures,
         21,
@@ -192,7 +192,7 @@ class MainComment extends Comment {
 
     User user5 = new User(
         "5",
-        "Antonio Puerta",
+        "Antonio Reyes",
         genres,
         userLectures,
         21,

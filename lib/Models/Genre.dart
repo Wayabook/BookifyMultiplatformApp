@@ -1,4 +1,3 @@
-
 class Genre {
   String _id;
   String _name;
@@ -14,19 +13,17 @@ class Genre {
 
   String get picture => _picture;
 
-  
-  
-  static List<Genre> getMockGenres(){
+  static List<Genre> getMockGenres() {
     List<Genre> genres = List();
-    genres.add(Genre("1", "Genre1", "genre1.png"));
-    genres.add(Genre("2", "Genre2", "genre2.png"));
-    genres.add(Genre("3", "Genre3", "genre3.png"));
-    genres.add(Genre("4", "Genre4", "genre4.png"));
-    genres.add(Genre("5", "Genre5", "genre5.png"));
-    genres.add(Genre("6", "Genre6", "genre6.png"));
-    genres.add(Genre("7", "Genre7", "genre7.png"));
-    genres.add(Genre("8", "Genre8", "genre8.png"));
-    genres.add(Genre("9", "Genre9", "genre9.png"));
+    genres.add(Genre("1", "Poesía", "genre1.png"));
+    genres.add(Genre("2", "Técnicos", "genre2.png"));
+    genres.add(Genre("3", "Sociología", "genre3.png"));
+    genres.add(Genre("4", "Educación", "genre4.png"));
+    genres.add(Genre("5", "Clásicos", "genre5.png"));
+    genres.add(Genre("6", "Biología", "genre6.png"));
+    genres.add(Genre("7", "Romántica", "genre7.png"));
+    genres.add(Genre("8", "Fanatsía", "genre8.png"));
+    genres.add(Genre("9", "Aventuras", "genre9.png"));
     return genres;
   }
 

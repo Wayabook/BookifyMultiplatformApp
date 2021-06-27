@@ -203,7 +203,7 @@ class Book {
     );
 
     Book book3 = new Book.withSummary(
-      "Con el amor bastaba looooooooooooooooooooooooooooooooookasssssssssssssssssssssssoooooooooooooo looooooooooooooooooooooooooooooooookasssssssssssssssssssssssoooooooooooooo",
+      "Con el amor bastaba.",
       "Maxim Huerta",
       "https://imagessl2.casadellibro.com/a/l/t5/92/9788408221692.jpg",
       description,

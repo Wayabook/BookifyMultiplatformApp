@@ -159,22 +159,22 @@ class Comment {
       'Custom List 1': lectures
     };
 
-    User user1 = new User("1", "John Cobra", genres, userLectures, 21, 198, 345,
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Noizy_and_Chris_Brown.jpg/220px-Noizy_and_Chris_Brown.jpg");
-
-    User user2 = new User(
-        "2",
-        "Usain Ahmad",
+    User user1 = new User(
+        "1",
+        "John Sierra",
         genres,
         userLectures,
         21,
         198,
         345,
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Noizy_and_Chris_Brown.jpg/220px-Noizy_and_Chris_Brown.jpg");
+
+    User user2 = new User("2", "Ahmad Aziz", genres, userLectures, 21, 198, 345,
         "https://www.hotfootdesign.co.uk/wp-content/uploads/2016/05/d5jA8OZv.jpg");
 
     User user3 = new User(
         "3",
-        "Alberto Chicote",
+        "Alberto Díaz",
         genres,
         userLectures,
         21,
@@ -194,7 +194,7 @@ class Comment {
 
     User user5 = new User(
         "5",
-        "Antonio Puerta",
+        "Antonio Reyes",
         genres,
         userLectures,
         21,
@@ -203,11 +203,19 @@ class Comment {
         "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Donald_Trump_official_portrait.jpg/220px-Donald_Trump_official_portrait.jpg");
 
     List<Comment> mockSubComments = new List();
-    mockSubComments.add(new Comment(user1, "Muy buen libro", likes: 10));
-    mockSubComments.add(new Comment(user2, "Muy buen libro 1", likes: 10));
-    mockSubComments.add(new Comment(user3, "Muy buen libro 2", likes: 10));
-    mockSubComments.add(new Comment(user4, "Muy buen libro 3", likes: 10));
-    mockSubComments.add(new Comment(user5, "Muy buen libro 4", likes: 10));
+    mockSubComments.add(new Comment(user1, "Muy buen libro.", likes: 10));
+    mockSubComments.add(new Comment(
+        user2, "Muy interesante pero decepciona el final.",
+        likes: 10));
+    mockSubComments.add(new Comment(user3,
+        "Realmente no me lo esperaba que pasada de final, ojala hagan una segunda parte.",
+        likes: 10));
+    mockSubComments.add(new Comment(
+        user4, "Libro increible, que gusto descubrir este autor.",
+        likes: 10));
+    mockSubComments.add(new Comment(user5,
+        "Viendo los comentarios, ¿Cual me recomiendan este o el nuevo que ha sacado?",
+        likes: 10));
     return mockSubComments;
   }
 }

@@ -291,7 +291,7 @@ class User extends ChangeNotifier {
     List<User> friends = getMockUserFriends();
 
     this._uid = "1112";
-    this.name = "Radu Spaimovich";
+    this.name = "Radu Spaimoc";
     this._interestedGenres = genres;
     this._lectureLists = userLectures;
     this._booksRead = 10;
@@ -365,12 +365,9 @@ class User extends ChangeNotifier {
       'Custom List 1': Lecture.getUserMockLectures()
     };
 
-    friends.add(new User("1", "Steve Jobs", genres, userLectures, 21, 198, 345,
-        "https://upload.wikimedia.org/wikipedia/commons/a/a0/Bill_Gates_2018.jpg"));
-
     friends.add(new User(
         "1",
-        "Steve Jobs 1",
+        "Bill Nashville",
         genres,
         userLectures,
         21,
@@ -378,28 +375,31 @@ class User extends ChangeNotifier {
         345,
         "https://upload.wikimedia.org/wikipedia/commons/a/a0/Bill_Gates_2018.jpg"));
 
+    friends.add(new User("1", "Ana Maria", genres, userLectures, 21, 198, 345,
+        "https://www.ashoka.org/sites/default/files/styles/medium_1600x1000/public/thumbnails/images/daniela-kreimer.jpg?itok=R89tVtb4"));
+
     friends.add(new User(
         "1",
-        "Steve Jobs 2",
+        "John Gonzales",
         genres,
         userLectures,
         21,
         198,
         345,
-        "https://upload.wikimedia.org/wikipedia/commons/a/a0/Bill_Gates_2018.jpg"));
+        "https://www.ecestaticos.com/image/clipping/37e2ae50a6bed84cddb4becb3d0fc603/esta-es-una-de-las-personas-mas-inteligentes-del-mundo-y-va-a-cambiarlo-para-siempre.jpg"));
 
     friends.add(new User(
         "1",
-        "Steve Jobs 3",
+        "Izet Monglaw",
         genres,
         userLectures,
         21,
         198,
         345,
-        "https://upload.wikimedia.org/wikipedia/commons/a/a0/Bill_Gates_2018.jpg"));
+        "https://pymstatic.com/52264/conversions/rasgos-personas-sanas-psicologicamente-social.jpg"));
 
-    friends.add(User("1", "Steve Jobs 33", genres, userLectures, 21, 198, 345,
-        "https://upload.wikimedia.org/wikipedia/commons/a/a0/Bill_Gates_2018.jpg"));
+    friends.add(User("1", "Angel Martin", genres, userLectures, 21, 198, 345,
+        "https://www.latercera.com/resizer/mp_c_41mYGXiP_UsSGdFZTevjYk=/900x600/smart/cloudfront-us-east-1.images.arcpublishing.com/copesa/3V5Z225DDJBEHMLQJJEETMYVCE.JPG"));
 
     return friends;
   }
