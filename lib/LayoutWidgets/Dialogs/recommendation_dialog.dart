@@ -233,9 +233,9 @@ class _RecommendationDialog extends State<RecommendationDialog> {
               child: Align(
                 alignment: Alignment.center,
                 child: Text(
-                  ("Recommend " +
+                  ("Recommendar " +
                       widget._recommendations.length.toString() +
-                      " books to " +
+                      " libros a " +
                       widget.sendToUser.name +
                       "?"),
                   overflow: TextOverflow.ellipsis,

@@ -17,10 +17,10 @@ import '../../Design/SizeConfig.dart';
 class DiscoverPage extends StatelessWidget {
   final Color color;
   List<String> sectionsTitles = [
-    "Latest Additions",
-    "Top Rated",
-    "More of  Novel Genre",
-    "More of Romance Genre"
+    "Novedades",
+    "Mejor Valorados",
+    "Mejores Novelas",
+    "Mejores Fantasías"
   ];
 
   DiscoverPage(this.color);

@@ -114,7 +114,7 @@ class ListTitle extends StatelessWidget {
 
   _getViewAllButton(BuildContext context) {
     var buttonText =
-        buttonType == ButtonType.edit_genres_list ? "Edit" : "View All";
+        buttonType == ButtonType.edit_genres_list ? "Editar" : "Ver Todo";
     return GestureDetector(
         onTap: () {
           onListTitleButtonTapped(this.buttonType, context);
@@ -164,8 +164,8 @@ class ListTitle extends StatelessWidget {
           onListTitleButtonTapped(buttonType, context, title: title);
         },
         child: buttonType == ButtonType.edit_list
-            ? SmallButtonUnderlined("Edit")
-            : SmallButtonUnderlined("Copy"));
+            ? SmallButtonUnderlined("Editar")
+            : SmallButtonUnderlined("Copiar"));
   }
 
   //getED

@@ -10,9 +10,9 @@ class OptionCard extends StatelessWidget {
   static const double BORDER_RADIUS = 1.7;
   static const double DEFAULT_WIDTH = 29.19;
   static const String discover_text = 'Discover Books';
-  static const String view_all_text = 'View All';
-  static const String add_custom_list_text = 'Add Custom List';
-  static const String recommend_book_text = 'Recommend Book';
+  static const String view_all_text = 'Ver Todo';
+  static const String add_custom_list_text = 'Crear Lista Personal';
+  static const String recommend_book_text = 'Recommendar Libros';
   static const String settings_text = 'Settings';
 
   static const IconData discover_icon = Icons.add;

@@ -24,7 +24,7 @@ class BookInfoRow extends StatelessWidget {
         children: <Widget>[
           InfoRow(
               RowType.image,
-              "GENDER",
+              "GÉNERO",
               "images/" + book.mainGenre.picture,
               book.mainGenre.name,
               widthPerChild,
@@ -32,12 +32,12 @@ class BookInfoRow extends StatelessWidget {
 
           _getLineSeparator(),
 
-          InfoRow(RowType.text, "PUBLICATION", "2017", "Year", widthPerChild,
+          InfoRow(RowType.text, "PUBLICACIÓN", "2017", "Año", widthPerChild,
               (CONTAINER_FACTOR_115 * SizeConfig.heightMultiplier)), //115
 
           _getLineSeparator(),
 
-          InfoRow(RowType.text, "EXTENSION", "128", "Pages", widthPerChild,
+          InfoRow(RowType.text, "EXTENSIÓN", "128", "Páginas", widthPerChild,
               (CONTAINER_FACTOR_115 * SizeConfig.heightMultiplier) //115
               ),
         ],

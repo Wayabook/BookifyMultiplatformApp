@@ -24,14 +24,14 @@ class Body extends StatelessWidget {
               height: size.height * 0.45,
             ),
             RoundedInputField(
-              hintText: "Your Email",
+              hintText: "Email",
               onChanged: (value) {},
             ),
             RoundedPasswordField(
               onChanged: (value) {},
             ),
             RoundedButton(
-              text: "SIGNUP",
+              text: "REGISTRARSE",
               color: kThirdDarkColor,
               press: () {
                 Navigator.push(

@@ -4,9 +4,7 @@ import 'package:bookifyapp/Pages/LoginPages/Components/text_field_container.dart
 
 import '../../../Design/SizeConfig.dart';
 
-
 class RoundedPasswordField extends StatelessWidget {
-
   final ValueChanged<String> onChanged;
   const RoundedPasswordField({
     Key key,
@@ -30,7 +28,7 @@ class RoundedPasswordField extends StatelessWidget {
         onChanged: onChanged,
         cursorColor: kPrimaryDarkColor,
         decoration: InputDecoration(
-          hintText: "Password",
+          hintText: "Contraseña",
           icon: Icon(
             Icons.lock,
             color: kPrimaryDarkColor,

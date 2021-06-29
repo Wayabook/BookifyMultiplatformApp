@@ -267,7 +267,7 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin {
             child: Row(
               children: <Widget>[
                 Text(
-                  'Summary:',
+                  'Resumen:',
                   style: TextStyle(
                       fontSize:
                           (TEXT_FACTOR_18 * SizeConfig.textMultiplier), // 18
@@ -368,9 +368,9 @@ class _BookPage extends State<BookPage> with TickerProviderStateMixin {
           user, this.book, user.isBookRecommended(this.book)));
     items.add(_getDescriptionSummary());
     items.add(BookListContainer(
-        "More books of" + "Author X:", auxBooksForPrototype, user));
-    items
-        .add(BookListContainer("More of X Genre:", auxBooksForPrototype, user));
+        "Más Libros" + " del Autor:", auxBooksForPrototype, user));
+    items.add(BookListContainer(
+        "Más libros del Género:", auxBooksForPrototype, user));
   }
 
   _buildBookPage(BuildContext context) {
